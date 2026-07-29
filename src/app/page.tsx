@@ -1,12 +1,14 @@
 import { ConceptCard } from "@/components/concepts/ConceptCard";
 import { FunctionsScene } from "@/components/scenes/javascript/FunctionsScene";
 import { MapScene } from "@/components/scenes/javascript/MapScene";
+import { ObjectsScene } from "@/components/scenes/javascript/ObjectsScene";
 import { VariablesScene } from "@/components/scenes/javascript/VariablesScene";
 import { javascriptConcepts } from "@/data/javascriptConcepts";
 
 const activeScenes = new Map([
   [0, <VariablesScene key="variables" />],
   [1, <FunctionsScene key="functions" />],
+  [2, <ObjectsScene key="objects" />],
   [4, <MapScene key="map" />],
 ]);
 
@@ -43,7 +45,7 @@ export default function Home() {
       </section>
 
       <footer className="project-note">
-        Sprint 01: lenguaje visual, componentes reutilizables y tres escenas base.
+        Sprint 02: objetos animados, lectura de propiedades y actualización de valores.
       </footer>
     </main>
   );

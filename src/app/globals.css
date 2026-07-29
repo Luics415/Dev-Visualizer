@@ -239,6 +239,153 @@ select {
   color: var(--green);
 }
 
+/* Objects */
+.objects-scene__workspace {
+  position: absolute;
+  inset: 58px 4px 0;
+  display: grid;
+  grid-template-columns: 52px minmax(136px, 168px) minmax(82px, 1fr);
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+}
+
+.objects-scene__reference {
+  justify-self: end;
+  color: var(--yellow);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 0.78rem;
+  font-weight: 800;
+}
+
+.objects-scene__reference::after {
+  margin-left: 7px;
+  color: #516174;
+  content: "→";
+  font-weight: 400;
+}
+
+.object-card {
+  position: relative;
+  display: grid;
+  grid-template-columns: 13px 1fr 13px;
+  align-items: stretch;
+  min-height: 116px;
+  padding: 10px 5px;
+  border: 1px solid rgba(35, 197, 232, 0.48);
+  border-radius: 13px;
+  background: rgba(35, 197, 232, 0.055);
+}
+
+.object-card__brace {
+  display: grid;
+  place-items: center;
+  color: rgba(35, 197, 232, 0.72);
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 1.55rem;
+}
+
+.object-card__rows {
+  display: grid;
+  align-content: center;
+  gap: 7px;
+}
+
+.object-row {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(42px, 1fr) 8px minmax(45px, 1fr);
+  align-items: center;
+  min-height: 22px;
+  padding: 2px 5px;
+  border-radius: 6px;
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 0.66rem;
+}
+
+.object-key {
+  color: #a9b7c9;
+}
+
+.object-separator {
+  color: #516174;
+}
+
+.object-value {
+  justify-self: start;
+  white-space: nowrap;
+}
+
+.object-value--string {
+  color: var(--green);
+}
+
+.object-value--number {
+  color: var(--orange);
+}
+
+.object-value--boolean {
+  color: var(--blue);
+}
+
+.object-age-value {
+  position: relative;
+  display: inline-grid;
+  min-width: 22px;
+}
+
+.object-age-value .object-value {
+  grid-area: 1 / 1;
+}
+
+.object-value--updated {
+  color: var(--green);
+  font-weight: 800;
+}
+
+.object-card__focus {
+  position: absolute;
+  top: 45px;
+  right: 17px;
+  left: 17px;
+  height: 26px;
+  border: 1px solid rgba(247, 200, 67, 0.58);
+  border-radius: 7px;
+  background: rgba(247, 200, 67, 0.055);
+  pointer-events: none;
+}
+
+.objects-scene__actions {
+  position: relative;
+  align-self: stretch;
+  min-width: 0;
+}
+
+.object-action {
+  position: absolute;
+  left: 0;
+  display: inline-block;
+  max-width: 100%;
+  padding: 5px 7px;
+  border-radius: 6px;
+  background: #080c14;
+  font-family: "SFMono-Regular", Consolas, monospace;
+  font-size: 0.61rem;
+  white-space: nowrap;
+}
+
+.object-action--read {
+  top: 30px;
+  border: 1px solid rgba(247, 200, 67, 0.38);
+  color: var(--yellow);
+}
+
+.object-action--write {
+  top: 70px;
+  border: 1px solid rgba(38, 217, 162, 0.38);
+  color: var(--green);
+}
+
 /* Functions */
 .function-scene__flow {
   position: absolute;

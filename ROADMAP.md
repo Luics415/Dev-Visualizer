@@ -12,7 +12,7 @@
 
 ## Sprint 02 — Transformaciones de datos
 
-- [ ] Objetos.
+- [x] Objetos.
 - [ ] Arrays.
 - [ ] filter.
 - [ ] reduce.

@@ -1,9 +1,10 @@
 # Dev Visualizer — Starter
 
-Biblioteca visual animada de conceptos de programación. Esta primera entrega establece el lenguaje visual y tres tipos de escena autónoma:
+Biblioteca visual animada de conceptos de programación. Esta primera entrega establece el lenguaje visual y cuatro tipos de escena autónoma:
 
 - **Variables:** memoria y cambio de estado.
 - **Funciones:** entrada, proceso y salida.
+- **Objetos:** propiedades, lectura y actualización de un valor.
 - **map:** transformación de una colección.
 
 Las escenas se reproducen solas, terminan, hacen una pausa y reinician en bucle.
@@ -57,5 +58,5 @@ Cada escena debe comunicar, sin interacción:
 
 1. Convertir colores, tamaños y duraciones en tokens.
 2. Crear primitivas `Arrow`, `DataPacket`, `Queue`, `Stack` y `CodeStep`.
-3. Implementar Objetos, Arrays, filter y reduce.
+3. Implementar Arrays, filter y reduce.
 4. Validar que cada escena se entienda sin audio.
