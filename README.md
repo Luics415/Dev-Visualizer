@@ -11,6 +11,8 @@ Biblioteca de programación explicada mediante animaciones autónomas. Cada esce
 - `/react` — 14 conceptos de React.
 - `/react-en-accion` — una búsqueda explicada desde el evento hasta el segundo commit.
 - `/react-native` — 14 conceptos de desarrollo móvil con React Native.
+- `/react-native-en-accion` — un reporte con foto explicado a través de React, el sistema operativo y una API.
+- `/apis-rest` — 14 conceptos de diseño REST y comunicación HTTP.
 
 ## Identidad visual
 
@@ -53,6 +55,10 @@ Composición, JSX, props, snapshots de estado, eventos, keys, efectos, memoizaci
 
 Renderizado nativo, componentes base, StyleSheet, Flexbox, entradas, pulsaciones, imágenes, virtualización, navegación, safe areas, diferencias de plataforma, permisos, red y persistencia.
 
+### APIs REST
+
+Recursos, endpoints, métodos HTTP, rutas y query, headers, JSON, status codes, CRUD, statelessness, autenticación, paginación, caché, idempotencia y errores estructurados.
+
 ## Casos integrados
 
 ### JavaScript en acción
@@ -67,6 +73,10 @@ Un pedido atraviesa entrada tipada, contrato de dominio, cliente genérico, uni�
 
 Una búsqueda atraviesa evento, actualización en cola, render, reconciliación, efecto asíncrono y commit mínimo de resultados.
 
+### React Native en acción
+
+Un reporte móvil atraviesa pulsación, estado y render, permiso del sistema, cámara nativa, carga HTTP, persistencia y navegación.
+
 ## Tecnologías
 
 - Next.js con App Router
@@ -75,7 +85,7 @@ Una búsqueda atraviesa evento, actualización en cola, render, reconciliación,
 - Motion for React
 - CSS global con lenguaje visual propio
 
-El visualizador es una aplicación web; la colección de React Native explica sus conceptos, pero no agrega React Native como dependencia del proyecto.
+El visualizador es una aplicación web; las colecciones de React Native y APIs REST explican conceptos, pero no agregan un runtime móvil ni un backend como dependencias del proyecto.
 
 ## Ejecutar
 

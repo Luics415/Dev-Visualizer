@@ -11,6 +11,8 @@ const links = [
   { href: "/react", label: "React", short: "React" },
   { href: "/react-en-accion", label: "React en acción", short: "R+" },
   { href: "/react-native", label: "React Native", short: "RN" },
+  { href: "/react-native-en-accion", label: "React Native en acción", short: "RN+" },
+  { href: "/apis-rest", label: "APIs REST", short: "REST" },
 ] as const;
 
 export function CollectionNav() {
@@ -21,7 +23,7 @@ export function CollectionNav() {
       <span className="collection-nav__brand" aria-hidden="true">DV</span>
       <div className="collection-nav__links">
         {links.map(({ href, label, short }) => {
-          const active = href === "/" ? pathname === href : pathname.startsWith(href);
+          const active = pathname === href;
 
           return (
             <Link

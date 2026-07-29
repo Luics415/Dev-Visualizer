@@ -1,0 +1,16 @@
+export const restApiConcepts = [
+  ["Recursos", "Modela entidades del dominio como representaciones accesibles mediante URLs estables."],
+  ["Endpoints", "Combina una ruta y una operación para exponer una capacidad concreta de la API."],
+  ["Métodos HTTP", "GET, POST, PUT, PATCH y DELETE expresan la intención de cada solicitud."],
+  ["Parámetros y query", "Los parámetros identifican recursos; la query modifica búsqueda, filtros o paginación."],
+  ["Headers", "Transportan metadatos como autenticación, formato aceptado, caché y trazabilidad."],
+  ["Cuerpo JSON", "Serializa datos estructurados para enviarlos y reconstruirlos en el servidor."],
+  ["Códigos de estado", "Resumen el resultado HTTP antes de que el cliente interprete el cuerpo."],
+  ["CRUD", "Relaciona crear, leer, actualizar y eliminar con operaciones sobre un mismo recurso."],
+  ["Stateless", "Cada solicitud contiene el contexto necesario; el servidor no depende de una conversación oculta."],
+  ["Autenticación", "Un token acompaña solicitudes protegidas y el servidor verifica identidad y permisos."],
+  ["Filtros y paginación", "Reduce colecciones grandes mediante ventanas, criterios y orden definidos por la URL."],
+  ["Caché HTTP", "Evita transferir de nuevo una representación cuando el cliente ya conserva una copia vigente."],
+  ["Idempotencia", "Repetir una operación idempotente produce el mismo estado final, aunque la red reintente."],
+  ["Errores y límites", "Devuelve fallos estructurados y comunica cuándo el cliente debe corregir o esperar."],
+] as const;

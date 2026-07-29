@@ -47,3 +47,15 @@ Las escenas pueden usar líneas, paquetes, carriles, círculos, cajas anidadas, 
 4. La conclusión aparece después del proceso.
 5. El reinicio devuelve la escena al estado inicial sin aparentar un error.
 6. El shell puede cambiar de identidad visual sin modificar la semántica interna.
+
+## Historias entre fronteras
+
+Los casos “en acción” pueden usar cajas dobles cuando el aprendizaje depende de distinguir dos sistemas. La separación debe tener significado técnico real, por ejemplo:
+
+- interfaz nativa ↔ handler de JavaScript
+- snapshot actual ↔ siguiente commit
+- aplicación ↔ diálogo del sistema operativo
+- objeto en memoria ↔ representación JSON
+- cliente HTTP ↔ servidor
+
+La línea y el token animado muestran qué cruza la frontera. Las cajas no deben duplicar información: una representa el origen y la otra el receptor o siguiente estado.
