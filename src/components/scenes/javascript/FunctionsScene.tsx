@@ -1,49 +1,20 @@
 "use client";
 
 import { motion } from "motion/react";
-import { CodePill } from "@/components/visual/CodePill";
 
-const LOOP_SECONDS = 6;
+const LOOP = 8;
 
 export function FunctionsScene() {
   return (
-    <div className="scene function-scene" aria-label="Animación de una función que recibe 5 y devuelve 10">
-      <CodePill>double(5)</CodePill>
-
-      <div className="function-scene__flow">
-        <motion.div
-          className="data-token"
-          animate={{ x: [0, 52, 52, 188], opacity: [0, 1, 1, 1, 0] }}
-          transition={{ duration: LOOP_SECONDS, repeat: Infinity, times: [0, 0.14, 0.42, 0.75, 1] }}
-        >
-          <motion.span
-            animate={{ opacity: [1, 1, 0, 1, 1] }}
-            transition={{ duration: LOOP_SECONDS, repeat: Infinity, times: [0, 0.38, 0.46, 0.52, 1] }}
-          >
-            5
-          </motion.span>
-          <motion.span
-            className="data-token__replacement"
-            animate={{ opacity: [0, 0, 1, 1, 1] }}
-            transition={{ duration: LOOP_SECONDS, repeat: Infinity, times: [0, 0.43, 0.51, 0.75, 1] }}
-          >
-            10
-          </motion.span>
-        </motion.div>
-
-        <div className="function-machine">
-          <span>double()</span>
-          <motion.small
-            animate={{ opacity: [0.35, 0.35, 1, 1, 0.35] }}
-            transition={{ duration: LOOP_SECONDS, repeat: Infinity, times: [0, 0.28, 0.42, 0.58, 1] }}
-          >
-            × 2
-          </motion.small>
-        </div>
-
-        <span className="flow-line flow-line--left" />
-        <span className="flow-line flow-line--right" />
+    <div className="scene js-function" aria-label="La función sum recibe 3 y 5, ejecuta una suma y devuelve 8">
+      <div className="scene-code">sum(3, 5)</div>
+      <div className="function-ports">
+        <div className="function-ports__inputs"><motion.span animate={{ x: [0,54,54], opacity: [0,1,0] }} transition={{ duration: LOOP, repeat: Infinity, times: [.08,.28,.4] }}>3</motion.span><motion.span animate={{ x: [0,54,54], opacity: [0,1,0] }} transition={{ duration: LOOP, repeat: Infinity, times: [.16,.34,.44] }}>5</motion.span></div>
+        <motion.div className="function-core" animate={{ scale: [1,1.06,1], borderColor: ["rgba(59,211,255,.35)","rgba(59,211,255,.95)","rgba(59,211,255,.35)"] }} transition={{ duration: LOOP, repeat: Infinity, times: [.35,.48,.62] }}><small>function</small><strong>sum</strong><code>a + b</code></motion.div>
+        <motion.div className="function-ports__result" animate={{ x: [-34,-34,0,0], opacity: [0,1,1,0] }} transition={{ duration: LOOP, repeat: Infinity, times: [.5,.64,.86,.96] }}>8</motion.div>
+        <div className="function-ports__line function-ports__line--in" /><div className="function-ports__line function-ports__line--out" />
       </div>
+      <motion.p className="scene-caption" animate={{ opacity: [0,1,1,0] }} transition={{ duration: LOOP, repeat: Infinity, times: [.05,.12,.88,.98] }}>Los argumentos entran por parámetros; return entrega un resultado nuevo.</motion.p>
     </div>
   );
 }

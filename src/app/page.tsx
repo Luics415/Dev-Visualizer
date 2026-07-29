@@ -1,4 +1,5 @@
 import { ConceptCard } from "@/components/concepts/ConceptCard";
+import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { ArraysScene } from "@/components/scenes/javascript/ArraysScene";
 import { AsyncAwaitScene } from "@/components/scenes/javascript/AsyncAwaitScene";
 import { ClosuresScene } from "@/components/scenes/javascript/ClosuresScene";
@@ -14,6 +15,12 @@ import { ReduceScene } from "@/components/scenes/javascript/ReduceScene";
 import { ScopeScene } from "@/components/scenes/javascript/ScopeScene";
 import { VariablesScene } from "@/components/scenes/javascript/VariablesScene";
 import { javascriptConcepts } from "@/data/javascriptConcepts";
+
+const visualFamilies = [
+  "memoria", "entrada / salida", "estructura", "colección", "transformación",
+  "decisión", "acumulación", "estados", "timeline", "red",
+  "memoria léxica", "jerarquía", "scheduler", "rutas",
+] as const;
 
 const activeScenes = new Map([
   [0, <VariablesScene key="variables" />],
@@ -35,13 +42,14 @@ const activeScenes = new Map([
 export default function Home() {
   return (
     <main className="page-shell">
+      <CollectionNav />
+
       <header className="hero">
         <div>
           <span className="eyebrow">Colección 01 · Fundamentos</span>
           <h1>JavaScript visualizado</h1>
           <p>
-            Microanimaciones autónomas en bucle que muestran qué ocurre dentro del
-            lenguaje, sin controles ni pasos manuales.
+            Cada concepto usa la metáfora visual que mejor explica su comportamiento: memoria, rutas, jerarquías, máquinas, colas y estados.
           </p>
         </div>
         <div className="hero__counter">
@@ -58,6 +66,7 @@ export default function Home() {
             title={title}
             description={description}
             status={activeScenes.has(index) ? "ready" : "planned"}
+            family={visualFamilies[index]}
           >
             {activeScenes.get(index)}
           </ConceptCard>
@@ -65,7 +74,7 @@ export default function Home() {
       </section>
 
       <footer className="project-note">
-        Colección JavaScript completa: datos, transformaciones, asincronía, memoria y flujo de ejecución.
+        Una identidad visual común, catorce composiciones distintas y movimiento con propósito explicativo.
       </footer>
     </main>
   );

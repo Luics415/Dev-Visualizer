@@ -6,6 +6,7 @@ type ConceptCardProps = {
   description: string;
   children?: ReactNode;
   status?: "ready" | "planned";
+  family?: string;
 };
 
 export function ConceptCard({
@@ -14,16 +15,16 @@ export function ConceptCard({
   description,
   children,
   status = "ready",
+  family = "flujo",
 }: ConceptCardProps) {
   return (
-    <article className={`concept-card concept-card--${status}`}>
+    <article className={`concept-card concept-card--${status}`} data-family={family}>
       <header className="concept-card__header">
         <h2>
-          <span>{index}.</span> {title}
+          <span>{String(index).padStart(2, "0")}</span>
+          {title}
         </h2>
-        {status === "planned" ? (
-          <span className="concept-card__status">Próximamente</span>
-        ) : null}
+        <span className="concept-card__family">{family}</span>
       </header>
 
       <div className="concept-card__stage">

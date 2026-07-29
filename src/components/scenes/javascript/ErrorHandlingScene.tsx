@@ -1,98 +1,23 @@
 "use client";
 
 import { motion } from "motion/react";
-import { CodePill } from "@/components/visual/CodePill";
 
-const LOOP_SECONDS = 12;
+const LOOP = 12;
 
 export function ErrorHandlingScene() {
   return (
-    <div
-      className="scene error-scene"
-      aria-label="Animación de manejo de errores: una ejecución exitosa pasa por try y finally, y otra ejecución fallida pasa por catch y finally"
-    >
-      <CodePill>{"try { parse() } catch { recover() } finally { cleanup() }"}</CodePill>
-
-      <div className="error-scene__workspace">
-        <motion.div
-          className="error-node error-node--try"
-          animate={{ borderColor: ["rgba(35, 197, 232, .5)", "rgba(35, 197, 232, .9)", "rgba(35, 197, 232, .5)"] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        >
-          try
-          <small>parse()</small>
-        </motion.div>
-
-        <div className="error-path error-path--success" aria-hidden="true">↗</div>
-        <div className="error-path error-path--failure" aria-hidden="true">↘</div>
-
-        <motion.div
-          className="error-node error-node--result"
-          animate={{ opacity: [0, 0, 1, 1, 0, 0] }}
-          transition={{ duration: LOOP_SECONDS, repeat: Infinity, times: [0, 0.18, 0.25, 0.42, 0.48, 1] }}
-        >
-          resultado ✓
-        </motion.div>
-
-        <motion.div
-          className="error-node error-node--catch"
-          animate={{ opacity: [0, 0, 1, 1, 0] }}
-          transition={{ duration: LOOP_SECONDS, repeat: Infinity, times: [0, 0.62, 0.69, 0.86, 1] }}
-        >
-          catch
-          <small>recover()</small>
-        </motion.div>
-
-        <motion.div
-          className="error-node error-node--finally"
-          animate={{
-            opacity: [0.35, 0.35, 1, 1, 0.35, 0.35, 1, 1, 0.35],
-            borderColor: [
-              "rgba(247, 200, 67, .35)",
-              "rgba(247, 200, 67, .35)",
-              "rgba(247, 200, 67, .78)",
-              "rgba(247, 200, 67, .78)",
-              "rgba(247, 200, 67, .35)",
-              "rgba(247, 200, 67, .35)",
-              "rgba(247, 200, 67, .78)",
-              "rgba(247, 200, 67, .78)",
-              "rgba(247, 200, 67, .35)",
-            ],
-          }}
-          transition={{ duration: LOOP_SECONDS, repeat: Infinity, times: [0, 0.35, 0.42, 0.5, 0.56, 0.79, 0.86, 0.94, 1] }}
-        >
-          finally
-          <small>cleanup()</small>
-        </motion.div>
-
-        <motion.span
-          className="error-run-label error-run-label--success"
-          animate={{ opacity: [0, 1, 1, 0, 0] }}
-          transition={{ duration: LOOP_SECONDS, repeat: Infinity, times: [0, 0.08, 0.48, 0.54, 1] }}
-        >
-          ejecución 1 · éxito
-        </motion.span>
-
-        <motion.span
-          className="error-run-label error-run-label--failure"
-          animate={{ opacity: [0, 0, 1, 1, 0] }}
-          transition={{ duration: LOOP_SECONDS, repeat: Infinity, times: [0, 0.56, 0.62, 0.94, 1] }}
-        >
-          ejecución 2 · error
-        </motion.span>
-
-        <motion.span
-          className="error-packet"
-          animate={{
-            opacity: [0, 1, 1, 0, 0, 1, 1, 0, 0],
-            x: [0, 0, 86, 150, 0, 0, 86, 150, 150],
-            y: [0, 0, -34, 0, 0, 0, 34, 0, 0],
-          }}
-          transition={{ duration: LOOP_SECONDS, repeat: Infinity, times: [0, 0.1, 0.28, 0.49, 0.55, 0.62, 0.72, 0.93, 1] }}
-        >
-          •
-        </motion.span>
+    <div className="scene js-errors" aria-label="try sigue por éxito o catch en caso de error y ambas rutas pasan por finally">
+      <div className="scene-code">{"try { request() } catch (error) { ... } finally { ... }"}</div>
+      <div className="error-routes">
+        <div className="error-node error-node--try">try<small>request()</small></div>
+        <motion.div className="error-node error-node--success" animate={{opacity:[.25,1,1,.25]}} transition={{duration:LOOP,repeat:Infinity,times:[.12,.26,.44,.54]}}>result<small>200 OK</small></motion.div>
+        <motion.div className="error-node error-node--catch" animate={{opacity:[.25,.25,1,1,.25]}} transition={{duration:LOOP,repeat:Infinity,times:[0,.54,.66,.84,.94]}}>catch<small>500 error</small></motion.div>
+        <div className="error-node error-node--finally">finally<small>cleanup</small></div>
+        <svg className="error-routes__svg" viewBox="0 0 280 150" aria-hidden="true"><path d="M56 70 C94 46 110 42 138 42"/><path d="M56 80 C92 110 110 112 138 112"/><path d="M188 42 C220 54 220 64 238 72"/><path d="M188 112 C220 98 220 88 238 80"/></svg>
+        <motion.i className="error-packet error-packet--success" animate={{x:[0,82,174,174],y:[0,-32,5,5],opacity:[0,1,1,0]}} transition={{duration:LOOP,repeat:Infinity,times:[.12,.28,.46,.56]}} />
+        <motion.i className="error-packet error-packet--failure" animate={{x:[0,82,174,174],y:[0,32,-5,-5],opacity:[0,1,1,0]}} transition={{duration:LOOP,repeat:Infinity,times:[.56,.68,.84,.94]}} />
       </div>
+      <motion.p className="scene-caption" animate={{ opacity: [0,1,1,0] }} transition={{ duration: LOOP, repeat: Infinity, times: [.04,.1,.9,.98] }}>Catch intercepta fallos; finally se ejecuta al final de cualquiera de las rutas.</motion.p>
     </div>
   );
 }

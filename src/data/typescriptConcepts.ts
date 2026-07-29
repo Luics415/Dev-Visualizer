@@ -1,0 +1,16 @@
+export const typescriptConcepts = [
+  ["Inferencia de tipos", "TypeScript deduce el tipo inicial a partir del valor asignado."],
+  ["Anotaciones", "Permiten declarar explícitamente qué tipo debe aceptar un valor."],
+  ["Tipos de funciones", "Definen los tipos de parámetros y del valor de retorno."],
+  ["Arrays y tuplas", "Modelan colecciones homogéneas y posiciones con tipos fijos."],
+  ["Tipos de objetos", "Describen la forma y los tipos de las propiedades de un objeto."],
+  ["Alias de tipos", "Asignan un nombre reutilizable a una estructura o combinación de tipos."],
+  ["Interfaces", "Definen contratos extensibles para objetos y componentes."],
+  ["Uniones", "Permiten que un valor pertenezca a más de un tipo válido."],
+  ["Tipos literales", "Restringen un valor a un conjunto exacto de opciones."],
+  ["Propiedades opcionales", "Representan datos que pueden existir o estar ausentes."],
+  ["Narrowing", "Reduce una unión al tipo correcto mediante comprobaciones en tiempo de ejecución."],
+  ["Genéricos", "Conservan la relación entre tipos sin perder reutilización."],
+  ["Utility Types", "Transforman tipos existentes con herramientas como Partial y Pick."],
+  ["Readonly", "Impide modificar propiedades que deben permanecer estables."],
+] as const;
