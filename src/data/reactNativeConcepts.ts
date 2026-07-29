@@ -1,0 +1,16 @@
+export const reactNativeConcepts = [
+  ["Renderizado nativo", "Convierte una descripción de React en vistas reales de iOS y Android, no en elementos del DOM."],
+  ["Componentes base", "View, Text e Image son primitivas que React Native traduce a controles de cada plataforma."],
+  ["StyleSheet", "Organiza estilos con objetos de JavaScript y prepara instrucciones de presentación reutilizables."],
+  ["Flexbox", "Distribuye componentes en filas o columnas y adapta el diseño al espacio disponible."],
+  ["TextInput", "Conecta texto nativo, eventos y estado para construir campos controlados."],
+  ["Pressable", "Expone las fases de una pulsación y permite responder visualmente al estado pressed."],
+  ["Imágenes", "Resuelve recursos locales o remotos, calcula dimensiones y entrega la imagen al componente nativo."],
+  ["ScrollView y FlatList", "FlatList virtualiza colecciones grandes para mantener solo una ventana de elementos montados."],
+  ["Navegación", "Una pila conserva pantallas y permite avanzar o regresar manteniendo el historial."],
+  ["Safe Area y teclado", "Ajusta el contenido alrededor de sensores, barras del sistema y el teclado virtual."],
+  ["Código por plataforma", "Selecciona implementaciones o estilos específicos para iOS y Android cuando es necesario."],
+  ["Permisos", "Solicita acceso al sistema y bifurca la experiencia según el resultado concedido o rechazado."],
+  ["Peticiones de red", "Envía solicitudes, recibe JSON y actualiza el estado sin bloquear la interfaz nativa."],
+  ["Persistencia local", "Guarda datos fuera de la memoria del componente y los recupera al iniciar otra sesión."],
+] as const;

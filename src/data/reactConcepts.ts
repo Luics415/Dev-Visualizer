@@ -1,0 +1,16 @@
+export const reactConcepts = [
+  ["Componentes", "Dividen la interfaz en piezas independientes que se componen entre sí."],
+  ["JSX", "Describe la interfaz con una sintaxis que se transforma en elementos de React."],
+  ["Props", "Transportan datos del componente padre hacia sus hijos de forma unidireccional."],
+  ["Estado", "Conserva información local y solicita una nueva representación cuando cambia."],
+  ["Eventos", "Conectan acciones del usuario con funciones que actualizan la aplicación."],
+  ["Renderizado condicional", "Elige qué interfaz producir según el estado o las propiedades."],
+  ["Listas y keys", "Mantienen la identidad de cada elemento cuando una colección cambia."],
+  ["useEffect", "Sincroniza el componente con sistemas externos después del commit."],
+  ["useMemo", "Reutiliza un cálculo mientras sus dependencias permanezcan iguales."],
+  ["useCallback", "Conserva una referencia de función entre renders cuando sus dependencias no cambian."],
+  ["useRef", "Mantiene un valor mutable o una referencia al DOM sin provocar un render."],
+  ["Context", "Distribuye información a descendientes sin pasarla manualmente por cada nivel."],
+  ["Custom Hooks", "Extraen lógica reutilizable combinando otros hooks en una función propia."],
+  ["Ciclo de render", "Convierte una actualización en render, comparación y commit del cambio mínimo."],
+] as const;
