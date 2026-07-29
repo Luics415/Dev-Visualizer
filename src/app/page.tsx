@@ -1,4 +1,5 @@
 import { ConceptCard } from "@/components/concepts/ConceptCard";
+import { ArraysScene } from "@/components/scenes/javascript/ArraysScene";
 import { FunctionsScene } from "@/components/scenes/javascript/FunctionsScene";
 import { MapScene } from "@/components/scenes/javascript/MapScene";
 import { ObjectsScene } from "@/components/scenes/javascript/ObjectsScene";
@@ -9,6 +10,7 @@ const activeScenes = new Map([
   [0, <VariablesScene key="variables" />],
   [1, <FunctionsScene key="functions" />],
   [2, <ObjectsScene key="objects" />],
+  [3, <ArraysScene key="arrays" />],
   [4, <MapScene key="map" />],
 ]);
 
@@ -45,7 +47,7 @@ export default function Home() {
       </section>
 
       <footer className="project-note">
-        Sprint 02: objetos animados, lectura de propiedades y actualización de valores.
+        Sprint 02: objetos y arrays animados, índices, lectura, push y pop.
       </footer>
     </main>
   );
