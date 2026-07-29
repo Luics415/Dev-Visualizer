@@ -19,6 +19,8 @@ import { ScopeScene } from "@/components/scenes/javascript/ScopeScene";
 import { VariablesScene } from "@/components/scenes/javascript/VariablesScene";
 import { javascriptConcepts } from "@/data/javascriptConcepts";
 import { slugify } from "@/lib/slugify";
+import { CollectionPrimer } from "@/components/concepts/CollectionPrimer";
+import { collectionPrimers } from "@/data/collectionPrimers";
 
 const specialScenes = new Map<string, ReactNode>([
   ["Variables", <VariablesScene key="variables" />],
@@ -45,19 +47,21 @@ export default function Home() {
     <main className="page-shell">
       <CollectionNav />
 
-      <header className="hero">
+      <header className="hero hero--javascript">
         <div>
-          <span className="eyebrow">Colección 01 · Lenguaje y runtime</span>
+          <span className="eyebrow eyebrow--javascript">Colección 01 · Lenguaje y runtime</span>
           <h1>JavaScript ES6+ visualizado</h1>
           <p>
             Una ruta completa desde valores, funciones y estructuras hasta prototipos, asincronía, módulos, protocolos, binarios y gestión de recursos. Las escenas personalizadas permanecen y los conceptos avanzados adoptan nuevas metáforas visuales.
           </p>
         </div>
-        <div className="hero__counter">
+        <div className="hero__counter hero__counter--javascript">
           <strong>{javascriptConcepts.length}</strong>
           <span>conceptos en {sections.length} capítulos</span>
         </div>
       </header>
+
+      <CollectionPrimer primer={collectionPrimers["javascript"]} />
 
       <CollectionChapters chapters={chapters} />
 

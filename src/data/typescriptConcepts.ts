@@ -19,10 +19,10 @@ export const typescriptConcepts = [
     "title": "Tipos primitivos",
     "description": "Representan string, number, boolean, bigint, symbol, null y undefined dentro del sistema estático.",
     "section": "Fundamentos del sistema de tipos",
-    "family": "catálogo tipado",
+    "family": "consulta e índice",
     "layout": "wide",
     "scene": {
-      "variant": "matrix",
+      "variant": "database",
       "code": "let level: number = 18",
       "nodes": [
         "string",
@@ -38,10 +38,10 @@ export const typescriptConcepts = [
     "title": "any",
     "description": "Desactiva gran parte de la comprobación y permite que operaciones potencialmente inseguras atraviesen el sistema.",
     "section": "Fundamentos del sistema de tipos",
-    "family": "bypass de seguridad",
+    "family": "flujo de transformación",
     "layout": "standard",
     "scene": {
-      "variant": "gate",
+      "variant": "pipeline",
       "code": "let payload: any",
       "nodes": [
         "payload|externo",
@@ -57,10 +57,10 @@ export const typescriptConcepts = [
     "title": "unknown",
     "description": "Acepta cualquier valor en la frontera, pero obliga a comprobarlo antes de usarlo.",
     "section": "Fundamentos del sistema de tipos",
-    "family": "cuarentena segura",
+    "family": "flujo de ejecución",
     "layout": "standard",
     "scene": {
-      "variant": "gate",
+      "variant": "flow",
       "code": "const payload: unknown = response",
       "nodes": [
         "unknown|entrada",
@@ -76,10 +76,10 @@ export const typescriptConcepts = [
     "title": "void y never",
     "description": "Distinguen funciones que no producen un valor útil de rutas que nunca completan normalmente.",
     "section": "Fundamentos del sistema de tipos",
-    "family": "salidas de función",
+    "family": "capas internas",
     "layout": "wide",
     "scene": {
-      "variant": "compare",
+      "variant": "layers",
       "code": "function log(): void · function fail(): never",
       "nodes": [
         "void|retorno ignorado",
@@ -109,10 +109,10 @@ export const typescriptConcepts = [
     "title": "null, undefined y strictNullChecks",
     "description": "Obligan a representar ausencia en el tipo y evitar accesos que podrían fallar.",
     "section": "Modelado de datos",
-    "family": "frontera de ausencia",
+    "family": "ida y vuelta",
     "layout": "wide",
     "scene": {
-      "variant": "gate",
+      "variant": "request",
       "code": "user?.profile ?? fallback",
       "nodes": [
         "User|presente",
@@ -170,10 +170,10 @@ export const typescriptConcepts = [
     "title": "Intersecciones",
     "description": "Exigen que un valor satisfaga simultáneamente varias estructuras.",
     "section": "Modelado de datos",
-    "family": "superposición de contratos",
+    "family": "configuración declarativa",
     "layout": "wide",
     "scene": {
-      "variant": "layers",
+      "variant": "document",
       "code": "type ChampionCard = Champion & CardProps",
       "nodes": [
         "Champion|name · role",
@@ -189,10 +189,10 @@ export const typescriptConcepts = [
     "title": "Uniones discriminadas",
     "description": "Usan una propiedad literal común para representar estados mutuamente excluyentes de forma segura.",
     "section": "Modelado de datos",
-    "family": "máquina de estados tipada",
+    "family": "memoria intermedia",
     "layout": "feature",
     "scene": {
-      "variant": "tree",
+      "variant": "cache",
       "code": "type Result = Success | Failure",
       "nodes": [
         "result|discriminated union",
@@ -215,10 +215,10 @@ export const typescriptConcepts = [
     "title": "Firmas de llamada y constructores",
     "description": "Modelan valores que pueden invocarse con () o construirse mediante new.",
     "section": "Funciones tipadas",
-    "family": "doble interfaz",
+    "family": "jerarquía y dependencias",
     "layout": "wide",
     "scene": {
-      "variant": "compare",
+      "variant": "tree",
       "code": "type Factory = { (): Item; new(): Item }",
       "nodes": [
         "call signature|factory()",
@@ -234,10 +234,10 @@ export const typescriptConcepts = [
     "title": "Sobrecargas",
     "description": "Expresan varias formas públicas de invocar una función con una implementación compatible común.",
     "section": "Funciones tipadas",
-    "family": "rutas de invocación",
+    "family": "máquina de estados",
     "layout": "wide",
     "scene": {
-      "variant": "tree",
+      "variant": "state-machine",
       "code": "format(value: Date): string; format(value: number): string",
       "nodes": [
         "call|Date",
@@ -253,10 +253,10 @@ export const typescriptConcepts = [
     "title": "Parámetros opcionales y por defecto",
     "description": "Modelan llamadas con argumentos ausentes y preservan una firma clara.",
     "section": "Funciones tipadas",
-    "family": "puertos opcionales",
+    "family": "cola y consumidor",
     "layout": "standard",
     "scene": {
-      "variant": "gate",
+      "variant": "queue",
       "code": "function ping(timeout = 1000)",
       "nodes": [
         "timeout|number",
@@ -272,10 +272,10 @@ export const typescriptConcepts = [
     "title": "this en funciones",
     "description": "Declara el tipo del receptor esperado sin convertirse en un argumento real de JavaScript.",
     "section": "Funciones tipadas",
-    "family": "receptor fantasma",
+    "family": "aislamiento sobre host",
     "layout": "standard",
     "scene": {
-      "variant": "pipeline",
+      "variant": "container",
       "code": "function attack(this: Champion, power: number)",
       "nodes": [
         "Champion|receptor",
@@ -298,10 +298,10 @@ export const typescriptConcepts = [
     "title": "typeof, instanceof e in",
     "description": "Usa operadores reales de JavaScript como guards que refinan el tipo dentro de cada rama.",
     "section": "Narrowing y seguridad",
-    "family": "detectores de runtime",
+    "family": "anatomía del concepto",
     "layout": "wide",
     "scene": {
-      "variant": "flow",
+      "variant": "anatomy",
       "code": "if (\"damage\" in item)",
       "nodes": [
         "unknown|entrada",
@@ -318,10 +318,10 @@ export const typescriptConcepts = [
     "title": "Predicados de tipo",
     "description": "Permiten encapsular una comprobación personalizada con un retorno value is Type.",
     "section": "Narrowing y seguridad",
-    "family": "guard reutilizable",
+    "family": "topología y tráfico",
     "layout": "standard",
     "scene": {
-      "variant": "gate",
+      "variant": "network",
       "code": "function isChampion(x: unknown): x is Champion",
       "nodes": [
         "unknown|x",
@@ -337,10 +337,10 @@ export const typescriptConcepts = [
     "title": "Funciones de aserción",
     "description": "Declaran que una función lanza si una condición no se cumple y refina el tipo después de llamarla.",
     "section": "Narrowing y seguridad",
-    "family": "checkpoint",
+    "family": "validación y decisión",
     "layout": "wide",
     "scene": {
-      "variant": "pipeline",
+      "variant": "gate",
       "code": "assertChampion(payload)",
       "nodes": [
         "unknown|payload",
@@ -356,10 +356,10 @@ export const typescriptConcepts = [
     "title": "Comprobación exhaustiva",
     "description": "Usa never para detectar variantes nuevas que no fueron atendidas en un switch.",
     "section": "Narrowing y seguridad",
-    "family": "cierre de rutas",
+    "family": "análisis y emisión",
     "layout": "standard",
     "scene": {
-      "variant": "gate",
+      "variant": "compiler",
       "code": "default: assertNever(state)",
       "nodes": [
         "idle",
@@ -375,10 +375,10 @@ export const typescriptConcepts = [
     "title": "Aserciones de tipo",
     "description": "Indican al compilador que el programador conoce un tipo más específico, sin validar nada en runtime.",
     "section": "Narrowing y seguridad",
-    "family": "salto manual",
+    "family": "planificación de trabajo",
     "layout": "wide",
     "scene": {
-      "variant": "compare",
+      "variant": "scheduler",
       "code": "payload as Champion",
       "nodes": [
         "assertion|solo compilador",
@@ -394,10 +394,10 @@ export const typescriptConcepts = [
     "title": "satisfies",
     "description": "Comprueba que una expresión cumple un contrato sin reemplazar su tipo inferido más específico.",
     "section": "Narrowing y seguridad",
-    "family": "verificación sin pérdida",
+    "family": "árbol de recursos",
     "layout": "wide",
     "scene": {
-      "variant": "compare",
+      "variant": "filesystem",
       "code": "palette satisfies Record<Color, string>",
       "nodes": [
         "annotation|cambia contexto",
@@ -413,10 +413,10 @@ export const typescriptConcepts = [
     "title": "Const assertions",
     "description": "Convierte propiedades y elementos inferidos en readonly y conserva valores literales exactos.",
     "section": "Narrowing y seguridad",
-    "family": "congelado de inferencia",
+    "family": "evidencia y latencia",
     "layout": "standard",
     "scene": {
-      "variant": "layers",
+      "variant": "trace",
       "code": "const routes = [\"home\", \"profile\"] as const",
       "nodes": [
         "array|string[]",
@@ -439,10 +439,10 @@ export const typescriptConcepts = [
     "title": "Restricciones genéricas",
     "description": "Limitan los tipos aceptados sin perder la información específica del argumento.",
     "section": "Genéricos y tipos derivados",
-    "family": "puerta con capacidad",
+    "family": "ciclo de vida",
     "layout": "wide",
     "scene": {
-      "variant": "gate",
+      "variant": "lifecycle",
       "code": "function getId<T extends { id: string }>(value: T)",
       "nodes": [
         "Champion|id + role",
@@ -458,10 +458,10 @@ export const typescriptConcepts = [
     "title": "Parámetros genéricos por defecto",
     "description": "Proporcionan un tipo de respaldo cuando el consumidor no especifica uno.",
     "section": "Genéricos y tipos derivados",
-    "family": "fallback tipado",
+    "family": "cola y consumidor",
     "layout": "standard",
     "scene": {
-      "variant": "flow",
+      "variant": "queue",
       "code": "type ApiResponse<T = unknown>",
       "nodes": [
         "ApiResponse|sin argumento",
@@ -477,10 +477,10 @@ export const typescriptConcepts = [
     "title": "keyof",
     "description": "Produce una unión con las claves conocidas de un tipo.",
     "section": "Genéricos y tipos derivados",
-    "family": "inventario de claves",
+    "family": "propagación de eventos",
     "layout": "standard",
     "scene": {
-      "variant": "pipeline",
+      "variant": "signal",
       "code": "type ChampionKey = keyof Champion",
       "nodes": [
         "Champion|name · role · level",
@@ -496,10 +496,10 @@ export const typescriptConcepts = [
     "title": "typeof en posiciones de tipo",
     "description": "Deriva un tipo desde la forma estática de un valor ya declarado.",
     "section": "Genéricos y tipos derivados",
-    "family": "reflejo estático",
+    "family": "secuencia operativa",
     "layout": "standard",
     "scene": {
-      "variant": "pipeline",
+      "variant": "timeline",
       "code": "type Config = typeof config",
       "nodes": [
         "config|valor",
@@ -515,10 +515,10 @@ export const typescriptConcepts = [
     "title": "Indexed access types",
     "description": "Selecciona el tipo de una propiedad o conjunto de propiedades con T[K].",
     "section": "Genéricos y tipos derivados",
-    "family": "lookup de tipo",
+    "family": "consulta e índice",
     "layout": "wide",
     "scene": {
-      "variant": "gate",
+      "variant": "database",
       "code": "type Role = Champion[\"role\"]",
       "nodes": [
         "Champion|estructura",
@@ -534,10 +534,10 @@ export const typescriptConcepts = [
     "title": "Mapped types",
     "description": "Recorren claves para transformar sistemáticamente modificadores y valores.",
     "section": "Genéricos y tipos derivados",
-    "family": "fábrica de propiedades",
+    "family": "memoria intermedia",
     "layout": "wide",
     "scene": {
-      "variant": "matrix",
+      "variant": "cache",
       "code": "type Flags<T> = { [K in keyof T]: boolean }",
       "nodes": [
         "name→boolean",
@@ -553,10 +553,10 @@ export const typescriptConcepts = [
     "title": "Remapeo de claves",
     "description": "Cambia nombres de propiedades dentro de un mapped type mediante as.",
     "section": "Genéricos y tipos derivados",
-    "family": "renombrado estructural",
+    "family": "análisis y emisión",
     "layout": "wide",
     "scene": {
-      "variant": "pipeline",
+      "variant": "compiler",
       "code": "[K in keyof T as `get${Capitalize<K>}`]: () => T[K]",
       "nodes": [
         "name|clave original",
@@ -572,10 +572,10 @@ export const typescriptConcepts = [
     "title": "Tipos condicionales",
     "description": "Seleccionan un tipo según una relación de asignabilidad.",
     "section": "Genéricos y tipos derivados",
-    "family": "if del sistema de tipos",
+    "family": "tabla de estados",
     "layout": "wide",
     "scene": {
-      "variant": "tree",
+      "variant": "matrix",
       "code": "type Message<T> = T extends Error ? string : T",
       "nodes": [
         "T|entrada",
@@ -591,10 +591,10 @@ export const typescriptConcepts = [
     "title": "infer",
     "description": "Extrae una parte de un tipo dentro de la rama verdadera de un condicional.",
     "section": "Genéricos y tipos derivados",
-    "family": "desempaquetado de tipo",
+    "family": "acumulación de recursos",
     "layout": "standard",
     "scene": {
-      "variant": "pipeline",
+      "variant": "stack",
       "code": "type Result<T> = T extends Promise<infer R> ? R : T",
       "nodes": [
         "Promise<Order>|entrada",
@@ -610,10 +610,10 @@ export const typescriptConcepts = [
     "title": "Template literal types",
     "description": "Construyen uniones de strings combinando literales y otras uniones.",
     "section": "Genéricos y tipos derivados",
-    "family": "combinador de cadenas",
+    "family": "máquina de estados",
     "layout": "wide",
     "scene": {
-      "variant": "matrix",
+      "variant": "state-machine",
       "code": "type Event = `${ChampionKey}Changed`",
       "nodes": [
         "nameChanged",
@@ -636,10 +636,10 @@ export const typescriptConcepts = [
     "title": "Tipos recursivos",
     "description": "Describen estructuras que se contienen a sí mismas como árboles, JSON o rutas anidadas.",
     "section": "Genéricos y tipos derivados",
-    "family": "árbol recursivo",
+    "family": "planificación de trabajo",
     "layout": "wide",
     "scene": {
-      "variant": "tree",
+      "variant": "scheduler",
       "code": "type Node = { value: string; children: Node[] }",
       "nodes": [
         "Node|root",
@@ -655,10 +655,10 @@ export const typescriptConcepts = [
     "title": "Tipos nominales con branding",
     "description": "Añaden una marca estática para evitar mezclar valores estructuralmente idénticos con significados diferentes.",
     "section": "Genéricos y tipos derivados",
-    "family": "sello nominal",
+    "family": "anatomía del concepto",
     "layout": "wide",
     "scene": {
-      "variant": "gate",
+      "variant": "anatomy",
       "code": "type UserId = string & { readonly __brand: \"UserId\" }",
       "nodes": [
         "string|raw",
@@ -674,10 +674,10 @@ export const typescriptConcepts = [
     "title": "Clases y modificadores",
     "description": "Tipan propiedades, constructores y métodos con public, protected, private y readonly.",
     "section": "Clases y módulos",
-    "family": "contrato de clase",
+    "family": "ecosistema coordinado",
     "layout": "wide",
     "scene": {
-      "variant": "layers",
+      "variant": "orbit",
       "code": "class Champion { private energy = 100 }",
       "nodes": [
         "public|API",
@@ -693,10 +693,10 @@ export const typescriptConcepts = [
     "title": "Clases abstractas",
     "description": "Definen comportamiento compartido y miembros que las subclases deben implementar.",
     "section": "Clases y módulos",
-    "family": "plantilla incompleta",
+    "family": "evidencia y latencia",
     "layout": "standard",
     "scene": {
-      "variant": "tree",
+      "variant": "trace",
       "code": "abstract class Ability { abstract cast(): void }",
       "nodes": [
         "Ability|base abstracta",
@@ -712,10 +712,10 @@ export const typescriptConcepts = [
     "title": "Polimorfismo de this",
     "description": "Permite que métodos fluent devuelvan el subtipo concreto mediante el tipo especial this.",
     "section": "Clases y módulos",
-    "family": "cadena fluida",
+    "family": "comparativa técnica",
     "layout": "standard",
     "scene": {
-      "variant": "pipeline",
+      "variant": "compare",
       "code": "class Query { where(): this }",
       "nodes": [
         "Query|base",
@@ -731,10 +731,10 @@ export const typescriptConcepts = [
     "title": "Decoradores",
     "description": "Añaden metadatos o transformaciones declarativas a clases y miembros mediante la propuesta estándar soportada por TypeScript.",
     "section": "Clases y módulos",
-    "family": "capas de metadatos",
+    "family": "diagnóstico operativo",
     "layout": "wide",
     "scene": {
-      "variant": "layers",
+      "variant": "terminal",
       "code": "@logged class ApiClient {}",
       "nodes": [
         "class|ApiClient",
@@ -750,10 +750,10 @@ export const typescriptConcepts = [
     "title": "Módulos y exports",
     "description": "Usan el sistema de módulos de JavaScript y añaden comprobación estática entre archivos.",
     "section": "Clases y módulos",
-    "family": "grafo tipado",
+    "family": "superficie de aplicación",
     "layout": "wide",
     "scene": {
-      "variant": "tree",
+      "variant": "browser",
       "code": "export type Champion · export function load()",
       "nodes": [
         "champion.ts|exports",
@@ -769,10 +769,10 @@ export const typescriptConcepts = [
     "title": "Imports y exports solo de tipos",
     "description": "Marcan dependencias que deben desaparecer al emitir JavaScript.",
     "section": "Clases y módulos",
-    "family": "carriles de emisión",
+    "family": "secuencia operativa",
     "layout": "wide",
     "scene": {
-      "variant": "compare",
+      "variant": "timeline",
       "code": "import type { Champion } from \"./types\"",
       "nodes": [
         "import|valor runtime",
@@ -788,10 +788,10 @@ export const typescriptConcepts = [
     "title": "Declaraciones .d.ts",
     "description": "Describen el tipo de código JavaScript existente sin generar implementación.",
     "section": "Clases y módulos",
-    "family": "sombra declarativa",
+    "family": "contratos coordinados",
     "layout": "wide",
     "scene": {
-      "variant": "layers",
+      "variant": "cards",
       "code": "declare module \"hextech-sdk\"",
       "nodes": [
         "runtime JS|biblioteca",
@@ -807,7 +807,7 @@ export const typescriptConcepts = [
     "title": "Declaraciones ambientales",
     "description": "Informan sobre variables, módulos o APIs disponibles externamente mediante declare.",
     "section": "Clases y módulos",
-    "family": "contexto externo",
+    "family": "configuración declarativa",
     "layout": "standard",
     "scene": {
       "variant": "document",
@@ -826,10 +826,10 @@ export const typescriptConcepts = [
     "title": "Module augmentation y declaration merging",
     "description": "Extienden contratos existentes de forma controlada cuando una librería soporta plugins.",
     "section": "Clases y módulos",
-    "family": "extensión de contrato",
+    "family": "validación y decisión",
     "layout": "wide",
     "scene": {
-      "variant": "layers",
+      "variant": "gate",
       "code": "declare module \"express\" { interface Request { user: User } }",
       "nodes": [
         "base module|Request",
@@ -845,10 +845,10 @@ export const typescriptConcepts = [
     "title": "tsconfig",
     "description": "Centraliza target, módulos, librerías, strictness, paths, inclusión y salida del compilador.",
     "section": "Compilador y producción",
-    "family": "panel de configuración",
+    "family": "contratos coordinados",
     "layout": "wide",
     "scene": {
-      "variant": "document",
+      "variant": "cards",
       "code": "{ \"compilerOptions\": { \"strict\": true } }",
       "nodes": [
         "target|runtime destino",
@@ -865,10 +865,10 @@ export const typescriptConcepts = [
     "title": "Modo strict",
     "description": "Activa un conjunto coordinado de comprobaciones que vuelve explícitas ausencias y relaciones inseguras.",
     "section": "Compilador y producción",
-    "family": "escudo estricto",
+    "family": "flujo de ejecución",
     "layout": "wide",
     "scene": {
-      "variant": "gate",
+      "variant": "flow",
       "code": "\"strict\": true",
       "nodes": [
         "strictNullChecks",
@@ -884,10 +884,10 @@ export const typescriptConcepts = [
     "title": "Opciones de precisión adicional",
     "description": "noUncheckedIndexedAccess y exactOptionalPropertyTypes modelan con más fidelidad accesos e inexistencia.",
     "section": "Compilador y producción",
-    "family": "lupa de precisión",
+    "family": "propagación de eventos",
     "layout": "wide",
     "scene": {
-      "variant": "compare",
+      "variant": "signal",
       "code": "items[index] · optional?: T",
       "nodes": [
         "default|asume elemento",
@@ -903,7 +903,7 @@ export const typescriptConcepts = [
     "title": "Resolución de módulos",
     "description": "Determina cómo un specifier se conecta con archivos, package exports y tipos según el entorno.",
     "section": "Compilador y producción",
-    "family": "mapa de resolución",
+    "family": "jerarquía y dependencias",
     "layout": "feature",
     "scene": {
       "variant": "tree",
@@ -922,7 +922,7 @@ export const typescriptConcepts = [
     "title": "Emisión, source maps y declarations",
     "description": "Controla qué JavaScript, mapas y archivos .d.ts produce el compilador.",
     "section": "Compilador y producción",
-    "family": "pipeline de build",
+    "family": "flujo de transformación",
     "layout": "wide",
     "scene": {
       "variant": "pipeline",
@@ -942,10 +942,10 @@ export const typescriptConcepts = [
     "title": "Project references",
     "description": "Divide repositorios grandes en proyectos compilables con dependencias y caché incremental.",
     "section": "Compilador y producción",
-    "family": "grafo de proyectos",
+    "family": "tabla de estados",
     "layout": "wide",
     "scene": {
-      "variant": "tree",
+      "variant": "matrix",
       "code": "tsc -b packages/app",
       "nodes": [
         "types|composite",
@@ -961,10 +961,10 @@ export const typescriptConcepts = [
     "title": "Migración desde JavaScript",
     "description": "Permite avanzar gradualmente con allowJs, checkJs, JSDoc y archivos convertidos por frontera.",
     "section": "Compilador y producción",
-    "family": "puente gradual",
+    "family": "acumulación de recursos",
     "layout": "wide",
     "scene": {
-      "variant": "timeline",
+      "variant": "stack",
       "code": "allowJs → checkJs → .ts",
       "nodes": [
         "JS sin check|inicio",
@@ -980,7 +980,7 @@ export const typescriptConcepts = [
     "title": "Validación de runtime",
     "description": "Separa el contrato estático de la comprobación real de JSON, formularios y datos externos.",
     "section": "Compilador y producción",
-    "family": "doble frontera",
+    "family": "comparativa técnica",
     "layout": "feature",
     "scene": {
       "variant": "compare",
@@ -999,10 +999,10 @@ export const typescriptConcepts = [
     "title": "Compatibilidad estructural y varianza",
     "description": "Explica por qué valores con la misma forma pueden asignarse y cómo cambian relaciones en callbacks y genéricos.",
     "section": "Compilador y producción",
-    "family": "matriz de asignabilidad",
+    "family": "ecosistema coordinado",
     "layout": "wide",
     "scene": {
-      "variant": "matrix",
+      "variant": "orbit",
       "code": "Source → Target",
       "nodes": [
         "propiedades requeridas",
@@ -1018,10 +1018,10 @@ export const typescriptConcepts = [
     "title": "Pruebas de tipos",
     "description": "Verifican inferencias y errores esperados para impedir regresiones en APIs genéricas o librerías.",
     "section": "Compilador y producción",
-    "family": "suite del checker",
+    "family": "validación y decisión",
     "layout": "standard",
     "scene": {
-      "variant": "terminal",
+      "variant": "gate",
       "code": "tsc --noEmit",
       "nodes": [
         "expectType<Order>",
@@ -1037,10 +1037,10 @@ export const typescriptConcepts = [
     "title": "Rendimiento del checker",
     "description": "Controla complejidad de uniones, recursión y tipos distribuidos para mantener builds y editor responsivos.",
     "section": "Compilador y producción",
-    "family": "presupuesto de tipos",
+    "family": "análisis y emisión",
     "layout": "wide",
     "scene": {
-      "variant": "pipeline",
+      "variant": "compiler",
       "code": "tsc --extendedDiagnostics",
       "nodes": [
         "types|cantidad",

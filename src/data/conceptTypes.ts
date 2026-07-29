@@ -12,7 +12,21 @@ export type SceneVariant =
   | "flow"
   | "cards"
   | "terminal"
-  | "document";
+  | "document"
+  | "anatomy"
+  | "request"
+  | "queue"
+  | "cache"
+  | "state-machine"
+  | "network"
+  | "filesystem"
+  | "compiler"
+  | "container"
+  | "database"
+  | "scheduler"
+  | "signal"
+  | "lifecycle"
+  | "trace";
 
 export type StudyScene = {
   variant: SceneVariant;

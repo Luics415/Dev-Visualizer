@@ -8,7 +8,7 @@ export default function RestApisPracticalPage() {
 
       <header className="hero hero--rest-practical">
         <div>
-          <span className="eyebrow eyebrow--rest">Colección 05 · Trazabilidad integrada</span>
+          <span className="eyebrow eyebrow--rest">Colección 06 · Trazabilidad integrada</span>
           <h1>APIs REST en acción</h1>
           <p>
             Una compra recorre toda la API como una sola traza: el cliente construye el sobre HTTP, la plataforma autentica y valida, el servicio persiste el pedido, responde con 201 y resuelve un reintento sin duplicar el recurso.

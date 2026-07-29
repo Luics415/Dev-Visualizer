@@ -10,6 +10,8 @@ import {
 } from "@/components/scenes/react-native/ReactNativeScenes";
 import { reactNativeConcepts } from "@/data/reactNativeConcepts";
 import { slugify } from "@/lib/slugify";
+import { CollectionPrimer } from "@/components/concepts/CollectionPrimer";
+import { collectionPrimers } from "@/data/collectionPrimers";
 
 const specialScenes = new Map<string, ReactNode>([
   ["Renderizado nativo", <NativeRenderingScene key="native-rendering" />],
@@ -48,6 +50,8 @@ export default function ReactNativePage() {
           <span>conceptos en {sections.length} capítulos</span>
         </div>
       </header>
+
+      <CollectionPrimer primer={collectionPrimers["react-native"]} />
 
       <CollectionChapters chapters={chapters} />
 

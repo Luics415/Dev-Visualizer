@@ -7,15 +7,15 @@ export default function JavaScriptPracticalPage() {
   return (
     <main className="page-shell">
       <CollectionNav />
-      <header className="hero hero--practical">
+      <header className="hero hero--javascript-practical">
         <div>
-          <span className="eyebrow">Colección 01 · Caso integrado ampliado</span>
+          <span className="eyebrow eyebrow--javascript">Colección 01 · Caso integrado ampliado</span>
           <h1>JavaScript en acción</h1>
           <p>
             Una compra recorre eventos, estado, transformaciones, red, espera asíncrona y renderizado. Después, ocho cajas dobles explican normalización, closures, acceso defensivo, concurrencia, cancelación, módulos, persistencia y recuperación de errores.
           </p>
         </div>
-        <div className="hero__counter">
+        <div className="hero__counter hero__counter--javascript">
           <strong>14</strong>
           <span>etapas conectadas</span>
         </div>

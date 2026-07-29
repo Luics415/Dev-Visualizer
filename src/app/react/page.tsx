@@ -19,6 +19,8 @@ import { UseMemoScene } from "@/components/scenes/react/UseMemoScene";
 import { UseRefScene } from "@/components/scenes/react/UseRefScene";
 import { reactConcepts } from "@/data/reactConcepts";
 import { slugify } from "@/lib/slugify";
+import { CollectionPrimer } from "@/components/concepts/CollectionPrimer";
+import { collectionPrimers } from "@/data/collectionPrimers";
 
 const specialScenes = new Map<string, ReactNode>([
   ["Componentes", <ComponentsScene key="components" />],
@@ -57,6 +59,8 @@ export default function ReactPage() {
           <span>conceptos en {sections.length} capítulos</span>
         </div>
       </header>
+
+      <CollectionPrimer primer={collectionPrimers["react"]} />
 
       <CollectionChapters chapters={chapters} />
 

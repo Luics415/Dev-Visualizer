@@ -19,10 +19,10 @@ export const reactNativeConcepts = [
     "title": "Nueva Arquitectura",
     "description": "Coordina Fabric, TurboModules, JSI y Codegen como base moderna del runtime de React Native.",
     "section": "Arquitectura y runtime",
-    "family": "capas del runtime",
+    "family": "anatomía del concepto",
     "layout": "feature",
     "scene": {
-      "variant": "layers",
+      "variant": "anatomy",
       "code": "React → Fabric / TurboModules → iOS · Android",
       "nodes": [
         "React renderer|element tree",
@@ -39,10 +39,10 @@ export const reactNativeConcepts = [
     "title": "Fabric",
     "description": "Implementa el renderer nativo moderno, calcula árboles y commits y coordina montaje con las plataformas.",
     "section": "Arquitectura y runtime",
-    "family": "renderer concurrente",
+    "family": "superficie de aplicación",
     "layout": "wide",
     "scene": {
-      "variant": "pipeline",
+      "variant": "browser",
       "code": "React tree → Shadow Tree → Mounting",
       "nodes": [
         "React render|elements",
@@ -58,10 +58,10 @@ export const reactNativeConcepts = [
     "title": "TurboModules",
     "description": "Carga módulos nativos de forma perezosa y con interfaces tipadas generadas.",
     "section": "Arquitectura y runtime",
-    "family": "módulos bajo demanda",
+    "family": "ida y vuelta",
     "layout": "wide",
     "scene": {
-      "variant": "pipeline",
+      "variant": "request",
       "code": "NativeModules.Camera.capture()",
       "nodes": [
         "JS call|Camera",
@@ -77,10 +77,10 @@ export const reactNativeConcepts = [
     "title": "JSI",
     "description": "Permite que JavaScript se comunique con objetos C++ y capacidades nativas sin serializar cada mensaje por un puente JSON.",
     "section": "Arquitectura y runtime",
-    "family": "interfaz directa",
+    "family": "flujo de ejecución",
     "layout": "wide",
     "scene": {
-      "variant": "compare",
+      "variant": "flow",
       "code": "Legacy Bridge vs JSI",
       "nodes": [
         "bridge|colas + serialización",
@@ -96,10 +96,10 @@ export const reactNativeConcepts = [
     "title": "Codegen",
     "description": "Genera interfaces nativas desde especificaciones tipadas para módulos y componentes.",
     "section": "Arquitectura y runtime",
-    "family": "contrato generado",
+    "family": "validación y decisión",
     "layout": "wide",
     "scene": {
-      "variant": "pipeline",
+      "variant": "gate",
       "code": "NativeCamera.ts → Codegen → Kotlin / Obj-C++",
       "nodes": [
         "spec|tipos",
@@ -115,10 +115,10 @@ export const reactNativeConcepts = [
     "title": "Hermes",
     "description": "Ejecuta JavaScript con un motor optimizado para aplicaciones React Native y herramientas de depuración integradas.",
     "section": "Arquitectura y runtime",
-    "family": "motor JavaScript",
+    "family": "topología y tráfico",
     "layout": "wide",
     "scene": {
-      "variant": "pipeline",
+      "variant": "network",
       "code": "bundle JS → bytecode → Hermes VM",
       "nodes": [
         "Metro bundle|source",
@@ -135,10 +135,10 @@ export const reactNativeConcepts = [
     "title": "Metro",
     "description": "Resuelve módulos, transforma código y construye bundles para desarrollo y producción.",
     "section": "Arquitectura y runtime",
-    "family": "pipeline de bundling",
+    "family": "máquina de estados",
     "layout": "wide",
     "scene": {
-      "variant": "tree",
+      "variant": "state-machine",
       "code": "entry.js → Metro graph → bundle",
       "nodes": [
         "entry|App.tsx",
@@ -154,10 +154,10 @@ export const reactNativeConcepts = [
     "title": "Hilos y colas de trabajo",
     "description": "Distingue JavaScript, UI, render y trabajo nativo para evitar bloquear gestos o frames.",
     "section": "Arquitectura y runtime",
-    "family": "carriles de ejecución",
+    "family": "cola y consumidor",
     "layout": "feature",
     "scene": {
-      "variant": "compare",
+      "variant": "queue",
       "code": "JS thread ↔ UI thread",
       "nodes": [
         "JS|lógica React",
@@ -173,10 +173,10 @@ export const reactNativeConcepts = [
     "title": "React Compiler en móvil",
     "description": "Optimiza componentes y Hooks en build mediante memoización automática también en React Native.",
     "section": "Arquitectura y runtime",
-    "family": "compilador de renders",
+    "family": "análisis y emisión",
     "layout": "wide",
     "scene": {
-      "variant": "pipeline",
+      "variant": "compiler",
       "code": "component source → React Compiler → optimized RN",
       "nodes": [
         "source|código normal",
@@ -206,10 +206,10 @@ export const reactNativeConcepts = [
     "title": "Yoga y cálculo de layout",
     "description": "Resuelve tamaños y posiciones desde reglas Flexbox antes de montar la geometría nativa.",
     "section": "Layout y presentación",
-    "family": "motor de cajas",
+    "family": "consulta e índice",
     "layout": "wide",
     "scene": {
-      "variant": "pipeline",
+      "variant": "database",
       "code": "style props → Yoga → layout metrics",
       "nodes": [
         "width / flex|constraints",
@@ -225,10 +225,10 @@ export const reactNativeConcepts = [
     "title": "Unidades y densidad",
     "description": "Interpreta números como píxeles lógicos independientes de densidad y adapta recursos físicos.",
     "section": "Layout y presentación",
-    "family": "escala de pantalla",
+    "family": "tabla de estados",
     "layout": "wide",
     "scene": {
-      "variant": "compare",
+      "variant": "matrix",
       "code": "100 dp → px según PixelRatio",
       "nodes": [
         "layout unit|100",
@@ -244,10 +244,10 @@ export const reactNativeConcepts = [
     "title": "useWindowDimensions y orientación",
     "description": "Recalcula ancho, alto y escala cuando cambia el espacio disponible.",
     "section": "Layout y presentación",
-    "family": "viewport reactivo",
+    "family": "acumulación de recursos",
     "layout": "standard",
     "scene": {
-      "variant": "timeline",
+      "variant": "stack",
       "code": "const { width } = useWindowDimensions()",
       "nodes": [
         "portrait|390",
@@ -263,10 +263,10 @@ export const reactNativeConcepts = [
     "title": "Diseño responsivo",
     "description": "Combina flex, límites, breakpoints propios y composición para teléfonos, tablets y ventanas redimensionables.",
     "section": "Layout y presentación",
-    "family": "rutas de composición",
+    "family": "superficie de aplicación",
     "layout": "wide",
     "scene": {
-      "variant": "tree",
+      "variant": "browser",
       "code": "width < 600 ? Stack : SplitView",
       "nodes": [
         "window|constraint",
@@ -289,10 +289,10 @@ export const reactNativeConcepts = [
     "title": "KeyboardAvoidingView y gestión de foco",
     "description": "Desplaza contenido y coordina scroll para que el campo activo permanezca visible.",
     "section": "Layout y presentación",
-    "family": "ventana sobre teclado",
+    "family": "memoria intermedia",
     "layout": "wide",
     "scene": {
-      "variant": "flow",
+      "variant": "cache",
       "code": "focus → keyboard show → inset → scroll",
       "nodes": [
         "TextInput|focus",
@@ -308,10 +308,10 @@ export const reactNativeConcepts = [
     "title": "Appearance y color scheme",
     "description": "Reacciona al tema claro, oscuro o configuración del sistema.",
     "section": "Layout y presentación",
-    "family": "doble paleta",
+    "family": "anatomía del concepto",
     "layout": "standard",
     "scene": {
-      "variant": "compare",
+      "variant": "anatomy",
       "code": "useColorScheme()",
       "nodes": [
         "light|tokens claros",
@@ -334,10 +334,10 @@ export const reactNativeConcepts = [
     "title": "Text y tipografía",
     "description": "Controla jerarquía, escalado de fuente, truncado, selección y herencia dentro de componentes Text.",
     "section": "Layout y presentación",
-    "family": "líneas tipográficas",
+    "family": "flujo de ejecución",
     "layout": "wide",
     "scene": {
-      "variant": "document",
+      "variant": "flow",
       "code": "<Text numberOfLines={2} allowFontScaling>",
       "nodes": [
         "font family|asset",
@@ -353,10 +353,10 @@ export const reactNativeConcepts = [
     "title": "Fuentes personalizadas",
     "description": "Empaqueta y carga familias tipográficas respetando nombres y configuración de cada plataforma.",
     "section": "Layout y presentación",
-    "family": "pipeline de asset",
+    "family": "configuración declarativa",
     "layout": "standard",
     "scene": {
-      "variant": "pipeline",
+      "variant": "document",
       "code": "font file → native bundle → fontFamily",
       "nodes": [
         ".ttf|asset",
@@ -372,10 +372,10 @@ export const reactNativeConcepts = [
     "title": "Sombras, elevación y clipping",
     "description": "Distingue modelos de sombra y cómo overflow, borderRadius y elevación interactúan.",
     "section": "Layout y presentación",
-    "family": "capas visuales",
+    "family": "máquina de estados",
     "layout": "wide",
     "scene": {
-      "variant": "layers",
+      "variant": "state-machine",
       "code": "shadow* · elevation · overflow",
       "nodes": [
         "content|layer",
@@ -405,10 +405,10 @@ export const reactNativeConcepts = [
     "title": "Responder System",
     "description": "Negocia qué vista recibe un gesto cuando varias capas quieren responder.",
     "section": "Interacción, gestos y medios",
-    "family": "arbitraje de gesto",
+    "family": "contratos coordinados",
     "layout": "wide",
     "scene": {
-      "variant": "tree",
+      "variant": "cards",
       "code": "touch start → shouldSetResponder",
       "nodes": [
         "touch|finger",
@@ -424,10 +424,10 @@ export const reactNativeConcepts = [
     "title": "Gestos complejos",
     "description": "Combina pan, pinch, swipe y simultaneidad mediante librerías integradas con el hilo de UI.",
     "section": "Interacción, gestos y medios",
-    "family": "gramática de gestos",
+    "family": "flujo de transformación",
     "layout": "wide",
     "scene": {
-      "variant": "matrix",
+      "variant": "pipeline",
       "code": "pan + pinch + tap",
       "nodes": [
         "tap",
@@ -443,10 +443,10 @@ export const reactNativeConcepts = [
     "title": "Animated",
     "description": "Modela valores animados y los conecta con propiedades compatibles para interpolar en el tiempo.",
     "section": "Interacción, gestos y medios",
-    "family": "grafo de animación",
+    "family": "árbol de recursos",
     "layout": "wide",
     "scene": {
-      "variant": "pipeline",
+      "variant": "filesystem",
       "code": "Animated.Value → interpolation → style",
       "nodes": [
         "value|0→1",
@@ -462,10 +462,10 @@ export const reactNativeConcepts = [
     "title": "LayoutAnimation",
     "description": "Anima cambios globales de layout en el siguiente commit con una configuración declarativa.",
     "section": "Interacción, gestos y medios",
-    "family": "transición de layout",
+    "family": "consulta e índice",
     "layout": "standard",
     "scene": {
-      "variant": "timeline",
+      "variant": "database",
       "code": "configureNext → setState → commit",
       "nodes": [
         "configure|spring",
@@ -481,10 +481,10 @@ export const reactNativeConcepts = [
     "title": "Animaciones en el hilo de UI",
     "description": "Mantienen gestos y transformaciones fluidos mediante worklets o soluciones que evitan round trips por JavaScript.",
     "section": "Interacción, gestos y medios",
-    "family": "carril de frames",
+    "family": "tabla de estados",
     "layout": "wide",
     "scene": {
-      "variant": "compare",
+      "variant": "matrix",
       "code": "JS-driven vs UI-driven",
       "nodes": [
         "JS-driven|puede bloquearse",
@@ -507,10 +507,10 @@ export const reactNativeConcepts = [
     "title": "ImageBackground, resizeMode y aspectRatio",
     "description": "Controla cómo una imagen llena su caja sin deformar el diseño.",
     "section": "Interacción, gestos y medios",
-    "family": "encaje de medio",
+    "family": "jerarquía y dependencias",
     "layout": "wide",
     "scene": {
-      "variant": "compare",
+      "variant": "tree",
       "code": "cover vs contain",
       "nodes": [
         "cover|llena + recorta",
@@ -526,10 +526,10 @@ export const reactNativeConcepts = [
     "title": "Audio, video y cámara",
     "description": "Integra capacidades multimedia mediante módulos del ecosistema y permisos nativos.",
     "section": "Interacción, gestos y medios",
-    "family": "pipeline multimedia",
+    "family": "ciclo de vida",
     "layout": "feature",
     "scene": {
-      "variant": "flow",
+      "variant": "lifecycle",
       "code": "permission → native session → media result",
       "nodes": [
         "permission|solicitar",
@@ -546,10 +546,10 @@ export const reactNativeConcepts = [
     "title": "Haptics y feedback nativo",
     "description": "Añade vibración o respuesta táctil alineada con acciones significativas.",
     "section": "Interacción, gestos y medios",
-    "family": "pulso de sistema",
+    "family": "planificación de trabajo",
     "layout": "standard",
     "scene": {
-      "variant": "pipeline",
+      "variant": "scheduler",
       "code": "onPress → haptic impact → state update",
       "nodes": [
         "gesture|press",
@@ -572,10 +572,10 @@ export const reactNativeConcepts = [
     "title": "SectionList",
     "description": "Virtualiza datos agrupados y conserva encabezados de sección.",
     "section": "Listas y navegación",
-    "family": "lista jerárquica",
+    "family": "ida y vuelta",
     "layout": "wide",
     "scene": {
-      "variant": "stack",
+      "variant": "request",
       "code": "sections=[Piltover, Zaun]",
       "nodes": [
         "header|Piltover",
@@ -591,10 +591,10 @@ export const reactNativeConcepts = [
     "title": "Virtualización y windowing",
     "description": "Monta una ventana alrededor del viewport y recicla trabajo conforme se desplaza.",
     "section": "Listas y navegación",
-    "family": "ventana móvil",
+    "family": "propagación de eventos",
     "layout": "feature",
     "scene": {
-      "variant": "browser",
+      "variant": "signal",
       "code": "FlatList windowSize / maxToRenderPerBatch",
       "nodes": [
         "viewport|visible",
@@ -610,10 +610,10 @@ export const reactNativeConcepts = [
     "title": "Keys, getItemLayout y renderItem",
     "description": "Estabiliza identidad, evita mediciones repetidas y reduce trabajo por fila.",
     "section": "Listas y navegación",
-    "family": "optimización de filas",
+    "family": "comparativa técnica",
     "layout": "wide",
     "scene": {
-      "variant": "pipeline",
+      "variant": "compare",
       "code": "keyExtractor + getItemLayout + memo(Row)",
       "nodes": [
         "data|stable id",
@@ -629,10 +629,10 @@ export const reactNativeConcepts = [
     "title": "Refresh y carga incremental",
     "description": "Combina pull-to-refresh, estados de carga y onEndReached sin duplicar solicitudes.",
     "section": "Listas y navegación",
-    "family": "doble dirección",
+    "family": "contratos coordinados",
     "layout": "wide",
     "scene": {
-      "variant": "flow",
+      "variant": "cards",
       "code": "refreshControl ↕ onEndReached",
       "nodes": [
         "top pull|refresh",
@@ -655,7 +655,7 @@ export const reactNativeConcepts = [
     "title": "Stacks, tabs y drawers",
     "description": "Componen patrones de navegación con estados y ciclos de vida distintos.",
     "section": "Listas y navegación",
-    "family": "contenedores de rutas",
+    "family": "capas internas",
     "layout": "wide",
     "scene": {
       "variant": "layers",
@@ -674,10 +674,10 @@ export const reactNativeConcepts = [
     "title": "Parámetros y tipos de rutas",
     "description": "Transportan identificadores serializables y pueden comprobarse con TypeScript.",
     "section": "Listas y navegación",
-    "family": "contrato de ruta",
+    "family": "árbol de recursos",
     "layout": "standard",
     "scene": {
-      "variant": "pipeline",
+      "variant": "filesystem",
       "code": "navigate(\"Champion\", { id: \"jinx\" })",
       "nodes": [
         "route name|Champion",
@@ -693,10 +693,10 @@ export const reactNativeConcepts = [
     "title": "Deep links y universal links",
     "description": "Transforman URLs externas en rutas internas y verifican dominios asociados.",
     "section": "Listas y navegación",
-    "family": "enrutador de enlaces",
+    "family": "ecosistema coordinado",
     "layout": "wide",
     "scene": {
-      "variant": "pipeline",
+      "variant": "orbit",
       "code": "arcane://champions/jinx",
       "nodes": [
         "OS|opens URL",
@@ -712,7 +712,7 @@ export const reactNativeConcepts = [
     "title": "Estado de navegación y restauración",
     "description": "Persiste la ruta actual cuando aporta valor y evita restaurar flujos inválidos.",
     "section": "Listas y navegación",
-    "family": "snapshot de router",
+    "family": "secuencia operativa",
     "layout": "standard",
     "scene": {
       "variant": "timeline",
@@ -738,10 +738,10 @@ export const reactNativeConcepts = [
     "title": "Linking y apertura de aplicaciones",
     "description": "Abre URLs, teléfono, correo, ajustes u otras apps mediante esquemas soportados.",
     "section": "Sistema operativo y dispositivo",
-    "family": "puerta a otras apps",
+    "family": "diagnóstico operativo",
     "layout": "standard",
     "scene": {
-      "variant": "gate",
+      "variant": "terminal",
       "code": "Linking.canOpenURL(url)",
       "nodes": [
         "url|mailto:",
@@ -757,10 +757,10 @@ export const reactNativeConcepts = [
     "title": "AppState",
     "description": "Observa si la app está activa, en background o transicionando para pausar y reanudar trabajo.",
     "section": "Sistema operativo y dispositivo",
-    "family": "ciclo de aplicación",
+    "family": "máquina de estados",
     "layout": "wide",
     "scene": {
-      "variant": "timeline",
+      "variant": "state-machine",
       "code": "active → background → active",
       "nodes": [
         "active|UI visible",
@@ -776,10 +776,10 @@ export const reactNativeConcepts = [
     "title": "Notificaciones push",
     "description": "Conecta token del dispositivo, proveedor remoto, payload del sistema y navegación al abrir.",
     "section": "Sistema operativo y dispositivo",
-    "family": "ruta de notificación",
+    "family": "secuencia operativa",
     "layout": "feature",
     "scene": {
-      "variant": "flow",
+      "variant": "timeline",
       "code": "server → APNs/FCM → device → app",
       "nodes": [
         "backend|event",
@@ -796,10 +796,10 @@ export const reactNativeConcepts = [
     "title": "Tareas en background",
     "description": "Ejecutan trabajo limitado bajo políticas del sistema, no como procesos permanentes libres.",
     "section": "Sistema operativo y dispositivo",
-    "family": "ventana de ejecución",
+    "family": "comparativa técnica",
     "layout": "wide",
     "scene": {
-      "variant": "gate",
+      "variant": "compare",
       "code": "schedule background sync",
       "nodes": [
         "app|requests work",
@@ -815,10 +815,10 @@ export const reactNativeConcepts = [
     "title": "Geolocalización",
     "description": "Obtiene posición con precisión y coste energético variables, sujeto a permisos y ciclo de vida.",
     "section": "Sistema operativo y dispositivo",
-    "family": "señal satelital",
+    "family": "flujo de transformación",
     "layout": "wide",
     "scene": {
-      "variant": "orbit",
+      "variant": "pipeline",
       "code": "watchPosition(options)",
       "nodes": [
         "GPS|precise",
@@ -834,10 +834,10 @@ export const reactNativeConcepts = [
     "title": "Share y clipboard",
     "description": "Intercambian texto o archivos con otras apps usando hojas y servicios del sistema.",
     "section": "Sistema operativo y dispositivo",
-    "family": "transferencia del sistema",
+    "family": "aislamiento sobre host",
     "layout": "standard",
     "scene": {
-      "variant": "pipeline",
+      "variant": "container",
       "code": "Share.share({ message })",
       "nodes": [
         "content|payload",
@@ -853,10 +853,10 @@ export const reactNativeConcepts = [
     "title": "Accesibilidad",
     "description": "Expone roles, nombres, estados, acciones y orden comprensible a VoiceOver y TalkBack.",
     "section": "Sistema operativo y dispositivo",
-    "family": "árbol accesible",
+    "family": "superficie de aplicación",
     "layout": "feature",
     "scene": {
-      "variant": "tree",
+      "variant": "browser",
       "code": "accessible · accessibilityLabel · role",
       "nodes": [
         "component|visual",
@@ -872,10 +872,10 @@ export const reactNativeConcepts = [
     "title": "Anuncios y foco accesible",
     "description": "Comunica cambios importantes y mueve foco solo cuando la tarea lo requiere.",
     "section": "Sistema operativo y dispositivo",
-    "family": "ruta de foco",
+    "family": "ida y vuelta",
     "layout": "wide",
     "scene": {
-      "variant": "flow",
+      "variant": "request",
       "code": "AccessibilityInfo.announceForAccessibility()",
       "nodes": [
         "state change|error",
@@ -891,10 +891,10 @@ export const reactNativeConcepts = [
     "title": "Internacionalización y RTL",
     "description": "Adapta texto, formatos, dirección, imágenes y layout a idioma y cultura.",
     "section": "Sistema operativo y dispositivo",
-    "family": "espejo cultural",
+    "family": "topología y tráfico",
     "layout": "wide",
     "scene": {
-      "variant": "compare",
+      "variant": "network",
       "code": "I18nManager.isRTL",
       "nodes": [
         "LTR|left→right",
@@ -917,10 +917,10 @@ export const reactNativeConcepts = [
     "title": "Timeouts y cancelación",
     "description": "Cancela fetch y trabajo dependiente cuando cambia una pantalla o vence el presupuesto.",
     "section": "Datos, offline y seguridad",
-    "family": "señal de cancelación",
+    "family": "ciclo de vida",
     "layout": "wide",
     "scene": {
-      "variant": "flow",
+      "variant": "lifecycle",
       "code": "AbortController + fetch",
       "nodes": [
         "screen|mount",
@@ -944,10 +944,10 @@ export const reactNativeConcepts = [
     "title": "Almacenamiento seguro",
     "description": "Protege tokens o secretos pequeños usando servicios cifrados del sistema operativo.",
     "section": "Datos, offline y seguridad",
-    "family": "bóveda nativa",
+    "family": "configuración declarativa",
     "layout": "wide",
     "scene": {
-      "variant": "gate",
+      "variant": "document",
       "code": "secureStore.set(\"token\", value)",
       "nodes": [
         "token|sensitive",
@@ -963,10 +963,10 @@ export const reactNativeConcepts = [
     "title": "Offline-first",
     "description": "Mantiene una copia local, registra cambios y sincroniza cuando regresa la conectividad.",
     "section": "Datos, offline y seguridad",
-    "family": "doble fuente coordinada",
+    "family": "propagación de eventos",
     "layout": "feature",
     "scene": {
-      "variant": "compare",
+      "variant": "signal",
       "code": "local database ↔ remote API",
       "nodes": [
         "local|read immediately",
@@ -982,10 +982,10 @@ export const reactNativeConcepts = [
     "title": "Caché de datos",
     "description": "Evita solicitudes repetidas y decide frescura, invalidación y revalidación.",
     "section": "Datos, offline y seguridad",
-    "family": "capas de caché",
+    "family": "memoria intermedia",
     "layout": "wide",
     "scene": {
-      "variant": "layers",
+      "variant": "cache",
       "code": "memory → disk → network",
       "nodes": [
         "memory|fast",
@@ -1001,10 +1001,10 @@ export const reactNativeConcepts = [
     "title": "Estado global",
     "description": "Comparte sesión o dominio entre pantallas mediante contexto o stores, sin globalizar estado efímero.",
     "section": "Datos, offline y seguridad",
-    "family": "mapa de propiedad",
+    "family": "secuencia operativa",
     "layout": "wide",
     "scene": {
-      "variant": "layers",
+      "variant": "timeline",
       "code": "local UI · context · store · server cache",
       "nodes": [
         "component|input value",
@@ -1020,10 +1020,10 @@ export const reactNativeConcepts = [
     "title": "Seguridad de red",
     "description": "Usa HTTPS, validación del servidor, almacenamiento seguro y políticas de autenticación defensivas.",
     "section": "Datos, offline y seguridad",
-    "family": "capas de defensa",
+    "family": "topología y tráfico",
     "layout": "feature",
     "scene": {
-      "variant": "layers",
+      "variant": "network",
       "code": "TLS + auth + validation + least privilege",
       "nodes": [
         "transport|TLS",
@@ -1040,10 +1040,10 @@ export const reactNativeConcepts = [
     "title": "Biometría",
     "description": "Solicita autenticación local para desbloquear una acción o secreto, sin sustituir la identidad del backend.",
     "section": "Datos, offline y seguridad",
-    "family": "puerta biométrica",
+    "family": "análisis y emisión",
     "layout": "standard",
     "scene": {
-      "variant": "gate",
+      "variant": "compiler",
       "code": "authenticateAsync()",
       "nodes": [
         "user|touch/face",
@@ -1059,10 +1059,10 @@ export const reactNativeConcepts = [
     "title": "React Native DevTools",
     "description": "Inspecciona componentes, props, estado, red y rendimiento con herramientas integradas al runtime Hermes.",
     "section": "Calidad, performance y entrega",
-    "family": "panel de depuración",
+    "family": "acumulación de recursos",
     "layout": "wide",
     "scene": {
-      "variant": "browser",
+      "variant": "stack",
       "code": "React Native DevTools",
       "nodes": [
         "Components|tree",
@@ -1078,10 +1078,10 @@ export const reactNativeConcepts = [
     "title": "Fast Refresh",
     "description": "Actualiza módulos durante desarrollo intentando preservar estado compatible.",
     "section": "Calidad, performance y entrega",
-    "family": "ciclo de edición",
+    "family": "capas internas",
     "layout": "standard",
     "scene": {
-      "variant": "timeline",
+      "variant": "layers",
       "code": "edit → Metro → refresh",
       "nodes": [
         "save file|change",
@@ -1097,10 +1097,10 @@ export const reactNativeConcepts = [
     "title": "Performance de frames",
     "description": "Mide si los hilos JS y UI cumplen el presupuesto de cada frame durante interacción.",
     "section": "Calidad, performance y entrega",
-    "family": "presupuesto de frame",
+    "family": "árbol de recursos",
     "layout": "feature",
     "scene": {
-      "variant": "compare",
+      "variant": "filesystem",
       "code": "JS FPS vs UI FPS",
       "nodes": [
         "JS frame|logic",
@@ -1116,10 +1116,10 @@ export const reactNativeConcepts = [
     "title": "Arranque y tiempo a interacción",
     "description": "Reduce trabajo, módulos, fuentes y datos requeridos antes de mostrar una pantalla útil.",
     "section": "Calidad, performance y entrega",
-    "family": "ruta crítica",
+    "family": "planificación de trabajo",
     "layout": "wide",
     "scene": {
-      "variant": "pipeline",
+      "variant": "scheduler",
       "code": "process start → JS bundle → first render → interactive",
       "nodes": [
         "native startup|process",
@@ -1135,10 +1135,10 @@ export const reactNativeConcepts = [
     "title": "Memoria e imágenes",
     "description": "Controla tamaño de bitmaps, cachés, listas y referencias que pueden provocar presión o terminación.",
     "section": "Calidad, performance y entrega",
-    "family": "presupuesto de memoria",
+    "family": "memoria intermedia",
     "layout": "wide",
     "scene": {
-      "variant": "stack",
+      "variant": "cache",
       "code": "image decode + list window + caches",
       "nodes": [
         "bitmap|width×height×bytes",
@@ -1154,10 +1154,10 @@ export const reactNativeConcepts = [
     "title": "Logging, crashes y observabilidad",
     "description": "Conecta errores, breadcrumbs, versiones y métricas para reconstruir fallos reales.",
     "section": "Calidad, performance y entrega",
-    "family": "traza móvil",
+    "family": "evidencia y latencia",
     "layout": "wide",
     "scene": {
-      "variant": "pipeline",
+      "variant": "trace",
       "code": "event → logs → crash → release",
       "nodes": [
         "user action|breadcrumb",
@@ -1174,10 +1174,10 @@ export const reactNativeConcepts = [
     "title": "Pruebas unitarias y de componentes",
     "description": "Verifican lógica y comportamiento de UI con mocks mínimos de APIs nativas.",
     "section": "Calidad, performance y entrega",
-    "family": "ciclo de prueba",
+    "family": "diagnóstico operativo",
     "layout": "wide",
     "scene": {
-      "variant": "flow",
+      "variant": "terminal",
       "code": "render → event → state → assertion",
       "nodes": [
         "component|render",
@@ -1193,10 +1193,10 @@ export const reactNativeConcepts = [
     "title": "Pruebas end-to-end",
     "description": "Ejecutan la aplicación compilada y automatizan recorridos críticos sobre simuladores o dispositivos.",
     "section": "Calidad, performance y entrega",
-    "family": "viaje completo",
+    "family": "configuración declarativa",
     "layout": "wide",
     "scene": {
-      "variant": "timeline",
+      "variant": "document",
       "code": "launch → login → report → confirmation",
       "nodes": [
         "build|app binary",
@@ -1213,10 +1213,10 @@ export const reactNativeConcepts = [
     "title": "Módulos nativos propios",
     "description": "Implementan capacidades no disponibles en JavaScript mediante specs, Codegen y código de plataforma.",
     "section": "Calidad, performance y entrega",
-    "family": "frontera nativa",
+    "family": "análisis y emisión",
     "layout": "feature",
     "scene": {
-      "variant": "pipeline",
+      "variant": "compiler",
       "code": "TS spec → Codegen → Swift/Kotlin → JS",
       "nodes": [
         "spec|methods/events",
@@ -1232,10 +1232,10 @@ export const reactNativeConcepts = [
     "title": "Componentes nativos propios",
     "description": "Exponen vistas de plataforma como componentes React con props, eventos y comandos tipados.",
     "section": "Calidad, performance y entrega",
-    "family": "vista puenteada",
+    "family": "aislamiento sobre host",
     "layout": "wide",
     "scene": {
-      "variant": "pipeline",
+      "variant": "container",
       "code": "NativeComponent spec → Fabric component",
       "nodes": [
         "props|typed",
@@ -1251,10 +1251,10 @@ export const reactNativeConcepts = [
     "title": "Expo y Community CLI",
     "description": "Representan flujos de proyecto distintos para acceder a servicios, builds y personalización nativa.",
     "section": "Calidad, performance y entrega",
-    "family": "comparativa de toolchains",
+    "family": "ecosistema coordinado",
     "layout": "wide",
     "scene": {
-      "variant": "compare",
+      "variant": "orbit",
       "code": "Expo workflow vs Community CLI",
       "nodes": [
         "Expo|servicios + config",
@@ -1270,10 +1270,10 @@ export const reactNativeConcepts = [
     "title": "Configuración por entornos",
     "description": "Separa endpoints, flags y capacidades por build sin introducir secretos en JavaScript.",
     "section": "Calidad, performance y entrega",
-    "family": "matriz de variantes",
+    "family": "contratos coordinados",
     "layout": "wide",
     "scene": {
-      "variant": "matrix",
+      "variant": "cards",
       "code": "dev · staging · production",
       "nodes": [
         "bundle id",
@@ -1289,7 +1289,7 @@ export const reactNativeConcepts = [
     "title": "Builds, signing y releases",
     "description": "Compila artefactos, aplica certificados o keystores y distribuye por canales de prueba y tiendas.",
     "section": "Calidad, performance y entrega",
-    "family": "pipeline de release",
+    "family": "flujo de transformación",
     "layout": "feature",
     "scene": {
       "variant": "pipeline",
@@ -1309,10 +1309,10 @@ export const reactNativeConcepts = [
     "title": "Actualizaciones OTA",
     "description": "Entrega cambios de JavaScript y assets compatibles sin reemplazar binarios nativos, según políticas de plataforma.",
     "section": "Calidad, performance y entrega",
-    "family": "doble versión",
+    "family": "jerarquía y dependencias",
     "layout": "wide",
     "scene": {
-      "variant": "compare",
+      "variant": "tree",
       "code": "binary runtime ↔ OTA bundle",
       "nodes": [
         "native binary|capabilities",
@@ -1328,10 +1328,10 @@ export const reactNativeConcepts = [
     "title": "CI/CD móvil",
     "description": "Automatiza lint, pruebas, builds, firma protegida, distribución y publicación.",
     "section": "Calidad, performance y entrega",
-    "family": "cadena automatizada",
+    "family": "tabla de estados",
     "layout": "wide",
     "scene": {
-      "variant": "flow",
+      "variant": "matrix",
       "code": "commit → checks → build → test device → release",
       "nodes": [
         "source|commit",
@@ -1348,10 +1348,10 @@ export const reactNativeConcepts = [
     "title": "Actualizaciones de React Native",
     "description": "Planifican saltos de versión, cambios nativos, dependencias y pruebas sobre ambas plataformas.",
     "section": "Calidad, performance y entrega",
-    "family": "ruta de migración",
+    "family": "propagación de eventos",
     "layout": "wide",
     "scene": {
-      "variant": "timeline",
+      "variant": "signal",
       "code": "current → upgrade helper → native diffs → test",
       "nodes": [
         "release notes|breaking",

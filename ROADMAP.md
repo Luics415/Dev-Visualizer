@@ -5,120 +5,113 @@
 - [x] La cobertura decide la cantidad de escenas; no existe un límite artificial de 14.
 - [x] Separar fundamentos, internals, trabajo diario, diagnóstico y producción.
 - [x] Elegir una metáfora visual específica para cada mecanismo.
-- [x] Permitir casos integrados con tantas etapas como necesite la historia.
-- [x] Mantener guiños a Arcane/League como contexto, nunca como sustituto de la explicación.
+- [x] Mantener casos integrados con **Profundización del caso**.
+- [x] Usar guiños a Arcane/League como contexto, nunca como sustituto de la explicación.
 
-## Navegación y experiencia de estudio
+## Navegación y experiencia
 
 - [x] Biblioteca central en `/colecciones`.
-- [x] Selector de colecciones agrupado y buscable.
-- [x] Navegación anterior/siguiente entre las 14 rutas.
-- [x] Estado visible de la colección actual.
-- [x] Diseño responsive sin depender de scroll horizontal para descubrir temas.
-- [x] Índice de capítulos con anclas y conteos.
-- [x] Colecciones divididas por secciones temáticas.
+- [x] Selector agrupado y buscable.
+- [x] Navegación anterior/siguiente entre 26 rutas.
+- [x] Índices de capítulos con anclas y conteos.
+- [x] Diseño responsive.
+- [x] Pausar escenas fuera del viewport.
 - [ ] Búsqueda global por concepto, palabra clave y nivel.
-- [ ] Filtros por fundamento, internals, producción y familia visual.
-- [ ] Historial local y progreso de estudio.
+- [ ] Filtros por fundamentos, internals, producción y familia visual.
+- [ ] Progreso local de estudio.
 - [ ] Página de enfoque individual por concepto.
+- [ ] Controles de velocidad y pausa en vista individual.
 
-## Sistema visual
+## Colecciones terminadas
 
-- [x] Paleta exterior Jinx Arcane.
-- [x] Colores semánticos internos independientes.
-- [x] Tarjetas compactas, estándar y amplias.
-- [x] Familias reutilizables: pipeline, capas, comparativa, timeline, árbol, puerta, stack, órbita, matriz, navegador, flujo, tarjetas, terminal y documento.
-- [x] Escenas autónomas con loop.
-- [x] Cajas paralelas para separar experiencia visible e internals en casos prácticos.
-- [ ] Pausar escenas fuera del viewport.
-- [ ] Controles opcionales de velocidad y pausa en vista de enfoque.
-- [ ] Exportación vertical con Remotion.
-
-## 01 — JavaScript ES6+
-
+### 01 — JavaScript ES6+
 - [x] 55 conceptos en 12 capítulos.
-- [x] Valores, coerción, scope, funciones, objetos, colecciones y clases.
-- [x] Prototipos, `this`, iterables, generators y módulos dinámicos.
-- [x] Promises, combinadores, event loop y cancelación.
-- [x] Typed Arrays, RegExp, Intl, fechas, Proxy/Reflect y memoria.
-- [x] JavaScript en acción ampliado a 14 etapas.
-- [ ] Añadir workers, Atomics/SharedArrayBuffer y estrategias avanzadas de profiling del runtime.
+- [x] Caso integrado de 14 etapas.
 
-## 02 — TypeScript
-
+### 02 — TypeScript
 - [x] 64 conceptos en 7 capítulos.
-- [x] Tipos base, nullabilidad, unions, intersections y narrowing.
-- [x] Genéricos, constraints y sistema de tipos derivado.
-- [x] Mapped, conditional, template literal, recursive y branded types.
-- [x] Declaraciones, módulos, augmentation y configuración del compilador.
-- [x] Migración, validación runtime, variance, type tests y performance del checker.
-- [x] TypeScript en acción ampliado a 14 etapas.
-- [ ] Añadir patrones de tipos para librerías públicas, monorepos y APIs generadas desde schemas.
+- [x] Caso integrado de 14 etapas.
 
-## 03 — React
-
+### 03 — React
 - [x] 62 conceptos en 7 capítulos.
-- [x] Componentes, props, estado, forms, reducers y context.
-- [x] Render, commit, reconciliación, identidad, Strict Mode y portals.
-- [x] Effects, refs, external stores y sincronización.
-- [x] Memoización, Compiler, profiling, Suspense y concurrencia.
-- [x] Actions, optimistic UI, Server Components, SSR, streaming e hydration.
-- [x] Testing y Rules of React.
-- [x] React en acción ampliado a 14 etapas.
-- [ ] Añadir patrones completos de routing, data frameworks y boundaries de caché del servidor.
+- [x] Caso integrado de 14 etapas.
 
-## 04 — React Native
-
+### 04 — React Native
 - [x] 80 conceptos en 7 capítulos.
-- [x] New Architecture, Fabric, TurboModules, JSI, Codegen, Hermes y Metro.
-- [x] Layout, density, safe areas, teclado, themes, platform code y tipografía.
-- [x] Gestos, animaciones, media y feedback nativo.
-- [x] Listas, navegación, deep links y restauración de estado.
-- [x] Permisos, AppState, notificaciones, background work y accesibilidad.
-- [x] Red, persistencia, offline-first, seguridad y biometría.
-- [x] Debugging, performance, testing, native modules, builds, firma, OTA y upgrades.
-- [x] React Native en acción ampliado a 14 etapas.
-- [ ] Añadir stores, App/Play review, observabilidad móvil y estrategias de módulos compartidos multi-app.
+- [x] Caso integrado de 14 etapas.
 
-## 05 — APIs REST
+### 05 — Gestión de estado
+- [x] 75 conceptos en 7 capítulos.
+- [x] Caso integrado de 14 etapas.
+- [ ] Añadir CRDTs y colaboración multi-dispositivo avanzada.
 
-- [x] 34 conceptos desde fundamentos hasta producción.
-- [x] APIs REST en acción con traza, inspección HTTP, persistencia y retry idempotente.
-- [ ] Añadir OAuth/OIDC detallado, API gateways, circuit breakers, service discovery y compatibilidad por consumidor.
+### 06 — APIs REST
+- [x] 34 conceptos.
+- [x] Trazabilidad integrada con idempotencia.
+- [ ] Añadir OAuth/OIDC detallado y compatibilidad por consumidor.
 
-## 06 — Git y GitHub
+### 07 — Backend
+- [x] 96 conceptos en 9 capítulos.
+- [x] Caso integrado con transacción, outbox, cola y observabilidad.
+- [ ] Añadir GraphQL, gRPC y WebSockets como colecciones comparativas.
 
-- [x] 32 conceptos locales, remotos, colaborativos y de recuperación.
-- [x] Git y GitHub en acción con 8 capítulos y paneles paralelos.
-- [ ] Añadir signed commits, CODEOWNERS, environments, secrets, deployment approvals y monorepo workflows.
+### 08 — Bases de datos
+- [x] 113 conceptos en 10 capítulos.
+- [x] Caso integrado con concurrencia, WAL y réplica.
+- [ ] Añadir laboratorios dedicados por motor.
 
-## 07 — HTML y CSS
+### 09 — Git y GitHub
+- [x] 32 conceptos.
+- [x] Caso integrado de 8 etapas.
 
-- [x] 42 conceptos de estructura, semántica, accesibilidad, cascade, layout y rendering.
-- [x] HTML y CSS en acción desde source hasta pixels y accessibility tree.
-- [ ] Añadir subgrid, anchor positioning, view transitions, print styles, forms avanzados, fuentes y debugging con DevTools.
+### 10 — HTML y CSS
+- [x] 42 conceptos.
+- [x] Caso integrado desde source hasta pixels.
+
+### 11 — Linux
+- [x] 182 conceptos en 10 capítulos.
+- [x] Kernel, shell, permisos, procesos, systemd, redes, storage, troubleshooting, hardening y contenedores.
+- [x] Caso integrado de 14 etapas con diagnóstico por evidencia y recuperación segura.
+- [ ] Añadir laboratorios dedicados de Bash, systemd y networking.
+
+### 12 — AWS
+- [x] 198 conceptos en 12 capítulos.
+- [x] Identidad, gobierno, VPC, compute, storage, data, eventos, edge, observabilidad, IaC, DR y costo.
+- [x] Caso integrado de 14 etapas con arquitectura multi-AZ y credenciales temporales.
+- [ ] Añadir simuladores de decisiones por workload y laboratorios de IAM policy evaluation.
+
+### 13 — Deployment
+- [x] 177 conceptos en 10 capítulos.
+- [x] CI/CD, artefactos, OCI, rollouts, Kubernetes, datos, observabilidad, rollback y supply chain.
+- [x] Caso integrado de 14 etapas con canary, análisis automático y rollback compatible.
+- [ ] Añadir laboratorio de GitOps y comparación visual de estrategias por riesgo/costo.
 
 ## Próximas colecciones del roadmap Jr
 
-- [ ] State Management.
-- [ ] Backend.
-- [ ] Bases de datos.
-- [ ] Linux.
-- [ ] AWS.
-- [ ] Deployment.
 - [ ] Nginx.
 - [ ] Docker.
 - [ ] Firebase.
 - [ ] Debugging.
 - [ ] Architecture.
+- [ ] Portfolio final y publicación.
+
+## Sistema visual
+
+- [x] Paleta exterior Jinx Arcane.
+- [x] Colores semánticos internos independientes.
+- [x] 14 familias visuales reutilizables.
+- [x] Escenas autónomas en loop.
+- [x] Cajas paralelas para visible vs interno.
+- [x] Profundización de ocho módulos en casos extensos.
+- [x] Pausa por viewport para colecciones grandes.
+- [ ] Exportación vertical con Remotion.
 
 ## Criterio de terminado por concepto
 
 - La metáfora se entiende sin narración externa.
 - El movimiento muestra causalidad y estado, no decoración.
 - El código coincide con el proceso representado.
-- La escena distingue desarrollo, runtime, navegador, sistema operativo, red o servidor cuando aplica.
-- Los casos límite importantes aparecen o quedan registrados para expansión.
+- La escena distingue cliente, runtime, red, servidor, sistema operativo, cloud o motor de datos cuando aplica.
 - La explicación aclara qué problema resuelve, cómo funciona y dónde puede fallar.
 - El loop reinicia sin un corte confuso.
 - Funciona en móvil y escritorio.

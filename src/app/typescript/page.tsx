@@ -19,6 +19,8 @@ import { UnionTypesScene } from "@/components/scenes/typescript/UnionTypesScene"
 import { UtilityTypesScene } from "@/components/scenes/typescript/UtilityTypesScene";
 import { typescriptConcepts } from "@/data/typescriptConcepts";
 import { slugify } from "@/lib/slugify";
+import { CollectionPrimer } from "@/components/concepts/CollectionPrimer";
+import { collectionPrimers } from "@/data/collectionPrimers";
 
 const specialScenes = new Map<string, ReactNode>([
   ["Inferencia de tipos", <InferenceScene key="inference" />],
@@ -57,6 +59,8 @@ export default function TypeScriptPage() {
           <span>conceptos en {sections.length} capítulos</span>
         </div>
       </header>
+
+      <CollectionPrimer primer={collectionPrimers["typescript"]} />
 
       <CollectionChapters chapters={chapters} />
 

@@ -2,6 +2,8 @@ import { ConceptCard } from "@/components/concepts/ConceptCard";
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { AnimatedConceptScene } from "@/components/visual/AnimatedConceptScene";
 import { htmlCssConcepts } from "@/data/htmlCssConcepts";
+import { CollectionPrimer } from "@/components/concepts/CollectionPrimer";
+import { collectionPrimers } from "@/data/collectionPrimers";
 
 export default function HtmlCssPage() {
   return (
@@ -9,12 +11,14 @@ export default function HtmlCssPage() {
       <CollectionNav />
       <header className="hero hero--html-css">
         <div>
-          <span className="eyebrow eyebrow--html-css">Colección 07 · Documento, estilos y motor del navegador</span>
+          <span className="eyebrow eyebrow--html-css">Colección 10 · Documento, estilos y motor del navegador</span>
           <h1>HTML y CSS visualizados</h1>
           <p>Una referencia extensa que conecta semántica, accesibilidad y formularios con cascade, layout, responsive design y composición. No se limita a memorizar etiquetas o propiedades: muestra qué estructura construye el navegador y cómo resuelve cada estilo.</p>
         </div>
         <div className="hero__counter hero__counter--html-css"><strong>{htmlCssConcepts.length}</strong><span>conceptos de estructura, layout y presentación</span></div>
       </header>
+
+      <CollectionPrimer primer={collectionPrimers["html-css"]} />
 
       <section className="concept-grid concept-grid--atlas" aria-label="Conceptos de HTML y CSS">
         {htmlCssConcepts.map((concept, index) => (

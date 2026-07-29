@@ -26,10 +26,10 @@ export const reactConcepts = [
     "title": "children y composición",
     "description": "Permiten envolver, insertar y combinar interfaz sin acoplarla a una estructura rígida.",
     "section": "Fundamentos declarativos",
-    "family": "ranuras de composición",
+    "family": "acumulación de recursos",
     "layout": "wide",
     "scene": {
-      "variant": "layers",
+      "variant": "stack",
       "code": "<Card><Champion /></Card>",
       "nodes": [
         "Card|contenedor",
@@ -45,10 +45,10 @@ export const reactConcepts = [
     "title": "Pureza del render",
     "description": "Exige que el componente calcule el mismo JSX para las mismas props, estado y contexto, sin efectos secundarios.",
     "section": "Fundamentos declarativos",
-    "family": "función pura",
+    "family": "topología y tráfico",
     "layout": "wide",
     "scene": {
-      "variant": "compare",
+      "variant": "network",
       "code": "render(input) → JSX",
       "nodes": [
         "mismo input|render A",
@@ -71,10 +71,10 @@ export const reactConcepts = [
     "title": "El estado como snapshot",
     "description": "Cada render ve una fotografía fija; actualizar estado prepara otro render sin mutar el que ya corre.",
     "section": "Estado y eventos",
-    "family": "línea de snapshots",
+    "family": "máquina de estados",
     "layout": "feature",
     "scene": {
-      "variant": "timeline",
+      "variant": "state-machine",
       "code": "setScore(score + 1)",
       "nodes": [
         "render #1|score 0",
@@ -97,10 +97,10 @@ export const reactConcepts = [
     "title": "Propagación de eventos",
     "description": "Explica captura, target, bubbling y stopPropagation dentro del sistema de eventos de React.",
     "section": "Estado y eventos",
-    "family": "ondas de propagación",
+    "family": "propagación de eventos",
     "layout": "wide",
     "scene": {
-      "variant": "layers",
+      "variant": "signal",
       "code": "onClickCapture → target → onClick",
       "nodes": [
         "root|capture",
@@ -116,10 +116,10 @@ export const reactConcepts = [
     "title": "Batching de actualizaciones",
     "description": "Agrupa múltiples setState de una misma interacción antes de renderizar para evitar trabajo intermedio.",
     "section": "Estado y eventos",
-    "family": "cola por lotes",
+    "family": "planificación de trabajo",
     "layout": "wide",
     "scene": {
-      "variant": "stack",
+      "variant": "scheduler",
       "code": "setCount(c=>c+1) × 3",
       "nodes": [
         "update +1",
@@ -136,10 +136,10 @@ export const reactConcepts = [
     "title": "Updater functions",
     "description": "Calculan el siguiente estado desde el estado pendiente anterior y evitan cierres obsoletos.",
     "section": "Estado y eventos",
-    "family": "acumulador de estado",
+    "family": "ecosistema coordinado",
     "layout": "standard",
     "scene": {
-      "variant": "pipeline",
+      "variant": "orbit",
       "code": "setCount(c => c + 1)",
       "nodes": [
         "pending c|0",
@@ -155,10 +155,10 @@ export const reactConcepts = [
     "title": "Actualizaciones inmutables",
     "description": "Crean nuevos objetos o arrays para que React pueda detectar qué referencia cambió.",
     "section": "Estado y eventos",
-    "family": "copia estructural",
+    "family": "contratos coordinados",
     "layout": "wide",
     "scene": {
-      "variant": "compare",
+      "variant": "cards",
       "code": "setUser({ ...user, level: 18 })",
       "nodes": [
         "mutar user.level|misma referencia",
@@ -188,7 +188,7 @@ export const reactConcepts = [
     "title": "Formularios controlados",
     "description": "Mantienen value o checked en estado y actualizan la interfaz mediante eventos.",
     "section": "Formularios y flujo de datos",
-    "family": "circuito controlado",
+    "family": "flujo de ejecución",
     "layout": "wide",
     "scene": {
       "variant": "flow",
@@ -207,10 +207,10 @@ export const reactConcepts = [
     "title": "Formularios no controlados",
     "description": "Dejan que el DOM conserve el valor y lo leen mediante FormData o refs cuando se necesita.",
     "section": "Formularios y flujo de datos",
-    "family": "estado en el DOM",
+    "family": "anatomía del concepto",
     "layout": "standard",
     "scene": {
-      "variant": "compare",
+      "variant": "anatomy",
       "code": "new FormData(form)",
       "nodes": [
         "controlled|React state",
@@ -226,10 +226,10 @@ export const reactConcepts = [
     "title": "Elevar estado",
     "description": "Mueve una fuente compartida al ancestro común para sincronizar componentes hermanos.",
     "section": "Formularios y flujo de datos",
-    "family": "ascenso y distribución",
+    "family": "secuencia operativa",
     "layout": "wide",
     "scene": {
-      "variant": "tree",
+      "variant": "timeline",
       "code": "TemperatureCalculator owns value",
       "nodes": [
         "parent|source of truth",
@@ -245,10 +245,10 @@ export const reactConcepts = [
     "title": "Estado derivado",
     "description": "Calcula valores desde props y estado durante el render en lugar de duplicarlos y sincronizarlos.",
     "section": "Formularios y flujo de datos",
-    "family": "cálculo derivado",
+    "family": "máquina de estados",
     "layout": "standard",
     "scene": {
-      "variant": "pipeline",
+      "variant": "state-machine",
       "code": "const filtered = items.filter(...)",
       "nodes": [
         "items|state",
@@ -264,10 +264,10 @@ export const reactConcepts = [
     "title": "useReducer",
     "description": "Centraliza transiciones complejas como acciones puras sobre un estado.",
     "section": "Formularios y flujo de datos",
-    "family": "máquina de estados",
+    "family": "ida y vuelta",
     "layout": "wide",
     "scene": {
-      "variant": "flow",
+      "variant": "request",
       "code": "dispatch({ type: \"add\", champion: jinx })",
       "nodes": [
         "UI|dispatch",
@@ -290,10 +290,10 @@ export const reactConcepts = [
     "title": "Diseño de providers",
     "description": "Separa contextos por frecuencia de cambio y responsabilidad para evitar dependencias globales difíciles.",
     "section": "Formularios y flujo de datos",
-    "family": "capas de contexto",
+    "family": "superficie de aplicación",
     "layout": "wide",
     "scene": {
-      "variant": "layers",
+      "variant": "browser",
       "code": "<Theme><Auth><Roster /></Auth></Theme>",
       "nodes": [
         "Theme|cambio raro",
@@ -323,10 +323,10 @@ export const reactConcepts = [
     "title": "Render y commit",
     "description": "Separa el cálculo puro del árbol siguiente de la aplicación de cambios al host.",
     "section": "Render y reconciliación",
-    "family": "doble fase",
+    "family": "tabla de estados",
     "layout": "wide",
     "scene": {
-      "variant": "compare",
+      "variant": "matrix",
       "code": "render phase ↔ commit phase",
       "nodes": [
         "render|calcula elementos",
@@ -342,10 +342,10 @@ export const reactConcepts = [
     "title": "Reconciliación",
     "description": "Compara elementos anteriores y siguientes usando tipo, posición y key para decidir qué preservar.",
     "section": "Render y reconciliación",
-    "family": "diff de árboles",
+    "family": "cola y consumidor",
     "layout": "wide",
     "scene": {
-      "variant": "tree",
+      "variant": "queue",
       "code": "previous tree → next tree",
       "nodes": [
         "root|same type",
@@ -361,10 +361,10 @@ export const reactConcepts = [
     "title": "Preservar y reiniciar estado",
     "description": "La identidad por posición, tipo y key determina si un componente conserva su estado.",
     "section": "Render y reconciliación",
-    "family": "selector de identidad",
+    "family": "secuencia operativa",
     "layout": "wide",
     "scene": {
-      "variant": "compare",
+      "variant": "timeline",
       "code": "<Counter key={player} />",
       "nodes": [
         "same position + type|preserva",
@@ -380,10 +380,10 @@ export const reactConcepts = [
     "title": "StrictMode",
     "description": "Ejecuta comprobaciones adicionales en desarrollo para revelar renders impuros y limpiezas incompletas.",
     "section": "Render y reconciliación",
-    "family": "simulador de estrés",
+    "family": "capas internas",
     "layout": "standard",
     "scene": {
-      "variant": "timeline",
+      "variant": "layers",
       "code": "<StrictMode>",
       "nodes": [
         "mount|render",
@@ -399,10 +399,10 @@ export const reactConcepts = [
     "title": "Portals",
     "description": "Renderizan hijos en otro nodo del DOM sin sacarlos del árbol lógico de React.",
     "section": "Render y reconciliación",
-    "family": "puente de árboles",
+    "family": "configuración declarativa",
     "layout": "wide",
     "scene": {
-      "variant": "tree",
+      "variant": "document",
       "code": "createPortal(modal, document.body)",
       "nodes": [
         "App tree|owner",
@@ -425,10 +425,10 @@ export const reactConcepts = [
     "title": "Refs al DOM y ref como prop",
     "description": "Conectan un componente con un nodo host para enfocar, medir o integrar APIs imperativas.",
     "section": "Sincronización y efectos",
-    "family": "conector imperativo",
+    "family": "jerarquía y dependencias",
     "layout": "wide",
     "scene": {
-      "variant": "pipeline",
+      "variant": "tree",
       "code": "<Input ref={inputRef} />",
       "nodes": [
         "render|declara ref",
@@ -444,10 +444,10 @@ export const reactConcepts = [
     "title": "useImperativeHandle",
     "description": "Expone una API imperativa pequeña en lugar de entregar todo el nodo o implementación interna.",
     "section": "Sincronización y efectos",
-    "family": "fachada imperativa",
+    "family": "superficie de aplicación",
     "layout": "standard",
     "scene": {
-      "variant": "gate",
+      "variant": "browser",
       "code": "useImperativeHandle(ref, () => ({ focus }))",
       "nodes": [
         "parent|ref",
@@ -470,10 +470,10 @@ export const reactConcepts = [
     "title": "Cleanup de efectos",
     "description": "Deshace suscripciones, timers, conexiones o solicitudes antes de repetir o desmontar.",
     "section": "Sincronización y efectos",
-    "family": "ciclo setup cleanup",
+    "family": "anatomía del concepto",
     "layout": "wide",
     "scene": {
-      "variant": "orbit",
+      "variant": "anatomy",
       "code": "useEffect(() => { subscribe(); return unsubscribe })",
       "nodes": [
         "commit|setup",
@@ -489,10 +489,10 @@ export const reactConcepts = [
     "title": "Dependencias de efectos",
     "description": "Declaran valores reactivos usados por el setup para mantener la sincronización correcta.",
     "section": "Sincronización y efectos",
-    "family": "grafo reactivo",
+    "family": "capas internas",
     "layout": "wide",
     "scene": {
-      "variant": "tree",
+      "variant": "layers",
       "code": "useEffect(connect, [roomId, serverUrl])",
       "nodes": [
         "effect|connect",
@@ -508,10 +508,10 @@ export const reactConcepts = [
     "title": "Separar eventos de efectos",
     "description": "Distingue lógica causada por una interacción puntual de sincronización causada por estar visible.",
     "section": "Sincronización y efectos",
-    "family": "comparativa causal",
+    "family": "propagación de eventos",
     "layout": "wide",
     "scene": {
-      "variant": "compare",
+      "variant": "signal",
       "code": "onClick(send)  vs  useEffect(connect)",
       "nodes": [
         "event|acción concreta",
@@ -527,10 +527,10 @@ export const reactConcepts = [
     "title": "useLayoutEffect",
     "description": "Ejecuta sincronización después de mutar el DOM pero antes de que el navegador pinte.",
     "section": "Sincronización y efectos",
-    "family": "ventana antes del paint",
+    "family": "ciclo de vida",
     "layout": "standard",
     "scene": {
-      "variant": "timeline",
+      "variant": "lifecycle",
       "code": "commit → useLayoutEffect → paint",
       "nodes": [
         "render",
@@ -546,10 +546,10 @@ export const reactConcepts = [
     "title": "useInsertionEffect",
     "description": "Permite a librerías CSS-in-JS insertar estilos antes de los layout effects.",
     "section": "Sincronización y efectos",
-    "family": "prioridad de inserción",
+    "family": "comparativa técnica",
     "layout": "standard",
     "scene": {
-      "variant": "timeline",
+      "variant": "compare",
       "code": "commit → insertion → layout → paint",
       "nodes": [
         "DOM mutation",
@@ -565,10 +565,10 @@ export const reactConcepts = [
     "title": "useSyncExternalStore",
     "description": "Suscribe React a un store externo con snapshots consistentes y soporte de render concurrente.",
     "section": "Sincronización y efectos",
-    "family": "puente a store externo",
+    "family": "topología y tráfico",
     "layout": "wide",
     "scene": {
-      "variant": "flow",
+      "variant": "network",
       "code": "useSyncExternalStore(subscribe, getSnapshot)",
       "nodes": [
         "store|fuente externa",
@@ -584,10 +584,10 @@ export const reactConcepts = [
     "title": "useDebugValue",
     "description": "Muestra una etiqueta útil para un custom Hook dentro de React DevTools.",
     "section": "Sincronización y efectos",
-    "family": "telemetría de hook",
+    "family": "evidencia y latencia",
     "layout": "standard",
     "scene": {
-      "variant": "pipeline",
+      "variant": "trace",
       "code": "useDebugValue(isOnline ? \"Online\" : \"Offline\")",
       "nodes": [
         "custom hook|useOnline",
@@ -603,10 +603,10 @@ export const reactConcepts = [
     "title": "memo",
     "description": "Permite omitir un render cuando props permanecen iguales, siempre que el componente sea puro.",
     "section": "Rendimiento y concurrencia",
-    "family": "barrera de props",
+    "family": "memoria intermedia",
     "layout": "standard",
     "scene": {
-      "variant": "gate",
+      "variant": "cache",
       "code": "const Row = memo(RowImpl)",
       "nodes": [
         "previous props|id 42",
@@ -636,10 +636,10 @@ export const reactConcepts = [
     "title": "React Compiler",
     "description": "Optimiza automáticamente componentes y hooks en build mediante memoización derivada del flujo de datos.",
     "section": "Rendimiento y concurrencia",
-    "family": "compilador de memoización",
+    "family": "análisis y emisión",
     "layout": "feature",
     "scene": {
-      "variant": "pipeline",
+      "variant": "compiler",
       "code": "source component → React Compiler → optimized component",
       "nodes": [
         "source|código normal",
@@ -655,10 +655,10 @@ export const reactConcepts = [
     "title": "Profiling",
     "description": "Mide commits, renders y rutas lentas antes de aplicar optimizaciones.",
     "section": "Rendimiento y concurrencia",
-    "family": "traza de commits",
+    "family": "diagnóstico operativo",
     "layout": "wide",
     "scene": {
-      "variant": "timeline",
+      "variant": "terminal",
       "code": "<Profiler onRender={report}>",
       "nodes": [
         "interaction|input",
@@ -674,10 +674,10 @@ export const reactConcepts = [
     "title": "lazy y code splitting",
     "description": "Carga un componente bajo demanda como módulo dinámico y difiere su código inicial.",
     "section": "Rendimiento y concurrencia",
-    "family": "carga diferida",
+    "family": "evidencia y latencia",
     "layout": "wide",
     "scene": {
-      "variant": "pipeline",
+      "variant": "trace",
       "code": "const Settings = lazy(() => import(\"./Settings\"))",
       "nodes": [
         "route|settings",
@@ -693,10 +693,10 @@ export const reactConcepts = [
     "title": "Suspense",
     "description": "Muestra un fallback mientras un hijo suspende por código o datos integrados con el framework.",
     "section": "Rendimiento y concurrencia",
-    "family": "frontera de espera",
+    "family": "planificación de trabajo",
     "layout": "wide",
     "scene": {
-      "variant": "layers",
+      "variant": "scheduler",
       "code": "<Suspense fallback={<Skeleton />}>",
       "nodes": [
         "boundary|control",
@@ -712,10 +712,10 @@ export const reactConcepts = [
     "title": "useTransition",
     "description": "Marca actualizaciones no urgentes como interrumpibles y expone un estado pending.",
     "section": "Rendimiento y concurrencia",
-    "family": "carriles de prioridad",
+    "family": "máquina de estados",
     "layout": "wide",
     "scene": {
-      "variant": "compare",
+      "variant": "state-machine",
       "code": "startTransition(() => setTab(next))",
       "nodes": [
         "urgent|typing",
@@ -731,10 +731,10 @@ export const reactConcepts = [
     "title": "useDeferredValue",
     "description": "Permite que una parte costosa de la interfaz quede temporalmente detrás de un valor urgente.",
     "section": "Rendimiento y concurrencia",
-    "family": "doble velocidad",
+    "family": "ida y vuelta",
     "layout": "standard",
     "scene": {
-      "variant": "timeline",
+      "variant": "request",
       "code": "const deferredQuery = useDeferredValue(query)",
       "nodes": [
         "query|actual",
@@ -750,10 +750,10 @@ export const reactConcepts = [
     "title": "useId",
     "description": "Genera identificadores estables y coordinados entre servidor y cliente para relaciones de accesibilidad.",
     "section": "Rendimiento y concurrencia",
-    "family": "generador estable",
+    "family": "superficie de aplicación",
     "layout": "standard",
     "scene": {
-      "variant": "pipeline",
+      "variant": "browser",
       "code": "const id = useId()",
       "nodes": [
         "server render|:R1:",
@@ -769,10 +769,10 @@ export const reactConcepts = [
     "title": "Error Boundaries",
     "description": "Capturan errores de render en descendientes y muestran una interfaz de recuperación.",
     "section": "Datos, Actions y arquitectura",
-    "family": "red de seguridad",
+    "family": "diagnóstico operativo",
     "layout": "wide",
     "scene": {
-      "variant": "tree",
+      "variant": "terminal",
       "code": "<ErrorBoundary fallback={<Crash />}>",
       "nodes": [
         "boundary|protege rama",
@@ -788,10 +788,10 @@ export const reactConcepts = [
     "title": "Actions",
     "description": "Representan transiciones que pueden incluir trabajo asíncrono y coordinan pending, errores y formularios.",
     "section": "Datos, Actions y arquitectura",
-    "family": "transacción de interfaz",
+    "family": "consulta e índice",
     "layout": "feature",
     "scene": {
-      "variant": "flow",
+      "variant": "database",
       "code": "startTransition(async () => saveOrder())",
       "nodes": [
         "user action|submit",
@@ -808,10 +808,10 @@ export const reactConcepts = [
     "title": "useActionState",
     "description": "Ordena Actions basadas en el estado anterior y devuelve estado, dispatcher y pending.",
     "section": "Datos, Actions y arquitectura",
-    "family": "cola de acciones",
+    "family": "tabla de estados",
     "layout": "wide",
     "scene": {
-      "variant": "stack",
+      "variant": "matrix",
       "code": "const [state, dispatch, pending] = useActionState(action, initial)",
       "nodes": [
         "dispatch A|payload",
@@ -828,7 +828,7 @@ export const reactConcepts = [
     "title": "useOptimistic",
     "description": "Muestra un estado provisional inmediatamente mientras una Action confirma o revierte el resultado.",
     "section": "Datos, Actions y arquitectura",
-    "family": "doble estado",
+    "family": "comparativa técnica",
     "layout": "wide",
     "scene": {
       "variant": "compare",
@@ -847,10 +847,10 @@ export const reactConcepts = [
     "title": "Form Actions y useFormStatus",
     "description": "Permiten enviar funciones desde form action y leer pending, data, method y action en descendientes.",
     "section": "Datos, Actions y arquitectura",
-    "family": "flujo de formulario",
+    "family": "secuencia operativa",
     "layout": "wide",
     "scene": {
-      "variant": "flow",
+      "variant": "timeline",
       "code": "<form action={save}> · useFormStatus()",
       "nodes": [
         "submit|FormData",
@@ -867,10 +867,10 @@ export const reactConcepts = [
     "title": "use",
     "description": "Lee una promesa o contexto durante el render y suspende o propaga errores a fronteras cercanas.",
     "section": "Datos, Actions y arquitectura",
-    "family": "lector suspendible",
+    "family": "cola y consumidor",
     "layout": "wide",
     "scene": {
-      "variant": "gate",
+      "variant": "queue",
       "code": "const data = use(dataPromise)",
       "nodes": [
         "promise|pending",
@@ -886,10 +886,10 @@ export const reactConcepts = [
     "title": "Server Components",
     "description": "Renderizan componentes en un entorno separado antes de enviar el resultado al cliente y no agregan su código al bundle cliente.",
     "section": "Datos, Actions y arquitectura",
-    "family": "frontera servidor cliente",
+    "family": "jerarquía y dependencias",
     "layout": "feature",
     "scene": {
-      "variant": "compare",
+      "variant": "tree",
       "code": "Server Component ↔ Client Component",
       "nodes": [
         "server|data + secrets",
@@ -905,7 +905,7 @@ export const reactConcepts = [
     "title": "Server Functions",
     "description": "Permiten invocar funciones marcadas para el servidor desde Actions mediante infraestructura del framework.",
     "section": "Datos, Actions y arquitectura",
-    "family": "RPC declarativa",
+    "family": "flujo de transformación",
     "layout": "wide",
     "scene": {
       "variant": "pipeline",
@@ -924,10 +924,10 @@ export const reactConcepts = [
     "title": "SSR y streaming",
     "description": "Generan HTML en servidor y pueden enviar segmentos progresivamente alrededor de Suspense.",
     "section": "Datos, Actions y arquitectura",
-    "family": "flujo de HTML",
+    "family": "planificación de trabajo",
     "layout": "wide",
     "scene": {
-      "variant": "timeline",
+      "variant": "scheduler",
       "code": "renderToPipeableStream()",
       "nodes": [
         "request|servidor",
@@ -943,10 +943,10 @@ export const reactConcepts = [
     "title": "Hidratación",
     "description": "Conecta lógica de React con HTML existente y espera que el primer render cliente coincida.",
     "section": "Datos, Actions y arquitectura",
-    "family": "acople servidor cliente",
+    "family": "topología y tráfico",
     "layout": "wide",
     "scene": {
-      "variant": "gate",
+      "variant": "network",
       "code": "hydrateRoot(container, <App />)",
       "nodes": [
         "server HTML|existente",
@@ -962,10 +962,10 @@ export const reactConcepts = [
     "title": "Arquitectura por fronteras",
     "description": "Organiza estado local, contexto, servidor, caché y rutas según propiedad y ciclo de vida de cada dato.",
     "section": "Datos, Actions y arquitectura",
-    "family": "mapa de responsabilidades",
+    "family": "anatomía del concepto",
     "layout": "feature",
     "scene": {
-      "variant": "layers",
+      "variant": "anatomy",
       "code": "local UI · URL · server cache · global session",
       "nodes": [
         "component state|efímero",
@@ -982,10 +982,10 @@ export const reactConcepts = [
     "title": "Testing de componentes",
     "description": "Comprueba comportamiento observable mediante render, interacción y aserciones accesibles.",
     "section": "Datos, Actions y arquitectura",
-    "family": "ciclo de prueba",
+    "family": "acumulación de recursos",
     "layout": "wide",
     "scene": {
-      "variant": "flow",
+      "variant": "stack",
       "code": "render → user action → visible result",
       "nodes": [
         "render|estado inicial",
@@ -1001,7 +1001,7 @@ export const reactConcepts = [
     "title": "Rules of React y lint",
     "description": "Mantienen componentes y Hooks analizables al exigir pureza y llamadas consistentes.",
     "section": "Datos, Actions y arquitectura",
-    "family": "reglas del compilador",
+    "family": "validación y decisión",
     "layout": "wide",
     "scene": {
       "variant": "gate",

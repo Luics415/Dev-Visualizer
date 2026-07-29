@@ -12,10 +12,10 @@ export const javascriptConcepts = [
     "title": "Tipos primitivos",
     "description": "Distinguen string, number, bigint, boolean, undefined, symbol y null como valores que no son objetos.",
     "section": "Fundamentos del lenguaje",
-    "family": "clasificador de valores",
+    "family": "anatomía del concepto",
     "layout": "wide",
     "scene": {
-      "variant": "matrix",
+      "variant": "anatomy",
       "code": "typeof value",
       "nodes": [
         "string",
@@ -31,10 +31,10 @@ export const javascriptConcepts = [
     "title": "typeof y detección de valores",
     "description": "Inspecciona el tipo superficial de un valor y requiere comprobaciones adicionales para arrays, null y objetos.",
     "section": "Fundamentos del lenguaje",
-    "family": "escáner de runtime",
+    "family": "flujo de ejecución",
     "layout": "standard",
     "scene": {
-      "variant": "gate",
+      "variant": "flow",
       "code": "Array.isArray(value)",
       "nodes": [
         "[]|object por typeof",
@@ -50,10 +50,10 @@ export const javascriptConcepts = [
     "title": "Truthy y falsy",
     "description": "Convierte valores a booleanos dentro de condiciones; solo un conjunto pequeño se considera falsy.",
     "section": "Fundamentos del lenguaje",
-    "family": "puerta booleana",
+    "family": "ecosistema coordinado",
     "layout": "standard",
     "scene": {
-      "variant": "gate",
+      "variant": "orbit",
       "code": "if (value) { ... }",
       "nodes": [
         "0|falsy",
@@ -69,10 +69,10 @@ export const javascriptConcepts = [
     "title": "Coerción de tipos",
     "description": "Describe conversiones explícitas e implícitas entre cadenas, números y booleanos.",
     "section": "Fundamentos del lenguaje",
-    "family": "máquina de conversión",
+    "family": "topología y tráfico",
     "layout": "wide",
     "scene": {
-      "variant": "pipeline",
+      "variant": "network",
       "code": "Number(\"42\")",
       "nodes": [
         "\"42\"|string",
@@ -88,10 +88,10 @@ export const javascriptConcepts = [
     "title": "Igualdad estricta y flexible",
     "description": "Compara valores sin conversión con === y muestra por qué == puede producir coincidencias inesperadas.",
     "section": "Fundamentos del lenguaje",
-    "family": "comparativa de reglas",
+    "family": "cola y consumidor",
     "layout": "wide",
     "scene": {
-      "variant": "compare",
+      "variant": "queue",
       "code": "0 === false  ·  0 == false",
       "nodes": [
         "===|sin coerción",
@@ -107,10 +107,10 @@ export const javascriptConcepts = [
     "title": "Operadores y precedencia",
     "description": "Combina operadores aritméticos, lógicos, relacionales y de asignación respetando un orden de evaluación.",
     "section": "Fundamentos del lenguaje",
-    "family": "árbol de expresión",
+    "family": "secuencia operativa",
     "layout": "wide",
     "scene": {
-      "variant": "tree",
+      "variant": "timeline",
       "code": "2 + 3 * 4",
       "nodes": [
         "expresión|precedencia",
@@ -126,10 +126,10 @@ export const javascriptConcepts = [
     "title": "Control de flujo",
     "description": "Selecciona rutas con if, switch y operadores condicionales según el estado actual.",
     "section": "Fundamentos del lenguaje",
-    "family": "bifurcación",
+    "family": "ida y vuelta",
     "layout": "standard",
     "scene": {
-      "variant": "tree",
+      "variant": "request",
       "code": "status === \"ready\" ? play() : wait()",
       "nodes": [
         "status|ready",
@@ -145,10 +145,10 @@ export const javascriptConcepts = [
     "title": "Bucles e iteración",
     "description": "Repite trabajo con for, while, for...of y for...in, diferenciando valores, índices y propiedades.",
     "section": "Fundamentos del lenguaje",
-    "family": "ciclo de recorrido",
+    "family": "planificación de trabajo",
     "layout": "wide",
     "scene": {
-      "variant": "orbit",
+      "variant": "scheduler",
       "code": "for (const champion of roster)",
       "nodes": [
         "jinx|valor",
@@ -171,10 +171,10 @@ export const javascriptConcepts = [
     "title": "Parámetros por defecto",
     "description": "Asigna un valor cuando el argumento recibido es undefined, sin reemplazar null ni otros falsy.",
     "section": "Funciones y contexto",
-    "family": "entrada con respaldo",
+    "family": "tabla de estados",
     "layout": "standard",
     "scene": {
-      "variant": "gate",
+      "variant": "matrix",
       "code": "function greet(name = \"Powder\")",
       "nodes": [
         "undefined|usa default",
@@ -190,10 +190,10 @@ export const javascriptConcepts = [
     "title": "Rest parameters",
     "description": "Agrupa una cantidad variable de argumentos reales en un array local.",
     "section": "Funciones y contexto",
-    "family": "embudo de argumentos",
+    "family": "validación y decisión",
     "layout": "standard",
     "scene": {
-      "variant": "pipeline",
+      "variant": "gate",
       "code": "function sum(...values)",
       "nodes": [
         "1|arg 1",
@@ -209,10 +209,10 @@ export const javascriptConcepts = [
     "title": "Arrow functions",
     "description": "Ofrecen sintaxis concisa y capturan this léxicamente en lugar de crear su propio contexto.",
     "section": "Funciones y contexto",
-    "family": "comparativa de contexto",
+    "family": "memoria intermedia",
     "layout": "wide",
     "scene": {
-      "variant": "compare",
+      "variant": "cache",
       "code": "const run = () => this.speed",
       "nodes": [
         "function|this dinámico",
@@ -235,10 +235,10 @@ export const javascriptConcepts = [
     "title": "Hoisting y TDZ",
     "description": "Explica cuándo las declaraciones existen antes de su línea y por qué let y const no pueden usarse dentro de su zona temporal muerta.",
     "section": "Funciones y contexto",
-    "family": "timeline de inicialización",
+    "family": "configuración declarativa",
     "layout": "wide",
     "scene": {
-      "variant": "timeline",
+      "variant": "document",
       "code": "console.log(score); let score = 10",
       "nodes": [
         "creación del scope|binding existe",
@@ -261,10 +261,10 @@ export const javascriptConcepts = [
     "title": "this, call, apply y bind",
     "description": "Muestra cómo this depende de la forma de invocación y cómo puede fijarse o reenviarse explícitamente.",
     "section": "Funciones y contexto",
-    "family": "selector de receptor",
+    "family": "capas internas",
     "layout": "wide",
     "scene": {
-      "variant": "flow",
+      "variant": "layers",
       "code": "attack.call(jinx, \"rocket\")",
       "nodes": [
         "función|attack",
@@ -288,10 +288,10 @@ export const javascriptConcepts = [
     "title": "Acceso y propiedades computadas",
     "description": "Usa notación punto o corchetes y permite construir claves dinámicamente.",
     "section": "Estructuras de datos",
-    "family": "resolución de clave",
+    "family": "propagación de eventos",
     "layout": "standard",
     "scene": {
-      "variant": "gate",
+      "variant": "signal",
       "code": "champion[key]",
       "nodes": [
         "key|\"role\"",
@@ -307,10 +307,10 @@ export const javascriptConcepts = [
     "title": "Desestructuración de objetos",
     "description": "Extrae propiedades, renombra variables y aplica valores por defecto declarativamente.",
     "section": "Estructuras de datos",
-    "family": "desempaquetado",
+    "family": "máquina de estados",
     "layout": "wide",
     "scene": {
-      "variant": "pipeline",
+      "variant": "state-machine",
       "code": "const { name, role = \"mid\" } = champion",
       "nodes": [
         "champion|objeto",
@@ -326,10 +326,10 @@ export const javascriptConcepts = [
     "title": "Spread y copia superficial",
     "description": "Construye nuevos objetos copiando propiedades enumerables de primer nivel y permitiendo sobrescrituras posteriores.",
     "section": "Estructuras de datos",
-    "family": "capas de objeto",
+    "family": "superficie de aplicación",
     "layout": "wide",
     "scene": {
-      "variant": "layers",
+      "variant": "browser",
       "code": "const next = { ...user, level: 18 }",
       "nodes": [
         "user|base",
@@ -352,10 +352,10 @@ export const javascriptConcepts = [
     "title": "Desestructuración de arrays",
     "description": "Asigna posiciones a variables, omite elementos e intercambia valores sin temporales.",
     "section": "Estructuras de datos",
-    "family": "slots posicionales",
+    "family": "flujo de ejecución",
     "layout": "standard",
     "scene": {
-      "variant": "pipeline",
+      "variant": "flow",
       "code": "const [first, , third] = roster",
       "nodes": [
         "0|Jinx",
@@ -371,10 +371,10 @@ export const javascriptConcepts = [
     "title": "Spread en arrays",
     "description": "Concatena iterables y crea una colección nueva sin modificar el array original.",
     "section": "Estructuras de datos",
-    "family": "ensamblaje de colección",
+    "family": "configuración declarativa",
     "layout": "wide",
     "scene": {
-      "variant": "pipeline",
+      "variant": "document",
       "code": "const team = [...blue, ...red]",
       "nodes": [
         "blue|2 items",
@@ -412,7 +412,7 @@ export const javascriptConcepts = [
     "title": "find, some y every",
     "description": "Busca un elemento o resume una condición sin transformar toda la colección.",
     "section": "Transformaciones de colecciones",
-    "family": "detectores de colección",
+    "family": "comparativa técnica",
     "layout": "wide",
     "scene": {
       "variant": "compare",
@@ -431,10 +431,10 @@ export const javascriptConcepts = [
     "title": "Ordenamiento y métodos de copia",
     "description": "Distingue métodos mutables como sort de alternativas que conservan el original como toSorted.",
     "section": "Transformaciones de colecciones",
-    "family": "comparativa de mutabilidad",
+    "family": "validación y decisión",
     "layout": "wide",
     "scene": {
-      "variant": "compare",
+      "variant": "gate",
       "code": "roster.sort()  vs  roster.toSorted()",
       "nodes": [
         "sort|muta original",
@@ -450,10 +450,10 @@ export const javascriptConcepts = [
     "title": "Set",
     "description": "Mantiene valores únicos y permite operaciones de pertenencia sin buscar manualmente duplicados.",
     "section": "Colecciones especializadas",
-    "family": "conjunto único",
+    "family": "acumulación de recursos",
     "layout": "standard",
     "scene": {
-      "variant": "gate",
+      "variant": "stack",
       "code": "new Set([\"Jinx\", \"Vi\", \"Jinx\"])",
       "nodes": [
         "Jinx|entra",
@@ -469,10 +469,10 @@ export const javascriptConcepts = [
     "title": "Map",
     "description": "Asocia claves de cualquier tipo con valores y mantiene el orden de inserción.",
     "section": "Colecciones especializadas",
-    "family": "tabla clave valor",
+    "family": "consulta e índice",
     "layout": "wide",
     "scene": {
-      "variant": "matrix",
+      "variant": "database",
       "code": "roles.set(jinx, \"ADC\")",
       "nodes": [
         "object key",
@@ -488,10 +488,10 @@ export const javascriptConcepts = [
     "title": "WeakMap y WeakSet",
     "description": "Relacionan objetos sin impedir que el recolector de basura los libere cuando dejan de ser alcanzables.",
     "section": "Colecciones especializadas",
-    "family": "referencias débiles",
+    "family": "árbol de recursos",
     "layout": "standard",
     "scene": {
-      "variant": "orbit",
+      "variant": "filesystem",
       "code": "metadata.set(node, info)",
       "nodes": [
         "objeto|clave débil",
@@ -507,10 +507,10 @@ export const javascriptConcepts = [
     "title": "Symbols",
     "description": "Crean identificadores únicos y permiten protocolos internos como Symbol.iterator.",
     "section": "Colecciones especializadas",
-    "family": "identidad única",
+    "family": "validación y decisión",
     "layout": "standard",
     "scene": {
-      "variant": "cards",
+      "variant": "gate",
       "code": "const id = Symbol(\"id\")",
       "nodes": [
         "Symbol(id)|único A",
@@ -526,10 +526,10 @@ export const javascriptConcepts = [
     "title": "JSON",
     "description": "Serializa datos compatibles a texto y los reconstruye, perdiendo funciones, undefined y tipos especiales.",
     "section": "Datos y representación",
-    "family": "serialización",
+    "family": "contratos coordinados",
     "layout": "wide",
     "scene": {
-      "variant": "pipeline",
+      "variant": "cards",
       "code": "JSON.stringify(order)",
       "nodes": [
         "objeto JS|Order",
@@ -545,10 +545,10 @@ export const javascriptConcepts = [
     "title": "structuredClone",
     "description": "Realiza una copia profunda de muchos tipos incorporados y puede transferir buffers sin copiar.",
     "section": "Datos y representación",
-    "family": "duplicación estructural",
+    "family": "topología y tráfico",
     "layout": "standard",
     "scene": {
-      "variant": "layers",
+      "variant": "network",
       "code": "structuredClone(state)",
       "nodes": [
         "state|objeto anidado",
@@ -564,10 +564,10 @@ export const javascriptConcepts = [
     "title": "Prototipos",
     "description": "Resuelven propiedades recorriendo una cadena de delegación entre objetos.",
     "section": "Objetos, clases y metaprogramación",
-    "family": "cadena de delegación",
+    "family": "análisis y emisión",
     "layout": "wide",
     "scene": {
-      "variant": "tree",
+      "variant": "compiler",
       "code": "jinx.attack → Champion.prototype.attack",
       "nodes": [
         "jinx|instancia",
@@ -583,10 +583,10 @@ export const javascriptConcepts = [
     "title": "Clases",
     "description": "Agrupan constructor, métodos de instancia y miembros estáticos con una sintaxis declarativa.",
     "section": "Objetos, clases y metaprogramación",
-    "family": "plano de instancia",
+    "family": "secuencia operativa",
     "layout": "standard",
     "scene": {
-      "variant": "pipeline",
+      "variant": "timeline",
       "code": "class Champion { constructor(name) {} }",
       "nodes": [
         "class|definición",
@@ -602,10 +602,10 @@ export const javascriptConcepts = [
     "title": "Herencia y campos privados",
     "description": "Extiende comportamiento con extends/super y encapsula estado mediante nombres privados #.",
     "section": "Objetos, clases y metaprogramación",
-    "family": "capas de herencia",
+    "family": "jerarquía y dependencias",
     "layout": "wide",
     "scene": {
-      "variant": "layers",
+      "variant": "tree",
       "code": "class Marksman extends Champion { #ammo = 3 }",
       "nodes": [
         "Champion|base",
@@ -621,10 +621,10 @@ export const javascriptConcepts = [
     "title": "Proxy y Reflect",
     "description": "Interceptan operaciones fundamentales como lectura, escritura, enumeración e invocación.",
     "section": "Objetos, clases y metaprogramación",
-    "family": "interceptor",
+    "family": "ida y vuelta",
     "layout": "wide",
     "scene": {
-      "variant": "gate",
+      "variant": "request",
       "code": "new Proxy(target, { get })",
       "nodes": [
         "caller|lee role",
@@ -654,10 +654,10 @@ export const javascriptConcepts = [
     "title": "Combinadores de promesas",
     "description": "Coordina múltiples operaciones con all, allSettled, race y any según la semántica requerida.",
     "section": "Asincronía y runtime",
-    "family": "comparativa concurrente",
+    "family": "máquina de estados",
     "layout": "wide",
     "scene": {
-      "variant": "compare",
+      "variant": "state-machine",
       "code": "Promise.all() · allSettled() · race() · any()",
       "nodes": [
         "all|todo o falla",
@@ -687,10 +687,10 @@ export const javascriptConcepts = [
     "title": "Cancelación con AbortController",
     "description": "Envía una señal cooperativa para detener fetch u otras APIs compatibles y liberar trabajo innecesario.",
     "section": "Asincronía y runtime",
-    "family": "señal de abortar",
+    "family": "cola y consumidor",
     "layout": "wide",
     "scene": {
-      "variant": "flow",
+      "variant": "queue",
       "code": "controller.abort(\"route changed\")",
       "nodes": [
         "controller|crea signal",
@@ -714,10 +714,10 @@ export const javascriptConcepts = [
     "title": "Importación dinámica",
     "description": "Carga un módulo bajo demanda y devuelve una promesa con su namespace.",
     "section": "Módulos y carga",
-    "family": "carga diferida",
+    "family": "propagación de eventos",
     "layout": "wide",
     "scene": {
-      "variant": "pipeline",
+      "variant": "signal",
       "code": "const mod = await import(\"./arcane.js\")",
       "nodes": [
         "evento|abre panel",
@@ -733,10 +733,10 @@ export const javascriptConcepts = [
     "title": "Iteradores y protocolos iterable",
     "description": "Separan cómo se produce una secuencia de cómo la consumen for...of, spread y otras APIs.",
     "section": "Protocolos avanzados",
-    "family": "protocolo de recorrido",
+    "family": "ciclo de vida",
     "layout": "wide",
     "scene": {
-      "variant": "flow",
+      "variant": "lifecycle",
       "code": "iterator.next()",
       "nodes": [
         "Symbol.iterator|crea iterador",
@@ -752,10 +752,10 @@ export const javascriptConcepts = [
     "title": "Generadores",
     "description": "Suspenden y reanudan una función mediante yield para construir iteradores declarativos.",
     "section": "Protocolos avanzados",
-    "family": "función suspendida",
+    "family": "análisis y emisión",
     "layout": "standard",
     "scene": {
-      "variant": "timeline",
+      "variant": "compiler",
       "code": "function* waves() { yield 1; yield 2 }",
       "nodes": [
         "call|crea generator",
@@ -771,10 +771,10 @@ export const javascriptConcepts = [
     "title": "TypedArray y ArrayBuffer",
     "description": "Manipulan memoria binaria con vistas tipadas para audio, gráficos, archivos y protocolos.",
     "section": "Protocolos avanzados",
-    "family": "memoria binaria",
+    "family": "árbol de recursos",
     "layout": "wide",
     "scene": {
-      "variant": "layers",
+      "variant": "filesystem",
       "code": "new Uint8Array(buffer)",
       "nodes": [
         "ArrayBuffer|bytes crudos",
@@ -790,10 +790,10 @@ export const javascriptConcepts = [
     "title": "Expresiones regulares",
     "description": "Describen patrones para buscar, validar y capturar partes de texto.",
     "section": "Texto, tiempo e internacionalización",
-    "family": "autómata de patrón",
+    "family": "anatomía del concepto",
     "layout": "standard",
     "scene": {
-      "variant": "gate",
+      "variant": "anatomy",
       "code": "/^[A-Z][a-z]+$/u.test(name)",
       "nodes": [
         "\"Jinx\"|entrada",
@@ -809,10 +809,10 @@ export const javascriptConcepts = [
     "title": "Intl y formato local",
     "description": "Adapta números, fechas, listas y reglas de plural a locale y zona horaria.",
     "section": "Texto, tiempo e internacionalización",
-    "family": "formateador regional",
+    "family": "capas internas",
     "layout": "wide",
     "scene": {
-      "variant": "pipeline",
+      "variant": "layers",
       "code": "new Intl.NumberFormat(\"es-MX\", { style: \"currency\", currency: \"MXN\" })",
       "nodes": [
         "1250|valor neutro",
@@ -828,10 +828,10 @@ export const javascriptConcepts = [
     "title": "Date, zonas horarias y timestamps",
     "description": "Distingue instantes, representación local y cálculos de calendario para evitar errores de zona.",
     "section": "Texto, tiempo e internacionalización",
-    "family": "línea temporal global",
+    "family": "evidencia y latencia",
     "layout": "wide",
     "scene": {
-      "variant": "timeline",
+      "variant": "trace",
       "code": "new Date(\"2026-07-29T18:00:00Z\")",
       "nodes": [
         "UTC|instante",
@@ -847,10 +847,10 @@ export const javascriptConcepts = [
     "title": "Gestión explícita de recursos",
     "description": "Usa using, await using y disposables para garantizar liberación determinista al salir de un bloque.",
     "section": "Memoria y recursos",
-    "family": "pila de limpieza",
+    "family": "jerarquía y dependencias",
     "layout": "wide",
     "scene": {
-      "variant": "stack",
+      "variant": "tree",
       "code": "using file = openFile()",
       "nodes": [
         "open|adquirir",
@@ -867,10 +867,10 @@ export const javascriptConcepts = [
     "title": "Memoria y garbage collection",
     "description": "Explica alcanzabilidad, referencias fuertes, fugas y por qué el recolector no sustituye limpiar listeners o timers.",
     "section": "Memoria y recursos",
-    "family": "grafo de alcanzabilidad",
+    "family": "memoria intermedia",
     "layout": "feature",
     "scene": {
-      "variant": "tree",
+      "variant": "cache",
       "code": "root → component → listener → cache",
       "nodes": [
         "roots|global / stack",

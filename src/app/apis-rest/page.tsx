@@ -18,6 +18,8 @@ import {
   ErrorsLimitsScene,
 } from "@/components/scenes/rest/RestApiScenes";
 import { restApiConcepts } from "@/data/restApiConcepts";
+import { CollectionPrimer } from "@/components/concepts/CollectionPrimer";
+import { collectionPrimers } from "@/data/collectionPrimers";
 
 const foundationalScenes = [
   <ResourcesScene key="resources" />,
@@ -43,7 +45,7 @@ export default function RestApisPage() {
 
       <header className="hero hero--rest">
         <div>
-          <span className="eyebrow eyebrow--rest">Colección 05 · Del recurso al contrato operativo</span>
+          <span className="eyebrow eyebrow--rest">Colección 06 · Del recurso al contrato operativo</span>
           <h1>APIs REST visualizadas</h1>
           <p>
             Una referencia amplia de HTTP y diseño de APIs: recursos, mensajes, autenticación, caché, concurrencia, resiliencia, documentación, seguridad y operación en producción. Los primeros mecanismos usan escenas hechas a medida; los avanzados cambian de metáfora según el problema.
@@ -54,6 +56,8 @@ export default function RestApisPage() {
           <span>conceptos fundamentales y de producción</span>
         </div>
       </header>
+
+      <CollectionPrimer primer={collectionPrimers["rest"]} />
 
       <section className="concept-grid concept-grid--atlas" aria-label="Conceptos de APIs REST">
         {restApiConcepts.map((concept, index) => (

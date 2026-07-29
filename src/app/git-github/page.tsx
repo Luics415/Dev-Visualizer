@@ -18,6 +18,8 @@ import {
   ActionsScene,
 } from "@/components/scenes/git/GitGithubScenes";
 import { gitGithubConcepts } from "@/data/gitGithubConcepts";
+import { CollectionPrimer } from "@/components/concepts/CollectionPrimer";
+import { collectionPrimers } from "@/data/collectionPrimers";
 
 const foundationalScenes = [
   <RepositoryScene key="repository" />,
@@ -43,7 +45,7 @@ export default function GitGithubPage() {
 
       <header className="hero hero--git">
         <div>
-          <span className="eyebrow eyebrow--git">Colección 06 · Historia, recuperación y colaboración</span>
+          <span className="eyebrow eyebrow--git">Colección 09 · Historia, recuperación y colaboración</span>
           <h1>Git y GitHub visualizados</h1>
           <p>
             Desde el modelo interno de snapshots hasta pull requests, CI, releases y recuperación. La colección distingue claramente lo que hace Git en tu repositorio distribuido y lo que GitHub añade para coordinar equipos alrededor de esa historia.
@@ -51,6 +53,8 @@ export default function GitGithubPage() {
         </div>
         <div className="hero__counter hero__counter--git"><strong>{gitGithubConcepts.length}</strong><span>mecanismos locales, remotos y colaborativos</span></div>
       </header>
+
+      <CollectionPrimer primer={collectionPrimers["git"]} />
 
       <section className="concept-grid concept-grid--atlas" aria-label="Conceptos de Git y GitHub">
         {gitGithubConcepts.map((concept, index) => (

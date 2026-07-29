@@ -7,7 +7,7 @@ export default function GitGithubPracticalPage() {
       <CollectionNav />
       <header className="hero hero--git-practical">
         <div>
-          <span className="eyebrow eyebrow--git">Colección 06 · Flujo de entrega trazable</span>
+          <span className="eyebrow eyebrow--git">Colección 09 · Flujo de entrega trazable</span>
           <h1>Git y GitHub en acción</h1>
           <p>Una funcionalidad recorre issue, rama, staging, commits, sincronización, push, pull request, review, CI, merge y release. El guiño a Jinx vive en el dominio del ejemplo; el modelo técnico permanece fiel a Git y GitHub.</p>
         </div>
