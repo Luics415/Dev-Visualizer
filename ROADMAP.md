@@ -1,34 +1,29 @@
 # Roadmap del proyecto
 
-## Sprint 01 — Lenguaje visual
+## Colección 01 — JavaScript
 
-- [x] Estructura Next.js + TypeScript.
-- [x] Motion configurado.
-- [x] Cuadrícula de conceptos.
 - [x] Variables.
 - [x] Funciones.
-- [x] map.
-- [ ] Tokens de animación centralizados.
-
-## Sprint 02 — Transformaciones de datos
-
 - [x] Objetos.
 - [x] Arrays.
-- [ ] filter.
-- [ ] reduce.
+- [x] map.
+- [x] filter.
+- [x] reduce.
+- [x] Promesas.
+- [x] Async / Await.
+- [x] Módulos.
+- [x] Closures.
+- [x] Scope.
+- [x] Event Loop.
+- [x] Manejo de errores.
 
-## Sprint 03 — Asincronía
+## Próxima etapa
 
-- [ ] Promesas.
-- [ ] Async/Await.
-- [ ] Event Loop.
-- [ ] Manejo de errores.
-
-## Sprint 04 — Lenguaje y memoria
-
-- [ ] Módulos.
-- [ ] Closures.
-- [ ] Scope.
+- [ ] Extraer tokens de animación y tamaños compartidos.
+- [ ] Pausar automáticamente escenas fuera del viewport.
+- [ ] Crear una vista de enfoque por concepto.
+- [ ] Añadir metadatos para exportar escenas con Remotion.
+- [ ] Iniciar la colección de TypeScript.
 
 ## Criterio de terminado por concepto
 

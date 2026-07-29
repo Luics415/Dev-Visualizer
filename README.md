@@ -1,26 +1,33 @@
-# Dev Visualizer — Starter
+# Dev Visualizer — JavaScript completo
 
-Biblioteca visual animada de conceptos de programación. Esta primera entrega establece el lenguaje visual y cinco tipos de escena autónoma:
+Biblioteca visual animada de conceptos de programación. La colección de JavaScript contiene 14 escenas autónomas que se reproducen, hacen una pausa breve y reinician en bucle.
 
-- **Variables:** memoria y cambio de estado.
-- **Funciones:** entrada, proceso y salida.
-- **Objetos:** propiedades, lectura y actualización de un valor.
-- **Arrays:** índices, acceso, `push()` y `pop()`.
-- **map:** transformación de una colección.
+## Conceptos implementados
 
-Las escenas se reproducen solas, terminan, hacen una pausa y reinician en bucle.
+1. Variables
+2. Funciones
+3. Objetos
+4. Arrays
+5. `map()`
+6. `filter()`
+7. `reduce()`
+8. Promesas
+9. Async / Await
+10. Módulos
+11. Closures
+12. Scope
+13. Event Loop
+14. Manejo de errores
 
 ## Tecnologías
 
-- Next.js (App Router)
+- Next.js con App Router
 - React
 - TypeScript
 - Motion for React
-- CSS global con componentes visuales reutilizables
+- CSS global con escenas y primitivas visuales reutilizables
 
 ## Ejecutar
-
-Necesitas Node.js y npm.
 
 ```bash
 npm install
@@ -29,25 +36,16 @@ npm run dev
 
 Abre `http://localhost:3000`.
 
-## Estructura
+## Validar
 
-```text
-src/
-├── app/
-│   ├── globals.css
-│   ├── layout.tsx
-│   └── page.tsx
-├── components/
-│   ├── concepts/
-│   ├── providers/
-│   ├── scenes/javascript/
-│   └── visual/
-└── data/
+```bash
+npm run lint
+npm run build
 ```
 
 ## Regla de una escena
 
-Cada escena debe comunicar, sin interacción:
+Cada escena debe comunicar sin interacción:
 
 1. Estado inicial.
 2. Acción o evento.
@@ -55,9 +53,4 @@ Cada escena debe comunicar, sin interacción:
 4. Resultado.
 5. Pausa y reinicio suave.
 
-## Siguiente sprint
-
-1. Convertir colores, tamaños y duraciones en tokens.
-2. Crear primitivas `Arrow`, `DataPacket`, `Queue`, `Stack` y `CodeStep`.
-3. Implementar filter y reduce.
-4. Validar que cada escena se entienda sin audio.
+Las escenas respetan la preferencia de movimiento reducido configurada en el sistema del usuario.

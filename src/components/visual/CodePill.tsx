@@ -1,5 +1,7 @@
+import type { ReactNode } from "react";
+
 type CodePillProps = {
-  children: string;
+  children: ReactNode;
 };
 
 export function CodePill({ children }: CodePillProps) {
