@@ -1,5 +1,6 @@
 import { ConceptCard } from "@/components/concepts/ConceptCard";
 import { CollectionNav } from "@/components/navigation/CollectionNav";
+import { AnimatedConceptScene } from "@/components/visual/AnimatedConceptScene";
 import {
   ResourcesScene,
   EndpointsScene,
@@ -18,13 +19,7 @@ import {
 } from "@/components/scenes/rest/RestApiScenes";
 import { restApiConcepts } from "@/data/restApiConcepts";
 
-const visualFamilies = [
-  "representación", "mapa de rutas", "carriles semánticos", "descomposición URL", "sobre de metadatos",
-  "serialización", "espectro de respuesta", "ciclo de recurso", "solicitudes autónomas", "credencial",
-  "ventana de colección", "validación de copia", "comparativa", "control de tráfico",
-] as const;
-
-const activeScenes = [
+const foundationalScenes = [
   <ResourcesScene key="resources" />,
   <EndpointsScene key="endpoints" />,
   <HttpMethodsScene key="methods" />,
@@ -48,34 +43,44 @@ export default function RestApisPage() {
 
       <header className="hero hero--rest">
         <div>
-          <span className="eyebrow eyebrow--rest">Colección 05 · Comunicación cliente–servidor</span>
+          <span className="eyebrow eyebrow--rest">Colección 05 · Del recurso al contrato operativo</span>
           <h1>APIs REST visualizadas</h1>
           <p>
-            Una API REST organiza recursos sobre HTTP. Estas escenas separan dirección, intención, metadatos, representación y resultado para mostrar exactamente qué viaja entre cliente y servidor y por qué cada parte existe.
+            Una referencia amplia de HTTP y diseño de APIs: recursos, mensajes, autenticación, caché, concurrencia, resiliencia, documentación, seguridad y operación en producción. Los primeros mecanismos usan escenas hechas a medida; los avanzados cambian de metáfora según el problema.
           </p>
         </div>
         <div className="hero__counter hero__counter--rest">
-          <strong>14</strong>
-          <span>conceptos de HTTP y REST</span>
+          <strong>{restApiConcepts.length}</strong>
+          <span>conceptos fundamentales y de producción</span>
         </div>
       </header>
 
-      <section className="concept-grid" aria-label="Conceptos de APIs REST">
-        {restApiConcepts.map(([title, description], index) => (
+      <section className="concept-grid concept-grid--atlas" aria-label="Conceptos de APIs REST">
+        {restApiConcepts.map((concept, index) => (
           <ConceptCard
-            key={title}
+            key={concept.title}
             index={index + 1}
-            title={title}
-            description={description}
-            family={visualFamilies[index]}
+            title={concept.title}
+            description={concept.description}
+            family={concept.family}
+            layout={concept.layout}
           >
-            {activeScenes[index]}
+            {index < foundationalScenes.length ? foundationalScenes[index] : "scene" in concept ? (
+              <AnimatedConceptScene
+                ariaLabel={`Animación explicativa de ${concept.title}`}
+                code={concept.scene.code}
+                nodes={concept.scene.nodes}
+                outcome={concept.scene.outcome}
+                caption={concept.scene.caption}
+                variant={concept.scene.variant}
+              />
+            ) : null}
           </ConceptCard>
         ))}
       </section>
 
       <footer className="project-note">
-        REST no es solamente enviar JSON: es diseñar recursos y usar las reglas de HTTP para que clientes, servidores y cachés entiendan la misma conversación.
+        La colección separa lo que ocurre dentro del mensaje HTTP, lo que pertenece al diseño del contrato y lo que mantiene la API segura, observable y resistente en producción.
       </footer>
     </main>
   );

@@ -1,21 +1,22 @@
 import { CollectionNav } from "@/components/navigation/CollectionNav";
+import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
 import { ReactPracticalScene } from "@/components/scenes/react/ReactPracticalScene";
+import { reactDeepDive } from "@/data/practicalDeepDives";
 
 export default function ReactPracticalPage() {
   return (
     <main className="page-shell">
       <CollectionNav />
-
       <header className="hero hero--react-practical">
         <div>
-          <span className="eyebrow eyebrow--react">Colección 03 · Caso integrado</span>
+          <span className="eyebrow eyebrow--react">Colección 03 · Caso integrado ampliado</span>
           <h1>React en acción</h1>
           <p>
-            Una búsqueda recorre evento, actualización de estado, render, reconciliación, efecto y commit. Las seis escenas muestran qué ocurre antes de que el usuario vea una nueva lista de resultados.
+            La búsqueda de Jinx recorre evento, estado, render, reconciliación, efecto y commit. Las cajas nuevas abren control de inputs, datos derivados, prioridades, cancelación, optimismo, fronteras, accesibilidad y React Compiler.
           </p>
         </div>
         <div className="hero__counter hero__counter--react">
-          <strong>6</strong>
+          <strong>14</strong>
           <span>etapas de una actualización</span>
         </div>
       </header>
@@ -24,8 +25,10 @@ export default function ReactPracticalPage() {
         <ReactPracticalScene />
       </section>
 
+      <PracticalDeepDive modules={reactDeepDive} />
+
       <footer className="project-note">
-        React vuelve a calcular una descripción de la interfaz, compara identidades y aplica solamente los cambios necesarios después del commit.
+        El ejemplo conecta lo que el usuario percibe con snapshots, prioridades, fronteras de render y trabajo del compilador.
       </footer>
     </main>
   );

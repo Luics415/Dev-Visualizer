@@ -1,5 +1,8 @@
+import type { ReactNode } from "react";
 import { ConceptCard } from "@/components/concepts/ConceptCard";
+import { CollectionChapters } from "@/components/concepts/CollectionChapters";
 import { CollectionNav } from "@/components/navigation/CollectionNav";
+import { AnimatedConceptScene } from "@/components/visual/AnimatedConceptScene";
 import { ArraysScene } from "@/components/scenes/javascript/ArraysScene";
 import { AsyncAwaitScene } from "@/components/scenes/javascript/AsyncAwaitScene";
 import { ClosuresScene } from "@/components/scenes/javascript/ClosuresScene";
@@ -15,29 +18,27 @@ import { ReduceScene } from "@/components/scenes/javascript/ReduceScene";
 import { ScopeScene } from "@/components/scenes/javascript/ScopeScene";
 import { VariablesScene } from "@/components/scenes/javascript/VariablesScene";
 import { javascriptConcepts } from "@/data/javascriptConcepts";
+import { slugify } from "@/lib/slugify";
 
-const visualFamilies = [
-  "memoria", "entrada / salida", "estructura", "colección", "transformación",
-  "decisión", "acumulación", "estados", "timeline", "red",
-  "memoria léxica", "jerarquía", "scheduler", "rutas",
-] as const;
-
-const activeScenes = new Map([
-  [0, <VariablesScene key="variables" />],
-  [1, <FunctionsScene key="functions" />],
-  [2, <ObjectsScene key="objects" />],
-  [3, <ArraysScene key="arrays" />],
-  [4, <MapScene key="map" />],
-  [5, <FilterScene key="filter" />],
-  [6, <ReduceScene key="reduce" />],
-  [7, <PromisesScene key="promises" />],
-  [8, <AsyncAwaitScene key="async-await" />],
-  [9, <ModulesScene key="modules" />],
-  [10, <ClosuresScene key="closures" />],
-  [11, <ScopeScene key="scope" />],
-  [12, <EventLoopScene key="event-loop" />],
-  [13, <ErrorHandlingScene key="error-handling" />],
+const specialScenes = new Map<string, ReactNode>([
+  ["Variables", <VariablesScene key="variables" />],
+  ["Funciones", <FunctionsScene key="functions" />],
+  ["Objetos", <ObjectsScene key="objects" />],
+  ["Arrays", <ArraysScene key="arrays" />],
+  ["map", <MapScene key="map" />],
+  ["filter", <FilterScene key="filter" />],
+  ["reduce", <ReduceScene key="reduce" />],
+  ["Promesas", <PromisesScene key="promises" />],
+  ["Async / Await", <AsyncAwaitScene key="async-await" />],
+  ["Módulos ES", <ModulesScene key="modules" />],
+  ["Closures", <ClosuresScene key="closures" />],
+  ["Scope", <ScopeScene key="scope" />],
+  ["Event Loop", <EventLoopScene key="event-loop" />],
+  ["Manejo de errores", <ErrorHandlingScene key="error-handling" />],
 ]);
+
+const sections = [...new Set(javascriptConcepts.map((concept) => concept.section))];
+const chapters = sections.map((name) => ({ name, count: javascriptConcepts.filter((concept) => concept.section === name).length }));
 
 export default function Home() {
   return (
@@ -46,35 +47,55 @@ export default function Home() {
 
       <header className="hero">
         <div>
-          <span className="eyebrow">Colección 01 · Fundamentos</span>
-          <h1>JavaScript visualizado</h1>
+          <span className="eyebrow">Colección 01 · Lenguaje y runtime</span>
+          <h1>JavaScript ES6+ visualizado</h1>
           <p>
-            Cada concepto usa la metáfora visual que mejor explica su comportamiento: memoria, rutas, jerarquías, máquinas, colas y estados.
+            Una ruta completa desde valores, funciones y estructuras hasta prototipos, asincronía, módulos, protocolos, binarios y gestión de recursos. Las escenas personalizadas permanecen y los conceptos avanzados adoptan nuevas metáforas visuales.
           </p>
         </div>
         <div className="hero__counter">
-          <strong>14</strong>
-          <span>conceptos completos</span>
+          <strong>{javascriptConcepts.length}</strong>
+          <span>conceptos en {sections.length} capítulos</span>
         </div>
       </header>
 
-      <section className="concept-grid" aria-label="Conceptos de JavaScript">
-        {javascriptConcepts.map(([title, description], index) => (
-          <ConceptCard
-            key={title}
-            index={index + 1}
-            title={title}
-            description={description}
-            status={activeScenes.has(index) ? "ready" : "planned"}
-            family={visualFamilies[index]}
-          >
-            {activeScenes.get(index)}
-          </ConceptCard>
-        ))}
-      </section>
+      <CollectionChapters chapters={chapters} />
+
+      {sections.map((section) => (
+        <section className="collection-section" id={slugify(section)} key={section}>
+          <header className="collection-section__header">
+            <span>Capítulo {String(sections.indexOf(section) + 1).padStart(2, "0")}</span>
+            <h2>{section}</h2>
+            <b>{chapters.find((chapter) => chapter.name === section)?.count} conceptos</b>
+          </header>
+          <div className="concept-grid concept-grid--atlas" aria-label={section}>
+            {javascriptConcepts.map((concept, index) => concept.section === section ? (
+              <ConceptCard
+                key={concept.title}
+                index={index + 1}
+                title={concept.title}
+                description={concept.description}
+                family={concept.family}
+                layout={concept.layout}
+              >
+                {specialScenes.get(concept.title) ?? (concept.scene ? (
+                  <AnimatedConceptScene
+                    ariaLabel={`Animación explicativa de ${concept.title}`}
+                    code={concept.scene.code}
+                    nodes={concept.scene.nodes}
+                    outcome={concept.scene.outcome}
+                    caption={concept.scene.caption}
+                    variant={concept.scene.variant}
+                  />
+                ) : null)}
+              </ConceptCard>
+            ) : null)}
+          </div>
+        </section>
+      ))}
 
       <footer className="project-note">
-        Una identidad visual común, catorce composiciones distintas y movimiento con propósito explicativo.
+        JavaScript no termina en la sintaxis: también incluye protocolos, modelo de objetos, colas, memoria y recursos que explican cómo se comporta el programa.
       </footer>
     </main>
   );

@@ -4,7 +4,7 @@ import "./globals.css";
 
 export const metadata: Metadata = {
   title: "Dev Visualizer",
-  description: "Biblioteca visual animada de conceptos de programación.",
+  description: "Atlas visual de programación con 369 conceptos, capítulos y casos prácticos autónomos.",
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {

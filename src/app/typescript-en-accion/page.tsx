@@ -1,21 +1,22 @@
 import { CollectionNav } from "@/components/navigation/CollectionNav";
+import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
 import { TypeScriptPracticalScene } from "@/components/scenes/typescript/TypeScriptPracticalScene";
+import { typescriptDeepDive } from "@/data/practicalDeepDives";
 
 export default function TypeScriptPracticalPage() {
   return (
     <main className="page-shell">
       <CollectionNav />
-
       <header className="hero hero--typescript-practical">
         <div>
-          <span className="eyebrow eyebrow--typescript">Colección 02 · Caso integrado</span>
+          <span className="eyebrow eyebrow--typescript">Colección 02 · Caso integrado ampliado</span>
           <h1>TypeScript en acción</h1>
           <p>
-            Un pedido atraviesa entradas tipadas, contratos, genéricos, estados discriminados, narrowing y compilación. La historia separa con claridad lo que TypeScript comprueba al desarrollar de lo que JavaScript ejecuta en el navegador.
+            El pedido atraviesa contratos, genéricos, estados discriminados, narrowing y compilación. La profundización añade fronteras unknown, satisfies, IDs nominales, type-only imports, pruebas de tipos y artefactos de build.
           </p>
         </div>
         <div className="hero__counter hero__counter--typescript">
-          <strong>6</strong>
+          <strong>14</strong>
           <span>capas de seguridad</span>
         </div>
       </header>
@@ -24,8 +25,10 @@ export default function TypeScriptPracticalPage() {
         <TypeScriptPracticalScene />
       </section>
 
+      <PracticalDeepDive modules={typescriptDeepDive} />
+
       <footer className="project-note">
-        Los tipos guían y bloquean errores durante el desarrollo; después de compilar, el JavaScript resultante ejecuta la experiencia.
+        Los tipos protegen el desarrollo; los esquemas protegen la frontera de runtime y el build conserva una experiencia depurable para autores y consumidores.
       </footer>
     </main>
   );

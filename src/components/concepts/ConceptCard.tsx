@@ -7,6 +7,7 @@ type ConceptCardProps = {
   children?: ReactNode;
   status?: "ready" | "planned";
   family?: string;
+  layout?: "standard" | "wide" | "compact" | "feature";
 };
 
 export function ConceptCard({
@@ -16,9 +17,10 @@ export function ConceptCard({
   children,
   status = "ready",
   family = "flujo",
+  layout = "standard",
 }: ConceptCardProps) {
   return (
-    <article className={`concept-card concept-card--${status}`} data-family={family}>
+    <article className={`concept-card concept-card--${status} concept-card--${layout}`} data-family={family}>
       <header className="concept-card__header">
         <h2>
           <span>{String(index).padStart(2, "0")}</span>

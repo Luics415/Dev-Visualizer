@@ -1,79 +1,124 @@
-# Roadmap del proyecto
+# Roadmap del Dev Visualizer
 
-## Sistema visual Jinx
+## Regla principal
 
-- [x] Evitar una plantilla única para todos los conceptos.
-- [x] Asignar una metáfora visual específica a cada escena.
-- [x] Convertir el movimiento en explicación causal, no decoración.
-- [x] Mostrar código mínimo coherente con lo animado.
-- [x] Mantener identidad compartida de tipografía, bordes y ritmo.
-- [x] Aplicar la paleta Jinx Arcane al shell sin alterar la semántica cromática interna.
-- [x] Ampliar la navegación a nueve colecciones y casos integrados.
+- [x] La cobertura decide la cantidad de escenas; no existe un límite artificial de 14.
+- [x] Separar fundamentos, internals, trabajo diario, diagnóstico y producción.
+- [x] Elegir una metáfora visual específica para cada mecanismo.
+- [x] Permitir casos integrados con tantas etapas como necesite la historia.
+- [x] Mantener guiños a Arcane/League como contexto, nunca como sustituto de la explicación.
 
-## Colección 01 — JavaScript ES6+
+## Navegación y experiencia de estudio
 
-- [x] 14 conceptos visuales.
-- [x] JavaScript en acción — historia de 6 etapas.
+- [x] Biblioteca central en `/colecciones`.
+- [x] Selector de colecciones agrupado y buscable.
+- [x] Navegación anterior/siguiente entre las 14 rutas.
+- [x] Estado visible de la colección actual.
+- [x] Diseño responsive sin depender de scroll horizontal para descubrir temas.
+- [x] Índice de capítulos con anclas y conteos.
+- [x] Colecciones divididas por secciones temáticas.
+- [ ] Búsqueda global por concepto, palabra clave y nivel.
+- [ ] Filtros por fundamento, internals, producción y familia visual.
+- [ ] Historial local y progreso de estudio.
+- [ ] Página de enfoque individual por concepto.
 
-## Colección 02 — TypeScript
+## Sistema visual
 
-- [x] 14 conceptos visuales.
-- [x] TypeScript en acción — pedido tipado en 6 etapas.
+- [x] Paleta exterior Jinx Arcane.
+- [x] Colores semánticos internos independientes.
+- [x] Tarjetas compactas, estándar y amplias.
+- [x] Familias reutilizables: pipeline, capas, comparativa, timeline, árbol, puerta, stack, órbita, matriz, navegador, flujo, tarjetas, terminal y documento.
+- [x] Escenas autónomas con loop.
+- [x] Cajas paralelas para separar experiencia visible e internals en casos prácticos.
+- [ ] Pausar escenas fuera del viewport.
+- [ ] Controles opcionales de velocidad y pausa en vista de enfoque.
+- [ ] Exportación vertical con Remotion.
 
-## Colección 03 — React
+## 01 — JavaScript ES6+
 
-- [x] 14 conceptos visuales.
-- [x] React en acción — búsqueda en 6 etapas.
+- [x] 55 conceptos en 12 capítulos.
+- [x] Valores, coerción, scope, funciones, objetos, colecciones y clases.
+- [x] Prototipos, `this`, iterables, generators y módulos dinámicos.
+- [x] Promises, combinadores, event loop y cancelación.
+- [x] Typed Arrays, RegExp, Intl, fechas, Proxy/Reflect y memoria.
+- [x] JavaScript en acción ampliado a 14 etapas.
+- [ ] Añadir workers, Atomics/SharedArrayBuffer y estrategias avanzadas de profiling del runtime.
 
-## Colección 04 — React Native
+## 02 — TypeScript
 
-- [x] Renderizado nativo.
-- [x] Componentes base.
-- [x] StyleSheet.
-- [x] Flexbox.
-- [x] TextInput.
-- [x] Pressable.
-- [x] Imágenes.
-- [x] ScrollView y FlatList.
-- [x] Navegación.
-- [x] Safe Area y teclado.
-- [x] Código por plataforma.
-- [x] Permisos.
-- [x] Peticiones de red.
-- [x] Persistencia local.
-- [x] React Native en acción — reporte móvil en 6 etapas.
+- [x] 64 conceptos en 7 capítulos.
+- [x] Tipos base, nullabilidad, unions, intersections y narrowing.
+- [x] Genéricos, constraints y sistema de tipos derivado.
+- [x] Mapped, conditional, template literal, recursive y branded types.
+- [x] Declaraciones, módulos, augmentation y configuración del compilador.
+- [x] Migración, validación runtime, variance, type tests y performance del checker.
+- [x] TypeScript en acción ampliado a 14 etapas.
+- [ ] Añadir patrones de tipos para librerías públicas, monorepos y APIs generadas desde schemas.
 
-## Colección 05 — APIs REST
+## 03 — React
 
-- [x] Recursos.
-- [x] Endpoints.
-- [x] Métodos HTTP.
-- [x] Parámetros de ruta y query.
-- [x] Headers.
-- [x] Cuerpo JSON.
-- [x] Códigos de estado.
-- [x] CRUD.
-- [x] Statelessness.
-- [x] Autenticación.
-- [x] Filtros y paginación.
-- [x] Caché HTTP.
-- [x] Idempotencia.
-- [x] Errores y rate limits.
+- [x] 62 conceptos en 7 capítulos.
+- [x] Componentes, props, estado, forms, reducers y context.
+- [x] Render, commit, reconciliación, identidad, Strict Mode y portals.
+- [x] Effects, refs, external stores y sincronización.
+- [x] Memoización, Compiler, profiling, Suspense y concurrencia.
+- [x] Actions, optimistic UI, Server Components, SSR, streaming e hydration.
+- [x] Testing y Rules of React.
+- [x] React en acción ampliado a 14 etapas.
+- [ ] Añadir patrones completos de routing, data frameworks y boundaries de caché del servidor.
 
-## Próxima etapa
+## 04 — React Native
 
-- [ ] Crear APIs REST en acción conectando una app móvil con backend y base de datos.
-- [ ] Pausar escenas fuera del viewport para reducir trabajo gráfico.
-- [ ] Crear páginas de enfoque con explicación progresiva.
-- [ ] Preparar exportación vertical para Reels con Remotion.
-- [ ] Continuar con Git/GitHub y HTML/CSS.
+- [x] 80 conceptos en 7 capítulos.
+- [x] New Architecture, Fabric, TurboModules, JSI, Codegen, Hermes y Metro.
+- [x] Layout, density, safe areas, teclado, themes, platform code y tipografía.
+- [x] Gestos, animaciones, media y feedback nativo.
+- [x] Listas, navegación, deep links y restauración de estado.
+- [x] Permisos, AppState, notificaciones, background work y accesibilidad.
+- [x] Red, persistencia, offline-first, seguridad y biometría.
+- [x] Debugging, performance, testing, native modules, builds, firma, OTA y upgrades.
+- [x] React Native en acción ampliado a 14 etapas.
+- [ ] Añadir stores, App/Play review, observabilidad móvil y estrategias de módulos compartidos multi-app.
 
-## Criterio de terminado
+## 05 — APIs REST
 
-- La metáfora se entiende sin narración.
-- El movimiento muestra causalidad.
-- La escena tiene una sola idea central.
-- El código coincide con el proceso mostrado.
-- La composición no repite innecesariamente la escena anterior.
+- [x] 34 conceptos desde fundamentos hasta producción.
+- [x] APIs REST en acción con traza, inspección HTTP, persistencia y retry idempotente.
+- [ ] Añadir OAuth/OIDC detallado, API gateways, circuit breakers, service discovery y compatibilidad por consumidor.
+
+## 06 — Git y GitHub
+
+- [x] 32 conceptos locales, remotos, colaborativos y de recuperación.
+- [x] Git y GitHub en acción con 8 capítulos y paneles paralelos.
+- [ ] Añadir signed commits, CODEOWNERS, environments, secrets, deployment approvals y monorepo workflows.
+
+## 07 — HTML y CSS
+
+- [x] 42 conceptos de estructura, semántica, accesibilidad, cascade, layout y rendering.
+- [x] HTML y CSS en acción desde source hasta pixels y accessibility tree.
+- [ ] Añadir subgrid, anchor positioning, view transitions, print styles, forms avanzados, fuentes y debugging con DevTools.
+
+## Próximas colecciones del roadmap Jr
+
+- [ ] State Management.
+- [ ] Backend.
+- [ ] Bases de datos.
+- [ ] Linux.
+- [ ] AWS.
+- [ ] Deployment.
+- [ ] Nginx.
+- [ ] Docker.
+- [ ] Firebase.
+- [ ] Debugging.
+- [ ] Architecture.
+
+## Criterio de terminado por concepto
+
+- La metáfora se entiende sin narración externa.
+- El movimiento muestra causalidad y estado, no decoración.
+- El código coincide con el proceso representado.
+- La escena distingue desarrollo, runtime, navegador, sistema operativo, red o servidor cuando aplica.
+- Los casos límite importantes aparecen o quedan registrados para expansión.
+- La explicación aclara qué problema resuelve, cómo funciona y dónde puede fallar.
 - El loop reinicia sin un corte confuso.
 - Funciona en móvil y escritorio.

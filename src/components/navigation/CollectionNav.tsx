@@ -2,42 +2,135 @@
 
 import Link from "next/link";
 import { usePathname } from "next/navigation";
-
-const links = [
-  { href: "/", label: "JavaScript ES6+", short: "JS" },
-  { href: "/javascript-en-accion", label: "JavaScript en acción", short: "JS+" },
-  { href: "/typescript", label: "TypeScript", short: "TS" },
-  { href: "/typescript-en-accion", label: "TypeScript en acción", short: "TS+" },
-  { href: "/react", label: "React", short: "React" },
-  { href: "/react-en-accion", label: "React en acción", short: "R+" },
-  { href: "/react-native", label: "React Native", short: "RN" },
-  { href: "/react-native-en-accion", label: "React Native en acción", short: "RN+" },
-  { href: "/apis-rest", label: "APIs REST", short: "REST" },
-] as const;
+import { useEffect, useMemo, useRef, useState } from "react";
+import type { ChangeEvent } from "react";
+import { collectionGroups, collectionLinks } from "@/data/collectionLinks";
 
 export function CollectionNav() {
   const pathname = usePathname();
+  const detailsRef = useRef<HTMLDetailsElement | null>(null);
+  const [query, setQuery] = useState("");
+  const activeIndex = collectionLinks.findIndex((item) => item.href === pathname);
+  const active = activeIndex >= 0 ? collectionLinks[activeIndex] : null;
+  const previous = activeIndex > 0 ? collectionLinks[activeIndex - 1] : null;
+  const next = activeIndex >= 0 && activeIndex < collectionLinks.length - 1 ? collectionLinks[activeIndex + 1] : null;
+
+  const visibleGroups = useMemo(() => {
+    const normalized = query.trim().toLocaleLowerCase("es");
+    if (!normalized) return collectionGroups;
+
+    return collectionGroups
+      .map((group) => ({
+        ...group,
+        links: group.links.filter((link) =>
+          `${link.label} ${link.short} ${link.kind} ${group.name}`.toLocaleLowerCase("es").includes(normalized),
+        ),
+      }))
+      .filter((group) => group.links.length > 0);
+  }, [query]);
+
+  useEffect(() => {
+    detailsRef.current?.removeAttribute("open");
+    setQuery("");
+  }, [pathname]);
+
+  useEffect(() => {
+    function closeOnOutsideClick(event: MouseEvent) {
+      if (detailsRef.current?.open && !detailsRef.current.contains(event.target as Node)) {
+        detailsRef.current.removeAttribute("open");
+      }
+    }
+
+    function closeOnEscape(event: KeyboardEvent) {
+      if (event.key === "Escape") detailsRef.current?.removeAttribute("open");
+    }
+
+    document.addEventListener("mousedown", closeOnOutsideClick);
+    document.addEventListener("keydown", closeOnEscape);
+    return () => {
+      document.removeEventListener("mousedown", closeOnOutsideClick);
+      document.removeEventListener("keydown", closeOnEscape);
+    };
+  }, []);
 
   return (
-    <nav className="collection-nav" aria-label="Colecciones del visualizador">
-      <span className="collection-nav__brand" aria-hidden="true">DV</span>
-      <div className="collection-nav__links">
-        {links.map(({ href, label, short }) => {
-          const active = pathname === href;
+    <nav className="collection-nav" aria-label="Navegación de colecciones">
+      <Link className="collection-nav__brand" href="/colecciones" aria-label="Abrir biblioteca de colecciones">
+        DV
+      </Link>
 
-          return (
-            <Link
-              className={`collection-nav__link${active ? " collection-nav__link--active" : ""}`}
-              href={href}
-              key={href}
-              aria-current={active ? "page" : undefined}
-            >
-              <span className="collection-nav__long">{label}</span>
-              <span className="collection-nav__short">{short}</span>
-            </Link>
-          );
-        })}
+      <div className="collection-nav__current" aria-live="polite">
+        <span>{pathname === "/colecciones" ? "Biblioteca" : "Estudiando ahora"}</span>
+        <strong>{active?.label ?? "Todas las colecciones"}</strong>
       </div>
+
+      <div className="collection-nav__sequence" aria-label="Colección anterior y siguiente">
+        {previous ? <Link href={previous.href} title={`Anterior: ${previous.label}`} aria-label={`Anterior: ${previous.label}`}>←</Link> : <span aria-hidden="true">←</span>}
+        <b>{activeIndex >= 0 ? `${activeIndex + 1}/${collectionLinks.length}` : collectionLinks.length}</b>
+        {next ? <Link href={next.href} title={`Siguiente: ${next.label}`} aria-label={`Siguiente: ${next.label}`}>→</Link> : <span aria-hidden="true">→</span>}
+      </div>
+
+      <details className="collection-picker" ref={detailsRef}>
+        <summary>
+          <span>Explorar colecciones</span>
+          <b>{collectionLinks.length}</b>
+        </summary>
+
+        <div className="collection-picker__panel">
+          <header>
+            <div>
+              <span>Dev Visualizer</span>
+              <strong>Elige qué quieres estudiar</strong>
+            </div>
+            <Link href="/colecciones">Ver biblioteca completa</Link>
+          </header>
+
+          <label className="collection-picker__search">
+            <span>Buscar colección</span>
+            <input
+              type="search"
+              value={query}
+              onChange={(event: ChangeEvent<HTMLInputElement>) => setQuery(event.target.value)}
+              placeholder="JavaScript, React Native, Git..."
+            />
+          </label>
+
+          <div className="collection-picker__groups">
+            {visibleGroups.map((group) => (
+              <section key={group.name}>
+                <header>
+                  <strong>{group.name}</strong>
+                  <span>{group.description}</span>
+                </header>
+                <div>
+                  {group.links.map((link) => {
+                    const isActive = pathname === link.href;
+                    return (
+                      <Link
+                        className={isActive ? "collection-picker__link collection-picker__link--active" : "collection-picker__link"}
+                        href={link.href}
+                        key={link.href}
+                        aria-current={isActive ? "page" : undefined}
+                      >
+                        <span>{link.short}</span>
+                        <div>
+                          <strong>{link.label}</strong>
+                          <small>{link.kind}</small>
+                        </div>
+                        <em>↗</em>
+                      </Link>
+                    );
+                  })}
+                </div>
+              </section>
+            ))}
+          </div>
+
+          {visibleGroups.length === 0 ? (
+            <p className="collection-picker__empty">No encontré una colección con ese nombre.</p>
+          ) : null}
+        </div>
+      </details>
     </nav>
   );
 }

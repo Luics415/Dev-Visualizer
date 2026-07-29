@@ -1,81 +1,77 @@
+import type { ReactNode } from "react";
 import { ConceptCard } from "@/components/concepts/ConceptCard";
+import { CollectionChapters } from "@/components/concepts/CollectionChapters";
 import { CollectionNav } from "@/components/navigation/CollectionNav";
+import { AnimatedConceptScene } from "@/components/visual/AnimatedConceptScene";
 import {
-  NativeRenderingScene,
-  CoreComponentsScene,
-  StyleSheetScene,
-  FlexboxScene,
-  TextInputScene,
-  PressableScene,
-  ImagesScene,
-  VirtualizedListScene,
-  NavigationScene,
-  SafeAreaKeyboardScene,
-  PlatformScene,
-  PermissionsScene,
-  NetworkingScene,
-  PersistenceScene,
+  NativeRenderingScene, CoreComponentsScene, StyleSheetScene, FlexboxScene, TextInputScene,
+  PressableScene, ImagesScene, VirtualizedListScene, NavigationScene, SafeAreaKeyboardScene,
+  PlatformScene, PermissionsScene, NetworkingScene, PersistenceScene,
 } from "@/components/scenes/react-native/ReactNativeScenes";
 import { reactNativeConcepts } from "@/data/reactNativeConcepts";
+import { slugify } from "@/lib/slugify";
 
-const visualFamilies = [
-  "pipeline nativo", "traducción", "hoja de estilo", "distribución", "circuito controlado",
-  "máquina de estados", "carga de recursos", "ventana virtual", "pila", "zonas seguras",
-  "bifurcación", "diálogo del sistema", "cliente-servidor", "memoria persistente",
-] as const;
+const specialScenes = new Map<string, ReactNode>([
+  ["Renderizado nativo", <NativeRenderingScene key="native-rendering" />],
+  ["Componentes base", <CoreComponentsScene key="core-components" />],
+  ["StyleSheet", <StyleSheetScene key="stylesheet" />],
+  ["Flexbox", <FlexboxScene key="flexbox" />],
+  ["TextInput", <TextInputScene key="text-input" />],
+  ["Pressable", <PressableScene key="pressable" />],
+  ["Imágenes", <ImagesScene key="images" />],
+  ["ScrollView y FlatList", <VirtualizedListScene key="virtualized-list" />],
+  ["Navegación", <NavigationScene key="navigation" />],
+  ["Safe Area y teclado", <SafeAreaKeyboardScene key="safe-area-keyboard" />],
+  ["Código por plataforma", <PlatformScene key="platform" />],
+  ["Permisos", <PermissionsScene key="permissions" />],
+  ["Peticiones de red", <NetworkingScene key="networking" />],
+  ["Persistencia local", <PersistenceScene key="persistence" />],
+]);
 
-const activeScenes = [
-  <NativeRenderingScene key="native-rendering" />,
-  <CoreComponentsScene key="core-components" />,
-  <StyleSheetScene key="stylesheet" />,
-  <FlexboxScene key="flexbox" />,
-  <TextInputScene key="text-input" />,
-  <PressableScene key="pressable" />,
-  <ImagesScene key="images" />,
-  <VirtualizedListScene key="virtualized-list" />,
-  <NavigationScene key="navigation" />,
-  <SafeAreaKeyboardScene key="safe-area-keyboard" />,
-  <PlatformScene key="platform" />,
-  <PermissionsScene key="permissions" />,
-  <NetworkingScene key="networking" />,
-  <PersistenceScene key="persistence" />,
-];
+const sections = [...new Set(reactNativeConcepts.map((concept) => concept.section))];
+const chapters = sections.map((name) => ({ name, count: reactNativeConcepts.filter((concept) => concept.section === name).length }));
 
 export default function ReactNativePage() {
   return (
     <main className="page-shell">
       <CollectionNav />
-
       <header className="hero hero--react-native">
         <div>
-          <span className="eyebrow eyebrow--react-native">Colección 04 · Aplicaciones móviles nativas</span>
+          <span className="eyebrow eyebrow--react-native">Colección 04 · Aplicaciones móviles de producción</span>
           <h1>React Native visualizado</h1>
           <p>
-            La interfaz declarativa de React se encuentra con vistas nativas, gestos, navegación, listas virtualizadas y APIs del dispositivo. Cada escena muestra qué parte permanece en JavaScript y qué parte pertenece al sistema operativo.
+            La ruta ahora cubre la Nueva Arquitectura, runtime, layout, gestos, multimedia, listas, navegación, APIs del dispositivo, offline, seguridad, performance, módulos nativos, testing y entrega a tiendas.
           </p>
         </div>
         <div className="hero__counter hero__counter--react-native">
-          <strong>14</strong>
-          <span>conceptos móviles</span>
+          <strong>{reactNativeConcepts.length}</strong>
+          <span>conceptos en {sections.length} capítulos</span>
         </div>
       </header>
 
-      <section className="concept-grid" aria-label="Conceptos de React Native">
-        {reactNativeConcepts.map(([title, description], index) => (
-          <ConceptCard
-            key={title}
-            index={index + 1}
-            title={title}
-            description={description}
-            family={visualFamilies[index]}
-          >
-            {activeScenes[index]}
-          </ConceptCard>
-        ))}
-      </section>
+      <CollectionChapters chapters={chapters} />
+
+      {sections.map((section) => (
+        <section className="collection-section" id={slugify(section)} key={section}>
+          <header className="collection-section__header">
+            <span>Capítulo {String(sections.indexOf(section) + 1).padStart(2, "0")}</span>
+            <h2>{section}</h2>
+            <b>{chapters.find((chapter) => chapter.name === section)?.count} conceptos</b>
+          </header>
+          <div className="concept-grid concept-grid--atlas" aria-label={section}>
+            {reactNativeConcepts.map((concept, index) => concept.section === section ? (
+              <ConceptCard key={concept.title} index={index + 1} title={concept.title} description={concept.description} family={concept.family} layout={concept.layout}>
+                {specialScenes.get(concept.title) ?? (concept.scene ? (
+                  <AnimatedConceptScene ariaLabel={`Animación explicativa de ${concept.title}`} code={concept.scene.code} nodes={concept.scene.nodes} outcome={concept.scene.outcome} caption={concept.scene.caption} variant={concept.scene.variant} />
+                ) : null)}
+              </ConceptCard>
+            ) : null)}
+          </div>
+        </section>
+      ))}
 
       <footer className="project-note">
-        React Native comparte el modelo mental de React, pero termina coordinando vistas, eventos y servicios reales del sistema operativo.
+        Una aplicación móvil completa atraviesa React, runtime JavaScript, renderer nativo, servicios del sistema, datos, builds y operación en dispositivos reales.
       </footer>
     </main>
   );

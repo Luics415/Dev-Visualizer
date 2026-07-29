@@ -1,21 +1,22 @@
 import { CollectionNav } from "@/components/navigation/CollectionNav";
+import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
 import { ReactNativePracticalScene } from "@/components/scenes/react-native/ReactNativePracticalScene";
+import { reactNativeDeepDive } from "@/data/practicalDeepDives";
 
 export default function ReactNativePracticalPage() {
   return (
     <main className="page-shell">
       <CollectionNav />
-
       <header className="hero hero--react-native-practical">
         <div>
-          <span className="eyebrow eyebrow--react-native">Colección 04 · Caso integrado</span>
+          <span className="eyebrow eyebrow--react-native">Colección 04 · Caso integrado ampliado</span>
           <h1>React Native en acción</h1>
           <p>
-            Un reporte con fotografía atraviesa una pulsación nativa, estado de React, permiso del sistema, cámara, carga HTTP y navegación. Las seis etapas separan con claridad qué ocurre en JavaScript, qué pertenece al dispositivo y cuándo cambia la interfaz.
+            El reporte fotográfico atraviesa pulsación, estado, permiso, cámara, HTTP y navegación. La segunda parte suma layout adaptable, cola offline, AppState, deep links, push, accesibilidad, presupuesto de frames y entrega móvil.
           </p>
         </div>
         <div className="hero__counter hero__counter--react-native">
-          <strong>6</strong>
+          <strong>14</strong>
           <span>fronteras móvil–sistema–API</span>
         </div>
       </header>
@@ -24,8 +25,10 @@ export default function ReactNativePracticalPage() {
         <ReactNativePracticalScene />
       </section>
 
+      <PracticalDeepDive modules={reactNativeDeepDive} />
+
       <footer className="project-note">
-        React Native coordina un árbol declarativo en JavaScript con eventos, permisos, módulos y vistas que pertenecen realmente a iOS o Android.
+        Una experiencia móvil real sigue funcionando entre dispositivos, estados de red, ciclos del sistema y releases que llegan a usuarios.
       </footer>
     </main>
   );
