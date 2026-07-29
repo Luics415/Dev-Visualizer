@@ -1,0 +1,16 @@
+export const javascriptConcepts = [
+  ["Variables", "Guardan una referencia a un valor que puede cambiar."],
+  ["Funciones", "Reciben datos, ejecutan instrucciones y pueden devolver un resultado."],
+  ["Objetos", "Agrupan información relacionada mediante propiedades."],
+  ["Arrays", "Almacenan colecciones ordenadas de valores."],
+  ["map", "Transforma cada elemento y crea un array nuevo."],
+  ["filter", "Conserva únicamente los elementos que cumplen una condición."],
+  ["reduce", "Combina una colección en un único valor."],
+  ["Promesas", "Representan el resultado futuro de una operación asíncrona."],
+  ["Async / Await", "Permiten expresar flujos asíncronos de forma secuencial."],
+  ["Módulos", "Dividen y reutilizan código entre archivos."],
+  ["Closures", "Conservan acceso al entorno donde una función fue creada."],
+  ["Scope", "Define desde qué parte del programa se puede acceder a un valor."],
+  ["Event Loop", "Coordina el Call Stack y las colas de tareas asíncronas."],
+  ["Manejo de errores", "Permite responder de forma controlada cuando algo falla."],
+] as const;
