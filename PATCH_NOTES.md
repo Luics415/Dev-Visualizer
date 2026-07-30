@@ -1,15 +1,16 @@
-# Navigation hotfix
+# Parche README V2
 
-Corrige la navegación anterior/siguiente de la barra superior.
-
-## Cambios
-
-- Normaliza rutas con `basePath` y `/` final antes de buscar la colección activa.
-- Mantiene las flechas visibles en pantallas pequeñas.
-- Refuerza el área clicable y evita que otro elemento intercepte el puntero.
-- Conserva el emblema de ancla y el selector completo de colecciones.
+Este parche reemplaza el README antiguo y agrega capturas optimizadas para GitHub.
 
 ## Archivos
 
-- `src/components/navigation/CollectionNav.tsx`
-- `src/app/globals.css`
+- `README.md`
+- `docs/assets/screenshots/dev-visualizer-anchor.webp`
+- `docs/assets/screenshots/deployment-collection.webp`
+- `docs/assets/screenshots/collection-navigation.webp`
+- `docs/assets/screenshots/deployment-hero-and-chapters.webp`
+- `docs/assets/screenshots/chapter-navigation.webp`
+
+## Aplicación
+
+Copia el contenido del parche en la raíz del repositorio y acepta reemplazar `README.md`.
