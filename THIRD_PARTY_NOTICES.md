@@ -2,7 +2,7 @@
 
 ## Riot Games, League of Legends y Arcane
 
-Dev Visualizer es un proyecto independiente, no oficial y no está afiliado, patrocinado ni aprobado por Riot Games. League of Legends, Arcane, Jinx, Caitlyn, Ekko, Fishbones, Piltover, Zaun y demás nombres relacionados pertenecen a sus respectivos titulares. El proyecto utiliza referencias textuales sutiles con fines educativos y no incluye imágenes, audio ni recursos propietarios de Riot Games.
+Dev Visualizer es un proyecto independiente, no oficial y no está afiliado, patrocinado ni aprobado por Riot Games. League of Legends, Arcane, Jinx, Caitlyn, Ekko, Fishbones, Piltover, Zaun y demás nombres relacionados pertenecen a sus respectivos titulares. El proyecto utiliza referencias narrativas y estéticas sutiles con fines educativos. El emblema de ancla es una creación original asistida por IA, dirigida por el autor del proyecto, y no utiliza imágenes, audio, logotipos ni recursos oficiales de Riot Games.
 
 ## OpenAI
 

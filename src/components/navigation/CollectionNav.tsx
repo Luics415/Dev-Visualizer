@@ -1,11 +1,29 @@
 "use client";
 
+import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { ChangeEvent } from "react";
 import { collectionGroups, collectionLinks } from "@/data/collectionLinks";
 
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+function normalizePathname(pathname: string) {
+  let normalized = pathname || "/";
+
+  if (basePath && normalized.startsWith(basePath)) {
+    normalized = normalized.slice(basePath.length) || "/";
+  }
+
+  normalized = normalized.split("?")[0]?.split("#")[0] ?? "/";
+
+  if (normalized.length > 1) {
+    normalized = normalized.replace(/\/+$/, "");
+  }
+
+  return normalized || "/";
+}
 
 function themeFromPath(pathname: string) {
   if (pathname === "/" || pathname.startsWith("/javascript")) return "javascript";
@@ -30,9 +48,10 @@ function themeFromPath(pathname: string) {
 }
 export function CollectionNav() {
   const pathname = usePathname();
+  const normalizedPathname = normalizePathname(pathname);
   const detailsRef = useRef<HTMLDetailsElement | null>(null);
   const [query, setQuery] = useState("");
-  const activeIndex = collectionLinks.findIndex((item) => item.href === pathname);
+  const activeIndex = collectionLinks.findIndex((item) => normalizePathname(item.href) === normalizedPathname);
   const active = activeIndex >= 0 ? collectionLinks[activeIndex] : null;
   const previous = activeIndex > 0 ? collectionLinks[activeIndex - 1] : null;
   const next = activeIndex >= 0 && activeIndex < collectionLinks.length - 1 ? collectionLinks[activeIndex + 1] : null;
@@ -55,7 +74,7 @@ export function CollectionNav() {
     detailsRef.current?.removeAttribute("open");
     setQuery("");
 
-    const theme = themeFromPath(pathname);
+    const theme = themeFromPath(normalizedPathname);
     document.documentElement.dataset.collectionTheme = theme;
     document.body.dataset.collectionTheme = theme;
 
@@ -63,7 +82,7 @@ export function CollectionNav() {
       delete document.documentElement.dataset.collectionTheme;
       delete document.body.dataset.collectionTheme;
     };
-  }, [pathname]);
+  }, [normalizedPathname]);
 
   useEffect(() => {
     function closeOnOutsideClick(event: MouseEvent) {
@@ -87,18 +106,18 @@ export function CollectionNav() {
   return (
     <nav className="collection-nav" aria-label="Navegación de colecciones">
       <Link className="collection-nav__brand" href="/colecciones" aria-label="Abrir biblioteca de colecciones">
-        DV
+        <Image src={`${basePath}/brand/anchor-nav.png`} alt="" width={128} height={128} />
       </Link>
 
       <div className="collection-nav__current" aria-live="polite">
-        <span>{pathname === "/colecciones" ? "Biblioteca" : "Estudiando ahora"}</span>
+        <span>{normalizedPathname === "/colecciones" ? "Biblioteca" : "Estudiando ahora"}</span>
         <strong>{active?.label ?? "Todas las colecciones"}</strong>
       </div>
 
       <div className="collection-nav__sequence" aria-label="Colección anterior y siguiente">
-        {previous ? <Link href={previous.href} title={`Anterior: ${previous.label}`} aria-label={`Anterior: ${previous.label}`}>←</Link> : <span aria-hidden="true">←</span>}
+        {previous ? <Link className="collection-nav__arrow" href={previous.href} scroll title={`Anterior: ${previous.label}`} aria-label={`Anterior: ${previous.label}`}>←</Link> : <span className="collection-nav__arrow collection-nav__arrow--disabled" aria-hidden="true">←</span>}
         <b>{activeIndex >= 0 ? `${activeIndex + 1}/${collectionLinks.length}` : collectionLinks.length}</b>
-        {next ? <Link href={next.href} title={`Siguiente: ${next.label}`} aria-label={`Siguiente: ${next.label}`}>→</Link> : <span aria-hidden="true">→</span>}
+        {next ? <Link className="collection-nav__arrow" href={next.href} scroll title={`Siguiente: ${next.label}`} aria-label={`Siguiente: ${next.label}`}>→</Link> : <span className="collection-nav__arrow collection-nav__arrow--disabled" aria-hidden="true">→</span>}
       </div>
 
       <details className="collection-picker" ref={detailsRef}>
@@ -135,7 +154,7 @@ export function CollectionNav() {
                 </header>
                 <div>
                   {group.links.map((link) => {
-                    const isActive = pathname === link.href;
+                    const isActive = normalizedPathname === normalizePathname(link.href);
                     return (
                       <Link
                         className={isActive ? "collection-picker__link collection-picker__link--active" : "collection-picker__link"}

@@ -18,7 +18,15 @@ export const metadata: Metadata = {
   creator: "Luics415",
   publisher: "Dev Visualizer",
   manifest: `${basePath}/site.webmanifest`,
-  icons: { icon: `${basePath}/favicon.svg` },
+  icons: {
+    icon: [
+      { url: `${basePath}/favicon.ico`, sizes: "any" },
+      { url: `${basePath}/favicon-32x32.png`, type: "image/png", sizes: "32x32" },
+      { url: `${basePath}/favicon-48x48.png`, type: "image/png", sizes: "48x48" },
+    ],
+    shortcut: `${basePath}/favicon.ico`,
+    apple: [{ url: `${basePath}/apple-touch-icon.png`, type: "image/png", sizes: "180x180" }],
+  },
   openGraph: {
     type: "website",
     locale: "es_MX",
