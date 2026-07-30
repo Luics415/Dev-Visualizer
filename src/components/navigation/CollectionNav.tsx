@@ -25,6 +25,7 @@ function themeFromPath(pathname: string) {
   if (pathname.startsWith("/docker")) return "docker";
   if (pathname.startsWith("/firebase")) return "firebase";
   if (pathname.startsWith("/debugging")) return "debugging";
+  if (pathname.startsWith("/acerca")) return "library";
   return "library";
 }
 export function CollectionNav() {
@@ -112,7 +113,7 @@ export function CollectionNav() {
               <span>Dev Visualizer</span>
               <strong>Elige qué quieres estudiar</strong>
             </div>
-            <Link href="/colecciones">Ver biblioteca completa</Link>
+            <div className="collection-picker__header-links"><Link href="/colecciones">Ver biblioteca completa</Link><Link href="/acerca">Créditos y licencias</Link></div>
           </header>
 
           <label className="collection-picker__search">

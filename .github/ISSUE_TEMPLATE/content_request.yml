@@ -1,0 +1,22 @@
+name: Mejora educativa
+description: Propón un concepto, corrección o nueva metáfora visual.
+title: "[Contenido]: "
+labels: [content]
+body:
+  - type: input
+    id: collection
+    attributes:
+      label: Colección
+    validations:
+      required: true
+  - type: textarea
+    id: proposal
+    attributes:
+      label: Propuesta
+      description: Explica qué falta, qué debería aprenderse y cómo podría visualizarse.
+    validations:
+      required: true
+  - type: textarea
+    id: sources
+    attributes:
+      label: Fuentes oficiales sugeridas

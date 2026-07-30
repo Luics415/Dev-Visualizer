@@ -1,0 +1,27 @@
+name: Reporte de error
+description: Informa un problema visual, técnico o educativo.
+title: "[Bug]: "
+labels: [bug]
+body:
+  - type: textarea
+    id: problem
+    attributes:
+      label: ¿Qué ocurrió?
+      description: Incluye la ruta, el concepto y el comportamiento observado.
+    validations:
+      required: true
+  - type: textarea
+    id: expected
+    attributes:
+      label: ¿Qué esperabas?
+    validations:
+      required: true
+  - type: input
+    id: browser
+    attributes:
+      label: Navegador y dispositivo
+  - type: textarea
+    id: evidence
+    attributes:
+      label: Evidencia adicional
+      description: Capturas, consola o pasos de reproducción.
