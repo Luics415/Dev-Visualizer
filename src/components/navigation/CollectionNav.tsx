@@ -3,8 +3,9 @@
 import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { createPortal } from "react-dom";
 import { useEffect, useMemo, useRef, useState } from "react";
-import type { ChangeEvent } from "react";
+import type { ChangeEvent, ReactNode } from "react";
 import { collectionGroups, collectionLinks } from "@/data/collectionLinks";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
@@ -43,14 +44,47 @@ function themeFromPath(pathname: string) {
   if (pathname.startsWith("/docker")) return "docker";
   if (pathname.startsWith("/firebase")) return "firebase";
   if (pathname.startsWith("/debugging")) return "debugging";
-  if (pathname.startsWith("/acerca")) return "library";
   return "library";
 }
+
+type PickerContentProps = {
+  children: ReactNode;
+  mobile?: boolean;
+  onClose?: () => void;
+};
+
+function PickerShell({ children, mobile = false, onClose }: PickerContentProps) {
+  return (
+    <div
+      className={mobile ? "collection-picker__panel collection-picker__panel--mobile" : "collection-picker__panel"}
+      id={mobile ? "mobile-collection-menu" : undefined}
+      role={mobile ? "dialog" : undefined}
+      aria-modal={mobile ? "true" : undefined}
+      aria-label={mobile ? "Explorar colecciones" : undefined}
+    >
+      {mobile ? (
+        <div className="collection-picker__mobile-heading">
+          <div>
+            <span>Dev Visualizer</span>
+            <strong>Explorar colecciones</strong>
+          </div>
+          <button type="button" onClick={onClose} aria-label="Cerrar menú de colecciones">
+            ×
+          </button>
+        </div>
+      ) : null}
+      {children}
+    </div>
+  );
+}
+
 export function CollectionNav() {
   const pathname = usePathname();
   const normalizedPathname = normalizePathname(pathname);
   const detailsRef = useRef<HTMLDetailsElement | null>(null);
   const [query, setQuery] = useState("");
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+
   const activeIndex = collectionLinks.findIndex((item) => normalizePathname(item.href) === normalizedPathname);
   const active = activeIndex >= 0 ? collectionLinks[activeIndex] : null;
   const previous = activeIndex > 0 ? collectionLinks[activeIndex - 1] : null;
@@ -70,46 +104,141 @@ export function CollectionNav() {
       .filter((group) => group.links.length > 0);
   }, [query]);
 
+  function closeMobileMenu() {
+    setMobileMenuOpen(false);
+    setQuery("");
+  }
+
   useEffect(() => {
     detailsRef.current?.removeAttribute("open");
-    document.body.classList.remove("collection-menu-open");
     const theme = themeFromPath(normalizedPathname);
     document.documentElement.dataset.collectionTheme = theme;
     document.body.dataset.collectionTheme = theme;
 
     return () => {
-      document.body.classList.remove("collection-menu-open");
       delete document.documentElement.dataset.collectionTheme;
       delete document.body.dataset.collectionTheme;
     };
   }, [normalizedPathname]);
 
   useEffect(() => {
-    function closeOnOutsideClick(event: MouseEvent) {
+    document.body.classList.toggle("collection-menu-open", mobileMenuOpen);
+
+    return () => {
+      document.body.classList.remove("collection-menu-open");
+    };
+  }, [mobileMenuOpen]);
+
+  useEffect(() => {
+    function closeDesktopPickerOnOutsideClick(event: MouseEvent) {
       if (detailsRef.current?.open && !detailsRef.current.contains(event.target as Node)) {
         detailsRef.current.removeAttribute("open");
-        document.body.classList.remove("collection-menu-open");
       }
     }
 
-    function closeOnEscape(event: KeyboardEvent) {
-      if (event.key === "Escape") {
-        detailsRef.current?.removeAttribute("open");
-        document.body.classList.remove("collection-menu-open");
+    function closeMenusOnEscape(event: KeyboardEvent) {
+      if (event.key !== "Escape") return;
+      detailsRef.current?.removeAttribute("open");
+      setMobileMenuOpen(false);
+      setQuery("");
+    }
+
+    function closeMobileMenuOnHistoryChange() {
+      setMobileMenuOpen(false);
+      setQuery("");
+    }
+
+    function closeMobileMenuOnDesktop(event: MediaQueryListEvent) {
+      if (event.matches) {
+        setMobileMenuOpen(false);
+        setQuery("");
       }
     }
 
-    document.addEventListener("mousedown", closeOnOutsideClick);
-    document.addEventListener("keydown", closeOnEscape);
+    const desktopQuery = window.matchMedia("(min-width: 761px)");
+
+    document.addEventListener("mousedown", closeDesktopPickerOnOutsideClick);
+    document.addEventListener("keydown", closeMenusOnEscape);
+    window.addEventListener("popstate", closeMobileMenuOnHistoryChange);
+    desktopQuery.addEventListener("change", closeMobileMenuOnDesktop);
+
     return () => {
-      document.removeEventListener("mousedown", closeOnOutsideClick);
-      document.removeEventListener("keydown", closeOnEscape);
+      document.removeEventListener("mousedown", closeDesktopPickerOnOutsideClick);
+      document.removeEventListener("keydown", closeMenusOnEscape);
+      window.removeEventListener("popstate", closeMobileMenuOnHistoryChange);
+      desktopQuery.removeEventListener("change", closeMobileMenuOnDesktop);
     };
   }, []);
 
+  const pickerContents = (
+    <>
+      <header className="collection-picker__desktop-heading">
+        <div>
+          <span>Dev Visualizer</span>
+          <strong>Elige qué quieres estudiar</strong>
+        </div>
+        <div className="collection-picker__header-links">
+          <Link href="/colecciones" onClick={closeMobileMenu}>Ver biblioteca completa</Link>
+          <Link href="/acerca" onClick={closeMobileMenu}>Créditos y licencias</Link>
+        </div>
+      </header>
+
+      <label className="collection-picker__search">
+        <span>Buscar colección</span>
+        <input
+          type="search"
+          value={query}
+          onChange={(event: ChangeEvent<HTMLInputElement>) => setQuery(event.target.value)}
+          placeholder="JavaScript, React Native, Git..."
+        />
+      </label>
+
+      <div className="collection-picker__groups">
+        {visibleGroups.map((group) => (
+          <section key={group.name}>
+            <header>
+              <strong>{group.name}</strong>
+              <span>{group.description}</span>
+            </header>
+            <div>
+              {group.links.map((link) => {
+                const isActive = normalizedPathname === normalizePathname(link.href);
+                return (
+                  <Link
+                    className={isActive ? "collection-picker__link collection-picker__link--active" : "collection-picker__link"}
+                    href={link.href}
+                    key={link.href}
+                    aria-current={isActive ? "page" : undefined}
+                    onClick={closeMobileMenu}
+                  >
+                    <span>{link.short}</span>
+                    <div>
+                      <strong>{link.label}</strong>
+                      <small>{link.kind}</small>
+                    </div>
+                    <em>↗</em>
+                  </Link>
+                );
+              })}
+            </div>
+          </section>
+        ))}
+      </div>
+
+      {visibleGroups.length === 0 ? (
+        <p className="collection-picker__empty">No encontré una colección con ese nombre.</p>
+      ) : null}
+    </>
+  );
+
   return (
     <nav className="collection-nav" aria-label="Navegación de colecciones">
-      <Link className="collection-nav__brand" href="/colecciones" aria-label="Abrir biblioteca de colecciones">
+      <Link
+        className="collection-nav__brand"
+        href="/colecciones"
+        aria-label="Abrir biblioteca de colecciones"
+        onClick={closeMobileMenu}
+      >
         <Image src={`${basePath}/brand/anchor-nav.png`} alt="" width={128} height={128} />
       </Link>
 
@@ -119,80 +248,79 @@ export function CollectionNav() {
       </div>
 
       <div className="collection-nav__sequence" aria-label="Colección anterior y siguiente">
-        {previous ? <Link className="collection-nav__arrow" href={previous.href} scroll title={`Anterior: ${previous.label}`} aria-label={`Anterior: ${previous.label}`}>←</Link> : <span className="collection-nav__arrow collection-nav__arrow--disabled" aria-hidden="true">←</span>}
+        {previous ? (
+          <Link
+            className="collection-nav__arrow"
+            href={previous.href}
+            scroll
+            title={`Anterior: ${previous.label}`}
+            aria-label={`Anterior: ${previous.label}`}
+            onClick={closeMobileMenu}
+          >
+            ←
+          </Link>
+        ) : (
+          <span className="collection-nav__arrow collection-nav__arrow--disabled" aria-hidden="true">←</span>
+        )}
         <b>{activeIndex >= 0 ? `${activeIndex + 1}/${collectionLinks.length}` : collectionLinks.length}</b>
-        {next ? <Link className="collection-nav__arrow" href={next.href} scroll title={`Siguiente: ${next.label}`} aria-label={`Siguiente: ${next.label}`}>→</Link> : <span className="collection-nav__arrow collection-nav__arrow--disabled" aria-hidden="true">→</span>}
+        {next ? (
+          <Link
+            className="collection-nav__arrow"
+            href={next.href}
+            scroll
+            title={`Siguiente: ${next.label}`}
+            aria-label={`Siguiente: ${next.label}`}
+            onClick={closeMobileMenu}
+          >
+            →
+          </Link>
+        ) : (
+          <span className="collection-nav__arrow collection-nav__arrow--disabled" aria-hidden="true">→</span>
+        )}
       </div>
 
       <details
-        className="collection-picker"
+        className="collection-picker collection-picker--desktop"
         ref={detailsRef}
         onToggle={(event) => {
-          const isOpen = event.currentTarget.open;
-          document.body.classList.toggle("collection-menu-open", isOpen);
-          if (!isOpen) setQuery("");
+          if (!event.currentTarget.open) setQuery("");
         }}
       >
         <summary>
           <span>Explorar colecciones</span>
           <b>{collectionLinks.length}</b>
         </summary>
-
-        <div className="collection-picker__panel">
-          <header>
-            <div>
-              <span>Dev Visualizer</span>
-              <strong>Elige qué quieres estudiar</strong>
-            </div>
-            <div className="collection-picker__header-links"><Link href="/colecciones">Ver biblioteca completa</Link><Link href="/acerca">Créditos y licencias</Link></div>
-          </header>
-
-          <label className="collection-picker__search">
-            <span>Buscar colección</span>
-            <input
-              type="search"
-              value={query}
-              onChange={(event: ChangeEvent<HTMLInputElement>) => setQuery(event.target.value)}
-              placeholder="JavaScript, React Native, Git..."
-            />
-          </label>
-
-          <div className="collection-picker__groups">
-            {visibleGroups.map((group) => (
-              <section key={group.name}>
-                <header>
-                  <strong>{group.name}</strong>
-                  <span>{group.description}</span>
-                </header>
-                <div>
-                  {group.links.map((link) => {
-                    const isActive = normalizedPathname === normalizePathname(link.href);
-                    return (
-                      <Link
-                        className={isActive ? "collection-picker__link collection-picker__link--active" : "collection-picker__link"}
-                        href={link.href}
-                        key={link.href}
-                        aria-current={isActive ? "page" : undefined}
-                      >
-                        <span>{link.short}</span>
-                        <div>
-                          <strong>{link.label}</strong>
-                          <small>{link.kind}</small>
-                        </div>
-                        <em>↗</em>
-                      </Link>
-                    );
-                  })}
-                </div>
-              </section>
-            ))}
-          </div>
-
-          {visibleGroups.length === 0 ? (
-            <p className="collection-picker__empty">No encontré una colección con ese nombre.</p>
-          ) : null}
-        </div>
+        <PickerShell>{pickerContents}</PickerShell>
       </details>
+
+      <div className="collection-picker--mobile">
+        <button
+          className="collection-picker__mobile-trigger"
+          type="button"
+          aria-expanded={mobileMenuOpen}
+          aria-controls="mobile-collection-menu"
+          onClick={() => setMobileMenuOpen((open) => !open)}
+        >
+          <span>Temas</span>
+          <b>{collectionLinks.length}</b>
+          <em aria-hidden="true">{mobileMenuOpen ? "×" : "⌄"}</em>
+        </button>
+      </div>
+
+      {mobileMenuOpen && typeof document !== "undefined"
+        ? createPortal(
+            <div className="collection-mobile-menu">
+              <button
+                className="collection-mobile-menu__backdrop"
+                type="button"
+                aria-label="Cerrar menú de colecciones"
+                onClick={closeMobileMenu}
+              />
+              <PickerShell mobile onClose={closeMobileMenu}>{pickerContents}</PickerShell>
+            </div>,
+            document.body,
+          )
+        : null}
     </nav>
   );
 }
