@@ -24,7 +24,7 @@ export function ThreeAreasScene() {
     <div className="scene git-areas" aria-label="Un archivo cambia en el working tree, pasa al staging area y termina dentro de un commit">
       <div className="scene-code">edit → git add → git commit</div>
       <div className="git-area-conveyor">
-        {[['Working tree','app.ts','modified'],['Staging area','app.ts','selected'],['Repository','c4a92f','snapshot']].map(([title,value,state],index)=><div key={title}><small>{title}</small><b>{value}</b><span>{state}</span><i /></div>)}
+        {[['Working tree','app.ts','modified'],['Staging area','app.ts','selected'],['Repository','c4a92f','snapshot']].map(([title,value,state])=><div key={title}><small>{title}</small><b>{value}</b><span>{state}</span><i /></div>)}
         <motion.em animate={{ x: [0, 0, 94, 94, 188, 188], opacity: [0, 1, 1, 1, 1, 0] }} transition={{ ...T, times: [.08,.15,.37,.48,.7,.84] }}>app.ts</motion.em>
       </div>
       <p className="scene-caption">Git no envía cada cambio directo al historial: primero eliges exactamente qué formará el próximo snapshot.</p>

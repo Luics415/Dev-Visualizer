@@ -1,16 +1,16 @@
-# Parche README V2
+# GitHub Actions and lint fix
 
-Este parche reemplaza el README antiguo y agrega capturas optimizadas para GitHub.
+This patch fixes the CI errors reported by GitHub Actions:
 
-## Archivos
+- Removes synchronous `setState` from a route effect in `CollectionNav`.
+- Keeps the pathname normalization that restores previous/next navigation.
+- Converts the JSX comment-looking text into an explicit string expression.
+- Removes one unused callback parameter.
+- Disables `react/no-unescaped-entities` for educational code snippets that intentionally display literal quotes.
+- Uses `npm ci` and `actions/setup-node@v6` in CI and deployment workflows.
+- Moves `pages: write` and `id-token: write` to the deployment job.
+- Removes `actions/configure-pages`, which was trying to create a Pages site from the workflow.
 
-- `README.md`
-- `docs/assets/screenshots/dev-visualizer-anchor.webp`
-- `docs/assets/screenshots/deployment-collection.webp`
-- `docs/assets/screenshots/collection-navigation.webp`
-- `docs/assets/screenshots/deployment-hero-and-chapters.webp`
-- `docs/assets/screenshots/chapter-navigation.webp`
+GitHub Pages must still be enabled once in repository settings:
 
-## Aplicación
-
-Copia el contenido del parche en la raíz del repositorio y acepta reemplazar `README.md`.
+Settings → Pages → Build and deployment → Source → GitHub Actions

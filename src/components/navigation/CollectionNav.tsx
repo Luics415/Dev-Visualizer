@@ -72,8 +72,6 @@ export function CollectionNav() {
 
   useEffect(() => {
     detailsRef.current?.removeAttribute("open");
-    setQuery("");
-
     const theme = themeFromPath(normalizedPathname);
     document.documentElement.dataset.collectionTheme = theme;
     document.body.dataset.collectionTheme = theme;

@@ -91,7 +91,7 @@ export function DebuggingPracticalScene() {
             <div className="debug-action__source">
               <code>useEffect(() =&gt; &#123;</code>
               <motion.code animate={{ backgroundColor: ["transparent", "transparent", "rgba(255,202,40,.11)", "rgba(255,202,40,.11)"] }} transition={{ ...repeat, times: [0, .34, .44, .72] }}>  button.addEventListener("click", submit)</motion.code>
-              <motion.code animate={{ color: ["#718298", "#718298", "#ff7185", "#ff7185", "#49e1a8"] }} transition={{ ...repeat, times: [0, .42, .54, .67, .82] }}>  // return () =&gt; removeEventListener(...)</motion.code>
+              <motion.code animate={{ color: ["#718298", "#718298", "#ff7185", "#ff7185", "#49e1a8"] }} transition={{ ...repeat, times: [0, .42, .54, .67, .82] }}>{"  // return () => removeEventListener(...)"}</motion.code>
               <code>&#125;, [])</code>
             </div>
             <div className="debug-action__stack">
