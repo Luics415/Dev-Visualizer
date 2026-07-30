@@ -1,16 +1,9 @@
-# GitHub Actions and lint fix
+# Responsive navigation V2
 
-This patch fixes the CI errors reported by GitHub Actions:
+This patch restores the original desktop navigation styles and applies the compact collection sheet only below 760px.
 
-- Removes synchronous `setState` from a route effect in `CollectionNav`.
-- Keeps the pathname normalization that restores previous/next navigation.
-- Converts the JSX comment-looking text into an explicit string expression.
-- Removes one unused callback parameter.
-- Disables `react/no-unescaped-entities` for educational code snippets that intentionally display literal quotes.
-- Uses `npm ci` and `actions/setup-node@v6` in CI and deployment workflows.
-- Moves `pages: write` and `id-token: write` to the deployment job.
-- Removes `actions/configure-pages`, which was trying to create a Pages site from the workflow.
+Files:
+- `src/components/navigation/CollectionNav.tsx`
+- `src/app/globals.css`
 
-GitHub Pages must still be enabled once in repository settings:
-
-Settings → Pages → Build and deployment → Source → GitHub Actions
+Desktop layout, hero, chapter index, cards and collection content are not modified by the responsive override.

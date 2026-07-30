@@ -72,11 +72,13 @@ export function CollectionNav() {
 
   useEffect(() => {
     detailsRef.current?.removeAttribute("open");
+    document.body.classList.remove("collection-menu-open");
     const theme = themeFromPath(normalizedPathname);
     document.documentElement.dataset.collectionTheme = theme;
     document.body.dataset.collectionTheme = theme;
 
     return () => {
+      document.body.classList.remove("collection-menu-open");
       delete document.documentElement.dataset.collectionTheme;
       delete document.body.dataset.collectionTheme;
     };
@@ -86,11 +88,15 @@ export function CollectionNav() {
     function closeOnOutsideClick(event: MouseEvent) {
       if (detailsRef.current?.open && !detailsRef.current.contains(event.target as Node)) {
         detailsRef.current.removeAttribute("open");
+        document.body.classList.remove("collection-menu-open");
       }
     }
 
     function closeOnEscape(event: KeyboardEvent) {
-      if (event.key === "Escape") detailsRef.current?.removeAttribute("open");
+      if (event.key === "Escape") {
+        detailsRef.current?.removeAttribute("open");
+        document.body.classList.remove("collection-menu-open");
+      }
     }
 
     document.addEventListener("mousedown", closeOnOutsideClick);
@@ -118,7 +124,15 @@ export function CollectionNav() {
         {next ? <Link className="collection-nav__arrow" href={next.href} scroll title={`Siguiente: ${next.label}`} aria-label={`Siguiente: ${next.label}`}>→</Link> : <span className="collection-nav__arrow collection-nav__arrow--disabled" aria-hidden="true">→</span>}
       </div>
 
-      <details className="collection-picker" ref={detailsRef}>
+      <details
+        className="collection-picker"
+        ref={detailsRef}
+        onToggle={(event) => {
+          const isOpen = event.currentTarget.open;
+          document.body.classList.toggle("collection-menu-open", isOpen);
+          if (!isOpen) setQuery("");
+        }}
+      >
         <summary>
           <span>Explorar colecciones</span>
           <b>{collectionLinks.length}</b>
