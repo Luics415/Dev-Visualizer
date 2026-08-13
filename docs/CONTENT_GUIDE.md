@@ -22,7 +22,8 @@ Cada concepto incluye:
 - resultado observable;
 - código o configuración coherente;
 - conclusión comprensible si el loop se observa a la mitad;
-- una escena que represente el mecanismo, no movimiento decorativo.
+- una escena que represente el mecanismo, no movimiento decorativo;
+- al menos una fuente oficial o especificación visible y asociada directamente al concepto.
 
 ## Caso En acción
 
@@ -38,6 +39,8 @@ Cada caso cuenta una historia propia. Debe mostrar:
 ## Vigencia y fuentes
 
 Tecnologías heredadas o históricas llevan un aviso visible con contexto, límites y alternativas actuales. Para tecnologías activas se registra la versión estable o LTS vigente al cerrar su fase y se enlazan fuentes primarias.
+
+Cada referencia declara autoridad, tipo —estándar, especificación, documentación o manual—, versión o vigencia, estado y fecha de verificación. Una fuente comunitaria puede ampliar la explicación, pero nunca es el único respaldo. Las referencias archivadas se identifican como históricas y no se presentan como recomendación vigente.
 
 ## Originalidad
 

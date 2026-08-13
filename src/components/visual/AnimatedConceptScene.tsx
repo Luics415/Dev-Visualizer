@@ -1,8 +1,9 @@
 "use client";
 
 import { Fragment, useRef } from "react";
-import { motion, useInView, useReducedMotion } from "motion/react";
+import { motion } from "motion/react";
 import type { SceneVariant } from "@/data/conceptTypes";
+import { useScenePlayback } from "@/components/visual/useScenePlayback";
 
 type AnimatedConceptSceneProps = {
   ariaLabel: string;
@@ -27,15 +28,13 @@ function NodeText({ value }: { value: string }) {
 
 export function AnimatedConceptScene({ ariaLabel, code, nodes, outcome, caption, variant }: AnimatedConceptSceneProps) {
   const sceneRef = useRef<HTMLDivElement>(null);
-  const isInView = useInView(sceneRef, { margin: "220px 0px 220px 0px" });
-  const reducedMotion = useReducedMotion();
-  const shouldLoop = isInView && !reducedMotion;
-  const repeat = { duration: LOOP, repeat: shouldLoop ? Infinity : 0 } as const;
+  const { playback, shouldAnimate } = useScenePlayback(sceneRef);
+  const repeat = { duration: shouldAnimate ? LOOP : 0, repeat: shouldAnimate ? Infinity : 0 } as const;
   const safeNodes = nodes.length > 0 ? nodes : ["input", "process", "output"];
 
   return (
-    <div ref={sceneRef} className={`scene atlas-scene atlas-scene--${variant}`} aria-label={ariaLabel}>
-      <Fragment key={shouldLoop ? "looping" : "paused"}>
+    <div ref={sceneRef} className={`scene atlas-scene atlas-scene--${variant}`} data-playback={playback} aria-label={ariaLabel}>
+      <Fragment key={playback}>
         <div className="scene-code">{code}</div>
 
       {variant === "pipeline" ? (
@@ -124,7 +123,7 @@ export function AnimatedConceptScene({ ariaLabel, code, nodes, outcome, caption,
           {safeNodes.slice(0, 4).map((node, index) => (
             <motion.div key={node} className={`atlas-orbit__node atlas-orbit__node--${index}`} animate={{ opacity: [.35, 1, 1, .35], scale: [.94, 1.04, 1, .94] }} transition={{ ...repeat, delay: index * .7 }}><NodeText value={node} /></motion.div>
           ))}
-          <motion.i animate={{ rotate: [0, 360] }} transition={{ duration: LOOP, repeat: isInView && !reducedMotion ? Infinity : 0, ease: "linear" }} />
+          <motion.i animate={{ rotate: [0, 360] }} transition={{ duration: shouldAnimate ? LOOP : 0, repeat: shouldAnimate ? Infinity : 0, ease: "linear" }} />
         </div>
       ) : null}
 
@@ -232,7 +231,7 @@ export function AnimatedConceptScene({ ariaLabel, code, nodes, outcome, caption,
         <div className="atlas-network">
           <svg viewBox="0 0 300 150" aria-hidden="true"><path d="M50 75 L150 28 L250 75 L150 124 Z M50 75 H250 M150 28 V124" /></svg>
           {safeNodes.slice(0, 4).map((node, index) => <div key={node} className={`atlas-network__node atlas-network__node--${index}`}><NodeText value={node} /></div>)}
-          <motion.i animate={{ offsetDistance: ["0%", "100%"] }} transition={{ duration: LOOP, repeat: shouldLoop ? Infinity : 0, ease: "linear" }} />
+          <motion.i animate={{ offsetDistance: ["0%", "100%"] }} transition={{ duration: shouldAnimate ? LOOP : 0, repeat: shouldAnimate ? Infinity : 0, ease: "linear" }} />
         </div>
       ) : null}
 
@@ -291,7 +290,7 @@ export function AnimatedConceptScene({ ariaLabel, code, nodes, outcome, caption,
         <div className="atlas-lifecycle">
           <svg viewBox="0 0 280 150" aria-hidden="true"><path d="M140 20 C220 20 250 110 188 132 C110 160 38 112 58 52 C70 18 108 12 140 20" /></svg>
           {safeNodes.slice(0, 4).map((node, index) => <div key={node} className={`atlas-lifecycle__stage atlas-lifecycle__stage--${index}`}><NodeText value={node} /></div>)}
-          <motion.i animate={{ offsetDistance: ["0%", "100%"] }} transition={{ duration: LOOP, repeat: shouldLoop ? Infinity : 0, ease: "linear" }} />
+          <motion.i animate={{ offsetDistance: ["0%", "100%"] }} transition={{ duration: shouldAnimate ? LOOP : 0, repeat: shouldAnimate ? Infinity : 0, ease: "linear" }} />
         </div>
       ) : null}
 
@@ -332,7 +331,7 @@ export function AnimatedConceptScene({ ariaLabel, code, nodes, outcome, caption,
         <div className="atlas-workflow">
           {safeNodes.slice(0, 4).map((node, index) => <motion.div key={node} className={`atlas-workflow__node atlas-workflow__node--${index}`} animate={{ opacity: [.28, .28, 1, 1, .28] }} transition={{ ...repeat, times: [0, .08 + index * .16, .17 + index * .16, .75, .94] }}><em>{index + 1}</em><NodeText value={node} /></motion.div>)}
           <svg viewBox="0 0 300 140" aria-hidden="true"><path d="M52 70 H120 M180 70 H248 M150 46 V22 M150 94 V118" /></svg>
-          <motion.i animate={{ offsetDistance: ["0%", "100%"] }} transition={{ duration: LOOP, repeat: shouldLoop ? Infinity : 0, ease: "linear" }} />
+          <motion.i animate={{ offsetDistance: ["0%", "100%"] }} transition={{ duration: shouldAnimate ? LOOP : 0, repeat: shouldAnimate ? Infinity : 0, ease: "linear" }} />
         </div>
       ) : null}
 
@@ -348,6 +347,71 @@ export function AnimatedConceptScene({ ariaLabel, code, nodes, outcome, caption,
           <div className="atlas-literate-weave__source"><NodeText value={safeNodes[0]} /><NodeText value={safeNodes[1] ?? safeNodes[0]} /></div>
           <motion.i animate={{ rotate: [0, 0, 180, 180, 360] }} transition={{ ...repeat, times: [0, .2, .45, .7, 1] }}>⌘</motion.i>
           <div className="atlas-literate-weave__outputs"><motion.span animate={{ opacity: [0, 0, 1, 1, 0] }} transition={{ ...repeat, times: [0, .4, .5, .9, 1] }}><NodeText value={safeNodes[2] ?? "programa"} /></motion.span><motion.span animate={{ opacity: [0, 0, 1, 1, 0] }} transition={{ ...repeat, times: [0, .52, .62, .92, 1] }}><NodeText value={safeNodes[3] ?? "documento"} /></motion.span></div>
+        </div>
+      ) : null}
+
+      {variant === "signal-matrix" ? (
+        <div className="atlas-signal-matrix">
+          {Array.from({ length: 12 }, (_, index) => (
+            <motion.div
+              key={index}
+              animate={{ opacity: [.55, .55, 1, .72, .55], borderColor: ["rgba(255,255,255,.1)", "rgba(255,255,255,.1)", "var(--collection-accent)", "rgba(156,131,255,.55)", "rgba(255,255,255,.1)"] }}
+              transition={{ ...repeat, delay: (index % 4) * .16 + Math.floor(index / 4) * .11 }}
+            >
+              <i />
+              <NodeText value={safeNodes[index % safeNodes.length]} />
+            </motion.div>
+          ))}
+        </div>
+      ) : null}
+
+      {variant === "relation-loom" ? (
+        <div className="atlas-relation-loom">
+          <div className="atlas-relation-loom__table atlas-relation-loom__table--left"><b>{safeNodes[0]?.split("|")[0]}</b>{[1, 2, 3].map((row) => <span key={row}>A{row}</span>)}</div>
+          <motion.div className="atlas-relation-loom__predicate" animate={{ scale: [.94, 1.06, 1, .94], opacity: [.72, 1, 1, .72] }} transition={repeat}><NodeText value={safeNodes[1] ?? "JOIN|predicado"} /></motion.div>
+          <div className="atlas-relation-loom__table atlas-relation-loom__table--right"><b>{safeNodes[2]?.split("|")[0]}</b>{[1, 2, 4].map((row) => <span key={row}>B{row}</span>)}</div>
+          <div className="atlas-relation-loom__result">
+            {["A1+B1", "A2+B2", "A3+NULL"].map((row, index) => <motion.span key={row} animate={{ opacity: [.35, .35, 1, 1, .58], x: [-5, -5, 0, 0, 4] }} transition={{ ...repeat, times: [0, .2 + index * .12, .3 + index * .12, .78, .94] }}>{row}</motion.span>)}
+          </div>
+        </div>
+      ) : null}
+
+      {variant === "concept-constellation" ? (
+        <div className="atlas-concept-constellation">
+          <motion.div className="atlas-concept-constellation__core" animate={{ boxShadow: ["0 0 10px rgba(59,211,255,.18)", "0 0 30px rgba(59,211,255,.5)", "0 0 10px rgba(59,211,255,.18)"] }} transition={repeat}>{safeNodes[0]?.split("|")[0]}</motion.div>
+          {Array.from({ length: 8 }, (_, index) => (
+            <motion.span key={index} className={`atlas-concept-constellation__node atlas-concept-constellation__node--${index}`} animate={{ opacity: [.5, 1, .65, .5], scale: [.9, 1.12, 1, .9] }} transition={{ ...repeat, delay: index * .22 }}>{safeNodes[(index % Math.max(safeNodes.length - 1, 1)) + 1]?.split("|")[0] ?? outcome}</motion.span>
+          ))}
+        </div>
+      ) : null}
+
+      {variant === "assurance-rack" ? (
+        <div className="atlas-assurance-rack">
+          {safeNodes.slice(0, 4).map((node, index) => (
+            <div className="atlas-assurance-rack__lane" key={node}>
+              <NodeText value={node} />
+              <div>{[0, 1, 2, 3].map((dot) => <motion.i key={dot} animate={{ opacity: [.25, .25, 1, .5, .25], scale: [.8, .8, 1.25, 1, .8] }} transition={{ ...repeat, delay: index * .35 + dot * .18 }} />)}</div>
+              <motion.em animate={{ opacity: [.45, .45, 1, 1, .6] }} transition={{ ...repeat, delay: index * .35 }}>PASS</motion.em>
+            </div>
+          ))}
+        </div>
+      ) : null}
+
+      {variant === "event-fabric" ? (
+        <div className="atlas-event-fabric">
+          <div className="atlas-event-fabric__producer"><NodeText value={safeNodes[0]} /></div>
+          <div className="atlas-event-fabric__broker"><b>{safeNodes[1]?.split("|")[0]}</b>{[0, 1, 2].map((partition) => <span key={partition}>P{partition}<i /></span>)}</div>
+          <div className="atlas-event-fabric__consumers">{safeNodes.slice(2, 4).map((node) => <div key={node}><NodeText value={node} /></div>)}</div>
+          {[0, 1, 2].map((token) => <motion.i key={token} className={`atlas-event-fabric__token atlas-event-fabric__token--${token}`} animate={{ left: ["12%", "12%", "49%", "83%", "83%"], opacity: [0, 1, 1, 1, 0] }} transition={{ ...repeat, delay: token * .7, times: [.04, .1, .48, .82, .92] }} />)}
+        </div>
+      ) : null}
+
+      {variant === "artifact-passport" ? (
+        <div className="atlas-artifact-passport">
+          <div className="atlas-artifact-passport__commit"><b>COMMIT</b><small>{safeNodes[0]?.split("|")[0]}</small></div>
+          <div className="atlas-artifact-passport__checks">{["LINT", "TEST", "SAST"].map((check, index) => <motion.span key={check} animate={{ opacity: [.42, .42, 1, 1, .6], borderColor: ["rgba(255,255,255,.12)", "rgba(255,255,255,.12)", "var(--green)", "var(--green)", "rgba(255,255,255,.12)"] }} transition={{ ...repeat, delay: index * .28 }}>{check}</motion.span>)}</div>
+          <motion.div className="atlas-artifact-passport__card" animate={{ rotateY: [0, 0, 8, 0, 0], boxShadow: ["0 0 0 transparent", "0 0 28px rgba(59,211,255,.28)", "0 0 0 transparent"] }} transition={repeat}><b>sha256</b><small>SBOM · FIRMA</small><em>VERIFICADO</em></motion.div>
+          <motion.div className="atlas-artifact-passport__promote" animate={{ opacity: [.48, .48, 1, 1, .65] }} transition={{ ...repeat, times: [0, .65, .74, .92, 1] }}>PROMOVER →</motion.div>
         </div>
       ) : null}
 

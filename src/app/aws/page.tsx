@@ -4,6 +4,7 @@ import { awsConcepts } from "@/data/awsConcepts";
 export default function AwsPage() {
   return (
     <StudyAtlasCollection
+      collectionId="aws"
       collectionNumber="12"
       eyebrow="De una cuenta vacía a una plataforma Well-Architected"
       title="AWS visualizado"

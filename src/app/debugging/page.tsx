@@ -4,6 +4,7 @@ import { debuggingConcepts } from "@/data/debuggingConcepts";
 export default function DebuggingPage() {
   return (
     <StudyAtlasCollection
+      collectionId="debugging"
       collectionNumber="17"
       eyebrow="Del síntoma ambiguo a una causa demostrada y una regresión imposible"
       title="Debugging visualizado"

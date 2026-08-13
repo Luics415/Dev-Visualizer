@@ -1,6 +1,9 @@
+import Image from "next/image";
 import Link from "next/link";
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { projectCredits } from "@/data/projectCredits";
+
+const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
 export default function AboutPage() {
   return (
@@ -14,6 +17,25 @@ export default function AboutPage() {
         </div>
         <div className="hero__counter"><strong>34</strong><span>colecciones · 68 rutas</span></div>
       </header>
+
+      <section className="about-signature-banner" aria-label="Firma de autor de Luics415">
+        <Image
+          className="about-signature-banner__art"
+          src={`${basePath}/brand/about-signature-banner.png`}
+          alt=""
+          width={1775}
+          height={888}
+          priority
+          sizes="(max-width: 650px) 100vw, 1240px"
+        />
+        <div className="about-signature-banner__veil" aria-hidden="true" />
+        <div className="about-signature-banner__content">
+          <span>Concepto y dirección educativa</span>
+          <strong>Luics415</strong>
+          <i aria-hidden="true" />
+          <p>Una firma de autor para un atlas que vuelve visible lo que ocurre por dentro.</p>
+        </div>
+      </section>
 
       <section className="about-grid">
         <article>

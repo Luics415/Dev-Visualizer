@@ -10,9 +10,10 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "check:links": "node scripts/validate-static-links.mjs",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
-    "check": "npm run lint && npm run typecheck && npm run build"
+    "check": "npm run lint && npm run typecheck && npm run build && npm run check:links"
   },
   "dependencies": {
     "motion": "12.43.0",

@@ -4,6 +4,7 @@ import { firebaseConcepts } from "@/data/firebaseConcepts";
 export default function FirebasePage() {
   return (
     <StudyAtlasCollection
+      collectionId="firebase"
       collectionNumber="16"
       eyebrow="De un SDK cliente a una plataforma segura, reactiva y observable"
       title="Firebase visualizado"

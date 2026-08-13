@@ -73,7 +73,7 @@ export default function TypeScriptPage() {
           </header>
           <div className="concept-grid concept-grid--atlas" aria-label={section}>
             {typescriptConcepts.map((concept, index) => concept.section === section ? (
-              <ConceptCard key={concept.title} index={index + 1} title={concept.title} description={concept.description} family={concept.family} layout={concept.layout}>
+              <ConceptCard key={concept.title} index={index + 1} title={concept.title} description={concept.description} collectionId="typescript" section={concept.section} family={concept.family} layout={concept.layout}>
                 {specialScenes.get(concept.title) ?? (concept.scene ? (
                   <AnimatedConceptScene ariaLabel={`Animación explicativa de ${concept.title}`} code={concept.scene.code} nodes={concept.scene.nodes} outcome={concept.scene.outcome} caption={concept.scene.caption} variant={concept.scene.variant} />
                 ) : null)}

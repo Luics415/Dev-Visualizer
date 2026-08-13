@@ -4,6 +4,7 @@ import { databaseConcepts } from "@/data/databaseConcepts";
 export default function DatabasesPage() {
   return (
     <StudyAtlasCollection
+      collectionId="databases"
       collectionNumber="08"
       eyebrow="Del modelo lógico a la recuperación ante desastres"
       title="Bases de datos visualizadas"

@@ -4,6 +4,7 @@ import { nginxConcepts } from "@/data/nginxConcepts";
 export default function NginxPage() {
   return (
     <StudyAtlasCollection
+      collectionId="nginx"
       collectionNumber="14"
       eyebrow="De una conexión entrante a un gateway operable"
       title="NGINX visualizado"

@@ -4,6 +4,7 @@ import { deploymentConcepts } from "@/data/deploymentConcepts";
 export default function DeploymentPage() {
   return (
     <StudyAtlasCollection
+      collectionId="deployment"
       collectionNumber="13"
       eyebrow="Del artefacto aprobado a una versión operable y reversible"
       title="Deployment visualizado"

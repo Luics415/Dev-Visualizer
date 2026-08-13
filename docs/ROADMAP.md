@@ -11,6 +11,10 @@
 - [x] Biblioteca, búsqueda, filtros, vigencia y sitemap derivados.
 - [x] 34 casos únicos En acción con profundización.
 - [x] 68 rutas canónicas y cuatro puentes heredados.
+- [x] Fuentes oficiales o especificaciones visibles para 2,747 de 2,747 conceptos.
+- [x] Seis familias visuales nuevas inspiradas en mecanismos, con geometría y tiempos originales.
+- [x] Pasaporte del artefacto propio para CI/CD En acción.
+- [x] Banner firmado exclusivo para Acerca; el banner de Colecciones permanece intacto.
 
 ## Calidad permanente
 
@@ -20,6 +24,8 @@
 - [x] Capítulo y escena por concepto.
 - [x] Pausa fuera del viewport.
 - [x] Movimiento reducido.
+- [x] Reproducción compartida por viewport, visibilidad de pestaña y preferencia de movimiento.
+- [x] Estado estático legible sin finales grises u opacos.
 - [x] Contexto visible para tecnologías legadas o históricas.
 - [ ] Índice global por concepto y palabra clave.
 - [ ] Progreso local de estudio.
