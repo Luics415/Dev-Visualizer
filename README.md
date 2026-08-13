@@ -4,6 +4,12 @@ Atlas visual animado para estudiar desarrollo de software desde los fundamentos 
 
 **34 colecciones · 68 rutas canónicas · 2,747 conceptos · 34 casos integrados**
 
+<p align="center">
+  <a href="https://luics415.github.io/Dev-Visualizer/"><strong>Abrir Dev Visualizer</strong></a>
+  ·
+  <a href="https://luics415.github.io/Dev-Visualizer/colecciones/">Explorar las 34 colecciones</a>
+</p>
+
 Dev Visualizer convierte mecanismos técnicos en escenas autónomas: muestra la entrada, el cambio interno, el resultado observable y una conclusión. Cada colección se acompaña de un caso único **En acción** con fronteras, fallos, recuperación y una profundización técnica.
 
 ## Recorrer el atlas
