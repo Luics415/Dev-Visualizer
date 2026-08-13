@@ -16,6 +16,11 @@
   Proyecto educativo original · Exportación estática · GitHub Pages · Responsive · Accesible
 </p>
 
+<p align="center">
+Enlace publico: 
+https://luics415.github.io/Dev-Visualizer/
+</p>
+
 ---
 
 ## Índice
