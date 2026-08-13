@@ -2,7 +2,7 @@
   "name": "dev-visualizer",
   "version": "1.0.0",
   "private": false,
-  "description": "Atlas visual educativo de programación, frontend, backend, datos, infraestructura y despliegue.",
+  "description": "Atlas visual educativo con 34 colecciones y 68 rutas de desarrollo de software.",
   "license": "MIT",
   "engines": {
     "node": ">=24 <25"

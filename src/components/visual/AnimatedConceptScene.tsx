@@ -213,7 +213,7 @@ export function AnimatedConceptScene({ ariaLabel, code, nodes, outcome, caption,
       {variant === "cache" ? (
         <div className="atlas-cache">
           <div className="atlas-cache__client"><NodeText value={safeNodes[0]} /></div>
-          <motion.div className="atlas-cache__store" animate={{ borderColor: ["rgba(255,255,255,.16)", "rgba(var(--card-accent-rgb),.72)", "rgba(var(--card-accent-rgb),.72)", "rgba(255,255,255,.16)"] }} transition={{ ...repeat, times: [0, .28, .72, 1] }}><NodeText value={safeNodes[1] ?? "cache"} /><em>MISS → HIT</em></motion.div>
+          <motion.div className="atlas-cache__store" animate={{ borderColor: ["rgba(255,255,255,.16)", "rgba(89,214,255,.72)", "rgba(89,214,255,.72)", "rgba(255,255,255,.16)"] }} transition={{ ...repeat, times: [0, .28, .72, 1] }}><NodeText value={safeNodes[1] ?? "cache"} /><em>MISS → HIT</em></motion.div>
           <div className="atlas-cache__origin"><NodeText value={safeNodes[2] ?? safeNodes[3]} /></div>
           <motion.span animate={{ x: [-62, -62, 0, 62, 62], opacity: [0, 1, 1, 1, 0] }} transition={{ ...repeat, times: [.06, .12, .42, .72, .84] }}>{safeNodes[3]?.split("|")[0] ?? "dato"}</motion.span>
         </div>
@@ -247,7 +247,7 @@ export function AnimatedConceptScene({ ariaLabel, code, nodes, outcome, caption,
       {variant === "compiler" ? (
         <div className="atlas-compiler">
           <div className="atlas-compiler__source"><NodeText value={safeNodes[0]} /></div>
-          <motion.div className="atlas-compiler__scanner" animate={{ boxShadow: ["0 0 0 rgba(var(--card-accent-rgb),0)", "0 0 24px rgba(var(--card-accent-rgb),.24)", "0 0 0 rgba(var(--card-accent-rgb),0)"] }} transition={{ ...repeat, times: [0, .44, .84] }}><NodeText value={safeNodes[1] ?? "checker"} /><i /></motion.div>
+          <motion.div className="atlas-compiler__scanner" animate={{ boxShadow: ["0 0 0 rgba(89,214,255,0)", "0 0 24px rgba(89,214,255,.24)", "0 0 0 rgba(89,214,255,0)"] }} transition={{ ...repeat, times: [0, .44, .84] }}><NodeText value={safeNodes[1] ?? "checker"} /><i /></motion.div>
           <div className="atlas-compiler__output"><NodeText value={safeNodes[2] ?? safeNodes[3]} /></div>
           <motion.span animate={{ opacity: [0, 0, 1, 1, 0], y: [5, 5, 0, 0, -4] }} transition={{ ...repeat, times: [0, .55, .64, .86, .96] }}>{safeNodes[3]?.split("|")[0] ?? "emit"}</motion.span>
         </div>
@@ -323,7 +323,7 @@ export function AnimatedConceptScene({ ariaLabel, code, nodes, outcome, caption,
 
       {variant === "parallel-grid" ? (
         <div className="atlas-parallel-grid">
-          {Array.from({ length: 16 }, (_, index) => <motion.span key={index} animate={{ backgroundColor: ["rgba(255,255,255,.035)", "rgba(var(--card-accent-rgb),.26)", "rgba(73,225,168,.18)", "rgba(255,255,255,.035)"] }} transition={{ ...repeat, delay: (index % 4) * .12 + Math.floor(index / 4) * .08 }}>{safeNodes[index % safeNodes.length].split("|")[0]}</motion.span>)}
+          {Array.from({ length: 16 }, (_, index) => <motion.span key={index} animate={{ backgroundColor: ["rgba(255,255,255,.035)", "rgba(89,214,255,.26)", "rgba(73,225,168,.18)", "rgba(255,255,255,.035)"] }} transition={{ ...repeat, delay: (index % 4) * .12 + Math.floor(index / 4) * .08 }}>{safeNodes[index % safeNodes.length].split("|")[0]}</motion.span>)}
           <motion.b animate={{ opacity: [0, 0, 1, 1, 0] }} transition={{ ...repeat, times: [0, .62, .72, .9, 1] }}>{outcome}</motion.b>
         </div>
       ) : null}
