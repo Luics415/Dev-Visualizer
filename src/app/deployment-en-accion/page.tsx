@@ -1,27 +1,20 @@
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
-import { DeploymentPracticalScene } from "@/components/scenes/deployment/DeploymentPracticalScene";
-import { deploymentDeepDive } from "@/data/practicalDeepDives";
+import { IntegratedCaseScene } from "@/components/scenes/IntegratedCaseScene";
+import { deploymentRuntimeCase } from "@/data/phase1Collections";
 
 export default function DeploymentActionPage() {
+  const practical = deploymentRuntimeCase;
   return (
     <main className="page-shell">
       <CollectionNav />
       <header className="hero hero--deployment-practical">
-        <div>
-          <span className="eyebrow eyebrow--deployment">Colección 13 · Caso integrado ampliado</span>
-          <h1>Deployment en acción</h1>
-          <p>Ekko prepara la versión 2.4.0 del mapa de anomalías temporales. El commit pasa por pruebas, imagen firmada, OIDC, migración expand-contract y un canary 5→25→100%; cuando la latencia sube, el rollout se detiene y el tráfico vuelve a la versión estable sin perder datos.</p>
-        </div>
-        <div className="hero__counter hero__counter--deployment"><strong>14</strong><span>etapas de entrega progresiva</span></div>
+        <div><span className="eyebrow">Colección 31 · {practical.eyebrow}</span><h1>{practical.title}</h1><p>{practical.description}</p></div>
+        <div className="hero__counter"><strong>{practical.steps.length}</strong><span>etapas de rollout y recuperación</span></div>
       </header>
-
-      <section className="practical-stage practical-stage--deployment" aria-label="Caso práctico integrado de deployment">
-        <DeploymentPracticalScene />
-      </section>
-
-      <PracticalDeepDive modules={deploymentDeepDive} />
-      <footer className="project-note">La historia separa build, deploy y release; usa evidencia para promover, abortar y aprender, manteniendo artefacto, configuración y datos compatibles.</footer>
+      <section className="practical-stage practical-stage--expanded" aria-label="Caso práctico integrado de Deployment"><IntegratedCaseScene title={practical.title} steps={practical.steps} /></section>
+      <PracticalDeepDive modules={practical.steps} startAt={1} />
+      <footer className="project-note">{practical.footer}</footer>
     </main>
   );
 }

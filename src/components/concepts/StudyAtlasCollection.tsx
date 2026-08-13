@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { CollectionChapters } from "@/components/concepts/CollectionChapters";
 import { CollectionPrimer } from "@/components/concepts/CollectionPrimer";
 import { ConceptCard } from "@/components/concepts/ConceptCard";
@@ -5,6 +6,8 @@ import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { AnimatedConceptScene } from "@/components/visual/AnimatedConceptScene";
 import type { StudyConcept } from "@/data/conceptTypes";
 import { collectionPrimers, primerKeyFromHeroClass } from "@/data/collectionPrimers";
+import type { CollectionPrimer as CollectionPrimerData } from "@/data/collectionPrimers";
+import type { OfficialSource } from "@/data/expandedCollectionTypes";
 import { slugify } from "@/lib/slugify";
 
 type StudyAtlasCollectionProps = {
@@ -17,6 +20,10 @@ type StudyAtlasCollectionProps = {
   accentClassName: string;
   counterLabel: string;
   footer: string;
+  primer?: CollectionPrimerData;
+  notice?: string;
+  sources?: readonly OfficialSource[];
+  actionHref?: string;
 };
 
 export function StudyAtlasCollection({
@@ -29,9 +36,13 @@ export function StudyAtlasCollection({
   accentClassName,
   counterLabel,
   footer,
+  primer: providedPrimer,
+  notice,
+  sources = [],
+  actionHref,
 }: StudyAtlasCollectionProps) {
   const sections = [...new Set(concepts.map((concept) => concept.section))];
-  const primer = collectionPrimers[primerKeyFromHeroClass(heroClassName)];
+  const primer = providedPrimer ?? collectionPrimers[primerKeyFromHeroClass(heroClassName)];
   const chapters = sections.map((name) => ({
     name,
     count: concepts.filter((concept) => concept.section === name).length,
@@ -52,6 +63,15 @@ export function StudyAtlasCollection({
           <span>{counterLabel} en {sections.length} capítulos</span>
         </div>
       </header>
+
+      {notice ? <aside className="collection-notice"><strong>Contexto tecnológico</strong><p>{notice}</p></aside> : null}
+
+      {actionHref ? (
+        <div className="collection-action-link">
+          <span>Después de estudiar los mecanismos</span>
+          <Link href={actionHref}>Ver {title.replace(/ visualizad[oa]s?$/i, "")} en acción <b>↗</b></Link>
+        </div>
+      ) : null}
 
       <CollectionPrimer primer={primer} />
 
@@ -90,6 +110,13 @@ export function StudyAtlasCollection({
           </div>
         </section>
       ))}
+
+      {sources.length > 0 ? (
+        <aside className="official-sources" aria-labelledby="official-sources-title">
+          <div><span>Lectura técnica</span><h2 id="official-sources-title">Fuentes oficiales y especificaciones</h2></div>
+          <div>{sources.map((source) => <a href={source.href} key={source.href} target="_blank" rel="noreferrer">{source.label}<b>↗</b></a>)}</div>
+        </aside>
+      ) : null}
 
       <footer className="project-note">{footer}</footer>
     </main>
