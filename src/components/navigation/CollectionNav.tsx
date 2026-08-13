@@ -7,6 +7,7 @@ import { createPortal } from "react-dom";
 import { useEffect, useMemo, useRef, useState } from "react";
 import type { ChangeEvent, ReactNode } from "react";
 import { collectionGroups, collectionLinks } from "@/data/collectionLinks";
+import { themeForPath } from "@/data/collectionManifest";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
@@ -24,27 +25,6 @@ function normalizePathname(pathname: string) {
   }
 
   return normalized || "/";
-}
-
-function themeFromPath(pathname: string) {
-  if (pathname === "/" || pathname.startsWith("/javascript")) return "javascript";
-  if (pathname.startsWith("/typescript")) return "typescript";
-  if (pathname.startsWith("/react-native")) return "react-native";
-  if (pathname.startsWith("/react")) return "react";
-  if (pathname.startsWith("/gestion-estado")) return "state-management";
-  if (pathname.startsWith("/apis-rest")) return "rest";
-  if (pathname.startsWith("/backend")) return "backend";
-  if (pathname.startsWith("/bases-datos")) return "databases";
-  if (pathname.startsWith("/git-github")) return "git";
-  if (pathname.startsWith("/html-css")) return "html-css";
-  if (pathname.startsWith("/linux")) return "linux";
-  if (pathname.startsWith("/aws")) return "aws";
-  if (pathname.startsWith("/deployment")) return "deployment";
-  if (pathname.startsWith("/nginx")) return "nginx";
-  if (pathname.startsWith("/docker")) return "docker";
-  if (pathname.startsWith("/firebase")) return "firebase";
-  if (pathname.startsWith("/debugging")) return "debugging";
-  return "library";
 }
 
 type PickerContentProps = {
@@ -98,7 +78,7 @@ export function CollectionNav() {
       .map((group) => ({
         ...group,
         links: group.links.filter((link) =>
-          `${link.label} ${link.short} ${link.kind} ${group.name}`.toLocaleLowerCase("es").includes(normalized),
+          `${link.label} ${link.short} ${link.kind} ${link.lifecycle} ${group.name}`.toLocaleLowerCase("es").includes(normalized),
         ),
       }))
       .filter((group) => group.links.length > 0);
@@ -111,7 +91,7 @@ export function CollectionNav() {
 
   useEffect(() => {
     detailsRef.current?.removeAttribute("open");
-    const theme = themeFromPath(normalizedPathname);
+    const theme = themeForPath(normalizedPathname);
     document.documentElement.dataset.collectionTheme = theme;
     document.body.dataset.collectionTheme = theme;
 
@@ -214,7 +194,7 @@ export function CollectionNav() {
                     <span>{link.short}</span>
                     <div>
                       <strong>{link.label}</strong>
-                      <small>{link.kind}</small>
+                      <small>{link.kind}{link.lifecycle !== "actual" ? ` · ${link.lifecycle}` : ""}</small>
                     </div>
                     <em>↗</em>
                   </Link>

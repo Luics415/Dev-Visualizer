@@ -1,6 +1,6 @@
 import type { StudyConcept } from "./conceptTypes";
 
-export const deploymentConcepts = [
+const deploymentConceptCatalog = [
   {
     "title": "Qué es un deployment",
     "description": "Instala una versión ejecutable en un entorno y la hace capaz de recibir trabajo real.",
@@ -3365,3 +3365,26 @@ export const deploymentConcepts = [
     }
   }
 ] as const satisfies readonly StudyConcept[];
+
+const ciCdOwnedSections = new Set([
+  "Build, artefactos y contenedores",
+  "CI/CD y políticas de calidad",
+]);
+
+const ciCdOwnedTitles = new Set([
+  "Continuous Integration",
+  "Continuous Delivery",
+  "Continuous Deployment",
+  "Pipeline",
+  "SBOM",
+  "Provenance",
+  "Firma de artefactos",
+  "Artifact retention",
+  "GitHub Actions OIDC",
+  "Threat model del pipeline",
+  "Secret masking y redaction",
+]);
+
+export const deploymentConcepts: readonly StudyConcept[] = deploymentConceptCatalog.filter(
+  (concept) => !ciCdOwnedSections.has(concept.section) && !ciCdOwnedTitles.has(concept.title),
+);
