@@ -9,6 +9,7 @@ export type ConceptChapterSeed = {
 const allVariants: readonly SceneVariant[] = [
   "pipeline", "layers", "compare", "timeline", "tree", "gate", "stack", "orbit", "matrix", "browser", "flow", "cards", "terminal", "document",
   "anatomy", "request", "queue", "cache", "state-machine", "network", "filesystem", "compiler", "container", "database", "scheduler", "signal", "lifecycle", "trace",
+  "memory-map", "runtime-dispatch", "parallel-grid", "workflow", "interface-flow", "literate-weave",
 ];
 
 const families: Record<SceneVariant, string> = {
@@ -40,6 +41,12 @@ const families: Record<SceneVariant, string> = {
   signal: "propagación de eventos",
   lifecycle: "ciclo de vida",
   trace: "evidencia y latencia",
+  "memory-map": "mapa de memoria",
+  "runtime-dispatch": "despacho de runtime",
+  "parallel-grid": "cuadrícula paralela",
+  workflow: "workflow y decisiones",
+  "interface-flow": "flujo de interfaz",
+  "literate-weave": "tejido literario",
 };
 
 const layouts = ["standard", "wide", "standard", "compact", "wide", "standard", "feature"] as const;
@@ -87,6 +94,12 @@ export function semanticCandidates(title: string, description: string, section: 
   if (titleHas("evento", "event", "callback", "listener", "hook", "señal", "notification", "notificación") || has("propaga un evento")) pushUnique(candidates, ["signal", "orbit", "flow", "timeline", "network"]);
   if (titleHas("lifecycle", "ciclo de vida", "mount", "unmount", "rollout", "release", "deployment", "render cycle") || has("etapas de vida")) pushUnique(candidates, ["lifecycle", "timeline", "state-machine", "flow", "orbit"]);
   if (titleHas("debug", "log", "trace", "métrica", "metric", "observabilidad", "error", "diagnóstico", "profil") || has("evidencia operativa")) pushUnique(candidates, ["trace", "terminal", "timeline", "tree", "matrix"]);
+  if (titleHas("puntero", "pointer", "memoria", "heap", "stack", "malloc", "alloc", "registro", "dma", "layout")) pushUnique(candidates, ["memory-map", "layers", "filesystem", "anatomy", "trace"]);
+  if (titleHas("runtime", "dispatch", "selector", "mensaje", "arc", "jit", "aot", "garbage collector", "vtable")) pushUnique(candidates, ["runtime-dispatch", "signal", "scheduler", "layers", "lifecycle"]);
+  if (titleHas("paralel", "simd", "vector", "processor", "procesador", "domain", "grid")) pushUnique(candidates, ["parallel-grid", "scheduler", "matrix", "flow", "timeline"]);
+  if (titleHas("workflow", "pipeline", "node", "nodo", "approval", "aprobación", "reintento")) pushUnique(candidates, ["workflow", "flow", "gate", "queue", "trace"]);
+  if (titleHas("wireframe", "prototipo", "usuario", "usabilidad", "interfaz", "grid", "componente visual")) pushUnique(candidates, ["interface-flow", "browser", "flow", "cards", "anatomy"]);
+  if (titleHas("cweb", "ctangle", "cweave", "literaria", "literate", "change file", "tex")) pushUnique(candidates, ["literate-weave", "document", "compiler", "pipeline", "tree"]);
   if (titleHas("auth", "valid", "permission", "permiso", "policy", "política", "rule", "schema", "cors", "guard") || has("autoriza", "rechaza", "condición")) pushUnique(candidates, ["gate", "compare", "matrix", "document", "flow"]);
   if (titleHas("versus", " vs ", "compar", "trade-off", "elegir", "cuándo usar")) pushUnique(candidates, ["compare", "cards", "matrix", "tree", "timeline"]);
   if (titleHas("jerarqu", "árbol", "tree", "dependenc", "herencia")) pushUnique(candidates, ["tree", "layers", "orbit", "filesystem", "cards"]);
@@ -156,6 +169,12 @@ function sceneNodes(variant: SceneVariant, title: string, section: string): read
     case "signal": return ["source|evento", "listener|suscriptor", "handler|reacción", `${concept}|efecto`];
     case "lifecycle": return ["crear|inicio", "activar|uso", "actualizar|cambio", "retirar|fin"];
     case "trace": return ["entrada|span", `${concept}|span`, "dependencia|span", "resultado|evidencia"];
+    case "memory-map": return ["0x1000|entrada", `${concept}|dirección`, "0x1008|estado", "0x1010|resultado"];
+    case "runtime-dispatch": return ["caller|mensaje", `${concept}|dispatch`, "runtime|resolución", "method|ejecución"];
+    case "parallel-grid": return ["domain|datos", "PE 0|trabajo", "PE 1|trabajo", `${concept}|reduce`];
+    case "workflow": return ["trigger|inicio", `${concept}|nodo`, "policy|decisión", "output|evidencia"];
+    case "interface-flow": return ["necesidad|entrada", `${concept}|interfaz`, "feedback|estado", "tarea|resultado"];
+    case "literate-weave": return ["narrativa|secciones", `${concept}|WEB`, "CTANGLE|programa", "CWEAVE|documento"];
   }
 }
 

@@ -26,7 +26,13 @@ export type SceneVariant =
   | "scheduler"
   | "signal"
   | "lifecycle"
-  | "trace";
+  | "trace"
+  | "memory-map"
+  | "runtime-dispatch"
+  | "parallel-grid"
+  | "workflow"
+  | "interface-flow"
+  | "literate-weave";
 
 export type StudyScene = {
   variant: SceneVariant;
