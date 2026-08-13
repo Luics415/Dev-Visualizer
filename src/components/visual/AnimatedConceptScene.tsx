@@ -304,6 +304,53 @@ export function AnimatedConceptScene({ ariaLabel, code, nodes, outcome, caption,
         </div>
       ) : null}
 
+      {variant === "memory-map" ? (
+        <div className="atlas-memory-map">
+          <div className="atlas-memory-map__addresses">{safeNodes.slice(0, 4).map((node, index) => <span key={node}>0x{(4096 + index * 8).toString(16)}</span>)}</div>
+          <div className="atlas-memory-map__cells">{safeNodes.slice(0, 4).map((node, index) => <motion.div key={node} animate={{ opacity: [.3, .3, 1, 1, .3], scale: [.96, .96, 1.04, 1, .96] }} transition={{ ...repeat, times: [0, .1 + index * .14, .2 + index * .14, .72, .92] }}><NodeText value={node} /></motion.div>)}</div>
+          <motion.i animate={{ left: ["5%", "5%", "82%", "82%"], opacity: [0, 1, 1, 0] }} transition={{ ...repeat, times: [.06, .12, .76, .86] }}>ptr</motion.i>
+        </div>
+      ) : null}
+
+      {variant === "runtime-dispatch" ? (
+        <div className="atlas-runtime-dispatch">
+          <div className="atlas-runtime-dispatch__caller"><NodeText value={safeNodes[0]} /></div>
+          <motion.span animate={{ x: [-52, -52, 0, 52, 52], opacity: [0, 1, 1, 1, 0] }} transition={{ ...repeat, times: [.06, .12, .42, .72, .84] }}>{safeNodes[1]?.split("|")[0]}</motion.span>
+          <motion.div className="atlas-runtime-dispatch__table" animate={{ boxShadow: ["0 0 0 transparent", "0 0 24px color-mix(in srgb,var(--collection-accent) 24%,transparent)", "0 0 0 transparent"] }} transition={{ ...repeat, times: [0, .48, .86] }}><NodeText value={safeNodes[2] ?? "runtime"} /></motion.div>
+          <div className="atlas-runtime-dispatch__method"><NodeText value={safeNodes[3] ?? "method"} /></div>
+        </div>
+      ) : null}
+
+      {variant === "parallel-grid" ? (
+        <div className="atlas-parallel-grid">
+          {Array.from({ length: 16 }, (_, index) => <motion.span key={index} animate={{ backgroundColor: ["rgba(255,255,255,.035)", "rgba(var(--card-accent-rgb),.26)", "rgba(73,225,168,.18)", "rgba(255,255,255,.035)"] }} transition={{ ...repeat, delay: (index % 4) * .12 + Math.floor(index / 4) * .08 }}>{safeNodes[index % safeNodes.length].split("|")[0]}</motion.span>)}
+          <motion.b animate={{ opacity: [0, 0, 1, 1, 0] }} transition={{ ...repeat, times: [0, .62, .72, .9, 1] }}>{outcome}</motion.b>
+        </div>
+      ) : null}
+
+      {variant === "workflow" ? (
+        <div className="atlas-workflow">
+          {safeNodes.slice(0, 4).map((node, index) => <motion.div key={node} className={`atlas-workflow__node atlas-workflow__node--${index}`} animate={{ opacity: [.28, .28, 1, 1, .28] }} transition={{ ...repeat, times: [0, .08 + index * .16, .17 + index * .16, .75, .94] }}><em>{index + 1}</em><NodeText value={node} /></motion.div>)}
+          <svg viewBox="0 0 300 140" aria-hidden="true"><path d="M52 70 H120 M180 70 H248 M150 46 V22 M150 94 V118" /></svg>
+          <motion.i animate={{ offsetDistance: ["0%", "100%"] }} transition={{ duration: LOOP, repeat: shouldLoop ? Infinity : 0, ease: "linear" }} />
+        </div>
+      ) : null}
+
+      {variant === "interface-flow" ? (
+        <div className="atlas-interface-flow">
+          <aside>{safeNodes.slice(0, 2).map((node) => <span key={node}><NodeText value={node} /></span>)}</aside>
+          <motion.div animate={{ opacity: [.45, 1, 1, .45], scale: [.97, 1.02, 1, .97] }} transition={repeat}><header><i /><i /><i /></header><NodeText value={safeNodes[2] ?? safeNodes[0]} /><button type="button" tabIndex={-1}>{safeNodes[3]?.split("|")[0] ?? "acción"}</button></motion.div>
+        </div>
+      ) : null}
+
+      {variant === "literate-weave" ? (
+        <div className="atlas-literate-weave">
+          <div className="atlas-literate-weave__source"><NodeText value={safeNodes[0]} /><NodeText value={safeNodes[1] ?? safeNodes[0]} /></div>
+          <motion.i animate={{ rotate: [0, 0, 180, 180, 360] }} transition={{ ...repeat, times: [0, .2, .45, .7, 1] }}>⌘</motion.i>
+          <div className="atlas-literate-weave__outputs"><motion.span animate={{ opacity: [0, 0, 1, 1, 0] }} transition={{ ...repeat, times: [0, .4, .5, .9, 1] }}><NodeText value={safeNodes[2] ?? "programa"} /></motion.span><motion.span animate={{ opacity: [0, 0, 1, 1, 0] }} transition={{ ...repeat, times: [0, .52, .62, .92, 1] }}><NodeText value={safeNodes[3] ?? "documento"} /></motion.span></div>
+        </div>
+      ) : null}
+
         <motion.div className="atlas-outcome" animate={{ opacity: [0, 0, 1, 1, 0], y: [5, 5, 0, 0, -3] }} transition={{ ...repeat, times: [0, .68, .76, .91, 1] }}>{outcome}</motion.div>
       </Fragment>
       <p className="scene-caption">{caption}</p>
