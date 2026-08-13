@@ -12,7 +12,7 @@ export default function AboutPage() {
           <h1>Acerca de Dev Visualizer</h1>
           <p>Un atlas visual original e independiente para estudiar desarrollo de software mediante conceptos animados, casos integrados y profundizaciones técnicas.</p>
         </div>
-        <div className="hero__counter"><strong>1.0</strong><span>edición pública</span></div>
+        <div className="hero__counter"><strong>34</strong><span>colecciones · 68 rutas</span></div>
       </header>
 
       <section className="about-grid">
@@ -51,6 +51,7 @@ export default function AboutPage() {
       <section className="disclaimer-panel">
         <h2>Avisos de independencia</h2>
         <p>Dev Visualizer no está afiliado, patrocinado ni aprobado por Riot Games, OpenAI ni por las empresas responsables de las tecnologías estudiadas. Las referencias textuales a League of Legends y Arcane son guiños educativos no oficiales; no se incluyen imágenes, audio ni recursos propietarios de Riot Games.</p>
+        <p>La cadencia narrativa de algunas explicaciones visuales toma inspiración general de <a href="https://www.instagram.com/algoinsight/" target="_blank" rel="noreferrer">AlgoInsight</a>. Dev Visualizer no copia sus publicaciones, textos, marcas, composiciones distintivas ni recursos externos.</p>
         <p>La participación de ChatGPT se acredita como asistencia de IA. Las decisiones finales, la integración, la publicación y la responsabilidad editorial corresponden a los mantenedores humanos.</p>
       </section>
 

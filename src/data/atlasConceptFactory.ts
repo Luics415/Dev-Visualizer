@@ -80,6 +80,25 @@ export function semanticCandidates(title: string, description: string, section: 
   const has = (...words: string[]) => words.some((word) => text.includes(word));
   const candidates: SceneVariant[] = [];
 
+  if (has("investigación y definición", "arquitectura de información", "interacción y flujos", "sistema visual y componentes", "accesibilidad e inclusión", "prototipado y validación", "entrega y operación")) {
+    pushUnique(candidates, ["interface-flow", "browser", "cards", "flow", "state-machine", "gate", "compare", "timeline"]);
+  }
+  if (has("base y configuración", "grid y layout", "utilidades y tokens", "componentes y formularios", "plugins y conducta", "personalización y producción")) {
+    pushUnique(candidates, ["interface-flow", "browser", "cards", "document", "layers", "flow", "gate", "compare"]);
+  }
+  if (has("arquitectura 1.x", "templates y digest", "directivas y componentes", "datos y navegación", "calidad y seguridad", "migración gradual")) {
+    pushUnique(candidates, ["runtime-dispatch", "state-machine", "lifecycle", "signal", "browser", "layers", "trace", "workflow"]);
+  }
+  if (has("runtime y event loop", "módulos y paquetes", "asincronía y errores", "buffers, streams y red", "paralelismo y procesos", "operación y seguridad")) {
+    pushUnique(candidates, ["runtime-dispatch", "scheduler", "queue", "network", "pipeline", "flow", "layers", "trace"]);
+  }
+  if (has("ciclo y contenedor", "http y entrada", "datos y consistencia", "identidad y seguridad", "trabajo asíncrono", "calidad y producción")) {
+    pushUnique(candidates, ["workflow", "request", "database", "gate", "queue", "layers", "runtime-dispatch", "trace"]);
+  }
+  if (has("modelo de ejecución", "entrada y contratos", "datos y control", "composición y personas", "credenciales y seguridad", "errores y confiabilidad", "operación y escala")) {
+    pushUnique(candidates, ["workflow", "flow", "gate", "queue", "trace", "state-machine", "cards", "network"]);
+  }
+
   if (titleHas("qué es", "introducción", "fundamento", "arquitectura", "anatomía") || has("partes de", "componentes de")) pushUnique(candidates, ["anatomy", "layers", "tree", "orbit", "cards"]);
   if (titleHas("request", "response", "http", "endpoint", "petición", "respuesta", "proxy", "upstream", "webhook") || has("solicitud HTTP", "cliente y servidor")) pushUnique(candidates, ["request", "network", "pipeline", "flow", "timeline"]);
   if (titleHas("queue", "cola", "worker", "job", "mensaje", "sqs", "pub/sub", "stream") || has("consumidor", "productor")) pushUnique(candidates, ["queue", "scheduler", "pipeline", "flow", "stack"]);

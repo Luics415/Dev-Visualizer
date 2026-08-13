@@ -1,61 +1,49 @@
-# Lenguaje visual del Dev Visualizer
+# Sistema visual
 
-## Identidad exterior: Jinx Arcane
+## Identidad exterior
 
-La interfaz editorial usa como fuente cromática:
+La interfaz editorial conserva la paleta:
 
-- `#835f86`
-- `#75455d`
-- `#a76486`
-- `#4d7290`
-- `#4b4754`
+- #835f86
+- #75455d
+- #a76486
+- #4d7290
+- #4b4754
 
-Se aplica a fondo, navegación, títulos, textos editoriales, contadores, bordes y superficies exteriores. Para lograr contraste se permiten mezclas de esos tonos con blanco o negro mediante `color-mix()`.
+Fondos, navegación, títulos y bordes pueden mezclar esos tonos con blanco o negro mediante color-mix() para asegurar contraste.
 
-## Separación semántica
+## Semántica interior
 
-Los colores internos de las animaciones no se sustituyen por la paleta exterior:
+- cian: proceso principal;
+- verde: resultado válido;
+- amarillo: dato activo;
+- rojo: error o rechazo;
+- violeta: abstracción o sistema de tipos.
 
-- cian para proceso principal;
-- verde para resultado válido;
-- amarillo para dato activo;
-- rojo para rechazo o error;
-- violeta para abstracción o sistema de tipos.
+El significado nunca depende únicamente del color.
 
-Esta separación permite cambiar la identidad de marca sin cambiar el significado de la explicación.
+## Familias
 
-## Casos “en acción”
+Además de las familias existentes, el atlas admite:
 
-Los casos integrados usan seis cajas coordinadas. Cada caja tiene una composición propia, pero todas comparten un mismo reloj para que el recorrido sea legible:
+- memory-map: regiones, direcciones, ownership y lifetime;
+- runtime-dispatch: llamada, cola, resolución y ejecución;
+- parallel-grid: datos distribuidos y pasos paralelos;
+- workflow: nodos, ramas, reintentos y recuperación;
+- interface-flow: tarea, foco, feedback y validación;
+- literate-weave: texto, código, CTANGLE y CWEAVE.
 
-1. evento o entrada;
-2. cambio solicitado;
-3. procesamiento interno;
-4. comparación o decisión;
-5. operación asíncrona o efecto;
-6. resultado visible.
+Se usa una escena hecha a medida cuando una familia genérica no explica correctamente el mecanismo.
 
-## Variedad controlada
+## Movimiento
 
-Las escenas pueden usar líneas, paquetes, carriles, círculos, cajas anidadas, árboles, puertas, planos, grafos, timelines, snapshots, pilas, ventanas virtuales o representaciones de dispositivo. La geometría se elige por significado.
+1. Cada elemento móvil representa un dato, llamada, control o resultado.
+2. Las etiquetas permanentes permiten entrar a mitad del loop.
+3. El reinicio vuelve al estado inicial sin aparentar un error.
+4. Intersection Observer pausa escenas fuera del viewport.
+5. prefers-reduced-motion conserva toda la explicación sin movimiento obligatorio.
+6. El movimiento no bloquea teclado, tacto, lectura ni scroll.
 
-## Reglas de movimiento
+## Casos integrados
 
-1. Un elemento móvil representa un dato, llamada, control o resultado concreto.
-2. El color cambia solo cuando cambia el significado o estado.
-3. Las etiquetas permanentes permiten comprender un loop iniciado a la mitad.
-4. La conclusión aparece después del proceso.
-5. El reinicio devuelve la escena al estado inicial sin aparentar un error.
-6. El shell puede cambiar de identidad visual sin modificar la semántica interna.
-
-## Historias entre fronteras
-
-Los casos “en acción” pueden usar cajas dobles cuando el aprendizaje depende de distinguir dos sistemas. La separación debe tener significado técnico real, por ejemplo:
-
-- interfaz nativa ↔ handler de JavaScript
-- snapshot actual ↔ siguiente commit
-- aplicación ↔ diálogo del sistema operativo
-- objeto en memoria ↔ representación JSON
-- cliente HTTP ↔ servidor
-
-La línea y el token animado muestran qué cruza la frontera. Las cajas no deben duplicar información: una representa el origen y la otra el receptor o siguiente estado.
+Las etapas distinguen lo visible de lo interno, mantienen fallos y recuperación, y comparten una dirección narrativa. El layout puede desplazarse localmente en móvil, pero nunca debe ensanchar el documento completo.

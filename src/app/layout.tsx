@@ -9,7 +9,7 @@ const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: { default: "Dev Visualizer", template: "%s · Dev Visualizer" },
-  description: "Atlas visual educativo con más de 2,200 conceptos de desarrollo de software, casos integrados y profundizaciones técnicas.",
+  description: "Atlas visual educativo con 34 colecciones, 68 rutas canónicas y 2,747 conceptos de desarrollo de software.",
   applicationName: "Dev Visualizer",
   authors: [
     { name: "Luics415" },
@@ -32,12 +32,12 @@ export const metadata: Metadata = {
     locale: "es_MX",
     siteName: "Dev Visualizer",
     title: "Dev Visualizer",
-    description: "Aprende desarrollo de software mediante visualizaciones autónomas y casos técnicos completos.",
+    description: "34 colecciones y 68 rutas para aprender desarrollo de software mediante visualizaciones autónomas y casos técnicos completos.",
   },
   twitter: {
     card: "summary",
     title: "Dev Visualizer",
-    description: "Atlas visual educativo de desarrollo de software.",
+    description: "Atlas visual educativo: 34 colecciones, 68 rutas y 2,747 conceptos.",
   },
 };
 
