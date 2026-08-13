@@ -4,6 +4,7 @@ import { backendConcepts } from "@/data/backendConcepts";
 export default function BackendPage() {
   return (
     <StudyAtlasCollection
+      collectionId="backend"
       collectionNumber="07"
       eyebrow="Del socket a una plataforma operable"
       title="Backend visualizado"

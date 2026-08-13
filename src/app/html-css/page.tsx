@@ -22,7 +22,7 @@ export default function HtmlCssPage() {
 
       <section className="concept-grid concept-grid--atlas" aria-label="Conceptos de HTML y CSS">
         {htmlCssConcepts.map((concept, index) => (
-          <ConceptCard key={concept.title} index={index + 1} title={concept.title} description={concept.description} family={concept.family} layout={concept.layout}>
+          <ConceptCard key={concept.title} index={index + 1} title={concept.title} description={concept.description} collectionId="html-css" section="HTML y CSS" family={concept.family} layout={concept.layout}>
             <AnimatedConceptScene ariaLabel={`Animación explicativa de ${concept.title}`} code={concept.scene.code} nodes={concept.scene.nodes} outcome={concept.scene.outcome} caption={concept.scene.caption} variant={concept.scene.variant} />
           </ConceptCard>
         ))}

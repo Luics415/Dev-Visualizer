@@ -79,6 +79,8 @@ export default function Home() {
                 index={index + 1}
                 title={concept.title}
                 description={concept.description}
+                collectionId="javascript"
+                section={concept.section}
                 family={concept.family}
                 layout={concept.layout}
               >

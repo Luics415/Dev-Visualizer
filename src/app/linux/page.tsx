@@ -4,6 +4,7 @@ import { linuxConcepts } from "@/data/linuxConcepts";
 export default function LinuxPage() {
   return (
     <StudyAtlasCollection
+      collectionId="linux"
       collectionNumber="11"
       eyebrow="Del shell al kernel y la operación del host"
       title="Linux visualizado"

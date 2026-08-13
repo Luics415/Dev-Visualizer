@@ -37,7 +37,7 @@ Hay puentes accesibles para las URLs anteriores /git-github* y /apis-rest*. Git 
 - Navegación, búsqueda y filtros derivados de un manifiesto ligero.
 - Diseño responsive, navegación por teclado, foco visible y contenido legible sin depender solo del color.
 - Avisos visibles para Objective-C, C*, CWEB y AngularJS cuando el contexto es legado o histórico.
-- Fuentes primarias enlazadas en las colecciones expandidas.
+- Los 2,747 conceptos enlazan directamente fuentes oficiales o especificaciones, con autoridad, tipo, versión y fecha de verificación.
 
 La narrativa visual toma inspiración general del formato educativo de [AlgoInsight](https://www.instagram.com/algoinsight/) sin copiar publicaciones, textos, marcas ni recursos. Los guiños a Arcane y League of Legends continúan como referencias textuales independientes; consulta [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
@@ -47,7 +47,10 @@ El sitio usa Next.js App Router, React, TypeScript y Motion. Se exporta como HTM
 
     src/data/collectionManifest.ts      orden, grupo, rutas, tema y vigencia
     src/data/expandedCollections.ts     registro servidor de colecciones expandidas
+    src/data/officialReferences.ts      autoridades, versiones y resolución por concepto
+    src/data/catalogValidation.ts       cobertura 34/34 y 2,747/2,747
     src/app/[slug]/page.tsx             38 rutas nuevas generadas estáticamente
+    src/components/visual/useScenePlayback.ts  reproducción visible y movimiento reducido
     src/components/                     navegación, atlas, escenas y casos
     src/app/sitemap.ts                  sitemap derivado del manifiesto
 
@@ -72,17 +75,18 @@ Comprobación completa:
 
     npm run check
 
-El comando ejecuta ESLint, TypeScript estricto y la exportación estática. El build final genera 77 páginas, incluidas 68 rutas canónicas, cuatro puentes heredados, biblioteca, créditos, sitemap y páginas de soporte.
+El comando ejecuta ESLint, TypeScript estricto, la exportación estática y la comprobación de enlaces internos. El build final genera 77 páginas, incluidas 68 rutas canónicas, cuatro puentes heredados, biblioteca, créditos, sitemap y páginas de soporte.
 
 ## Añadir una colección
 
 1. Registrar identidad, grupo, rutas, tema, vigencia y resumen en collectionManifest.ts.
-2. Crear primer, capítulos, conceptos, fuentes y caso integrado en un módulo de datos.
+2. Crear primer, capítulos, conceptos y caso integrado en un módulo de datos.
 3. Añadir la definición al registro servidor expandedCollections.ts.
-4. Usar una familia visual existente o implementar una escena que represente el mecanismo con precisión.
-5. Ejecutar npm run check y validar escritorio, 390×844, teclado, movimiento reducido, overflow y consola.
+4. Registrar fuentes oficiales, especificaciones, versión y fecha de verificación en officialReferences.ts.
+5. Usar una familia visual existente o implementar una escena que represente el mecanismo con precisión.
+6. Ejecutar npm run check y validar escritorio, 390×844, teclado, movimiento reducido, overflow y consola.
 
-Las validaciones integradas rechazan IDs o rutas duplicados, colecciones sin capítulos, conceptos sin escena y casos sin profundización.
+Las validaciones integradas rechazan IDs o rutas duplicados, colecciones sin capítulos, conceptos sin escena efectiva o sin fuente oficial y casos sin profundización.
 
 ## Publicación
 

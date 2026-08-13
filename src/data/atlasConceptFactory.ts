@@ -1,4 +1,4 @@
-import type { SceneVariant, StudyConcept } from "./conceptTypes";
+import type { SceneVariant, StudyConcept, StudyScene } from "./conceptTypes";
 
 export type ConceptSeed = readonly [title: string, description: string];
 export type ConceptChapterSeed = {
@@ -10,6 +10,7 @@ const allVariants: readonly SceneVariant[] = [
   "pipeline", "layers", "compare", "timeline", "tree", "gate", "stack", "orbit", "matrix", "browser", "flow", "cards", "terminal", "document",
   "anatomy", "request", "queue", "cache", "state-machine", "network", "filesystem", "compiler", "container", "database", "scheduler", "signal", "lifecycle", "trace",
   "memory-map", "runtime-dispatch", "parallel-grid", "workflow", "interface-flow", "literate-weave",
+  "signal-matrix", "relation-loom", "concept-constellation", "assurance-rack", "event-fabric", "artifact-passport",
 ];
 
 const families: Record<SceneVariant, string> = {
@@ -47,6 +48,12 @@ const families: Record<SceneVariant, string> = {
   workflow: "workflow y decisiones",
   "interface-flow": "flujo de interfaz",
   "literate-weave": "tejido literario",
+  "signal-matrix": "matriz de señales",
+  "relation-loom": "telar relacional",
+  "concept-constellation": "constelación de mecanismos",
+  "assurance-rack": "espectro de verificación",
+  "event-fabric": "tejido de eventos",
+  "artifact-passport": "pasaporte del artefacto",
 };
 
 const layouts = ["standard", "wide", "standard", "compact", "wide", "standard", "feature"] as const;
@@ -119,6 +126,12 @@ export function semanticCandidates(title: string, description: string, section: 
   if (titleHas("workflow", "pipeline", "node", "nodo", "approval", "aprobación", "reintento")) pushUnique(candidates, ["workflow", "flow", "gate", "queue", "trace"]);
   if (titleHas("wireframe", "prototipo", "usuario", "usabilidad", "interfaz", "grid", "componente visual")) pushUnique(candidates, ["interface-flow", "browser", "flow", "cards", "anatomy"]);
   if (titleHas("cweb", "ctangle", "cweave", "literaria", "literate", "change file", "tex")) pushUnique(candidates, ["literate-weave", "document", "compiler", "pipeline", "tree"]);
+  if (titleHas("join", "relación", "relacional", "clave foránea", "cardinalidad", "tupla", "normalización") || has("filas coincidentes", "álgebra relacional")) pushUnique(candidates, ["relation-loom", "database", "matrix", "pipeline", "compare"]);
+  if (titleHas("test", "prueba", "testing", "fuzz", "cobertura", "sast", "dast", "contract", "contrato") || has("verificación automática", "quality gate")) pushUnique(candidates, ["assurance-rack", "gate", "trace", "matrix", "pipeline"]);
+  if (titleHas("evento", "event", "broker", "partición", "partition", "consumer", "consumidor", "producer", "productor", "kafka", "webhook", "offset", "replay") || has("arquitectura dirigida por eventos")) pushUnique(candidates, ["event-fabric", "queue", "signal", "network", "workflow"]);
+  if (titleHas("ip", "dns", "nat", "dhcp", "cidr", "subnet", "puerto", "tcp", "udp", "tls", "firewall", "vpn", "routing") || has("tráfico de red", "segmentación de red")) pushUnique(candidates, ["signal-matrix", "network", "request", "matrix", "trace"]);
+  if (titleHas("artefacto", "artifact", "sbom", "firma", "attestation", "provenance", "digest", "promoción", "supply chain") || has("build reproducible", "binario inmutable")) pushUnique(candidates, ["artifact-passport", "pipeline", "gate", "document", "trace"]);
+  if (titleHas("ecosistema", "plataforma", "módulo", "biblioteca", "runtime", "componentes") || has("mecanismos coordinados")) pushUnique(candidates, ["concept-constellation", "orbit", "anatomy", "cards", "layers"]);
   if (titleHas("auth", "valid", "permission", "permiso", "policy", "política", "rule", "schema", "cors", "guard") || has("autoriza", "rechaza", "condición")) pushUnique(candidates, ["gate", "compare", "matrix", "document", "flow"]);
   if (titleHas("versus", " vs ", "compar", "trade-off", "elegir", "cuándo usar")) pushUnique(candidates, ["compare", "cards", "matrix", "tree", "timeline"]);
   if (titleHas("jerarqu", "árbol", "tree", "dependenc", "herencia")) pushUnique(candidates, ["tree", "layers", "orbit", "filesystem", "cards"]);
@@ -194,7 +207,24 @@ function sceneNodes(variant: SceneVariant, title: string, section: string): read
     case "workflow": return ["trigger|inicio", `${concept}|nodo`, "policy|decisión", "output|evidencia"];
     case "interface-flow": return ["necesidad|entrada", `${concept}|interfaz`, "feedback|estado", "tarea|resultado"];
     case "literate-weave": return ["narrativa|secciones", `${concept}|WEB`, "CTANGLE|programa", "CWEAVE|documento"];
+    case "signal-matrix": return ["origen|señal", `${concept}|ruta`, "control|política", "destino|respuesta"];
+    case "relation-loom": return ["tabla A|tuplas", `${concept}|predicado`, "tabla B|tuplas", "resultado|filas"];
+    case "concept-constellation": return [`${concept}|núcleo`, "mecanismo|órbita", "contrato|órbita", "evidencia|órbita"];
+    case "assurance-rack": return ["smoke|rápida", "contract|frontera", `${concept}|profunda`, "security|adversarial"];
+    case "event-fabric": return ["producer|evento", "broker|partición", "consumer|offset", `${concept}|evidencia`];
+    case "artifact-passport": return ["commit|entrada", "checks|evidencia", "digest|identidad", `${concept}|promoción`];
   }
+}
+
+export function createStudyScene(title: string, description: string, section: string): StudyScene {
+  const variant = semanticVariant(title, description, section);
+  return {
+    variant,
+    code: title,
+    nodes: sceneNodes(variant, title, section),
+    outcome: title.toLocaleLowerCase("es"),
+    caption: description,
+  };
 }
 
 export function createConceptCollection(chapters: readonly ConceptChapterSeed[]): readonly StudyConcept[] {

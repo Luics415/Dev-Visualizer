@@ -4,6 +4,7 @@ import { stateManagementConcepts } from "@/data/stateManagementConcepts";
 export default function StateManagementPage() {
   return (
     <StudyAtlasCollection
+      collectionId="state-management"
       collectionNumber="05"
       eyebrow="Del dato local a la sincronización distribuida"
       title="Gestión de estado visualizada"

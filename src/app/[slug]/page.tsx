@@ -38,6 +38,7 @@ export default async function ExpandedRoutePage({ params }: ExpandedRoutePagePro
 
   return (
     <StudyAtlasCollection
+      collectionId={manifest.id}
       collectionNumber={number}
       eyebrow={route.collection.eyebrow}
       title={route.collection.title}
@@ -49,7 +50,6 @@ export default async function ExpandedRoutePage({ params }: ExpandedRoutePagePro
       footer={route.collection.footer}
       primer={route.collection.primer}
       notice={route.collection.notice}
-      sources={route.collection.sources}
       actionHref={manifest.actionHref}
     />
   );

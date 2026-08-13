@@ -4,6 +4,7 @@ import { dockerConcepts } from "@/data/dockerConcepts";
 export default function DockerPage() {
   return (
     <StudyAtlasCollection
+      collectionId="docker"
       collectionNumber="15"
       eyebrow="De una imagen reproducible a un runtime aislado y operable"
       title="Docker visualizado"

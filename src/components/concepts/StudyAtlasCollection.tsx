@@ -7,10 +7,11 @@ import { AnimatedConceptScene } from "@/components/visual/AnimatedConceptScene";
 import type { StudyConcept } from "@/data/conceptTypes";
 import { collectionPrimers, primerKeyFromHeroClass } from "@/data/collectionPrimers";
 import type { CollectionPrimer as CollectionPrimerData } from "@/data/collectionPrimers";
-import type { OfficialSource } from "@/data/expandedCollectionTypes";
+import { officialReferencesForCollection } from "@/data/officialReferences";
 import { slugify } from "@/lib/slugify";
 
 type StudyAtlasCollectionProps = {
+  collectionId: string;
   collectionNumber: string;
   eyebrow: string;
   title: string;
@@ -22,11 +23,11 @@ type StudyAtlasCollectionProps = {
   footer: string;
   primer?: CollectionPrimerData;
   notice?: string;
-  sources?: readonly OfficialSource[];
   actionHref?: string;
 };
 
 export function StudyAtlasCollection({
+  collectionId,
   collectionNumber,
   eyebrow,
   title,
@@ -38,11 +39,11 @@ export function StudyAtlasCollection({
   footer,
   primer: providedPrimer,
   notice,
-  sources = [],
   actionHref,
 }: StudyAtlasCollectionProps) {
   const sections = [...new Set(concepts.map((concept) => concept.section))];
   const primer = providedPrimer ?? collectionPrimers[primerKeyFromHeroClass(heroClassName)];
+  const sources = officialReferencesForCollection(collectionId);
   const chapters = sections.map((name) => ({
     name,
     count: concepts.filter((concept) => concept.section === name).length,
@@ -92,6 +93,8 @@ export function StudyAtlasCollection({
                 index={index + 1}
                 title={concept.title}
                 description={concept.description}
+                collectionId={collectionId}
+                section={concept.section}
                 family={concept.family}
                 layout={concept.layout}
               >

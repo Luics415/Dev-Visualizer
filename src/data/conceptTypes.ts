@@ -32,7 +32,13 @@ export type SceneVariant =
   | "parallel-grid"
   | "workflow"
   | "interface-flow"
-  | "literate-weave";
+  | "literate-weave"
+  | "signal-matrix"
+  | "relation-loom"
+  | "concept-constellation"
+  | "assurance-rack"
+  | "event-fabric"
+  | "artifact-passport";
 
 export type StudyScene = {
   variant: SceneVariant;
