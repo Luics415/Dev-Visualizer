@@ -37,7 +37,7 @@ function validateCatalog(): CatalogValidationReport {
     }
   }
 
-  if (canonicalConceptCount !== 3188) throw new Error(`Se esperaban 3,188 conceptos canónicos; existen ${canonicalConceptCount}.`);
+  if (canonicalConceptCount !== 3427) throw new Error(`Se esperaban 3,427 conceptos canónicos; existen ${canonicalConceptCount}.`);
   if (sourcedConcepts !== canonicalConceptCount || unresolvedReferences > 0) {
     throw new Error(`Cobertura de fuentes incompleta: ${sourcedConcepts}/${canonicalConceptCount}; conceptos con menos de dos referencias: ${unresolvedReferences}.`);
   }

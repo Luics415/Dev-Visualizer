@@ -27,7 +27,7 @@ Cada concepto incluye:
 - código o configuración coherente;
 - conclusión comprensible si el loop se observa a la mitad;
 - una escena que represente el mecanismo, no movimiento decorativo;
-- al menos una fuente oficial o especificación visible y asociada directamente al concepto.
+- al menos dos fuentes oficiales o especificaciones visibles y asociadas directamente al concepto.
 
 ## Caso En acción
 
@@ -39,6 +39,8 @@ Cada caso cuenta una historia propia. Debe mostrar:
 - recuperación explícita;
 - resultado verificable;
 - **Profundización del caso**.
+
+Las fuentes oficiales y especificaciones pertenecen a la ruta de colección. La ruta **En acción** no vuelve a mostrar una bibliografía: enlaza el relato, la profundización y el resultado sin duplicar el bloque documental de cada concepto.
 
 ## Vigencia y fuentes
 

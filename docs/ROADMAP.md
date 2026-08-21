@@ -1,25 +1,26 @@
 # Roadmap
 
-## Expansión a 36 colecciones
+## Atlas actual: 39 colecciones
 
-- [x] Fase 1 — manifiesto ligero, registro servidor, Git, GitHub, APIs y CI/CD.
-- [x] Fase 1 — fronteras CI/CD/Deployment y puentes de URLs anteriores.
-- [x] Fase 2 — C, C++, Objective-C, C*, CWEB y Embedded C.
-- [x] Fase 2 — escenas de memoria, runtime, paralelismo y tejido literario.
-- [x] Fase 3 — .NET, C# y Visual Basic .NET.
-- [x] Fase 4 — UX/UI, Bootstrap, AngularJS, Node.js, Laravel y n8n.
-- [x] Biblioteca, búsqueda, filtros, vigencia y sitemap derivados.
-- [x] Python desde cero hasta producción: 42 capítulos, 211 conceptos y un caso MediaPipe local.
-- [x] XML, XSD y JSON: 46 capítulos, 230 conceptos y un caso de validación, transformación, concurrencia y sellado.
-- [x] 36 casos únicos En acción con profundización.
-- [x] 72 rutas canónicas y cuatro puentes heredados.
-- [x] Al menos dos fuentes oficiales o especificaciones visibles para 3,188 de 3,188 conceptos.
-- [x] Seis familias visuales nuevas inspiradas en mecanismos, con geometría y tiempos originales.
-- [x] Pasaporte del artefacto propio para CI/CD En acción.
-- [x] Banner firmado exclusivo para Acerca; el banner de Colecciones permanece intacto.
-- [x] Presentación social Luics415 integrada en Open Graph, Twitter Card y descarga desde Acerca.
-- [x] Escena propia HTTPS/TLS 1.3 para NGINX En acción y entrenador postural propio para Python/MediaPipe.
-- [x] Laboratorio de representaciones propio para XML/XSD/JSON En acción.
+- [x] Manifiesto ligero, registro servidor, navegación y sitemap derivados.
+- [x] Git y GitHub como colecciones independientes.
+- [x] APIs multiparadigma y frontera CI/CD / Deployment.
+- [x] C, C++, Objective-C, C*, CWEB y Embedded C.
+- [x] .NET, C# y Visual Basic .NET.
+- [x] UX/UI, Bootstrap, AngularJS, Node.js, Laravel y n8n.
+- [x] Python desde cero hasta producción: 48 capítulos y 240 conceptos.
+- [x] MediaPipe independiente: 24 capítulos y 120 conceptos.
+- [x] XML independiente: 22 capítulos y 110 conceptos.
+- [x] XSD independiente: 20 capítulos y 100 conceptos.
+- [x] JSON independiente: 22 capítulos y 110 conceptos.
+- [x] 39 casos En acción con profundización y sin bibliografía duplicada.
+- [x] 78 rutas canónicas y seis puentes heredados.
+- [x] Al menos dos fuentes oficiales o especificaciones para 3,427 de 3,427 conceptos.
+- [x] Escenas propias para las 24 rutas ampliadas En acción.
+- [x] Loops legibles, pausa fuera del viewport y vista de movimiento reducido.
+- [x] Banner firmado de Acerca y banner del ancla preservado en Colecciones.
+- [x] Presentación social Luics415 integrada en Open Graph, Twitter Card y descarga.
+- [x] README senior con capturas y matriz de licencias.
 
 ## Calidad permanente
 
@@ -27,11 +28,11 @@
 - [x] IDs y slugs únicos.
 - [x] Pareja colección/caso.
 - [x] Capítulo y escena por concepto.
-- [x] Pausa fuera del viewport.
-- [x] Movimiento reducido.
-- [x] Reproducción compartida por viewport, visibilidad de pestaña y preferencia de movimiento.
-- [x] Estado estático legible sin finales grises u opacos.
+- [x] Pausa fuera del viewport y de pestaña.
+- [x] Movimiento reducido con composición completa.
+- [x] Estado base legible sin finales grises u opacos.
 - [x] Contexto visible para tecnologías legadas o históricas.
+- [x] Overflow local en escenas extensas y no global en móvil.
 - [ ] Índice global por concepto y palabra clave.
 - [ ] Progreso local de estudio.
 - [ ] Vista individual y controles de velocidad.
@@ -40,4 +41,4 @@
 
 ## Criterio de terminado
 
-Una colección está terminada cuando la metáfora visual explica causalidad, el código coincide con el proceso, el caso une fronteras y recuperación, las fuentes son primarias y las rutas funcionan en escritorio, 390×844, teclado, tacto y movimiento reducido.
+Una colección está terminada cuando la metáfora visual explica causalidad, el código coincide con el proceso, el caso une fronteras y recuperación, las fuentes de la colección son primarias y ambas rutas funcionan en escritorio, 390 × 844, teclado, tacto y movimiento reducido.

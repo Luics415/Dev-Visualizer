@@ -2,7 +2,7 @@
   "name": "dev-visualizer",
   "version": "1.0.0",
   "private": false,
-  "description": "Atlas visual educativo con 36 colecciones y 72 rutas de desarrollo de software.",
+  "description": "Atlas visual educativo con 39 colecciones y 78 rutas de desarrollo de software.",
   "license": "MIT",
   "engines": {
     "node": ">=24 <25"

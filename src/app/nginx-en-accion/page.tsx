@@ -3,7 +3,6 @@ import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
 import { HttpsTunnelScene } from "@/components/scenes/HttpsTunnelScene";
 import { collectionNumber } from "@/data/collectionManifest";
-import { officialReferencesForCollection } from "@/data/officialReferences";
 import { nginxDeepDive } from "@/data/practicalDeepDives";
 
 export const metadata: Metadata = {
@@ -13,7 +12,6 @@ export const metadata: Metadata = {
 };
 
 export default function NginxActionPage() {
-  const sources = officialReferencesForCollection("nginx");
   return (
     <main className="page-shell">
       <CollectionNav />
@@ -31,10 +29,6 @@ export default function NginxActionPage() {
       </section>
 
       <PracticalDeepDive modules={nginxDeepDive} />
-      <aside className="official-sources" aria-labelledby="nginx-action-sources-title">
-        <div><span>Lectura técnica del caso</span><h2 id="nginx-action-sources-title">Fuentes oficiales y especificaciones</h2></div>
-        <div>{sources.map((source) => <a href={source.href} key={source.href} target="_blank" rel="noreferrer">{source.label}<b>↗</b></a>)}</div>
-      </aside>
       <footer className="project-note">El caso diferencia la conexión TCP, el handshake TLS, la identidad del servidor, las claves de tráfico y el HTTP que NGINX procesa después de terminar el cifrado. Un certificado inválido detiene el canal antes de exponer datos de aplicación.</footer>
     </main>
   );

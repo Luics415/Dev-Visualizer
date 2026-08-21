@@ -1,6 +1,7 @@
 import { collectionManifest } from "./collectionManifest";
 import { pythonCollection } from "./pythonCollection";
-import { structuredDataCollection } from "./structuredDataCollection";
+import { mediapipeCollection } from "./mediapipeCollection";
+import { jsonCollection, xmlCollection, xsdCollection } from "./structuredCollections";
 import { phase1Collections } from "./phase1Collections";
 import { cFamilyCollections } from "./cFamilyCollections";
 import { dotnetCollections } from "./dotnetCollections";
@@ -9,7 +10,10 @@ import type { ExpandedCollectionDefinition } from "./expandedCollectionTypes";
 
 export const expandedCollections: readonly ExpandedCollectionDefinition[] = [
   pythonCollection,
-  structuredDataCollection,
+  mediapipeCollection,
+  xmlCollection,
+  xsdCollection,
+  jsonCollection,
   ...phase1Collections,
   ...cFamilyCollections,
   ...dotnetCollections,
@@ -37,6 +41,24 @@ export const expandedRouteBySlug = new Map(expandedRoutes.map((route) => [route.
 
 for (const collection of expandedCollections) {
   if (collection.chapters.length === 0 || collection.concepts.length === 0) throw new Error(`La colección ${collection.id} no tiene capítulos o conceptos.`);
-  if (collection.caseStudy.steps.length === 0) throw new Error(`La colección ${collection.id} no tiene caso integrado.`);
+  const { caseStudy } = collection;
+  if (!caseStudy.title.trim() || !caseStudy.description.trim() || !caseStudy.footer.trim() || caseStudy.steps.length === 0) {
+    throw new Error(`La colección ${collection.id} no tiene un caso integrado completo.`);
+  }
+  for (const [index, caseStep] of caseStudy.steps.entries()) {
+    if (
+      !caseStep.title.trim()
+      || !caseStep.subtitle.trim()
+      || !caseStep.code.trim()
+      || caseStep.visible.length === 0
+      || caseStep.internal.length === 0
+      || !caseStep.result.trim()
+      || !caseStep.note.trim()
+    ) {
+      throw new Error(`El caso ${collection.id} tiene una etapa incompleta en la posición ${index + 1}.`);
+    }
+  }
+  if (!caseStudy.steps.some((caseStep) => caseStep.state === "warning")) throw new Error(`El caso ${collection.id} no muestra un fallo.`);
+  if (!caseStudy.steps.some((caseStep) => caseStep.state === "recovery")) throw new Error(`El caso ${collection.id} no muestra recuperación.`);
   if (collection.concepts.some((concept) => !concept.scene || !concept.section.trim())) throw new Error(`La colección ${collection.id} contiene un concepto sin escena o capítulo.`);
 }
