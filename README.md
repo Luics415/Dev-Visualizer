@@ -2,12 +2,12 @@
 
 Atlas visual animado para estudiar desarrollo de software desde los fundamentos hasta producción.
 
-**34 colecciones · 68 rutas canónicas · 2,747 conceptos · 34 casos integrados**
+**36 colecciones · 72 rutas canónicas · 3,188 conceptos · 36 casos integrados**
 
 <p align="center">
   <a href="https://luics415.github.io/Dev-Visualizer/"><strong>Abrir Dev Visualizer</strong></a>
   ·
-  <a href="https://luics415.github.io/Dev-Visualizer/colecciones/">Explorar las 34 colecciones</a>
+  <a href="https://luics415.github.io/Dev-Visualizer/colecciones/">Explorar las 36 colecciones</a>
 </p>
 
 Dev Visualizer convierte mecanismos técnicos en escenas autónomas: muestra la entrada, el cambio interno, el resultado observable y una conclusión. Cada colección se acompaña de un caso único **En acción** con fronteras, fallos, recuperación y una profundización técnica.
@@ -16,10 +16,10 @@ Dev Visualizer convierte mecanismos técnicos en escenas autónomas: muestra la 
 
 La puerta de entrada es [/colecciones](https://luics415.github.io/Dev-Visualizer/colecciones/). El catálogo se organiza en seis áreas:
 
-- **Lenguajes:** JavaScript, TypeScript, C, C++, C#, Objective-C, C*, CWEB, Embedded C y Visual Basic .NET.
+- **Lenguajes:** JavaScript, TypeScript, Python, C, C++, C#, Objective-C, C*, CWEB, Embedded C y Visual Basic .NET.
 - **Diseño e interfaces:** UX/UI, HTML y CSS, Bootstrap, AngularJS, React y React Native.
 - **Plataformas y servidor:** APIs, Backend, Node.js, Laravel, n8n, .NET y Firebase.
-- **Datos:** Gestión de estado y Bases de datos.
+- **Datos:** XML, XSD y JSON, Gestión de estado y Bases de datos.
 - **Control de versiones y calidad:** Git, GitHub y Debugging.
 - **Infraestructura y entrega:** Linux, AWS, CI/CD, Deployment, NGINX y Docker.
 
@@ -37,7 +37,9 @@ Hay puentes accesibles para las URLs anteriores /git-github* y /apis-rest*. Git 
 - Navegación, búsqueda y filtros derivados de un manifiesto ligero.
 - Diseño responsive, navegación por teclado, foco visible y contenido legible sin depender solo del color.
 - Avisos visibles para Objective-C, C*, CWEB y AngularJS cuando el contexto es legado o histórico.
-- Los 2,747 conceptos enlazan directamente fuentes oficiales o especificaciones, con autoridad, tipo, versión y fecha de verificación.
+- Los 3,188 conceptos enlazan al menos dos fuentes oficiales o especificaciones, con autoridad, tipo, versión y fecha de verificación.
+- Python ofrece una ruta de 42 capítulos y 211 conceptos: comienza con algoritmos, terminal y sintaxis; avanza por biblioteca estándar, calidad, internals y concurrencia; y llega a web, automatización, datos, IA, OpenCV, MediaPipe, escritorio, IoT y producción.
+- XML, XSD y JSON forman una ruta conjunta de 46 capítulos y 230 conceptos: distingue documento, schema y reglas de negocio; cubre parsing seguro, namespaces, XSD 1.1, JSON Schema 2020-12, patches, canonicalización, evolución e interoperabilidad.
 
 La narrativa visual toma inspiración general del formato educativo de [AlgoInsight](https://www.instagram.com/algoinsight/) sin copiar publicaciones, textos, marcas ni recursos. Los guiños a Arcane y League of Legends continúan como referencias textuales independientes; consulta [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
 
@@ -48,13 +50,13 @@ El sitio usa Next.js App Router, React, TypeScript y Motion. Se exporta como HTM
     src/data/collectionManifest.ts      orden, grupo, rutas, tema y vigencia
     src/data/expandedCollections.ts     registro servidor de colecciones expandidas
     src/data/officialReferences.ts      autoridades, versiones y resolución por concepto
-    src/data/catalogValidation.ts       cobertura 34/34 y 2,747/2,747
-    src/app/[slug]/page.tsx             38 rutas nuevas generadas estáticamente
+    src/data/catalogValidation.ts       cobertura 36/36 y 3,188/3,188
+    src/app/[slug]/page.tsx             42 rutas expandidas generadas estáticamente
     src/components/visual/useScenePlayback.ts  reproducción visible y movimiento reducido
     src/components/                     navegación, atlas, escenas y casos
     src/app/sitemap.ts                  sitemap derivado del manifiesto
 
-Las 30 rutas históricas que ya tenían página conservan sus componentes especializados. Las 38 rutas de las 19 colecciones nuevas se generan desde parámetros cerrados. La biblioteca del cliente recibe únicamente el manifiesto y las cifras ya calculadas; no importa los archivos grandes de contenido.
+Las 30 rutas históricas que ya tenían página conservan sus componentes especializados. Las 42 rutas de las 21 colecciones expandidas se generan desde parámetros cerrados. La biblioteca del cliente recibe únicamente el manifiesto y las cifras ya calculadas; no importa los archivos grandes de contenido.
 
 Consulta:
 
@@ -75,7 +77,7 @@ Comprobación completa:
 
     npm run check
 
-El comando ejecuta ESLint, TypeScript estricto, la exportación estática y la comprobación de enlaces internos. El build final genera 77 páginas, incluidas 68 rutas canónicas, cuatro puentes heredados, biblioteca, créditos, sitemap y páginas de soporte.
+El comando ejecuta ESLint, TypeScript estricto, la exportación estática y la comprobación de enlaces internos. El build final genera 81 páginas, incluidas 72 rutas canónicas, cuatro puentes heredados, biblioteca, créditos, sitemap y páginas de soporte.
 
 ## Añadir una colección
 

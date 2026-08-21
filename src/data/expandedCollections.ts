@@ -1,4 +1,6 @@
 import { collectionManifest } from "./collectionManifest";
+import { pythonCollection } from "./pythonCollection";
+import { structuredDataCollection } from "./structuredDataCollection";
 import { phase1Collections } from "./phase1Collections";
 import { cFamilyCollections } from "./cFamilyCollections";
 import { dotnetCollections } from "./dotnetCollections";
@@ -6,6 +8,8 @@ import { webAutomationCollections } from "./webAutomationCollections";
 import type { ExpandedCollectionDefinition } from "./expandedCollectionTypes";
 
 export const expandedCollections: readonly ExpandedCollectionDefinition[] = [
+  pythonCollection,
+  structuredDataCollection,
   ...phase1Collections,
   ...cFamilyCollections,
   ...dotnetCollections,

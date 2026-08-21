@@ -32,3 +32,6 @@ jobs:
 
       - name: Static build
         run: npm run build
+
+      - name: Validate internal links
+        run: npm run check:links

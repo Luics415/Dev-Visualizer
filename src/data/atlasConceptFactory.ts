@@ -105,6 +105,27 @@ export function semanticCandidates(title: string, description: string, section: 
   if (has("modelo de ejecución", "entrada y contratos", "datos y control", "composición y personas", "credenciales y seguridad", "errores y confiabilidad", "operación y escala")) {
     pushUnique(candidates, ["workflow", "flow", "gate", "queue", "trace", "state-machine", "cards", "network"]);
   }
+  if (has("datos, estructura y significado", "fronteras entre xml, xsd y json", "anatomía de un documento xml", "xml bien formado", "modelo de información xml", "namespaces xml", "entidades, dtd y estructura física")) {
+    pushUnique(candidates, ["document", "tree", "anatomy", "concept-constellation", "compare", "layers", "gate", "literate-weave"]);
+  }
+  if (has("modelos de parsing xml", "xpath 3.1", "transformación con xslt", "serialización y canonicalización xml", "vocabularios y protocolos xml", "seguridad xml", "xml en producción")) {
+    pushUnique(candidates, ["compiler", "pipeline", "tree", "literate-weave", "assurance-rack", "trace", "signal-matrix", "artifact-passport"]);
+  }
+  if (has("propósito y anatomía de xsd", "tipos simples de xsd", "restricciones y facets xsd", "tipos complejos y modelos de contenido", "cardinalidad, ausencia y nil", "reutilización y composición xsd", "namespaces y conjuntos de schemas xsd")) {
+    pushUnique(candidates, ["gate", "assurance-rack", "matrix", "tree", "relation-loom", "document", "layers", "concept-constellation"]);
+  }
+  if (has("derivación y polimorfismo xsd", "identidad y relaciones xsd", "capacidades de xsd 1.1", "psvi y semántica de validación", "evolución de schemas xsd", "patrones de diseño xsd")) {
+    pushUnique(candidates, ["relation-loom", "tree", "gate", "runtime-dispatch", "assurance-rack", "compare", "lifecycle", "concept-constellation"]);
+  }
+  if (has("sintaxis json desde cero", "strings, unicode y escapes json", "números json", "objetos, arrays y estados json", "parsing y serialización json")) {
+    pushUnique(candidates, ["document", "cards", "matrix", "compiler", "anatomy", "compare", "pipeline", "signal-matrix"]);
+  }
+  if (has("fundamentos de json schema 2020-12", "tipos y restricciones json schema", "objetos en json schema", "arrays y composición json schema", "referencias y vocabularios json schema", "resultado y evolución json schema")) {
+    pushUnique(candidates, ["gate", "assurance-rack", "concept-constellation", "orbit", "tree", "matrix", "document", "trace"]);
+  }
+  if (has("json pointer, patch y merge patch", "consultas, perfiles y secuencias json", "json-ld y semántica enlazada", "seguridad json", "json en producción", "mapeo entre xml y json", "contratos en apis, configuración y eventos", "validación, pruebas y operación integral")) {
+    pushUnique(candidates, ["timeline", "state-machine", "trace", "artifact-passport", "relation-loom", "assurance-rack", "pipeline", "event-fabric"]);
+  }
 
   if (titleHas("qué es", "introducción", "fundamento", "arquitectura", "anatomía") || has("partes de", "componentes de")) pushUnique(candidates, ["anatomy", "layers", "tree", "orbit", "cards"]);
   if (titleHas("request", "response", "http", "endpoint", "petición", "respuesta", "proxy", "upstream", "webhook") || has("solicitud HTTP", "cliente y servidor")) pushUnique(candidates, ["request", "network", "pipeline", "flow", "timeline"]);
@@ -137,6 +158,10 @@ export function semanticCandidates(title: string, description: string, section: 
   if (titleHas("jerarqu", "árbol", "tree", "dependenc", "herencia")) pushUnique(candidates, ["tree", "layers", "orbit", "filesystem", "cards"]);
   if (titleHas("layer", "capa", "stack")) pushUnique(candidates, ["layers", "stack", "anatomy", "tree", "container"]);
   if (titleHas("config", "manifest", "yaml", "json", "declar", "archivo de configuración")) pushUnique(candidates, ["document", "cards", "compiler", "gate", "flow"]);
+  if (titleHas("xml", "elemento", "atributo", "namespace", "qname", "infoset", "doctype", "entidad")) pushUnique(candidates, ["document", "tree", "anatomy", "literate-weave", "concept-constellation"]);
+  if (titleHas("xsd", "schema", "facet", "complextype", "sequence", "choice", "keyref", "psvi")) pushUnique(candidates, ["gate", "assurance-rack", "matrix", "relation-loom", "tree"]);
+  if (titleHas("json pointer", "json patch", "merge patch", "revision")) pushUnique(candidates, ["timeline", "state-machine", "trace", "workflow", "gate"]);
+  if (titleHas("canonical", "digest", "firma", "jcs")) pushUnique(candidates, ["artifact-passport", "pipeline", "document", "assurance-rack", "trace"]);
 
   if (candidates.length < 6) {
     const start = stableIndex(text, allVariants.length);

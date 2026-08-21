@@ -34,6 +34,7 @@ export function AnimatedConceptScene({ ariaLabel, code, nodes, outcome, caption,
 
   return (
     <div ref={sceneRef} className={`scene atlas-scene atlas-scene--${variant}`} data-playback={playback} aria-label={ariaLabel}>
+      {shouldAnimate ? (
       <Fragment key={playback}>
         <div className="scene-code">{code}</div>
 
@@ -417,6 +418,17 @@ export function AnimatedConceptScene({ ariaLabel, code, nodes, outcome, caption,
 
         <motion.div className="atlas-outcome" animate={{ opacity: [0, 0, 1, 1, 0], y: [5, 5, 0, 0, -3] }} transition={{ ...repeat, times: [0, .68, .76, .91, 1] }}>{outcome}</motion.div>
       </Fragment>
+      ) : (
+        <div className="atlas-rest-state" data-static-variant={variant} aria-hidden="true">
+          <div className="scene-code">{code}</div>
+          <div className="atlas-rest-state__nodes">
+            {safeNodes.slice(0, 4).map((node, index) => (
+              <div key={`${node}-${index}`}><em>{String(index + 1).padStart(2, "0")}</em><NodeText value={node} /></div>
+            ))}
+          </div>
+          <div className="atlas-rest-state__outcome">{outcome}</div>
+        </div>
+      )}
       <p className="scene-caption">{caption}</p>
     </div>
   );

@@ -24,7 +24,7 @@ export function CollectionLibrary({ entries }: { entries: readonly LibraryEntry[
   return (
     <>
       <section className="library-controls" aria-label="Filtros de colecciones">
-        <label><span>Buscar tecnología o concepto</span><input type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="C++, APIs, accesibilidad, pipelines…" /></label>
+        <label><span>Buscar tecnología o concepto</span><input type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Python, MediaPipe, XML, XSD, JSON…" /></label>
         <label><span>Área</span><select value={group} onChange={(event) => setGroup(event.target.value)}><option value="todos">Todas las áreas</option>{Object.entries(collectionGroupMeta).map(([id, meta]) => <option key={id} value={id}>{meta.name}</option>)}</select></label>
         <label><span>Vigencia</span><select value={lifecycle} onChange={(event) => setLifecycle(event.target.value as CollectionLifecycle | "todas")}><option value="todas">Todas</option><option value="actual">Actual</option><option value="legado">Legado</option><option value="histórico">Histórico</option></select></label>
         <output aria-live="polite"><strong>{visible.length}</strong><span>colecciones visibles</span></output>

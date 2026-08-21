@@ -1,6 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import { CollectionNav } from "@/components/navigation/CollectionNav";
+import { collectionManifest } from "@/data/collectionManifest";
 import { projectCredits } from "@/data/projectCredits";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
@@ -15,7 +16,7 @@ export default function AboutPage() {
           <h1>Acerca de Dev Visualizer</h1>
           <p>Un atlas visual original e independiente para estudiar desarrollo de software mediante conceptos animados, casos integrados y profundizaciones técnicas.</p>
         </div>
-        <div className="hero__counter"><strong>34</strong><span>colecciones · 68 rutas</span></div>
+        <div className="hero__counter"><strong>{collectionManifest.length}</strong><span>colecciones · {collectionManifest.length * 2} rutas</span></div>
       </header>
 
       <section className="about-signature-banner" aria-label="Firma de autor de Luics415">
@@ -78,6 +79,7 @@ export default function AboutPage() {
       </section>
 
       <div className="about-actions">
+        <a href={`${basePath}/social/luics415-dev-visualizer-atlas.png`} download>Descargar presentación social ↗</a>
         <Link href="/colecciones">Volver a las colecciones →</Link>
       </div>
     </main>

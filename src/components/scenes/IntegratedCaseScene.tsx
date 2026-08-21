@@ -24,6 +24,7 @@ export function IntegratedCaseScene({ title, steps }: IntegratedCaseSceneProps) 
         <span><i /> Recuperación y evidencia</span>
       </header>
 
+      {shouldAnimate ? (
       <Fragment key={playback}>
       <div className="integrated-case__track" style={{ "--case-steps": steps.length } as React.CSSProperties}>
         <div className="integrated-case__rail" aria-hidden="true" />
@@ -54,6 +55,21 @@ export function IntegratedCaseScene({ title, steps }: IntegratedCaseSceneProps) 
         })}
       </div>
       </Fragment>
+      ) : (
+        <div className="integrated-case__track integrated-case__track--rest" style={{ "--case-steps": steps.length } as React.CSSProperties}>
+          <div className="integrated-case__rail" aria-hidden="true" />
+          {steps.map((stage, index) => (
+            <article className={`integrated-case__step integrated-case__step--${stage.state ?? "normal"}`} key={stage.title}>
+              <header><em>{String(index + 1).padStart(2, "0")}</em><div><strong>{stage.title}</strong><small>{stage.subtitle}</small></div></header>
+              <div className="integrated-case__boundary">
+                <span>{stage.visible[0]}</span><i>→</i><span>{stage.internal[0]}</span>
+              </div>
+              <code>{stage.code}</code>
+              <b>{stage.result}</b>
+            </article>
+          ))}
+        </div>
+      )}
     </div>
   );
 }
