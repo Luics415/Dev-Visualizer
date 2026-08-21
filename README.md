@@ -1,64 +1,120 @@
 # Dev Visualizer
 
-Atlas visual animado para estudiar desarrollo de software desde los fundamentos hasta producción.
+Atlas visual animado para aprender desarrollo de software desde los fundamentos hasta producción.
 
-**36 colecciones · 72 rutas canónicas · 3,188 conceptos · 36 casos integrados**
+**39 colecciones · 78 rutas canónicas · 3,427 conceptos · 39 casos integrados**
 
 <p align="center">
   <a href="https://luics415.github.io/Dev-Visualizer/"><strong>Abrir Dev Visualizer</strong></a>
   ·
-  <a href="https://luics415.github.io/Dev-Visualizer/colecciones/">Explorar las 36 colecciones</a>
+  <a href="https://luics415.github.io/Dev-Visualizer/colecciones/">Explorar las 39 colecciones</a>
+  ·
+  <a href="https://luics415.github.io/Dev-Visualizer/acerca/">Acerca del proyecto</a>
 </p>
 
-Dev Visualizer convierte mecanismos técnicos en escenas autónomas: muestra la entrada, el cambio interno, el resultado observable y una conclusión. Cada colección se acompaña de un caso único **En acción** con fronteras, fallos, recuperación y una profundización técnica.
+Dev Visualizer transforma mecanismos técnicos en escenas autónomas: cada concepto hace visibles la entrada, la transformación interna, el resultado y la conclusión. Cada colección tiene además un caso **En acción** con fronteras, fallo, recuperación y evidencia verificable.
 
-## Recorrer el atlas
+## Vista del producto
 
-La puerta de entrada es [/colecciones](https://luics415.github.io/Dev-Visualizer/colecciones/). El catálogo se organiza en seis áreas:
+<table>
+  <tr>
+    <td width="66%">
+      <img src="docs/screenshots/colecciones-desktop.png" alt="Biblioteca de Dev Visualizer en escritorio con el banner del ancla y 39 colecciones" />
+      <br /><sub>Biblioteca completa en escritorio.</sub>
+    </td>
+    <td width="34%">
+      <img src="docs/screenshots/colecciones-mobile.png" alt="Biblioteca de Dev Visualizer en una pantalla móvil" />
+      <br /><sub>Catálogo responsive a 390 × 844.</sub>
+    </td>
+  </tr>
+  <tr>
+    <td width="66%">
+      <img src="docs/screenshots/python-action-desktop.png" alt="Python En acción con una escena animada del runtime, fallo y recuperación" />
+      <br /><sub>Python En acción: runtime, cuarentena y reanudación.</sub>
+    </td>
+    <td width="34%">
+      <img src="docs/screenshots/mediapipe-action-mobile.png" alt="MediaPipe En acción en móvil con el pipeline de percepción" />
+      <br /><sub>MediaPipe En acción con desplazamiento local.</sub>
+    </td>
+  </tr>
+</table>
 
-- **Lenguajes:** JavaScript, TypeScript, Python, C, C++, C#, Objective-C, C*, CWEB, Embedded C y Visual Basic .NET.
-- **Diseño e interfaces:** UX/UI, HTML y CSS, Bootstrap, AngularJS, React y React Native.
-- **Plataformas y servidor:** APIs, Backend, Node.js, Laravel, n8n, .NET y Firebase.
-- **Datos:** XML, XSD y JSON, Gestión de estado y Bases de datos.
-- **Control de versiones y calidad:** Git, GitHub y Debugging.
-- **Infraestructura y entrega:** Linux, AWS, CI/CD, Deployment, NGINX y Docker.
+Las capturas documentan una compilación real del proyecto y forman parte del contenido original licenciado bajo [CC BY-NC-SA 4.0](LICENSE-CONTENT.md).
 
-Cada identidad estable tiene dos rutas:
+## Qué distingue al atlas
 
-    /<colección>
-    /<colección>-en-accion
+- **Causalidad antes que decoración.** El movimiento representa datos, memoria, mensajes, control, ownership o evidencia.
+- **Dos niveles por tecnología.** La colección explica conceptos; **En acción** conecta un caso técnico completo sin repetir la bibliografía de estudio.
+- **Fuente primaria por concepto.** Los 3,427 conceptos resuelven al menos dos referencias oficiales o especificaciones visibles.
+- **Escenas que no terminan apagadas.** Los loops conservan un estado base legible, regresan semánticamente al inicio y se pausan fuera del viewport.
+- **Accesibilidad como contrato.** Teclado, foco visible, estados no dependientes solo del color, vista estática para movimiento reducido y overflow local en escenas extensas.
+- **Fronteras tecnológicas explícitas.** Git no es GitHub; CI/CD no es Deployment; Python no es MediaPipe; XML, XSD y JSON tienen responsabilidades y rutas separadas.
 
-Hay puentes accesibles para las URLs anteriores /git-github* y /apis-rest*. Git y GitHub ya son colecciones distintas; APIs cubre REST, GraphQL, gRPC, WebSockets, webhooks y eventos; CI/CD termina en un artefacto aprobado y Deployment comienza desde ese artefacto.
+## Catálogo
 
-## Experiencia
+| Área | Colecciones |
+|---|---|
+| Lenguajes | JavaScript, TypeScript, Python, C, C++, C#, Objective-C, C*, CWEB, Embedded C y Visual Basic .NET |
+| Diseño e interfaces | UX/UI, HTML y CSS, Bootstrap, AngularJS, React y React Native |
+| Plataformas y servidor | APIs, Backend, Node.js, Laravel, n8n, .NET, MediaPipe y Firebase |
+| Datos | XML, XSD, JSON, Gestión de estado y Bases de datos |
+| Control de versiones y calidad | Git, GitHub y Debugging |
+| Infraestructura y entrega | Linux, AWS, CI/CD, Deployment, NGINX y Docker |
 
-- Animaciones autónomas que pueden comprenderse aunque el loop se observe a la mitad.
-- Pausa automática fuera del viewport y respeto por prefers-reduced-motion.
-- Navegación, búsqueda y filtros derivados de un manifiesto ligero.
-- Diseño responsive, navegación por teclado, foco visible y contenido legible sin depender solo del color.
-- Avisos visibles para Objective-C, C*, CWEB y AngularJS cuando el contexto es legado o histórico.
-- Los 3,188 conceptos enlazan al menos dos fuentes oficiales o especificaciones, con autoridad, tipo, versión y fecha de verificación.
-- Python ofrece una ruta de 42 capítulos y 211 conceptos: comienza con algoritmos, terminal y sintaxis; avanza por biblioteca estándar, calidad, internals y concurrencia; y llega a web, automatización, datos, IA, OpenCV, MediaPipe, escritorio, IoT y producción.
-- XML, XSD y JSON forman una ruta conjunta de 46 capítulos y 230 conceptos: distingue documento, schema y reglas de negocio; cubre parsing seguro, namespaces, XSD 1.1, JSON Schema 2020-12, patches, canonicalización, evolución e interoperabilidad.
+Cada colección dispone de dos identidades canónicas:
 
-La narrativa visual toma inspiración general del formato educativo de [AlgoInsight](https://www.instagram.com/algoinsight/) sin copiar publicaciones, textos, marcas ni recursos. Los guiños a Arcane y League of Legends continúan como referencias textuales independientes; consulta [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md).
+```text
+/<colección>
+/<colección>-en-accion
+```
+
+Las antiguas URLs `/git-github*`, `/apis-rest*` y `/xml-xsd-json*` se conservan como seis puentes accesibles. No cuentan como colecciones ni cambian la identidad de las nuevas rutas.
+
+### Rutas de estudio ampliadas
+
+| Colección | Capítulos | Conceptos | Alcance |
+|---|---:|---:|---|
+| Python | 48 | 240 | Desde algoritmo, terminal y sintaxis hasta internals, concurrencia, web, datos, IA, seguridad y operación |
+| MediaPipe | 24 | 120 | Tasks, modelos, running modes, grafos, visión, audio, texto, edge, rendimiento y uso responsable |
+| XML | 22 | 110 | Documentos, namespaces, parsing seguro, XPath, XSLT, catálogos, firma y evolución |
+| XSD | 20 | 100 | Tipos, facets, identidad, composición, assertions, PSVI, compatibilidad y conformidad |
+| JSON | 22 | 110 | Sintaxis, JSON Schema, Pointer, Patch, precisión, seguridad, canonicalización y operación |
+
+Python incluye documentación oficial para personas principiantes y avanza de forma progresiva. MediaPipe usa Python en su caso práctico, pero mantiene currículo, fuentes, ruta y escena propios. Del mismo modo, XML define documentos, XSD define schemas XML y JSON define una sintaxis de valores; una colección no sustituye a las otras.
+
+## Narrativa En acción
+
+Las 24 colecciones incorporadas mediante el registro escalable usan 24 composiciones visuales propias. Entre ellas hay una mesa forense de memoria para C, estación de ownership para C++, switchboard del runtime para Objective-C, cuadrícula térmica para C*, libro-telar para CWEB, osciloscopio para Embedded C, puerto multimodal para APIs, puerto del event loop para Node.js, palacio transaccional para Laravel, aeropuerto de workflows para n8n, estratos de historial para Git y cámara de gobernanza para GitHub.
+
+Los guiños a League of Legends y Arcane se limitan a microcopy original y referencias ambientales. No se usan personajes, audio, logotipos, mapas ni recursos de Riot Games, y no se sugiere afiliación.
 
 ## Arquitectura
 
-El sitio usa Next.js App Router, React, TypeScript y Motion. Se exporta como HTML, CSS y JavaScript estáticos.
+El sitio utiliza Next.js App Router, React, TypeScript y Motion. `output: "export"` produce HTML, CSS y JavaScript estáticos para GitHub Pages.
 
-    src/data/collectionManifest.ts      orden, grupo, rutas, tema y vigencia
-    src/data/expandedCollections.ts     registro servidor de colecciones expandidas
-    src/data/officialReferences.ts      autoridades, versiones y resolución por concepto
-    src/data/catalogValidation.ts       cobertura 36/36 y 3,188/3,188
-    src/app/[slug]/page.tsx             42 rutas expandidas generadas estáticamente
-    src/components/visual/useScenePlayback.ts  reproducción visible y movimiento reducido
-    src/components/                     navegación, atlas, escenas y casos
-    src/app/sitemap.ts                  sitemap derivado del manifiesto
+```text
+src/data/collectionManifest.ts
+  └─ identidad, orden, grupo, rutas, tema y vigencia
 
-Las 30 rutas históricas que ya tenían página conservan sus componentes especializados. Las 42 rutas de las 21 colecciones expandidas se generan desde parámetros cerrados. La biblioteca del cliente recibe únicamente el manifiesto y las cifras ya calculadas; no importa los archivos grandes de contenido.
+src/data/expandedCollections.ts
+  └─ registro de primers, capítulos, conceptos y casos ampliados
 
-Consulta:
+src/data/officialReferences.ts
+  └─ autoridades, versiones y resolución de referencias por concepto
+
+src/data/catalogValidation.ts
+  └─ invariantes de 39 colecciones y 3,427 conceptos
+
+src/app/[slug]/page.tsx
+  └─ 48 rutas expandidas generadas con parámetros cerrados
+
+src/components/visual/useScenePlayback.ts
+  └─ viewport, visibilidad de pestaña y movimiento reducido
+```
+
+Las otras 30 rutas canónicas conservan sus componentes especializados. La biblioteca del cliente recibe únicamente el manifiesto ligero y estadísticas calculadas; no importa los módulos educativos grandes.
+
+Más contexto:
 
 - [Arquitectura](docs/ARCHITECTURE.md)
 - [Guía editorial](docs/CONTENT_GUIDE.md)
@@ -68,38 +124,63 @@ Consulta:
 
 ## Desarrollo local
 
-Requiere Node.js 24 y npm.
+Requisitos: Node.js 24 y npm.
 
-    npm install
-    npm run dev
+```bash
+npm ci
+npm run dev
+```
 
-Comprobación completa:
+Validación completa:
 
-    npm run check
+```bash
+npm run check
+```
 
-El comando ejecuta ESLint, TypeScript estricto, la exportación estática y la comprobación de enlaces internos. El build final genera 81 páginas, incluidas 72 rutas canónicas, cuatro puentes heredados, biblioteca, créditos, sitemap y páginas de soporte.
+`npm run check` ejecuta ESLint, TypeScript estricto, la exportación estática y la comprobación de enlaces internos. La compilación actual produce **89 páginas HTML**: 78 canónicas, seis puentes heredados y cinco páginas de soporte.
 
-## Añadir una colección
+### Evidencia de calidad
 
-1. Registrar identidad, grupo, rutas, tema, vigencia y resumen en collectionManifest.ts.
+| Control | Resultado esperado |
+|---|---|
+| Catálogo | 39/39 colecciones; IDs y slugs únicos |
+| Currículo | 3,427/3,427 conceptos con capítulo y escena efectiva |
+| Fuentes | 3,427/3,427 conceptos con al menos dos referencias primarias |
+| Casos | 39/39 pares colección / En acción con profundización |
+| Exportación | 89 páginas estáticas y cero enlaces internos rotos |
+| Responsive | Sin overflow global; escenas anchas usan scroll local |
+| Movimiento | Loop infinito visible, pausa fuera del viewport y estado completo con `prefers-reduced-motion` |
+
+## Añadir o modificar una colección
+
+1. Registrar identidad, grupo, rutas, tema, vigencia y resumen en `collectionManifest.ts`.
 2. Crear primer, capítulos, conceptos y caso integrado en un módulo de datos.
-3. Añadir la definición al registro servidor expandedCollections.ts.
-4. Registrar fuentes oficiales, especificaciones, versión y fecha de verificación en officialReferences.ts.
-5. Usar una familia visual existente o implementar una escena que represente el mecanismo con precisión.
-6. Ejecutar npm run check y validar escritorio, 390×844, teclado, movimiento reducido, overflow y consola.
+3. Incorporar la definición al registro de servidor `expandedCollections.ts`.
+4. Resolver fuentes oficiales, especificaciones, versión y fecha de verificación en `officialReferences.ts`.
+5. Implementar una escena que represente el mecanismo y cierre su loop con un resultado legible.
+6. Ejecutar `npm run check` y validar escritorio, 390 × 844, teclado, tacto, movimiento reducido, overflow y consola.
 
-Las validaciones integradas rechazan IDs o rutas duplicados, colecciones sin capítulos, conceptos sin escena efectiva o sin fuente oficial y casos sin profundización.
+Las validaciones de build rechazan IDs o rutas duplicados, capítulos vacíos, conceptos sin escena, cobertura documental incompleta y casos sin etapas.
 
-## Publicación
+## Publicación y mantenimiento
 
-.github/workflows/deploy-pages.yml compila y publica out/ en GitHub Pages después de cada push a main. El workflow calcula automáticamente basePath y NEXT_PUBLIC_SITE_URL para el repositorio.
+`.github/workflows/deploy-pages.yml` construye y publica `out/` después de cada actualización de `main`. El workflow calcula `basePath` y `NEXT_PUBLIC_SITE_URL` para que rutas, recursos y metadatos funcionen bajo `/Dev-Visualizer/`.
 
-## Autoría y licencias
+Las versiones activas se revisan contra fuentes primarias al cerrar cada expansión. Las tecnologías legadas o históricas muestran un aviso visible con contexto y alternativas. Dev Visualizer es material educativo: no reemplaza documentación oficial, evaluación profesional ni guías de seguridad específicas de un entorno productivo.
+
+## Autoría, créditos y licencias
+
+| Alcance | Licencia / condición |
+|---|---|
+| Código fuente | [MIT](LICENSE) |
+| Textos educativos, diagramas, escenas, identidad visual y capturas | [CC BY-NC-SA 4.0](LICENSE-CONTENT.md) |
+| Dependencias npm | Licencia declarada por cada paquete |
+| Documentación enlazada y especificaciones | Propiedad y términos de sus respectivas autoridades |
+| Marcas, nombres y tecnologías citadas | Propiedad de sus titulares; uso nominativo y educativo |
 
 - Dirección, autoría y mantenimiento: **Luics415**.
 - Desarrollo y diseño visual: **Sharol (Azlynn)**.
 - Asistencia de IA acreditada: **OpenAI ChatGPT**.
-- Código: [MIT](LICENSE).
-- Contenido educativo y diseño original: [CC BY-NC-SA 4.0](CONTENT_LICENSE.md).
+- Inspiración narrativa general: [AlgoInsight](https://www.instagram.com/algoinsight/), sin copiar publicaciones, textos, marcas ni recursos.
 
-Dev Visualizer es un proyecto educativo independiente. Las marcas y tecnologías citadas pertenecen a sus titulares y el atlas no sustituye su documentación oficial.
+Consulta [THIRD_PARTY_NOTICES.md](THIRD_PARTY_NOTICES.md) para atribuciones, independencia legal y avisos de terceros.

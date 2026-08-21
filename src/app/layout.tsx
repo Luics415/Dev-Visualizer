@@ -11,7 +11,7 @@ const assetUrl = (pathname: string) => `${siteRoot}${pathname}`;
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: { default: "Dev Visualizer", template: "%s · Dev Visualizer" },
-  description: "Atlas visual educativo con 36 colecciones, 72 rutas canónicas y 3,188 conceptos de desarrollo de software.",
+  description: "Atlas visual educativo con 39 colecciones, 78 rutas canónicas y 3,427 conceptos de desarrollo de software.",
   applicationName: "Dev Visualizer",
   authors: [
     { name: "Luics415" },
@@ -34,7 +34,7 @@ export const metadata: Metadata = {
     locale: "es_MX",
     siteName: "Dev Visualizer",
     title: "Dev Visualizer",
-    description: "36 colecciones y 72 rutas para aprender desarrollo de software mediante visualizaciones autónomas y casos técnicos completos.",
+    description: "39 colecciones y 78 rutas para aprender desarrollo de software mediante visualizaciones autónomas y casos técnicos completos.",
     images: [{
       url: assetUrl("/social/luics415-dev-visualizer-atlas.png"),
       width: 1729,
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Dev Visualizer",
-    description: "Atlas visual educativo: 36 colecciones, 72 rutas y 3,188 conceptos.",
+    description: "Atlas visual educativo: 39 colecciones, 78 rutas y 3,427 conceptos.",
     images: [assetUrl("/social/luics415-dev-visualizer-atlas.png")],
   },
 };

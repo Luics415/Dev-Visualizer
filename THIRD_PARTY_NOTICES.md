@@ -14,7 +14,7 @@ OpenAI, ChatGPT y GPT son marcas de OpenAI. La mención de ChatGPT describe asis
 
 ## Tecnologías estudiadas
 
-JavaScript, TypeScript, C, C++, C#, Objective-C, .NET, Visual Basic, Node.js, Laravel, n8n, Bootstrap, AngularJS, React, React Native, AWS, Docker, Firebase, NGINX y las demás marcas mencionadas pertenecen a sus titulares. Las explicaciones de Dev Visualizer no sustituyen la documentación oficial.
+JavaScript, TypeScript, Python, MediaPipe, XML, XSD, JSON, C, C++, C#, Objective-C, .NET, Visual Basic, Node.js, Laravel, n8n, Bootstrap, AngularJS, React, React Native, AWS, Docker, Firebase, NGINX y las demás marcas mencionadas pertenecen a sus titulares. Las explicaciones de Dev Visualizer no sustituyen la documentación oficial.
 
 ## Dependencias
 

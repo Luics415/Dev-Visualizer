@@ -1,6 +1,6 @@
 import { caseStudy, chapter, defineExpandedCollection, primer, source, step } from "./expandedCollectionFactory";
 
-export const pythonCollection = defineExpandedCollection({
+const pythonEcosystemBase = defineExpandedCollection({
   id: "python",
   eyebrow: "Del primer algoritmo a sistemas de datos, visión e IA operables",
   title: "Python visualizado",
@@ -191,8 +191,7 @@ export const pythonCollection = defineExpandedCollection({
       "Gestor de instalación de Python::Comprende el gestor recomendado por la plataforma y evita mezclar instalaciones del sistema con proyectos.",
       "venv::Aísla intérprete y paquetes por proyecto y sabe activar, desactivar y recrear el entorno.",
       "pip y PyPI::Instala distribuciones desde índices confiables y distingue nombre de distribución de paquete importable.",
-      "Version specifiers y compatibilidad::Declara rangos, extras, marcadores y versión mínima de Python según pruebas reales.",
-      "Wheel tags y plataforma::Revisa versión de Python, ABI, sistema y arquitectura de los wheels publicados, y valida la combinación elegida dentro de un venv aislado antes de adoptarla.",
+      "Version specifiers, wheel tags y compatibilidad::Declara rangos, extras y marcadores; después comprueba versión de Python, ABI, sistema y arquitectura de los wheels dentro de un entorno aislado.",
       "Resolución reproducible::Registra dependencias directas, fija o bloquea despliegues y reconstruye el ambiente desde metadatos revisados.",
     ),
     chapter(
@@ -563,6 +562,126 @@ export const pythonCollection = defineExpandedCollection({
         "entrenador operable",
         "El cierre ordenado libera cámara y modelo; métricas agregadas demuestran latencia y recuperación sin conservar imágenes.",
       ),
+    ],
+  ),
+});
+
+const pythonBranchChapters = [
+  chapter(
+    "Algoritmos y estructuras de datos aplicadas",
+    "Invariantes y contratos::Define qué debe cumplirse antes, durante y después de un algoritmo para razonar sobre corrección antes de medir velocidad.",
+    "Búsqueda lineal y binaria::Elige el recorrido según orden, costo de preparación y necesidad de conservar la posición original de los datos.",
+    "Orden estable y funciones key::Separa el criterio de orden del dato, conserva empates y evita comparadores inconsistentes con la igualdad.",
+    "bisect, heapq y deque::Aplica estructuras especializadas a inserción ordenada, prioridades y colas sin reinventar sus invariantes.",
+    "Grafos y programación dinámica::Modela estados, aristas y subproblemas repetidos, registra decisiones y reconstruye una solución verificable.",
+  ),
+  chapter(
+    "Aplicaciones de línea de comandos y TUI",
+    "Contrato de una CLI::Diseña comandos, subcomandos, opciones, argumentos, salida estándar, errores y códigos de retorno como una interfaz estable y automatizable.",
+    "argparse y configuración::Construye parsers con ayuda útil, tipos, valores predeterminados y precedencia explícita entre archivo, entorno y argumentos.",
+    "Terminal y streams::Distingue stdin, stdout y stderr, detecta redirección y evita mezclar datos procesables con mensajes para personas.",
+    "Interfaces de texto::Modela foco, eventos, redibujado y accesibilidad sin bloquear el loop por trabajo de red o disco.",
+    "Distribución de herramientas::Publica entry points, completa shell cuando corresponde y prueba la CLI en Windows, macOS y Linux.",
+  ),
+  chapter(
+    "Validación y modelos en fronteras",
+    "Datos confiables y no confiables::Trata archivos, red, formularios y variables de entorno como entradas que deben decodificarse y comprobarse antes de usarse.",
+    "Dataclasses y modelos inmutables::Representa estado válido con defaults seguros, factories, slots y frozen cuando el dominio lo permite.",
+    "Parsear, no solo comprobar::Convierte una entrada textual en un tipo del dominio o devuelve un error estructurado con ubicación y causa.",
+    "Errores por campo::Agrupa varios problemas sin ocultar el valor recibido, la regla violada ni la ruta exacta dentro de datos anidados.",
+    "Frontera con librerías de validación::Evalúa Pydantic u otras herramientas por semántica, costo, versión y compatibilidad, sin confundir sus modelos con el lenguaje.",
+  ),
+  chapter(
+    "Ingeniería de datos y pipelines",
+    "Ingesta por lotes e incremental::Elige snapshot, watermark, cursor o log de cambios y conserva qué fragmento ya fue procesado.",
+    "Esquema y calidad de datos::Comprueba tipos, nulabilidad, rangos, unicidad, relaciones, frescura y distribución antes de publicar resultados.",
+    "Particionado y formatos columnares::Organiza datos por acceso y fecha, compara CSV, JSON, Parquet y Arrow, y evita archivos diminutos o particiones sesgadas.",
+    "Idempotencia y reanudación::Asigna identidad al trabajo, escribe de forma atómica y permite repetir una etapa sin duplicar efectos.",
+    "Orquestación y linaje::Declara dependencias, parámetros, artefactos, métricas y procedencia para reconstruir cómo nació cada salida.",
+  ),
+  chapter(
+    "Cómputo distribuido y grandes volúmenes",
+    "Partir el problema::Distingue paralelismo de datos, tareas y pipelines antes de agregar procesos, máquinas o un framework distribuido.",
+    "Serialización y movimiento de datos::Mide el costo de copiar objetos, enviar particiones y reconstruir dependencias en workers remotos.",
+    "Scheduling y skew::Observa colas, recursos y particiones lentas para que un pequeño conjunto de claves no determine toda la duración.",
+    "Retries y efectos externos::Reintenta cálculo puro con seguridad y protege escrituras mediante idempotency keys, transacciones o compensaciones.",
+    "Escalar después de perfilar::Empieza con iteradores, vectorización y un solo host; distribuye únicamente el cuello de botella demostrado.",
+  ),
+  chapter(
+    "Lenguaje natural, embeddings y RAG",
+    "Texto como datos::Normaliza Unicode con intención, conserva idioma y metadatos, y separa tokens del texto original recuperable.",
+    "Pipelines de NLP::Encadena limpieza, segmentación, representación, modelo y evaluación sin filtrar información del conjunto de prueba.",
+    "Embeddings::Trata vectores como salidas versionadas de un modelo y mide similitud, dimensionalidad, normalización y deriva.",
+    "Retrieval augmented generation::Divide, indexa, recupera y cita evidencia con evaluación separada de retrieval y generación.",
+    "Modelos generativos responsables::Limita herramientas y datos, valida salida, registra procedencia y diseña recuperación ante alucinación o prompt injection.",
+  ),
+  chapter(
+    "Simulación, juegos y medios",
+    "Loop de simulación::Separa actualización de estado, tiempo, entrada y render para que el resultado sea reproducible a distinta velocidad.",
+    "Pygame y multimedia::Administra ventana, eventos, superficies, audio y recursos respetando el ciclo de vida de la aplicación.",
+    "Física y precisión temporal::Usa timestep fijo, integración adecuada y unidades explícitas para evitar resultados dependientes del frame rate.",
+    "IA de agentes::Modela máquinas de estado, navegación y decisiones observables sin bloquear el loop principal.",
+    "Replays y determinismo::Conserva semilla, entradas y versión del motor para reproducir una partida o comparar una regresión.",
+  ),
+  chapter(
+    "Cloud, serverless y automatización operativa",
+    "Proceso efímero::No asume disco local persistente ni memoria compartida entre invocaciones y externaliza estado de forma deliberada.",
+    "Arranque y dependencias::Reduce imports y paquetes pesados en el camino crítico, y mide cold start por arquitectura y región.",
+    "Identidad de workload::Obtiene credenciales de corta duración mediante el proveedor y evita secretos estáticos dentro del código o imagen.",
+    "Infraestructura y SDKs::Declara recursos de forma revisable y configura retries, timeouts y paginación en cada cliente de nube.",
+    "Observabilidad y costo::Correlaciona invocación, cola y servicio, y mide duración, memoria, transferencia, errores y gasto por operación útil.",
+  ),
+  chapter(
+    "Gobierno, mantenimiento y cadena de suministro",
+    "Política de versiones::Define Python mínimo y probado, compatibilidad de dependencias y una ventana de actualización comprensible.",
+    "Procedencia de paquetes::Verifica índice, autor, hashes, firma o attestations disponibles y revisa el código de paquetes de alto riesgo.",
+    "Licencias y activos::Distingue licencia del código, modelos, datasets, fuentes, imágenes y binarios nativos antes de redistribuir.",
+    "Deprecación y migraciones::Convierte warnings en trabajo planificado, prueba nuevas versiones y ofrece una ruta reversible a consumidores.",
+    "Runbook y ownership::Documenta responsables, despliegue, señales de salud, fallos conocidos, rollback y cómo retirar el sistema con seguridad.",
+  ),
+] as const;
+
+const pythonChapters = [
+  ...pythonEcosystemBase.chapters.filter((item) => !item.section.startsWith("MediaPipe") && !item.section.startsWith("Visión por computadora")),
+  ...pythonBranchChapters,
+];
+
+export const pythonCollection = defineExpandedCollection({
+  ...pythonEcosystemBase,
+  description: "Un recorrido progresivo desde cero por el lenguaje, la biblioteca estándar, algoritmos, herramientas, internals, concurrencia y las principales ramas de automatización, web, datos, ciencia, IA, escritorio, IoT, cloud y producción.",
+  counterLabel: "conceptos de Python y sus ramas",
+  notice: "Referencia tecnológica verificada el 21 de agosto de 2026: Python 3.14.7 es la versión estable documentada. Python es el lenguaje y CPython su implementación de referencia; frameworks, bibliotecas, runtimes alternativos y modelos conservan versiones, licencias y compatibilidad independientes.",
+  primer: primer(
+    "Python",
+    "Es un lenguaje de propósito general, de alto nivel y tipado dinámico. Su implementación de referencia, CPython, analiza y compila código a bytecode, ejecuta operaciones sobre objetos y ofrece una biblioteca estándar extensa.",
+    "Permite aprender programación y construir automatización, servicios, herramientas, análisis, sistemas científicos, inteligencia artificial, interfaces, simulaciones y software para dispositivos.",
+    "El código fuente se convierte en un árbol y bytecode; el runtime resuelve nombres y protocolos de objetos, administra memoria y coordina entrada, salida, concurrencia y extensiones.",
+    ["Aprendizaje desde cero", "Automatización y web", "Datos, ciencia e IA", "Escritorio, cloud e IoT"],
+    "Python no es CPython ni su ecosistema completo. MediaPipe, NumPy, Django, PyTorch y cada paquete son proyectos separados; se integran mediante APIs y dependencias explícitas.",
+    "language",
+  ),
+  chapters: pythonChapters,
+  sources: pythonEcosystemBase.sources.filter((item) => !item.label.includes("MediaPipe") && !item.label.includes("OpenCV")),
+  caseStudy: caseStudy(
+    "Python en acción",
+    "Caso integrado · Observatorio de telemetría reproducible",
+    "Un servicio de Python recibe mediciones heterogéneas, las analiza sin bloquear el proceso, rechaza datos ambiguos, normaliza unidades, calcula indicadores y publica un informe trazable. Un lote corrupto activa aislamiento y reanudación sin duplicar resultados.",
+    "El caso conecta lenguaje, objetos, iteradores, context managers, tipado, asyncio, procesos, pruebas, empaquetado, seguridad y observabilidad en un flujo que puede repetirse y auditarse.",
+    [
+      step("Definir el contrato", "Entradas y resultado verificable", "bytes → Measurement | ValidationError", ["se declara el formato", "un ejemplo válido y tres límites"], ["modelo inmutable", "unidades y zona horaria explícitas"], "frontera comprensible", "Antes de optimizar se decide qué significa una medición válida."),
+      step("Crear el entorno", "Runtime reproducible", "python -m venv .venv", ["versión visible", "dependencias bloqueadas"], ["Python 3.14 comprobado", "hashes y plataforma registrados"], "ejecución aislada", "El entorno forma parte del artefacto reproducible."),
+      step("Leer como stream", "Demanda acotada", "async for chunk in source", ["los lotes avanzan", "memoria permanece estable"], ["buffer limitado", "backpressure", "timeout de lectura"], "ingesta estable", "El productor solo avanza al ritmo aceptado por el consumidor."),
+      step("Decodificar y parsear", "Bytes no son objetos", "decode('utf-8') → csv rows", ["líneas y columnas visibles", "errores con ubicación"], ["BOM y newline controlados", "límites de campo"], "filas estructuradas", "Cada frontera conserva suficiente contexto para diagnosticar sin registrar secretos."),
+      step("Validar modelos", "Parsear hacia el dominio", "Measurement.from_row(row)", ["temperatura y timestamp tipados", "errores por campo"], ["Decimal", "ZoneInfo", "invariantes"], "objetos válidos", "Una fila inválida no se disfraza con defaults silenciosos."),
+      step("Normalizar unidades", "Funciones puras", "fahrenheit → celsius", ["unidad canónica visible", "valor original preservado"], ["tabla de conversión", "redondeo al final"], "mediciones comparables", "La transformación puede probarse sin red, archivos ni reloj global."),
+      step("Calcular en paralelo", "CPU fuera del event loop", "await to_process_pool(aggregate)", ["la ingesta sigue respondiendo", "avance por partición"], ["objetos serializables", "workers acotados", "cancelación"], "indicadores calculados", "El trabajo de CPU no congela las operaciones de entrada y salida."),
+      step("Detectar el lote corrupto", "Fallo explícito", "checksum mismatch · batch 042", ["el lote se marca rojo", "los demás esperan"], ["digest no coincide", "offset conservado", "sin escritura parcial"], "lote en cuarentena", "La excepción contiene causa y posición; no se captura como un error genérico.", "warning"),
+      step("Reanudar idempotentemente", "Checkpoint y recuperación", "resume(offset) + idempotency_key", ["el lote corregido vuelve", "el contador no duplica"], ["checkpoint atómico", "clave de salida estable", "reintento con límite"], "flujo recuperado", "Repetir el trabajo produce el mismo resultado observable.", "recovery"),
+      step("Persistir de forma atómica", "Temporal y reemplazo", "write temp → fsync → replace", ["el informe aparece completo", "nunca medio escrito"], ["context manager", "permisos mínimos", "digest final"], "artefacto íntegro", "La ruta de error también cierra archivos y elimina temporales propios."),
+      step("Probar propiedades", "Ejemplos y casos generados", "pytest + round-trip invariants", ["vacío, límites y corrupción pasan", "la regresión queda fijada"], ["reloj inyectado", "semillas registradas", "fixtures pequeñas"], "comportamiento demostrado", "Las pruebas cubren resultado y recuperación, no solo líneas ejecutadas."),
+      step("Observar el runtime", "Trazas, logs y métricas", "trace_id · queue_depth · p95", ["panel explica latencia", "errores agrupados por causa"], ["logging estructurado", "contextvars", "histogramas"], "salud interpretable", "La telemetría evita payloads sensibles y conserva correlación."),
+      step("Empaquetar y comprobar", "Un artefacto instalable", "python -m build → wheel → clean env", ["wheel con versión", "instalación desde cero"], ["metadata y licencia", "entry point", "SBOM"], "entrega reproducible", "Se prueba exactamente lo que se distribuirá."),
+      step("Cerrar ordenadamente", "Cancelación cooperativa", "stop intake → drain → close", ["no quedan tareas colgadas", "el siguiente ciclo inicia limpio"], ["TaskGroup finalizado", "workers cerrados", "checkpoint confirmado"], "observatorio operable", "El resultado coloreado permanece legible y alimenta el siguiente lote del loop."),
     ],
   ),
 });
