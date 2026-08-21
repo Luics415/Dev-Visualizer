@@ -29,7 +29,7 @@ function validateCatalog(): CatalogValidationReport {
       if (!scene.variant || scene.nodes.length === 0) throw new Error(`El concepto ${identity} no tiene una escena efectiva.`);
 
       const references = officialReferencesForConcept(collection.id, concept);
-      if (references.length === 0) {
+      if (references.length < 2) {
         unresolvedReferences += 1;
         continue;
       }
@@ -37,9 +37,9 @@ function validateCatalog(): CatalogValidationReport {
     }
   }
 
-  if (canonicalConceptCount !== 2747) throw new Error(`Se esperaban 2,747 conceptos canónicos; existen ${canonicalConceptCount}.`);
+  if (canonicalConceptCount !== 3188) throw new Error(`Se esperaban 3,188 conceptos canónicos; existen ${canonicalConceptCount}.`);
   if (sourcedConcepts !== canonicalConceptCount || unresolvedReferences > 0) {
-    throw new Error(`Cobertura de fuentes incompleta: ${sourcedConcepts}/${canonicalConceptCount}; referencias sin resolver: ${unresolvedReferences}.`);
+    throw new Error(`Cobertura de fuentes incompleta: ${sourcedConcepts}/${canonicalConceptCount}; conceptos con menos de dos referencias: ${unresolvedReferences}.`);
   }
 
   return {

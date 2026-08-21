@@ -1,6 +1,6 @@
 # Roadmap
 
-## Expansión a 34 colecciones
+## Expansión a 36 colecciones
 
 - [x] Fase 1 — manifiesto ligero, registro servidor, Git, GitHub, APIs y CI/CD.
 - [x] Fase 1 — fronteras CI/CD/Deployment y puentes de URLs anteriores.
@@ -9,12 +9,17 @@
 - [x] Fase 3 — .NET, C# y Visual Basic .NET.
 - [x] Fase 4 — UX/UI, Bootstrap, AngularJS, Node.js, Laravel y n8n.
 - [x] Biblioteca, búsqueda, filtros, vigencia y sitemap derivados.
-- [x] 34 casos únicos En acción con profundización.
-- [x] 68 rutas canónicas y cuatro puentes heredados.
-- [x] Fuentes oficiales o especificaciones visibles para 2,747 de 2,747 conceptos.
+- [x] Python desde cero hasta producción: 42 capítulos, 211 conceptos y un caso MediaPipe local.
+- [x] XML, XSD y JSON: 46 capítulos, 230 conceptos y un caso de validación, transformación, concurrencia y sellado.
+- [x] 36 casos únicos En acción con profundización.
+- [x] 72 rutas canónicas y cuatro puentes heredados.
+- [x] Al menos dos fuentes oficiales o especificaciones visibles para 3,188 de 3,188 conceptos.
 - [x] Seis familias visuales nuevas inspiradas en mecanismos, con geometría y tiempos originales.
 - [x] Pasaporte del artefacto propio para CI/CD En acción.
 - [x] Banner firmado exclusivo para Acerca; el banner de Colecciones permanece intacto.
+- [x] Presentación social Luics415 integrada en Open Graph, Twitter Card y descarga desde Acerca.
+- [x] Escena propia HTTPS/TLS 1.3 para NGINX En acción y entrenador postural propio para Python/MediaPipe.
+- [x] Laboratorio de representaciones propio para XML/XSD/JSON En acción.
 
 ## Calidad permanente
 

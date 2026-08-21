@@ -28,7 +28,7 @@ export default function CollectionsPage() {
         <div className="library-hero__content">
           <span className="eyebrow">Biblioteca del Dev Visualizer</span>
           <h1>Elige una ruta de estudio</h1>
-          <p>Treinta y cuatro colecciones organizadas por áreas. Cada una conecta conceptos animados con un caso “En acción”, profundización técnica y fuentes oficiales.</p>
+          <p>{entries.length} colecciones organizadas por áreas. Cada una conecta conceptos animados con un caso “En acción”, profundización técnica y fuentes oficiales.</p>
           <div className="hero__counter">
             <strong>{totalConcepts}</strong>
             <span>conceptos · {totalRoutes} rutas canónicas</span>

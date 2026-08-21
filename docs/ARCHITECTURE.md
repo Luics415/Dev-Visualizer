@@ -17,7 +17,7 @@ Dev Visualizer usa Next.js App Router, React, TypeScript y Motion, con output: "
       └─ casos integrados y profundización
 
     canonicalConceptCollections.ts (servidor/build)
-      └─ inventario normalizado de 34 colecciones y 2,747 conceptos
+      └─ inventario normalizado de 36 colecciones y 3,188 conceptos
 
     officialReferences.ts (servidor/build)
       ├─ autoridades, estándares, manuales y documentación
@@ -47,15 +47,15 @@ Las URLs, no los números visibles, son la identidad. Los números se derivan de
 
 El código comprueba:
 
-- exactamente 34 colecciones;
+- exactamente 36 colecciones;
 - IDs y rutas únicos;
 - pareja colección/caso para cada identidad;
 - rutas heredadas apuntando a una colección existente;
 - capítulos y conceptos no vacíos;
 - sección y escena efectiva para cada concepto, incluida la escena semántica de respaldo;
-- fuente oficial o especificación visible para los 2,747 conceptos, sin conceptos sin resolver;
+- al menos dos fuentes oficiales o especificaciones visibles para los 3,188 conceptos, sin conceptos sin resolver;
 - referencias HTTPS con autoridad, tipo, versión, vigencia y fecha de verificación;
 - caso integrado con etapas y profundización;
 - todos los enlaces internos de la exportación resuelven a una página o recurso generado.
 
-La exportación produce 77 páginas: 68 canónicas, cuatro puentes heredados y cinco páginas de soporte.
+La exportación produce 81 páginas: 72 canónicas, cuatro puentes heredados y cinco páginas de soporte.

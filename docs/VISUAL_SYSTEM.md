@@ -59,6 +59,12 @@ Las etapas distinguen lo visible de lo interno, mantienen fallos y recuperación
 
 CI/CD usa una escena propia de pasaporte del artefacto: commit, lint, pruebas, SAST, SBOM, firma, artefacto inmutable, aprobación o promoción automática y retorno telemétrico.
 
+HTTPS usa una forja de túnel seguro: transporte, negociación, cadena de confianza, fallo de hostname, recuperación, ECDHE/HKDF, Finished y tráfico HTTP cifrado. Python/MediaPipe usa un reloj de paquetes y un heartbeat detector–tracker para explicar captura, backpressure, landmarks, geometría, reacquisición, feedback y privacidad local.
+
+XML/XSD/JSON usa un laboratorio de representaciones: bytes y media type, árbol XML, nombres expandidos, malla XSD, fallo de identidad, revalidación, mapping explícito, JSON Schema, control de revisión con JSON Patch y digest canonicalizado.
+
 ## Firma y banners
 
 El banner de Colecciones conserva el ancla principal y su composición. Acerca utiliza una pieza hermana exclusiva con el ancla desplazada, una estela caligráfica y la firma Luics415 como texto HTML accesible, no incrustado en la imagen.
+
+La presentación social lleva esa familia visual a un atlas horizontal 1.91:1: ancla de rutas luminosas, seis módulos conectados, retícula, tipografía técnica y el rol “Software Developer · Dev Visualizer”. No usa grafiti, pintura, marcas de terceros ni composiciones copiadas. También funciona como imagen Open Graph del sitio.

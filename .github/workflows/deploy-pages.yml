@@ -43,6 +43,9 @@ jobs:
 
           npm run build
 
+      - name: Validate internal links
+        run: npm run check:links
+
       - name: Upload Pages artifact
         uses: actions/upload-pages-artifact@v4
         with:

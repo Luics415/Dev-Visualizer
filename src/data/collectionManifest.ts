@@ -33,6 +33,7 @@ export const collectionGroupMeta: Record<CollectionGroupId, { name: string; desc
 export const collectionManifest: readonly CollectionManifestEntry[] = [
   { id: "javascript", label: "JavaScript ES6+", short: "JS", href: "/", actionHref: "/javascript-en-accion", group: "languages", theme: "javascript", lifecycle: "actual", summary: "Lenguaje, objetos, asincronía, módulos, protocolos y memoria." },
   { id: "typescript", label: "TypeScript", short: "TS", href: "/typescript", actionHref: "/typescript-en-accion", group: "languages", theme: "typescript", lifecycle: "actual", summary: "Modelado, narrowing, genéricos, compilador y producción." },
+  { id: "python", label: "Python", short: "Py", href: "/python", actionHref: "/python-en-accion", group: "languages", theme: "python", lifecycle: "actual", summary: "Desde cero: lenguaje, biblioteca estándar, ecosistema, datos, IA, MediaPipe y producción." },
   { id: "c", label: "C", short: "C", href: "/c", actionHref: "/c-en-accion", group: "languages", theme: "c", lifecycle: "actual", summary: "Compilación, memoria, punteros, ABI, herramientas y seguridad." },
   { id: "cpp", label: "C++", short: "C++", href: "/cpp", actionHref: "/cpp-en-accion", group: "languages", theme: "cpp", lifecycle: "actual", summary: "RAII, tipos, STL, templates, concurrencia y rendimiento." },
   { id: "c-sharp", label: "C#", short: "C#", href: "/c-sharp", actionHref: "/c-sharp-en-accion", group: "languages", theme: "c-sharp", lifecycle: "actual", summary: "Tipos, patrones, LINQ, asincronía, memoria y concurrencia." },
@@ -57,6 +58,7 @@ export const collectionManifest: readonly CollectionManifestEntry[] = [
   { id: "dotnet", label: ".NET", short: ".NET", href: "/dotnet", actionHref: "/dotnet-en-accion", group: "platforms", theme: "dotnet", lifecycle: "actual", summary: "SDK, CLR, IL, JIT/AOT, GC, bibliotecas, hosting y diagnóstico." },
   { id: "firebase", label: "Firebase", short: "FB", href: "/firebase", actionHref: "/firebase-en-accion", group: "platforms", theme: "firebase", lifecycle: "actual", summary: "Auth, datos, Storage, Functions, Hosting, FCM y Rules." },
 
+  { id: "xml-xsd-json", label: "XML, XSD y JSON", short: "Data", href: "/xml-xsd-json", actionHref: "/xml-xsd-json-en-accion", group: "data", theme: "xml-xsd-json", lifecycle: "actual", summary: "Documentos, schemas, validación, transformación, compatibilidad y operación segura." },
   { id: "state-management", label: "Gestión de estado", short: "State", href: "/gestion-estado", actionHref: "/gestion-estado-en-accion", group: "data", theme: "state-management", lifecycle: "actual", summary: "Ownership, stores, caché remota, persistencia y offline." },
   { id: "databases", label: "Bases de datos", short: "DB", href: "/bases-datos", actionHref: "/bases-datos-en-accion", group: "data", theme: "databases", lifecycle: "actual", summary: "Modelado, SQL, índices, concurrencia, distribución y backups." },
 
@@ -88,7 +90,7 @@ export function themeForPath(pathname: string) {
 }
 
 function validateCollectionManifest() {
-  if (collectionManifest.length !== 34) throw new Error(`El manifiesto debe contener 34 colecciones; contiene ${collectionManifest.length}.`);
+  if (collectionManifest.length !== 36) throw new Error(`El manifiesto debe contener 36 colecciones; contiene ${collectionManifest.length}.`);
   const ids = new Set<string>();
   const routes = new Set<string>();
   for (const collection of collectionManifest) {

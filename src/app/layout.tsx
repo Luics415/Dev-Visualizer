@@ -5,12 +5,13 @@ import "@/data/catalogValidation";
 import "./globals.css";
 
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
-const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+const siteRoot = siteUrl.replace(/\/$/, "");
+const assetUrl = (pathname: string) => `${siteRoot}${pathname}`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: { default: "Dev Visualizer", template: "%s · Dev Visualizer" },
-  description: "Atlas visual educativo con 34 colecciones, 68 rutas canónicas y 2,747 conceptos de desarrollo de software.",
+  description: "Atlas visual educativo con 36 colecciones, 72 rutas canónicas y 3,188 conceptos de desarrollo de software.",
   applicationName: "Dev Visualizer",
   authors: [
     { name: "Luics415" },
@@ -18,27 +19,34 @@ export const metadata: Metadata = {
   ],
   creator: "Luics415",
   publisher: "Dev Visualizer",
-  manifest: `${basePath}/site.webmanifest`,
+  manifest: assetUrl("/site.webmanifest"),
   icons: {
     icon: [
-      { url: `${basePath}/favicon.ico`, sizes: "any" },
-      { url: `${basePath}/favicon-32x32.png`, type: "image/png", sizes: "32x32" },
-      { url: `${basePath}/favicon-48x48.png`, type: "image/png", sizes: "48x48" },
+      { url: assetUrl("/favicon.ico"), sizes: "any" },
+      { url: assetUrl("/favicon-32x32.png"), type: "image/png", sizes: "32x32" },
+      { url: assetUrl("/favicon-48x48.png"), type: "image/png", sizes: "48x48" },
     ],
-    shortcut: `${basePath}/favicon.ico`,
-    apple: [{ url: `${basePath}/apple-touch-icon.png`, type: "image/png", sizes: "180x180" }],
+    shortcut: assetUrl("/favicon.ico"),
+    apple: [{ url: assetUrl("/apple-touch-icon.png"), type: "image/png", sizes: "180x180" }],
   },
   openGraph: {
     type: "website",
     locale: "es_MX",
     siteName: "Dev Visualizer",
     title: "Dev Visualizer",
-    description: "34 colecciones y 68 rutas para aprender desarrollo de software mediante visualizaciones autónomas y casos técnicos completos.",
+    description: "36 colecciones y 72 rutas para aprender desarrollo de software mediante visualizaciones autónomas y casos técnicos completos.",
+    images: [{
+      url: assetUrl("/social/luics415-dev-visualizer-atlas.png"),
+      width: 1729,
+      height: 910,
+      alt: "Luics415 · Software Developer · Dev Visualizer",
+    }],
   },
   twitter: {
-    card: "summary",
+    card: "summary_large_image",
     title: "Dev Visualizer",
-    description: "Atlas visual educativo: 34 colecciones, 68 rutas y 2,747 conceptos.",
+    description: "Atlas visual educativo: 36 colecciones, 72 rutas y 3,188 conceptos.",
+    images: [assetUrl("/social/luics415-dev-visualizer-atlas.png")],
   },
 };
 

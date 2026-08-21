@@ -12,6 +12,10 @@ Cada colección debe responder:
 
 Los capítulos cubren únicamente lo que el tema necesita, desde fundamentos hasta trabajo cotidiano, diagnóstico y producción. No existe una cuota artificial de conceptos.
 
+Cuando la ruta admite personas sin experiencia previa, comienza antes de la sintaxis: problema, entrada, salida, algoritmo, terminal, archivos, ayuda y lectura de errores. Las ramas del ecosistema se presentan después del núcleo y declaran qué pertenece al lenguaje, a su implementación o a un proyecto externo.
+
+En formatos de datos se separan siempre sintaxis, modelo, schema, reglas de negocio y autorización. Una conversión XML/JSON debe declarar qué ocurre con orden, atributos, namespaces, contenido mixto, precisión, ausencia y valores nulos.
+
 ## Concepto
 
 Cada concepto incluye:
