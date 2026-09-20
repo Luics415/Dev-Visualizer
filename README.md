@@ -13,7 +13,7 @@ Atlas visual animado para aprender desarrollo de software desde los fundamentos 
 </p>
 
 <p align="center">
-  <img src="public/social/luics415-dev-visualizer-og-2026.png" alt="Tarjeta social de Dev Visualizer con la firma de Luics415 y un atlas luminoso de conceptos de desarrollo" width="100%" />
+  <img src="public/social/luics415-dev-visualizer-github-1280x640.jpg" alt="Tarjeta social de Dev Visualizer con la firma de Luics415 y un atlas luminoso de conceptos de desarrollo" width="100%" />
   <br /><sub>Tarjeta Open Graph oficial del proyecto.</sub>
 </p>
 
