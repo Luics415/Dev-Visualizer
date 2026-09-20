@@ -1,5 +1,6 @@
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { HtmlCssPracticalScene } from "@/components/scenes/html-css/HtmlCssPracticalScene";
+import { collectionNumber } from "@/data/collectionManifest";
 
 export default function HtmlCssPracticalPage() {
   return (
@@ -7,7 +8,7 @@ export default function HtmlCssPracticalPage() {
       <CollectionNav />
       <header className="hero hero--html-css-practical">
         <div>
-          <span className="eyebrow eyebrow--html-css">Colección 10 · Del código fuente a la pantalla</span>
+          <span className="eyebrow eyebrow--html-css">Colección {collectionNumber("html-css")} · Del código fuente a la pantalla</span>
           <h1>HTML y CSS en acción</h1>
           <p>Una tarjeta de Jinx permite recorrer todo el pipeline del navegador: fuente, DOM, CSSOM, cascade, layout, paint, composición, respuesta al contenedor y árbol accesible. El personaje aporta identidad al ejemplo sin alterar el mecanismo técnico.</p>
         </div>

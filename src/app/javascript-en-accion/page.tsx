@@ -1,6 +1,7 @@
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
 import { JavaScriptPracticalScene } from "@/components/scenes/javascript/JavaScriptPracticalScene";
+import { collectionNumber } from "@/data/collectionManifest";
 import { javascriptDeepDive } from "@/data/practicalDeepDives";
 
 export default function JavaScriptPracticalPage() {
@@ -9,7 +10,7 @@ export default function JavaScriptPracticalPage() {
       <CollectionNav />
       <header className="hero hero--javascript-practical">
         <div>
-          <span className="eyebrow eyebrow--javascript">Colección 01 · Caso integrado ampliado</span>
+          <span className="eyebrow eyebrow--javascript">Colección {collectionNumber("javascript")} · Caso integrado ampliado</span>
           <h1>JavaScript en acción</h1>
           <p>
             Una compra recorre eventos, estado, transformaciones, red, espera asíncrona y renderizado. Después, ocho cajas dobles explican normalización, closures, acceso defensivo, concurrencia, cancelación, módulos, persistencia y recuperación de errores.

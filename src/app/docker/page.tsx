@@ -1,11 +1,12 @@
 import { StudyAtlasCollection } from "@/components/concepts/StudyAtlasCollection";
+import { collectionNumber } from "@/data/collectionManifest";
 import { dockerConcepts } from "@/data/dockerConcepts";
 
 export default function DockerPage() {
   return (
     <StudyAtlasCollection
       collectionId="docker"
-      collectionNumber="15"
+      collectionNumber={collectionNumber("docker")}
       eyebrow="De una imagen reproducible a un runtime aislado y operable"
       title="Docker visualizado"
       description="Contenedores, Engine, OCI, imágenes, capas, Dockerfiles, BuildKit, storage, networking, Compose, seguridad, supply chain, recursos, diagnóstico y operación conectados en una ruta completa."

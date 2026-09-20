@@ -1,6 +1,7 @@
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
 import { LinuxPracticalScene } from "@/components/scenes/linux/LinuxPracticalScene";
+import { collectionNumber } from "@/data/collectionManifest";
 import { linuxDeepDive } from "@/data/practicalDeepDives";
 
 export default function LinuxActionPage() {
@@ -9,7 +10,7 @@ export default function LinuxActionPage() {
       <CollectionNav />
       <header className="hero hero--linux-practical">
         <div>
-          <span className="eyebrow eyebrow--linux">Colección 11 · Caso integrado ampliado</span>
+          <span className="eyebrow eyebrow--linux">Colección {collectionNumber("linux")} · Caso integrado ampliado</span>
           <h1>Linux en acción</h1>
           <p>El servicio hexgate-api deja de responder después de un deploy. Seguimos el incidente desde DNS y el puerto público hasta systemd, procesos, logs, permisos, memoria, filesystem y una corrección segura sin reiniciar el servidor a ciegas.</p>
         </div>

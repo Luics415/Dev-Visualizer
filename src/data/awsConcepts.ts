@@ -1,6 +1,7 @@
 import type { StudyConcept } from "./conceptTypes";
+import { awsNotesConcepts } from "./awsNotesConcepts";
 
-export const awsConcepts = [
+const awsCoreConcepts = [
   {
     "title": "Cloud computing",
     "description": "Consume capacidad por API y bajo demanda, cambiando inversión fija por recursos elásticos medidos.",
@@ -3763,4 +3764,9 @@ export const awsConcepts = [
       "caption": "Recupera de fallos, prueba procedimientos y adapta capacidad a la demanda."
     }
   }
+] as const satisfies readonly StudyConcept[];
+
+export const awsConcepts = [
+  ...awsCoreConcepts,
+  ...awsNotesConcepts,
 ] as const satisfies readonly StudyConcept[];

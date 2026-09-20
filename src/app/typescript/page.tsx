@@ -20,6 +20,7 @@ import { UtilityTypesScene } from "@/components/scenes/typescript/UtilityTypesSc
 import { typescriptConcepts } from "@/data/typescriptConcepts";
 import { slugify } from "@/lib/slugify";
 import { CollectionPrimer } from "@/components/concepts/CollectionPrimer";
+import { collectionNumber } from "@/data/collectionManifest";
 import { collectionPrimers } from "@/data/collectionPrimers";
 
 const specialScenes = new Map<string, ReactNode>([
@@ -48,7 +49,7 @@ export default function TypeScriptPage() {
       <CollectionNav />
       <header className="hero hero--typescript">
         <div>
-          <span className="eyebrow eyebrow--typescript">Colección 02 · Sistema de tipos y compilador</span>
+          <span className="eyebrow eyebrow--typescript">Colección {collectionNumber("typescript")} · Sistema de tipos y compilador</span>
           <h1>TypeScript visualizado</h1>
           <p>
             La colección ahora cubre desde inferencia y modelado cotidiano hasta tipos derivados, módulos, declaraciones, configuración, migración, validación de runtime y rendimiento del checker.

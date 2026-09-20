@@ -1,6 +1,7 @@
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
 import { BackendPracticalScene } from "@/components/scenes/backend/BackendPracticalScene";
+import { collectionNumber } from "@/data/collectionManifest";
 import { backendDeepDive } from "@/data/practicalDeepDives";
 
 export default function BackendActionPage() {
@@ -9,7 +10,7 @@ export default function BackendActionPage() {
       <CollectionNav />
       <header className="hero hero--backend-practical">
         <div>
-          <span className="eyebrow eyebrow--backend">Colección 07 · Caso integrado ampliado</span>
+          <span className="eyebrow eyebrow--backend">Colección {collectionNumber("backend")} · Caso integrado ampliado</span>
           <h1>Backend en acción</h1>
           <p>Jinx solicita reparar Fishbones. La petición recorre gateway, autenticación, autorización, schema, servicio de dominio y transacción; luego un outbox entrega el trabajo pesado a una cola sin perder trazabilidad.</p>
         </div>

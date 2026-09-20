@@ -1,15 +1,18 @@
 import { collectionManifest } from "./collectionManifest";
 import { pythonCollection } from "./pythonCollection";
+import { prologCollection } from "./prologCollection";
 import { mediapipeCollection } from "./mediapipeCollection";
 import { jsonCollection, xmlCollection, xsdCollection } from "./structuredCollections";
 import { phase1Collections } from "./phase1Collections";
 import { cFamilyCollections } from "./cFamilyCollections";
 import { dotnetCollections } from "./dotnetCollections";
 import { webAutomationCollections } from "./webAutomationCollections";
+import { sqlServerCollection } from "./sqlServerCollection";
 import type { ExpandedCollectionDefinition } from "./expandedCollectionTypes";
 
 export const expandedCollections: readonly ExpandedCollectionDefinition[] = [
   pythonCollection,
+  prologCollection,
   mediapipeCollection,
   xmlCollection,
   xsdCollection,
@@ -18,6 +21,7 @@ export const expandedCollections: readonly ExpandedCollectionDefinition[] = [
   ...cFamilyCollections,
   ...dotnetCollections,
   ...webAutomationCollections,
+  sqlServerCollection,
 ];
 
 export const expandedCollectionById = new Map(expandedCollections.map((collection) => [collection.id, collection]));

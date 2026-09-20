@@ -1,11 +1,12 @@
 import { StudyAtlasCollection } from "@/components/concepts/StudyAtlasCollection";
+import { collectionNumber } from "@/data/collectionManifest";
 import { deploymentConcepts } from "@/data/deploymentConcepts";
 
 export default function DeploymentPage() {
   return (
     <StudyAtlasCollection
       collectionId="deployment"
-      collectionNumber="13"
+      collectionNumber={collectionNumber("deployment")}
       eyebrow="Del artefacto aprobado a una versión operable y reversible"
       title="Deployment visualizado"
       description="Verificación del artefacto aprobado, configuración, entornos, estrategias de rollout, Kubernetes, tráfico, migraciones compatibles, observabilidad, rollback y operación después del release. CI/CD vive ahora en una colección propia."

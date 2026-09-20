@@ -1,6 +1,7 @@
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
 import { TypeScriptPracticalScene } from "@/components/scenes/typescript/TypeScriptPracticalScene";
+import { collectionNumber } from "@/data/collectionManifest";
 import { typescriptDeepDive } from "@/data/practicalDeepDives";
 
 export default function TypeScriptPracticalPage() {
@@ -9,7 +10,7 @@ export default function TypeScriptPracticalPage() {
       <CollectionNav />
       <header className="hero hero--typescript-practical">
         <div>
-          <span className="eyebrow eyebrow--typescript">Colección 02 · Caso integrado ampliado</span>
+          <span className="eyebrow eyebrow--typescript">Colección {collectionNumber("typescript")} · Caso integrado ampliado</span>
           <h1>TypeScript en acción</h1>
           <p>
             El pedido atraviesa contratos, genéricos, estados discriminados, narrowing y compilación. La profundización añade fronteras unknown, satisfies, IDs nominales, type-only imports, pruebas de tipos y artefactos de build.

@@ -1,6 +1,7 @@
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
 import { DockerPracticalScene } from "@/components/scenes/docker/DockerPracticalScene";
+import { collectionNumber } from "@/data/collectionManifest";
 import { dockerDeepDive } from "@/data/practicalDeepDives";
 
 export default function DockerActionPage() {
@@ -9,7 +10,7 @@ export default function DockerActionPage() {
       <CollectionNav />
       <header className="hero hero--docker-practical">
         <div>
-          <span className="eyebrow eyebrow--docker">Colección 15 · Caso integrado ampliado</span>
+          <span className="eyebrow eyebrow--docker">Colección {collectionNumber("docker")} · Caso integrado ampliado</span>
           <h1>Docker en acción</h1>
           <p>Jinx empaqueta la API de telemetría de Fishbones. BuildKit recibe un contexto mínimo, reutiliza dependencias, ejecuta pruebas, produce una imagen multi-platform no root, adjunta SBOM y provenance y publica por digest; Compose levanta web y Redis con DNS interno, volumen, secretos, healthcheck y un rollback que no reconstruye el artefacto.</p>
         </div>

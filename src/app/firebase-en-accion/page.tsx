@@ -1,6 +1,7 @@
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
 import { FirebasePracticalScene } from "@/components/scenes/firebase/FirebasePracticalScene";
+import { collectionNumber } from "@/data/collectionManifest";
 import { firebaseDeepDive } from "@/data/practicalDeepDives";
 
 export default function FirebaseActionPage() {
@@ -9,7 +10,7 @@ export default function FirebaseActionPage() {
       <CollectionNav />
       <header className="hero hero--firebase-practical">
         <div>
-          <span className="eyebrow eyebrow--firebase">Colección 16 · Caso integrado ampliado</span>
+          <span className="eyebrow eyebrow--firebase">Colección {collectionNumber("firebase")} · Caso integrado ampliado</span>
           <h1>Firebase en acción</h1>
           <p>Jinx actualiza desde el móvil la calibración de Fishbones. Auth identifica la sesión, App Check atesta la app, Firestore aplica una escritura local y Rules validan ownership y forma; una Function procesa el evento, Storage conserva el plano, FCM notifica al taller y el flujo sobrevive offline antes de reconciliarse al volver la red.</p>
         </div>

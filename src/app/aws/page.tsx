@@ -1,11 +1,12 @@
 import { StudyAtlasCollection } from "@/components/concepts/StudyAtlasCollection";
 import { awsConcepts } from "@/data/awsConcepts";
+import { collectionNumber } from "@/data/collectionManifest";
 
 export default function AwsPage() {
   return (
     <StudyAtlasCollection
       collectionId="aws"
-      collectionNumber="12"
+      collectionNumber={collectionNumber("aws")}
       eyebrow="De una cuenta vacía a una plataforma Well-Architected"
       title="AWS visualizado"
       description="Identidad, redes, compute, contenedores, serverless, storage, bases de datos, mensajería, edge, seguridad, observabilidad, infraestructura como código, gobierno, recuperación y costos dentro de una arquitectura AWS completa."

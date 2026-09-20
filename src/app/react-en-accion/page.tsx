@@ -1,6 +1,7 @@
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
 import { ReactPracticalScene } from "@/components/scenes/react/ReactPracticalScene";
+import { collectionNumber } from "@/data/collectionManifest";
 import { reactDeepDive } from "@/data/practicalDeepDives";
 
 export default function ReactPracticalPage() {
@@ -9,7 +10,7 @@ export default function ReactPracticalPage() {
       <CollectionNav />
       <header className="hero hero--react-practical">
         <div>
-          <span className="eyebrow eyebrow--react">Colección 03 · Caso integrado ampliado</span>
+          <span className="eyebrow eyebrow--react">Colección {collectionNumber("react")} · Caso integrado ampliado</span>
           <h1>React en acción</h1>
           <p>
             La búsqueda de Jinx recorre evento, estado, render, reconciliación, efecto y commit. Las cajas nuevas abren control de inputs, datos derivados, prioridades, cancelación, optimismo, fronteras, accesibilidad y React Compiler.

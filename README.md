@@ -2,12 +2,12 @@
 
 Atlas visual animado para aprender desarrollo de software desde los fundamentos hasta producción.
 
-**39 colecciones · 78 rutas canónicas · 3,427 conceptos · 39 casos integrados**
+**41 colecciones · 82 rutas canónicas · 3,697 conceptos · 41 casos integrados**
 
 <p align="center">
   <a href="https://luics415.github.io/Dev-Visualizer/"><strong>Abrir Dev Visualizer</strong></a>
   ·
-  <a href="https://luics415.github.io/Dev-Visualizer/colecciones/">Explorar las 39 colecciones</a>
+  <a href="https://luics415.github.io/Dev-Visualizer/colecciones/">Explorar las 41 colecciones</a>
   ·
   <a href="https://luics415.github.io/Dev-Visualizer/acerca/">Acerca del proyecto</a>
 </p>
@@ -24,7 +24,7 @@ Dev Visualizer transforma mecanismos técnicos en escenas autónomas: cada conce
 <table>
   <tr>
     <td width="66%">
-      <img src="docs/screenshots/colecciones-desktop.png" alt="Biblioteca de Dev Visualizer en escritorio con el banner del ancla y 39 colecciones" />
+      <img src="docs/screenshots/colecciones-desktop.png" alt="Biblioteca de Dev Visualizer en escritorio con el banner del ancla y el catálogo de colecciones" />
       <br /><sub>Biblioteca completa en escritorio.</sub>
     </td>
     <td width="34%">
@@ -50,7 +50,7 @@ Las capturas documentan una compilación real del proyecto y forman parte del co
 
 - **Causalidad antes que decoración.** El movimiento representa datos, memoria, mensajes, control, ownership o evidencia.
 - **Dos niveles por tecnología.** La colección explica conceptos; **En acción** conecta un caso técnico completo sin repetir la bibliografía de estudio.
-- **Fuente primaria por concepto.** Los 3,427 conceptos resuelven al menos dos referencias oficiales o especificaciones visibles.
+- **Fuente primaria por concepto.** Los 3,697 conceptos resuelven al menos dos referencias oficiales o especificaciones visibles.
 - **Escenas que no terminan apagadas.** Los loops conservan un estado base legible, regresan semánticamente al inicio y se pausan fuera del viewport.
 - **Accesibilidad como contrato.** Teclado, foco visible, estados no dependientes solo del color, vista estática para movimiento reducido y overflow local en escenas extensas.
 - **Fronteras tecnológicas explícitas.** Git no es GitHub; CI/CD no es Deployment; Python no es MediaPipe; XML, XSD y JSON tienen responsabilidades y rutas separadas.
@@ -59,10 +59,10 @@ Las capturas documentan una compilación real del proyecto y forman parte del co
 
 | Área | Colecciones |
 |---|---|
-| Lenguajes | JavaScript, TypeScript, Python, C, C++, C#, Objective-C, C*, CWEB, Embedded C y Visual Basic .NET |
+| Lenguajes | JavaScript, TypeScript, Python, Prolog, C, C++, C#, Objective-C, C*, CWEB, Embedded C y Visual Basic .NET |
 | Diseño e interfaces | UX/UI, HTML y CSS, Bootstrap, AngularJS, React y React Native |
 | Plataformas y servidor | APIs, Backend, Node.js, Laravel, n8n, .NET, MediaPipe y Firebase |
-| Datos | XML, XSD, JSON, Gestión de estado y Bases de datos |
+| Datos | XML, XSD, JSON, Gestión de estado, Bases de datos y Microsoft SQL Server |
 | Control de versiones y calidad | Git, GitHub y Debugging |
 | Infraestructura y entrega | Linux, AWS, CI/CD, Deployment, NGINX y Docker |
 
@@ -84,12 +84,15 @@ Las antiguas URLs `/git-github*`, `/apis-rest*` y `/xml-xsd-json*` se conservan 
 | XML | 22 | 110 | Documentos, namespaces, parsing seguro, XPath, XSLT, catálogos, firma y evolución |
 | XSD | 20 | 100 | Tipos, facets, identidad, composición, assertions, PSVI, compatibilidad y conformidad |
 | JSON | 22 | 110 | Sintaxis, JSON Schema, Pointer, Patch, precisión, seguridad, canonicalización y operación |
+| Prolog | 24 | 120 | Desde términos y unificación hasta CLP(FD), tabling, depuración, concurrencia e integración |
+| Microsoft SQL Server | 24 | 120 | T-SQL, almacenamiento, planes, transacciones, seguridad, continuidad y operación |
+| AWS | 18 | 228 | Nube, identidad, red, compute, datos y seis recorridos nuevos derivados de apuntes de arquitectura y operación |
 
 Python incluye documentación oficial para personas principiantes y avanza de forma progresiva. MediaPipe usa Python en su caso práctico, pero mantiene currículo, fuentes, ruta y escena propios. Del mismo modo, XML define documentos, XSD define schemas XML y JSON define una sintaxis de valores; una colección no sustituye a las otras.
 
 ## Narrativa En acción
 
-Las 24 colecciones incorporadas mediante el registro escalable usan 24 composiciones visuales propias. Entre ellas hay una mesa forense de memoria para C, estación de ownership para C++, switchboard del runtime para Objective-C, cuadrícula térmica para C*, libro-telar para CWEB, osciloscopio para Embedded C, puerto multimodal para APIs, puerto del event loop para Node.js, palacio transaccional para Laravel, aeropuerto de workflows para n8n, estratos de historial para Git y cámara de gobernanza para GitHub.
+Las 26 colecciones incorporadas mediante el registro escalable usan composiciones visuales propias. Entre ellas hay una mesa forense de memoria para C, estación de ownership para C++, switchboard del runtime para Objective-C, cuadrícula térmica para C*, libro-telar para CWEB, osciloscopio para Embedded C, constelación de prueba con backtracking para Prolog, patio ferroviario de locks y LSN para SQL Server, puerto multimodal para APIs, puerto del event loop para Node.js, palacio transaccional para Laravel, aeropuerto de workflows para n8n, estratos de historial para Git y cámara de gobernanza para GitHub.
 
 Los guiños a League of Legends y Arcane se limitan a microcopy original y referencias ambientales. No se usan personajes, audio, logotipos, mapas ni recursos de Riot Games, y no se sugiere afiliación.
 
@@ -108,10 +111,10 @@ src/data/officialReferences.ts
   └─ autoridades, versiones y resolución de referencias por concepto
 
 src/data/catalogValidation.ts
-  └─ invariantes de 39 colecciones y 3,427 conceptos
+  └─ invariantes de 41 colecciones y 3,697 conceptos
 
 src/app/[slug]/page.tsx
-  └─ 48 rutas expandidas generadas con parámetros cerrados
+  └─ 52 rutas expandidas generadas con parámetros cerrados
 
 src/components/visual/useScenePlayback.ts
   └─ viewport, visibilidad de pestaña y movimiento reducido
@@ -142,17 +145,17 @@ Validación completa:
 npm run check
 ```
 
-`npm run check` ejecuta ESLint, TypeScript estricto, la exportación estática y la comprobación de enlaces internos. La compilación actual produce **89 páginas HTML**: 78 canónicas, seis puentes heredados y cinco páginas de soporte.
+`npm run check` ejecuta ESLint, TypeScript estricto, la exportación estática y la comprobación de enlaces internos. La compilación actual produce **93 páginas HTML**: 82 canónicas, seis puentes heredados y cinco páginas de soporte.
 
 ### Evidencia de calidad
 
 | Control | Resultado esperado |
 |---|---|
-| Catálogo | 39/39 colecciones; IDs y slugs únicos |
-| Currículo | 3,427/3,427 conceptos con capítulo y escena efectiva |
-| Fuentes | 3,427/3,427 conceptos con al menos dos referencias primarias |
-| Casos | 39/39 pares colección / En acción con profundización |
-| Exportación | 89 páginas estáticas y cero enlaces internos rotos |
+| Catálogo | 41/41 colecciones; IDs y slugs únicos |
+| Currículo | 3,697/3,697 conceptos con capítulo y escena efectiva |
+| Fuentes | 3,697/3,697 conceptos con al menos dos referencias primarias |
+| Casos | 41/41 pares colección / En acción con profundización |
+| Exportación | 93 páginas estáticas y cero enlaces internos rotos |
 | Responsive | Sin overflow global; escenas anchas usan scroll local |
 | Movimiento | Loop infinito visible, pausa fuera del viewport y estado completo con `prefers-reduced-motion` |
 

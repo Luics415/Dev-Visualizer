@@ -1,6 +1,7 @@
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
 import { StateManagementPracticalScene } from "@/components/scenes/state-management/StateManagementPracticalScene";
+import { collectionNumber } from "@/data/collectionManifest";
 import { stateManagementDeepDive } from "@/data/practicalDeepDives";
 
 export default function StateManagementActionPage() {
@@ -9,7 +10,7 @@ export default function StateManagementActionPage() {
       <CollectionNav />
       <header className="hero hero--state-management-practical">
         <div>
-          <span className="eyebrow eyebrow--state-management">Colección 05 · Caso integrado ampliado</span>
+          <span className="eyebrow eyebrow--state-management">Colección {collectionNumber("state-management")} · Caso integrado ampliado</span>
           <h1>Gestión de estado en acción</h1>
           <p>Un constructor de equipos busca a Jinx y distribuye cada dato en la frontera correcta: estado local, URL, store de cliente, caché del servidor y persistencia. El favorito optimista conecta experiencia inmediata, rollback y sincronización.</p>
         </div>

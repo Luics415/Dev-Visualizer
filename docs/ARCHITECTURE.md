@@ -18,7 +18,7 @@ expandedCollections.ts (servidor/build)
   └─ casos integrados y profundización
 
 canonicalConceptCollections.ts (servidor/build)
-  └─ inventario normalizado de 39 colecciones y 3,427 conceptos
+  └─ inventario normalizado de 41 colecciones y 3,697 conceptos
 
 officialReferences.ts (servidor/build)
   ├─ autoridades, estándares, manuales y documentación
@@ -29,7 +29,7 @@ catalogValidation.ts (servidor/build)
   └─ invariantes de catálogo, escenas, fuentes y casos
 ```
 
-`src/app/[slug]/page.tsx` genera estáticamente 48 rutas para las 24 colecciones expandidas a partir de parámetros cerrados. Las 15 colecciones originales conservan 30 rutas y componentes especializados. La biblioteca recibe estadísticas calculadas en servidor; el bundle de navegación no importa los módulos educativos grandes.
+`src/app/[slug]/page.tsx` genera estáticamente 52 rutas para las 26 colecciones expandidas a partir de parámetros cerrados. Las 15 colecciones originales conservan 30 rutas y componentes especializados. La biblioteca recibe estadísticas calculadas en servidor; el bundle de navegación no importa los módulos educativos grandes.
 
 ## Fuente única
 
@@ -55,15 +55,15 @@ Python y MediaPipe son definiciones diferentes. XML, XSD y JSON también tienen 
 
 El código comprueba:
 
-- exactamente 39 colecciones;
+- exactamente 41 colecciones;
 - IDs y rutas canónicas únicos;
 - pareja colección/caso para cada identidad;
 - rutas heredadas sin colisiones;
 - capítulos y conceptos no vacíos;
 - sección y escena efectiva para cada concepto;
-- al menos dos fuentes oficiales o especificaciones para los 3,427 conceptos;
+- al menos dos fuentes oficiales o especificaciones para los 3,697 conceptos;
 - referencias HTTPS con autoridad, tipo, versión, vigencia y fecha de verificación;
 - caso integrado con etapas y profundización;
 - enlaces internos resueltos a una página o recurso exportado.
 
-La exportación produce 89 páginas: 78 canónicas, seis puentes heredados y cinco páginas de soporte.
+La exportación produce 93 páginas: 82 canónicas, seis puentes heredados y cinco páginas de soporte.
