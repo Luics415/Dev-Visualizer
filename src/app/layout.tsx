@@ -7,7 +7,7 @@ import "./globals.css";
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 const siteRoot = siteUrl.replace(/\/$/, "");
 const assetUrl = (pathname: string) => `${siteRoot}${pathname}`;
-const socialCardUrl = assetUrl("/social/luics415-dev-visualizer-og-2026.png");
+const socialCardUrl = assetUrl("/social/luics415-dev-visualizer-github-1280x640.jpg");
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -39,10 +39,10 @@ export const metadata: Metadata = {
     description: "41 colecciones y 82 rutas para aprender desarrollo de software mediante visualizaciones autónomas y casos técnicos completos.",
     images: [{
       url: socialCardUrl,
-      width: 1731,
-      height: 909,
+      width: 1280,
+      height: 640,
       alt: "Luics415 · Software Developer · Dev Visualizer, un atlas visual para aprender desarrollo de software",
-      type: "image/png",
+      type: "image/jpeg",
     }],
   },
   twitter: {
