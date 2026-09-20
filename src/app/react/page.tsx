@@ -20,6 +20,7 @@ import { UseRefScene } from "@/components/scenes/react/UseRefScene";
 import { reactConcepts } from "@/data/reactConcepts";
 import { slugify } from "@/lib/slugify";
 import { CollectionPrimer } from "@/components/concepts/CollectionPrimer";
+import { collectionNumber } from "@/data/collectionManifest";
 import { collectionPrimers } from "@/data/collectionPrimers";
 
 const specialScenes = new Map<string, ReactNode>([
@@ -48,7 +49,7 @@ export default function ReactPage() {
       <CollectionNav />
       <header className="hero hero--react">
         <div>
-          <span className="eyebrow eyebrow--react">Colección 03 · Interfaces declarativas modernas</span>
+          <span className="eyebrow eyebrow--react">Colección {collectionNumber("react")} · Interfaces declarativas modernas</span>
           <h1>React visualizado</h1>
           <p>
             Componentes y estado se conectan con reconciliación, efectos, concurrencia, Actions, Suspense, render del servidor, hidratación, testing y React Compiler para formar una referencia moderna y completa.

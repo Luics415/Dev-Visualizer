@@ -1,11 +1,12 @@
 import { StudyAtlasCollection } from "@/components/concepts/StudyAtlasCollection";
 import { backendConcepts } from "@/data/backendConcepts";
+import { collectionNumber } from "@/data/collectionManifest";
 
 export default function BackendPage() {
   return (
     <StudyAtlasCollection
       collectionId="backend"
-      collectionNumber="07"
+      collectionNumber={collectionNumber("backend")}
       eyebrow="Del socket a una plataforma operable"
       title="Backend visualizado"
       description="Runtime, HTTP, middleware, validación, dominio, seguridad, persistencia, caché, jobs, mensajería, resiliencia, observabilidad, pruebas, despliegue y escalado conectados como un solo sistema de producción."

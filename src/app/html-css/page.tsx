@@ -3,6 +3,7 @@ import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { AnimatedConceptScene } from "@/components/visual/AnimatedConceptScene";
 import { htmlCssConcepts } from "@/data/htmlCssConcepts";
 import { CollectionPrimer } from "@/components/concepts/CollectionPrimer";
+import { collectionNumber } from "@/data/collectionManifest";
 import { collectionPrimers } from "@/data/collectionPrimers";
 
 export default function HtmlCssPage() {
@@ -11,7 +12,7 @@ export default function HtmlCssPage() {
       <CollectionNav />
       <header className="hero hero--html-css">
         <div>
-          <span className="eyebrow eyebrow--html-css">Colección 10 · Documento, estilos y motor del navegador</span>
+          <span className="eyebrow eyebrow--html-css">Colección {collectionNumber("html-css")} · Documento, estilos y motor del navegador</span>
           <h1>HTML y CSS visualizados</h1>
           <p>Una referencia extensa que conecta semántica, accesibilidad y formularios con cascade, layout, responsive design y composición. No se limita a memorizar etiquetas o propiedades: muestra qué estructura construye el navegador y cómo resuelve cada estilo.</p>
         </div>

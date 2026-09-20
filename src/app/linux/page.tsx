@@ -1,11 +1,12 @@
 import { StudyAtlasCollection } from "@/components/concepts/StudyAtlasCollection";
+import { collectionNumber } from "@/data/collectionManifest";
 import { linuxConcepts } from "@/data/linuxConcepts";
 
 export default function LinuxPage() {
   return (
     <StudyAtlasCollection
       collectionId="linux"
-      collectionNumber="11"
+      collectionNumber={collectionNumber("linux")}
       eyebrow="Del shell al kernel y la operación del host"
       title="Linux visualizado"
       description="Kernel, user space, Bash, archivos, permisos, procesos, systemd, redes, storage, observabilidad, hardening, automatización y aislamiento conectados como un sistema operativo de producción."

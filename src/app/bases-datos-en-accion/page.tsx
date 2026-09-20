@@ -1,6 +1,7 @@
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
 import { DatabasePracticalScene } from "@/components/scenes/databases/DatabasePracticalScene";
+import { collectionNumber } from "@/data/collectionManifest";
 import { databaseDeepDive } from "@/data/practicalDeepDives";
 
 export default function DatabasesActionPage() {
@@ -9,7 +10,7 @@ export default function DatabasesActionPage() {
       <CollectionNav />
       <header className="hero hero--databases-practical">
         <div>
-          <span className="eyebrow eyebrow--databases">Colección 08 · Caso integrado ampliado</span>
+          <span className="eyebrow eyebrow--databases">Colección {collectionNumber("databases")} · Caso integrado ampliado</span>
           <h1>Bases de datos en acción</h1>
           <p>Dos solicitudes intentan reservar la última pieza Hextech. El motor usa un índice, crea snapshots, coordina concurrencia, confirma una transacción, escribe el log y replica el cambio sin perder la invariante.</p>
         </div>

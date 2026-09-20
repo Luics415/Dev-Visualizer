@@ -1,6 +1,7 @@
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
 import { DebuggingPracticalScene } from "@/components/scenes/debugging/DebuggingPracticalScene";
+import { collectionNumber } from "@/data/collectionManifest";
 import { debuggingDeepDive } from "@/data/practicalDeepDives";
 
 export default function DebuggingActionPage() {
@@ -9,7 +10,7 @@ export default function DebuggingActionPage() {
       <CollectionNav />
       <header className="hero hero--debugging-practical">
         <div>
-          <span className="eyebrow eyebrow--debugging">Colección 17 · Caso integrado ampliado</span>
+          <span className="eyebrow eyebrow--debugging">Colección {collectionNumber("debugging")} · Caso integrado ampliado</span>
           <h1>Debugging en acción</h1>
           <p>Caitlyn investiga por qué una sola pulsación de Jinx crea dos órdenes para reparar Fishbones. El caso acota la regresión, reproduce el lifecycle, conecta UI, Network, backend y base de datos con un request ID, pausa en el listener, prueba una hipótesis y termina con cleanup, idempotencia, prueba de regresión y canary.</p>
         </div>

@@ -11,6 +11,7 @@ import {
 import { reactNativeConcepts } from "@/data/reactNativeConcepts";
 import { slugify } from "@/lib/slugify";
 import { CollectionPrimer } from "@/components/concepts/CollectionPrimer";
+import { collectionNumber } from "@/data/collectionManifest";
 import { collectionPrimers } from "@/data/collectionPrimers";
 
 const specialScenes = new Map<string, ReactNode>([
@@ -39,7 +40,7 @@ export default function ReactNativePage() {
       <CollectionNav />
       <header className="hero hero--react-native">
         <div>
-          <span className="eyebrow eyebrow--react-native">Colección 04 · Aplicaciones móviles de producción</span>
+          <span className="eyebrow eyebrow--react-native">Colección {collectionNumber("react-native")} · Aplicaciones móviles de producción</span>
           <h1>React Native visualizado</h1>
           <p>
             La ruta ahora cubre la Nueva Arquitectura, runtime, layout, gestos, multimedia, listas, navegación, APIs del dispositivo, offline, seguridad, performance, módulos nativos, testing y entrega a tiendas.

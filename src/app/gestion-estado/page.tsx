@@ -1,11 +1,12 @@
 import { StudyAtlasCollection } from "@/components/concepts/StudyAtlasCollection";
+import { collectionNumber } from "@/data/collectionManifest";
 import { stateManagementConcepts } from "@/data/stateManagementConcepts";
 
 export default function StateManagementPage() {
   return (
     <StudyAtlasCollection
       collectionId="state-management"
-      collectionNumber="05"
+      collectionNumber={collectionNumber("state-management")}
       eyebrow="Del dato local a la sincronización distribuida"
       title="Gestión de estado visualizada"
       description="Una ruta completa para decidir qué guardar, dónde colocarlo y cómo mantenerlo coherente: estado local, reducers, Context, Redux Toolkit, stores ligeros, caché de servidor, persistencia, offline, pruebas y observabilidad."

@@ -34,6 +34,7 @@ export const collectionManifest: readonly CollectionManifestEntry[] = [
   { id: "javascript", label: "JavaScript ES6+", short: "JS", href: "/", actionHref: "/javascript-en-accion", group: "languages", theme: "javascript", lifecycle: "actual", summary: "Lenguaje, objetos, asincronía, módulos, protocolos y memoria." },
   { id: "typescript", label: "TypeScript", short: "TS", href: "/typescript", actionHref: "/typescript-en-accion", group: "languages", theme: "typescript", lifecycle: "actual", summary: "Modelado, narrowing, genéricos, compilador y producción." },
   { id: "python", label: "Python", short: "Py", href: "/python", actionHref: "/python-en-accion", group: "languages", theme: "python", lifecycle: "actual", summary: "Desde cero: lenguaje, biblioteca estándar, automatización, web, datos, IA y producción." },
+  { id: "prolog", label: "Prolog", short: "PL", href: "/prolog", actionHref: "/prolog-en-accion", group: "languages", theme: "prolog", lifecycle: "actual", summary: "Términos, unificación, resolución, backtracking, restricciones, tabling, gramáticas y producción." },
   { id: "c", label: "C", short: "C", href: "/c", actionHref: "/c-en-accion", group: "languages", theme: "c", lifecycle: "actual", summary: "Compilación, memoria, punteros, ABI, herramientas y seguridad." },
   { id: "cpp", label: "C++", short: "C++", href: "/cpp", actionHref: "/cpp-en-accion", group: "languages", theme: "cpp", lifecycle: "actual", summary: "RAII, tipos, STL, templates, concurrencia y rendimiento." },
   { id: "c-sharp", label: "C#", short: "C#", href: "/c-sharp", actionHref: "/c-sharp-en-accion", group: "languages", theme: "c-sharp", lifecycle: "actual", summary: "Tipos, patrones, LINQ, asincronía, memoria y concurrencia." },
@@ -64,6 +65,7 @@ export const collectionManifest: readonly CollectionManifestEntry[] = [
   { id: "json", label: "JSON", short: "JSON", href: "/json", actionHref: "/json-en-accion", group: "data", theme: "json", lifecycle: "actual", summary: "Sintaxis, JSON Schema, Pointer, Patch, seguridad, contratos y producción." },
   { id: "state-management", label: "Gestión de estado", short: "State", href: "/gestion-estado", actionHref: "/gestion-estado-en-accion", group: "data", theme: "state-management", lifecycle: "actual", summary: "Ownership, stores, caché remota, persistencia y offline." },
   { id: "databases", label: "Bases de datos", short: "DB", href: "/bases-datos", actionHref: "/bases-datos-en-accion", group: "data", theme: "databases", lifecycle: "actual", summary: "Modelado, SQL, índices, concurrencia, distribución y backups." },
+  { id: "sql-server", label: "Microsoft SQL Server", short: "SQL", href: "/sql-server", actionHref: "/sql-server-en-accion", group: "data", theme: "sql-server", lifecycle: "actual", summary: "T-SQL, almacenamiento, optimizador, concurrencia, seguridad, operación y alta disponibilidad." },
 
   { id: "git", label: "Git", short: "Git", href: "/git", actionHref: "/git-en-accion", group: "versioning", theme: "git", lifecycle: "actual", summary: "Objetos, referencias, staging, historia, sincronización y rescate.", legacyPaths: ["/git-github", "/git-github-en-accion"] },
   { id: "github", label: "GitHub", short: "GH", href: "/github", actionHref: "/github-en-accion", group: "versioning", theme: "github", lifecycle: "actual", summary: "Colaboración, PRs, gobierno, seguridad, comunidad y releases." },
@@ -93,7 +95,7 @@ export function themeForPath(pathname: string) {
 }
 
 function validateCollectionManifest() {
-  if (collectionManifest.length !== 39) throw new Error(`El manifiesto debe contener 39 colecciones; contiene ${collectionManifest.length}.`);
+  if (collectionManifest.length !== 41) throw new Error(`El manifiesto debe contener 41 colecciones; contiene ${collectionManifest.length}.`);
   const ids = new Set<string>();
   const routes = new Set<string>();
   for (const collection of collectionManifest) {

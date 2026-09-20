@@ -1,6 +1,6 @@
 # Roadmap
 
-## Atlas actual: 39 colecciones
+## Atlas actual: 41 colecciones
 
 - [x] Manifiesto ligero, registro servidor, navegación y sitemap derivados.
 - [x] Git y GitHub como colecciones independientes.
@@ -13,10 +13,13 @@
 - [x] XML independiente: 22 capítulos y 110 conceptos.
 - [x] XSD independiente: 20 capítulos y 100 conceptos.
 - [x] JSON independiente: 22 capítulos y 110 conceptos.
-- [x] 39 casos En acción con profundización y sin bibliografía duplicada.
-- [x] 78 rutas canónicas y seis puentes heredados.
-- [x] Al menos dos fuentes oficiales o especificaciones para 3,427 de 3,427 conceptos.
-- [x] Escenas propias para las 24 rutas ampliadas En acción.
+- [x] Prolog independiente: 24 capítulos y 120 conceptos, con ISO, SWI-Prolog y árbol de prueba visual.
+- [x] Microsoft SQL Server independiente: 24 capítulos y 120 conceptos, con T-SQL, internals y operación.
+- [x] AWS ampliado a 228 conceptos con sitios privados, serverless, DynamoDB, CloudWatch, IAM y FinOps.
+- [x] 41 casos En acción con profundización y sin bibliografía duplicada.
+- [x] 82 rutas canónicas y seis puentes heredados.
+- [x] Al menos dos fuentes oficiales o especificaciones para 3,697 de 3,697 conceptos.
+- [x] Escenas propias para las 26 rutas ampliadas En acción.
 - [x] Loops legibles, pausa fuera del viewport y vista de movimiento reducido.
 - [x] Banner firmado de Acerca y banner del ancla preservado en Colecciones.
 - [x] Presentación social Luics415 integrada en Open Graph, Twitter Card y descarga.

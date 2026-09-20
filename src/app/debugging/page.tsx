@@ -1,11 +1,12 @@
 import { StudyAtlasCollection } from "@/components/concepts/StudyAtlasCollection";
+import { collectionNumber } from "@/data/collectionManifest";
 import { debuggingConcepts } from "@/data/debuggingConcepts";
 
 export default function DebuggingPage() {
   return (
     <StudyAtlasCollection
       collectionId="debugging"
-      collectionNumber="17"
+      collectionNumber={collectionNumber("debugging")}
       eyebrow="Del síntoma ambiguo a una causa demostrada y una regresión imposible"
       title="Debugging visualizado"
       description="Mentalidad, reproducción, evidencia, logs, breakpoints, call stacks, asincronía, DOM, CSS, red, backend, trazas, rendimiento, memoria, mobile, pruebas, incidentes y prevención conectados como un método sistemático."

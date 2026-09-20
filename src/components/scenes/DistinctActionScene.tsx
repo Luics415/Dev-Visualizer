@@ -6,9 +6,11 @@ import { useScenePlayback } from "@/components/visual/useScenePlayback";
 
 export type DistinctActionSceneId =
   | "python"
+  | "prolog"
   | "xml"
   | "xsd"
   | "json"
+  | "sql-server"
   | "c"
   | "cpp"
   | "c-sharp"
@@ -31,9 +33,11 @@ export type DistinctActionSceneId =
 
 type VisualKind =
   | "python-runtime"
+  | "proof-constellation"
   | "xml-document"
   | "xsd-gates"
   | "json-values"
+  | "transaction-rail"
   | "memory-forensics"
   | "ownership-rail"
   | "channel-plant"
@@ -78,6 +82,17 @@ const configs: Record<DistinctActionSceneId, SceneConfig> = {
     evidence: ["TaskGroup cerrado", "p95 84 ms", "digest verificado"],
     easterEgg: "Visión antes del efecto",
   },
+  prolog: {
+    label: "Observatorio de inferencia explicable",
+    visual: "proof-constellation",
+    input: "?- best_plan(i17, Plan)",
+    result: "plan óptimo · prueba auditable",
+    failure: "all_distinct([4,4,_]) → fail",
+    recovery: "trail rewind → next choice",
+    nodes: ["QUERY", "FACTS", "RULES", "UNIFY", "CLP(FD)", "PROOF"],
+    evidence: ["roles completos", "responders únicos", "ETA ≤ 45"],
+    easterEgg: "Ruta discreta: nexo_sur",
+  },
   xml: {
     label: "Manual técnico multilingüe y firmado",
     visual: "xml-document",
@@ -107,6 +122,17 @@ const configs: Record<DistinctActionSceneId, SceneConfig> = {
     recovery: "reload → test 8 ✓",
     nodes: ["TOKENS", "DUPLICATES", "SCHEMA", "DECIMAL", "JSON PATCH", "JCS"],
     evidence: ["UTF-8", "atomic patch", "JSON sequence"],
+  },
+  "sql-server": {
+    label: "Patio ferroviario de transacciones",
+    visual: "transaction-rail",
+    input: "request_id=CENTINELA-42",
+    result: "COMMIT durable · réplica sincronizada",
+    failure: "deadlock 1205 · A→B / B→A",
+    recovery: "ROLLBACK → orden canónico → retry",
+    nodes: ["PARSE", "OPTIMIZE", "B-TREE SEEK", "LOCKS", "WAL / LSN", "ALWAYS ON"],
+    evidence: ["stock ≥ 0", "request_id único", "restore probado"],
+    easterEgg: "WARD_AZUL reservado",
   },
   c: {
     label: "Parser seguro de telemetría binaria",
@@ -389,6 +415,10 @@ function SceneBody(props: BodyProps) {
       return <div className="distinct-xsd"><div className="distinct-xsd__schema">xs:schema<small>targetNamespace v3</small></div><div className="distinct-xsd__gates">{config.nodes.slice(1).map((node, index) => <motion.span key={node} animate={stageMotion(shouldAnimate, index)} className={index === 3 ? "distinct-xsd__gate--fault" : ""}>{node}<i>{index === 3 ? "M-17 → M-18" : "✓"}</i></motion.span>)}</div><motion.i animate={shouldAnimate ? { x: [0, 0, 326, 326, 0] } : { x: 326 }} transition={transition([0, .05, .8, .94, 1])}>INSTANCE</motion.i><code>PSVI · validity=true · type=CertificateType</code></div>;
     case "json-values":
       return <div className="distinct-json"><div className="distinct-json__object"><span>{"{"}</span><code>&quot;orderId&quot;: &quot;DV-421&quot;,</code><code>&quot;total&quot;: &quot;9007199254740993.00&quot;,</code><code>&quot;revision&quot;: 8</code><span>{"}"}</span></div><div className="distinct-json__ops">{config.nodes.slice(1).map((node, index) => <motion.span key={node} animate={stageMotion(shouldAnimate, index)}>{node}</motion.span>)}</div><motion.code animate={shouldAnimate ? { opacity: [.3, .3, 1, 1, .72] } : { opacity: 1 }} transition={transition([0, .65, .74, .96, 1])}>test /revision 8 ✓ → JCS sha256:8f31…</motion.code></div>;
+    case "proof-constellation":
+      return <div className="distinct-proof"><div className="distinct-proof__query">?- best_plan(i17, Plan)<small>objetivo</small></div><svg aria-hidden="true" viewBox="0 0 720 230"><path d="M80 112 L220 48 L354 112 L495 48 L640 112" /><path d="M220 48 L220 182 L354 112 L495 182 L640 112" /><motion.circle r="7" animate={shouldAnimate ? { cx: [80, 80, 220, 354, 495, 495, 354, 495, 640, 640, 80], cy: [112, 112, 48, 112, 48, 182, 112, 182, 112, 112, 112], opacity: [.7, 1, 1, 1, 1, .35, .5, 1, 1, .7, .7] } : { cx: 640, cy: 112, opacity: 1 }} transition={transition([0, .05, .19, .34, .46, .55, .63, .72, .84, .94, 1])} /></svg><div className="distinct-proof__stars">{config.nodes.slice(1).map((node, index) => <motion.span key={node} animate={stageMotion(shouldAnimate, index)} className={index === 3 ? "distinct-proof__star--fault" : ""}>{node}<small>{index === 2 ? "X = 4" : index === 3 ? "dominio ∅" : "✓"}</small></motion.span>)}</div><motion.code className="distinct-proof__trail" animate={shouldAnimate ? { opacity: [.35, .35, 1, .45, 1, .72] } : { opacity: 1 }} transition={transition([0, .43, .5, .62, .72, 1])}>TRAIL ↶ deshace X=4 · activa alternativa · proof([r2,r7,r9])</motion.code></div>;
+    case "transaction-rail":
+      return <div className="distinct-sqlrail"><div className="distinct-sqlrail__planner">{config.nodes.slice(0, 3).map((node, index) => <motion.span key={node} animate={stageMotion(shouldAnimate, index)}>{node}</motion.span>)}<motion.i animate={shouldAnimate ? { left: ["3%", "3%", "91%", "91%", "3%"] } : { left: "91%" }} transition={transition([0, .05, .31, .92, 1])}>Q</motion.i></div><div className="distinct-sqlrail__locks"><span>SKU A <b>T1</b><i /></span><span>SKU B <b>T2</b><i /></span><motion.em animate={shouldAnimate ? { rotate: [0, 0, 360, 360, 0], opacity: [.25, .25, 1, 1, .25] } : { rotate: 320, opacity: 1 }} transition={transition([0, .34, .48, .62, 1])}>1205</motion.em></div><div className="distinct-sqlrail__log"><b>WAL / LSN</b>{[421, 422, 423, 424].map((lsn, index) => <motion.code key={lsn} animate={stageMotion(shouldAnimate, index + 2)}>LSN {lsn}</motion.code>)}<motion.i animate={shouldAnimate ? { left: ["2%", "2%", "88%", "88%", "2%"], opacity: [.4, 1, 1, .65, .4] } : { left: "88%", opacity: 1 }} transition={transition([0, .08, .78, .94, 1])} /></div><motion.div className="distinct-sqlrail__replica" animate={shouldAnimate ? { boxShadow: ["0 0 0 rgba(73,225,168,0)", "0 0 24px rgba(73,225,168,.55)", "0 0 0 rgba(73,225,168,0)"] } : { boxShadow: "0 0 18px rgba(73,225,168,.45)" }} transition={{ duration: 3.8, repeat: shouldAnimate ? Infinity : 0 }}>PRIMARY → SECONDARY<small>hardened_lsn ✓</small></motion.div></div>;
     default:
       return <LinearMechanism {...props} />;
   }

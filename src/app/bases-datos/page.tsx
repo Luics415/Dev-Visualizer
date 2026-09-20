@@ -1,11 +1,12 @@
 import { StudyAtlasCollection } from "@/components/concepts/StudyAtlasCollection";
+import { collectionNumber } from "@/data/collectionManifest";
 import { databaseConcepts } from "@/data/databaseConcepts";
 
 export default function DatabasesPage() {
   return (
     <StudyAtlasCollection
       collectionId="databases"
-      collectionNumber="08"
+      collectionNumber={collectionNumber("databases")}
       eyebrow="Del modelo lógico a la recuperación ante desastres"
       title="Bases de datos visualizadas"
       description="Modelado, SQL, integridad, joins, índices, planner, transacciones, MVCC, migraciones, ORM, modelos NoSQL, replicación, sharding, backups, seguridad y operación explicados desde la lógica hasta el almacenamiento físico."

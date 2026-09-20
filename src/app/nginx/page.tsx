@@ -1,11 +1,12 @@
 import { StudyAtlasCollection } from "@/components/concepts/StudyAtlasCollection";
+import { collectionNumber } from "@/data/collectionManifest";
 import { nginxConcepts } from "@/data/nginxConcepts";
 
 export default function NginxPage() {
   return (
     <StudyAtlasCollection
       collectionId="nginx"
-      collectionNumber="14"
+      collectionNumber={collectionNumber("nginx")}
       eyebrow="De una conexión entrante a un gateway operable"
       title="NGINX visualizado"
       description="Arquitectura event-driven, procesos, configuración, selección de server y location, contenido estático, reverse proxy, upstreams, balanceo, TLS, HTTP/2, HTTP/3, caché, límites, stream, observabilidad, contenedores, Kubernetes y operación conectados en una sola ruta de estudio."

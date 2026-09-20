@@ -1,6 +1,7 @@
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
 import { AwsPracticalScene } from "@/components/scenes/aws/AwsPracticalScene";
+import { collectionNumber } from "@/data/collectionManifest";
 import { awsDeepDive } from "@/data/practicalDeepDives";
 
 export default function AwsActionPage() {
@@ -9,7 +10,7 @@ export default function AwsActionPage() {
       <CollectionNav />
       <header className="hero hero--aws-practical">
         <div>
-          <span className="eyebrow eyebrow--aws">Colección 12 · Caso integrado ampliado</span>
+          <span className="eyebrow eyebrow--aws">Colección {collectionNumber("aws")} · Caso integrado ampliado</span>
           <h1>AWS en acción</h1>
           <p>El portal del Consejo de Piltover debe servir una actualización de seguridad enviada por Caitlyn. La arquitectura recorre Route 53, CloudFront, WAF, ALB, ECS Fargate, Aurora, ElastiCache, SQS y observabilidad multi-AZ sin entregar credenciales permanentes al pipeline.</p>
         </div>
