@@ -72,4 +72,4 @@ Los guiños a League of Legends son microcopy original y ambiental. Se excluyen 
 
 El banner de Colecciones conserva el ancla principal y su composición. Acerca utiliza una pieza hermana exclusiva con el ancla desplazada, una estela caligráfica y la firma Luics415 como texto HTML accesible.
 
-La presentación social usa un atlas horizontal 1.91:1: ancla de rutas luminosas, seis módulos conectados, retícula, tipografía técnica y el rol “Software Developer · Dev Visualizer”. No usa grafiti, pintura, marcas de terceros ni composiciones copiadas. También funciona como imagen Open Graph del sitio.
+La tarjeta social usa un atlas horizontal cercano a 1.91:1: firma de Luics415, ancla, esfera central y paneles conectados que representan frontend, backend, datos, algoritmos, APIs, debugging, arquitectura y aprendizaje. La pieza se publica como imagen Open Graph y Twitter Card, se muestra en el README y puede descargarse desde Acerca.

@@ -7,6 +7,7 @@ import "./globals.css";
 const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 const siteRoot = siteUrl.replace(/\/$/, "");
 const assetUrl = (pathname: string) => `${siteRoot}${pathname}`;
+const socialCardUrl = assetUrl("/social/luics415-dev-visualizer-og-2026.png");
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -32,21 +33,23 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "es_MX",
+    url: siteRoot,
     siteName: "Dev Visualizer",
     title: "Dev Visualizer",
     description: "39 colecciones y 78 rutas para aprender desarrollo de software mediante visualizaciones autónomas y casos técnicos completos.",
     images: [{
-      url: assetUrl("/social/luics415-dev-visualizer-atlas.png"),
-      width: 1729,
-      height: 910,
-      alt: "Luics415 · Software Developer · Dev Visualizer",
+      url: socialCardUrl,
+      width: 1731,
+      height: 909,
+      alt: "Luics415 · Software Developer · Dev Visualizer, un atlas visual para aprender desarrollo de software",
+      type: "image/png",
     }],
   },
   twitter: {
     card: "summary_large_image",
     title: "Dev Visualizer",
     description: "Atlas visual educativo: 39 colecciones, 78 rutas y 3,427 conceptos.",
-    images: [assetUrl("/social/luics415-dev-visualizer-atlas.png")],
+    images: [socialCardUrl],
   },
 };
 

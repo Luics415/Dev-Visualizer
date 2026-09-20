@@ -12,6 +12,11 @@ Atlas visual animado para aprender desarrollo de software desde los fundamentos 
   <a href="https://luics415.github.io/Dev-Visualizer/acerca/">Acerca del proyecto</a>
 </p>
 
+<p align="center">
+  <img src="public/social/luics415-dev-visualizer-og-2026.png" alt="Tarjeta social de Dev Visualizer con la firma de Luics415 y un atlas luminoso de conceptos de desarrollo" width="100%" />
+  <br /><sub>Tarjeta Open Graph oficial del proyecto.</sub>
+</p>
+
 Dev Visualizer transforma mecanismos técnicos en escenas autónomas: cada concepto hace visibles la entrada, la transformación interna, el resultado y la conclusión. Cada colección tiene además un caso **En acción** con fronteras, fallo, recuperación y evidencia verificable.
 
 ## Vista del producto
