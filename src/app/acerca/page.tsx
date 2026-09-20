@@ -79,7 +79,7 @@ export default function AboutPage() {
       </section>
 
       <div className="about-actions">
-        <a href={`${basePath}/social/luics415-dev-visualizer-atlas.png`} download>Descargar presentación social ↗</a>
+        <a href={`${basePath}/social/luics415-dev-visualizer-og-2026.png`} download>Descargar tarjeta social ↗</a>
         <Link href="/colecciones">Volver a las colecciones →</Link>
       </div>
     </main>
