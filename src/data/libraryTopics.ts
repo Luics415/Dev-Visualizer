@@ -1,0 +1,135 @@
+import type { LibraryResourceKind, LibraryTopic } from "./libraryTypes";
+
+const topic = (
+  slug: string,
+  title: string,
+  short: string,
+  group: LibraryTopic["group"],
+  description: string,
+  accent: string,
+  sourceTopicSlug?: string,
+  collectionId: string = slug,
+): LibraryTopic => ({ slug, collectionId, title, short, group, description, accent, sourceTopicSlug });
+
+export const libraryTopics: readonly LibraryTopic[] = [
+  topic("javascript", "JavaScript ES6+", "JS", "languages", "Lenguaje, objetos, asincronía, módulos, protocolos y memoria.", "#f5c742", "javascript"),
+  topic("typescript", "TypeScript", "TS", "languages", "Tipos, narrowing, genéricos, compilador y producción.", "#4aa8ff", "typescript"),
+  topic("python", "Python", "Py", "languages", "Aprendizaje desde cero, biblioteca estándar, automatización, datos, web e IA.", "#49e1a8", "python"),
+  topic("prolog", "Prolog", "PL", "languages", "Unificación, resolución, backtracking, restricciones, gramáticas y producción.", "#b895ff"),
+  topic("c", "C", "C", "languages", "Compilación, memoria, punteros, ABI, herramientas y seguridad.", "#6fc6ff", "c"),
+  topic("cpp", "C++", "C++", "languages", "RAII, STL, templates, concurrencia, ownership y rendimiento.", "#7aa7ff", "cplusplus"),
+  topic("c-sharp", "C#", "C#", "languages", "Tipos, patrones, LINQ, asincronía, memoria y concurrencia.", "#b783ff", "csharp"),
+  topic("objective-c", "Objective-C", "Obj-C", "languages", "Mensajería, runtime, ARC, Foundation e interoperabilidad con Swift.", "#78bfff"),
+  topic("c-star", "C*", "C*", "languages", "Programación data-parallel para sistemas Connection Machine.", "#65d6ff"),
+  topic("cweb", "CWEB", "CWEB", "languages", "Programación literaria con CTANGLE, CWEAVE, C y TeX.", "#c2a7ff"),
+  topic("embedded-c", "Embedded C", "EC", "languages", "Microcontroladores, registros, interrupciones, timing y seguridad.", "#51d8bd"),
+  topic("visual-basic", "Visual Basic .NET", "VB", "languages", "Lenguaje .NET, eventos, LINQ, WinForms e interoperabilidad.", "#8db8ff"),
+  topic("ux-ui", "UX/UI", "UX", "interfaces", "Investigación, arquitectura de información, accesibilidad, prototipos y validación.", "#ff7dc8"),
+  topic("html-css", "HTML y CSS", "HTML", "interfaces", "Semántica, cascade, layout, responsive y render del navegador.", "#ff9f55", "html-css"),
+  topic("bootstrap", "Bootstrap", "BS", "interfaces", "Grid, utilidades, componentes, Sass, accesibilidad y personalización.", "#9c83ff"),
+  topic("angularjs", "AngularJS", "AJS", "interfaces", "Mantenimiento de aplicaciones 1.x, digest cycle y migración gradual.", "#ef708a"),
+  topic("react", "React", "React", "interfaces", "Componentes, estado, reconciliación, efectos y concurrencia.", "#3bd3ff", "react"),
+  topic("react-native", "React Native", "RN", "interfaces", "Nueva Arquitectura, dispositivo, offline, rendimiento y releases.", "#55d7ed"),
+  topic("apis", "APIs", "API", "platforms", "REST, GraphQL, gRPC, eventos, tiempo real, contratos y seguridad.", "#49e1a8"),
+  topic("backend", "Backend", "Back", "platforms", "Arquitectura, seguridad, persistencia, mensajería y confiabilidad.", "#4f9dff"),
+  topic("nodejs", "Node.js", "Node", "platforms", "Runtime, event loop, streams, workers, módulos y operación.", "#71d879", "nodejs"),
+  topic("laravel", "Laravel", "Lv", "platforms", "Contenedor, HTTP, Eloquent, políticas, colas, eventos y pruebas.", "#ff6f86"),
+  topic("n8n", "n8n", "n8n", "platforms", "Workflows, credenciales, datos, reintentos, subflujos y operación.", "#ff8e6b"),
+  topic("dotnet", ".NET", ".NET", "platforms", "SDK, CLR, IL, JIT/AOT, GC, bibliotecas, hosting y diagnóstico.", "#9c83ff"),
+  topic("mediapipe", "MediaPipe", "MP", "platforms", "Tasks, modelos, grafos, visión, audio, texto, edge y operación responsable.", "#64d8cf"),
+  topic("firebase", "Firebase", "FB", "platforms", "Auth, datos, Storage, Functions, Hosting, FCM y Rules.", "#f5c742"),
+  topic("xml", "XML", "XML", "data", "Documentos, namespaces, parsing, XPath, XSLT, seguridad e interoperabilidad.", "#ff9f55"),
+  topic("xsd", "XSD", "XSD", "data", "Schemas XML, tipos, facets, identidad, composición, evolución y validación.", "#ffb86c"),
+  topic("json", "JSON", "JSON", "data", "Sintaxis, JSON Schema, Pointer, Patch, seguridad, contratos y producción.", "#f5c742"),
+  topic("state-management", "Gestión de estado", "State", "data", "Ownership, stores, caché remota, persistencia y offline.", "#b895ff"),
+  topic("databases", "Bases de datos", "DB", "data", "Modelado, SQL, índices, concurrencia, distribución y backups.", "#49e1a8"),
+  topic("sql-server", "Microsoft SQL Server", "SQL", "data", "T-SQL, almacenamiento, optimizador, seguridad y alta disponibilidad.", "#4aa8ff"),
+  topic("git", "Git", "Git", "versioning", "Objetos, referencias, staging, historia, sincronización y rescate.", "#ff8e5f", "git"),
+  topic("github", "GitHub", "GH", "versioning", "Colaboración, pull requests, gobierno, seguridad, comunidad y releases.", "#aab8d3"),
+  topic("debugging", "Debugging", "Debug", "versioning", "Reproducción, evidencia, hipótesis, rendimiento e incidentes.", "#ff6f86"),
+  topic("linux", "Linux", "Linux", "delivery", "Kernel, shell, procesos, redes, storage, hardening y contenedores.", "#d2d8e4", "linux"),
+  topic("aws", "AWS", "AWS", "delivery", "Identidad, VPC, compute, datos, eventos, gobierno y costo.", "#ffad52"),
+  topic("ci-cd", "CI/CD", "CI", "delivery", "Integración, evidencia, artefactos, supply chain y promoción.", "#49e1a8"),
+  topic("deployment", "Deployment", "Ship", "delivery", "Entornos, configuración, rollouts, tráfico, migraciones y rollback.", "#9c83ff"),
+  topic("nginx", "NGINX", "NGINX", "delivery", "Servidor web, reverse proxy, balanceo, TLS, caché y operación.", "#54dfb0"),
+  topic("docker", "Docker", "Docker", "delivery", "Imágenes, BuildKit, storage, networking, Compose y runtime.", "#3ba7ff", "docker"),
+
+  topic("fundamentos-programacion", "Fundamentos de programación", "Base", "fundamentals", "Pensamiento computacional, variables, control de flujo, funciones y resolución de problemas.", "#f5c742", "generales", "programming-fundamentals"),
+  topic("algoritmos-estructuras-de-datos", "Algoritmos y estructuras de datos", "A&D", "fundamentals", "Complejidad, estructuras, búsqueda, ordenamiento, grafos y diseño algorítmico.", "#ff9f55", "algoritmos", "algorithms"),
+  topic("matematicas-programacion", "Matemáticas para programación", "Math", "fundamentals", "Lógica, álgebra, combinatoria, probabilidad, cálculo y métodos numéricos.", "#6db8ff", "matematicas", "mathematics"),
+  topic("metodologias-desarrollo", "Metodologías de desarrollo", "Método", "fundamentals", "Iteración, Scrum, XP, flujo, evidencia, retrospectiva y mejora continua.", "#ffb45f", "metodologias", "methodologies"),
+  topic("scratch", "Scratch", "Scratch", "fundamentals", "Eventos, sprites, mensajes y pensamiento computacional mediante programación visual.", "#ff9f55", "scratch"),
+  topic("ruby", "Ruby", "Rb", "languages", "Objetos, bloques, enumerables, metaprogramación, tooling y producción.", "#ff6f86", "ruby"),
+  topic("rust", "Rust", "Rs", "languages", "Ownership, borrowing, tipos, concurrencia, unsafe, tooling y despliegue.", "#ff9f55", "rust"),
+  topic("php", "PHP", "PHP", "languages", "Lenguaje web, tipos, Composer, HTTP, persistencia, pruebas y producción.", "#9c83ff", "php"),
+  topic("haskell", "Haskell", "Hs", "languages", "Funciones puras, tipos algebraicos, evaluación perezosa, efectos y tooling.", "#b895ff", "haskell"),
+  topic("go", "Go", "Go", "languages", "Tipos, interfaces, goroutines, canales, módulos, profiling y servicios.", "#3bd3ff", "golang"),
+  topic("kotlin", "Kotlin", "Kt", "languages", "Null safety, objetos, corrutinas, multiplataforma y ecosistema JVM.", "#b783ff", "kotlin"),
+  topic("java", "Java", "Java", "languages", "Lenguaje, JVM, memoria, colecciones, concurrencia, módulos y producción.", "#ff7d5f", "java"),
+  topic("r", "R", "R", "languages", "Vectores, datos, estadística, visualización, paquetes y análisis reproducible.", "#6ca8ff", "r"),
+  topic("ensamblador", "Ensamblador", "ASM", "languages", "Arquitectura, registros, pila, llamadas, memoria e instrucciones.", "#aab8d3", "ensamblador", "assembly"),
+  topic("erlang", "Erlang", "Erl", "languages", "Actores, pattern matching, OTP, supervisión y tolerancia a fallos.", "#ff6f86", "erlang"),
+  topic("lisp", "Lisp", "Lisp", "languages", "Listas, evaluación, macros, funciones, metaprogramación y dialectos.", "#c28cff", "lisp"),
+  topic("perl", "Perl", "Perl", "languages", "Texto, expresiones regulares, módulos, scripts y automatización.", "#d9a27b", "perl"),
+  topic("raku", "Raku", "Raku", "languages", "Gramáticas, tipos, concurrencia, metaprogramación y expresividad.", "#be86ff", "raku"),
+  topic("scala", "Scala", "Scala", "languages", "Programación funcional y orientada a objetos sobre la JVM.", "#ff6f70", "scala"),
+  topic("blockchain", "Blockchain", "Chain", "data", "Criptografía aplicada, transacciones, consenso, contratos y operación.", "#9c83ff", "blockchain"),
+  topic("android", "Android", "Android", "platforms", "Componentes, lifecycle, estado, permisos, datos y distribución.", "#49e1a8", "android"),
+  topic("qwik", "Qwik", "Qwik", "interfaces", "Resumibilidad, carga diferida, routing, estado y despliegue web.", "#65e8ff", "qwik"),
+  topic("angular", "Angular", "Ng", "interfaces", "Componentes, señales, inyección, router, formularios y render moderno.", "#ff536a", "angular"),
+  topic("django", "Django", "Dj", "platforms", "Modelos, ORM, vistas, formularios, seguridad, pruebas y despliegue.", "#49b891", "django"),
+  topic("sql", "SQL", "SQL", "data", "Modelo relacional, consultas, joins, agregación, transacciones y optimización.", "#4aa8ff", "sql"),
+  topic("nosql", "NoSQL", "NoSQL", "data", "Documentos, clave-valor, columnas, grafos, partición y consistencia.", "#b895ff", "nosql"),
+  topic("sistemas-operativos", "Sistemas operativos", "OS", "delivery", "Procesos, scheduling, memoria, archivos, concurrencia y entrada/salida.", "#b5c0d6", "sistemas-operativos", "operating-systems"),
+  topic("inteligencia-artificial", "Inteligencia Artificial", "IA", "data", "Datos, modelos, entrenamiento, evaluación, inferencia, riesgo y operación.", "#72a7ff", "ia", "artificial-intelligence"),
+  topic("latex", "LaTeX", "TeX", "delivery", "Composición de documentos, referencias, tipografía, paquetes y compilación.", "#6db8ff", "latex"),
+  topic("subversion", "Subversion", "SVN", "versioning", "Control de versiones centralizado, ramas, merge, conflicto y administración.", "#b8c1d5", "subversion"),
+] as const;
+
+export type LibraryOfficialSeed = {
+  title: string;
+  url: string;
+  authority: string;
+  kind: Extract<LibraryResourceKind, "official-docs" | "specification" | "reference">;
+  version: string;
+};
+
+export const additionalOfficialSources: Readonly<Record<string, LibraryOfficialSeed>> = {
+  "fundamentos-programacion": { title: "Computer Science Curricula 2023", url: "https://csed.acm.org/final-report/", authority: "ACM / IEEE-CS / AAAI", kind: "reference", version: "CS2023" },
+  "algoritmos-estructuras-de-datos": { title: "Dictionary of Algorithms and Data Structures", url: "https://xlinux.nist.gov/dads/", authority: "NIST", kind: "reference", version: "Edición web vigente" },
+  "matematicas-programacion": { title: "NIST Digital Library of Mathematical Functions", url: "https://dlmf.nist.gov/", authority: "NIST", kind: "reference", version: "Edición web vigente" },
+  "metodologias-desarrollo": { title: "The Scrum Guide", url: "https://scrumguides.org/scrum-guide.html", authority: "Scrum Guides", kind: "official-docs", version: "2020" },
+  scratch: { title: "Scratch Ideas", url: "https://scratch.mit.edu/ideas", authority: "MIT Media Lab / Scratch Foundation", kind: "official-docs", version: "Sitio vigente" },
+  ruby: { title: "Ruby Documentation", url: "https://docs.ruby-lang.org/en/master/", authority: "Ruby Core", kind: "official-docs", version: "master" },
+  rust: { title: "The Rust Programming Language", url: "https://doc.rust-lang.org/book/", authority: "Rust Project", kind: "official-docs", version: "stable" },
+  php: { title: "PHP Manual", url: "https://www.php.net/manual/es/", authority: "PHP Documentation Group", kind: "official-docs", version: "vigente" },
+  haskell: { title: "GHC User's Guide", url: "https://ghc.gitlab.haskell.org/ghc/doc/users_guide/", authority: "GHC Project", kind: "official-docs", version: "vigente" },
+  go: { title: "Go Documentation", url: "https://go.dev/doc/", authority: "Go Project", kind: "official-docs", version: "vigente" },
+  kotlin: { title: "Kotlin Documentation", url: "https://kotlinlang.org/docs/home.html", authority: "JetBrains / Kotlin Foundation", kind: "official-docs", version: "vigente" },
+  java: { title: "Java Platform Documentation", url: "https://docs.oracle.com/en/java/", authority: "Oracle", kind: "official-docs", version: "vigente" },
+  r: { title: "The R Manuals", url: "https://cran.r-project.org/manuals.html", authority: "R Core Team", kind: "official-docs", version: "vigente" },
+  ensamblador: { title: "Intel 64 and IA-32 Architectures Software Developer Manuals", url: "https://www.intel.com/content/www/us/en/developer/articles/technical/intel-sdm.html", authority: "Intel", kind: "specification", version: "vigente" },
+  erlang: { title: "Erlang/OTP Documentation", url: "https://www.erlang.org/docs", authority: "Erlang/OTP", kind: "official-docs", version: "vigente" },
+  lisp: { title: "Common Lisp HyperSpec", url: "https://www.lispworks.com/documentation/HyperSpec/Front/", authority: "ANSI / LispWorks", kind: "specification", version: "ANSI Common Lisp" },
+  perl: { title: "Perl Documentation", url: "https://perldoc.perl.org/", authority: "Perl Project", kind: "official-docs", version: "vigente" },
+  raku: { title: "Raku Documentation", url: "https://docs.raku.org/", authority: "Raku Community", kind: "official-docs", version: "vigente" },
+  scala: { title: "Scala Documentation", url: "https://docs.scala-lang.org/", authority: "Scala Center / EPFL", kind: "official-docs", version: "vigente" },
+  blockchain: { title: "Ethereum Developer Documentation", url: "https://ethereum.org/en/developers/docs/", authority: "Ethereum Foundation", kind: "official-docs", version: "vigente" },
+  android: { title: "Android Developers", url: "https://developer.android.com/docs", authority: "Google / Android Open Source Project", kind: "official-docs", version: "vigente" },
+  qwik: { title: "Qwik Documentation", url: "https://qwik.dev/docs/", authority: "Qwik Team", kind: "official-docs", version: "vigente" },
+  angular: { title: "Angular Documentation", url: "https://angular.dev/overview", authority: "Google / Angular Team", kind: "official-docs", version: "vigente" },
+  django: { title: "Django Documentation", url: "https://docs.djangoproject.com/en/stable/", authority: "Django Software Foundation", kind: "official-docs", version: "stable" },
+  sql: { title: "ISO/IEC 9075-1 — SQL Framework", url: "https://www.iso.org/standard/76583.html", authority: "ISO/IEC", kind: "specification", version: "SQL:2023" },
+  nosql: { title: "MongoDB Manual", url: "https://www.mongodb.com/docs/manual/", authority: "MongoDB", kind: "official-docs", version: "vigente" },
+  "sistemas-operativos": { title: "The Open Group Base Specifications Issue 8", url: "https://pubs.opengroup.org/onlinepubs/9799919799/", authority: "The Open Group / IEEE", kind: "specification", version: "POSIX.1-2024" },
+  "inteligencia-artificial": { title: "AI Risk Management Framework", url: "https://www.nist.gov/itl/ai-risk-management-framework", authority: "NIST", kind: "reference", version: "AI RMF 1.0" },
+  latex: { title: "LaTeX Project Documentation", url: "https://www.latex-project.org/help/documentation/", authority: "LaTeX Project", kind: "official-docs", version: "vigente" },
+  subversion: { title: "Version Control with Subversion", url: "https://svnbook.red-bean.com/", authority: "Apache Subversion Project", kind: "official-docs", version: "vigente" },
+};
+
+export const libraryTopicBySlug = new Map(libraryTopics.map((entry) => [entry.slug, entry]));
+export const libraryTopicByCollectionId = new Map(libraryTopics.map((entry) => [entry.collectionId, entry]));
+
+export function librarySlugForCollectionId(collectionId: string) {
+  return libraryTopicByCollectionId.get(collectionId)?.slug;
+}

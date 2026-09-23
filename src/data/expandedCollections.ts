@@ -8,6 +8,8 @@ import { cFamilyCollections } from "./cFamilyCollections";
 import { dotnetCollections } from "./dotnetCollections";
 import { webAutomationCollections } from "./webAutomationCollections";
 import { sqlServerCollection } from "./sqlServerCollection";
+import { newLearningCollections } from "./newLearningCollections";
+import { NEW_LEARNING_ACTION_SCENE_IDS } from "./newLearningActionScenes";
 import type { ExpandedCollectionDefinition } from "./expandedCollectionTypes";
 
 export const expandedCollections: readonly ExpandedCollectionDefinition[] = [
@@ -22,6 +24,7 @@ export const expandedCollections: readonly ExpandedCollectionDefinition[] = [
   ...dotnetCollections,
   ...webAutomationCollections,
   sqlServerCollection,
+  ...newLearningCollections,
 ];
 
 export const expandedCollectionById = new Map(expandedCollections.map((collection) => [collection.id, collection]));
@@ -42,6 +45,14 @@ export const expandedRoutes: readonly ExpandedRoute[] = expandedCollections.flat
 });
 
 export const expandedRouteBySlug = new Map(expandedRoutes.map((route) => [route.slug, route]));
+
+const newLearningActionSceneIds = new Set<string>(NEW_LEARNING_ACTION_SCENE_IDS);
+if (newLearningActionSceneIds.size !== newLearningCollections.length) {
+  throw new Error(`Las colecciones nuevas requieren ${newLearningCollections.length} escenas En acción; existen ${newLearningActionSceneIds.size}.`);
+}
+for (const collection of newLearningCollections) {
+  if (!newLearningActionSceneIds.has(collection.id)) throw new Error(`Falta la escena En acción de ${collection.id}.`);
+}
 
 for (const collection of expandedCollections) {
   if (collection.chapters.length === 0 || collection.concepts.length === 0) throw new Error(`La colección ${collection.id} no tiene capítulos o conceptos.`);

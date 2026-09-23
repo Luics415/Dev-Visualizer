@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { ConceptCard } from "@/components/concepts/ConceptCard";
 import { CollectionChapters } from "@/components/concepts/CollectionChapters";
+import { CollectionLibraryInvite } from "@/components/concepts/CollectionLibraryInvite";
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { AnimatedConceptScene } from "@/components/visual/AnimatedConceptScene";
 import { AnnotationsScene } from "@/components/scenes/typescript/AnnotationsScene";
@@ -64,6 +65,7 @@ export default function TypeScriptPage() {
       <CollectionPrimer primer={collectionPrimers["typescript"]} />
 
       <CollectionChapters chapters={chapters} />
+      <CollectionLibraryInvite href="/libreria/typescript" collectionName="TypeScript" />
 
       {sections.map((section) => (
         <section className="collection-section" id={slugify(section)} key={section}>

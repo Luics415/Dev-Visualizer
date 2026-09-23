@@ -11,6 +11,7 @@ export function SiteFooter() {
       <nav aria-label="Información legal y créditos">
         <Link href="/acerca">Créditos y licencias</Link>
         <Link href="/colecciones">Colecciones</Link>
+        <Link href="/libreria">Librería profesional</Link>
       </nav>
     </footer>
   );

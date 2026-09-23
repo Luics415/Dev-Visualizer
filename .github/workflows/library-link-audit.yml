@@ -1,0 +1,40 @@
+name: Library external link audit
+
+on:
+  schedule:
+    - cron: "17 8 1 * *"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  audit:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: Setup Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version-file: .nvmrc
+          cache: npm
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Build static library
+        env:
+          NEXT_PUBLIC_BASE_PATH: /Dev-Visualizer
+          NEXT_PUBLIC_SITE_URL: https://luics415.github.io/Dev-Visualizer
+        run: npm run build
+
+      - name: Audit external resources
+        run: npm run audit:library
+
+      - name: Upload audit report
+        uses: actions/upload-artifact@v4
+        with:
+          name: library-link-report
+          path: .artifacts/library-link-report.json

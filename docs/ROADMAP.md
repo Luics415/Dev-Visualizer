@@ -1,6 +1,6 @@
 # Roadmap
 
-## Atlas actual: 41 colecciones
+## Atlas actual: 71 colecciones
 
 - [x] Manifiesto ligero, registro servidor, navegación y sitemap derivados.
 - [x] Git y GitHub como colecciones independientes.
@@ -16,14 +16,26 @@
 - [x] Prolog independiente: 24 capítulos y 120 conceptos, con ISO, SWI-Prolog y árbol de prueba visual.
 - [x] Microsoft SQL Server independiente: 24 capítulos y 120 conceptos, con T-SQL, internals y operación.
 - [x] AWS ampliado a 228 conceptos con sitios privados, serverless, DynamoDB, CloudWatch, IAM y FinOps.
-- [x] 41 casos En acción con profundización y sin bibliografía duplicada.
-- [x] 82 rutas canónicas y seis puentes heredados.
-- [x] Al menos dos fuentes oficiales o especificaciones para 3,697 de 3,697 conceptos.
-- [x] Escenas propias para las 26 rutas ampliadas En acción.
+- [x] 30 colecciones adicionales de fundamentos, lenguajes, web, datos, sistemas y herramientas.
+- [x] 71 casos En acción con profundización y sin bibliografía duplicada.
+- [x] 142 rutas canónicas y seis puentes heredados.
+- [x] Al menos dos fuentes oficiales o especificaciones para 4,447 de 4,447 conceptos.
+- [x] Escenas configuradas para las 56 rutas ampliadas En acción; las 30 nuevas usan diez familias visuales.
 - [x] Loops legibles, pausa fuera del viewport y vista de movimiento reducido.
 - [x] Banner firmado de Acerca y banner del ancla preservado en Colecciones.
 - [x] Presentación social Luics415 integrada en Open Graph, Twitter Card y descarga.
 - [x] README senior con capturas y matriz de licencias.
+
+## Librería profesional
+
+- [x] Índice, búsqueda y filtros por área, formato, nivel, procedencia y disponibilidad.
+- [x] 71 rutas temáticas y una relación obligatoria por colección.
+- [x] Instantánea reproducible de 42 temas y 179 recursos atribuida a midudev.
+- [x] Documentación oficial o fuente primaria en cada biblioteca.
+- [x] Política híbrida de adjuntos, licencias, hashes y enlaces externos.
+- [x] Invitación antes del capítulo 1, sin bibliografía dentro de En acción.
+- [x] Auditoría mensual no bloqueante de recursos externos.
+- [x] Exportación total de 225 páginas estáticas con cero enlaces internos rotos.
 
 ## Calidad permanente
 

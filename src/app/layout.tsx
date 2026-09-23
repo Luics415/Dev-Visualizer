@@ -1,6 +1,8 @@
 import type { Metadata, Viewport } from "next";
 import { MotionProvider } from "@/components/providers/MotionProvider";
 import { SiteFooter } from "@/components/layout/SiteFooter";
+import { collectionManifest } from "@/data/collectionManifest";
+import { canonicalConceptCount } from "@/data/canonicalConceptCollections";
 import "@/data/catalogValidation";
 import "./globals.css";
 
@@ -8,11 +10,14 @@ const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
 const siteRoot = siteUrl.replace(/\/$/, "");
 const assetUrl = (pathname: string) => `${siteRoot}${pathname}`;
 const socialCardUrl = assetUrl("/social/luics415-dev-visualizer-github-1280x640.jpg");
+const collectionCount = collectionManifest.length;
+const routeCount = collectionCount * 2;
+const atlasSummary = `${collectionCount} colecciones, ${routeCount} rutas canónicas y ${canonicalConceptCount.toLocaleString("es-MX")} conceptos`;
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: { default: "Dev Visualizer", template: "%s · Dev Visualizer" },
-  description: "Atlas visual educativo con 41 colecciones, 82 rutas canónicas y 3,697 conceptos de desarrollo de software.",
+  description: `Atlas visual educativo con ${atlasSummary} de desarrollo de software y una Librería profesional preservable.`,
   applicationName: "Dev Visualizer",
   authors: [
     { name: "Luics415" },
@@ -36,7 +41,7 @@ export const metadata: Metadata = {
     url: siteRoot,
     siteName: "Dev Visualizer",
     title: "Dev Visualizer",
-    description: "41 colecciones y 82 rutas para aprender desarrollo de software mediante visualizaciones autónomas y casos técnicos completos.",
+    description: `${atlasSummary} para aprender mediante visualizaciones autónomas, casos técnicos y una Librería profesional.`,
     images: [{
       url: socialCardUrl,
       width: 1280,
@@ -48,7 +53,7 @@ export const metadata: Metadata = {
   twitter: {
     card: "summary_large_image",
     title: "Dev Visualizer",
-    description: "Atlas visual educativo: 41 colecciones, 82 rutas y 3,697 conceptos.",
+    description: `Atlas visual educativo: ${atlasSummary}.`,
     images: [socialCardUrl],
   },
 };

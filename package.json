@@ -2,7 +2,7 @@
   "name": "dev-visualizer",
   "version": "1.0.0",
   "private": false,
-  "description": "Atlas visual educativo con 41 colecciones y 82 rutas de desarrollo de software.",
+  "description": "Atlas visual educativo con 71 colecciones, 142 rutas técnicas y una Librería profesional preservable.",
   "license": "MIT",
   "engines": {
     "node": ">=24 <25"
@@ -11,9 +11,11 @@
     "dev": "next dev",
     "build": "next build",
     "check:links": "node scripts/validate-static-links.mjs",
+    "check:library": "node scripts/validate-library-catalog.mjs",
+    "audit:library": "node scripts/audit-library-links.mjs",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
-    "check": "npm run lint && npm run typecheck && npm run build && npm run check:links"
+    "check": "npm run lint && npm run typecheck && npm run check:library && npm run build && npm run check:links"
   },
   "dependencies": {
     "motion": "12.43.0",

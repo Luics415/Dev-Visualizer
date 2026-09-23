@@ -1,7 +1,7 @@
 {
   "name": "Dev Visualizer",
   "short_name": "Dev Visualizer",
-  "description": "Atlas visual educativo con 41 colecciones y 82 rutas de desarrollo de software.",
+  "description": "Atlas visual educativo de desarrollo de software con rutas conceptuales, casos en acción y Librería profesional.",
   "start_url": "./colecciones/",
   "display": "standalone",
   "background_color": "#070a10",

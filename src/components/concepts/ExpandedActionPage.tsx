@@ -4,6 +4,8 @@ import { CiCdArtifactPassportScene } from "@/components/scenes/CiCdArtifactPassp
 import { DistinctActionScene } from "@/components/scenes/DistinctActionScene";
 import type { DistinctActionSceneId } from "@/components/scenes/DistinctActionScene";
 import { PythonMediaPipeActionScene } from "@/components/scenes/PythonMediaPipeActionScene";
+import { NewLearningActionScene } from "@/components/scenes/NewLearningActionScene";
+import { isNewLearningActionSceneId } from "@/data/newLearningActionScenes";
 import type { ExpandedCollectionDefinition } from "@/data/expandedCollectionTypes";
 import type { CollectionManifestEntry } from "@/data/collectionManifest";
 
@@ -34,7 +36,9 @@ export function ExpandedActionPage({ collection, manifest, collectionNumber }: E
           ? <CiCdArtifactPassportScene />
           : manifest.id === "mediapipe"
             ? <PythonMediaPipeActionScene />
-            : <DistinctActionScene id={manifest.id as DistinctActionSceneId} />}
+            : isNewLearningActionSceneId(manifest.id)
+              ? <NewLearningActionScene id={manifest.id} />
+              : <DistinctActionScene id={manifest.id as DistinctActionSceneId} />}
       </section>
 
       <PracticalDeepDive modules={practical.steps} startAt={1} />
