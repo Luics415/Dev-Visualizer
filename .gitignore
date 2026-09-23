@@ -1,6 +1,7 @@
 node_modules
 .next
 out
+.artifacts
 build
 .DS_Store
 *.log

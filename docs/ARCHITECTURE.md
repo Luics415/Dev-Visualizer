@@ -11,6 +11,16 @@ collectionManifest.ts (ligero)
   ├─ temas, vigencia y rutas heredadas
   └─ sitemap y metadatos de catálogo
 
+libraryTopics.ts (ligero)
+  ├─ 71 temas y relación colección ↔ biblioteca
+  └─ grupos, descripciones y semillas oficiales
+
+professionalLibrary.ts + libraryResources.snapshot.json (servidor/build)
+  ├─ 179 recursos bibliográficos importados
+  ├─ procedencia, formatos, niveles y licencias
+  ├─ adjuntos verificables y enlaces externos
+  └─ índice y 71 rutas estáticas de librería
+
 expandedCollections.ts (servidor/build)
   ├─ primers y capítulos
   ├─ conceptos y escenas
@@ -18,7 +28,7 @@ expandedCollections.ts (servidor/build)
   └─ casos integrados y profundización
 
 canonicalConceptCollections.ts (servidor/build)
-  └─ inventario normalizado de 41 colecciones y 3,697 conceptos
+  └─ inventario normalizado de 71 colecciones y conceptos derivados
 
 officialReferences.ts (servidor/build)
   ├─ autoridades, estándares, manuales y documentación
@@ -29,7 +39,7 @@ catalogValidation.ts (servidor/build)
   └─ invariantes de catálogo, escenas, fuentes y casos
 ```
 
-`src/app/[slug]/page.tsx` genera estáticamente 52 rutas para las 26 colecciones expandidas a partir de parámetros cerrados. Las 15 colecciones originales conservan 30 rutas y componentes especializados. La biblioteca recibe estadísticas calculadas en servidor; el bundle de navegación no importa los módulos educativos grandes.
+`src/app/[slug]/page.tsx` genera estáticamente las colecciones registradas mediante parámetros cerrados. `src/app/libreria/[tema]/page.tsx` hace lo mismo para los 71 temas bibliográficos. Los componentes especializados originales se conservan; la navegación cliente recibe manifiestos ligeros y no importa los módulos educativos grandes.
 
 ## Fuente única
 
@@ -39,6 +49,7 @@ catalogValidation.ts (servidor/build)
 - nombre y abreviatura;
 - grupo y orden;
 - ruta conceptual y ruta En acción;
+- slug obligatorio de Librería profesional;
 - tema;
 - vigencia actual, legado o histórico;
 - rutas heredadas.
@@ -47,7 +58,7 @@ Las URLs, no los números visibles, son la identidad. Orden, navegación, tema, 
 
 ## Frontera editorial
 
-La ruta de colección contiene primer, capítulos, conceptos y referencias oficiales o especificaciones. La ruta **En acción** contiene el relato integrado, sus estados, profundización, fallo, recuperación y resultado; no duplica la bibliografía de conceptos.
+La ruta de colección contiene primer, capítulos, conceptos y referencias oficiales o especificaciones. Una invitación situada antes del capítulo 1 conduce a su librería. La ruta **En acción** contiene el relato integrado, sus estados, profundización, fallo, recuperación y resultado; no duplica bibliografía ni componentes de librería.
 
 Python y MediaPipe son definiciones diferentes. XML, XSD y JSON también tienen manifiesto, contenido, fuentes, temas y casos independientes. Los puentes `/xml-xsd-json*` explican la división y ofrecen los tres destinos sin declarar una canonical arbitraria.
 
@@ -55,15 +66,15 @@ Python y MediaPipe son definiciones diferentes. XML, XSD y JSON también tienen 
 
 El código comprueba:
 
-- exactamente 41 colecciones;
+- exactamente 71 colecciones y 71 slugs de librería;
 - IDs y rutas canónicas únicos;
 - pareja colección/caso para cada identidad;
 - rutas heredadas sin colisiones;
 - capítulos y conceptos no vacíos;
 - sección y escena efectiva para cada concepto;
-- al menos dos fuentes oficiales o especificaciones para los 3,697 conceptos;
+- al menos dos fuentes oficiales o especificaciones para todos los conceptos;
 - referencias HTTPS con autoridad, tipo, versión, vigencia y fecha de verificación;
 - caso integrado con etapas y profundización;
+- 42 temas y 179 recursos procedentes del catálogo atribuido;
+- adjuntos locales con licencia, evidencia, tamaño y hash;
 - enlaces internos resueltos a una página o recurso exportado.
-
-La exportación produce 93 páginas: 82 canónicas, seis puentes heredados y cinco páginas de soporte.

@@ -2,12 +2,14 @@
 
 Atlas visual animado para aprender desarrollo de software desde los fundamentos hasta producción.
 
-**41 colecciones · 82 rutas canónicas · 3,697 conceptos · 41 casos integrados**
+**71 colecciones · 142 rutas canónicas · 4,447 conceptos · 71 casos integrados · 71 bibliotecas**
 
 <p align="center">
   <a href="https://luics415.github.io/Dev-Visualizer/"><strong>Abrir Dev Visualizer</strong></a>
   ·
-  <a href="https://luics415.github.io/Dev-Visualizer/colecciones/">Explorar las 41 colecciones</a>
+  <a href="https://luics415.github.io/Dev-Visualizer/colecciones/">Explorar las 71 colecciones</a>
+  ·
+  <a href="https://luics415.github.io/Dev-Visualizer/libreria/">Librería profesional</a>
   ·
   <a href="https://luics415.github.io/Dev-Visualizer/acerca/">Acerca del proyecto</a>
 </p>
@@ -50,7 +52,8 @@ Las capturas documentan una compilación real del proyecto y forman parte del co
 
 - **Causalidad antes que decoración.** El movimiento representa datos, memoria, mensajes, control, ownership o evidencia.
 - **Dos niveles por tecnología.** La colección explica conceptos; **En acción** conecta un caso técnico completo sin repetir la bibliografía de estudio.
-- **Fuente primaria por concepto.** Los 3,697 conceptos resuelven al menos dos referencias oficiales o especificaciones visibles.
+- **Fuente primaria por concepto.** Los 4,447 conceptos resuelven al menos dos referencias oficiales o especificaciones visibles.
+- **Tres destinos por tecnología.** Colección visual, caso **En acción** y Librería profesional permanecen separados y conectados.
 - **Escenas que no terminan apagadas.** Los loops conservan un estado base legible, regresan semánticamente al inicio y se pausan fuera del viewport.
 - **Accesibilidad como contrato.** Teclado, foco visible, estados no dependientes solo del color, vista estática para movimiento reducido y overflow local en escenas extensas.
 - **Fronteras tecnológicas explícitas.** Git no es GitHub; CI/CD no es Deployment; Python no es MediaPipe; XML, XSD y JSON tienen responsabilidades y rutas separadas.
@@ -59,18 +62,20 @@ Las capturas documentan una compilación real del proyecto y forman parte del co
 
 | Área | Colecciones |
 |---|---|
-| Lenguajes | JavaScript, TypeScript, Python, Prolog, C, C++, C#, Objective-C, C*, CWEB, Embedded C y Visual Basic .NET |
-| Diseño e interfaces | UX/UI, HTML y CSS, Bootstrap, AngularJS, React y React Native |
-| Plataformas y servidor | APIs, Backend, Node.js, Laravel, n8n, .NET, MediaPipe y Firebase |
-| Datos | XML, XSD, JSON, Gestión de estado, Bases de datos y Microsoft SQL Server |
-| Control de versiones y calidad | Git, GitHub y Debugging |
-| Infraestructura y entrega | Linux, AWS, CI/CD, Deployment, NGINX y Docker |
+| Fundamentos | Fundamentos de programación, Algoritmos y estructuras de datos, Matemáticas, Metodologías y Scratch |
+| Lenguajes | JavaScript, TypeScript, Python, Prolog, familia C, Visual Basic, Ruby, Rust, PHP, Haskell, Go, Kotlin, Java, R, Ensamblador, Erlang, Lisp, Perl, Raku y Scala |
+| Diseño e interfaces | UX/UI, HTML y CSS, Bootstrap, AngularJS, Angular, React, React Native y Qwik |
+| Plataformas y servidor | APIs, Backend, Node.js, Laravel, Django, n8n, .NET, MediaPipe, Firebase y Android |
+| Datos | XML, XSD, JSON, Gestión de estado, Bases de datos, SQL, SQL Server, NoSQL, Blockchain e Inteligencia Artificial |
+| Control de versiones y calidad | Git, GitHub, Subversion y Debugging |
+| Infraestructura y entrega | Linux, Sistemas operativos, AWS, CI/CD, Deployment, NGINX, Docker y LaTeX |
 
-Cada colección dispone de dos identidades canónicas:
+Cada colección dispone de tres destinos independientes:
 
 ```text
 /<colección>
 /<colección>-en-accion
+/libreria/<colección>
 ```
 
 Las antiguas URLs `/git-github*`, `/apis-rest*` y `/xml-xsd-json*` se conservan como seis puentes accesibles. No cuentan como colecciones ni cambian la identidad de las nuevas rutas.
@@ -90,9 +95,17 @@ Las antiguas URLs `/git-github*`, `/apis-rest*` y `/xml-xsd-json*` se conservan 
 
 Python incluye documentación oficial para personas principiantes y avanza de forma progresiva. MediaPipe usa Python en su caso práctico, pero mantiene currículo, fuentes, ruta y escena propios. Del mismo modo, XML define documentos, XSD define schemas XML y JSON define una sintaxis de valores; una colección no sustituye a las otras.
 
+## Librería profesional
+
+La Librería profesional ofrece un índice accesible y una ruta estática por colección. Cada tema separa documentación oficial y especificaciones de libros, cursos y referencias comunitarias. La invitación aparece después de la ruta de estudio y antes del capítulo 1; las animaciones y páginas **En acción** no contienen fichas bibliográficas.
+
+El catálogo inicial acredita a [midudev/libros-programacion-gratis](https://github.com/midudev/libros-programacion-gratis) y [librosgratis.dev](https://librosgratis.dev/) como fuente de descubrimiento de **179 recursos en 42 temas**. Dev Visualizer añade bibliotecas para las 29 colecciones restantes, usa textos y diseño propios y conserva la autoría de cada recurso.
+
+Los adjuntos siguen una política híbrida: solo se aloja localmente un archivo con licencia o autorización de redistribución verificable. Los demás aparecen como enlaces externos con procedencia y estado de preservación. Un workflow mensual produce un informe no bloqueante de disponibilidad.
+
 ## Narrativa En acción
 
-Las 26 colecciones incorporadas mediante el registro escalable usan composiciones visuales propias. Entre ellas hay una mesa forense de memoria para C, estación de ownership para C++, switchboard del runtime para Objective-C, cuadrícula térmica para C*, libro-telar para CWEB, osciloscopio para Embedded C, constelación de prueba con backtracking para Prolog, patio ferroviario de locks y LSN para SQL Server, puerto multimodal para APIs, puerto del event loop para Node.js, palacio transaccional para Laravel, aeropuerto de workflows para n8n, estratos de historial para Git y cámara de gobernanza para GitHub.
+Las 56 colecciones incorporadas mediante el registro escalable usan escenas configuradas por mecanismo. Las 30 rutas nuevas suman diez gramáticas visuales —rutas, grafos, campos, escenarios, pipelines, forjas, canales, runtimes, registros y manuscritos— sin terminar en gris ni romper la identidad del atlas. Entre las escenas previas se conservan la mesa forense de C, la estación de ownership de C++, el switchboard de Objective-C, la cuadrícula térmica de C*, el libro-telar de CWEB, el osciloscopio de Embedded C, el árbol de prueba de Prolog y el patio ferroviario de SQL Server.
 
 Los guiños a League of Legends y Arcane se limitan a microcopy original y referencias ambientales. No se usan personajes, audio, logotipos, mapas ni recursos de Riot Games, y no se sugiere afiliación.
 
@@ -102,7 +115,13 @@ El sitio utiliza Next.js App Router, React, TypeScript y Motion. `output: "expor
 
 ```text
 src/data/collectionManifest.ts
-  └─ identidad, orden, grupo, rutas, tema y vigencia
+  └─ identidad, orden, grupo, rutas, biblioteca, tema y vigencia
+
+src/data/libraryTopics.ts
+  └─ identidad ligera y relación obligatoria de las 71 bibliotecas
+
+src/data/professionalLibrary.ts + libraryResources.snapshot.json
+  └─ 179 recursos importados, fuentes oficiales, procedencia y licencias
 
 src/data/expandedCollections.ts
   └─ registro de primers, capítulos, conceptos y casos ampliados
@@ -111,21 +130,25 @@ src/data/officialReferences.ts
   └─ autoridades, versiones y resolución de referencias por concepto
 
 src/data/catalogValidation.ts
-  └─ invariantes de 41 colecciones y 3,697 conceptos
+  └─ invariantes de 71 colecciones y 4,447 conceptos
 
 src/app/[slug]/page.tsx
-  └─ 52 rutas expandidas generadas con parámetros cerrados
+  └─ 112 rutas expandidas generadas con parámetros cerrados
+
+src/app/libreria/[tema]/page.tsx
+  └─ 71 bibliotecas generadas con parámetros cerrados
 
 src/components/visual/useScenePlayback.ts
   └─ viewport, visibilidad de pestaña y movimiento reducido
 ```
 
-Las otras 30 rutas canónicas conservan sus componentes especializados. La biblioteca del cliente recibe únicamente el manifiesto ligero y estadísticas calculadas; no importa los módulos educativos grandes.
+Las 30 rutas especializadas originales se conservan. Los índices del cliente reciben únicamente manifiestos ligeros y estadísticas calculadas; no importan los módulos educativos grandes.
 
 Más contexto:
 
 - [Arquitectura](docs/ARCHITECTURE.md)
 - [Guía editorial](docs/CONTENT_GUIDE.md)
+- [Política de Librería profesional](docs/LIBRARY_POLICY.md)
 - [Sistema visual](docs/VISUAL_SYSTEM.md)
 - [Roadmap](docs/ROADMAP.md)
 - [Publicación](docs/DEPLOYMENT.md)
@@ -145,28 +168,30 @@ Validación completa:
 npm run check
 ```
 
-`npm run check` ejecuta ESLint, TypeScript estricto, la exportación estática y la comprobación de enlaces internos. La compilación actual produce **93 páginas HTML**: 82 canónicas, seis puentes heredados y cinco páginas de soporte.
+`npm run check` ejecuta ESLint, TypeScript estricto, validación del catálogo bibliográfico, exportación estática y comprobación de enlaces internos. La compilación produce **225 páginas HTML**: 142 canónicas, 72 de Librería profesional, seis puentes heredados y cinco páginas de soporte.
 
 ### Evidencia de calidad
 
 | Control | Resultado esperado |
 |---|---|
-| Catálogo | 41/41 colecciones; IDs y slugs únicos |
-| Currículo | 3,697/3,697 conceptos con capítulo y escena efectiva |
-| Fuentes | 3,697/3,697 conceptos con al menos dos referencias primarias |
-| Casos | 41/41 pares colección / En acción con profundización |
-| Exportación | 93 páginas estáticas y cero enlaces internos rotos |
+| Catálogo | 71/71 colecciones y 71/71 bibliotecas; IDs, rutas y slugs únicos |
+| Currículo | 4,447/4,447 conceptos con capítulo y escena efectiva |
+| Fuentes | 4,447/4,447 conceptos con al menos dos referencias primarias |
+| Recursos | 179/179 fichas atribuidas en 42 temas de origen |
+| Casos | 71/71 pares colección / En acción con profundización |
+| Exportación | 225 páginas estáticas y cero enlaces internos rotos |
 | Responsive | Sin overflow global; escenas anchas usan scroll local |
 | Movimiento | Loop infinito visible, pausa fuera del viewport y estado completo con `prefers-reduced-motion` |
 
 ## Añadir o modificar una colección
 
-1. Registrar identidad, grupo, rutas, tema, vigencia y resumen en `collectionManifest.ts`.
+1. Registrar identidad, grupo, rutas, slug de librería, tema, vigencia y resumen en `collectionManifest.ts`.
 2. Crear primer, capítulos, conceptos y caso integrado en un módulo de datos.
 3. Incorporar la definición al registro de servidor `expandedCollections.ts`.
 4. Resolver fuentes oficiales, especificaciones, versión y fecha de verificación en `officialReferences.ts`.
 5. Implementar una escena que represente el mecanismo y cierre su loop con un resultado legible.
-6. Ejecutar `npm run check` y validar escritorio, 390 × 844, teclado, tacto, movimiento reducido, overflow y consola.
+6. Crear o actualizar su biblioteca con procedencia y licencia verificables.
+7. Ejecutar `npm run check` y validar escritorio, 390 × 844, teclado, tacto, movimiento reducido, overflow y consola.
 
 Las validaciones de build rechazan IDs o rutas duplicados, capítulos vacíos, conceptos sin escena, cobertura documental incompleta y casos sin etapas.
 
@@ -184,6 +209,7 @@ Las versiones activas se revisan contra fuentes primarias al cerrar cada expansi
 | Textos educativos, diagramas, escenas, identidad visual y capturas | [CC BY-NC-SA 4.0](LICENSE-CONTENT.md) |
 | Dependencias npm | Licencia declarada por cada paquete |
 | Documentación enlazada y especificaciones | Propiedad y términos de sus respectivas autoridades |
+| Libros y recursos de la Librería profesional | Propiedad de sus autores; adjunto local únicamente con permiso verificable |
 | Marcas, nombres y tecnologías citadas | Propiedad de sus titulares; uso nominativo y educativo |
 
 - Dirección, autoría y mantenimiento: **Luics415**.

@@ -76,10 +76,12 @@ export default function AboutPage() {
         <p>Dev Visualizer no está afiliado, patrocinado ni aprobado por Riot Games, OpenAI ni por las empresas responsables de las tecnologías estudiadas. Las referencias textuales a League of Legends y Arcane son guiños educativos no oficiales; no se incluyen imágenes, audio ni recursos propietarios de Riot Games.</p>
         <p>La cadencia narrativa de algunas explicaciones visuales toma inspiración general de <a href="https://www.instagram.com/algoinsight/" target="_blank" rel="noreferrer">AlgoInsight</a>. Dev Visualizer no copia sus publicaciones, textos, marcas, composiciones distintivas ni recursos externos.</p>
         <p>La participación de ChatGPT se acredita como asistencia de IA. Las decisiones finales, la integración, la publicación y la responsabilidad editorial corresponden a los mantenedores humanos.</p>
+        <p>La Librería profesional incorpora metadatos curados a partir de <a href="https://github.com/midudev/libros-programacion-gratis" target="_blank" rel="noreferrer">midudev/libros-programacion-gratis</a> y <a href="https://librosgratis.dev/" target="_blank" rel="noreferrer">librosgratis.dev</a>. Dev Visualizer utiliza diseño y textos editoriales propios; cada recurso conserva la autoría, licencia y procedencia de su titular.</p>
       </section>
 
       <div className="about-actions">
         <a href={`${basePath}/social/luics415-dev-visualizer-github-1280x640.jpg`} download>Descargar tarjeta social optimizada ↗</a>
+        <Link href="/libreria">Abrir Librería profesional ↗</Link>
         <Link href="/colecciones">Volver a las colecciones →</Link>
       </div>
     </main>

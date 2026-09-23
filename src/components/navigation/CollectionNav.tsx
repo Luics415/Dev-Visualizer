@@ -40,13 +40,13 @@ function PickerShell({ children, mobile = false, onClose }: PickerContentProps) 
       id={mobile ? "mobile-collection-menu" : undefined}
       role={mobile ? "dialog" : undefined}
       aria-modal={mobile ? "true" : undefined}
-      aria-label={mobile ? "Explorar colecciones" : undefined}
+      aria-label={mobile ? "Explorar rutas de estudio" : undefined}
     >
       {mobile ? (
         <div className="collection-picker__mobile-heading">
           <div>
             <span>Dev Visualizer</span>
-            <strong>Explorar colecciones</strong>
+            <strong>Explorar rutas de estudio</strong>
           </div>
           <button type="button" onClick={onClose} aria-label="Cerrar menú de colecciones">
             ×
@@ -159,6 +159,7 @@ export function CollectionNav() {
         </div>
         <div className="collection-picker__header-links">
           <Link href="/colecciones" onClick={closeMobileMenu}>Ver biblioteca completa</Link>
+          <Link href="/libreria" onClick={closeMobileMenu}>Librería profesional</Link>
           <Link href="/acerca" onClick={closeMobileMenu}>Créditos y licencias</Link>
         </div>
       </header>
@@ -223,11 +224,11 @@ export function CollectionNav() {
       </Link>
 
       <div className="collection-nav__current" aria-live="polite">
-        <span>{normalizedPathname === "/colecciones" ? "Biblioteca" : "Estudiando ahora"}</span>
-        <strong>{active?.label ?? "Todas las colecciones"}</strong>
+        <span>{normalizedPathname.startsWith("/libreria") ? "Recursos de estudio" : normalizedPathname === "/colecciones" ? "Biblioteca" : "Estudiando ahora"}</span>
+        <strong>{normalizedPathname.startsWith("/libreria") ? "Librería profesional" : active?.label ?? "Todas las colecciones"}</strong>
       </div>
 
-      <div className="collection-nav__sequence" aria-label="Colección anterior y siguiente">
+      <div className="collection-nav__sequence" aria-label="Ruta anterior y siguiente">
         {previous ? (
           <Link
             className="collection-nav__arrow"
@@ -267,7 +268,7 @@ export function CollectionNav() {
         }}
       >
         <summary>
-          <span>Explorar colecciones</span>
+          <span>Explorar rutas</span>
           <b>{collectionLinks.length}</b>
         </summary>
         <PickerShell>{pickerContents}</PickerShell>
@@ -281,7 +282,7 @@ export function CollectionNav() {
           aria-controls="mobile-collection-menu"
           onClick={() => setMobileMenuOpen((open) => !open)}
         >
-          <span>Temas</span>
+          <span>Rutas</span>
           <b>{collectionLinks.length}</b>
           <em aria-hidden="true">{mobileMenuOpen ? "×" : "⌄"}</em>
         </button>

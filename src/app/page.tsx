@@ -1,6 +1,7 @@
 import type { ReactNode } from "react";
 import { ConceptCard } from "@/components/concepts/ConceptCard";
 import { CollectionChapters } from "@/components/concepts/CollectionChapters";
+import { CollectionLibraryInvite } from "@/components/concepts/CollectionLibraryInvite";
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { AnimatedConceptScene } from "@/components/visual/AnimatedConceptScene";
 import { ArraysScene } from "@/components/scenes/javascript/ArraysScene";
@@ -65,6 +66,7 @@ export default function Home() {
       <CollectionPrimer primer={collectionPrimers["javascript"]} />
 
       <CollectionChapters chapters={chapters} />
+      <CollectionLibraryInvite href="/libreria/javascript" collectionName="JavaScript ES6+" />
 
       {sections.map((section) => (
         <section className="collection-section" id={slugify(section)} key={section}>

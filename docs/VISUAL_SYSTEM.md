@@ -39,7 +39,7 @@ El atlas admite familias reutilizables cuando comparten un mecanismo:
 - `event-fabric`: productores, particiones, consumidores y replay;
 - `artifact-passport`: commit, controles, SBOM, firma y promoción.
 
-Se crea una composición a medida cuando una familia genérica no explica correctamente memoria, runtime, interfaz, protocolo, paralelismo o workflow. Las 24 rutas expandidas **En acción** tienen una composición propia; no comparten el mismo diagrama lineal.
+Se crea una composición a medida cuando una familia genérica no explica correctamente memoria, runtime, interfaz, protocolo, paralelismo o workflow. Las 56 rutas expandidas **En acción** tienen una composición propia; no comparten el mismo diagrama lineal.
 
 ## Movimiento
 

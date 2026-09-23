@@ -1,0 +1,3070 @@
+{
+  "snapshot": {
+    "name": "midudev/libros-programacion-gratis",
+    "repositoryUrl": "https://github.com/midudev/libros-programacion-gratis",
+    "catalogUrl": "https://github.com/midudev/libros-programacion-gratis/blob/0d947c4ae4ea011f970c475a98b5d65ab12ff255/web/src/data/library.ts",
+    "commit": "0d947c4ae4ea011f970c475a98b5d65ab12ff255",
+    "committedAt": "2026-07-30",
+    "importedAt": "2026-09-22",
+    "expectedTopics": 42,
+    "expectedResources": 179
+  },
+  "resources": [
+    {
+      "id": "fundamentos-programacion--97-cosas-que-todo-programador-debe-saber",
+      "topicSlug": "fundamentos-programacion",
+      "sourceId": "97-cosas-que-todo-programador-debe-saber",
+      "sourceTopicSlug": "generales",
+      "title": "97 cosas que todo programador debe saber",
+      "author": "Kevlin Henney",
+      "formats": [
+        "HTML",
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://librosgratis.dev/97-cosas-programador/",
+      "mirrors": [
+        "https://librosgratis.dev/books/97-cosas-que-todo-programador-deberia-saber.pdf"
+      ],
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "fundamentos-programacion--100cosasdev",
+      "topicSlug": "fundamentos-programacion",
+      "sourceId": "100cosasdev",
+      "sourceTopicSlug": "generales",
+      "title": "100 cosas que todo programador debe saber",
+      "author": "midudev",
+      "formats": [
+        "HTML",
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://100cosas.dev/",
+      "mirrors": [
+        "https://100cosas.dev/100cosas-es.pdf"
+      ],
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "fundamentos-programacion--los-apuntes-de-majo",
+      "topicSlug": "fundamentos-programacion",
+      "sourceId": "los-apuntes-de-majo",
+      "sourceTopicSlug": "generales",
+      "title": "Los apuntes de Majo",
+      "author": "Majo Ledesma",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "tutorial",
+      "level": "general",
+      "primaryUrl": "https://losapuntesdemajo.vercel.app/",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "fundamentos-programacion--el-camino-a-un-mejor-programador",
+      "topicSlug": "fundamentos-programacion",
+      "sourceId": "el-camino-a-un-mejor-programador",
+      "sourceTopicSlug": "generales",
+      "title": "El camino a un mejor programador",
+      "author": "Esteban Manchado Velázquez, Joaquín Caraballo Moreno, Yeray Darias Camacho",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "http://emanchado.github.io/camino-mejor-programador/downloads/camino_2013-01-19_0688b6e.html",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "fundamentos-programacion--programacion-de-videojuegos-sdl",
+      "topicSlug": "fundamentos-programacion",
+      "sourceId": "programacion-de-videojuegos-sdl",
+      "sourceTopicSlug": "generales",
+      "title": "Programación de videojuegos SDL",
+      "author": "Alberto García Serrano",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "http://libros.metabiblioteca.org/bitstream/001/271/8/Programacion_Videojuegos_SDL.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "algoritmos-estructuras-de-datos--diseno-de-algoritmos-en-pseudocodigo-y-ordinogramas",
+      "topicSlug": "algoritmos-estructuras-de-datos",
+      "sourceId": "diseno-de-algoritmos-en-pseudocodigo-y-ordinogramas",
+      "sourceTopicSlug": "algoritmos",
+      "title": "Diseño de Algoritmos en Pseudocódigo y Ordinogramas",
+      "author": "Carlos Pes",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://librosgratis.dev/books/algoritmos-pseudocodigo-ordinogramas.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "algoritmos-estructuras-de-datos--estructuras-de-datos",
+      "topicSlug": "algoritmos-estructuras-de-datos",
+      "sourceId": "estructuras-de-datos",
+      "sourceTopicSlug": "algoritmos",
+      "title": "Estructuras de datos",
+      "author": "Luis Fernando Zapata Alvarez",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://librosgratis.dev/books/estructuras-de-datos.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "algoritmos-estructuras-de-datos--problemas-y-algoritmos",
+      "topicSlug": "algoritmos-estructuras-de-datos",
+      "sourceId": "problemas-y-algoritmos",
+      "sourceTopicSlug": "algoritmos",
+      "title": "Problemas y Algoritmos",
+      "author": "Luis E. Vargas Azcona",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://librosgratis.dev/books/problemas-y-algoritmos.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "algoritmos-estructuras-de-datos--las-bases-conceptuales-de-la-programacion",
+      "topicSlug": "algoritmos-estructuras-de-datos",
+      "sourceId": "las-bases-conceptuales-de-la-programacion",
+      "sourceTopicSlug": "algoritmos",
+      "title": "Las bases conceptuales de la Programación",
+      "author": "Pablo E. “Fidel” Martínez López",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://librosgratis.dev/books/bases-conceptuales-programacion.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "algoritmos-estructuras-de-datos--introduccion-a-la-logica-de-programacion",
+      "topicSlug": "algoritmos-estructuras-de-datos",
+      "sourceId": "introduccion-a-la-logica-de-programacion",
+      "sourceTopicSlug": "algoritmos",
+      "title": "Introducción a la Lógica de Programación",
+      "author": "Jorge O. Herrera M., Julián E. Gutiérrez P., Robinson Pulgarín G.",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "beginner",
+      "primaryUrl": "https://librosgratis.dev/books/logica-de-programacion.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "algoritmos-estructuras-de-datos--fundamentos-de-la-programacion",
+      "topicSlug": "algoritmos-estructuras-de-datos",
+      "sourceId": "fundamentos-de-la-programacion",
+      "sourceTopicSlug": "algoritmos",
+      "title": "Fundamentos de la programación",
+      "author": "Luis Hernández Yáñez",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "beginner",
+      "primaryUrl": "https://librosgratis.dev/books/fundamentos-programacion.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "algoritmos-estructuras-de-datos--introduccion-a-la-programacion-orientada-a-objetos",
+      "topicSlug": "algoritmos-estructuras-de-datos",
+      "sourceId": "introduccion-a-la-programacion-orientada-a-objetos",
+      "sourceTopicSlug": "algoritmos",
+      "title": "Introducción a la programación orientada a objetos",
+      "author": "Vicent Moncho Mas",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "beginner",
+      "primaryUrl": "https://librosgratis.dev/books/introduccion-poo.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "algoritmos-estructuras-de-datos--apuntes-de-estructuras-de-datos-y-algoritmos",
+      "topicSlug": "algoritmos-estructuras-de-datos",
+      "sourceId": "apuntes-de-estructuras-de-datos-y-algoritmos",
+      "sourceTopicSlug": "algoritmos",
+      "title": "Apuntes de Estructuras de Datos y Algoritmos",
+      "author": "Javier Campos",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "tutorial",
+      "level": "general",
+      "primaryUrl": "https://librosgratis.dev/books/apuntes-estructuras-datos-algoritmos.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "algoritmos-estructuras-de-datos--fundamentos-de-informatica-y-programacion",
+      "topicSlug": "algoritmos-estructuras-de-datos",
+      "sourceId": "fundamentos-de-informatica-y-programacion",
+      "sourceTopicSlug": "algoritmos",
+      "title": "Fundamentos de Informática y Programación",
+      "author": "Gregorio Martín Quetglás, Francisco Toledo Lobo, Vicente Cerverón Lleó",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "beginner",
+      "primaryUrl": "https://informatica.uv.es/docencia/fguia/TI/Libro/Libro_Fundamentos_Inform_Program.htm",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "algoritmos-estructuras-de-datos--analisis-diseno-e-implantacion-de-algoritmos",
+      "topicSlug": "algoritmos-estructuras-de-datos",
+      "sourceId": "analisis-diseno-e-implantacion-de-algoritmos",
+      "sourceTopicSlug": "algoritmos",
+      "title": "Análisis, Diseño e Implantación de Algoritmos",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "http://fcasua.contad.unam.mx/apuntes/interiores/docs/20181/informatica/1/LI_1164_06097_A_Analisis_Diseno_Implantacion_Algoritmos_Plan2016.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "algoritmos-estructuras-de-datos--algoritmos-y-programacion-guia-para-docentes",
+      "topicSlug": "algoritmos-estructuras-de-datos",
+      "sourceId": "algoritmos-y-programacion-guia-para-docentes",
+      "sourceTopicSlug": "algoritmos",
+      "title": "Algoritmos y Programación (Guía para docentes)",
+      "author": "Juan Carlos López García",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "tutorial",
+      "level": "general",
+      "primaryUrl": "http://www.eduteka.org/pdfdir/AlgoritmosProgramacion.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "algoritmos-estructuras-de-datos--fundamentos-de-programacion-wikilibros",
+      "topicSlug": "algoritmos-estructuras-de-datos",
+      "sourceId": "fundamentos-de-programacion-wikilibros",
+      "sourceTopicSlug": "algoritmos",
+      "title": "Fundamentos de programación (WikiLibros)",
+      "author": "WikiLibros",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "beginner",
+      "primaryUrl": "https://es.wikibooks.org/wiki/Fundamentos_de_programaci%C3%B3n",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "algoritmos-estructuras-de-datos--introduccion-a-la-programacion-wikilibros",
+      "topicSlug": "algoritmos-estructuras-de-datos",
+      "sourceId": "introduccion-a-la-programacion-wikilibros",
+      "sourceTopicSlug": "algoritmos",
+      "title": "Introducción a la programación (WikiLibros)",
+      "author": "WikiLibros",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "beginner",
+      "primaryUrl": "https://es.wikibooks.org/wiki/Introducci%C3%B3n_a_la_Programaci%C3%B3n",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "html-css--diseno-de-interfaces-web",
+      "topicSlug": "html-css",
+      "sourceId": "diseno-de-interfaces-web",
+      "sourceTopicSlug": "html-css",
+      "title": "Diseño de Interfaces Web",
+      "author": "Pedro Prieto",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "http://interfacesweb.github.io/unidades/",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "html-css--estructura-con-css",
+      "topicSlug": "html-css",
+      "sourceId": "estructura-con-css",
+      "sourceTopicSlug": "html-css",
+      "title": "Estructura con CSS",
+      "author": "Learn CSS Layout, traducido al español",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://es.learnlayout.com/",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "html-css--mdn-html",
+      "topicSlug": "html-css",
+      "sourceId": "mdn-html",
+      "sourceTopicSlug": "html-css",
+      "title": "MDN: HTML",
+      "author": "MDN Web Docs",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "official-docs",
+      "level": "general",
+      "primaryUrl": "https://developer.mozilla.org/es/docs/Web/HTML",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "official-external",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "html-css--mdn-css",
+      "topicSlug": "html-css",
+      "sourceId": "mdn-css",
+      "sourceTopicSlug": "html-css",
+      "title": "MDN: CSS",
+      "author": "MDN Web Docs",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "official-docs",
+      "level": "general",
+      "primaryUrl": "https://developer.mozilla.org/es/docs/Web/CSS",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "official-external",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "html-css--el-gran-libro-del-diseno-web",
+      "topicSlug": "html-css",
+      "sourceId": "el-gran-libro-del-diseno-web",
+      "sourceTopicSlug": "html-css",
+      "title": "El gran libro del diseño web",
+      "author": "Rither Cobeña C",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://freeditorial.com/es/books/el-gran-libro-del-diseno-web",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "javascript--javascript-elocuente-cuarta-edicion",
+      "topicSlug": "javascript",
+      "sourceId": "javascript-elocuente-cuarta-edicion",
+      "sourceTopicSlug": "javascript",
+      "title": "JavaScript elocuente (Cuarta edición)",
+      "author": "Marijn Haverbeke",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://librosgratis.dev/books/javascript-elocuente-cuarta-edicion.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "javascript--javascript-inspirate",
+      "topicSlug": "javascript",
+      "sourceId": "javascript-inspirate",
+      "sourceTopicSlug": "javascript",
+      "title": "JavaScript, ¡Inspírate!",
+      "author": "Ulises Gascón",
+      "formats": [
+        "eBook"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://leanpub.com/javascript-inspirate",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "javascript--javascript-moderno",
+      "topicSlug": "javascript",
+      "sourceId": "javascript-moderno",
+      "sourceTopicSlug": "javascript",
+      "title": "JavaScript Moderno",
+      "author": "Ilya Kantor",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://es.javascript.info/",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "javascript--you-don-t-know-js-traduccion-al-espanol",
+      "topicSlug": "javascript",
+      "sourceId": "you-don-t-know-js-traduccion-al-espanol",
+      "sourceTopicSlug": "javascript",
+      "title": "You Don’t Know JS (traducción al español)",
+      "author": "Kyle Simpson, traducido por You-Dont-Know-JS-ES",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://github.com/You-Dont-Know-JS-ES/Traduccion",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "javascript--mdn-guia-de-javascript",
+      "topicSlug": "javascript",
+      "sourceId": "mdn-guia-de-javascript",
+      "sourceTopicSlug": "javascript",
+      "title": "MDN: Guía de JavaScript",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "official-docs",
+      "level": "general",
+      "primaryUrl": "https://developer.mozilla.org/es/docs/Web/JavaScript/Guide",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "official-external",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "javascript--learn-javascript",
+      "topicSlug": "javascript",
+      "sourceId": "learn-javascript",
+      "sourceTopicSlug": "javascript",
+      "title": "Learn JavaScript",
+      "author": "Suman Kunwar",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://javascript.sumankunwar.com.np/es",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "javascript--introduccion-a-javascript",
+      "topicSlug": "javascript",
+      "sourceId": "introduccion-a-javascript",
+      "sourceTopicSlug": "javascript",
+      "title": "Introducción a JavaScript",
+      "author": "Javier Eguíluz Pérez",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "beginner",
+      "primaryUrl": "https://librosgratis.dev/books/javascript-introduccion-eguiluz.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "javascript--javascript",
+      "topicSlug": "javascript",
+      "sourceId": "javascript",
+      "sourceTopicSlug": "javascript",
+      "title": "JavaScript",
+      "author": "Jordi Collell Puig y Anna Ferry Mestres",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://librosgratis.dev/books/javascript-uoc.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "javascript--asincronismo-en-javascript",
+      "topicSlug": "javascript",
+      "sourceId": "asincronismo-en-javascript",
+      "sourceTopicSlug": "javascript",
+      "title": "Asincronismo en JavaScript",
+      "author": "Charly Cimino",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://librosgratis.dev/books/javascript-asincronismo.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "javascript--fundamentos-de-jquery",
+      "topicSlug": "javascript",
+      "sourceId": "fundamentos-de-jquery",
+      "sourceTopicSlug": "javascript",
+      "title": "Fundamentos de jQuery",
+      "author": "Rebecca Murphey, traducido por Leandro D’Onofrio",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "beginner",
+      "primaryUrl": "https://librosgratis.dev/books/jquery-fundamentos.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "javascript--css3-y-javascript-avanzado",
+      "topicSlug": "javascript",
+      "sourceId": "css3-y-javascript-avanzado",
+      "sourceTopicSlug": "javascript",
+      "title": "CSS3 y Javascript avanzado",
+      "author": "Jordi Collell Puig",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "advanced",
+      "primaryUrl": "https://librosgratis.dev/books/css3-javascript-avanzado.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "javascript--full-stack-open",
+      "topicSlug": "javascript",
+      "sourceId": "full-stack-open",
+      "sourceTopicSlug": "javascript",
+      "title": "Full Stack Open",
+      "author": "Universidad de Helsinki, traducido al español por Sebastian Torres, Cynthia Vico Vacca y Pablo Maffioli",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "course",
+      "level": "general",
+      "primaryUrl": "https://fullstackopen.com/es/",
+      "note": "Curso full-stack moderno basado en JavaScript con React, Node.js, MongoDB, GraphQL y TypeScript. La parte 11 de CI/CD está disponible en inglés.",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "javascript--clean-code-javascript-en-espanol",
+      "topicSlug": "javascript",
+      "sourceId": "clean-code-javascript-en-espanol",
+      "sourceTopicSlug": "javascript",
+      "title": "Clean Code JavaScript en Español",
+      "author": "Ryan McDermott, traducido al español por Theodore Anderson",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://github.com/andersontr15/clean-code-javascript-es",
+      "note": "Guía práctica de buenas prácticas para JavaScript: variables, funciones, clases, SOLID, pruebas, concurrencia, manejo de errores, formato y comentarios.",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "javascript--manual-de-javascript",
+      "topicSlug": "javascript",
+      "sourceId": "manual-de-javascript",
+      "sourceTopicSlug": "javascript",
+      "title": "Manual de JavaScript",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "tutorial",
+      "level": "general",
+      "primaryUrl": "https://desarrolloweb.com/manuales/manual-javascript.html#capitulos20",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "javascript--javascript-definitivo-vol-i",
+      "topicSlug": "javascript",
+      "sourceId": "javascript-definitivo-vol-i",
+      "sourceTopicSlug": "javascript",
+      "title": "JavaScript Definitivo Vol. I",
+      "author": "Ariel Fuggini",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://github.com/afuggini/javascript-definitivo-vol1",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "javascript--tutorial-de-d3",
+      "topicSlug": "javascript",
+      "sourceId": "tutorial-de-d3",
+      "sourceTopicSlug": "javascript",
+      "title": "Tutorial de D3",
+      "author": "Scott Murray",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "tutorial",
+      "level": "beginner",
+      "primaryUrl": "http://gcoch.github.io/D3-tutorial/index.html",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "javascript--manual-de-jquery",
+      "topicSlug": "javascript",
+      "sourceId": "manual-de-jquery",
+      "sourceTopicSlug": "javascript",
+      "title": "Manual de jQuery",
+      "author": "MundoSICA, et al",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "tutorial",
+      "level": "general",
+      "primaryUrl": "http://mundosica.github.io/tutorial_hispano_jQuery/",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "typescript--typescript-introduccion-a-typescript",
+      "topicSlug": "typescript",
+      "sourceId": "typescript-introduccion-a-typescript",
+      "sourceTopicSlug": "typescript",
+      "title": "Introducción a TypeScript",
+      "author": "Emmanuel Valverde Ramos",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "beginner",
+      "primaryUrl": "https://khru.gitbooks.io/typescript/",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "typescript--typescript-en-profundidad",
+      "topicSlug": "typescript",
+      "sourceId": "typescript-en-profundidad",
+      "sourceTopicSlug": "typescript",
+      "title": "TypeScript en Profundidad",
+      "author": "Basarat Ali Syed, traducido por Melissa Rofman",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "advanced",
+      "primaryUrl": "https://github.com/melissarofman/typescript-book",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "typescript--typescript-introduccion-a-typescript-adictos",
+      "topicSlug": "typescript",
+      "sourceId": "typescript-introduccion-a-typescript-adictos",
+      "sourceTopicSlug": "typescript",
+      "title": "Introducción a TypeScript",
+      "author": "Adictos al Trabajo",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "beginner",
+      "primaryUrl": "https://librosgratis.dev/books/typescript-introduccion-adictos-trabajo.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "typescript--typescript-para-principiantes",
+      "topicSlug": "typescript",
+      "sourceId": "typescript-para-principiantes",
+      "sourceTopicSlug": "typescript",
+      "title": "TypeScript para Principiantes",
+      "author": "Envato Tuts+",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "beginner",
+      "primaryUrl": "https://librosgratis.dev/books/typescript-para-principiantes-envato-tuts.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "typescript--manual-de-typescript",
+      "topicSlug": "typescript",
+      "sourceId": "manual-de-typescript",
+      "sourceTopicSlug": "typescript",
+      "title": "Manual de TypeScript",
+      "author": "Emmanuel Valverde y Pedro Hernández-Mora",
+      "formats": [
+        "eBook"
+      ],
+      "kind": "tutorial",
+      "level": "general",
+      "primaryUrl": "https://mega.nz/#!qwcFDZ7a!ggLXIZ4c-O1Do0OEuvK0Mz8k39LvYQwdaJ2LtKKxgsE",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "typescript--uso-avanzado-de-typescript-en-un-ejemplo-real",
+      "topicSlug": "typescript",
+      "sourceId": "uso-avanzado-de-typescript-en-un-ejemplo-real",
+      "sourceTopicSlug": "typescript",
+      "title": "Uso avanzado de TypeScript en un ejemplo real",
+      "author": "Nelio Software",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "advanced",
+      "primaryUrl": "https://neliosoftware.com/es/blog/uso-avanzado-de-typescript/",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "typescript--aprendizaje-typescript",
+      "topicSlug": "typescript",
+      "sourceId": "aprendizaje-typescript",
+      "sourceTopicSlug": "typescript",
+      "title": "Aprendizaje TypeScript",
+      "author": "RipTutorial",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://librosgratis.dev/books/typescript-aprendizaje.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "python--aprende-python",
+      "topicSlug": "python",
+      "sourceId": "aprende-python",
+      "sourceTopicSlug": "python",
+      "title": "Aprende Python",
+      "author": "Sergio Delgado Quintero",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "beginner",
+      "primaryUrl": "https://librosgratis.dev/books/python-aprende-sergio-delgado-quintero.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "python--python-para-todos",
+      "topicSlug": "python",
+      "sourceId": "python-para-todos",
+      "sourceTopicSlug": "python",
+      "title": "Python para todos",
+      "author": "Raúl González Duque",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://librosgratis.dev/books/python-para-todos.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "python--think-python-en-espanol",
+      "topicSlug": "python",
+      "sourceId": "think-python-en-espanol",
+      "sourceTopicSlug": "python",
+      "title": "Think Python en español",
+      "author": "Allen B. Downey, traducido por midudev",
+      "formats": [
+        "HTML",
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://libropython.es/",
+      "mirrors": [
+        "https://libropython.es/think-python-es.pdf"
+      ],
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "python--aprenda-a-pensar-como-un-programador-con-python",
+      "topicSlug": "python",
+      "sourceId": "aprenda-a-pensar-como-un-programador-con-python",
+      "sourceTopicSlug": "python",
+      "title": "Aprenda a pensar como un programador con Python",
+      "author": "Allen Downey, Jeffrey Elkner, Chris Meyers",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://librosgratis.dev/books/python-pensar-programador.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "python--python-para-todos-explorando-la-informacion-con-python-3",
+      "topicSlug": "python",
+      "sourceId": "python-para-todos-explorando-la-informacion-con-python-3",
+      "sourceTopicSlug": "python",
+      "title": "Python para todos, Explorando la información con Python 3",
+      "author": "Charles R. Severance",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://librosgratis.dev/books/python-explorando-informacion.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "python--manual-basico-iniciacion-a-python-3",
+      "topicSlug": "python",
+      "sourceId": "manual-basico-iniciacion-a-python-3",
+      "sourceTopicSlug": "python",
+      "title": "Manual básico, iniciación a Python 3",
+      "author": "José Miguel Ruiz Torres",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "tutorial",
+      "level": "beginner",
+      "primaryUrl": "https://librosgratis.dev/books/python-manual-basico.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "python--python-intermedio",
+      "topicSlug": "python",
+      "sourceId": "python-intermedio",
+      "sourceTopicSlug": "python",
+      "title": "Python Intermedio",
+      "author": "Comunidad ellibrodepython.com",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://librosgratis.dev/books/python-intermedio.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "python--inmersion-en-python-3",
+      "topicSlug": "python",
+      "sourceId": "inmersion-en-python-3",
+      "sourceTopicSlug": "python",
+      "title": "Inmersión en Python 3",
+      "author": "Mark Pilgrim, traducido por José Miguel González Aguilera",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://librosgratis.dev/books/python-inmersion.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "python--ejercicios-basicos-de-programacion-resueltos-en-python",
+      "topicSlug": "python",
+      "sourceId": "ejercicios-basicos-de-programacion-resueltos-en-python",
+      "sourceTopicSlug": "python",
+      "title": "Ejercicios básicos de programación resueltos en Python",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "beginner",
+      "primaryUrl": "https://librosgratis.dev/books/python-ejercicios-basicos.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "python--introduccion-a-python-para-calculo-cientifico",
+      "topicSlug": "python",
+      "sourceId": "introduccion-a-python-para-calculo-cientifico",
+      "sourceTopicSlug": "python",
+      "title": "Introducción a Python para cálculo científico",
+      "author": "A. Garcimartín",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "beginner",
+      "primaryUrl": "https://librosgratis.dev/books/python-calculo-cientifico.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "python--introduccion-a-la-programacion-con-python-3",
+      "topicSlug": "python",
+      "sourceId": "introduccion-a-la-programacion-con-python-3",
+      "sourceTopicSlug": "python",
+      "title": "Introducción a la programación con Python 3",
+      "author": "Andrés Marzal Varó, Isabel Gracia Luengo, Pedro García-Sevilla",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "beginner",
+      "primaryUrl": "https://librosgratis.dev/books/python-introduccion-programacion-3.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "python--apuntes-python",
+      "topicSlug": "python",
+      "sourceId": "apuntes-python",
+      "sourceTopicSlug": "python",
+      "title": "Apuntes Python",
+      "author": "Manuel Vergara",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "tutorial",
+      "level": "general",
+      "primaryUrl": "https://librosgratis.dev/books/python-apuntes.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "python--inventa-tus-propios-juegos-de-computadora-con-python",
+      "topicSlug": "python",
+      "sourceId": "inventa-tus-propios-juegos-de-computadora-con-python",
+      "sourceTopicSlug": "python",
+      "title": "Inventa tus propios juegos de computadora con Python",
+      "author": "Al Sweigart",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://librosgratis.dev/books/python-inventa-juegos.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "python--el-tutorial-de-python",
+      "topicSlug": "python",
+      "sourceId": "el-tutorial-de-python",
+      "sourceTopicSlug": "python",
+      "title": "El tutorial de Python",
+      "author": "Python Software Foundation",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "tutorial",
+      "level": "beginner",
+      "primaryUrl": "https://docs.python.org/es/3/tutorial/",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "python--introduccion-a-programando-con-python",
+      "topicSlug": "python",
+      "sourceId": "introduccion-a-programando-con-python",
+      "sourceTopicSlug": "python",
+      "title": "Introducción a Programando con Python",
+      "author": "OpenTechSchool, et al",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "beginner",
+      "primaryUrl": "http://opentechschool.github.io/python-beginners/es_CL/",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "python--python-para-ciencia-e-ingenieria",
+      "topicSlug": "python",
+      "sourceId": "python-para-ciencia-e-ingenieria",
+      "sourceTopicSlug": "python",
+      "title": "Python para ciencia e ingeniería",
+      "author": "Martín Gaitán",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://github.com/mgaitan/curso-python-cientifico#curso-de-python-para-ciencias-e-ingenier%C3%ADas",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "ruby--aprende-a-programar-con-ruby",
+      "topicSlug": "ruby",
+      "sourceId": "aprende-a-programar-con-ruby",
+      "sourceTopicSlug": "ruby",
+      "title": "Aprende a programar con Ruby",
+      "author": "RubySur",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "beginner",
+      "primaryUrl": "http://rubysur.org/aprende.a.programar",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "ruby--ruby-en-veinte-minutos",
+      "topicSlug": "ruby",
+      "sourceId": "ruby-en-veinte-minutos",
+      "sourceTopicSlug": "ruby",
+      "title": "Ruby en veinte minutos",
+      "author": "Ruby",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://www.ruby-lang.org/es/documentation/quickstart/",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "ruby--introduccion-a-rails",
+      "topicSlug": "ruby",
+      "sourceId": "introduccion-a-rails",
+      "sourceTopicSlug": "ruby",
+      "title": "Introducción a Rails",
+      "author": "RubySur",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "beginner",
+      "primaryUrl": "http://rubysur.org/introduccion.a.rails/",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "ruby--ruby-tutorial-o-como-pasar-un-buen-rato-programando",
+      "topicSlug": "ruby",
+      "sourceId": "ruby-tutorial-o-como-pasar-un-buen-rato-programando",
+      "sourceTopicSlug": "ruby",
+      "title": "Ruby tutorial o cómo pasar un buen rato programando",
+      "author": "Andrés Suárez García",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "tutorial",
+      "level": "beginner",
+      "primaryUrl": "http://rubytutorial.wikidot.com/introduccion",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "ruby--la-guia-de-estilos-de-ruby",
+      "topicSlug": "ruby",
+      "sourceId": "la-guia-de-estilos-de-ruby",
+      "sourceTopicSlug": "ruby",
+      "title": "La Guía de Estilos de Ruby",
+      "author": "Ale Mohamad",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "tutorial",
+      "level": "general",
+      "primaryUrl": "https://github.com/alemohamad/ruby-style-guide/blob/master/README-esLA.md#preludio",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "rust--aprendizaje-rust",
+      "topicSlug": "rust",
+      "sourceId": "aprendizaje-rust",
+      "sourceTopicSlug": "rust",
+      "title": "Aprendizaje Rust",
+      "author": "RipTutorial",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://librosgratis.dev/books/rust-aprendizaje.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "rust--el-lenguaje-de-programacion-rust-2016",
+      "topicSlug": "rust",
+      "sourceId": "el-lenguaje-de-programacion-rust-2016",
+      "sourceTopicSlug": "rust",
+      "title": "El Lenguaje de Programación Rust - 2016",
+      "author": "Jose Narvaez",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://goyox86.github.io/elpr/README.html",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "rust--el-lenguaje-de-programacion-rust-2024",
+      "topicSlug": "rust",
+      "sourceId": "el-lenguaje-de-programacion-rust-2024",
+      "sourceTopicSlug": "rust",
+      "title": "El Lenguaje de Programación Rust - 2024",
+      "author": "Libro oficial traducido por RustLang en Español",
+      "formats": [
+        "HTML",
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://book.rustlang-es.org/",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "rust--comprehensive-rust",
+      "topicSlug": "rust",
+      "sourceId": "comprehensive-rust",
+      "sourceTopicSlug": "rust",
+      "title": "Comprehensive Rust",
+      "author": "Google",
+      "formats": [
+        "HTML",
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://google.github.io/comprehensive-rust/es/",
+      "note": "Está planteado como workshop, muy útil para estudiar con instructor o en grupo.",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "rust--rust-para-c-net-developers",
+      "topicSlug": "rust",
+      "sourceId": "rust-para-c-net-developers",
+      "sourceTopicSlug": "rust",
+      "title": "Rust para C#/.NET Developers",
+      "author": "Microsoft, traducido por RustLang en Español",
+      "formats": [
+        "HTML",
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://dotnet-book.rustlang-es.org/",
+      "note": "Incluye comparaciones sencillas para entender bien el cambio de mentalidad entre lenguajes.",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "blockchain--bitcoin-un-sistema-de-efectivo-electronico-de-usuario-a-usuario",
+      "topicSlug": "blockchain",
+      "sourceId": "bitcoin-un-sistema-de-efectivo-electronico-de-usuario-a-usuario",
+      "sourceTopicSlug": "blockchain",
+      "title": "Bitcoin: Un sistema de efectivo electrónico de usuario a usuario",
+      "author": "Satoshi Nakamoto",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://bitcoin.org/files/bitcoin-paper/bitcoin_es.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "blockchain--el-libro-de-satoshi",
+      "topicSlug": "blockchain",
+      "sourceId": "el-libro-de-satoshi",
+      "sourceTopicSlug": "blockchain",
+      "title": "El Libro de Satoshi",
+      "author": "Phil Champagne",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "http://www.libroblockchain.com/satoshi/",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "blockchain--entendiendo-el-blockchain",
+      "topicSlug": "blockchain",
+      "sourceId": "entendiendo-el-blockchain",
+      "sourceTopicSlug": "blockchain",
+      "title": "Entendiendo el Blockchain",
+      "author": "SECMCA",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://www.secmca.org/wp-content/uploads/2019/12/Blockchain.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "blockchain--solidity-documentacion-oficial-en-espanol",
+      "topicSlug": "blockchain",
+      "sourceId": "solidity-documentacion-oficial-en-espanol",
+      "sourceTopicSlug": "blockchain",
+      "title": "Solidity: Documentación oficial en español",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "official-docs",
+      "level": "general",
+      "primaryUrl": "https://solidity-es.readthedocs.io/",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "official-external",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "php--php-la-manera-correcta",
+      "topicSlug": "php",
+      "sourceId": "php-la-manera-correcta",
+      "sourceTopicSlug": "php",
+      "title": "PHP, la manera correcta",
+      "author": "Josh Lockhart, Phil Sturgeon",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://phpdevenezuela.github.io/php-the-right-way/",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "php--programacion-en-php-a-traves-de-ejemplos",
+      "topicSlug": "php",
+      "sourceId": "programacion-en-php-a-traves-de-ejemplos",
+      "sourceTopicSlug": "php",
+      "title": "Programación en PHP a través de ejemplos",
+      "author": "Manuel Palomo Duarte, Ildefonso Montero Pérez",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://librosgratis.dev/books/php-programacion-ejemplos.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "php--poo-y-mvc-en-php",
+      "topicSlug": "php",
+      "sourceId": "poo-y-mvc-en-php",
+      "sourceTopicSlug": "php",
+      "title": "POO y MVC en PHP",
+      "author": "Eugenia Bahit",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://librosgratis.dev/books/php-poo-mvc.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "php--laboratorio-de-php-y-mysql",
+      "topicSlug": "php",
+      "sourceId": "laboratorio-de-php-y-mysql",
+      "sourceTopicSlug": "php",
+      "title": "Laboratorio de PHP y MySQL",
+      "author": "Piero Berni Millet, Dídac Gil de la Iglesia",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://openlibro.com/wp-content/uploads/2026/03/laboratorio-php-mysql.pdf",
+      "note": "PDF externo: supera el límite de 25 MiB por asset de Cloudflare Workers.",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "php--php-y-programacion-orientada-a-objetos",
+      "topicSlug": "php",
+      "sourceId": "php-y-programacion-orientada-a-objetos",
+      "sourceTopicSlug": "php",
+      "title": "PHP y Programación orientada a objetos",
+      "author": "Duilio Palacios",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://styde.net/php-y-programacion-orientada-a-objetos/",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "php--programacion-web-avanzada-ajax-y-google-maps",
+      "topicSlug": "php",
+      "sourceId": "programacion-web-avanzada-ajax-y-google-maps",
+      "sourceTopicSlug": "php",
+      "title": "Programación web avanzada: Ajax y Google Maps",
+      "author": "Sergio Luján Mora, Universidad de Colima",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "advanced",
+      "primaryUrl": "http://rua.ua.es/dspace/bitstream/10045/13176/9/04-ajaxphp.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "php--manual-de-estudio-introductorio-al-lenguaje-php-procedural",
+      "topicSlug": "php",
+      "sourceId": "manual-de-estudio-introductorio-al-lenguaje-php-procedural",
+      "sourceTopicSlug": "php",
+      "title": "Manual de estudio introductorio al lenguaje PHP procedural",
+      "author": "Eugenia Bahit",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "tutorial",
+      "level": "general",
+      "primaryUrl": "https://web.archive.org/web/20140209203630/http://www.cursosdeprogramacionadistancia.com/static/pdf/material-sin-personalizar-php.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "php--symfony-5-la-via-rapida",
+      "topicSlug": "php",
+      "sourceId": "symfony-5-la-via-rapida",
+      "sourceTopicSlug": "php",
+      "title": "Symfony 5: La Vía Rápida",
+      "author": "Fabien Potencier",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://web.archive.org/web/20210805141343/https://symfony.com/doc/current/the-fast-track/es/index.html",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "php--gu-a-definitiva-de-yii-2-0",
+      "topicSlug": "php",
+      "sourceId": "gu-a-definitiva-de-yii-2-0",
+      "sourceTopicSlug": "php",
+      "title": "Guía Definitiva de Yii 2.0",
+      "author": "Yii Software",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "tutorial",
+      "level": "general",
+      "primaryUrl": "https://www.yiiframework.com/doc/download/yii-guide-2.0-es.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "haskell--piensa-en-haskell",
+      "topicSlug": "haskell",
+      "sourceId": "piensa-en-haskell",
+      "sourceTopicSlug": "haskell",
+      "title": "Piensa en Haskell",
+      "author": "José A. Alonso Jiménez, Mª José Hidalgo Doblado",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://librosgratis.dev/books/haskell-piensa.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "haskell--aprende-haskell-por-el-bien-de-todos",
+      "topicSlug": "haskell",
+      "sourceId": "aprende-haskell-por-el-bien-de-todos",
+      "sourceTopicSlug": "haskell",
+      "title": "¡Aprende Haskell por el bien de todos!",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "beginner",
+      "primaryUrl": "http://aprendehaskell.es/main.html",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "haskell--piensa-en-haskell-y-en-python",
+      "topicSlug": "haskell",
+      "sourceId": "piensa-en-haskell-y-en-python",
+      "sourceTopicSlug": "haskell",
+      "title": "Piensa en Haskell y en Python",
+      "author": "José A. Alonso Jiménez",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://librosgratis.dev/books/haskell-python-ejercicios.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "go--el-pequeno-libro-de-go",
+      "topicSlug": "go",
+      "sourceId": "el-pequeno-libro-de-go",
+      "sourceTopicSlug": "golang",
+      "title": "El pequeño libro de Go",
+      "author": "Karl Seguin, traducido por Raúl Exposito",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://librosgratis.dev/books/go-pequeno-libro.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "go--go-en-espanol",
+      "topicSlug": "go",
+      "sourceId": "go-en-espanol",
+      "sourceTopicSlug": "golang",
+      "title": "Go en Español",
+      "author": "Nacho Pacheco",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://nachopacheco.gitbooks.io/go-es/content/doc/",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "kotlin--curso-programacion-android-en-kotlin",
+      "topicSlug": "kotlin",
+      "sourceId": "curso-programacion-android-en-kotlin",
+      "sourceTopicSlug": "kotlin",
+      "title": "Curso programación Android en Kotlin",
+      "author": "AristiDevs",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "course",
+      "level": "general",
+      "primaryUrl": "https://cursokotlin.com/curso-programacion-kotlin-android/",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "kotlin--kotlin",
+      "topicSlug": "kotlin",
+      "sourceId": "kotlin",
+      "sourceTopicSlug": "kotlin",
+      "title": "Kotlin",
+      "author": "Stack Overflow Documentation",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://librosgratis.dev/books/kotlin-stackoverflow-docs.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "android--manual-programacion-android",
+      "topicSlug": "android",
+      "sourceId": "manual-programacion-android",
+      "sourceTopicSlug": "android",
+      "title": "Manual Programación Android",
+      "author": "Salvador Gómez Oliver",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "tutorial",
+      "level": "general",
+      "primaryUrl": "https://aluzardo.github.io/trabajo-fin-de-grado/Tutoriales/Manual%20Programacion%20Android.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "android--curso-sobre-los-aspectos-basicos-de-android-con-compose",
+      "topicSlug": "android",
+      "sourceId": "curso-sobre-los-aspectos-basicos-de-android-con-compose",
+      "sourceTopicSlug": "android",
+      "title": "Curso sobre los aspectos básicos de Android con Compose",
+      "author": "Android Developers",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "course",
+      "level": "beginner",
+      "primaryUrl": "https://developer.android.com/courses/android-basics-compose/course?hl=es-419",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "android--manual-de-programacion-android-v-2-0",
+      "topicSlug": "android",
+      "sourceId": "manual-de-programacion-android-v-2-0",
+      "sourceTopicSlug": "android",
+      "title": "Manual de Programación Android v.2.0",
+      "author": "Salvador Gómez Oliver",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "tutorial",
+      "level": "general",
+      "primaryUrl": "http://ns2.elhacker.net/timofonica/manuales/Manual_Programacion_Android_v2.0.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "c--c-introduccion-a-la-programacion-con-c",
+      "topicSlug": "c",
+      "sourceId": "c-introduccion-a-la-programacion-con-c",
+      "sourceTopicSlug": "c",
+      "title": "Introducción a la Programación con C",
+      "author": "Andrés Marzal Varó, Isabel Gracia Luengo",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "beginner",
+      "primaryUrl": "https://librosgratis.dev/books/c-introduccion-programacion.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "cpp--c-estandar",
+      "topicSlug": "cpp",
+      "sourceId": "c-estandar",
+      "sourceTopicSlug": "cplusplus",
+      "title": "C++ estándar",
+      "author": "Miguel Hernando Gutiérrez",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://librosgratis.dev/books/cpp-estandar.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "cpp--programacion-orientada-a-objetos-ejercicios-propuestos-con-c",
+      "topicSlug": "cpp",
+      "sourceId": "programacion-orientada-a-objetos-ejercicios-propuestos-con-c",
+      "sourceTopicSlug": "cplusplus",
+      "title": "Programación orientada a objetos Ejercicios propuestos con C++",
+      "author": "Cristina Cachero, Pedro J. Ponce de León",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://librosgratis.dev/books/cpp-poo-ejercicios.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "cpp--fundamentos-basicos-de-programacion-en-c",
+      "topicSlug": "cpp",
+      "sourceId": "fundamentos-basicos-de-programacion-en-c",
+      "sourceTopicSlug": "cplusplus",
+      "title": "Fundamentos Básicos de Programación en C++",
+      "author": "Francisco Martínez del Río",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "beginner",
+      "primaryUrl": "https://librosgratis.dev/books/cpp-fundamentos-basicos.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "cpp--curso-de-c",
+      "topicSlug": "cpp",
+      "sourceId": "curso-de-c",
+      "sourceTopicSlug": "cplusplus",
+      "title": "Curso de C++",
+      "author": "Con Clase",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "course",
+      "level": "general",
+      "primaryUrl": "https://conclase.net/c/curso",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "cpp--aprenda-c-avanzado-como-si-estuviera-en-primero",
+      "topicSlug": "cpp",
+      "sourceId": "aprenda-c-avanzado-como-si-estuviera-en-primero",
+      "sourceTopicSlug": "cplusplus",
+      "title": "Aprenda C++ avanzado como si estuviera en primero",
+      "author": "Paul Bustamante, Iker Aguinaga, Miguel Aybar, Luis Olaizola, Iñigo Lazcano",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "advanced",
+      "primaryUrl": "https://web.archive.org/web/20100701020037/http://www.tecnun.es/asignaturas/Informat1/AyudaInf/aprendainf/cpp/avanzado/cppavan.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "cpp--ejercicios-de-programacion-creativos-y-recreativos-en-c",
+      "topicSlug": "cpp",
+      "sourceId": "ejercicios-de-programacion-creativos-y-recreativos-en-c",
+      "sourceTopicSlug": "cplusplus",
+      "title": "Ejercicios de programación creativos y recreativos en C++",
+      "author": "Luis Llana, Carlos Gregorio, Raquel Martínez, Pedro Palao, Cristóbal Pareja",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "http://antares.sip.ucm.es/cpareja/libroCPP/",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "cpp--aprenda-c-basico-como-si-estuviera-en-primero",
+      "topicSlug": "cpp",
+      "sourceId": "aprenda-c-basico-como-si-estuviera-en-primero",
+      "sourceTopicSlug": "cplusplus",
+      "title": "Aprenda C++ básico como si estuviera en primero",
+      "author": "Paul Bustamante, Iker Aguinaga, Miguel Aybar, Luis Olaizola, Iñigo Lazcano",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "beginner",
+      "primaryUrl": "https://web.archive.org/web/20100701020025/http://www.tecnun.es/asignaturas/Informat1/AyudaInf/aprendainf/cpp/basico/cppbasico.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "c-sharp--csharp-introduccion-a-la-programacion-con-c",
+      "topicSlug": "c-sharp",
+      "sourceId": "csharp-introduccion-a-la-programacion-con-c",
+      "sourceTopicSlug": "csharp",
+      "title": "Introducción a la programación con C#",
+      "author": "Nacho Cabanes",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "beginner",
+      "primaryUrl": "https://librosgratis.dev/books/csharp-introduccion-programacion.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "c-sharp--el-pequeno-libro-de-asp-net-core",
+      "topicSlug": "c-sharp",
+      "sourceId": "el-pequeno-libro-de-asp-net-core",
+      "sourceTopicSlug": "csharp",
+      "title": "El pequeño libro de ASP.NET Core",
+      "author": "Nate Barbettini",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://librosgratis.dev/books/aspnet-core-pequeno-libro.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "c-sharp--guia-de-arquitectura-n-capas-orientadas-al-dominio",
+      "topicSlug": "c-sharp",
+      "sourceId": "guia-de-arquitectura-n-capas-orientadas-al-dominio",
+      "sourceTopicSlug": "csharp",
+      "title": "Guía de Arquitectura N-capas Orientadas al Dominio",
+      "author": "Cesar De la Torre",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "tutorial",
+      "level": "general",
+      "primaryUrl": "https://blogs.msdn.microsoft.com/cesardelatorre/2010/03/11/nuestro-nuevo-libro-guia-de-arquitectura-n-capas-ddd-net-4-0-y-aplicacion-ejemplo-en-disponibles-para-download-en-msdn-y-codeplex",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "java--fundamentos-de-programacion-en-java",
+      "topicSlug": "java",
+      "sourceId": "fundamentos-de-programacion-en-java",
+      "sourceTopicSlug": "java",
+      "title": "Fundamentos de programación en Java",
+      "author": "Jorge Martínez Ladrón",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "beginner",
+      "primaryUrl": "https://es.slideshare.net/slideshow/java-fundamentos/23333338",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "java--iniciando-en-java-programacion-para-todos",
+      "topicSlug": "java",
+      "sourceId": "iniciando-en-java-programacion-para-todos",
+      "sourceTopicSlug": "java",
+      "title": "Iniciando en Java: Programación para Todos",
+      "author": "Julián Camilo Tuta Diaz",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://librosgratis.dev/books/java-iniciando-programacion.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "java--java-apuntes-basicos",
+      "topicSlug": "java",
+      "sourceId": "java-apuntes-basicos",
+      "sourceTopicSlug": "java",
+      "title": "Java Apuntes Básicos",
+      "author": "Jorge A. López Vargas",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "tutorial",
+      "level": "beginner",
+      "primaryUrl": "https://librosgratis.dev/books/java-apuntes-basicos.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "java--java-basico-para-aprendices",
+      "topicSlug": "java",
+      "sourceId": "java-basico-para-aprendices",
+      "sourceTopicSlug": "java",
+      "title": "Java básico para aprendices",
+      "author": "Manuel Jesús Abanto Morales et al.",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "beginner",
+      "primaryUrl": "https://librosgratis.dev/books/java-basico-aprendices.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "java--introduccion-a-la-programacion-orientada-a-objetos-con-java",
+      "topicSlug": "java",
+      "sourceId": "introduccion-a-la-programacion-orientada-a-objetos-con-java",
+      "sourceTopicSlug": "java",
+      "title": "Introducción a la Programación Orientada a Objetos con Java",
+      "author": "Rafael Llobet Azpitarte, Pedro Alonso Jordá, Jaume Devesa Llinares, Emili Miedes De Elías, María Idoia Ruiz Fuertes, Francisco Torres Goterris",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "beginner",
+      "primaryUrl": "https://librosgratis.dev/books/java-introduccion-poo.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "java--ejercicios-de-programacion-en-java",
+      "topicSlug": "java",
+      "sourceId": "ejercicios-de-programacion-en-java",
+      "sourceTopicSlug": "java",
+      "title": "Ejercicios de Programación en Java",
+      "author": "Francisco Manuel Pérez Montes",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://librosgratis.dev/books/java-ejercicios-programacion.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "java--desarrollando-con-java-8-poker",
+      "topicSlug": "java",
+      "sourceId": "desarrollando-con-java-8-poker",
+      "sourceTopicSlug": "java",
+      "title": "Desarrollando con Java 8: Poker",
+      "author": "David Pérez Cabrera",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://ia601504.us.archive.org/21/items/DesarrollandoConJava8Poker/DesarrollandoConJava8Poker.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "java--plugin-apache-tapestry-desarrollo-de-aplicaciones-y-paginas-web",
+      "topicSlug": "java",
+      "sourceId": "plugin-apache-tapestry-desarrollo-de-aplicaciones-y-paginas-web",
+      "sourceTopicSlug": "java",
+      "title": "PlugIn Apache Tapestry: desarrollo de aplicaciones y páginas web",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://picodotdev.github.io/blog-bitix/assets/custom/PlugInTapestry.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "java--preparando-javasun-6-ocpjp6",
+      "topicSlug": "java",
+      "sourceId": "preparando-javasun-6-ocpjp6",
+      "sourceTopicSlug": "java",
+      "title": "Preparando JavaSun 6 - OCPJP6",
+      "author": "Pablo Reyes Almagro",
+      "formats": [
+        "PDF",
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://github.com/PabloReyes/ocpjp-resumen-espanol#ocpjp6-resumen-espa%C3%B1ol",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "java--tutorial-basico-de-java-ee",
+      "topicSlug": "java",
+      "sourceId": "tutorial-basico-de-java-ee",
+      "sourceTopicSlug": "java",
+      "title": "Tutorial básico de Java EE",
+      "author": "Abraham Otero",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "tutorial",
+      "level": "beginner",
+      "primaryUrl": "http://static1.1.sqspcdn.com/static/f/923743/14770633/1416082087870/JavaEE.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "java--tutorial-introduccion-a-maven-3",
+      "topicSlug": "java",
+      "sourceId": "tutorial-introduccion-a-maven-3",
+      "sourceTopicSlug": "java",
+      "title": "Tutorial introducción a Maven 3",
+      "author": "Erick Camacho",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "tutorial",
+      "level": "beginner",
+      "primaryUrl": "http://static1.1.sqspcdn.com/static/f/923743/15025126/1320942755733/Tutorial_de_Maven_3_Erick_Camacho.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "r--r-para-ciencia-de-datos",
+      "topicSlug": "r",
+      "sourceId": "r-para-ciencia-de-datos",
+      "sourceTopicSlug": "r",
+      "title": "R para Ciencia de Datos",
+      "author": "Hadley Wickham y Garrett Grolemund",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://es.r4ds.hadley.nz/",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "r--introduccion-a-r",
+      "topicSlug": "r",
+      "sourceId": "introduccion-a-r",
+      "sourceTopicSlug": "r",
+      "title": "Introducción a R",
+      "author": "Andrés González y Silvia González",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "beginner",
+      "primaryUrl": "https://librosgratis.dev/books/r-introduccion.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "r--cartas-sobre-estadistica-de-la-revista-argentina-de-bioingenieria",
+      "topicSlug": "r",
+      "sourceId": "cartas-sobre-estadistica-de-la-revista-argentina-de-bioingenieria",
+      "sourceTopicSlug": "r",
+      "title": "Cartas sobre Estadística de la Revista Argentina de Bioingeniería",
+      "author": "Marcelo R. Risk",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "http://cran.r-project.org/doc/contrib/Risk-Cartas-sobre-Estadistica.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "r--generacion-automatica-de-reportes-con-r-y-latex",
+      "topicSlug": "r",
+      "sourceId": "generacion-automatica-de-reportes-con-r-y-latex",
+      "sourceTopicSlug": "r",
+      "title": "Generación automática de reportes con R y LaTeX",
+      "author": "Mario Alfonso Morales Rivera",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "http://cran.r-project.org/doc/contrib/Rivera-Tutorial_Sweave.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "r--graficos-estadisticos-con-r",
+      "topicSlug": "r",
+      "sourceId": "graficos-estadisticos-con-r",
+      "sourceTopicSlug": "r",
+      "title": "Gráficos Estadísticos con R",
+      "author": "Juan Carlos Correa, Nelfi González",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "http://cran.r-project.org/doc/contrib/grafi3.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "r--introduccion-al-uso-y-programacion-del-sistema-estadistico-r",
+      "topicSlug": "r",
+      "sourceId": "introduccion-al-uso-y-programacion-del-sistema-estadistico-r",
+      "sourceTopicSlug": "r",
+      "title": "Introducción al uso y programación del sistema estadístico R",
+      "author": "Ramón Díaz-Uriarte",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "beginner",
+      "primaryUrl": "http://cran.r-project.org/doc/contrib/curso-R.Diaz-Uriarte.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "r--metodos-estadisticos-con-r-y-r-commander",
+      "topicSlug": "r",
+      "sourceId": "metodos-estadisticos-con-r-y-r-commander",
+      "sourceTopicSlug": "r",
+      "title": "Métodos Estadísticos con R y R Commander",
+      "author": "Antonio José Sáez Castillo",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "http://cran.r-project.org/doc/contrib/Saez-Castillo-RRCmdrv21.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "r--optimizacion-matematica-con-r-volumen-i",
+      "topicSlug": "r",
+      "sourceId": "optimizacion-matematica-con-r-volumen-i",
+      "sourceTopicSlug": "r",
+      "title": "Optimización Matemática con R: Volumen I",
+      "author": "Enrique Gabriel Baquela, Andrés Redchuk",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "http://cran.r-project.org/doc/contrib/Optimizacion_Matematica_con_R_Volumen_I.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "r--r-para-principiantes",
+      "topicSlug": "r",
+      "sourceId": "r-para-principiantes",
+      "sourceTopicSlug": "r",
+      "title": "R para Principiantes",
+      "author": "Michel Schinz, Philipp Haller",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "beginner",
+      "primaryUrl": "http://cran.r-project.org/doc/contrib/rdebuts_es.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "react--react-de-aprendiz-a-maestro",
+      "topicSlug": "react",
+      "sourceId": "react-de-aprendiz-a-maestro",
+      "sourceTopicSlug": "react",
+      "title": "React: De aprendiz a maestro",
+      "author": "Raúl Expósito",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://librosgratis.dev/books/react-aprendiz-maestro.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "react--react",
+      "topicSlug": "react",
+      "sourceId": "react",
+      "sourceTopicSlug": "react",
+      "title": "React",
+      "author": "Stack Overflow Documentation",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://librosgratis.dev/books/react-stackoverflow-docs.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "react--preguntas-de-entrevista-de-react-js",
+      "topicSlug": "react",
+      "sourceId": "preguntas-de-entrevista-de-react-js",
+      "sourceTopicSlug": "react",
+      "title": "Preguntas de entrevista de React.js",
+      "author": "Miguel Ángel Durán",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://www.reactjs.wiki/",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "react--desarrollo-de-aplicaciones-web-con-react-js-y-redux-js",
+      "topicSlug": "react",
+      "sourceId": "desarrollo-de-aplicaciones-web-con-react-js-y-redux-js",
+      "sourceTopicSlug": "react",
+      "title": "Desarrollo de Aplicaciones Web con React.js y Redux.js",
+      "author": "Sergio Daniel Xalambrí",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://leanpub.com/read/react-redux",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "qwik--qwik-desde-cero-a-produccion",
+      "topicSlug": "qwik",
+      "sourceId": "qwik-desde-cero-a-produccion",
+      "sourceTopicSlug": "qwik",
+      "title": "Qwik: Desde cero a producción",
+      "author": "Anartz Mugika",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "beginner",
+      "primaryUrl": "https://qwik-book-spanish.netlify.app/",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "nodejs--node-beginner-book",
+      "topicSlug": "nodejs",
+      "sourceId": "node-beginner-book",
+      "sourceTopicSlug": "nodejs",
+      "title": "Node Beginner Book",
+      "author": "Manuel Kiessling",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://www.nodebeginner.org/index-es.html",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "nodejs--introduccion-a-node-js-a-traves-de-koans",
+      "topicSlug": "nodejs",
+      "sourceId": "introduccion-a-node-js-a-traves-de-koans",
+      "sourceTopicSlug": "nodejs",
+      "title": "Introducción a Node.js a través de Koans",
+      "author": "Arturo Muñoz de la Torre",
+      "formats": [
+        "PDF",
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "beginner",
+      "primaryUrl": "http://nodejskoans.com/",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "angular--entendiendo-angular",
+      "topicSlug": "angular",
+      "sourceId": "entendiendo-angular",
+      "sourceTopicSlug": "angular",
+      "title": "Entendiendo Angular",
+      "author": "Jorge Cano",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://jorgeucano.gitbook.io/entendiendo-angular/",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "angular--manual-de-angularjs",
+      "topicSlug": "angular",
+      "sourceId": "manual-de-angularjs",
+      "sourceTopicSlug": "angular",
+      "title": "Manual de AngularJS",
+      "author": "desarrolloweb.com",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "tutorial",
+      "level": "general",
+      "primaryUrl": "https://desarrolloweb.com/manuales/manual-angularjs.html",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "angular--guia-de-estilo-angularjs",
+      "topicSlug": "angular",
+      "sourceId": "guia-de-estilo-angularjs",
+      "sourceTopicSlug": "angular",
+      "title": "Guía de estilo AngularJS",
+      "author": "John Papa, et al",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "tutorial",
+      "level": "general",
+      "primaryUrl": "https://github.com/johnpapa/angular-styleguide/blob/master/a1/i18n/es-ES.md",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "angular--aprendizaje-angular",
+      "topicSlug": "angular",
+      "sourceId": "aprendizaje-angular",
+      "sourceTopicSlug": "angular",
+      "title": "Aprendizaje Angular",
+      "author": "Stack Overflow Documentation",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://riptutorial.com/Download/angular-es.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "angular--aprendizaje-angular-2",
+      "topicSlug": "angular",
+      "sourceId": "aprendizaje-angular-2",
+      "sourceTopicSlug": "angular",
+      "title": "Aprendizaje Angular 2",
+      "author": "Stack Overflow Documentation",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://riptutorial.com/Download/angular-2-es.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "angular--angularjs",
+      "topicSlug": "angular",
+      "sourceId": "angularjs",
+      "sourceTopicSlug": "angular",
+      "title": "AngularJS",
+      "author": "Elad Rodriguez",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://eladrodriguez.gitbooks.io/angularjs",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "django--django-documentation",
+      "topicSlug": "django",
+      "sourceId": "django-documentation",
+      "sourceTopicSlug": "django",
+      "title": "Django documentation",
+      "author": "Django Software Foundation",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "official-docs",
+      "level": "general",
+      "primaryUrl": "https://docs.djangoproject.com/es/stable/",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "official-external",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "django--tutorial-de-django-girls",
+      "topicSlug": "django",
+      "sourceId": "tutorial-de-django-girls",
+      "sourceTopicSlug": "django",
+      "title": "Tutorial de Django Girls",
+      "author": "Django Girls",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "tutorial",
+      "level": "beginner",
+      "primaryUrl": "https://tutorial.djangogirls.org/es/",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "git--pro-git",
+      "topicSlug": "git",
+      "sourceId": "pro-git",
+      "sourceTopicSlug": "git",
+      "title": "Pro Git",
+      "author": "Scott Chacon y Ben Straub",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://librosgratis.dev/books/git-pro.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "git--git-la-guia-sencilla",
+      "topicSlug": "git",
+      "sourceId": "git-la-guia-sencilla",
+      "sourceTopicSlug": "git",
+      "title": "Git, la guía sencilla",
+      "author": "Roger Dudler",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "tutorial",
+      "level": "general",
+      "primaryUrl": "https://rogerdudler.github.io/git-guide/index.es.html",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "git--git-immersion-en-espanol",
+      "topicSlug": "git",
+      "sourceId": "git-immersion-en-espanol",
+      "sourceTopicSlug": "git",
+      "title": "Git Immersion en español",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://esparta.github.io/gitimmersion-spanish/",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "git--git-magic",
+      "topicSlug": "git",
+      "sourceId": "git-magic",
+      "sourceTopicSlug": "git",
+      "title": "Git Magic",
+      "author": "Ben Lynn",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "http://www-cs-students.stanford.edu/~blynn/gitmagic/intl/es/",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "docker--docker-en-espanol",
+      "topicSlug": "docker",
+      "sourceId": "docker-en-espanol",
+      "sourceTopicSlug": "docker",
+      "title": "Docker en español",
+      "author": "Bruno Cascio",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://github.com/brunocascio/docker-espanol",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "docker--introduccion-a-docker",
+      "topicSlug": "docker",
+      "sourceId": "introduccion-a-docker",
+      "sourceTopicSlug": "docker",
+      "title": "Introducción a Docker",
+      "author": "RedIRIS",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "beginner",
+      "primaryUrl": "https://librosgratis.dev/books/docker-introduccion.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "linux--el-libro-del-administrador-de-debian",
+      "topicSlug": "linux",
+      "sourceId": "el-libro-del-administrador-de-debian",
+      "sourceTopicSlug": "linux",
+      "title": "El libro del administrador de Debian",
+      "author": "Raphaël Hertzog y Roland Mas",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://debian-handbook.info/browse/es-ES/stable/",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "linux--el-manual-de-bash-scripting-basico-para-principiantes",
+      "topicSlug": "linux",
+      "sourceId": "el-manual-de-bash-scripting-basico-para-principiantes",
+      "sourceTopicSlug": "linux",
+      "title": "El Manual de BASH Scripting Básico para Principiantes",
+      "author": "Wikilibros",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "tutorial",
+      "level": "beginner",
+      "primaryUrl": "https://es.wikibooks.org/wiki/El_Manual_de_BASH_Scripting_B%C3%A1sico_para_Principiantes",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "linux--bash-scripting-avanzado-utilizando-declare-para-definicion-de-tipo",
+      "topicSlug": "linux",
+      "sourceId": "bash-scripting-avanzado-utilizando-declare-para-definicion-de-tipo",
+      "sourceTopicSlug": "linux",
+      "title": "BASH Scripting Avanzado: Utilizando Declare para definición de tipo",
+      "author": "Eugenia Bahit",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "advanced",
+      "primaryUrl": "https://web.archive.org/web/20150307181233/http://library.originalhacker.org:80/biblioteca/articulo/ver/123",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "sql--tutorial-de-sql",
+      "topicSlug": "sql",
+      "sourceId": "tutorial-de-sql",
+      "sourceTopicSlug": "sql",
+      "title": "Tutorial de SQL",
+      "author": "Rubén Alvarez",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "tutorial",
+      "level": "beginner",
+      "primaryUrl": "http://www.desarrolloweb.com/manuales/9/",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "sql--manual-de-sql",
+      "topicSlug": "sql",
+      "sourceId": "manual-de-sql",
+      "sourceTopicSlug": "sql",
+      "title": "Manual de SQL",
+      "author": "Jorge Sanchez Asenjo",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "tutorial",
+      "level": "general",
+      "primaryUrl": "http://jorgesanchez.net/manuales/sql/intro-sql-sql2016.html",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "sql--apuntes-basicos-de-sql",
+      "topicSlug": "sql",
+      "sourceId": "apuntes-basicos-de-sql",
+      "sourceTopicSlug": "sql",
+      "title": "Apuntes básicos de SQL",
+      "author": "Unai Estébanez",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "tutorial",
+      "level": "beginner",
+      "primaryUrl": "https://librosgratis.dev/books/sql-apuntes-basicos.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "sql--introduccion-al-diseno-de-bases-de-datos",
+      "topicSlug": "sql",
+      "sourceId": "introduccion-al-diseno-de-bases-de-datos",
+      "sourceTopicSlug": "sql",
+      "title": "Introducción al diseño de bases de datos",
+      "author": "Jordi Casas Roma",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "beginner",
+      "primaryUrl": "https://librosgratis.dev/books/bases-datos-diseno-introduccion.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "sql--base-de-datos-2005",
+      "topicSlug": "sql",
+      "sourceId": "base-de-datos-2005",
+      "sourceTopicSlug": "sql",
+      "title": "Base de Datos (2005)",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "http://www.uoc.edu/masters/oficiales/img/913.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "sql--apuntes-de-base-de-datos-1",
+      "topicSlug": "sql",
+      "sourceId": "apuntes-de-base-de-datos-1",
+      "sourceTopicSlug": "sql",
+      "title": "Apuntes de Base de Datos 1",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "tutorial",
+      "level": "general",
+      "primaryUrl": "http://rua.ua.es/dspace/bitstream/10045/2990/1/ApuntesBD1.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "nosql--el-pequeno-libro-de-mongodb",
+      "topicSlug": "nosql",
+      "sourceId": "el-pequeno-libro-de-mongodb",
+      "sourceTopicSlug": "nosql",
+      "title": "El pequeño libro de MongoDB",
+      "author": "Karl Seguin, traducido por Osledy Bazo",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://github.com/uokesita/the-little-mongodb-book",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "nosql--el-pequeno-libro-de-redis-en-castellano",
+      "topicSlug": "nosql",
+      "sourceId": "el-pequeno-libro-de-redis-en-castellano",
+      "sourceTopicSlug": "nosql",
+      "title": "El pequeño libro de Redis en castellano",
+      "author": "Karl Seguin, traducido por Raúl Expósito",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://raulexposito.com/the-little-redis-book-en-castellano.html",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "nosql--aprendizaje-amazon-dynamodb",
+      "topicSlug": "nosql",
+      "sourceId": "aprendizaje-amazon-dynamodb",
+      "sourceTopicSlug": "nosql",
+      "title": "Aprendizaje amazon-dynamodb",
+      "author": "Stack Overflow Documentation",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://riptutorial.com/Download/amazon-dynamodb-es.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "sistemas-operativos--sistemas-operativos",
+      "topicSlug": "sistemas-operativos",
+      "sourceId": "sistemas-operativos",
+      "sourceTopicSlug": "sistemas-operativos",
+      "title": "Sistemas Operativos",
+      "author": "Gunnar Wolf, Esteban Ruiz, Federico Bergero, Erwin Meza",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://librosgratis.dev/books/sistemas-operativos-wolf.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "inteligencia-artificial--inteligencia-artificial-un-enfoque-moderno",
+      "topicSlug": "inteligencia-artificial",
+      "sourceId": "inteligencia-artificial-un-enfoque-moderno",
+      "sourceTopicSlug": "ia",
+      "title": "Inteligencia Artificial: un enfoque moderno",
+      "author": "Peter Norvig y Stuart Russell, adaptación abierta",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://iaarbook.github.io/",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "metodologias-desarrollo--guia-scrum",
+      "topicSlug": "metodologias-desarrollo",
+      "sourceId": "guia-scrum",
+      "sourceTopicSlug": "metodologias",
+      "title": "Guía Scrum",
+      "author": "EuropeanScrum.org",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "tutorial",
+      "level": "general",
+      "primaryUrl": "https://librosgratis.dev/books/guia-scrum-european.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "metodologias-desarrollo--scrum-y-xp-desde-las-trincheras",
+      "topicSlug": "metodologias-desarrollo",
+      "sourceId": "scrum-y-xp-desde-las-trincheras",
+      "sourceTopicSlug": "metodologias",
+      "title": "Scrum y XP desde las trincheras",
+      "author": "Henrik Kniberg",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://librosgratis.dev/books/scrum-y-xp-desde-las-trincheras.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "metodologias-desarrollo--ingenieria-de-software-una-guia-para-crear-sistemas-de-informacion",
+      "topicSlug": "metodologias-desarrollo",
+      "sourceId": "ingenieria-de-software-una-guia-para-crear-sistemas-de-informacion",
+      "sourceTopicSlug": "metodologias",
+      "title": "Ingeniería de Software: Una Guía para Crear Sistemas de Información",
+      "author": "Alejandro Peña Ayala",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "tutorial",
+      "level": "general",
+      "primaryUrl": "https://web.archive.org/web/20150824055042/http://www.wolnm.org/apa/articulos/Ingenieria_Software.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "metodologias-desarrollo--scrum-level",
+      "topicSlug": "metodologias-desarrollo",
+      "sourceId": "scrum-level",
+      "sourceTopicSlug": "metodologias",
+      "title": "Scrum Level",
+      "author": "Juan Palacio, Scrum Manager",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://scrumlevel.com/files/scrumlevel.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "metodologias-desarrollo--scrum-master-temario-troncal-1",
+      "topicSlug": "metodologias-desarrollo",
+      "sourceId": "scrum-master-temario-troncal-1",
+      "sourceTopicSlug": "metodologias",
+      "title": "Scrum Master - Temario troncal 1",
+      "author": "Marta Palacio, Scrum Manager",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://scrummanager.net/files/scrum_master.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "metodologias-desarrollo--scrum-extreme-programming-para-programadores",
+      "topicSlug": "metodologias-desarrollo",
+      "sourceId": "scrum-extreme-programming-para-programadores",
+      "sourceTopicSlug": "metodologias",
+      "title": "Scrum & Extreme Programming (para programadores)",
+      "author": "Eugenia Bahit",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://web.archive.org/web/20140209204645/http://www.cursosdeprogramacionadistancia.com/static/pdf/material-sin-personalizar-agile.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "ensamblador--lenguaje-ensamblador-para-pc",
+      "topicSlug": "ensamblador",
+      "sourceId": "lenguaje-ensamblador-para-pc",
+      "sourceTopicSlug": "ensamblador",
+      "title": "Lenguaje Ensamblador para PC",
+      "author": "Paul A. Carter",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://pacman128.github.io/static/pcasm-book-spanish.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "erlang--programacion-en-erlang",
+      "topicSlug": "erlang",
+      "sourceId": "programacion-en-erlang",
+      "sourceTopicSlug": "erlang",
+      "title": "Programación en Erlang",
+      "author": "WikiLibros",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://es.wikibooks.org/wiki/Programaci%C3%B3n_en_Erlang",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "latex--la-introduccion-no-tan-corta-a-latex-2",
+      "topicSlug": "latex",
+      "sourceId": "la-introduccion-no-tan-corta-a-latex-2",
+      "sourceTopicSlug": "latex",
+      "title": "La introducción no-tan-corta a LaTeX 2ε",
+      "author": "Tobias Oetiker, Hubert Partl, Irene Hyna, Elisabeth Schlegl",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "book",
+      "level": "beginner",
+      "primaryUrl": "http://osl.ugr.es/CTAN/info/lshort/spanish/lshort-a4.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "lisp--una-introduccion-a-emacs-lisp-en-espanol",
+      "topicSlug": "lisp",
+      "sourceId": "una-introduccion-a-emacs-lisp-en-espanol",
+      "sourceTopicSlug": "lisp",
+      "title": "Una Introducción a Emacs Lisp en Español",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "beginner",
+      "primaryUrl": "http://savannah.nongnu.org/git/?group=elisp-es",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "matematicas-programacion--sage-para-estudiantes-de-pregrado",
+      "topicSlug": "matematicas-programacion",
+      "sourceId": "sage-para-estudiantes-de-pregrado",
+      "sourceTopicSlug": "matematicas",
+      "title": "Sage para Estudiantes de Pregrado",
+      "author": "Gregory Bard",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "http://www.sage-para-estudiantes.com/",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "perl--tutorial-perl",
+      "topicSlug": "perl",
+      "sourceId": "tutorial-perl",
+      "sourceTopicSlug": "perl",
+      "title": "Tutorial Perl",
+      "author": "Juan Julián Merelo Guervós",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "tutorial",
+      "level": "beginner",
+      "primaryUrl": "http://es.tldp.org/Tutoriales/PERL/tutoperl-print.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "perl--tutoriales-de-perl",
+      "topicSlug": "perl",
+      "sourceId": "tutoriales-de-perl",
+      "sourceTopicSlug": "perl",
+      "title": "Tutoriales de Perl",
+      "author": "Uriel Lizama",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "tutorial",
+      "level": "beginner",
+      "primaryUrl": "http://perlenespanol.com/tutoriales/",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "raku--piensa-en-perl-6",
+      "topicSlug": "raku",
+      "sourceId": "piensa-en-perl-6",
+      "sourceTopicSlug": "raku",
+      "title": "Piensa en Perl 6",
+      "author": "Laurent Rosenfeld, Allen B. Downey",
+      "formats": [
+        "PDF",
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://uzluisf.gitlab.io/piensaperl6/",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "scala--manual-de-scala-para-programadores-java",
+      "topicSlug": "scala",
+      "sourceId": "manual-de-scala-para-programadores-java",
+      "sourceTopicSlug": "scala",
+      "title": "Manual de Scala para programadores Java",
+      "author": "Emmanuel Paradis",
+      "formats": [
+        "PDF"
+      ],
+      "kind": "tutorial",
+      "level": "general",
+      "primaryUrl": "http://www.scala-lang.org/docu/files/ScalaTutorial-es_ES.pdf",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "scratch--informatica-creativa",
+      "topicSlug": "scratch",
+      "sourceId": "informatica-creativa",
+      "sourceTopicSlug": "scratch",
+      "title": "Informática Creativa",
+      "author": "Karen Brennan, Christan Balch, Michelle Chung",
+      "formats": [
+        "PDF",
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "https://github.com/programamos/GuiaScratch",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    },
+    {
+      "id": "subversion--control-de-versiones-con-subversion",
+      "topicSlug": "subversion",
+      "sourceId": "control-de-versiones-con-subversion",
+      "sourceTopicSlug": "subversion",
+      "title": "Control de versiones con Subversion",
+      "author": "Ben Collins-Sussman, Brian W. Fitzpatrick, C. Michael Pilato",
+      "formats": [
+        "HTML"
+      ],
+      "kind": "book",
+      "level": "general",
+      "primaryUrl": "http://svnbook.red-bean.com/nightly/es/index.html",
+      "reviewedAt": "2026-09-22",
+      "preservationStatus": "external-preserved",
+      "licenseStatus": "external-only"
+    }
+  ]
+}

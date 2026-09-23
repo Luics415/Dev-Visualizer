@@ -1,5 +1,6 @@
 import type { StudyConcept } from "./conceptTypes";
 import { collectionManifest } from "./collectionManifest";
+import { newLearningCollections } from "./newLearningCollections";
 
 export type OfficialReferenceKind = "standard" | "specification" | "official-docs" | "official-api" | "primary-manual" | "archival-primary";
 export type OfficialReferenceStatus = "active" | "legacy" | "historical";
@@ -21,6 +22,7 @@ type CollectionReferenceProfile = {
   collectionId: string;
   sourceIds: readonly string[];
   defaultIds: readonly string[];
+  strictKeywords?: boolean;
 };
 
 const verifiedAt = "2026-09-20";
@@ -36,7 +38,7 @@ const r = (
   status: OfficialReferenceStatus = "active",
 ): OfficialReference => ({ id, label, href, authority, kind, version, status, verifiedAt, coverage, keywords });
 
-const referenceList: readonly OfficialReference[] = [
+const baseReferenceList: readonly OfficialReference[] = [
   r("ecma-262", "ECMAScript 2026 Language Specification", "https://tc39.es/ecma262/2026/multipage/", "Ecma International / TC39", "standard", "ECMA-262, 17.ª edición (2026)", "Lenguaje, tipos, objetos, funciones, colecciones, módulos, promesas y memoria.", ["javascript", "tipo", "objeto", "función", "array", "map", "set", "módulo", "promise", "memoria", "proxy", "iterator"]),
   r("ecma-402", "ECMA-402: Internationalization API", "https://ecma-international.org/publications-and-standards/standards/ecma-402/", "Ecma International / TC39-TG2", "standard", "13.ª edición (2026)", "Texto, locale, fechas, números y segmentación internacionalizada.", ["intl", "internacional", "locale", "fecha", "tiempo", "número", "texto", "segment"]),
   r("html-event-loops", "HTML Living Standard: Event loops", "https://html.spec.whatwg.org/multipage/webappapis.html#event-loops", "WHATWG", "specification", "Living Standard", "Event loop, tareas, microtareas y actualización del render.", ["event loop", "microtask", "tarea", "asincron", "runtime", "timer", "cola"]),
@@ -259,7 +261,7 @@ const referenceList: readonly OfficialReference[] = [
 
   r("source-maps", "ECMA-426 Source Map Format", "https://tc39.es/ecma426/", "Ecma International / TC39", "standard", "ECMA-426", "Mappings, VLQ, scopes and original locations for generated code.", ["source map", "mapping", "javascript", "typescript", "stack trace"]),
   r("dap", "Debug Adapter Protocol", "https://microsoft.github.io/debug-adapter-protocol/", "Microsoft", "specification", "Protocol 1.71.0", "Sessions, breakpoints, stepping, variables and exceptions.", ["debug adapter", "breakpoint", "step", "variable", "exception", "session"]),
-  r("cdp", "Chrome DevTools Protocol 1.3", "https://chromedevtools.github.io/devtools-protocol/1-3/", "Chromium Project", "official-api", "Stable subset 1.3", "Debugger, Runtime, Network, Profiler, Performance and Console domains.", ["devtools", "browser", "network", "profiler", "console", "runtime", "performance"]),
+  r("cdp", "Chrome DevTools Protocol", "https://chromedevtools.github.io/devtools-protocol/", "Chromium Project", "official-api", "Tip-of-tree y subconjunto estable 1.3", "Debugger, Runtime, Network, Profiler, Performance and Console domains.", ["devtools", "browser", "network", "profiler", "console", "runtime", "performance"]),
   r("dwarf5", "DWARF 5 Standard", "https://dwarfstd.org/dwarf5std.html", "DWARF Standards Committee", "standard", "DWARF 5", "Native debug information, types, line tables and call frames.", ["dwarf", "native", "binary", "symbol", "call frame", "line"]),
   r("gdb", "GNU GDB Manual", "https://sourceware.org/gdb/current/onlinedocs/gdb.html", "GNU Project / FSF", "primary-manual", "Current", "Breakpoints, watchpoints, threads, core dumps and remote debugging.", ["gdb", "watchpoint", "core dump", "thread", "remote", "memory"]),
 
@@ -306,9 +308,122 @@ const referenceList: readonly OfficialReference[] = [
   r("docker-storage", "Docker Storage", "https://docs.docker.com/engine/storage/", "Docker Inc.", "official-docs", "Engine 29.x", "Volumes, bind mounts, tmpfs and persistent data.", ["storage", "volume", "bind", "mount", "tmpfs", "persist"]),
 ];
 
-const p = (collectionId: string, defaultIds: readonly string[], sourceIds: readonly string[] = defaultIds): CollectionReferenceProfile => ({ collectionId, defaultIds, sourceIds });
+const learningAuthorityByHost: Readonly<Record<string, string>> = {
+  "agilemanifesto.org": "Autores del Manifesto for Agile Software Development",
+  "angular.dev": "Google / Angular",
+  "bitcoin.org": "Satoshi Nakamoto / Bitcoin.org",
+  "cabal.readthedocs.io": "Haskell Cabal Project",
+  "cassandra.apache.org": "Apache Software Foundation",
+  "cran.r-project.org": "R Foundation / CRAN",
+  "ctan.org": "Comprehensive TeX Archive Network",
+  "developer.android.com": "Google / Android",
+  "developer.arm.com": "Arm Ltd.",
+  "developer.mozilla.org": "Mozilla / MDN",
+  "dlmf.nist.gov": "National Institute of Standards and Technology",
+  "doc.rust-lang.org": "Rust Project",
+  "docs.djangoproject.com": "Django Software Foundation",
+  "docs.kernel.org": "Linux Kernel Project",
+  "docs.oracle.com": "Oracle / Java Platform Group",
+  "docs.python.org": "Python Software Foundation",
+  "docs.raku.org": "Raku Community",
+  "docs.ruby-lang.org": "Ruby Core Team",
+  "docs.scala-lang.org": "Scala Center / EPFL",
+  "downloads.haskell.org": "Glasgow Haskell Compiler Project",
+  "ethereum.github.io": "Ethereum Foundation",
+  "ethereum.org": "Ethereum Foundation",
+  "getcomposer.org": "Composer Project",
+  "go.dev": "Go Project / Google",
+  "guides.rubygems.org": "RubyGems Project",
+  "kanbanguides.org": "Kanban Guides",
+  "kotlinlang.org": "JetBrains / Kotlin Foundation",
+  "latexref.xyz": "Karl Berry y colaboradores",
+  "learn.microsoft.com": "Microsoft",
+  "ocw.mit.edu": "Massachusetts Institute of Technology",
+  "perldoc.perl.org": "Perl Project",
+  "pubs.opengroup.org": "The Open Group",
+  "qwik.dev": "Qwik Team",
+  "rakudo.org": "Rakudo Project",
+  "redis.io": "Redis Ltd. / Redis Community",
+  "scala-lang.org": "Scala Center / EPFL",
+  "scikit-learn.org": "scikit-learn Project",
+  "scratch.mit.edu": "MIT Media Lab / Scratch Foundation",
+  "scrumguides.org": "Ken Schwaber y Jeff Sutherland",
+  "small.r7rs.org": "Scheme Working Group 1",
+  "source.android.com": "Android Open Source Project",
+  "standards.ieee.org": "IEEE Standards Association",
+  "subversion.apache.org": "Apache Software Foundation",
+  "svnbook.red-bean.com": "Ben Collins-Sussman, Brian W. Fitzpatrick y C. Michael Pilato",
+  "www.acm.org": "Association for Computing Machinery",
+  "www.cpan.org": "Comprehensive Perl Archive Network",
+  "www.erlang.org": "Erlang/OTP Project",
+  "www.haskell.org": "Haskell Community",
+  "www.intel.com": "Intel Corporation",
+  "www.iso.org": "International Organization for Standardization",
+  "www.latex-project.org": "LaTeX Project",
+  "www.lispworks.com": "ANSI Common Lisp / LispWorks",
+  "www.mongodb.com": "MongoDB Inc.",
+  "www.nist.gov": "National Institute of Standards and Technology",
+  "www.php.net": "PHP Documentation Group",
+  "www.postgresql.org": "PostgreSQL Global Development Group",
+  "www.sbcl.org": "Steel Bank Common Lisp Project",
+  "www.scratchfoundation.org": "Scratch Foundation",
+  "www.sqlite.org": "SQLite Project",
+  "www.tensorflow.org": "Google / TensorFlow",
+  "xlinux.nist.gov": "National Institute of Standards and Technology",
+};
 
-const profiles: readonly CollectionReferenceProfile[] = [
+const learningSourceChapterIndexes: readonly (readonly number[])[] = [
+  [0, 1, 2, 3, 4],
+  [0, 1, 2],
+  [2, 3, 4],
+];
+
+function authorityForLearningSource(href: string) {
+  const hostname = new URL(href).hostname.toLocaleLowerCase("en-US");
+  return learningAuthorityByHost[hostname] ?? hostname.replace(/^www\./, "");
+}
+
+function kindForLearningSource(label: string, status: OfficialReferenceStatus): OfficialReferenceKind {
+  if (status === "historical") return "archival-primary";
+  if (/ISO|IEEE|specification|standard|report|definition|ABI|white paper|yellow paper|manifesto/i.test(label)) return "specification";
+  if (/documentation|manual|reference|developers|guide|docs/i.test(label)) return "official-docs";
+  return "primary-manual";
+}
+
+const newLearningReferenceList: readonly OfficialReference[] = newLearningCollections.flatMap((collection) => {
+  const manifest = collectionManifest.find((entry) => entry.id === collection.id);
+  const status: OfficialReferenceStatus = manifest?.lifecycle === "actual" ? "active" : manifest?.lifecycle === "legado" ? "legacy" : "historical";
+  return collection.sources.map((entry, index) => {
+    const chapterIndexes = learningSourceChapterIndexes[index] ?? collection.chapters.map((_, chapterIndex) => chapterIndex);
+    const coveredChapters = chapterIndexes.flatMap((chapterIndex) => collection.chapters[chapterIndex] ?? []);
+    const keywords = [...new Set(coveredChapters.flatMap((chapter) => [
+      chapter.section,
+      ...chapter.concepts.map(([title]) => title),
+    ]))];
+    return r(
+      `learning-${collection.id}-${index + 1}`,
+      entry.label,
+      entry.href,
+      authorityForLearningSource(entry.href),
+      kindForLearningSource(entry.label, status),
+      "Corte editorial 2026-09-20",
+      coveredChapters.map((chapter) => chapter.section).join("; "),
+      keywords,
+      status,
+    );
+  });
+});
+
+const referenceList: readonly OfficialReference[] = [...baseReferenceList, ...newLearningReferenceList];
+
+const p = (
+  collectionId: string,
+  defaultIds: readonly string[],
+  sourceIds: readonly string[] = defaultIds,
+  strictKeywords = false,
+): CollectionReferenceProfile => ({ collectionId, defaultIds, sourceIds, strictKeywords });
+
+const baseProfiles: readonly CollectionReferenceProfile[] = [
   p("javascript", ["ecma-262", "html-event-loops"], ["ecma-262", "ecma-402", "html-event-loops"]),
   p("typescript", ["ts-handbook", "tsconfig-reference"], ["ts-handbook", "tsconfig-reference", "ts-architecture"]),
   p("python", ["python-beginners", "python-tutorial"], ["python-beginners", "python-tutorial", "python-language-reference", "python-stdlib", "python-howtos", "python-peps", "pep8", "python-devguide", "cpython-source", "pypa-guide", "pypa-specs", "python-typing-spec", "python-asyncio", "python-concurrency", "python-free-threading", "python-unittest", "pytest-docs", "django-docs", "flask-docs", "fastapi-docs", "sqlalchemy-docs", "numpy-docs", "pandas-docs", "scipy-docs", "jupyter-docs", "sklearn-docs", "pytorch-docs", "tensorflow-python", "micropython-docs", "pygame-docs", "tkinter-docs", "python-ssl", "python-secrets", "rfc9846", "otel"]),
@@ -352,6 +467,13 @@ const profiles: readonly CollectionReferenceProfile[] = [
   p("docker", ["docker-engine", "dockerfile"], ["docker-engine", "dockerfile", "compose", "buildkit", "docker-network", "docker-storage", "oci-image"]),
 ];
 
+const newLearningProfiles: readonly CollectionReferenceProfile[] = newLearningCollections.map((collection) => {
+  const sourceIds = collection.sources.map((_, index) => `learning-${collection.id}-${index + 1}`);
+  return p(collection.id, sourceIds.slice(0, 2), sourceIds, true);
+});
+
+const profiles: readonly CollectionReferenceProfile[] = [...baseProfiles, ...newLearningProfiles];
+
 export const officialReferenceCatalog = new Map(referenceList.map((reference) => [reference.id, reference]));
 const profileByCollection = new Map(profiles.map((profile) => [profile.collectionId, profile]));
 
@@ -370,7 +492,7 @@ export function officialReferencesForConcept(collectionId: string, concept: Pick
     .filter((entry) => entry.score > 0)
     .sort((a, b) => b.score - a.score || a.order - b.order)
     .map((entry) => entry.reference);
-  const defaults = profile.defaultIds.flatMap((id) => officialReferenceCatalog.get(id) ?? []);
+  const defaults = profile.strictKeywords ? [] : profile.defaultIds.flatMap((id) => officialReferenceCatalog.get(id) ?? []);
   return [...new Map([...ranked, ...defaults].map((reference) => [reference.id, reference])).values()].slice(0, 2);
 }
 

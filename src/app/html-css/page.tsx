@@ -3,6 +3,7 @@ import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { AnimatedConceptScene } from "@/components/visual/AnimatedConceptScene";
 import { htmlCssConcepts } from "@/data/htmlCssConcepts";
 import { CollectionPrimer } from "@/components/concepts/CollectionPrimer";
+import { CollectionLibraryInvite } from "@/components/concepts/CollectionLibraryInvite";
 import { collectionNumber } from "@/data/collectionManifest";
 import { collectionPrimers } from "@/data/collectionPrimers";
 
@@ -20,6 +21,7 @@ export default function HtmlCssPage() {
       </header>
 
       <CollectionPrimer primer={collectionPrimers["html-css"]} />
+      <CollectionLibraryInvite href="/libreria/html-css" collectionName="HTML y CSS" />
 
       <section className="concept-grid concept-grid--atlas" aria-label="Conceptos de HTML y CSS">
         {htmlCssConcepts.map((concept, index) => (

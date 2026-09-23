@@ -42,6 +42,14 @@ Cada caso cuenta una historia propia. Debe mostrar:
 
 Las fuentes oficiales y especificaciones pertenecen a la ruta de colección. La ruta **En acción** no vuelve a mostrar una bibliografía: enlaza el relato, la profundización y el resultado sin duplicar el bloque documental de cada concepto.
 
+## Librería profesional
+
+Cada colección posee una ruta independiente `/libreria/[tema]/`. La colección solo muestra una invitación después de la ruta de estudio y antes del primer capítulo; las fichas bibliográficas nunca se insertan dentro de conceptos, escenas ni casos **En acción**.
+
+La librería distingue documentación oficial, especificaciones, libros, cursos, tutoriales y referencias. Una insignia oficial exige que el recurso proceda del organismo o proyecto responsable. Los textos descriptivos son originales de Dev Visualizer y cada ficha conserva autoría, procedencia, formato, nivel, fecha de revisión y estado de preservación.
+
+Un adjunto local requiere licencia de redistribución o autorización verificable. Si no existe, la ficha utiliza el enlace original y posibles espejos legales sin simular que Dev Visualizer hospeda el archivo.
+
 ## Vigencia y fuentes
 
 Tecnologías heredadas o históricas llevan un aviso visible con contexto, límites y alternativas actuales. Para tecnologías activas se registra la versión estable o LTS vigente al cerrar su fase y se enlazan fuentes primarias.

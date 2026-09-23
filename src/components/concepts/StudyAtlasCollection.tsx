@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { CollectionChapters } from "@/components/concepts/CollectionChapters";
 import { CollectionPrimer } from "@/components/concepts/CollectionPrimer";
+import { CollectionLibraryInvite } from "@/components/concepts/CollectionLibraryInvite";
 import { ConceptCard } from "@/components/concepts/ConceptCard";
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { AnimatedConceptScene } from "@/components/visual/AnimatedConceptScene";
@@ -8,6 +9,7 @@ import type { StudyConcept } from "@/data/conceptTypes";
 import { collectionPrimers, primerKeyFromHeroClass } from "@/data/collectionPrimers";
 import type { CollectionPrimer as CollectionPrimerData } from "@/data/collectionPrimers";
 import { officialReferencesForCollection } from "@/data/officialReferences";
+import { collectionManifest } from "@/data/collectionManifest";
 import { slugify } from "@/lib/slugify";
 
 type StudyAtlasCollectionProps = {
@@ -44,6 +46,7 @@ export function StudyAtlasCollection({
   const sections = [...new Set(concepts.map((concept) => concept.section))];
   const primer = providedPrimer ?? collectionPrimers[primerKeyFromHeroClass(heroClassName)];
   const sources = officialReferencesForCollection(collectionId);
+  const manifest = collectionManifest.find((entry) => entry.id === collectionId);
   const chapters = sections.map((name) => ({
     name,
     count: concepts.filter((concept) => concept.section === name).length,
@@ -77,6 +80,8 @@ export function StudyAtlasCollection({
       <CollectionPrimer primer={primer} />
 
       <CollectionChapters chapters={chapters} />
+
+      {manifest ? <CollectionLibraryInvite href={`/libreria/${manifest.librarySlug}`} collectionName={manifest.label} /> : null}
 
       {sections.map((section, chapterIndex) => (
         <section className="collection-section" id={slugify(section)} key={section}>
