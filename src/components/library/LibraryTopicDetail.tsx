@@ -45,6 +45,16 @@ function ResourceCard({ resource }: { resource: LibraryResource }) {
         <div><dt>Revisado</dt><dd><time dateTime={resource.reviewedAt}>{resource.reviewedAt}</time></dd></div>
       </dl>
       <div className={styles.resourceActions}>
+        {resource.localFile ? (
+          <a
+            href={resource.localFile.path}
+            download={resource.localFile.fileName}
+            className={styles.downloadLocal}
+            title={`Descargar copia local verificada (${resource.localFile.fileName})`}
+          >
+            📥 Copia local ({(resource.localFile.sizeBytes / (1024 * 1024)).toFixed(1)} MB) <span aria-hidden="true">↓</span>
+          </a>
+        ) : null}
         <a href={resource.primaryUrl} target="_blank" rel="noopener noreferrer">Consultar recurso <span aria-hidden="true">↗</span></a>
         {(resource.mirrors ?? []).map((mirror, index) => (
           <a href={mirror} target="_blank" rel="noopener noreferrer" key={mirror}>Formato alternativo {index + 1} <span aria-hidden="true">↗</span></a>
@@ -68,6 +78,7 @@ export function LibraryTopicDetail({ topic }: { topic: LibraryTopic }) {
   ).values()];
   const beginnerResources = learningResources.filter((resource) => resource.level === "beginner");
   const continuingResources = learningResources.filter((resource) => resource.level !== "beginner");
+  const hasLocalFiles = [...officialResources, ...learningResources].some((r) => Boolean(r.localFile));
 
   return (
     <>
@@ -90,7 +101,11 @@ export function LibraryTopicDetail({ topic }: { topic: LibraryTopic }) {
 
       <aside className={styles.preservationNotice}>
         <strong>Preservación responsable</strong>
-        <p>Dev Visualizer conserva los metadatos de cada recurso. Solo alojaremos una copia cuando su licencia permita redistribuirla y quede registrada junto con su hash; por ahora los libros de este catálogo se consultan en su fuente externa.</p>
+        <p>
+          {hasLocalFiles
+            ? "Dev Visualizer aloja copias locales autorizadas para libros y manuales con licencias abiertas verificadas (Creative Commons, MIT o Dominio Público), garantizando acceso permanente y verificación de integridad criptográfica SHA-256."
+            : "Dev Visualizer conserva los metadatos de cada recurso. Solo alojamos una copia cuando su licencia permite redistribuirla y queda registrada junto con su hash; por ahora los libros sin copia local autorizada se consultan en su fuente externa."}
+        </p>
       </aside>
 
       <section className={styles.resourceSection} aria-labelledby="official-library-sources">

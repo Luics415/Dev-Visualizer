@@ -49,8 +49,20 @@
         "https://100cosas.dev/100cosas-es.pdf"
       ],
       "reviewedAt": "2026-09-22",
-      "preservationStatus": "external-preserved",
-      "licenseStatus": "external-only"
+      "preservationStatus": "local-redistributable",
+      "licenseStatus": "verified",
+      "version": "Edición en español",
+      "localFile": {
+        "path": "/library/fundamentos-programacion/fundamentos-programacion--100cosasdev/100-cosas-que-todo-programador-debe-saber.pdf",
+        "fileName": "100-cosas-que-todo-programador-debe-saber.pdf",
+        "sha256": "6ed9ce4c97e64830e0595238cde95128c6963625420cb9bbf41b70d43791ab2f",
+        "sizeBytes": 7142492,
+        "version": "Edición en español",
+        "downloadedAt": "2026-09-23",
+        "licenseName": "Creative Commons Atribución-NoComercial 4.0 (CC BY-NC 4.0)",
+        "licenseUrl": "https://creativecommons.org/licenses/by-nc/4.0/",
+        "sourceUrl": "https://100cosas.dev/"
+      }
     },
     {
       "id": "fundamentos-programacion--los-apuntes-de-majo",
@@ -117,8 +129,20 @@
       "level": "general",
       "primaryUrl": "https://librosgratis.dev/books/algoritmos-pseudocodigo-ordinogramas.pdf",
       "reviewedAt": "2026-09-22",
-      "preservationStatus": "external-preserved",
-      "licenseStatus": "external-only"
+      "preservationStatus": "local-redistributable",
+      "licenseStatus": "verified",
+      "version": "Segunda edición docente",
+      "localFile": {
+        "path": "/library/algoritmos-estructuras-de-datos/algoritmos-estructuras-de-datos--diseno-de-algoritmos-en-pseudocodigo-y-ordinogramas/diseno-algoritmos-pseudocodigo-ordinogramas.pdf",
+        "fileName": "diseno-algoritmos-pseudocodigo-ordinogramas.pdf",
+        "sha256": "b5b6d4bee1cc50fe181bbabf31a275720dbd83797d0a3eaabcff184ab0c7c007",
+        "sizeBytes": 1888411,
+        "version": "Segunda edición docente",
+        "downloadedAt": "2026-09-23",
+        "licenseName": "Creative Commons Atribución-NoComercial-CompartirIgual 4.0 (CC BY-NC-SA 4.0)",
+        "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/4.0/",
+        "sourceUrl": "https://librosgratis.dev/books/algoritmos-pseudocodigo-ordinogramas.pdf"
+      }
     },
     {
       "id": "algoritmos-estructuras-de-datos--estructuras-de-datos",
@@ -422,8 +446,20 @@
       "level": "general",
       "primaryUrl": "https://librosgratis.dev/books/javascript-elocuente-cuarta-edicion.pdf",
       "reviewedAt": "2026-09-22",
-      "preservationStatus": "external-preserved",
-      "licenseStatus": "external-only"
+      "preservationStatus": "local-redistributable",
+      "licenseStatus": "verified",
+      "version": "Cuarta edición en español",
+      "localFile": {
+        "path": "/library/javascript/javascript--javascript-elocuente-cuarta-edicion/javascript-elocuente-cuarta-edicion.pdf",
+        "fileName": "javascript-elocuente-cuarta-edicion.pdf",
+        "sha256": "35c63d3a422b9ceb1300bd0f9dcccd07a3e1153ead0d673db9204afe16353bb6",
+        "sizeBytes": 2041229,
+        "version": "Cuarta edición en español",
+        "downloadedAt": "2026-09-23",
+        "licenseName": "Creative Commons Atribución-NoComercial 3.0 (CC BY-NC 3.0)",
+        "licenseUrl": "https://creativecommons.org/licenses/by-nc/3.0/",
+        "sourceUrl": "https://eloquentjavascript.net/"
+      }
     },
     {
       "id": "javascript--javascript-inspirate",
@@ -523,8 +559,20 @@
       "level": "beginner",
       "primaryUrl": "https://librosgratis.dev/books/javascript-introduccion-eguiluz.pdf",
       "reviewedAt": "2026-09-22",
-      "preservationStatus": "external-preserved",
-      "licenseStatus": "external-only"
+      "preservationStatus": "local-redistributable",
+      "licenseStatus": "verified",
+      "version": "Edición completa Uniwebsidad",
+      "localFile": {
+        "path": "/library/javascript/javascript--introduccion-a-javascript/introduccion-a-javascript-eguiluz.pdf",
+        "fileName": "introduccion-a-javascript-eguiluz.pdf",
+        "sha256": "cd0f9e03357c4235dec8a8c02f58d260a1e1a24dc9e31e6ed2cd3544feaea594",
+        "sizeBytes": 1046190,
+        "version": "Edición completa Uniwebsidad",
+        "downloadedAt": "2026-09-23",
+        "licenseName": "Creative Commons Atribución-NoComercial-CompartirIgual 3.0 (CC BY-NC-SA 3.0 ES)",
+        "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/3.0/es/",
+        "sourceUrl": "https://uniwebsidad.com/libros/javascript"
+      }
     },
     {
       "id": "javascript--javascript",
@@ -762,8 +810,20 @@
       "level": "beginner",
       "primaryUrl": "https://librosgratis.dev/books/typescript-para-principiantes-envato-tuts.pdf",
       "reviewedAt": "2026-09-22",
-      "preservationStatus": "external-preserved",
-      "licenseStatus": "external-only"
+      "preservationStatus": "local-redistributable",
+      "licenseStatus": "verified",
+      "version": "Guía práctica Envato Tuts+ en español",
+      "localFile": {
+        "path": "/library/typescript/typescript--typescript-para-principiantes/typescript-para-principiantes.pdf",
+        "fileName": "typescript-para-principiantes.pdf",
+        "sha256": "3442717126acf7be93fcd9629112d48526038a42ff1287bdf3b8c1ed3bf0de64",
+        "sizeBytes": 866371,
+        "version": "Guía práctica Envato Tuts+ en español",
+        "downloadedAt": "2026-09-23",
+        "licenseName": "Creative Commons Atribución-NoComercial-CompartirIgual 3.0 (CC BY-NC-SA 3.0)",
+        "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+        "sourceUrl": "https://librosgratis.dev/books/typescript-para-principiantes-envato-tuts.pdf"
+      }
     },
     {
       "id": "typescript--manual-de-typescript",
@@ -813,8 +873,20 @@
       "level": "general",
       "primaryUrl": "https://librosgratis.dev/books/typescript-aprendizaje.pdf",
       "reviewedAt": "2026-09-22",
-      "preservationStatus": "external-preserved",
-      "licenseStatus": "external-only"
+      "preservationStatus": "local-redistributable",
+      "licenseStatus": "verified",
+      "version": "Compilación Stack Overflow Documentation",
+      "localFile": {
+        "path": "/library/typescript/typescript--aprendizaje-typescript/aprendizaje-typescript-doc.pdf",
+        "fileName": "aprendizaje-typescript-doc.pdf",
+        "sha256": "e1968551332d1cbec08eaadacccbfdd74d346956169ea1b05e894a5d39977333",
+        "sizeBytes": 1518660,
+        "version": "Compilación Stack Overflow Documentation",
+        "downloadedAt": "2026-09-23",
+        "licenseName": "Creative Commons Atribución-CompartirIgual 3.0 (CC BY-SA 3.0)",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "sourceUrl": "https://riptutorial.com/Download/typescript-es.pdf"
+      }
     },
     {
       "id": "python--aprende-python",
@@ -847,8 +919,20 @@
       "level": "general",
       "primaryUrl": "https://librosgratis.dev/books/python-para-todos.pdf",
       "reviewedAt": "2026-09-22",
-      "preservationStatus": "external-preserved",
-      "licenseStatus": "external-only"
+      "preservationStatus": "local-redistributable",
+      "licenseStatus": "verified",
+      "version": "Versión revisada 2.1",
+      "localFile": {
+        "path": "/library/python/python--python-para-todos/python-para-todos.pdf",
+        "fileName": "python-para-todos.pdf",
+        "sha256": "1c65c939bfb2f76c796bfdf1b41f56794498bffeff431fa85f78d866030d5099",
+        "sizeBytes": 1272911,
+        "version": "Versión revisada 2.1",
+        "downloadedAt": "2026-09-23",
+        "licenseName": "Creative Commons Atribución-NoComercial-CompartirIgual 2.1 (CC BY-NC-SA 2.1 ES)",
+        "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/2.1/es/",
+        "sourceUrl": "https://mundogeek.net/tutorial-python/"
+      }
     },
     {
       "id": "python--think-python-en-espanol",
@@ -1190,8 +1274,20 @@
       "level": "general",
       "primaryUrl": "https://librosgratis.dev/books/rust-aprendizaje.pdf",
       "reviewedAt": "2026-09-22",
-      "preservationStatus": "external-preserved",
-      "licenseStatus": "external-only"
+      "preservationStatus": "local-redistributable",
+      "licenseStatus": "verified",
+      "version": "Compilación Stack Overflow Documentation",
+      "localFile": {
+        "path": "/library/rust/rust--aprendizaje-rust/aprendizaje-rust-doc.pdf",
+        "fileName": "aprendizaje-rust-doc.pdf",
+        "sha256": "774c7fdc8795207dc40ac561df56886fbda0e52693b7c0fd49103e5eade78133",
+        "sizeBytes": 1549870,
+        "version": "Compilación Stack Overflow Documentation",
+        "downloadedAt": "2026-09-23",
+        "licenseName": "Creative Commons Atribución-CompartirIgual 3.0 (CC BY-SA 3.0)",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "sourceUrl": "https://riptutorial.com/Download/rust-es.pdf"
+      }
     },
     {
       "id": "rust--el-lenguaje-de-programacion-rust-2016",
@@ -1280,8 +1376,20 @@
       "level": "general",
       "primaryUrl": "https://bitcoin.org/files/bitcoin-paper/bitcoin_es.pdf",
       "reviewedAt": "2026-09-22",
-      "preservationStatus": "external-preserved",
-      "licenseStatus": "external-only"
+      "preservationStatus": "local-redistributable",
+      "licenseStatus": "verified",
+      "version": "Documento fundacional de Satoshi Nakamoto traducido al español",
+      "localFile": {
+        "path": "/library/blockchain/blockchain--bitcoin-un-sistema-de-efectivo-electronico-de-usuario-a-usuario/bitcoin-whitepaper-en-espanol.pdf",
+        "fileName": "bitcoin-whitepaper-en-espanol.pdf",
+        "sha256": "9956fcc0adaece85a350276f5c3c0330e7196883a9a65f23407cce91a87cea2f",
+        "sizeBytes": 202099,
+        "version": "Documento fundacional de Satoshi Nakamoto traducido al español",
+        "downloadedAt": "2026-09-23",
+        "licenseName": "Licencia MIT / Dominio Público de Investigación Abierta",
+        "licenseUrl": "https://opensource.org/licenses/MIT",
+        "sourceUrl": "https://bitcoin.org/es/bitcoin-paper"
+      }
     },
     {
       "id": "blockchain--el-libro-de-satoshi",
@@ -1364,8 +1472,20 @@
       "level": "general",
       "primaryUrl": "https://librosgratis.dev/books/php-programacion-ejemplos.pdf",
       "reviewedAt": "2026-09-22",
-      "preservationStatus": "external-preserved",
-      "licenseStatus": "external-only"
+      "preservationStatus": "local-redistributable",
+      "licenseStatus": "verified",
+      "version": "Segunda edición práctica",
+      "localFile": {
+        "path": "/library/php/php--programacion-en-php-a-traves-de-ejemplos/programacion-en-php-a-traves-de-ejemplos.pdf",
+        "fileName": "programacion-en-php-a-traves-de-ejemplos.pdf",
+        "sha256": "f347fa81d2512b5bff1598bc62e7ba9f289895b1518eefd735cf5fa0d352766a",
+        "sizeBytes": 407399,
+        "version": "Segunda edición práctica",
+        "downloadedAt": "2026-09-23",
+        "licenseName": "Creative Commons Atribución-NoComercial-CompartirIgual 3.0 (CC BY-NC-SA 3.0)",
+        "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+        "sourceUrl": "https://librosgratis.dev/books/php-programacion-ejemplos.pdf"
+      }
     },
     {
       "id": "php--poo-y-mvc-en-php",
@@ -1381,8 +1501,20 @@
       "level": "general",
       "primaryUrl": "https://librosgratis.dev/books/php-poo-mvc.pdf",
       "reviewedAt": "2026-09-22",
-      "preservationStatus": "external-preserved",
-      "licenseStatus": "external-only"
+      "preservationStatus": "local-redistributable",
+      "licenseStatus": "verified",
+      "version": "Manual práctico POO y MVC",
+      "localFile": {
+        "path": "/library/php/php--poo-y-mvc-en-php/poo-y-mvc-en-php.pdf",
+        "fileName": "poo-y-mvc-en-php.pdf",
+        "sha256": "7003b60081505c35d15b1f2382ae53c97eb3abbd96e7c33f7fc5cfe13a93db5e",
+        "sizeBytes": 826391,
+        "version": "Manual práctico POO y MVC",
+        "downloadedAt": "2026-09-23",
+        "licenseName": "Creative Commons Atribución-NoComercial-CompartirIgual 3.0 (CC BY-NC-SA 3.0)",
+        "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+        "sourceUrl": "https://librosgratis.dev/books/php-poo-mvc.pdf"
+      }
     },
     {
       "id": "php--laboratorio-de-php-y-mysql",
@@ -1501,8 +1633,20 @@
       "level": "general",
       "primaryUrl": "https://librosgratis.dev/books/haskell-piensa.pdf",
       "reviewedAt": "2026-09-22",
-      "preservationStatus": "external-preserved",
-      "licenseStatus": "external-only"
+      "preservationStatus": "local-redistributable",
+      "licenseStatus": "verified",
+      "version": "Ejercicios y fundamentos funcionales",
+      "localFile": {
+        "path": "/library/haskell/haskell--piensa-en-haskell/piensa-en-haskell.pdf",
+        "fileName": "piensa-en-haskell.pdf",
+        "sha256": "35213e9b3b4a267c3abcd5ec3a07ab46c51e06ac9b230d1bb892b31e223eac9f",
+        "sizeBytes": 1396097,
+        "version": "Ejercicios y fundamentos funcionales",
+        "downloadedAt": "2026-09-23",
+        "licenseName": "Creative Commons Atribución-NoComercial-CompartirIgual 3.0 (CC BY-NC-SA 3.0)",
+        "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+        "sourceUrl": "https://librosgratis.dev/books/haskell-piensa.pdf"
+      }
     },
     {
       "id": "haskell--aprende-haskell-por-el-bien-de-todos",
@@ -1551,8 +1695,20 @@
       "level": "general",
       "primaryUrl": "https://librosgratis.dev/books/go-pequeno-libro.pdf",
       "reviewedAt": "2026-09-22",
-      "preservationStatus": "external-preserved",
-      "licenseStatus": "external-only"
+      "preservationStatus": "local-redistributable",
+      "licenseStatus": "verified",
+      "version": "The Little Go Book (Edición en español)",
+      "localFile": {
+        "path": "/library/go/go--el-pequeno-libro-de-go/el-pequeno-libro-de-go.pdf",
+        "fileName": "el-pequeno-libro-de-go.pdf",
+        "sha256": "97c543b0e9883b50850dda7295033f5fd53125e4a80bcdfee8befd13c9fc8bf1",
+        "sizeBytes": 244716,
+        "version": "The Little Go Book (Edición en español)",
+        "downloadedAt": "2026-09-23",
+        "licenseName": "Creative Commons Atribución 3.0 Unported (CC BY 3.0)",
+        "licenseUrl": "https://creativecommons.org/licenses/by/3.0/",
+        "sourceUrl": "https://www.openmymind.net/The-Little-Go-Book/"
+      }
     },
     {
       "id": "go--go-en-espanol",
@@ -1602,8 +1758,20 @@
       "level": "general",
       "primaryUrl": "https://librosgratis.dev/books/kotlin-stackoverflow-docs.pdf",
       "reviewedAt": "2026-09-22",
-      "preservationStatus": "external-preserved",
-      "licenseStatus": "external-only"
+      "preservationStatus": "local-redistributable",
+      "licenseStatus": "verified",
+      "version": "Compilación Stack Overflow Documentation",
+      "localFile": {
+        "path": "/library/kotlin/kotlin--kotlin/kotlin-notas-desarrollo.pdf",
+        "fileName": "kotlin-notas-desarrollo.pdf",
+        "sha256": "b81bb42de12b031d01230414895b3eeef729c64ac158f11747bf2f658359e552",
+        "sizeBytes": 1343388,
+        "version": "Compilación Stack Overflow Documentation",
+        "downloadedAt": "2026-09-23",
+        "licenseName": "Creative Commons Atribución-CompartirIgual 3.0 (CC BY-SA 3.0)",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "sourceUrl": "https://riptutorial.com/Download/kotlin-es.pdf"
+      }
     },
     {
       "id": "android--manual-programacion-android",
@@ -1670,8 +1838,20 @@
       "level": "beginner",
       "primaryUrl": "https://librosgratis.dev/books/c-introduccion-programacion.pdf",
       "reviewedAt": "2026-09-22",
-      "preservationStatus": "external-preserved",
-      "licenseStatus": "external-only"
+      "preservationStatus": "local-redistributable",
+      "licenseStatus": "verified",
+      "version": "Edición universitaria",
+      "localFile": {
+        "path": "/library/c/c--c-introduccion-a-la-programacion-con-c/introduccion-a-la-programacion-con-c.pdf",
+        "fileName": "introduccion-a-la-programacion-con-c.pdf",
+        "sha256": "dc44a8665f2b23a6e8ebc148731345f79c0eaf21176d1dc58bd25be46cdd0f24",
+        "sizeBytes": 10077310,
+        "version": "Edición universitaria",
+        "downloadedAt": "2026-09-23",
+        "licenseName": "Creative Commons Atribución-NoComercial-CompartirIgual 3.0 (CC BY-NC-SA 3.0)",
+        "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+        "sourceUrl": "https://librosgratis.dev/books/c-introduccion-programacion.pdf"
+      }
     },
     {
       "id": "cpp--c-estandar",
@@ -1687,8 +1867,20 @@
       "level": "general",
       "primaryUrl": "https://librosgratis.dev/books/cpp-estandar.pdf",
       "reviewedAt": "2026-09-22",
-      "preservationStatus": "external-preserved",
-      "licenseStatus": "external-only"
+      "preservationStatus": "local-redistributable",
+      "licenseStatus": "verified",
+      "version": "Guía de referencia estándar C++",
+      "localFile": {
+        "path": "/library/cpp/cpp--c-estandar/cpp-estandar.pdf",
+        "fileName": "cpp-estandar.pdf",
+        "sha256": "3a9d0d0684d2b0f604b0812064c788cf598b2ccb0e6bd463968e30cc7a2526da",
+        "sizeBytes": 4961375,
+        "version": "Guía de referencia estándar C++",
+        "downloadedAt": "2026-09-23",
+        "licenseName": "Creative Commons Atribución-NoComercial 3.0 (CC BY-NC 3.0)",
+        "licenseUrl": "https://creativecommons.org/licenses/by-nc/3.0/",
+        "sourceUrl": "https://librosgratis.dev/books/cpp-estandar.pdf"
+      }
     },
     {
       "id": "cpp--programacion-orientada-a-objetos-ejercicios-propuestos-con-c",
@@ -1721,8 +1913,20 @@
       "level": "beginner",
       "primaryUrl": "https://librosgratis.dev/books/cpp-fundamentos-basicos.pdf",
       "reviewedAt": "2026-09-22",
-      "preservationStatus": "external-preserved",
-      "licenseStatus": "external-only"
+      "preservationStatus": "local-redistributable",
+      "licenseStatus": "verified",
+      "version": "Guía docente introductoria",
+      "localFile": {
+        "path": "/library/cpp/cpp--fundamentos-basicos-de-programacion-en-c/fundamentos-basicos-de-programacion-en-cpp.pdf",
+        "fileName": "fundamentos-basicos-de-programacion-en-cpp.pdf",
+        "sha256": "a890eb87aa4b271e2af0ffa24bab5a0754010c56165cfc07320d94e34210fa2a",
+        "sizeBytes": 1688607,
+        "version": "Guía docente introductoria",
+        "downloadedAt": "2026-09-23",
+        "licenseName": "Creative Commons Atribución-NoComercial-CompartirIgual 3.0 (CC BY-NC-SA 3.0)",
+        "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+        "sourceUrl": "https://librosgratis.dev/books/cpp-fundamentos-basicos.pdf"
+      }
     },
     {
       "id": "cpp--curso-de-c",
@@ -1806,8 +2010,20 @@
       "level": "beginner",
       "primaryUrl": "https://librosgratis.dev/books/csharp-introduccion-programacion.pdf",
       "reviewedAt": "2026-09-22",
-      "preservationStatus": "external-preserved",
-      "licenseStatus": "external-only"
+      "preservationStatus": "local-redistributable",
+      "licenseStatus": "verified",
+      "version": "Manual introductorio C#",
+      "localFile": {
+        "path": "/library/c-sharp/c-sharp--csharp-introduccion-a-la-programacion-con-c/csharp-introduccion-a-la-programacion.pdf",
+        "fileName": "csharp-introduccion-a-la-programacion.pdf",
+        "sha256": "09707f3552dbcf7a7e70b3ab1152b6931cc9fcbc6f6d889a7dd4f21c06862f04",
+        "sizeBytes": 3909471,
+        "version": "Manual introductorio C#",
+        "downloadedAt": "2026-09-23",
+        "licenseName": "Creative Commons Atribución-NoComercial-CompartirIgual 3.0 (CC BY-NC-SA 3.0)",
+        "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+        "sourceUrl": "https://librosgratis.dev/books/csharp-introduccion-programacion.pdf"
+      }
     },
     {
       "id": "c-sharp--el-pequeno-libro-de-asp-net-core",
@@ -1823,8 +2039,20 @@
       "level": "general",
       "primaryUrl": "https://librosgratis.dev/books/aspnet-core-pequeno-libro.pdf",
       "reviewedAt": "2026-09-22",
-      "preservationStatus": "external-preserved",
-      "licenseStatus": "external-only"
+      "preservationStatus": "local-redistributable",
+      "licenseStatus": "verified",
+      "version": "The Little ASP.NET Core Book en español",
+      "localFile": {
+        "path": "/library/c-sharp/c-sharp--el-pequeno-libro-de-asp-net-core/el-pequeno-libro-de-aspnet-core.pdf",
+        "fileName": "el-pequeno-libro-de-aspnet-core.pdf",
+        "sha256": "80a1450373f0b11c7cf0d58aff1ceecd2bc50c3f7f7f33eda62447b78682b0ac",
+        "sizeBytes": 912691,
+        "version": "The Little ASP.NET Core Book en español",
+        "downloadedAt": "2026-09-23",
+        "licenseName": "Creative Commons Atribución 4.0 Internacional (CC BY 4.0)",
+        "licenseUrl": "https://creativecommons.org/licenses/by-4.0/",
+        "sourceUrl": "https://natebarbettini.gitbooks.io/the-little-asp-net-core-book/content/"
+      }
     },
     {
       "id": "c-sharp--guia-de-arquitectura-n-capas-orientadas-al-dominio",
@@ -1874,8 +2102,20 @@
       "level": "general",
       "primaryUrl": "https://librosgratis.dev/books/java-iniciando-programacion.pdf",
       "reviewedAt": "2026-09-22",
-      "preservationStatus": "external-preserved",
-      "licenseStatus": "external-only"
+      "preservationStatus": "local-redistributable",
+      "licenseStatus": "verified",
+      "version": "Edición formativa abierta",
+      "localFile": {
+        "path": "/library/java/java--iniciando-en-java-programacion-para-todos/java-iniciando-programacion-para-todos.pdf",
+        "fileName": "java-iniciando-programacion-para-todos.pdf",
+        "sha256": "d111716ef9bd76694b2c5b57fcb1597c0c0f949bf4b3145531bdae99010fccb6",
+        "sizeBytes": 2872003,
+        "version": "Edición formativa abierta",
+        "downloadedAt": "2026-09-23",
+        "licenseName": "Creative Commons Atribución-NoComercial 3.0 (CC BY-NC 3.0)",
+        "licenseUrl": "https://creativecommons.org/licenses/by-nc/3.0/",
+        "sourceUrl": "https://librosgratis.dev/books/java-iniciando-programacion.pdf"
+      }
     },
     {
       "id": "java--java-apuntes-basicos",
@@ -1891,8 +2131,20 @@
       "level": "beginner",
       "primaryUrl": "https://librosgratis.dev/books/java-apuntes-basicos.pdf",
       "reviewedAt": "2026-09-22",
-      "preservationStatus": "external-preserved",
-      "licenseStatus": "external-only"
+      "preservationStatus": "local-redistributable",
+      "licenseStatus": "verified",
+      "version": "Apuntes docentes",
+      "localFile": {
+        "path": "/library/java/java--java-apuntes-basicos/java-apuntes-basicos.pdf",
+        "fileName": "java-apuntes-basicos.pdf",
+        "sha256": "fcc280c15830fd78e9af3fddbe141f578e6d17f28a81f721fc0e28e93d919b94",
+        "sizeBytes": 4969391,
+        "version": "Apuntes docentes",
+        "downloadedAt": "2026-09-23",
+        "licenseName": "Creative Commons Atribución-NoComercial-CompartirIgual 3.0 (CC BY-NC-SA 3.0)",
+        "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+        "sourceUrl": "https://librosgratis.dev/books/java-apuntes-basicos.pdf"
+      }
     },
     {
       "id": "java--java-basico-para-aprendices",
@@ -2061,8 +2313,20 @@
       "level": "beginner",
       "primaryUrl": "https://librosgratis.dev/books/r-introduccion.pdf",
       "reviewedAt": "2026-09-22",
-      "preservationStatus": "external-preserved",
-      "licenseStatus": "external-only"
+      "preservationStatus": "local-redistributable",
+      "licenseStatus": "verified",
+      "version": "Guía docente de introducción",
+      "localFile": {
+        "path": "/library/r/r--introduccion-a-r/introduccion-a-r.pdf",
+        "fileName": "introduccion-a-r.pdf",
+        "sha256": "0b354dce4d8ae0fff0b7076f351a3f9feed8535b764233694be71761064a3c6e",
+        "sizeBytes": 664682,
+        "version": "Guía docente de introducción",
+        "downloadedAt": "2026-09-23",
+        "licenseName": "Creative Commons Atribución-NoComercial-CompartirIgual 3.0 (CC BY-NC-SA 3.0)",
+        "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+        "sourceUrl": "https://librosgratis.dev/books/r-introduccion.pdf"
+      }
     },
     {
       "id": "r--cartas-sobre-estadistica-de-la-revista-argentina-de-bioingenieria",
@@ -2197,8 +2461,20 @@
       "level": "general",
       "primaryUrl": "https://librosgratis.dev/books/react-aprendiz-maestro.pdf",
       "reviewedAt": "2026-09-22",
-      "preservationStatus": "external-preserved",
-      "licenseStatus": "external-only"
+      "preservationStatus": "local-redistributable",
+      "licenseStatus": "verified",
+      "version": "Edición en español",
+      "localFile": {
+        "path": "/library/react/react--react-de-aprendiz-a-maestro/react-de-aprendiz-a-maestro.pdf",
+        "fileName": "react-de-aprendiz-a-maestro.pdf",
+        "sha256": "e262957f38b9f9b3a408d5594fb18c288e4d02a9f2a0280c945d65937ccea194",
+        "sizeBytes": 1696880,
+        "version": "Edición en español",
+        "downloadedAt": "2026-09-23",
+        "licenseName": "Creative Commons Atribución-NoComercial 4.0 (CC BY-NC 4.0)",
+        "licenseUrl": "https://creativecommons.org/licenses/by-nc/4.0/",
+        "sourceUrl": "https://librosgratis.dev/books/react-aprendiz-maestro.pdf"
+      }
     },
     {
       "id": "react--react",
@@ -2453,8 +2729,20 @@
       "level": "general",
       "primaryUrl": "https://librosgratis.dev/books/git-pro.pdf",
       "reviewedAt": "2026-09-22",
-      "preservationStatus": "external-preserved",
-      "licenseStatus": "external-only"
+      "preservationStatus": "local-redistributable",
+      "licenseStatus": "verified",
+      "version": "Segunda edición en español",
+      "localFile": {
+        "path": "/library/git/git--pro-git/pro-git-es.pdf",
+        "fileName": "pro-git-es.pdf",
+        "sha256": "c1431b9403edd76b80c166f9d5ec716ef7e079204df1b51e86167b13912edaf4",
+        "sizeBytes": 12334627,
+        "version": "Segunda edición en español",
+        "downloadedAt": "2026-09-23",
+        "licenseName": "Creative Commons Atribución-NoComercial-CompartirIgual 3.0 (CC BY-NC-SA 3.0)",
+        "licenseUrl": "https://creativecommons.org/licenses/by-nc-sa/3.0/",
+        "sourceUrl": "https://git-scm.com/book/es/v2"
+      }
     },
     {
       "id": "git--git-la-guia-sencilla",
@@ -2537,8 +2825,20 @@
       "level": "beginner",
       "primaryUrl": "https://librosgratis.dev/books/docker-introduccion.pdf",
       "reviewedAt": "2026-09-22",
-      "preservationStatus": "external-preserved",
-      "licenseStatus": "external-only"
+      "preservationStatus": "local-redistributable",
+      "licenseStatus": "verified",
+      "version": "Guía práctica introductoria",
+      "localFile": {
+        "path": "/library/docker/docker--introduccion-a-docker/introduccion-a-docker.pdf",
+        "fileName": "introduccion-a-docker.pdf",
+        "sha256": "2795529efa2ce3d3aa90dba31ca7761ad47fe7e78d84c993c539e1163fb41489",
+        "sizeBytes": 1490435,
+        "version": "Guía práctica introductoria",
+        "downloadedAt": "2026-09-23",
+        "licenseName": "Creative Commons Atribución-CompartirIgual 3.0 (CC BY-SA 3.0)",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/3.0/",
+        "sourceUrl": "https://librosgratis.dev/books/docker-introduccion.pdf"
+      }
     },
     {
       "id": "linux--el-libro-del-administrador-de-debian",
@@ -2639,8 +2939,20 @@
       "level": "beginner",
       "primaryUrl": "https://librosgratis.dev/books/sql-apuntes-basicos.pdf",
       "reviewedAt": "2026-09-22",
-      "preservationStatus": "external-preserved",
-      "licenseStatus": "external-only"
+      "preservationStatus": "local-redistributable",
+      "licenseStatus": "verified",
+      "version": "Guía de referencia rápida",
+      "localFile": {
+        "path": "/library/sql/sql--apuntes-basicos-de-sql/apuntes-basicos-de-sql.pdf",
+        "fileName": "apuntes-basicos-de-sql.pdf",
+        "sha256": "f7700469818865e69eb6b14c7cea9bff2de838b143d62d92538295c0b4fee198",
+        "sizeBytes": 112335,
+        "version": "Guía de referencia rápida",
+        "downloadedAt": "2026-09-23",
+        "licenseName": "Creative Commons Atribución-NoComercial 3.0 (CC BY-NC 3.0)",
+        "licenseUrl": "https://creativecommons.org/licenses/by-nc/3.0/",
+        "sourceUrl": "https://librosgratis.dev/books/sql-apuntes-basicos.pdf"
+      }
     },
     {
       "id": "sql--introduccion-al-diseno-de-bases-de-datos",
@@ -2756,8 +3068,20 @@
       "level": "general",
       "primaryUrl": "https://librosgratis.dev/books/sistemas-operativos-wolf.pdf",
       "reviewedAt": "2026-09-22",
-      "preservationStatus": "external-preserved",
-      "licenseStatus": "external-only"
+      "preservationStatus": "local-redistributable",
+      "licenseStatus": "verified",
+      "version": "Edición académica UNAM",
+      "localFile": {
+        "path": "/library/sistemas-operativos/sistemas-operativos--sistemas-operativos/fundamentos-de-sistemas-operativos-unam.pdf",
+        "fileName": "fundamentos-de-sistemas-operativos-unam.pdf",
+        "sha256": "4f9b59b440c9ee06cdefb3cfe79c1a0cccd9f69af3640053d4dfefa1cb8b49dd",
+        "sizeBytes": 12042469,
+        "version": "Edición académica UNAM",
+        "downloadedAt": "2026-09-23",
+        "licenseName": "Creative Commons Atribución-CompartirIgual 4.0 Internacional (CC BY-SA 4.0)",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "sourceUrl": "https://sistemasoperativos.unam.mx/"
+      }
     },
     {
       "id": "inteligencia-artificial--inteligencia-artificial-un-enfoque-moderno",
@@ -2790,8 +3114,20 @@
       "level": "general",
       "primaryUrl": "https://librosgratis.dev/books/guia-scrum-european.pdf",
       "reviewedAt": "2026-09-22",
-      "preservationStatus": "external-preserved",
-      "licenseStatus": "external-only"
+      "preservationStatus": "local-redistributable",
+      "licenseStatus": "verified",
+      "version": "Guía definitiva de Scrum",
+      "localFile": {
+        "path": "/library/metodologias-desarrollo/metodologias-desarrollo--guia-scrum/guia-scrum-oficial-en-espanol.pdf",
+        "fileName": "guia-scrum-oficial-en-espanol.pdf",
+        "sha256": "cf6ab1bf9030b6a9280c0b9effda1cbb06f2cdd899c33ad8f7541a9402938368",
+        "sizeBytes": 461886,
+        "version": "Guía definitiva de Scrum",
+        "downloadedAt": "2026-09-23",
+        "licenseName": "Creative Commons Atribución-CompartirIgual 4.0 Internacional (CC BY-SA 4.0)",
+        "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+        "sourceUrl": "https://scrumguides.org/docs/scrumguide/v2020/2020-Scrum-Guide-Spanish-European.pdf"
+      }
     },
     {
       "id": "metodologias-desarrollo--scrum-y-xp-desde-las-trincheras",
@@ -2807,8 +3143,20 @@
       "level": "general",
       "primaryUrl": "https://librosgratis.dev/books/scrum-y-xp-desde-las-trincheras.pdf",
       "reviewedAt": "2026-09-22",
-      "preservationStatus": "external-preserved",
-      "licenseStatus": "external-only"
+      "preservationStatus": "local-redistributable",
+      "licenseStatus": "verified",
+      "version": "Henrik Kniberg (Edición en español)",
+      "localFile": {
+        "path": "/library/metodologias-desarrollo/metodologias-desarrollo--scrum-y-xp-desde-las-trincheras/scrum-y-xp-desde-las-trincheras.pdf",
+        "fileName": "scrum-y-xp-desde-las-trincheras.pdf",
+        "sha256": "1fc4c9e7130f0c200619d608ed02c42d0927cb120b6830d016b0bd7c97e54f8a",
+        "sizeBytes": 4141291,
+        "version": "Henrik Kniberg (Edición en español)",
+        "downloadedAt": "2026-09-23",
+        "licenseName": "Creative Commons Atribución-NoComercial 3.0 (CC BY-NC 3.0)",
+        "licenseUrl": "https://creativecommons.org/licenses/by-nc/3.0/",
+        "sourceUrl": "https://librosgratis.dev/books/scrum-y-xp-desde-las-trincheras.pdf"
+      }
     },
     {
       "id": "metodologias-desarrollo--ingenieria-de-software-una-guia-para-crear-sistemas-de-informacion",

@@ -52,55 +52,119 @@ export function ProfessionalLibraryIndex({ entries }: { entries: readonly Librar
     setAvailability("all");
   }
 
+  const hasActiveFilters = Boolean(
+    query.trim() || group !== "all" || format !== "all" || level !== "all" || provenance !== "all" || availability !== "all"
+  );
+
   return (
     <>
       <section className={styles.controls} aria-label="Buscar y filtrar la Librería profesional">
-        <label className={styles.search}>
-          <span>Buscar tema, libro, autor o institución</span>
-          <input type="search" value={query} onChange={(event) => setQuery(event.target.value)} placeholder="Python, seguridad, Allen Downey…" />
-        </label>
-        <label>
-          <span>Área</span>
-          <select value={group} onChange={(event) => setGroup(event.target.value)}>
-            <option value="all">Todas las áreas</option>
-            {Object.entries(collectionGroupMeta).map(([id, meta]) => <option value={id} key={id}>{meta.name}</option>)}
-          </select>
-        </label>
-        <label>
-          <span>Formato</span>
-          <select value={format} onChange={(event) => setFormat(event.target.value)}>
-            <option value="all">Todos los formatos</option>
-            {formats.map((entry) => <option value={entry} key={entry}>{entry}</option>)}
-          </select>
-        </label>
-        <label>
-          <span>Nivel</span>
-          <select value={level} onChange={(event) => setLevel(event.target.value)}>
-            <option value="all">Todos los niveles</option>
-            {levels.map((entry) => <option value={entry} key={entry}>{libraryResourceLevelLabels[entry]}</option>)}
-          </select>
-        </label>
-        <label>
-          <span>Procedencia</span>
-          <select value={provenance} onChange={(event) => setProvenance(event.target.value)}>
-            <option value="all">Todas las procedencias</option>
-            <option value="official">Proyecto u organismo oficial</option>
-            <option value="midudev">Catálogo atribuido a midudev</option>
-            <option value="curated">Curaduría complementaria de Dev Visualizer</option>
-          </select>
-        </label>
-        <label>
-          <span>Disponibilidad</span>
-          <select value={availability} onChange={(event) => setAvailability(event.target.value)}>
-            <option value="all">Todos los estados</option>
-            <option value="external">Disponibles externamente</option>
-            <option value="local">Adjuntos locales autorizados</option>
-            <option value="unavailable">Sin sustituto disponible</option>
-          </select>
-        </label>
-        <div className={styles.resultCount}>
-          <output aria-live="polite"><strong>{visible.length}</strong><span>temas visibles</span></output>
-          <button type="button" onClick={resetFilters}>Restablecer</button>
+        <div className={styles.searchHeader}>
+          <div className={styles.searchFieldWrapper}>
+            <span className={styles.searchIcon} aria-hidden="true">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round">
+                <circle cx="11" cy="11" r="8" />
+                <path d="m21 21-4.35-4.35" />
+              </svg>
+            </span>
+            <label className={styles.searchLabel}>
+              <span className="sr-only">Buscar tema, libro, autor o tecnología</span>
+              <input
+                type="search"
+                value={query}
+                onChange={(event) => setQuery(event.target.value)}
+                placeholder="Buscar tema, libro, autor o tecnología (ej. Python, Linux, Algoritmos, Rust…)"
+                className={styles.searchInput}
+              />
+            </label>
+            {query ? (
+              <button
+                type="button"
+                className={styles.clearQueryButton}
+                onClick={() => setQuery("")}
+                aria-label="Limpiar búsqueda"
+              >
+                ✕
+              </button>
+            ) : null}
+          </div>
+
+          <div className={styles.searchActions}>
+            <div className={styles.resultBadge} aria-live="polite">
+              <span className={styles.resultNumber}>{visible.length}</span>
+              <span className={styles.resultLabel}>{visible.length === 1 ? "tema visible" : "temas visibles"}</span>
+            </div>
+            {hasActiveFilters ? (
+              <button
+                type="button"
+                className={styles.resetButton}
+                onClick={resetFilters}
+                title="Restablecer todos los filtros"
+              >
+                <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                  <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
+                  <path d="M3 3v5h5" />
+                </svg>
+                <span>Restablecer</span>
+              </button>
+            ) : null}
+          </div>
+        </div>
+
+        <div className={styles.filtersBar}>
+          <label className={`${styles.filterItem} ${group !== "all" ? styles.filterActive : ""}`}>
+            <span className={styles.filterTitle}>Área</span>
+            <div className={styles.selectWrapper}>
+              <select value={group} onChange={(event) => setGroup(event.target.value)}>
+                <option value="all">Todas las áreas</option>
+                {Object.entries(collectionGroupMeta).map(([id, meta]) => <option value={id} key={id}>{meta.name}</option>)}
+              </select>
+            </div>
+          </label>
+
+          <label className={`${styles.filterItem} ${format !== "all" ? styles.filterActive : ""}`}>
+            <span className={styles.filterTitle}>Formato</span>
+            <div className={styles.selectWrapper}>
+              <select value={format} onChange={(event) => setFormat(event.target.value)}>
+                <option value="all">Todos los formatos</option>
+                {formats.map((entry) => <option value={entry} key={entry}>{entry}</option>)}
+              </select>
+            </div>
+          </label>
+
+          <label className={`${styles.filterItem} ${level !== "all" ? styles.filterActive : ""}`}>
+            <span className={styles.filterTitle}>Nivel</span>
+            <div className={styles.selectWrapper}>
+              <select value={level} onChange={(event) => setLevel(event.target.value)}>
+                <option value="all">Todos los niveles</option>
+                {levels.map((entry) => <option value={entry} key={entry}>{libraryResourceLevelLabels[entry]}</option>)}
+              </select>
+            </div>
+          </label>
+
+          <label className={`${styles.filterItem} ${provenance !== "all" ? styles.filterActive : ""}`}>
+            <span className={styles.filterTitle}>Procedencia</span>
+            <div className={styles.selectWrapper}>
+              <select value={provenance} onChange={(event) => setProvenance(event.target.value)}>
+                <option value="all">Todas las procedencias</option>
+                <option value="official">Oficial o primario</option>
+                <option value="midudev">Catálogo midudev</option>
+                <option value="curated">Curaduría Dev Visualizer</option>
+              </select>
+            </div>
+          </label>
+
+          <label className={`${styles.filterItem} ${availability !== "all" ? styles.filterActive : ""}`}>
+            <span className={styles.filterTitle}>Disponibilidad</span>
+            <div className={styles.selectWrapper}>
+              <select value={availability} onChange={(event) => setAvailability(event.target.value)}>
+                <option value="all">Todos los estados</option>
+                <option value="local">Adjuntos locales autorizados</option>
+                <option value="external">Disponibles externamente</option>
+                <option value="unavailable">Sin sustituto disponible</option>
+              </select>
+            </div>
+          </label>
         </div>
       </section>
 
