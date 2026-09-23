@@ -155,17 +155,16 @@ function seedNarrative(
 ) {
   const mechanism = seedMechanism(title, section);
   const narratives = [
-    `Parte de ${mechanism.input}. ${title} ${mechanism.transformation}; produce ${mechanism.result}. El caso deja de ser válido cuando ${mechanism.failure}. Se comprueba con ${mechanism.evidence}.`,
-    `Para estudiar ${title}, primero se delimita ${mechanism.input}. La operación central ${mechanism.transformation} hasta obtener ${mechanism.result}. El diagnóstico busca cuándo ${mechanism.failure}; la confirmación exige ${mechanism.evidence}.`,
-    `${title} se entiende siguiendo el estado desde ${mechanism.input}: el sistema ${mechanism.transformation} y entrega ${mechanism.result}. Su límite aparece si ${mechanism.failure}. La explicación se cierra con ${mechanism.evidence}.`,
-    `El contrato de ${title} recibe ${mechanism.input} y ${mechanism.transformation}. La salida útil es ${mechanism.result}, no solo que el proceso termine. Se fuerza el fallo donde ${mechanism.failure} y se conserva ${mechanism.evidence}.`,
-    `En una ejecución de ${title}, ${mechanism.input} entra al mecanismo que ${mechanism.transformation}. Así emerge ${mechanism.result}. Si ${mechanism.failure}, la escena muestra la ruptura y vuelve a un estado seguro; ${mechanism.evidence} permite verificarlo.`,
-    `La pregunta operativa de ${title} comienza con ${mechanism.input}. Para responderla, el sistema ${mechanism.transformation}, de modo que queda ${mechanism.result}. Se contrasta el camino nominal con el escenario en que ${mechanism.failure}, usando ${mechanism.evidence}.`,
-    `${title} conecta una decisión visible con su interior: toma ${mechanism.input}, luego ${mechanism.transformation} y finalmente expone ${mechanism.result}. La recuperación se activa cuando ${mechanism.failure}; su validez se demuestra mediante ${mechanism.evidence}.`,
-    `El recorrido visual de ${title} fija ${mechanism.input} como punto de partida. Después ${mechanism.transformation}, manteniendo el contrato hasta lograr ${mechanism.result}. Un caso adverso demuestra que ${mechanism.failure}; ${mechanism.evidence} separa una corrección real de una coincidencia.`,
+    `${title} procesa ${mechanism.input}: ${mechanism.transformation} para entregar ${mechanism.result}.`,
+    `Para entender ${title}, se delimita ${mechanism.input}. La operación ${mechanism.transformation} hasta producir ${mechanism.result}.`,
+    `El mecanismo de ${title} recibe ${mechanism.input} y ${mechanism.transformation}, asegurando ${mechanism.result}.`,
+    `${title} conecta ${mechanism.input} con su runtime interno: ${mechanism.transformation} hasta exponer ${mechanism.result}.`,
+    `En ${title}, ${mechanism.input} ingresa al flujo donde ${mechanism.transformation} para consolidar ${mechanism.result}.`,
+    `La función de ${title} parte de ${mechanism.input}. Su ejecución ${mechanism.transformation} y produce ${mechanism.result}.`,
+    `${title} estructura ${mechanism.input} en el sistema: ${mechanism.transformation}, garantizando ${mechanism.result}.`,
+    `El recorrido de ${title} toma ${mechanism.input}. Posteriormente ${mechanism.transformation} para validar ${mechanism.result}.`,
   ] as const;
-  const narrative = narratives[(conceptIndex + section.length) % narratives.length] ?? narratives[0];
-  return `${narrative} En ${section} de ${name}, este recorrido ${intent.toLocaleLowerCase("es")}.`;
+  return narratives[(conceptIndex + section.length) % narratives.length] ?? narratives[0];
 }
 
 function enrichConcept(name: string, concept: string, chapterIndex: number, section: string, conceptIndex: number) {

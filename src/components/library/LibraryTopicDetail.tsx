@@ -15,7 +15,17 @@ import {
 import type { LibraryResource, LibraryTopic } from "@/data/libraryTypes";
 import styles from "@/app/libreria/library.module.css";
 
+function formatResourceNote(note?: string) {
+  if (!note) return null;
+  const cutoff = note.indexOf("Para el capítulo");
+  const base = cutoff > 0 ? note.slice(0, cutoff).trim() : note;
+  const sentences = base.split(/(?<=[.?!])\s+/);
+  const unique = [...new Set(sentences)].join(" ").trim();
+  return unique || null;
+}
+
 function ResourceCard({ resource }: { resource: LibraryResource }) {
+  const displayNote = formatResourceNote(resource.note);
   return (
     <article className={styles.resourceCard} data-preservation={resource.preservationStatus}>
       <header>
@@ -24,7 +34,7 @@ function ResourceCard({ resource }: { resource: LibraryResource }) {
       </header>
       <h3>{resource.title}</h3>
       <p className={styles.author}>{resource.author ?? resource.authority ?? "Autor no informado por el catálogo fuente"}</p>
-      {resource.note ? <p>{resource.note}</p> : null}
+      {displayNote ? <p>{displayNote}</p> : null}
       <div className={styles.formatList} aria-label="Formatos disponibles">
         {resource.formats.map((format) => <span key={format}>{format}</span>)}
       </div>

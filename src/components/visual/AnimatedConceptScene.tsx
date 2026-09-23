@@ -26,7 +26,7 @@ function NodeText({ value }: { value: string }) {
   );
 }
 
-export function AnimatedConceptScene({ ariaLabel, code, nodes, outcome, caption, variant }: AnimatedConceptSceneProps) {
+export function AnimatedConceptScene({ ariaLabel, code, nodes, outcome, variant }: AnimatedConceptSceneProps) {
   const sceneRef = useRef<HTMLDivElement>(null);
   const { playback, shouldAnimate } = useScenePlayback(sceneRef);
   const repeat = { duration: shouldAnimate ? LOOP : 0, repeat: shouldAnimate ? Infinity : 0 } as const;
@@ -429,7 +429,6 @@ export function AnimatedConceptScene({ ariaLabel, code, nodes, outcome, caption,
           <div className="atlas-rest-state__outcome">{outcome}</div>
         </div>
       )}
-      <p className="scene-caption">{caption}</p>
     </div>
   );
 }

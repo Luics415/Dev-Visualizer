@@ -423,6 +423,13 @@ export function semanticCandidates(title: string, description: string, section: 
   if (titleHas("rack", "middleware chain", "http middleware")) pushUnique(candidates, ["request", "pipeline", "layers", "workflow", "trace"]);
   if (titleHas("cargo audit", "cargo deny", "dependency audit", "auditoría de dependencias")) pushUnique(candidates, ["assurance-rack", "artifact-passport", "gate", "trace", "workflow"]);
   if (titleHas("preloading", "opcache", "bytecode cache")) pushUnique(candidates, ["cache", "memory-map", "runtime-dispatch", "lifecycle", "trace"]);
+  if (titleHas("array", "arrays", "lista enlazada", "listas enlazadas")) pushUnique(candidates, ["matrix", "memory-map", "pipeline", "tree", "anatomy"]);
+  if (titleHas("aleatoriz", "azar", "random", "seed", "seeds", "semilla", "monte carlo")) pushUnique(candidates, ["signal-matrix", "matrix", "parallel-grid", "timeline", "assurance-rack"]);
+  if (titleHas("puntuación", "vidas", "score", "marcador", "game loop", "juego", "sprites")) pushUnique(candidates, ["interface-flow", "cards", "signal", "timeline", "state-machine"]);
+  if (titleHas("quarto", "r markdown", "rmarkdown", "informe reproducible")) pushUnique(candidates, ["document", "literate-weave", "compiler", "pipeline", "artifact-passport"]);
+  if (titleHas("aislamiento", "isolation", "sandboxing", "virtualiz", "virtualización")) pushUnique(candidates, ["container", "layers", "gate", "memory-map", "scheduler"]);
+  if (titleHas("recuperación", "recovery", "reinicio", "tolerancia a fallos")) pushUnique(candidates, ["state-machine", "trace", "lifecycle", "timeline", "gate"]);
+  if (titleHas("svnsync", "sincronización de repositorio", "migración de repositorio", "migracion", "migración")) pushUnique(candidates, ["timeline", "tree", "workflow", "compare", "trace"]);
 
   if (titleHas("qué es", "introducción", "fundamento", "arquitectura", "anatomía") || has("partes de", "componentes de")) pushUnique(candidates, ["anatomy", "layers", "tree", "orbit", "cards"]);
   if (titleHas("request", "response", "http", "endpoint", "petición", "respuesta", "proxy", "upstream", "webhook") || has("solicitud HTTP", "cliente y servidor")) pushUnique(candidates, ["request", "network", "pipeline", "flow", "timeline"]);
