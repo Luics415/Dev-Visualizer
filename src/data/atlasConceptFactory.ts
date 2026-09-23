@@ -470,17 +470,57 @@ export function semanticCandidates(title: string, description: string, section: 
   // Las secciones aportan una segunda señal semántica cuando el título es
   // breve o propio de una API. Estas familias son compatibles con el
   // mecanismo descrito; no se usan para perseguir variedad estadística.
-  if (has("programación funcional", "semántica funcional", "composición funcional", "evaluación perezosa")) pushUnique(candidates, ["pipeline", "tree", "runtime-dispatch", "flow", "compiler"]);
-  if (has("tipos", "sistema de tipos", "type system", "contratos de tipo")) pushUnique(candidates, ["compiler", "gate", "tree", "compare", "assurance-rack"]);
-  if (has("concurrencia", "paralelismo", "procesos y mensajes", "sincronización")) pushUnique(candidates, ["scheduler", "queue", "event-fabric", "state-machine", "trace"]);
-  if (has("memoria", "runtime", "internals", "compilador", "máquina virtual", "recolección")) pushUnique(candidates, ["memory-map", "runtime-dispatch", "layers", "scheduler", "trace"]);
-  if (has("pruebas", "testing", "calidad", "verificación", "seguridad")) pushUnique(candidates, ["assurance-rack", "gate", "trace", "matrix", "workflow"]);
-  if (has("rendimiento", "profiling", "observabilidad", "diagnóstico")) pushUnique(candidates, ["trace", "timeline", "matrix", "terminal", "compare"]);
-  if (has("paquetes", "módulos", "tooling", "herramientas", "build", "entrega", "producción")) pushUnique(candidates, ["artifact-passport", "layers", "workflow", "pipeline", "trace"]);
-  if (has("persistencia", "almacenamiento", "orm", "consultas", "modelo relacional", "datos")) pushUnique(candidates, ["database", "relation-loom", "pipeline", "matrix", "trace"]);
-  if (has("web", "http", "servidor", "request", "middleware")) pushUnique(candidates, ["request", "pipeline", "network", "layers", "trace"]);
-  if (has("interfaz", "componentes", "render", "layout", "experiencia")) pushUnique(candidates, ["interface-flow", "browser", "lifecycle", "flow", "cards"]);
-  if (has("distribuidos", "distribución", "cluster", "replicación", "consenso")) pushUnique(candidates, ["network", "event-fabric", "relation-loom", "timeline", "trace"]);
+  if (has("funcional", "lambda", "cálculo", "combinador", "composición", "evaluación", "reducción", "expresión", "currying", "monad", "functor")) {
+    pushUnique(candidates, ["pipeline", "tree", "runtime-dispatch", "flow", "compiler"]);
+  }
+  if (has("tipo", "tipos", "type", "types", "generic", "genérico", "objeto", "object", "clase", "class", "trait", "alias", "proyección", "wildcard", "erasure", "record", "enum", "metaclass", "protocol", "pecs")) {
+    pushUnique(candidates, ["compiler", "gate", "tree", "compare", "assurance-rack", "runtime-dispatch"]);
+  }
+  if (has("concurrencia", "paralelismo", "proceso", "thread", "coroutine", "actor", "mensajes", "sincronización", "lock", "mutex", "channel", "canal")) {
+    pushUnique(candidates, ["scheduler", "queue", "event-fabric", "state-machine", "trace"]);
+  }
+  if (has("memoria", "memory", "heap", "stack", "pila", "runtime", "internals", "compilador", "compiler", "máquina virtual", "recolección", "gc", "leak", "thunk", "pointer", "puntero", "registro", "black-hole", "black hole", "space leak")) {
+    pushUnique(candidates, ["memory-map", "runtime-dispatch", "layers", "scheduler", "trace"]);
+  }
+  if (has("prueba", "pruebas", "test", "testing", "calidad", "verificación", "seguridad", "security", "assert", "fuzz")) {
+    pushUnique(candidates, ["assurance-rack", "gate", "trace", "matrix", "workflow"]);
+  }
+  if (has("rendimiento", "performance", "profiling", "observabilidad", "diagnóstico", "métrica", "optimización", "latencia")) {
+    pushUnique(candidates, ["trace", "timeline", "matrix", "terminal", "compare"]);
+  }
+  if (has("paquete", "paquetes", "módulo", "módulos", "tooling", "toolchain", "herramienta", "build", "gradle", "entrega", "producción", "deploy", "release", "jlink", "assembly", "ensamblador", "variadic", "resource")) {
+    pushUnique(candidates, ["artifact-passport", "layers", "workflow", "pipeline", "trace"]);
+  }
+  if (has("persistencia", "almacenamiento", "orm", "consulta", "consultas", "modelo relacional", "datos", "data", "database", "sql", "tabla", "índice")) {
+    pushUnique(candidates, ["database", "relation-loom", "pipeline", "matrix", "trace"]);
+  }
+  if (has("web", "http", "servidor", "server", "request", "middleware", "api", "rest", "endpoint", "socket")) {
+    pushUnique(candidates, ["request", "pipeline", "network", "layers", "trace"]);
+  }
+  if (has("interfaz", "componente", "componentes", "render", "layout", "experiencia", "ui", "view", "vista", "pantalla", "css", "html")) {
+    pushUnique(candidates, ["interface-flow", "browser", "lifecycle", "flow", "cards"]);
+  }
+  if (has("distribuido", "distribuidos", "distribución", "cluster", "replicación", "consenso", "nodo", "network", "red")) {
+    pushUnique(candidates, ["network", "event-fabric", "relation-loom", "timeline", "trace"]);
+  }
+  if (has("candidato", "candidate", "proto", "dispatch", "despacho", "resolution", "resolución")) {
+    pushUnique(candidates, ["runtime-dispatch", "compare", "tree", "gate"]);
+  }
+  if (has("task", "tarea", "usetask", "hook", "job", "worker", "efecto")) {
+    pushUnique(candidates, ["scheduler", "timeline", "lifecycle", "queue", "trace"]);
+  }
+  if (has("document", "documento", "frontera", "boundary", "nosql", "bucket", "fan-out", "traversal", "entrop", "entropy", "recorrido")) {
+    pushUnique(candidates, ["document", "tree", "database", "layers", "relation-loom"]);
+  }
+  if (has("calibración", "calibration", "probab", "curva", "curve", "score", "métrica", "modelo", "model", "ia", "ai")) {
+    pushUnique(candidates, ["trace", "timeline", "matrix", "compare", "gate"]);
+  }
+  if (has("device", "dispositivo", "driver", "kernel", "os", "hardware", "io", "i/o", "periférico")) {
+    pushUnique(candidates, ["layers", "terminal", "anatomy", "memory-map", "trace"]);
+  }
+  if (has("código", "lenguaje", "función", "método", "variable", "constante", "operador", "control", "flujo", "valor", "estado", "mecanismo", "sistema", "patrón", "algoritmo", "estructura")) {
+    pushUnique(candidates, ["flow", "layers", "anatomy", "trace", "gate", "state-machine"]);
+  }
 
   if (candidates.length === 0 && includeNeutralFallback) {
     pushUnique(candidates, ["anatomy", "flow", "layers", "trace", "compare", "gate"]);

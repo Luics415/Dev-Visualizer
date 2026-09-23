@@ -1263,7 +1263,7 @@ function splitTechnicalTitle(title: string) {
     .filter((token) => token && !semanticStopWords.has(token));
 }
 
-function semanticCue(title: string) {
+export function semanticCue(title: string) {
   const normalizedTitle = normalizeTechnicalText(title);
   const exact = singleTermSemantics[normalizedTitle];
   if (exact) return exact;
@@ -1393,52 +1393,47 @@ function buildConceptNarrative(collectionId: string, title: string, section: str
     ?? applicableRules.find((rule) => rule.pattern.test(normalizedSection))
     ?? collectionTemplates[collectionId]
     ?? familyTemplates[mechanismFamily(title, section)];
-  const cue = semanticCue(title);
 
   return {
     ...template,
     title,
     section,
-    input: `${template.input}; el caso concreto aísla ${cue} sobre ${profile.subject}`,
-    transformation: `${profile.runtime} ${template.transformation} para hacer visible ${cue}`,
-    result: `${template.result}; el cambio de ${cue} queda observable en ${profile.state}`,
-    failure: `${template.failure}; para ${cue}, el caso debe separar ese fallo de ${profile.failure}`,
-    evidence: `${template.evidence}, complementados con ${profile.evidence}`,
+    input: template.input,
+    transformation: template.transformation,
+    result: template.result,
+    failure: template.failure,
+    evidence: template.evidence,
   };
 }
 
-function renderNarrative(narrative: ConceptNarrative) {
-  const { title, section, input, transformation, result, failure, evidence } = narrative;
-  switch (narrative.shape) {
-    case "pipeline":
-      return `${title}, en ${section}, recorre un pipeline completo. Entrada: ${input}. Transformación: ${transformation}. Resultado: ${result}. Fallo: ${failure}. Se verifica con ${evidence}.`;
-    case "state-delta":
-      return `${title} se estudia como un cambio de estado dentro de ${section}. Antes: ${input}. Durante el evento: ${transformation}. Después: ${result}. La transición es inválida cuando ${failure}. La diferencia se comprueba con ${evidence}.`;
-    case "boundary":
-      return `${title} abre una frontera de ${section}. Del lado productor entra ${input}; la frontera ${transformation}; el consumidor recibe ${result}. El contrato se rompe si ${failure}. La compatibilidad queda demostrada mediante ${evidence}.`;
-    case "decision":
-      return `${title} se presenta como una decisión trazable de ${section}. Caso inicial: ${input}. Criterio aplicado: ${transformation}. Rama elegida: ${result}. Rama de error: ${failure}. La elección se reconstruye con ${evidence}.`;
-    case "lifecycle":
-      return `${title} sigue un ciclo de vida de ${section}. Nace con ${input}; mientras está activo, ${transformation}; termina en ${result}. Si el cierre no respeta el protocolo, ${failure}. El balance final se prueba con ${evidence}.`;
-    case "timeline":
-      return `${title} usa una línea temporal de ${section}: en t0 aparece ${input}; en t1, ${transformation}; en t2 queda ${result}. Un interleaving adverso demuestra el fallo cuando ${failure}. La secuencia se reproduce con ${evidence}.`;
-    case "counterexample":
-      return `${title} parte de una garantía falsable en ${section}. Preparación: ${input}. Ejecución: ${transformation}. Garantía esperada: ${result}. Contraejemplo: ${failure}. La recuperación y el rechazo correcto se confirman con ${evidence}.`;
-    case "plan-comparison":
-      return `${title} compara dos planes dentro de ${section}. El baseline recibe ${input}; la alternativa ${transformation}; solo se acepta si entrega ${result}. Se descarta cuando ${failure}. La comparación conserva ${evidence}.`;
-    case "dataflow":
-      return `${title} se explica como flujo de datos de ${section}. La fuente aporta ${input}; cada etapa ${transformation}; el sumidero expone ${result}. El flujo deja de ser válido si ${failure}. Se observa extremo a extremo con ${evidence}.`;
-    case "proof":
-      return `${title} formula una prueba operativa para ${section}. Premisas: ${input}. Regla de derivación: ${transformation}. Tesis observable: ${result}. Un contraejemplo aparece cuando ${failure}. La demostración ejecutable usa ${evidence}.`;
-    case "observability":
-      return `${title} convierte ${section} en una señal operable. El evento observado contiene ${input}; la instrumentación ${transformation}; el operador obtiene ${result}. La señal engaña cuando ${failure}. Su utilidad se ensaya con ${evidence}.`;
-    case "resource-balance":
-      return `${title} contabiliza recursos en ${section}. Demanda: ${input}. Asignación y uso: ${transformation}. Saldo correcto: ${result}. El balance falla si ${failure}. La contabilidad se contrasta con ${evidence}.`;
+function renderNarrative(narrative: ConceptNarrative, ordinal = 0) {
+  const { title, section, transformation, result } = narrative;
+  const t = transformation.trim().replace(/\.$/, "");
+  const r = result.trim().replace(/\.$/, "");
+
+  switch (ordinal % 8) {
+    case 0:
+      return `${title} en ${section}: ${t}, asegurando ${r}.`;
+    case 1:
+      return `En ${section}, ${title} ${t} para entregar ${r}.`;
+    case 2:
+      return `${title} aplica este mecanismo en ${section}: ${t}, con ${r}.`;
+    case 3:
+      return `El mecanismo de ${title} dentro de ${section} ${t} y consolida ${r}.`;
+    case 4:
+      return `Para ${title}, la arquitectura de ${section} ${t}, garantizando ${r}.`;
+    case 5:
+      return `${title} gestiona ${section} de modo que ${t}, produciendo ${r}.`;
+    case 6:
+      return `A través de ${title} en ${section}, el sistema ${t} manteniendo ${r}.`;
+    case 7:
+    default:
+      return `En el flujo operativo de ${section}, ${title} ${t} para obtener ${r}.`;
   }
 }
 
-function describeConcept(collectionId: string, title: string, section: string) {
-  return renderNarrative(buildConceptNarrative(collectionId, title, section));
+function describeConcept(collectionId: string, title: string, section: string, ordinal = 0) {
+  return renderNarrative(buildConceptNarrative(collectionId, title, section), ordinal);
 }
 
 export const newLearningExtensionsPlatformsData: NewLearningExtensionRegistry = Object.fromEntries(
@@ -1449,8 +1444,8 @@ export const newLearningExtensionsPlatformsData: NewLearningExtensionRegistry = 
       collectionId,
       chapters.map((chapter) => ({
         ...chapter,
-        concepts: [...chapter.concepts, ...(supplemental.get(chapter.section) ?? [])].map((title) =>
-          `${title}::${describeConcept(collectionId, title, chapter.section)}`,
+        concepts: [...chapter.concepts, ...(supplemental.get(chapter.section) ?? [])].map((title, conceptIndex) =>
+          `${title}::${describeConcept(collectionId, title, chapter.section, conceptIndex)}`,
         ),
       })),
     ];

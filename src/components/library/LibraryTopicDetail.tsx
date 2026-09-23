@@ -19,9 +19,9 @@ function formatResourceNote(note?: string) {
   if (!note) return null;
   const cutoff = note.indexOf("Para el capítulo");
   const base = cutoff > 0 ? note.slice(0, cutoff).trim() : note;
-  const sentences = base.split(/(?<=[.?!])\s+/);
-  const unique = [...new Set(sentences)].join(" ").trim();
-  return unique || null;
+  const sentences = base.split(/(?<=[.?!])\s+/).map((s) => s.trim()).filter(Boolean);
+  const unique = [...new Set(sentences)];
+  return unique.slice(0, 2).join(" ").trim() || null;
 }
 
 function ResourceCard({ resource }: { resource: LibraryResource }) {

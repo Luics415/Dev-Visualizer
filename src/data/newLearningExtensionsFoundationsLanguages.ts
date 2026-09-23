@@ -320,14 +320,14 @@ const mechanismProfiles: readonly MechanismProfile[] = [
 ] as const;
 
 const descriptionFrames = [
-  (anchor: string, profile: MechanismProfile) => `Entrada de ${anchor}: ${profile.input}. Transformación: ${profile.transformation}. Resultado: ${profile.result}. Fallo visible: ${profile.failure}.`,
-  (anchor: string, profile: MechanismProfile) => `La escena entrega a ${anchor} ${profile.input}; después ${profile.transformation}. Debe producir ${profile.result}; si el contrato se rompe, ${profile.failure}.`,
-  (anchor: string, profile: MechanismProfile) => `Para ejecutar ${anchor} se parte de ${profile.input}. Internamente, ${profile.transformation}; la salida verificable es ${profile.result}, mientras el caso de error demuestra que ${profile.failure}.`,
-  (anchor: string, profile: MechanismProfile) => `${anchor} conecta una entrada —${profile.input}— con este mecanismo: ${profile.transformation}. La animación confirma ${profile.result} y detiene el flujo cuando ${profile.failure}.`,
-  (anchor: string, profile: MechanismProfile) => `El recorrido de ${anchor} comienza con ${profile.input}, hace visible cómo ${profile.transformation} y termina en ${profile.result}. La recuperación se activa porque ${profile.failure}.`,
-  (anchor: string, profile: MechanismProfile) => `Mecanismo de ${anchor}: recibe ${profile.input}; durante el cambio, ${profile.transformation}. Se acepta únicamente ${profile.result} y se rechaza la ejecución si ${profile.failure}.`,
-  (anchor: string, profile: MechanismProfile) => `Al observar ${anchor}, primero aparece ${profile.input}; luego ${profile.transformation}. La evidencia final muestra ${profile.result}, o bien diagnostica que ${profile.failure}.`,
-  (anchor: string, profile: MechanismProfile) => `${anchor} se verifica de extremo a extremo: entrada ${profile.input}; proceso ${profile.transformation}; salida ${profile.result}; frontera de fallo ${profile.failure}.`,
+  (anchor: string, profile: MechanismProfile) => `${anchor}: ${profile.transformation}, asegurando ${profile.result}.`,
+  (anchor: string, profile: MechanismProfile) => `En ${anchor}, ${profile.transformation} para entregar ${profile.result}.`,
+  (anchor: string, profile: MechanismProfile) => `El mecanismo de ${anchor} logra que ${profile.transformation} y garantiza ${profile.result}.`,
+  (anchor: string, profile: MechanismProfile) => `A través de ${anchor}, ${profile.transformation}, consolidando ${profile.result}.`,
+  (anchor: string, profile: MechanismProfile) => `${anchor} estructura el flujo donde ${profile.transformation}, logrando ${profile.result}.`,
+  (anchor: string, profile: MechanismProfile) => `Para ${anchor}, ${profile.transformation}, manteniendo ${profile.result}.`,
+  (anchor: string, profile: MechanismProfile) => `${anchor} coordina la ejecución: ${profile.transformation} hasta obtener ${profile.result}.`,
+  (anchor: string, profile: MechanismProfile) => `Al operar con ${anchor}, ${profile.transformation}, produciendo ${profile.result}.`,
 ] as const;
 
 function conceptAnchor(title: string) {
