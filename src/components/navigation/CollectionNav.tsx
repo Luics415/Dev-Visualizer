@@ -228,7 +228,7 @@ export function CollectionNav() {
         <strong>{normalizedPathname.startsWith("/libreria") ? "Librería profesional" : active?.label ?? "Todas las colecciones"}</strong>
       </div>
 
-      <div className="collection-nav__sequence" aria-label="Ruta anterior y siguiente">
+        <div className="collection-nav__sequence" role="group" aria-label="Ruta anterior y siguiente">
         {previous ? (
           <Link
             className="collection-nav__arrow"

@@ -6,6 +6,10 @@ La Librería profesional amplía el atlas visual sin mezclar bibliografía con l
 
 La instantánea inicial importa metadatos factuales de 179 recursos organizados originalmente en 42 temas de [midudev/libros-programacion-gratis](https://github.com/midudev/libros-programacion-gratis) y [librosgratis.dev](https://librosgratis.dev/). Dev Visualizer no reutiliza su código, iconografía, textos editoriales ni diseño. Cada recurso conserva autor, URL, tema de procedencia y fecha de revisión.
 
+Los 29 temas que no estaban en ese catálogo se completan mediante una curaduría independiente de 87 fichas: tres por tema y una para cada nivel principiante, intermedio y avanzado. Este bloque no altera ni reemplaza el **Catálogo de referencia**; se identifica como “Curaduría complementaria · Dev Visualizer” y evita duplicados exactos con las fuentes ya registradas.
+
+Una fuente oficial puede estar asociada con varias bibliotecas cuando su alcance cruza tecnologías, pero conserva una sola identidad bibliográfica y el contador general la incluye una sola vez. Las tarjetas temáticas sí muestran esa asociación donde resulte pertinente. Si una ficha importada no declara autor o institución, la interfaz lo indica expresamente sin modificar la instantánea atribuida.
+
 Las 71 bibliotecas añaden documentación oficial, especificaciones o fuentes primarias seleccionadas por Dev Visualizer. Una fuente comunitaria nunca sustituye el respaldo oficial de una colección.
 
 ## Estados de preservación

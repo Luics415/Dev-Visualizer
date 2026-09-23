@@ -16,10 +16,10 @@
 - [x] Prolog independiente: 24 capítulos y 120 conceptos, con ISO, SWI-Prolog y árbol de prueba visual.
 - [x] Microsoft SQL Server independiente: 24 capítulos y 120 conceptos, con T-SQL, internals y operación.
 - [x] AWS ampliado a 228 conceptos con sitios privados, serverless, DynamoDB, CloudWatch, IAM y FinOps.
-- [x] 30 colecciones adicionales de fundamentos, lenguajes, web, datos, sistemas y herramientas.
+- [x] 30 colecciones adicionales ampliadas a 3,184 conceptos, entre 76 y 130 por colección y sin una cuota artificial común.
 - [x] 71 casos En acción con profundización y sin bibliografía duplicada.
 - [x] 142 rutas canónicas y seis puentes heredados.
-- [x] Al menos dos fuentes oficiales o especificaciones para 4,447 de 4,447 conceptos.
+- [x] Al menos dos fuentes oficiales o especificaciones para 6,881 de 6,881 conceptos.
 - [x] Escenas configuradas para las 56 rutas ampliadas En acción; las 30 nuevas usan diez familias visuales.
 - [x] Loops legibles, pausa fuera del viewport y vista de movimiento reducido.
 - [x] Banner firmado de Acerca y banner del ancla preservado en Colecciones.
@@ -31,6 +31,7 @@
 - [x] Índice, búsqueda y filtros por área, formato, nivel, procedencia y disponibilidad.
 - [x] 71 rutas temáticas y una relación obligatoria por colección.
 - [x] Instantánea reproducible de 42 temas y 179 recursos atribuida a midudev.
+- [x] Curaduría complementaria de 87 recursos para los otros 29 temas, con niveles principiante, intermedio y avanzado.
 - [x] Documentación oficial o fuente primaria en cada biblioteca.
 - [x] Política híbrida de adjuntos, licencias, hashes y enlaces externos.
 - [x] Invitación antes del capítulo 1, sin bibliografía dentro de En acción.

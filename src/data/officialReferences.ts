@@ -1,6 +1,11 @@
 import type { StudyConcept } from "./conceptTypes";
 import { collectionManifest } from "./collectionManifest";
 import { newLearningCollections } from "./newLearningCollections";
+import {
+  newLearningSourceMetadata,
+  resolveNewLearningSourceCoverage,
+  validateNewLearningSourceCoverage,
+} from "./newLearningSourceCoverage";
 
 export type OfficialReferenceKind = "standard" | "specification" | "official-docs" | "official-api" | "primary-manual" | "archival-primary";
 export type OfficialReferenceStatus = "active" | "legacy" | "historical";
@@ -309,50 +314,88 @@ const baseReferenceList: readonly OfficialReference[] = [
 ];
 
 const learningAuthorityByHost: Readonly<Record<string, string>> = {
+  "algs4.cs.princeton.edu": "Princeton University",
   "agilemanifesto.org": "Autores del Manifesto for Agile Software Development",
   "angular.dev": "Google / Angular",
+  "asdf.common-lisp.dev": "ASDF Project",
   "bitcoin.org": "Satoshi Nakamoto / Bitcoin.org",
+  "bundler.io": "Bundler / RubyGems",
   "cabal.readthedocs.io": "Haskell Cabal Project",
   "cassandra.apache.org": "Apache Software Foundation",
+  "cffi.common-lisp.dev": "CFFI Project",
   "cran.r-project.org": "R Foundation / CRAN",
+  "csed.acm.org": "ACM / IEEE Computer Society / AAAI",
+  "csrc.nist.gov": "National Institute of Standards and Technology",
   "ctan.org": "Comprehensive TeX Archive Network",
   "developer.android.com": "Google / Android",
   "developer.arm.com": "Arm Ltd.",
+  "developer.bitcoin.org": "Bitcoin Project",
   "developer.mozilla.org": "Mozilla / MDN",
   "dlmf.nist.gov": "National Institute of Standards and Technology",
   "doc.rust-lang.org": "Rust Project",
+  "doc.cgal.org": "CGAL Project",
   "docs.djangoproject.com": "Django Software Foundation",
+  "docs.freebsd.org": "FreeBSD Project",
+  "docs.influxdata.com": "InfluxData",
   "docs.kernel.org": "Linux Kernel Project",
   "docs.oracle.com": "Oracle / Java Platform Group",
+  "docs.phpunit.de": "PHPUnit Project",
   "docs.python.org": "Python Software Foundation",
   "docs.raku.org": "Raku Community",
   "docs.ruby-lang.org": "Ruby Core Team",
   "docs.scala-lang.org": "Scala Center / EPFL",
+  "docs.scipy.org": "SciPy Project / NumFOCUS",
   "downloads.haskell.org": "Glasgow Haskell Compiler Project",
+  "dora.dev": "DORA / Google Cloud",
+  "dwarfstd.org": "DWARF Standards Committee",
+  "embarkstudios.github.io": "Embark Studios",
+  "en.scratch-wiki.info": "Scratch Wiki contributors",
   "ethereum.github.io": "Ethereum Foundation",
   "ethereum.org": "Ethereum Foundation",
   "getcomposer.org": "Composer Project",
+  "ghc.gitlab.haskell.org": "Glasgow Haskell Compiler Project",
+  "gitlab.com": "Proyecto publicado en GitLab",
+  "github.com": "Proyecto fuente publicado en GitHub",
   "go.dev": "Go Project / Google",
+  "google.github.io": "Google Open Source",
   "guides.rubygems.org": "RubyGems Project",
+  "hackage.haskell.org": "Haskell / Hackage",
+  "isabelle.in.tum.de": "Isabelle Project / Technical University of Munich",
   "kanbanguides.org": "Kanban Guides",
   "kotlinlang.org": "JetBrains / Kotlin Foundation",
   "latexref.xyz": "Karl Berry y colaboradores",
   "learn.microsoft.com": "Microsoft",
+  "lispcookbook.github.io": "Common Lisp Cookbook contributors",
+  "mitpress.mit.edu": "MIT Press",
+  "mlcommons.org": "MLCommons",
+  "nasm.us": "NASM Project",
+  "neo4j.com": "Neo4j",
+  "numpy.org": "NumPy Project / NumFOCUS",
   "ocw.mit.edu": "Massachusetts Institute of Technology",
+  "opengitops.dev": "OpenGitOps / Cloud Native Computing Foundation",
   "perldoc.perl.org": "Perl Project",
   "pubs.opengroup.org": "The Open Group",
   "qwik.dev": "Qwik Team",
   "rakudo.org": "Rakudo Project",
   "redis.io": "Redis Ltd. / Redis Community",
+  "rack.github.io": "Rack Project",
+  "ruby.github.io": "Ruby Core Team",
+  "rustc-dev-guide.rust-lang.org": "Rust Project",
   "scala-lang.org": "Scala Center / EPFL",
   "scikit-learn.org": "scikit-learn Project",
   "scratch.mit.edu": "MIT Media Lab / Scratch Foundation",
   "scrumguides.org": "Ken Schwaber y Jeff Sutherland",
+  "sel4.systems": "seL4 Foundation",
   "small.r7rs.org": "Scheme Working Group 1",
   "source.android.com": "Android Open Source Project",
+  "sourceware.org": "GNU Project / Sourceware",
   "standards.ieee.org": "IEEE Standards Association",
   "subversion.apache.org": "Apache Software Foundation",
   "svnbook.red-bean.com": "Ben Collins-Sussman, Brian W. Fitzpatrick y C. Michael Pilato",
+  "test-unit.github.io": "test-unit Project",
+  "testthat.r-lib.org": "RStudio / testthat Project",
+  "tug.org": "TeX Users Group",
+  "latex3.github.io": "LaTeX Project",
   "www.acm.org": "Association for Computing Machinery",
   "www.cpan.org": "Comprehensive Perl Archive Network",
   "www.erlang.org": "Erlang/OTP Project",
@@ -365,22 +408,22 @@ const learningAuthorityByHost: Readonly<Record<string, string>> = {
   "www.nist.gov": "National Institute of Standards and Technology",
   "www.php.net": "PHP Documentation Group",
   "www.postgresql.org": "PostgreSQL Global Development Group",
+  "www.quicklisp.org": "Quicklisp Project",
+  "www.ruby-lang.org": "Ruby Core Team",
   "www.sbcl.org": "Steel Bank Common Lisp Project",
+  "www.scala-sbt.org": "sbt Project",
   "www.scratchfoundation.org": "Scratch Foundation",
+  "www.scrum.org": "Scrum.org",
   "www.sqlite.org": "SQLite Project",
   "www.tensorflow.org": "Google / TensorFlow",
   "xlinux.nist.gov": "National Institute of Standards and Technology",
 };
 
-const learningSourceChapterIndexes: readonly (readonly number[])[] = [
-  [0, 1, 2, 3, 4],
-  [0, 1, 2],
-  [2, 3, 4],
-];
-
 function authorityForLearningSource(href: string) {
   const hostname = new URL(href).hostname.toLocaleLowerCase("en-US");
-  return learningAuthorityByHost[hostname] ?? hostname.replace(/^www\./, "");
+  const authority = learningAuthorityByHost[hostname];
+  if (!authority) throw new Error(`Falta declarar la autoridad de la fuente ampliada ${href}.`);
+  return authority;
 }
 
 function kindForLearningSource(label: string, status: OfficialReferenceStatus): OfficialReferenceKind {
@@ -390,31 +433,41 @@ function kindForLearningSource(label: string, status: OfficialReferenceStatus): 
   return "primary-manual";
 }
 
+validateNewLearningSourceCoverage(newLearningCollections);
+
+const baseReferenceIdByUrl = new Map(baseReferenceList.map((reference) => [reference.href, reference.id]));
+const emittedLearningReferenceIdByUrl = new Map<string, string>();
+const newLearningReferenceIdByCollectionUrl = new Map<string, string>();
 const newLearningReferenceList: readonly OfficialReference[] = newLearningCollections.flatMap((collection) => {
   const manifest = collectionManifest.find((entry) => entry.id === collection.id);
   const status: OfficialReferenceStatus = manifest?.lifecycle === "actual" ? "active" : manifest?.lifecycle === "legado" ? "legacy" : "historical";
-  return collection.sources.map((entry, index) => {
-    const chapterIndexes = learningSourceChapterIndexes[index] ?? collection.chapters.map((_, chapterIndex) => chapterIndex);
-    const coveredChapters = chapterIndexes.flatMap((chapterIndex) => collection.chapters[chapterIndex] ?? []);
-    const keywords = [...new Set(coveredChapters.flatMap((chapter) => [
-      chapter.section,
-      ...chapter.concepts.map(([title]) => title),
-    ]))];
-    return r(
-      `learning-${collection.id}-${index + 1}`,
+  return collection.sources.flatMap((entry, index) => {
+    const existingId = baseReferenceIdByUrl.get(entry.href) ?? emittedLearningReferenceIdByUrl.get(entry.href);
+    const id = existingId ?? `learning-${collection.id}-${index + 1}`;
+    newLearningReferenceIdByCollectionUrl.set(`${collection.id}\u0000${entry.href}`, id);
+    if (existingId) return [];
+
+    const metadata = newLearningSourceMetadata(collection.id, entry.href);
+    emittedLearningReferenceIdByUrl.set(entry.href, id);
+    return [r(
+      id,
       entry.label,
       entry.href,
       authorityForLearningSource(entry.href),
       kindForLearningSource(entry.label, status),
-      "Corte editorial 2026-09-20",
-      coveredChapters.map((chapter) => chapter.section).join("; "),
-      keywords,
+      "Corte editorial 2026-09-22",
+      metadata.evidence.join(" ") || "Fuente primaria complementaria registrada para ampliar el estudio de la colección sin sustituir una regla temática explícita.",
+      metadata.terms.length > 0 ? metadata.terms : [collection.id],
       status,
-    );
+    )];
   });
 });
 
 const referenceList: readonly OfficialReference[] = [...baseReferenceList, ...newLearningReferenceList];
+
+if (new Set(referenceList.map((reference) => reference.href)).size !== referenceList.length) {
+  throw new Error("El catálogo oficial contiene la misma URL bajo identidades distintas.");
+}
 
 const p = (
   collectionId: string,
@@ -468,7 +521,11 @@ const baseProfiles: readonly CollectionReferenceProfile[] = [
 ];
 
 const newLearningProfiles: readonly CollectionReferenceProfile[] = newLearningCollections.map((collection) => {
-  const sourceIds = collection.sources.map((_, index) => `learning-${collection.id}-${index + 1}`);
+  const sourceIds = collection.sources.map((entry) => {
+    const id = newLearningReferenceIdByCollectionUrl.get(`${collection.id}\u0000${entry.href}`);
+    if (!id) throw new Error(`La fuente ${entry.href} no tiene identidad resuelta para ${collection.id}.`);
+    return id;
+  });
   return p(collection.id, sourceIds.slice(0, 2), sourceIds, true);
 });
 
@@ -476,12 +533,27 @@ const profiles: readonly CollectionReferenceProfile[] = [...baseProfiles, ...new
 
 export const officialReferenceCatalog = new Map(referenceList.map((reference) => [reference.id, reference]));
 const profileByCollection = new Map(profiles.map((profile) => [profile.collectionId, profile]));
+const newLearningCollectionById = new Map(newLearningCollections.map((collection) => [collection.id, collection]));
 
 function normalize(value: string) {
   return value.normalize("NFD").replace(/[\u0300-\u036f]/g, "").toLocaleLowerCase("es");
 }
 
 export function officialReferencesForConcept(collectionId: string, concept: Pick<StudyConcept, "title" | "description" | "section">) {
+  const learningCollection = newLearningCollectionById.get(collectionId);
+  if (learningCollection) {
+    const registeredUrls = new Set(learningCollection.sources.map((entry) => entry.href));
+    const resolution = resolveNewLearningSourceCoverage(collectionId, concept, registeredUrls);
+    if (resolution.usedFallback) throw new Error(`La cobertura de ${collectionId}/${concept.title} usó un fallback no permitido.`);
+    return resolution.urls.map((url) => {
+      const referenceId = newLearningReferenceIdByCollectionUrl.get(`${collectionId}\u0000${url}`);
+      if (!referenceId) throw new Error(`La fuente ${url} no tiene un ID registrado para ${collectionId}.`);
+      const reference = officialReferenceCatalog.get(referenceId);
+      if (!reference) throw new Error(`La fuente ${referenceId} no existe en el catálogo oficial.`);
+      return reference;
+    });
+  }
+
   const profile = profileByCollection.get(collectionId);
   if (!profile) return [];
   const haystack = normalize(`${concept.title} ${concept.description} ${concept.section}`);
