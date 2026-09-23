@@ -6,13 +6,6 @@ export type ConceptChapterSeed = {
   concepts: readonly ConceptSeed[];
 };
 
-const allVariants: readonly SceneVariant[] = [
-  "pipeline", "layers", "compare", "timeline", "tree", "gate", "stack", "orbit", "matrix", "browser", "flow", "cards", "terminal", "document",
-  "anatomy", "request", "queue", "cache", "state-machine", "network", "filesystem", "compiler", "container", "database", "scheduler", "signal", "lifecycle", "trace",
-  "memory-map", "runtime-dispatch", "parallel-grid", "workflow", "interface-flow", "literate-weave",
-  "signal-matrix", "relation-loom", "concept-constellation", "assurance-rack", "event-fabric", "artifact-passport",
-];
-
 const families: Record<SceneVariant, string> = {
   pipeline: "flujo de transformación",
   layers: "capas internas",
@@ -68,22 +61,18 @@ function short(value: string, fallback: string) {
   return cleaned || fallback;
 }
 
-function stableIndex(value: string, length: number) {
-  let hash = 0;
-  for (const character of value) hash = ((hash << 5) - hash + character.charCodeAt(0)) | 0;
-  return Math.abs(hash) % length;
-}
-
 function pushUnique(target: SceneVariant[], variants: readonly SceneVariant[]) {
   variants.forEach((variant) => {
     if (!target.includes(variant)) target.push(variant);
   });
 }
 
-export function semanticCandidates(title: string, description: string, section: string): readonly SceneVariant[] {
+export function semanticCandidates(title: string, description: string, section: string, includeNeutralFallback = true): readonly SceneVariant[] {
   const titleText = title.toLocaleLowerCase("es");
+  const sectionText = section.toLocaleLowerCase("es");
   const text = `${title} ${description} ${section}`.toLocaleLowerCase("es");
   const titleHas = (...words: string[]) => words.some((word) => titleText.includes(word));
+  const sectionIs = (...names: string[]) => names.some((name) => sectionText === name);
   const has = (...words: string[]) => words.some((word) => text.includes(word));
   const candidates: SceneVariant[] = [];
 
@@ -127,6 +116,314 @@ export function semanticCandidates(title: string, description: string, section: 
     pushUnique(candidates, ["timeline", "state-machine", "trace", "artifact-passport", "relation-loom", "assurance-rack", "pipeline", "event-fabric"]);
   }
 
+  // Currículos extensos: cada regla parte de un capítulo o mecanismo real.
+  // Los grupos se mantienen separados para que la escena represente la causa
+  // interna del concepto y no una familia neutra elegida para satisfacer cifras.
+  if (sectionIs("pensamiento computacional", "control y composición", "diseño paso a paso", "modularidad y contratos")) {
+    pushUnique(candidates, ["flow", "tree", "cards", "gate", "anatomy", "workflow", "assurance-rack", "timeline"]);
+  }
+  if (sectionIs("estado, efectos y tiempo")) {
+    pushUnique(candidates, ["state-machine", "timeline", "signal", "lifecycle", "matrix", "flow", "trace"]);
+  }
+  if (sectionIs("estrategias de prueba")) {
+    pushUnique(candidates, ["assurance-rack", "gate", "matrix", "trace", "compare", "workflow", "artifact-passport"]);
+  }
+
+  if (sectionIs("hashing en profundidad", "conjuntos y particiones", "ordenamiento y selección")) {
+    pushUnique(candidates, ["matrix", "memory-map", "database", "tree", "cache", "compare", "trace"]);
+  }
+  if (sectionIs("grafos ponderados y redes")) {
+    pushUnique(candidates, ["network", "tree", "workflow", "trace", "matrix", "queue", "timeline"]);
+  }
+  if (sectionIs("procesamiento de texto")) {
+    pushUnique(candidates, ["compiler", "pipeline", "state-machine", "tree", "trace", "matrix", "flow"]);
+  }
+  if (sectionIs("geometría computacional")) {
+    pushUnique(candidates, ["parallel-grid", "matrix", "flow", "anatomy", "trace", "compare", "tree"]);
+  }
+  if (sectionIs("programación dinámica avanzada")) {
+    pushUnique(candidates, ["matrix", "cache", "tree", "pipeline", "trace", "timeline", "memory-map"]);
+  }
+  if (sectionIs("complejidad computacional")) {
+    pushUnique(candidates, ["assurance-rack", "tree", "compare", "gate", "workflow", "matrix", "timeline"]);
+  }
+
+  if (sectionIs("lenguaje matemático", "teoría de números", "combinatoria aplicada")) {
+    pushUnique(candidates, ["assurance-rack", "tree", "relation-loom", "matrix", "flow", "gate", "document"]);
+  }
+  if (sectionIs("representación numérica")) {
+    pushUnique(candidates, ["memory-map", "matrix", "compare", "signal-matrix", "trace", "anatomy", "gate"]);
+  }
+  if (sectionIs("álgebra booleana y circuitos")) {
+    pushUnique(candidates, ["signal-matrix", "gate", "matrix", "flow", "anatomy", "compiler", "parallel-grid"]);
+  }
+  if (sectionIs("teoría de grafos")) {
+    pushUnique(candidates, ["network", "tree", "relation-loom", "matrix", "workflow", "compare", "assurance-rack"]);
+  }
+  if (sectionIs("probabilidad discreta", "inferencia estadística", "azar y evidencia")) {
+    pushUnique(candidates, ["signal-matrix", "assurance-rack", "matrix", "timeline", "compare", "parallel-grid", "trace"]);
+  }
+  if (sectionIs("álgebra lineal computacional", "estructuras y cambio")) {
+    pushUnique(candidates, ["parallel-grid", "matrix", "pipeline", "relation-loom", "memory-map", "trace", "compare"]);
+  }
+  if (sectionIs("cálculo numérico")) {
+    pushUnique(candidates, ["timeline", "pipeline", "trace", "parallel-grid", "matrix", "state-machine", "compare"]);
+  }
+  if (sectionIs("optimización avanzada", "optimización computacional")) {
+    pushUnique(candidates, ["timeline", "parallel-grid", "trace", "pipeline", "compare", "gate", "matrix"]);
+  }
+  if (sectionIs("fundamentos criptográficos")) {
+    pushUnique(candidates, ["assurance-rack", "artifact-passport", "gate", "matrix", "signal-matrix", "pipeline", "compare"]);
+  }
+
+  if (sectionIs("principios y contexto", "scrum aplicado")) {
+    pushUnique(candidates, ["cards", "workflow", "timeline", "gate", "orbit", "interface-flow"]);
+  }
+  if (sectionIs("sistema de trabajo", "kanban aplicado", "lean y teoría de colas")) {
+    pushUnique(candidates, ["queue", "state-machine", "trace", "matrix", "workflow", "timeline", "compare"]);
+  }
+  if (sectionIs("cadencias y colaboración", "equipos y organizaciones")) {
+    pushUnique(candidates, ["orbit", "signal", "interface-flow", "timeline", "cards", "event-fabric", "workflow"]);
+  }
+  if (sectionIs("extreme programming", "entrega y operaciones")) {
+    pushUnique(candidates, ["pipeline", "assurance-rack", "artifact-passport", "workflow", "gate", "trace", "lifecycle"]);
+  }
+  if (sectionIs("descubrimiento de producto", "requisitos y alcance")) {
+    pushUnique(candidates, ["interface-flow", "browser", "gate", "document", "cards", "workflow", "compare"]);
+  }
+  if (sectionIs("riesgo y gobernanza")) {
+    pushUnique(candidates, ["assurance-rack", "gate", "trace", "workflow", "matrix", "artifact-passport", "document"]);
+  }
+  if (sectionIs("métricas orientadas a resultados")) {
+    pushUnique(candidates, ["trace", "matrix", "compare", "timeline", "assurance-rack", "signal-matrix"]);
+  }
+
+  if (sectionIs("escenario y bloques", "geometría con sprites")) {
+    pushUnique(candidates, ["interface-flow", "browser", "parallel-grid", "anatomy", "flow", "signal", "timeline"]);
+  }
+  if (sectionIs("estado y control", "modelo de eventos")) {
+    pushUnique(candidates, ["state-machine", "signal", "event-fabric", "timeline", "matrix", "flow", "scheduler"]);
+  }
+  if (sectionIs("patrones con clones", "animación y audio", "física para juegos")) {
+    pushUnique(candidates, ["lifecycle", "scheduler", "parallel-grid", "signal", "state-machine", "flow", "trace"]);
+  }
+  if (sectionIs("extensiones y mundo físico")) {
+    pushUnique(candidates, ["signal-matrix", "network", "interface-flow", "request", "lifecycle", "gate", "trace"]);
+  }
+  if (sectionIs("interacción")) {
+    pushUnique(candidates, ["interface-flow", "signal", "state-machine", "browser", "event-fabric", "flow", "gate"]);
+  }
+
+  if (sectionIs("ruby esencial", "semántica del lenguaje")) {
+    pushUnique(candidates, ["runtime-dispatch", "anatomy", "flow", "compiler", "cards", "memory-map"]);
+  }
+  if (sectionIs("composición idiomática", "datos y enumeración")) {
+    pushUnique(candidates, ["pipeline", "tree", "flow", "runtime-dispatch", "cards", "compare"]);
+  }
+  if (sectionIs("despacho dinámico", "metaprogramación")) {
+    pushUnique(candidates, ["runtime-dispatch", "compiler", "tree", "literate-weave", "trace", "anatomy"]);
+  }
+  if (sectionIs("empaquetado y operación")) {
+    pushUnique(candidates, ["artifact-passport", "lifecycle", "trace", "workflow", "layers", "terminal"]);
+  }
+
+  if (sectionIs("fundamentos", "abstracciones", "sistema de tipos expresivo", "traits y coherencia", "abstracciones de costo cero")) {
+    pushUnique(candidates, ["compiler", "tree", "gate", "concept-constellation", "runtime-dispatch", "compare", "assurance-rack"]);
+  }
+  if (sectionIs("préstamos en diseños reales", "unsafe con invariantes")) {
+    pushUnique(candidates, ["memory-map", "gate", "lifecycle", "assurance-rack", "trace", "layers", "state-machine"]);
+  }
+  if (sectionIs("ownership avanzado")) {
+    pushUnique(candidates, ["memory-map", "lifecycle", "gate", "tree", "runtime-dispatch", "trace", "state-machine"]);
+  }
+  if (sectionIs("macros y generación")) {
+    pushUnique(candidates, ["compiler", "literate-weave", "tree", "document", "artifact-passport", "pipeline"]);
+  }
+  if (sectionIs("asincronía en profundidad")) {
+    pushUnique(candidates, ["scheduler", "event-fabric", "queue", "state-machine", "lifecycle", "trace", "flow"]);
+  }
+  if (sectionIs("interoperabilidad")) {
+    pushUnique(candidates, ["runtime-dispatch", "memory-map", "layers", "gate", "trace", "artifact-passport", "compare"]);
+  }
+
+  if (sectionIs("lenguaje moderno", "orientación a objetos")) {
+    pushUnique(candidates, ["runtime-dispatch", "compiler", "tree", "cards", "gate", "anatomy", "flow"]);
+  }
+  if (sectionIs("despliegue", "operación y evolución")) {
+    pushUnique(candidates, ["lifecycle", "artifact-passport", "workflow", "trace", "layers", "terminal", "gate"]);
+  }
+
+  if (sectionIs("evaluación", "composición", "typeclasses avanzadas", "efectos componibles")) {
+    pushUnique(candidates, ["pipeline", "runtime-dispatch", "tree", "compiler", "flow", "assurance-rack", "memory-map"]);
+  }
+
+  if (sectionIs("go esencial", "tipos e interfaces")) {
+    pushUnique(candidates, ["compiler", "anatomy", "cards", "runtime-dispatch", "memory-map", "flow"]);
+  }
+  if (sectionIs("patrones concurrentes", "cancelación y límites")) {
+    pushUnique(candidates, ["scheduler", "event-fabric", "queue", "lifecycle", "state-machine", "trace", "workflow"]);
+  }
+  if (sectionIs("servicios de red")) {
+    pushUnique(candidates, ["request", "network", "signal-matrix", "pipeline", "trace", "gate", "lifecycle"]);
+  }
+  if (sectionIs("toolchain")) {
+    pushUnique(candidates, ["compiler", "artifact-passport", "pipeline", "document", "workflow", "trace"]);
+  }
+  if (sectionIs("operación de servicios")) {
+    pushUnique(candidates, ["trace", "lifecycle", "terminal", "signal-matrix", "workflow", "gate", "network"]);
+  }
+
+  if (sectionIs("lenguaje", "aplicación", "objetos y composición")) {
+    pushUnique(candidates, ["compiler", "runtime-dispatch", "interface-flow", "tree", "cards", "flow", "gate"]);
+  }
+  if (sectionIs("interoperabilidad jvm")) {
+    pushUnique(candidates, ["layers", "runtime-dispatch", "compare", "compiler", "gate", "trace"]);
+  }
+
+  if (sectionIs("java esencial", "biblioteca y diseño")) {
+    pushUnique(candidates, ["compiler", "runtime-dispatch", "cards", "tree", "flow", "gate", "anatomy"]);
+  }
+  if (sectionIs("jvm", "class files y carga")) {
+    pushUnique(candidates, ["runtime-dispatch", "compiler", "layers", "memory-map", "lifecycle", "trace", "artifact-passport"]);
+  }
+  if (sectionIs("i/o y networking")) {
+    pushUnique(candidates, ["request", "network", "filesystem", "pipeline", "signal-matrix", "trace", "queue"]);
+  }
+
+  if (sectionIs("r esencial", "semántica", "evaluación del lenguaje")) {
+    pushUnique(candidates, ["matrix", "runtime-dispatch", "memory-map", "pipeline", "anatomy", "trace", "compare"]);
+  }
+  if (sectionIs("análisis", "modelado estadístico")) {
+    pushUnique(candidates, ["matrix", "parallel-grid", "assurance-rack", "pipeline", "signal-matrix", "compare", "trace"]);
+  }
+  if (sectionIs("series temporales")) {
+    pushUnique(candidates, ["timeline", "signal", "matrix", "trace", "pipeline", "compare", "state-machine"]);
+  }
+  if (sectionIs("aprendizaje automático")) {
+    pushUnique(candidates, ["pipeline", "parallel-grid", "matrix", "assurance-rack", "trace", "workflow", "artifact-passport"]);
+  }
+
+  if (sectionIs("familias de arquitectura", "codificación y secciones", "modos de direccionamiento", "aritmética de bajo nivel")) {
+    pushUnique(candidates, ["memory-map", "compiler", "anatomy", "signal-matrix", "flow", "matrix", "trace"]);
+  }
+  if (sectionIs("enlazado y carga")) {
+    pushUnique(candidates, ["artifact-passport", "compiler", "memory-map", "layers", "lifecycle", "trace", "pipeline"]);
+  }
+  if (sectionIs("cómputo vectorial")) {
+    pushUnique(candidates, ["parallel-grid", "memory-map", "scheduler", "matrix", "pipeline", "trace", "compare"]);
+  }
+  if (sectionIs("depuración binaria")) {
+    pushUnique(candidates, ["terminal", "trace", "memory-map", "timeline", "tree", "signal-matrix", "assurance-rack"]);
+  }
+
+  if (sectionIs("erlang esencial", "semántica funcional")) {
+    pushUnique(candidates, ["runtime-dispatch", "tree", "pipeline", "flow", "anatomy", "compiler"]);
+  }
+  if (sectionIs("otp", "árboles de supervisión")) {
+    pushUnique(candidates, ["tree", "lifecycle", "state-machine", "workflow", "event-fabric", "trace", "orbit"]);
+  }
+  if (sectionIs("protocolos entre procesos")) {
+    pushUnique(candidates, ["event-fabric", "queue", "network", "signal", "state-machine", "trace", "timeline"]);
+  }
+
+  if (sectionIs("entornos", "extensión del lenguaje")) {
+    pushUnique(candidates, ["tree", "runtime-dispatch", "memory-map", "compiler", "literate-weave", "anatomy", "flow"]);
+  }
+  if (sectionIs("perl esencial", "motor del lenguaje", "trabajo cotidiano", "orientación a objetos moderna", "operación de sistemas perl")) {
+    pushUnique(candidates, ["runtime-dispatch", "compiler", "pipeline", "tree", "filesystem", "scheduler", "trace", "artifact-passport"]);
+  }
+  if (sectionIs("despacho y objetos", "parsing", "nativecall e interoperabilidad")) {
+    pushUnique(candidates, ["runtime-dispatch", "compiler", "tree", "memory-map", "pipeline", "gate", "trace"]);
+  }
+  if (sectionIs("scala esencial", "composición")) {
+    pushUnique(candidates, ["compiler", "runtime-dispatch", "tree", "pipeline", "scheduler", "cards", "flow"]);
+  }
+
+  if (sectionIs("fundamentos criptográficos") && titleHas("direcciones", "claves y custody")) {
+    pushUnique(candidates, ["artifact-passport", "gate", "memory-map", "network", "assurance-rack", "lifecycle"]);
+  }
+  if (
+    sectionIs("primer contacto", "resumibilidad", "aplicación")
+    && titleHas("component$", "jsx", "props", "signals", "qrl", "serialización", "optimizer", "qwik city", "loaders", "actions")
+  ) {
+    pushUnique(candidates, ["interface-flow", "runtime-dispatch", "lifecycle", "signal", "browser", "compiler", "request"]);
+  }
+  if (titleHas("rxjs interop")) {
+    pushUnique(candidates, ["event-fabric", "signal", "pipeline", "runtime-dispatch", "interface-flow", "trace"]);
+  }
+  if (sectionIs("proyecto django", "trabajo cotidiano")) {
+    pushUnique(candidates, ["layers", "request", "workflow", "database", "document", "filesystem", "trace"]);
+  }
+  if (sectionIs("álgebra y cálculo relacional", "diseño lógico avanzado", "semántica de ventanas", "procedimientos y automatización", "recuperación y continuidad")) {
+    pushUnique(candidates, ["relation-loom", "database", "pipeline", "tree", "matrix", "timeline", "artifact-passport", "trace"]);
+  }
+  if (sectionIs("modelado por acceso")) {
+    pushUnique(candidates, ["database", "relation-loom", "cache", "tree", "matrix", "lifecycle", "trace"]);
+  }
+  if (sectionIs("arquitectura", "ejecución") && titleHas("kernel", "interrupciones", "privilegios", "boot", "scheduling")) {
+    pushUnique(candidates, ["layers", "scheduler", "signal-matrix", "memory-map", "lifecycle", "trace", "terminal"]);
+  }
+  if (sectionIs("mapa de la ia")) {
+    pushUnique(candidates, ["concept-constellation", "pipeline", "tree", "parallel-grid", "matrix", "assurance-rack", "workflow"]);
+  }
+  if (sectionIs("documento mínimo", "motor de composición", "trabajo técnico")) {
+    pushUnique(candidates, ["literate-weave", "document", "compiler", "pipeline", "tree", "artifact-passport", "trace"]);
+  }
+  if (sectionIs("cambios", "historia y líneas") && titleHas("diff", "add delete move", "commit atómico", "update", "copy", "tags")) {
+    pushUnique(candidates, ["timeline", "tree", "workflow", "compare", "trace", "filesystem", "artifact-passport"]);
+  }
+
+  if (titleHas("recurs", "divide y vencerás", "backtracking", "pila de llamadas")) pushUnique(candidates, ["stack", "tree", "timeline", "flow", "trace"]);
+  if (titleHas("función pura", "funciones puras", "currying", "aplicación parcial", "composición funcional", "función de orden superior", "referential transparency")) pushUnique(candidates, ["pipeline", "tree", "flow", "compiler", "compare"]);
+  if (titleHas("excepción", "exception", "panic", "rescue", "restart", "recuperación de error")) pushUnique(candidates, ["state-machine", "trace", "gate", "workflow", "timeline"]);
+  if (titleHas("s-expression", "s-expressions", "cons cell", "lista impropia", "car y cdr")) pushUnique(candidates, ["tree", "anatomy", "memory-map", "literate-weave", "runtime-dispatch"]);
+  if (titleHas("grafo", "bfs", "dfs", "dijkstra", "camino", "topológico", "componente conex")) pushUnique(candidates, ["network", "tree", "workflow", "matrix", "trace"]);
+  if (titleHas("hash", "heap", "trie", "skip list", "bloom", "union-find", "disjoint set")) pushUnique(candidates, ["matrix", "tree", "database", "memory-map", "anatomy"]);
+  if (titleHas("complejidad", "big o", "amortizado", "benchmark", "cota", "trade-off algorítmico")) pushUnique(candidates, ["compare", "trace", "timeline", "matrix", "assurance-rack"]);
+  if (titleHas("np-complet", "np completo", "reducción polinómica", "decidibilidad", "computabilidad")) pushUnique(candidates, ["tree", "assurance-rack", "compare", "workflow", "gate"]);
+  if (titleHas("envolvente convexa", "geometría computacional", "producto cruzado")) pushUnique(candidates, ["matrix", "parallel-grid", "tree", "pipeline", "compare"]);
+  if (titleHas("programación dinámica", "memoización", "tabulación", "subproblema")) pushUnique(candidates, ["matrix", "cache", "tree", "pipeline", "trace"]);
+
+  if (titleHas("vector", "matriz", "tensor", "transformación lineal", "producto escalar")) pushUnique(candidates, ["parallel-grid", "matrix", "pipeline", "relation-loom", "trace"]);
+  if (titleHas("probabilidad", "distribución", "bayes", "monte carlo", "muestreo", "variable aleatoria")) pushUnique(candidates, ["signal-matrix", "parallel-grid", "matrix", "timeline", "assurance-rack"]);
+  if (titleHas("gradiente", "optimización", "derivada", "convergencia", "función objetivo")) pushUnique(candidates, ["timeline", "parallel-grid", "trace", "pipeline", "compare"]);
+  if (titleHas("demostración", "inducción", "invariante", "teorema", "lógica proposicional")) pushUnique(candidates, ["assurance-rack", "tree", "gate", "flow", "document"]);
+  if (titleHas("lógica de hoare", "precondición", "postcondición", "tripla de hoare")) pushUnique(candidates, ["assurance-rack", "gate", "flow", "state-machine", "document"]);
+
+  if (titleHas("ownership", "borrowing", "préstamo", "lifetime", "tiempo de vida", "move semantics")) pushUnique(candidates, ["memory-map", "gate", "lifecycle", "runtime-dispatch", "trace"]);
+  if (titleHas("unboxed value", "unboxed values", "valor sin boxing", "valores sin boxing")) pushUnique(candidates, ["memory-map", "runtime-dispatch", "compiler", "anatomy", "trace"]);
+  if (titleHas("operadores de combinación", "combination operators", "combinator")) pushUnique(candidates, ["pipeline", "flow", "tree", "compiler", "compare"]);
+  if (titleHas("optional sin abuso", "optional", "option type", "maybe type")) pushUnique(candidates, ["gate", "state-machine", "tree", "assurance-rack", "flow"]);
+  if (titleHas("tipo algebraico", "sum type", "product type", "trait", "typeclass", "genérico", "variance", "varianza")) pushUnique(candidates, ["compiler", "gate", "tree", "compare", "concept-constellation"]);
+  if (titleHas("pattern matching", "unificación", "desestructuración", "exhaustividad")) pushUnique(candidates, ["tree", "gate", "compiler", "relation-loom", "assurance-rack"]);
+  if (titleHas("lazy", "perezosa", "thunk", "functor", "applicative", "mónada", "monad", "efecto algebraico")) pushUnique(candidates, ["pipeline", "runtime-dispatch", "tree", "lifecycle", "flow"]);
+  if (titleHas("macro", "macroexpansión", "metaprogramación", "quote", "quasiquote", "ast")) pushUnique(candidates, ["compiler", "literate-weave", "tree", "runtime-dispatch", "document"]);
+  if (titleHas("bytecode", "máquina virtual", "jvm", "beam", "jit", "garbage collector", "recolector")) pushUnique(candidates, ["runtime-dispatch", "memory-map", "scheduler", "layers", "trace"]);
+  if (titleHas("actor", "mailbox", "supervisor", "supervisión", "goroutine", "coroutine", "corrutina", "channel", "canal")) pushUnique(candidates, ["event-fabric", "queue", "scheduler", "tree", "signal"]);
+  if (titleHas("mvar", "stm", "mutex", "semáforo", "semaphore", "lock-free")) pushUnique(candidates, ["queue", "state-machine", "scheduler", "event-fabric", "trace"]);
+  if (titleHas("cffi", "ffi", "foreign function", "interoperabilidad nativa")) pushUnique(candidates, ["runtime-dispatch", "memory-map", "layers", "gate", "trace"]);
+
+  if (titleHas("consenso", "finalidad", "merkle", "bloque", "transacción firmada", "smart contract", "contrato inteligente")) pushUnique(candidates, ["artifact-passport", "relation-loom", "event-fabric", "gate", "timeline"]);
+  if (titleHas("entrenamiento", "inferencia", "modelo de aprendizaje", "modelo predictivo", "feature engineering", "embedding", "atención", "transformer")) pushUnique(candidates, ["pipeline", "parallel-grid", "matrix", "assurance-rack", "trace"]);
+  if (titleHas("regresión", "clasificación", "clustering", "agrupamiento", "función de pérdida", "loss function", "métrica de evaluación")) pushUnique(candidates, ["parallel-grid", "matrix", "pipeline", "compare", "assurance-rack"]);
+  if (titleHas("sesgo", "drift", "deriva", "fairness", "explicabilidad", "evaluación de modelo")) pushUnique(candidates, ["assurance-rack", "compare", "trace", "matrix", "gate"]);
+
+  if (titleHas("system call", "syscall", "interrupción", "context switch", "cambio de contexto", "memoria virtual", "page fault", "fallo de página")) pushUnique(candidates, ["scheduler", "memory-map", "signal-matrix", "layers", "trace"]);
+  if (titleHas("resumibilidad", "hydration", "hidratación", "reactividad", "signals reactivos", "señal reactiva", "inyección de dependencias")) pushUnique(candidates, ["runtime-dispatch", "lifecycle", "interface-flow", "signal", "concept-constellation"]);
+  if (titleHas("activity", "fragment", "intent", "compose", "workmanager", "binder")) pushUnique(candidates, ["lifecycle", "interface-flow", "runtime-dispatch", "workflow", "signal"]);
+  if (titleHas("camerax", "camera2", "sensor", "captura de cámara", "image capture")) pushUnique(candidates, ["signal-matrix", "pipeline", "interface-flow", "lifecycle", "trace"]);
+  if (titleHas("room schema", "room database", "room migration")) pushUnique(candidates, ["database", "layers", "gate", "lifecycle", "trace"]);
+  if (titleHas("tipografía", "composición tipográfica", "bibliografía", "referencia cruzada", "latexmk", "tex engine")) pushUnique(candidates, ["literate-weave", "document", "compiler", "artifact-passport", "pipeline"]);
+  if (titleHas("checkout", "working copy", "revisión", "merge", "conflicto", "branch", "rama", "commit centralizado")) pushUnique(candidates, ["timeline", "tree", "workflow", "compare", "trace"]);
+  if (titleHas("select", "where", "group by", "having", "window function", "cte")) pushUnique(candidates, ["relation-loom", "database", "pipeline", "tree", "matrix"]);
+  if (titleHas("execution plan", "plan de ejecución", "explain", "query planner", "optimizador")) pushUnique(candidates, ["database", "tree", "trace", "pipeline", "compare"]);
+  if (titleHas("statistics", "estadísticas del optimizador", "cardinality estimation")) pushUnique(candidates, ["matrix", "database", "trace", "compare", "relation-loom"]);
+  if (titleHas("point-in-time", "pitr", "write-ahead log", "wal", "backup", "restore")) pushUnique(candidates, ["timeline", "database", "artifact-passport", "trace", "lifecycle"]);
+  if (titleHas("row-level security", "rls", "política de fila")) pushUnique(candidates, ["gate", "database", "relation-loom", "assurance-rack", "trace"]);
+  if (titleHas("rack", "middleware chain", "http middleware")) pushUnique(candidates, ["request", "pipeline", "layers", "workflow", "trace"]);
+  if (titleHas("cargo audit", "cargo deny", "dependency audit", "auditoría de dependencias")) pushUnique(candidates, ["assurance-rack", "artifact-passport", "gate", "trace", "workflow"]);
+  if (titleHas("preloading", "opcache", "bytecode cache")) pushUnique(candidates, ["cache", "memory-map", "runtime-dispatch", "lifecycle", "trace"]);
+
   if (titleHas("qué es", "introducción", "fundamento", "arquitectura", "anatomía") || has("partes de", "componentes de")) pushUnique(candidates, ["anatomy", "layers", "tree", "orbit", "cards"]);
   if (titleHas("request", "response", "http", "endpoint", "petición", "respuesta", "proxy", "upstream", "webhook") || has("solicitud HTTP", "cliente y servidor")) pushUnique(candidates, ["request", "network", "pipeline", "flow", "timeline"]);
   if (titleHas("queue", "cola", "worker", "job", "mensaje", "sqs", "pub/sub", "stream") || has("consumidor", "productor")) pushUnique(candidates, ["queue", "scheduler", "pipeline", "flow", "stack"]);
@@ -163,14 +460,30 @@ export function semanticCandidates(title: string, description: string, section: 
   if (titleHas("json pointer", "json patch", "merge patch", "revision")) pushUnique(candidates, ["timeline", "state-machine", "trace", "workflow", "gate"]);
   if (titleHas("canonical", "digest", "firma", "jcs")) pushUnique(candidates, ["artifact-passport", "pipeline", "document", "assurance-rack", "trace"]);
 
-  if (candidates.length < 6) {
-    const start = stableIndex(text, allVariants.length);
-    for (let offset = 0; offset < allVariants.length && candidates.length < 8; offset += 1) {
-      pushUnique(candidates, [allVariants[(start + offset * 5) % allVariants.length] ?? "pipeline"]);
-    }
+  // Las secciones aportan una segunda señal semántica cuando el título es
+  // breve o propio de una API. Estas familias son compatibles con el
+  // mecanismo descrito; no se usan para perseguir variedad estadística.
+  if (has("programación funcional", "semántica funcional", "composición funcional", "evaluación perezosa")) pushUnique(candidates, ["pipeline", "tree", "runtime-dispatch", "flow", "compiler"]);
+  if (has("tipos", "sistema de tipos", "type system", "contratos de tipo")) pushUnique(candidates, ["compiler", "gate", "tree", "compare", "assurance-rack"]);
+  if (has("concurrencia", "paralelismo", "procesos y mensajes", "sincronización")) pushUnique(candidates, ["scheduler", "queue", "event-fabric", "state-machine", "trace"]);
+  if (has("memoria", "runtime", "internals", "compilador", "máquina virtual", "recolección")) pushUnique(candidates, ["memory-map", "runtime-dispatch", "layers", "scheduler", "trace"]);
+  if (has("pruebas", "testing", "calidad", "verificación", "seguridad")) pushUnique(candidates, ["assurance-rack", "gate", "trace", "matrix", "workflow"]);
+  if (has("rendimiento", "profiling", "observabilidad", "diagnóstico")) pushUnique(candidates, ["trace", "timeline", "matrix", "terminal", "compare"]);
+  if (has("paquetes", "módulos", "tooling", "herramientas", "build", "entrega", "producción")) pushUnique(candidates, ["artifact-passport", "layers", "workflow", "pipeline", "trace"]);
+  if (has("persistencia", "almacenamiento", "orm", "consultas", "modelo relacional", "datos")) pushUnique(candidates, ["database", "relation-loom", "pipeline", "matrix", "trace"]);
+  if (has("web", "http", "servidor", "request", "middleware")) pushUnique(candidates, ["request", "pipeline", "network", "layers", "trace"]);
+  if (has("interfaz", "componentes", "render", "layout", "experiencia")) pushUnique(candidates, ["interface-flow", "browser", "lifecycle", "flow", "cards"]);
+  if (has("distribuidos", "distribución", "cluster", "replicación", "consenso")) pushUnique(candidates, ["network", "event-fabric", "relation-loom", "timeline", "trace"]);
+
+  if (candidates.length === 0 && includeNeutralFallback) {
+    pushUnique(candidates, ["anatomy", "flow", "layers", "trace", "compare", "gate"]);
   }
 
   return candidates;
+}
+
+export function hasSemanticSceneMatch(title: string, description: string, section: string) {
+  return semanticCandidates(title, description, section, false).length > 0;
 }
 
 export function semanticVariant(title: string, description: string, section: string): SceneVariant {
@@ -185,10 +498,10 @@ function chooseBalancedVariant(
 ) {
   return [...candidates].sort((a, b) => {
     const score = (variant: SceneVariant) =>
-      (sectionCounts.get(variant) ?? 0) * 1.6 +
-      (globalCounts.get(variant) ?? 0) * .24 +
-      (recent.includes(variant) ? 3.2 : 0) +
-      candidates.indexOf(variant) * .13;
+      (sectionCounts.get(variant) ?? 0) * .45 +
+      (globalCounts.get(variant) ?? 0) * .04 +
+      (recent.includes(variant) ? 6 : 0) +
+      candidates.indexOf(variant) * 1.35;
     return score(a) - score(b);
   })[0] ?? "pipeline";
 }

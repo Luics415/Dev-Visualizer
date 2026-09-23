@@ -17,6 +17,7 @@ libraryTopics.ts (ligero)
 
 professionalLibrary.ts + libraryResources.snapshot.json (servidor/build)
   ├─ 179 recursos bibliográficos importados
+  ├─ 87 recursos complementarios para los otros 29 temas
   ├─ procedencia, formatos, niveles y licencias
   ├─ adjuntos verificables y enlaces externos
   └─ índice y 71 rutas estáticas de librería
@@ -73,8 +74,10 @@ El código comprueba:
 - capítulos y conceptos no vacíos;
 - sección y escena efectiva para cada concepto;
 - al menos dos fuentes oficiales o especificaciones para todos los conceptos;
+- al menos 60 conceptos, 12 capítulos, 14 familias visuales y explicaciones extensas en cada una de las 30 colecciones incorporadas;
 - referencias HTTPS con autoridad, tipo, versión, vigencia y fecha de verificación;
 - caso integrado con etapas y profundización;
 - 42 temas y 179 recursos procedentes del catálogo atribuido;
+- 29 temas complementarios con tres niveles y 87 recursos sin duplicados;
 - adjuntos locales con licencia, evidencia, tamaño y hash;
 - enlaces internos resueltos a una página o recurso exportado.

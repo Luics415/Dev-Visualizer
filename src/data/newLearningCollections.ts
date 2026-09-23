@@ -1,11 +1,12 @@
 import { caseStudy, chapter, defineExpandedCollection, primer, source, step } from "./expandedCollectionFactory";
+import { newLearningExtensionsFoundationsLanguages } from "./newLearningExtensionsFoundationsLanguages";
+import { newLearningExtensionsPlatformsData } from "./newLearningExtensionsPlatformsData";
+import { newLearningSourceExtensions } from "./newLearningSourceExtensions";
+import type { NewLearningExtensionRegistry } from "./newLearningExtensionTypes";
 import type { CollectionPrimer } from "./collectionPrimers";
 import type { ExpandedCollectionDefinition, IntegratedCaseStep } from "./expandedCollectionTypes";
 
-type TopicGroup = readonly [
-  section: string,
-  concepts: readonly [string, string, string, string, string],
-];
+type TopicGroup = readonly [section: string, concepts: readonly string[]];
 
 type SourceSeed = readonly [label: string, href: string];
 
@@ -27,7 +28,7 @@ type NewLearningSeed = {
   useCases: readonly [string, string, string, string];
   boundary: string;
   visual: CollectionPrimer["visual"];
-  topics: readonly [TopicGroup, TopicGroup, TopicGroup, TopicGroup, TopicGroup];
+  topics: readonly TopicGroup[];
   sources: readonly [SourceSeed, SourceSeed, ...SourceSeed[]];
   notice?: string;
   caseTitle: string;
@@ -44,9 +45,138 @@ const chapterIntent = [
   "Prepara el concepto para seguridad, rendimiento, mantenimiento y operación real",
 ] as const;
 
-function enrichConcept(name: string, title: string, chapterIndex: number) {
-  const intent = chapterIntent[chapterIndex] ?? chapterIntent[0];
-  return `${title}::${intent} en ${name}, con una entrada reconocible, una transformación interna y un resultado que pueda comprobarse.`;
+const newLearningExtensions: NewLearningExtensionRegistry = {
+  ...newLearningExtensionsFoundationsLanguages,
+  ...newLearningExtensionsPlatformsData,
+};
+
+type SeedMechanism = {
+  input: string;
+  transformation: string;
+  result: string;
+  failure: string;
+  evidence: string;
+};
+
+function seedMechanism(title: string, section: string): SeedMechanism {
+  const semanticText = `${title} ${section}`.toLocaleLowerCase("es");
+  if (/seguridad|permiso|auth|amenaza|secreto|ataque|cifrado|privacidad/.test(semanticText)) return {
+    input: "una identidad, un recurso protegido y una política explícita",
+    transformation: "evalúa confianza, privilegios y datos antes de autorizar cada efecto",
+    result: "una decisión mínima y trazable que no revela secretos",
+    failure: "una entrada manipulada cruza la frontera o eleva privilegios sin control",
+    evidence: "la denegación reproducible, el registro de auditoría y una prueba del caso abusivo",
+  };
+  if (/concurr|paralel|thread|actor|canal|channel|async|mutex|proceso/.test(semanticText)) return {
+    input: "tareas con dependencias, recursos compartidos y una señal de cancelación",
+    transformation: "ordena trabajo y sincronización sin ocultar intercalados posibles",
+    result: "progreso concurrente con ownership y terminación observables",
+    failure: "una carrera, espera circular o tarea huérfana rompe el orden esperado",
+    evidence: "una traza temporal, contadores de cola y una prueba bajo intercalado adverso",
+  };
+  if (/memoria|puntero|heap|stack|runtime|\bgc\b|\babi\b|registro|referencia|ownership/.test(semanticText)) return {
+    input: "valores con representación, dirección y tiempo de vida definidos",
+    transformation: "reserva, enlaza y libera almacenamiento siguiendo el contrato del runtime",
+    result: "estado accesible sin referencias colgantes ni corrupción",
+    failure: "se viola una precondición de tamaño, alineación, aliasing o vida útil",
+    evidence: "el layout inspeccionado, una traza del asignador y el diagnóstico del runtime",
+  };
+  if (/dato|sql|persist|archivo|schema|modelo|colección|índice|consulta|serializa/.test(semanticText)) return {
+    input: "datos identificables junto con esquema, restricciones y procedencia",
+    transformation: "valida, representa y recorre cada valor preservando relaciones",
+    result: "información consultable con integridad y significado estables",
+    failure: "un tipo, clave, orden o transición inválida degrada o pierde información",
+    evidence: "la consulta de control, las restricciones aplicadas y una comparación antes/después",
+  };
+  if (/prueba|test|calidad|verific|debug|diagn|error|excep|observ/.test(semanticText)) return {
+    input: "un comportamiento esperado, una entrada mínima y un síntoma observable",
+    transformation: "aísla variables y contrasta hipótesis con instrumentación repetible",
+    result: "una causa demostrada y una regresión protegida",
+    failure: "se confunde correlación con causa o la prueba no representa el entorno real",
+    evidence: "el caso que falla antes, pasa después y conserva logs o aserciones útiles",
+  };
+  if (/rendimiento|performance|profil|latencia|optimiza|benchmark|complejidad|costo/.test(semanticText)) return {
+    input: "un workload representativo, un presupuesto y una línea base",
+    transformation: "mide la ruta crítica y cambia una variable por vez",
+    result: "una mejora cuantificada sin intercambiar corrección por velocidad",
+    failure: "el benchmark calienta cachés, sesga datos o optimiza una carga irrelevante",
+    evidence: "distribuciones de latencia, consumo de recursos y comparación reproducible",
+  };
+  if (/red|http|api|protocolo|socket|distribu|mensaje|webhook|consenso/.test(semanticText)) return {
+    input: "un mensaje versionado, un destino y límites de tiempo",
+    transformation: "serializa, transporta y valida el intercambio a través de una frontera remota",
+    result: "una respuesta correlacionada o un estado convergente verificable",
+    failure: "timeout, duplicación, partición o incompatibilidad deja un efecto ambiguo",
+    evidence: "IDs de correlación, trazas de ambos extremos y una prueba de reintento seguro",
+  };
+  if (/tipo|sintaxis|gramática|parser|compila|macro|expresión|operador|función/.test(semanticText)) return {
+    input: "texto fuente, contexto léxico y reglas del lenguaje",
+    transformation: "reconoce estructura, comprueba contratos y produce una representación ejecutable",
+    result: "significado bien formado con errores localizados",
+    failure: "una ambigüedad o supuesto de tipos cambia la interpretación esperada",
+    evidence: "el árbol o tipo inferido, el diagnóstico exacto y un ejemplo mínimo compilable",
+  };
+  if (/build|paquete|módulo|dependenc|deploy|entrega|publica|versión/.test(semanticText)) return {
+    input: "fuentes versionadas, dependencias fijadas y configuración declarativa",
+    transformation: "resuelve, construye y empaqueta el artefacto de forma repetible",
+    result: "una unidad identificable que puede verificarse antes de promoverse",
+    failure: "el entorno introduce una dependencia implícita o un artefacto no reproducible",
+    evidence: "el lockfile, el hash del artefacto y una reconstrucción limpia equivalente",
+  };
+  if (/algorit|búsqueda|orden|grafo|árbol|matem|probabil|gradiente|matriz/.test(semanticText)) return {
+    input: "una instancia acotada, sus invariantes y una medida de costo",
+    transformation: "explora estados manteniendo la propiedad que garantiza corrección",
+    result: "una solución acompañada de complejidad y límites conocidos",
+    failure: "un caso límite invalida la invariante o hace crecer tiempo y memoria",
+    evidence: "la traza paso a paso, un contraejemplo y mediciones con tamaños crecientes",
+  };
+  if (/evento|interfaz|vista|render|usuario|sprite|lifecycle|estado/.test(semanticText)) return {
+    input: "un evento, el estado previo y una intención observable",
+    transformation: "aplica una transición y deriva la representación sin perder contexto",
+    result: "estado e interfaz sincronizados con respuesta comprensible",
+    failure: "un evento tardío o una transición imposible deja la vista inconsistente",
+    evidence: "la secuencia de eventos, el estado resultante y una prueba de interacción",
+  };
+  return {
+    input: "un ejemplo mínimo, sus precondiciones y el estado inicial",
+    transformation: "aplica el mecanismo paso a paso haciendo visibles sus invariantes",
+    result: "un efecto observable que puede explicarse y repetir otra persona",
+    failure: "una precondición ausente conduce a un resultado incompleto o engañoso",
+    evidence: "la traza de ejecución, el caso límite y una comprobación independiente",
+  };
+}
+
+function seedNarrative(
+  name: string,
+  title: string,
+  section: string,
+  intent: string,
+  conceptIndex: number,
+) {
+  const mechanism = seedMechanism(title, section);
+  const narratives = [
+    `Parte de ${mechanism.input}. ${title} ${mechanism.transformation}; produce ${mechanism.result}. El caso deja de ser válido cuando ${mechanism.failure}. Se comprueba con ${mechanism.evidence}.`,
+    `Para estudiar ${title}, primero se delimita ${mechanism.input}. La operación central ${mechanism.transformation} hasta obtener ${mechanism.result}. El diagnóstico busca cuándo ${mechanism.failure}; la confirmación exige ${mechanism.evidence}.`,
+    `${title} se entiende siguiendo el estado desde ${mechanism.input}: el sistema ${mechanism.transformation} y entrega ${mechanism.result}. Su límite aparece si ${mechanism.failure}. La explicación se cierra con ${mechanism.evidence}.`,
+    `El contrato de ${title} recibe ${mechanism.input} y ${mechanism.transformation}. La salida útil es ${mechanism.result}, no solo que el proceso termine. Se fuerza el fallo donde ${mechanism.failure} y se conserva ${mechanism.evidence}.`,
+    `En una ejecución de ${title}, ${mechanism.input} entra al mecanismo que ${mechanism.transformation}. Así emerge ${mechanism.result}. Si ${mechanism.failure}, la escena muestra la ruptura y vuelve a un estado seguro; ${mechanism.evidence} permite verificarlo.`,
+    `La pregunta operativa de ${title} comienza con ${mechanism.input}. Para responderla, el sistema ${mechanism.transformation}, de modo que queda ${mechanism.result}. Se contrasta el camino nominal con el escenario en que ${mechanism.failure}, usando ${mechanism.evidence}.`,
+    `${title} conecta una decisión visible con su interior: toma ${mechanism.input}, luego ${mechanism.transformation} y finalmente expone ${mechanism.result}. La recuperación se activa cuando ${mechanism.failure}; su validez se demuestra mediante ${mechanism.evidence}.`,
+    `El recorrido visual de ${title} fija ${mechanism.input} como punto de partida. Después ${mechanism.transformation}, manteniendo el contrato hasta lograr ${mechanism.result}. Un caso adverso demuestra que ${mechanism.failure}; ${mechanism.evidence} separa una corrección real de una coincidencia.`,
+  ] as const;
+  const narrative = narratives[(conceptIndex + section.length) % narratives.length] ?? narratives[0];
+  return `${narrative} En ${section} de ${name}, este recorrido ${intent.toLocaleLowerCase("es")}.`;
+}
+
+function enrichConcept(name: string, concept: string, chapterIndex: number, section: string, conceptIndex: number) {
+  const intent = chapterIntent[chapterIndex % chapterIntent.length] ?? chapterIntent[0];
+  if (concept.includes("::")) {
+    const [title, ...descriptionParts] = concept.split("::");
+    const description = descriptionParts.join("::").trim();
+    if (description.length >= 80) return `${title}::${description}`;
+    return `${title}::${description}${description ? " " : ""}${seedNarrative(name, title, section, intent, conceptIndex)}`;
+  }
+  return `${concept}::${seedNarrative(name, concept, section, intent, conceptIndex)}`;
 }
 
 function buildCaseSteps(seed: NewLearningSeed): readonly IntegratedCaseStep[] {
@@ -71,6 +201,10 @@ function buildCaseSteps(seed: NewLearningSeed): readonly IntegratedCaseStep[] {
 }
 
 function buildCollection(seed: NewLearningSeed): ExpandedCollectionDefinition {
+  const topics = [
+    ...seed.topics.map(([section, concepts]) => ({ section, concepts })),
+    ...(newLearningExtensions[seed.id] ?? []),
+  ];
   return defineExpandedCollection({
     id: seed.id,
     eyebrow: seed.eyebrow,
@@ -79,10 +213,13 @@ function buildCollection(seed: NewLearningSeed): ExpandedCollectionDefinition {
     counterLabel: `conceptos de ${seed.name}`,
     footer: `${seed.name} se vuelve comprensible cuando cada abstracción se conecta con su mecanismo, sus límites y una evidencia operativa.`,
     primer: primer(seed.name, seed.description, seed.purpose, seed.mentalModel, seed.useCases, seed.boundary, seed.visual),
-    chapters: seed.topics.map(([section, concepts], chapterIndex) =>
-      chapter(section, ...concepts.map((title) => enrichConcept(seed.name, title, chapterIndex))),
+    chapters: topics.map(({ section, concepts }, chapterIndex) =>
+      chapter(section, ...concepts.map((concept, conceptIndex) => enrichConcept(seed.name, concept, chapterIndex, section, conceptIndex))),
     ),
-    sources: seed.sources.map(([label, href]) => source(label, href)),
+    sources: [
+      ...seed.sources.map(([label, href]) => source(label, href)),
+      ...(newLearningSourceExtensions[seed.id] ?? []),
+    ].filter((entry, index, entries) => entries.findIndex((candidate) => candidate.href === entry.href) === index),
     notice: seed.notice,
     caseStudy: caseStudy(seed.caseTitle, `Caso integrado de ${seed.name}`, seed.caseDescription, seed.caseFooter, buildCaseSteps(seed)),
   });

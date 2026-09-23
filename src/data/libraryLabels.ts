@@ -18,7 +18,7 @@ export const libraryResourceLevelLabels: Record<LibraryResourceLevel, string> = 
   beginner: "Principiante",
   intermediate: "Intermedio",
   advanced: "Avanzado",
-  general: "Todos los niveles",
+  general: "Referencia general",
 };
 
 export const libraryPreservationLabels: Record<LibraryPreservationStatus, string> = {

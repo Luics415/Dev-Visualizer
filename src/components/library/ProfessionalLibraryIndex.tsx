@@ -33,7 +33,8 @@ export function ProfessionalLibraryIndex({ entries }: { entries: readonly Librar
       const matchesLevel = level === "all" || entry.levels.includes(level as never);
       const matchesProvenance = provenance === "all"
         || (provenance === "official" && entry.officialCount > 0)
-        || (provenance === "midudev" && entry.importedCount > 0);
+        || (provenance === "midudev" && entry.importedCount > 0)
+        || (provenance === "curated" && entry.supplementalCount > 0);
       const matchesAvailability = availability === "all"
         || (availability === "local" && entry.preservationStatuses.includes("local-redistributable"))
         || (availability === "external" && entry.preservationStatuses.some((status) => status === "official-external" || status === "external-preserved"))
@@ -85,6 +86,7 @@ export function ProfessionalLibraryIndex({ entries }: { entries: readonly Librar
             <option value="all">Todas las procedencias</option>
             <option value="official">Proyecto u organismo oficial</option>
             <option value="midudev">Catálogo atribuido a midudev</option>
+            <option value="curated">Curaduría complementaria de Dev Visualizer</option>
           </select>
         </label>
         <label>

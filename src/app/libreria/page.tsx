@@ -7,6 +7,7 @@ import {
   libraryTopicCount,
   sourceResourceCount,
   sourceTopicCount,
+  supplementalResourceCount,
   totalLibraryResourceCount,
 } from "@/data/professionalLibrary";
 import styles from "./library.module.css";
@@ -27,10 +28,11 @@ export default function ProfessionalLibraryPage() {
           <h1>Librería profesional</h1>
           <p>Cada colección reúne sus fuentes oficiales, especificaciones y recursos de aprendizaje. El catálogo diferencia claramente una referencia normativa de un libro comunitario y registra cómo se preserva cada enlace.</p>
         </div>
-        <div className={styles.heroStats} aria-label="Cifras de la Librería profesional">
+        <div className={styles.heroStats} role="group" aria-label="Cifras de la Librería profesional">
           <div><strong>{libraryTopicCount}</strong><span>bibliotecas temáticas</span></div>
-          <div><strong>{totalLibraryResourceCount}</strong><span>recursos catalogados</span></div>
+          <div><strong>{totalLibraryResourceCount}</strong><span>recursos únicos catalogados</span></div>
           <div><strong>{sourceResourceCount}</strong><span>recursos de {sourceTopicCount} temas atribuidos a midudev</span></div>
+          <div><strong>{supplementalResourceCount}</strong><span>recursos de curaduría complementaria</span></div>
         </div>
       </header>
 

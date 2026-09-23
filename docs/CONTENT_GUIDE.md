@@ -29,6 +29,10 @@ Cada concepto incluye:
 - una escena que represente el mecanismo, no movimiento decorativo;
 - al menos dos fuentes oficiales o especificaciones visibles y asociadas directamente al concepto.
 
+En las colecciones ampliadas, la profundidad se decide por cobertura y no por una cifra uniforme. Cada una debe superar el umbral técnico de 60 conceptos, 12 capítulos y 14 familias visuales, pero esos mínimos no son una meta editorial. Los títulos no se duplican, una misma composición no se repite más de dos veces seguidas y una plantilla descriptiva no puede dominar un capítulo. Cada explicación debe identificar el mecanismo particular del concepto: qué recibe, qué transforma, qué produce, cómo falla y qué evidencia permite verificarlo.
+
+Las fuentes tampoco se reparten por posición. Cada capítulo declara explícitamente una pareja de fuentes primarias y las reglas más específicas por título o sección tienen prioridad. Un capítulo nuevo sin cobertura registrada se considera un error de catálogo; nunca hereda referencias generales de forma silenciosa.
+
 ## Caso En acción
 
 Cada caso cuenta una historia propia. Debe mostrar:
@@ -55,6 +59,8 @@ Un adjunto local requiere licencia de redistribución o autorización verificabl
 Tecnologías heredadas o históricas llevan un aviso visible con contexto, límites y alternativas actuales. Para tecnologías activas se registra la versión estable o LTS vigente al cerrar su fase y se enlazan fuentes primarias.
 
 Cada referencia declara autoridad, tipo —estándar, especificación, documentación o manual—, versión o vigencia, estado y fecha de verificación. Una fuente comunitaria puede ampliar la explicación, pero nunca es el único respaldo. Las referencias archivadas se identifican como históricas y no se presentan como recomendación vigente.
+
+El **Catálogo de referencia** conserva sin alteraciones sus 42 temas y 179 fichas atribuidas. Las bibliotecas que no pertenecen a ese origen se identifican aparte como **Curaduría complementaria · Dev Visualizer** y deben cubrir, como mínimo, un recurso para comenzar, uno intermedio y uno avanzado, sin duplicar las URL oficiales ni las del catálogo importado.
 
 ## Originalidad
 

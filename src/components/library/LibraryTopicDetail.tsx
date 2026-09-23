@@ -10,6 +10,7 @@ import {
   importedResourcesForTopic,
   librarySourceSnapshot,
   officialLibraryResourcesForTopic,
+  supplementalResourcesForTopic,
 } from "@/data/professionalLibrary";
 import type { LibraryResource, LibraryTopic } from "@/data/libraryTypes";
 import styles from "@/app/libreria/library.module.css";
@@ -22,7 +23,7 @@ function ResourceCard({ resource }: { resource: LibraryResource }) {
         <span>{libraryResourceLevelLabels[resource.level]}</span>
       </header>
       <h3>{resource.title}</h3>
-      {resource.author ? <p className={styles.author}>{resource.author}</p> : null}
+      <p className={styles.author}>{resource.author ?? resource.authority ?? "Autor no informado por el catálogo fuente"}</p>
       {resource.note ? <p>{resource.note}</p> : null}
       <div className={styles.formatList} aria-label="Formatos disponibles">
         {resource.formats.map((format) => <span key={format}>{format}</span>)}
@@ -48,8 +49,15 @@ export function LibraryTopicDetail({ topic }: { topic: LibraryTopic }) {
   const collectionHref = collection?.href ?? `/${topic.collectionId}`;
   const officialResources = officialLibraryResourcesForTopic(topic);
   const importedResources = importedResourcesForTopic(topic.slug);
-  const beginnerResources = importedResources.filter((resource) => resource.level === "beginner");
-  const continuingResources = importedResources.filter((resource) => resource.level !== "beginner");
+  const supplementalResources = supplementalResourcesForTopic(topic.slug);
+  const officialUrls = new Set(officialResources.map((resource) => resource.primaryUrl));
+  const learningResources = [...new Map(
+    [...importedResources, ...supplementalResources]
+      .filter((resource) => !officialUrls.has(resource.primaryUrl))
+      .map((resource) => [resource.primaryUrl, resource]),
+  ).values()];
+  const beginnerResources = learningResources.filter((resource) => resource.level === "beginner");
+  const continuingResources = learningResources.filter((resource) => resource.level !== "beginner");
 
   return (
     <>
@@ -63,8 +71,8 @@ export function LibraryTopicDetail({ topic }: { topic: LibraryTopic }) {
             <Link href="/libreria">Explorar toda la librería</Link>
           </div>
         </div>
-        <div className={styles.topicCounter} aria-label={`${officialResources.length + importedResources.length} recursos catalogados`}>
-          <strong>{officialResources.length + importedResources.length}</strong>
+        <div className={styles.topicCounter} aria-label={`${officialResources.length + learningResources.length} recursos catalogados`}>
+          <strong>{officialResources.length + learningResources.length}</strong>
           <span>recursos catalogados</span>
           <small>{officialResources.length} fuentes oficiales o primarias</small>
         </div>
@@ -88,7 +96,7 @@ export function LibraryTopicDetail({ topic }: { topic: LibraryTopic }) {
       </section>
 
       <section className={styles.resourceSection} aria-labelledby="professional-library-resources">
-        <header><span>Catálogo curado</span><h2 id="professional-library-resources">Recursos para continuar y profundizar</h2><p>{continuingResources.length > 0 ? "Libros, cursos y referencias complementarias en español." : "Esta colección aún no tiene un libro adicional en el catálogo importado; su documentación oficial ya está disponible arriba."}</p></header>
+        <header><span>Catálogo curado</span><h2 id="professional-library-resources">Recursos para continuar y profundizar</h2><p>{continuingResources.length > 0 ? "Libros, cursos y referencias complementarias en español y otros idiomas." : "Esta colección aún no tiene un libro adicional en el catálogo importado; su documentación oficial ya está disponible arriba."}</p></header>
         {continuingResources.length > 0 ? <div className={styles.resourceGrid}>{continuingResources.map((resource) => <ResourceCard resource={resource} key={resource.id} />)}</div> : null}
       </section>
 
@@ -97,6 +105,14 @@ export function LibraryTopicDetail({ topic }: { topic: LibraryTopic }) {
           <div><span>Procedencia del catálogo</span><strong>{librarySourceSnapshot.name}</strong></div>
           <p>Metadatos revisados y adaptados al sistema editorial de Dev Visualizer. No se reutilizan su código, iconografía, textos de interfaz ni diseño.</p>
           <a href={librarySourceSnapshot.repositoryUrl} target="_blank" rel="noopener noreferrer">Ver repositorio de origen <span aria-hidden="true">↗</span></a>
+        </aside>
+      ) : null}
+
+      {supplementalResources.length > 0 ? (
+        <aside className={styles.attribution}>
+          <div><span>Curaduría complementaria</span><strong>Dev Visualizer</strong></div>
+          <p>Esta biblioteca no formaba parte de los 42 temas del catálogo de referencia. Se añadieron recursos de nivel principiante, intermedio y avanzado, conservando autoría, procedencia y consulta externa.</p>
+          <Link href="/acerca">Política editorial <span aria-hidden="true">→</span></Link>
         </aside>
       ) : null}
     </>

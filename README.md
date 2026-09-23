@@ -2,7 +2,7 @@
 
 Atlas visual animado para aprender desarrollo de software desde los fundamentos hasta producción.
 
-**71 colecciones · 142 rutas canónicas · 4,447 conceptos · 71 casos integrados · 71 bibliotecas**
+**71 colecciones · 142 rutas canónicas · 6,881 conceptos · 71 casos integrados · 71 bibliotecas**
 
 <p align="center">
   <a href="https://luics415.github.io/Dev-Visualizer/"><strong>Abrir Dev Visualizer</strong></a>
@@ -52,7 +52,7 @@ Las capturas documentan una compilación real del proyecto y forman parte del co
 
 - **Causalidad antes que decoración.** El movimiento representa datos, memoria, mensajes, control, ownership o evidencia.
 - **Dos niveles por tecnología.** La colección explica conceptos; **En acción** conecta un caso técnico completo sin repetir la bibliografía de estudio.
-- **Fuente primaria por concepto.** Los 4,447 conceptos resuelven al menos dos referencias oficiales o especificaciones visibles.
+- **Fuente primaria por concepto.** Los 6,881 conceptos resuelven al menos dos referencias oficiales o especificaciones visibles.
 - **Tres destinos por tecnología.** Colección visual, caso **En acción** y Librería profesional permanecen separados y conectados.
 - **Escenas que no terminan apagadas.** Los loops conservan un estado base legible, regresan semánticamente al inicio y se pausan fuera del viewport.
 - **Accesibilidad como contrato.** Teclado, foco visible, estados no dependientes solo del color, vista estática para movimiento reducido y overflow local en escenas extensas.
@@ -95,11 +95,26 @@ Las antiguas URLs `/git-github*`, `/apis-rest*` y `/xml-xsd-json*` se conservan 
 
 Python incluye documentación oficial para personas principiantes y avanza de forma progresiva. MediaPipe usa Python en su caso práctico, pero mantiene currículo, fuentes, ruta y escena propios. Del mismo modo, XML define documentos, XSD define schemas XML y JSON define una sintaxis de valores; una colección no sustituye a las otras.
 
+Las 30 colecciones incorporadas en la expansión de la Librería profesional ya no siguen una cuota fija: reúnen **3,184 conceptos en 13–20 capítulos por colección**, con entre 76 y 130 conceptos según la amplitud real de cada tecnología. Sus capítulos tienen profundidades distintas, explicaciones extensas, fuentes primarias resueltas por tema y selección visual semántica.
+
+| Colección | Conceptos | Colección | Conceptos | Colección | Conceptos |
+|---|---:|---|---:|---|---:|
+| Fundamentos de programación | 91 | Algoritmos y estructuras de datos | 120 | Matemáticas | 105 |
+| Metodologías | 88 | Scratch | 76 | Ruby | 93 |
+| Rust | 113 | PHP | 99 | Haskell | 112 |
+| Go | 103 | Kotlin | 105 | Java | 115 |
+| R | 117 | Ensamblador | 103 | Erlang | 94 |
+| Lisp | 98 | Perl | 86 | Raku | 88 |
+| Scala | 109 | Blockchain | 109 | Android | 130 |
+| Qwik | 88 | Angular | 130 | Django | 123 |
+| SQL | 130 | NoSQL | 123 | Sistemas operativos | 130 |
+| Inteligencia Artificial | 130 | LaTeX | 95 | Subversion | 81 |
+
 ## Librería profesional
 
 La Librería profesional ofrece un índice accesible y una ruta estática por colección. Cada tema separa documentación oficial y especificaciones de libros, cursos y referencias comunitarias. La invitación aparece después de la ruta de estudio y antes del capítulo 1; las animaciones y páginas **En acción** no contienen fichas bibliográficas.
 
-El catálogo inicial acredita a [midudev/libros-programacion-gratis](https://github.com/midudev/libros-programacion-gratis) y [librosgratis.dev](https://librosgratis.dev/) como fuente de descubrimiento de **179 recursos en 42 temas**. Dev Visualizer añade bibliotecas para las 29 colecciones restantes, usa textos y diseño propios y conserva la autoría de cada recurso.
+El **Catálogo de referencia** acredita a [midudev/libros-programacion-gratis](https://github.com/midudev/libros-programacion-gratis) y [librosgratis.dev](https://librosgratis.dev/) como fuente de descubrimiento de **179 recursos en 42 temas**. Dev Visualizer conserva ese bloque y añade una curaduría independiente de **87 recursos en los 29 temas restantes**, con niveles principiante, intermedio y avanzado, textos y diseño propios y autoría visible en cada ficha.
 
 Los adjuntos siguen una política híbrida: solo se aloja localmente un archivo con licencia o autorización de redistribución verificable. Los demás aparecen como enlaces externos con procedencia y estado de preservación. Un workflow mensual produce un informe no bloqueante de disponibilidad.
 
@@ -121,16 +136,20 @@ src/data/libraryTopics.ts
   └─ identidad ligera y relación obligatoria de las 71 bibliotecas
 
 src/data/professionalLibrary.ts + libraryResources.snapshot.json
-  └─ 179 recursos importados, fuentes oficiales, procedencia y licencias
+  ├─ 179 recursos importados del Catálogo de referencia
+  └─ 87 recursos complementarios, fuentes oficiales, procedencia y licencias
 
 src/data/expandedCollections.ts
   └─ registro de primers, capítulos, conceptos y casos ampliados
 
 src/data/officialReferences.ts
-  └─ autoridades, versiones y resolución de referencias por concepto
+  └─ autoridades, versiones y resolución explícita de referencias por concepto
+
+src/data/newLearningSourceCoverage.ts
+  └─ cobertura temática verificable, sin reparto posicional ni fallback silencioso
 
 src/data/catalogValidation.ts
-  └─ invariantes de 71 colecciones y 4,447 conceptos
+  └─ invariantes de 71 colecciones y 6,881 conceptos
 
 src/app/[slug]/page.tsx
   └─ 112 rutas expandidas generadas con parámetros cerrados
@@ -175,9 +194,9 @@ npm run check
 | Control | Resultado esperado |
 |---|---|
 | Catálogo | 71/71 colecciones y 71/71 bibliotecas; IDs, rutas y slugs únicos |
-| Currículo | 4,447/4,447 conceptos con capítulo y escena efectiva |
-| Fuentes | 4,447/4,447 conceptos con al menos dos referencias primarias |
-| Recursos | 179/179 fichas atribuidas en 42 temas de origen |
+| Currículo | 6,881/6,881 conceptos con capítulo, explicación y escena efectiva |
+| Fuentes | 6,881/6,881 conceptos con al menos dos referencias primarias |
+| Recursos | 179/179 fichas atribuidas en 42 temas de origen + 87/87 fichas curadas para los otros 29 temas |
 | Casos | 71/71 pares colección / En acción con profundización |
 | Exportación | 225 páginas estáticas y cero enlaces internos rotos |
 | Responsive | Sin overflow global; escenas anchas usan scroll local |

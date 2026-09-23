@@ -5,7 +5,7 @@
 El repositorio incluye `.github/workflows/deploy-pages.yml`. Cada cambio se integra mediante pull request y, una vez fusionado en `main`, el workflow:
 
 1. instala las dependencias reproducibles;
-2. valida los 42 temas y 179 recursos de la instantánea bibliográfica;
+2. valida los 42 temas y 179 recursos del Catálogo de referencia y los 87 recursos complementarios de los otros 29 temas;
 3. ejecuta la compilación de Next.js;
 4. genera las 225 páginas estáticas en `out/`;
 5. comprueba los enlaces internos;
