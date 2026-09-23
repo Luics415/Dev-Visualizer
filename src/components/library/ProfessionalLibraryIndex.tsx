@@ -67,16 +67,14 @@ export function ProfessionalLibraryIndex({ entries }: { entries: readonly Librar
                 <path d="m21 21-4.35-4.35" />
               </svg>
             </span>
-            <label className={styles.searchLabel}>
-              <span className="sr-only">Buscar tema, libro, autor o tecnología</span>
-              <input
-                type="search"
-                value={query}
-                onChange={(event) => setQuery(event.target.value)}
-                placeholder="Buscar tema, libro, autor o tecnología (ej. Python, Linux, Algoritmos, Rust…)"
-                className={styles.searchInput}
-              />
-            </label>
+            <input
+              type="search"
+              value={query}
+              onChange={(event) => setQuery(event.target.value)}
+              placeholder="Buscar tema, libro, autor o tecnología…"
+              className={styles.searchInput}
+              aria-label="Buscar tema, libro, autor o tecnología"
+            />
             {query ? (
               <button
                 type="button"

@@ -106,36 +106,38 @@
   display: flex;
   align-items: center;
   flex: 1 1 340px;
-  min-width: 260px;
+  min-width: 0;
+  width: 100%;
 }
 
 .searchIcon {
   position: absolute;
-  left: 16px;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
   align-items: center;
   justify-content: center;
   color: var(--cyan);
   opacity: 0.85;
   pointer-events: none;
-  z-index: 1;
-}
-
-.searchLabel {
-  width: 100%;
-  margin: 0;
+  z-index: 2;
+  width: 18px;
+  height: 18px;
 }
 
 .searchInput {
   width: 100%;
+  height: 46px;
   min-height: 46px;
-  padding: 0 42px 0 46px;
+  padding: 0 42px 0 44px;
   border: 1px solid rgba(121, 145, 180, 0.28);
   border-radius: 12px;
   outline: none;
   background: #060a13;
   color: var(--text);
   font-size: 0.92rem;
+  line-height: normal;
   transition: border-color 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
 }
 
@@ -153,6 +155,8 @@
 .clearQueryButton {
   position: absolute;
   right: 12px;
+  top: 50%;
+  transform: translateY(-50%);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -165,6 +169,7 @@
   color: var(--muted);
   font-size: 0.75rem;
   cursor: pointer;
+  z-index: 2;
   transition: background 0.2s ease, color 0.2s ease;
 }
 
@@ -468,14 +473,98 @@
 
 @media (max-width: 760px) {
   .hero,
-  .topicHero { grid-template-columns: 1fr; padding: 28px 22px; border-radius: 20px; }
-  .heroStats { grid-template-columns: repeat(2, 1fr); }
+  .topicHero { grid-template-columns: 1fr; padding: 24px 18px; border-radius: 18px; }
+  .heroStats { grid-template-columns: repeat(2, 1fr); gap: 8px; }
   .heroStats div { padding: 12px 9px; }
-  .controls { padding: 16px; gap: 14px; border-radius: 16px; }
-  .searchHeader { flex-direction: column; align-items: stretch; gap: 12px; }
-  .searchFieldWrapper { min-width: 100%; }
-  .searchActions { justify-content: space-between; width: 100%; margin-left: 0; }
-  .filtersBar { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+
+  .controls {
+    padding: 14px 12px;
+    gap: 12px;
+    margin: 18px 0 20px;
+    border-radius: 16px;
+  }
+
+  .searchHeader {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .searchFieldWrapper {
+    width: 100%;
+    min-width: 100%;
+  }
+
+  .searchInput {
+    height: 44px;
+    min-height: 44px;
+    font-size: 0.88rem;
+    padding: 0 38px 0 38px;
+  }
+
+  .searchIcon {
+    left: 12px;
+    width: 16px;
+    height: 16px;
+  }
+
+  .searchActions {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    margin-left: 0;
+    gap: 8px;
+  }
+
+  .resultBadge {
+    padding: 6px 11px;
+    border-radius: 10px;
+    gap: 5px;
+  }
+
+  .resultNumber {
+    font-size: 1.12rem;
+  }
+
+  .resultLabel {
+    font-size: 0.68rem;
+  }
+
+  .resetButton {
+    min-height: 36px;
+    padding: 0 11px;
+    font-size: 0.75rem;
+  }
+
+  .filtersBar {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 10px 8px;
+    padding-top: 12px;
+  }
+
+  .filterItem:last-child {
+    grid-column: 1 / -1;
+  }
+
+  .filterTitle {
+    font-size: 0.67rem;
+    margin-bottom: 2px;
+  }
+
+  .selectWrapper select {
+    min-height: 38px;
+    height: 38px;
+    font-size: 0.8rem;
+    padding: 0 24px 0 9px;
+    border-radius: 9px;
+  }
+
+  .selectWrapper::after {
+    right: 9px;
+  }
+
   .topicGrid,
   .resourceGrid { grid-template-columns: 1fr; }
   .preservationNotice,
@@ -485,7 +574,6 @@
 
 @media (max-width: 460px) {
   .heroStats { grid-template-columns: 1fr; }
-  .filtersBar { grid-template-columns: 1fr; }
   .topicCard { min-height: 0; }
   .resourceMeta div { grid-template-columns: 1fr; gap: 3px; }
 }
