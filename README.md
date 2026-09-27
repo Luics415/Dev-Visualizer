@@ -44,6 +44,16 @@ Dev Visualizer transforma mecanismos técnicos en escenas autónomas: cada conce
       <br /><sub>MediaPipe En acción con desplazamiento local.</sub>
     </td>
   </tr>
+  <tr>
+    <td width="66%">
+      <img src="docs/assets/screenshots/deployment-collection.webp" alt="Colección de Deployment visualizado con navegación por capítulos y conceptos" />
+      <br /><sub>Ruta de estudio canónica: navegación de capítulos y conceptos por tecnología.</sub>
+    </td>
+    <td width="34%">
+      <img src="docs/assets/screenshots/chapter-navigation.webp" alt="Detalle de navegación de capítulos y métricas de conceptos" />
+      <br /><sub>Estructura modular de capítulos y conteo de conceptos.</sub>
+    </td>
+  </tr>
 </table>
 
 Las capturas documentan una compilación real del proyecto y forman parte del contenido original licenciado bajo [CC BY-NC-SA 4.0](LICENSE-CONTENT.md).
