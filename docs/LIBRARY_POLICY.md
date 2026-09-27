@@ -38,3 +38,23 @@ Un mismo archivo recibe un ID estable y no se duplica cuando sirve a varias cole
 ## Disponibilidad externa
 
 Los recursos sin permiso local se presentan como enlaces externos, nunca como propiedad de Dev Visualizer. El layout permanece útil si un enlace falla y muestra el estado editorial real. La auditoría mensual revisa HTTP, redirecciones y disponibilidad, genera un informe no bloqueante y deja la decisión de sustitución a una revisión humana.
+
+## Seguridad y privacidad en enlaces salientes
+
+- **Protección del usuario**: Todos los hipervínculos que dirigen a sitios de terceros aplican de manera invariable `rel="noopener noreferrer"` y se benefician de la política global `referrer: strict-origin-when-cross-origin`. Esto previene ataques de *reverse tabnabbing* e impide transmitir la ruta exacta de navegación como referrer a dominios externos.
+- **Minimización de telemetría**: La Librería profesional no utiliza enlaces acortados comerciales, intermediarios de rastreo ni parámetros UTM de vigilancia conductual.
+
+## Neutralidad pedagógica y ausencia de fines comerciales
+
+- **Sin enlaces de afiliados**: Ningún recurso listado incluye enlaces de monetización, comisiones por referido o acuerdos comerciales con autores o editoriales.
+- **Cero reseñas ficticias o afirmaciones infundadas**: Los niveles didácticos (principiante, intermedio, avanzado) y resúmenes descriptivos se asignan con base en criterios pedagógicos objetivos y revisión directa del índice temático de cada obra.
+
+## Procedimiento de notificación y retirada de derechos de autor (Notice and Takedown)
+
+Dev Visualizer respeta escrupulosamente los derechos de propiedad intelectual conforme a la Ley Federal del Derecho de Autor (LFDA - México), la DMCA (17 U.S.C. § 512) y los convenios internacionales pertinentes (Convenio de Berna).
+
+Si cualquier titular de derechos de autor o su representante debidamente autorizado considera que un enlace o referencia bibliográfica vulnera sus derechos o no desea que su obra sea citada en el catálogo educativo:
+
+1. Puede enviar una solicitud formal mediante un *Issue* en el repositorio oficial de GitHub ([github.com/Luics415/Dev-Visualizer](https://github.com/Luics415/Dev-Visualizer)) o mediante el canal de seguridad indicado en `SECURITY.md`.
+2. La solicitud debe identificar el recurso específico (ID o URL) y aportar evidencia sumaria de la titularidad o representación.
+3. El equipo de mantenimiento procederá a la desindexación o retiro cautelar del recurso de forma inmediata en el siguiente despliegue continuo.
