@@ -14,6 +14,20 @@
   --red: #ff6f86;
   --violet: #9c83ff;
   --mono: "SFMono-Regular", Consolas, "Liberation Mono", monospace;
+
+  /* ── Design system tokens (P9) ── */
+  --radius-sm:  8px;
+  --radius-md: 13px;
+  --radius-lg: 18px;
+  --radius-xl: 24px;
+
+  --t-fast: 0.14s ease;
+  --t-base: 0.22s ease;
+  --t-slow: 0.38s cubic-bezier(0.4, 0, 0.2, 1);
+
+  --shadow-card:  0 8px 28px rgba(0, 0, 0, 0.24);
+  --shadow-float: 0 18px 48px rgba(0, 0, 0, 0.32);
+  --shadow-glow:  0 0 0 1px color-mix(in srgb, var(--collection-accent, var(--cyan)) 18%, transparent);
 }
 
 * { box-sizing: border-box; }
@@ -85,11 +99,21 @@ button, input, textarea, select { font: inherit; }
 .collection-nav__short { display: none; }
 
 .hero {
-  display: flex;
-  align-items: flex-end;
-  justify-content: space-between;
-  gap: 36px;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-rows: auto auto;
+  align-items: start;
+  gap: 18px 36px;
   margin-bottom: 36px;
+}
+/* Text content spans both rows on the left */
+.hero > div:first-child {
+  grid-row: 1 / 3;
+}
+/* Counter anchored top-right */
+.hero__counter {
+  align-self: start;
+  margin-top: 4px;
 }
 .eyebrow {
   display: inline-flex;
@@ -179,22 +203,25 @@ button, input, textarea, select { font: inherit; }
 }
 .concept-card h2 span {
   display: grid;
-  min-width: 25px;
-  height: 22px;
+  min-width: 28px;
+  height: 24px;
   place-items: center;
-  border-radius: 7px;
+  border-radius: var(--radius-sm);
   background: color-mix(in srgb, var(--card-accent) 18%, transparent);
   color: var(--card-accent);
   font-family: var(--mono);
-  font-size: .62rem;
+  font-size: .66rem;
+  font-weight: 800;
 }
 .concept-card__family {
-  color: #687892;
+  color: color-mix(in srgb, var(--card-accent) 60%, #687892);
   font-family: var(--mono);
-  font-size: .54rem;
-  letter-spacing: .05em;
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .04em;
   text-transform: uppercase;
   white-space: nowrap;
+  opacity: 0.85;
 }
 .concept-card__stage {
   position: relative;
@@ -673,8 +700,9 @@ button, input, textarea, select { font: inherit; }
   .collection-nav__long { display: none; }
   .collection-nav__short { display: inline; }
   .collection-nav__link { padding: 9px 12px; }
-  .hero { align-items: flex-start; flex-direction: column; gap: 20px; }
-  .hero__counter { text-align: left; }
+  .hero { grid-template-columns: 1fr; grid-template-rows: auto; gap: 16px; }
+  .hero > div:first-child { grid-row: auto; }
+  .hero__counter { text-align: left; display: flex; align-items: center; gap: 14px; padding: 12px 16px; margin-top: 0; }
   .concept-grid, .practical-story__grid { grid-template-columns: 1fr; }
   .concept-card { min-height: 355px; }
   .practical-stage { padding: 10px; }
@@ -2079,6 +2107,25 @@ html { scroll-padding-top: 112px; }
   text-decoration: none;
 }
 .chapter-index a:hover { background: color-mix(in srgb, var(--jinx-blue) 12%, transparent); }
+/* Active chapter highlight (P4 — Intersection Observer) */
+.chapter-index a {
+  transition: background var(--t-fast);
+}
+.chapter-index__link--active {
+  background: color-mix(in srgb, var(--collection-accent, var(--cyan)) 10%, transparent) !important;
+}
+.chapter-index__link--active em {
+  color: var(--collection-accent, var(--cyan)) !important;
+  font-weight: 800;
+}
+.chapter-index__link--active span {
+  color: var(--jinx-shell-text, var(--text));
+  font-weight: 700;
+}
+.chapter-index__link--active b {
+  background: color-mix(in srgb, var(--collection-accent, var(--cyan)) 16%, transparent) !important;
+  color: var(--collection-accent, var(--cyan)) !important;
+}
 .chapter-index em { color: var(--jinx-blue); font-family: var(--mono); font-size: .48rem; font-style: normal; }
 .chapter-index span { overflow: hidden; color: var(--jinx-shell-text); font-size: .6rem; text-overflow: ellipsis; white-space: nowrap; }
 .chapter-index b {
@@ -3377,6 +3424,130 @@ body[data-collection-theme="ci-cd"] { --collection-accent:#3bd3ff;--collection-r
 @media (max-width:620px){.library-controls{grid-template-columns:1fr}.library-controls label:first-child{grid-column:auto}.bridge-grid{grid-template-columns:1fr}.collection-notice,.collection-action-link{align-items:stretch;flex-direction:column}.collection-action-link a{justify-content:space-between}.integrated-case__track{grid-template-columns:repeat(var(--case-steps),minmax(150px,1fr));min-width:calc(var(--case-steps) * 158px)}.official-sources{padding:15px}}
 @media (max-width:620px){.collection-library-invite{align-items:stretch;flex-direction:column;padding:16px}.collection-library-invite>a{justify-content:space-between;width:100%}}
 @media (prefers-reduced-motion:reduce){.collection-library-invite::before{animation:none!important}}
+
+/* ── P5: Library card "actual" badge + hover elevation ── */
+.library-card[data-lifecycle="actual"] .library-card__status em {
+  color: var(--green);
+  background: rgba(73,225,168,.1);
+  font-weight: 700;
+}
+.library-card {
+  transition: transform var(--t-base), border-color var(--t-base), box-shadow var(--t-base);
+}
+.library-card:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--jinx-rose) 45%, transparent);
+  box-shadow: var(--shadow-float);
+}
+/* Group icon slot in header (used when icon is added via data attr) */
+.library-card > header span i {
+  display: inline-block;
+  margin-right: 5px;
+  color: var(--jinx-rose);
+  font-style: normal;
+  font-family: var(--mono);
+}
+
+/* ── P10: CollectionLibraryInvite enhanced hover ── */
+.collection-library-invite {
+  transition: border-color var(--t-base), background var(--t-base), transform var(--t-base), box-shadow var(--t-base);
+}
+.collection-library-invite:hover {
+  transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--collection-accent, var(--cyan)) 55%, transparent);
+  background: linear-gradient(
+    120deg,
+    rgba(var(--collection-rgb), .17),
+    rgba(8,13,22,.92) 58%,
+    rgba(var(--collection-tone-2-rgb), .10)
+  );
+  box-shadow: 0 20px 52px rgba(0,0,0,.22), 0 0 0 1px color-mix(in srgb, var(--collection-accent, var(--cyan)) 22%, transparent);
+}
+
+/* ── Animation improvements: ambient scene glow ── */
+/* Subtle accent glow behind every animated scene container */
+.concept-card__stage::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 12px;
+  background: radial-gradient(
+    ellipse at 50% 60%,
+    color-mix(in srgb, var(--card-accent) 6%, transparent) 0%,
+    transparent 70%
+  );
+  pointer-events: none;
+  z-index: 1;
+  transition: opacity var(--t-slow);
+}
+.concept-card:hover .concept-card__stage::before {
+  background: radial-gradient(
+    ellipse at 50% 60%,
+    color-mix(in srgb, var(--card-accent) 12%, transparent) 0%,
+    transparent 68%
+  );
+}
+
+/* Atlas scene: resting state gets a subtle pulse shimmer */
+.atlas-rest-state {
+  animation: atlas-rest-breathe 4s ease-in-out infinite;
+}
+@keyframes atlas-rest-breathe {
+  0%, 100% { opacity: 0.78; }
+  50%       { opacity: 1;    }
+}
+@media (prefers-reduced-motion: reduce) {
+  .atlas-rest-state { animation: none; opacity: 1; }
+}
+
+/* Atlas outcome toast: smoother base transition */
+.atlas-outcome {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  z-index: 10;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 5px 11px;
+  border: 1px solid color-mix(in srgb, var(--collection-accent, var(--cyan)) 38%, transparent);
+  border-radius: 20px;
+  background: color-mix(in srgb, var(--collection-accent, var(--cyan)) 10%, rgba(5,9,18,.88));
+  color: var(--collection-accent, var(--cyan));
+  font-family: var(--mono);
+  font-size: .57rem;
+  font-weight: 700;
+  letter-spacing: .03em;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+/* scene-code pill: cleaner backdrop */
+.scene-code {
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* Atlas pipeline node hover glow (runs in running state only) */
+[data-playback="running"] .atlas-pipeline > div {
+  transition: box-shadow var(--t-base);
+}
+[data-playback="running"] .atlas-pipeline > div:hover {
+  box-shadow: 0 0 18px color-mix(in srgb, var(--collection-accent, var(--cyan)) 30%, transparent);
+}
+
+/* Concept card: hover lift using tokens */
+.concept-card {
+  transition: transform var(--t-base), box-shadow var(--t-base), border-color var(--t-base);
+}
+.concept-card:hover {
+  transform: translateY(-3px);
+  border-color: color-mix(in srgb, var(--card-accent) 35%, transparent);
+  box-shadow: var(--shadow-card), var(--shadow-glow);
+}
+
+
 
 .atlas-memory-map { position:absolute; inset:62px 20px 45px; }
 .atlas-memory-map__addresses,.atlas-memory-map__cells { display:grid; grid-template-columns:repeat(4,minmax(0,1fr)); gap:5px; }
