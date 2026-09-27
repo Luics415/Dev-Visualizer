@@ -87,7 +87,12 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
     <html lang="es-MX">
       <body>
         <MotionProvider>
-          {children}
+          <a href="#main-content" className="skip-link">
+            Saltar al contenido principal
+          </a>
+          <div id="main-content" tabIndex={-1}>
+            {children}
+          </div>
           <SiteFooter />
         </MotionProvider>
       </body>
