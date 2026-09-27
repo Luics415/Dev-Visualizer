@@ -148,7 +148,7 @@ export default function TermsPage() {
       </section>
 
       <div className="about-actions">
-        <Link href="/acerca">Créditos y licencias →</Link>
+        <Link href="/privacidad">Aviso de Privacidad →</Link>
         <Link href="/libreria">Librería profesional →</Link>
         <Link href="/colecciones">Explorar colecciones →</Link>
       </div>
