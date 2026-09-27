@@ -4997,16 +4997,28 @@ body {
   transition-duration: 0.07s;
 }
 
-/* ── Disable all Vol.2 animations on reduced-motion ── */
+/* ── Comprehensive vestibular motion safety (WCAG 2.1 SC 2.3.3) ── */
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto !important;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
   .hero-word,
   .card-enter,
   .library-card-enter,
   .scene-code::after,
   .atlas-timeline::before,
   .atlas-orbit__core::before,
-  .atlas-orbit__core::after {
+  .atlas-orbit__core::after,
+  .skip-link {
     animation: none !important;
+    transition: none !important;
   }
   .concept-card,
   .library-card {
