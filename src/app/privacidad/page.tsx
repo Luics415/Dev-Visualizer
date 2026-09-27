@@ -143,7 +143,7 @@ export default function PrivacyPolicyPage() {
       </section>
 
       <div className="about-actions">
-        <Link href="/acerca">Créditos y licencias →</Link>
+        <Link href="/terminos">Consultar Términos y Condiciones →</Link>
         <Link href="/libreria">Librería profesional →</Link>
         <Link href="/colecciones">Volver al catálogo →</Link>
       </div>
