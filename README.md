@@ -5,6 +5,14 @@ Atlas visual animado para aprender desarrollo de software desde los fundamentos 
 **71 colecciones · 142 rutas canónicas · 6,881 conceptos · 71 casos integrados · 71 bibliotecas**
 
 <p align="center">
+  <a href="https://github.com/Luics415/Dev-Visualizer/actions/workflows/ci.yml"><img src="https://github.com/Luics415/Dev-Visualizer/actions/workflows/ci.yml/badge.svg" alt="Quality checks" /></a>
+  <a href="https://www.w3.org/WAI/WCAG21/quickref/"><img src="https://img.shields.io/badge/Accessibility-WCAG%202.1%20AA-00c853.svg" alt="WCAG 2.1 AA" /></a>
+  <a href="https://luics415.github.io/Dev-Visualizer/privacidad/"><img src="https://img.shields.io/badge/Privacy-LFPDPPP%20%7C%20GDPR%20%7C%20CCPA-3bd3ff.svg" alt="Privacy Compliant" /></a>
+  <a href="LICENSE"><img src="https://img.shields.io/badge/Code-MIT-blue.svg" alt="MIT License" /></a>
+  <a href="LICENSE-CONTENT.md"><img src="https://img.shields.io/badge/Content-CC%20BY--NC--SA%204.0-lightgrey.svg" alt="CC BY-NC-SA 4.0" /></a>
+</p>
+
+<p align="center">
   <a href="https://luics415.github.io/Dev-Visualizer/"><strong>Abrir Dev Visualizer</strong></a>
   ·
   <a href="https://luics415.github.io/Dev-Visualizer/colecciones/">Explorar las 71 colecciones</a>
@@ -207,7 +215,7 @@ Validación completa:
 npm run check
 ```
 
-`npm run check` ejecuta ESLint, TypeScript estricto, validación del catálogo bibliográfico, exportación estática y comprobación de enlaces internos. La compilación produce **225 páginas HTML**: 142 canónicas, 72 de Librería profesional, seis puentes heredados y cinco páginas de soporte.
+`npm run check` ejecuta ESLint, TypeScript estricto, validación del catálogo bibliográfico, exportación estática, comprobación de enlaces internos y auditoría automatizada de accesibilidad (`check:a11y`). La compilación produce **228 páginas HTML**: 142 canónicas, 72 de Librería profesional, seis puentes heredados y ocho páginas de soporte (incluyendo las rutas jurídicas `/privacidad`, `/terminos` y `/cookies`).
 
 ### Evidencia de calidad
 
@@ -218,9 +226,20 @@ npm run check
 | Fuentes | 6,881/6,881 conceptos con al menos dos referencias primarias |
 | Recursos | 179/179 fichas atribuidas en 42 temas de origen + 87/87 fichas curadas para los otros 29 temas |
 | Casos | 71/71 pares colección / En acción con profundización |
-| Exportación | 225 páginas estáticas y cero enlaces internos rotos |
+| Exportación | 228 páginas estáticas y cero enlaces internos rotos |
+| Accesibilidad | 228 páginas conformes a WCAG 2.1 AA (100% alt en imágenes y controles accesibles) |
 | Responsive | Sin overflow global; escenas anchas usan scroll local |
-| Movimiento | Loop infinito visible, pausa fuera del viewport y estado completo con `prefers-reduced-motion` |
+| Movimiento | Loop infinito visible, pausa fuera del viewport y estado seguro con `prefers-reduced-motion` |
+
+## Marco legal, privacidad y seguridad
+
+Dev Visualizer implementa un estándar estricto de cumplimiento legal, transparencia y protección de datos:
+
+- **[Aviso de Privacidad](https://luics415.github.io/Dev-Visualizer/privacidad/)**: Conforme a la Ley Federal de Protección de Datos Personales en Posesión de los Particulares (LFPDPPP - México), RGPD (UE) y CCPA (California). Procedimiento para el ejercicio de derechos ARCO con respuesta en 20 días hábiles y minimización estricta de datos.
+- **[Términos y Condiciones](https://luics415.github.io/Dev-Visualizer/terminos/)**: Licenciamiento dual claro (código bajo MIT, contenido educativo bajo CC BY-NC-SA 4.0), cláusula de uso legítimo (*Fair Use* / Art. 148 LFDA) sobre marcas citadas nominativamente, deslinde "TAL CUAL" (*AS IS*) y jurisdicción en la Ciudad de México.
+- **[Política de Cookies](https://luics415.github.io/Dev-Visualizer/cookies/)**: Cero cookies de seguimiento comercial o píxeles de terceros; justificación legal bajo el Art. 5(3) de la Directiva ePrivacy para la exención de banners invasivos.
+- **[Política de Seguridad (SECURITY.md)](SECURITY.md)**: Modelo de amenazas estático, política de Divulgación Coordinada de Vulnerabilidades (CVD) y autenticación multifactor obligatoria.
+- **Accesibilidad e Inclusión**: Enlace directo de salto (*Skip to main content*), contraste de alto nivel y cumplimiento verificado por CI (`npm run check:a11y`).
 
 ## Añadir o modificar una colección
 
