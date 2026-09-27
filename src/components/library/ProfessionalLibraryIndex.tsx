@@ -88,7 +88,7 @@ export function ProfessionalLibraryIndex({ entries }: { entries: readonly Librar
           </div>
 
           <div className={styles.searchActions}>
-            <div className={styles.resultBadge} aria-live="polite">
+            <div className={styles.resultBadge} aria-live="polite" aria-atomic="true">
               <span className={styles.resultNumber}>{visible.length}</span>
               <span className={styles.resultLabel}>{visible.length === 1 ? "tema visible" : "temas visibles"}</span>
             </div>
@@ -98,6 +98,7 @@ export function ProfessionalLibraryIndex({ entries }: { entries: readonly Librar
                 className={styles.resetButton}
                 onClick={resetFilters}
                 title="Restablecer todos los filtros"
+                aria-label="Restablecer todos los filtros"
               >
                 <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
                   <path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8" />
@@ -113,7 +114,7 @@ export function ProfessionalLibraryIndex({ entries }: { entries: readonly Librar
           <label className={`${styles.filterItem} ${group !== "all" ? styles.filterActive : ""}`}>
             <span className={styles.filterTitle}>Área</span>
             <div className={styles.selectWrapper}>
-              <select value={group} onChange={(event) => setGroup(event.target.value)}>
+              <select name="group" aria-label="Filtrar por área técnica" value={group} onChange={(event) => setGroup(event.target.value)}>
                 <option value="all">Todas las áreas</option>
                 {Object.entries(collectionGroupMeta).map(([id, meta]) => <option value={id} key={id}>{meta.name}</option>)}
               </select>
@@ -123,7 +124,7 @@ export function ProfessionalLibraryIndex({ entries }: { entries: readonly Librar
           <label className={`${styles.filterItem} ${format !== "all" ? styles.filterActive : ""}`}>
             <span className={styles.filterTitle}>Formato</span>
             <div className={styles.selectWrapper}>
-              <select value={format} onChange={(event) => setFormat(event.target.value)}>
+              <select name="format" aria-label="Filtrar por formato de recurso" value={format} onChange={(event) => setFormat(event.target.value)}>
                 <option value="all">Todos los formatos</option>
                 {formats.map((entry) => <option value={entry} key={entry}>{entry}</option>)}
               </select>
@@ -133,7 +134,7 @@ export function ProfessionalLibraryIndex({ entries }: { entries: readonly Librar
           <label className={`${styles.filterItem} ${level !== "all" ? styles.filterActive : ""}`}>
             <span className={styles.filterTitle}>Nivel</span>
             <div className={styles.selectWrapper}>
-              <select value={level} onChange={(event) => setLevel(event.target.value)}>
+              <select name="level" aria-label="Filtrar por nivel de dificultad" value={level} onChange={(event) => setLevel(event.target.value)}>
                 <option value="all">Todos los niveles</option>
                 {levels.map((entry) => <option value={entry} key={entry}>{libraryResourceLevelLabels[entry]}</option>)}
               </select>
@@ -143,7 +144,7 @@ export function ProfessionalLibraryIndex({ entries }: { entries: readonly Librar
           <label className={`${styles.filterItem} ${provenance !== "all" ? styles.filterActive : ""}`}>
             <span className={styles.filterTitle}>Procedencia</span>
             <div className={styles.selectWrapper}>
-              <select value={provenance} onChange={(event) => setProvenance(event.target.value)}>
+              <select name="provenance" aria-label="Filtrar por procedencia o fuente" value={provenance} onChange={(event) => setProvenance(event.target.value)}>
                 <option value="all">Todas las procedencias</option>
                 <option value="official">Oficial o primario</option>
                 <option value="midudev">Catálogo midudev</option>
@@ -155,7 +156,7 @@ export function ProfessionalLibraryIndex({ entries }: { entries: readonly Librar
           <label className={`${styles.filterItem} ${availability !== "all" ? styles.filterActive : ""}`}>
             <span className={styles.filterTitle}>Disponibilidad</span>
             <div className={styles.selectWrapper}>
-              <select value={availability} onChange={(event) => setAvailability(event.target.value)}>
+              <select name="availability" aria-label="Filtrar por disponibilidad" value={availability} onChange={(event) => setAvailability(event.target.value)}>
                 <option value="all">Todos los estados</option>
                 <option value="local">Adjuntos locales autorizados</option>
                 <option value="external">Disponibles externamente</option>
@@ -177,7 +178,9 @@ export function ProfessionalLibraryIndex({ entries }: { entries: readonly Librar
                 <div><dt>Recursos</dt><dd>{entry.resourceCount}</dd></div>
                 <div><dt>Fuentes primarias</dt><dd>{entry.officialCount}</dd></div>
               </dl>
-              <Link href={`/libreria/${entry.slug}`}>Abrir librería <span aria-hidden="true">→</span></Link>
+              <Link href={`/libreria/${entry.slug}`} aria-label={`Abrir librería de ${entry.title}`}>
+                Abrir librería <span aria-hidden="true">→</span>
+              </Link>
             </article>
           ))}
         </section>
@@ -185,7 +188,9 @@ export function ProfessionalLibraryIndex({ entries }: { entries: readonly Librar
         <div className={styles.empty} role="status">
           <strong>No encontramos una coincidencia.</strong>
           <p>Prueba otro término o restablece los filtros.</p>
-          <button type="button" onClick={resetFilters}>Mostrar todos los temas</button>
+          <button type="button" onClick={resetFilters} aria-label="Restablecer todos los filtros y mostrar todos los temas">
+            Mostrar todos los temas
+          </button>
         </div>
       )}
     </>
