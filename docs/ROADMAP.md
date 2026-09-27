@@ -36,7 +36,7 @@
 - [x] Política híbrida de adjuntos, licencias, hashes y enlaces externos.
 - [x] Invitación antes del capítulo 1, sin bibliografía dentro de En acción.
 - [x] Auditoría mensual no bloqueante de recursos externos.
-- [x] Exportación total de 225 páginas estáticas con cero enlaces internos rotos.
+- [x] Exportación total de 228 páginas estáticas con cero enlaces internos rotos.
 
 ## Calidad permanente
 
@@ -49,11 +49,21 @@
 - [x] Estado base legible sin finales grises u opacos.
 - [x] Contexto visible para tecnologías legadas o históricas.
 - [x] Overflow local en escenas extensas y no global en móvil.
+- [x] Pruebas automáticas de accesibilidad por ruta y validación WCAG 2.1 AA (`npm run check:a11y`).
 - [ ] Índice global por concepto y palabra clave.
 - [ ] Progreso local de estudio.
 - [ ] Vista individual y controles de velocidad.
-- [ ] Pruebas automáticas de accesibilidad por ruta.
 - [ ] Exportación vertical opcional para material didáctico.
+
+## Marco legal, privacidad y seguridad (v1.1.0)
+
+- [x] Política de privacidad integral (`/privacidad`) conforme a LFPDPPP (México), RGPD (UE) y CCPA (California) con derechos ARCO en 20 días.
+- [x] Términos y condiciones (`/terminos`) con modelo de licenciamiento dual (código MIT, contenido CC BY-NC-SA 4.0), uso legítimo de marcas (Fair Use/LFDA Art. 148) y deslinde "TAL CUAL".
+- [x] Política de cookies (`/cookies`) y justificación jurídica de exención de banner de consentimiento bajo Directiva ePrivacy Art. 5(3).
+- [x] Navegación legal accesible en pie de página con alto contraste y semántica ARIA.
+- [x] Auditoría de fuentes primarias, supresión de reseñas simuladas y eliminación de asertos comerciales infundados.
+- [x] Modelo de amenazas estático en `SECURITY.md`, reporte de vulnerabilidades CVD y supresión de cabeceras divulgativas (`x-powered-by`).
+- [x] Cabeceras de privacidad y directivas para rastreadores en `layout.tsx` (`referrer: strict-origin-when-cross-origin`, `robots`).
 
 ## Criterio de terminado
 
