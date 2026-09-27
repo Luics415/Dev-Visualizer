@@ -5016,3 +5016,31 @@ body {
     filter: none !important;
   }
 }
+
+/* ── A12: Skip link accessibility navigation (WCAG 2.4.1) ── */
+.skip-link {
+  position: absolute;
+  top: -120px;
+  left: 16px;
+  background: var(--cyan);
+  color: #070910;
+  font-weight: 700;
+  font-size: 0.95rem;
+  padding: 12px 20px;
+  border-radius: var(--radius-sm);
+  z-index: 10000;
+  text-decoration: none;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  transition: top var(--t-fast);
+}
+
+.skip-link:focus,
+.skip-link:focus-visible {
+  top: 16px;
+  outline: 3px solid #ffffff;
+  outline-offset: 2px;
+}
+
+#main-content:focus {
+  outline: none;
+}
