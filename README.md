@@ -54,6 +54,16 @@ Dev Visualizer transforma mecanismos técnicos en escenas autónomas: cada conce
       <br /><sub>Estructura modular de capítulos y conteo de conceptos.</sub>
     </td>
   </tr>
+  <tr>
+    <td width="66%">
+      <img src="docs/assets/screenshots/libreria-catalog-desktop.webp" alt="Librería profesional de Dev Visualizer en escritorio con catálogo de 71 temas y buscador" />
+      <br /><sub>Librería profesional: 71 bibliotecas temáticas, 266 recursos catalogados y filtros dinámicos.</sub>
+    </td>
+    <td width="34%">
+      <img src="docs/assets/screenshots/libreria-catalog-mobile.webp" alt="Librería profesional de Dev Visualizer en móvil" />
+      <br /><sub>Librería en móvil con filtrado por nivel y acceso normativo.</sub>
+    </td>
+  </tr>
 </table>
 
 Las capturas documentan una compilación real del proyecto y forman parte del contenido original licenciado bajo [CC BY-NC-SA 4.0](LICENSE-CONTENT.md).
