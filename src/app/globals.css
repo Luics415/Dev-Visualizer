@@ -31,18 +31,12 @@
 }
 
 * { box-sizing: border-box; }
-html { background: var(--bg); scroll-behavior: smooth; }
+html { background: #07060b; scroll-behavior: smooth; }
 body {
   margin: 0;
   min-height: 100vh;
   color: var(--text);
-  background:
-    linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px),
-    radial-gradient(circle at 15% -5%, rgba(59,211,255,.1), transparent 32rem),
-    radial-gradient(circle at 88% 0%, rgba(156,131,255,.08), transparent 28rem),
-    var(--bg);
-  background-size: 32px 32px, 32px 32px, auto, auto, auto;
+  background: transparent;
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 a { color: inherit; }
@@ -751,79 +745,71 @@ button, input, textarea, select { font: inherit; }
 /* Base: very dark, warm-purple black */
 html { background: #07060b; }
 
-body {
-  position: relative;
-  color: var(--jinx-shell-text);
+/* ================================================================
+   SISTEMA DE FONDO — html::before con position:fixed
+   Usando pseudo-elemento en lugar de background-attachment:fixed
+   para evitar que isolation/transform/filter de componentes hijos
+   rompan el rendering del fondo.
+   ================================================================ */
+html::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
 
   background:
-    /* ── F2: Graph constellation — temática del sitio ── */
-    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='200'%3E%3C!-- aristas --%3E%3Cline x1='40' y1='38' x2='115' y2='88' stroke='%23b07094' stroke-opacity='.38' stroke-width='.8' stroke-dasharray='3 4'/%3E%3Cline x1='192' y1='52' x2='115' y2='88' stroke='%23a06487' stroke-opacity='.34' stroke-width='.8' stroke-dasharray='3 4'/%3E%3Cline x1='115' y1='88' x2='68' y2='158' stroke='%23a06487' stroke-opacity='.32' stroke-width='.75' stroke-dasharray='3 5'/%3E%3Cline x1='115' y1='88' x2='178' y2='152' stroke='%2391587a' stroke-opacity='.28' stroke-width='.7' stroke-dasharray='2 6'/%3E%3Cline x1='40' y1='38' x2='0' y2='98' stroke='%2391587a' stroke-opacity='.22' stroke-width='.55' stroke-dasharray='2 5'/%3E%3Cline x1='192' y1='52' x2='240' y2='28' stroke='%2391587a' stroke-opacity='.22' stroke-width='.55' stroke-dasharray='2 5'/%3E%3Cline x1='68' y1='158' x2='0' y2='178' stroke='%2382506e' stroke-opacity='.18' stroke-width='.5' stroke-dasharray='2 6'/%3E%3Cline x1='178' y1='152' x2='240' y2='165' stroke='%2382506e' stroke-opacity='.18' stroke-width='.5' stroke-dasharray='2 6'/%3E%3Cline x1='40' y1='38' x2='192' y2='52' stroke='%2391587a' stroke-opacity='.14' stroke-width='.5' stroke-dasharray='1 7'/%3E%3Cline x1='68' y1='158' x2='178' y2='152' stroke='%2391587a' stroke-opacity='.14' stroke-width='.5' stroke-dasharray='1 7'/%3E%3C!-- nodo hub --%3E%3Ccircle cx='115' cy='88' r='4' fill='%23c087a8' fill-opacity='.55'/%3E%3Ccircle cx='115' cy='88' r='7' fill='%23c087a8' fill-opacity='.08'/%3E%3C!-- nodos secundarios --%3E%3Ccircle cx='40' cy='38' r='3' fill='%23b07094' fill-opacity='.48'/%3E%3Ccircle cx='192' cy='52' r='3' fill='%23b07094' fill-opacity='.48'/%3E%3Ccircle cx='68' cy='158' r='2.5' fill='%23a06487' fill-opacity='.42'/%3E%3Ccircle cx='178' cy='152' r='2.5' fill='%23a06487' fill-opacity='.42'/%3E%3C!-- nodos hoja / anchors de tile --%3E%3Ccircle cx='0' cy='98' r='1.5' fill='%2391587a' fill-opacity='.35'/%3E%3Ccircle cx='240' cy='28' r='1.5' fill='%2391587a' fill-opacity='.35'/%3E%3Ccircle cx='0' cy='178' r='1.5' fill='%2382506e' fill-opacity='.30'/%3E%3Ccircle cx='240' cy='165' r='1.5' fill='%2382506e' fill-opacity='.30'/%3E%3C/svg%3E"),
+    /* ── F2: Graph constellation ── */
+    url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='240' height='200'%3E%3Cline x1='40' y1='38' x2='115' y2='88' stroke='%23b07094' stroke-opacity='.38' stroke-width='.8' stroke-dasharray='3 4'/%3E%3Cline x1='192' y1='52' x2='115' y2='88' stroke='%23a06487' stroke-opacity='.34' stroke-width='.8' stroke-dasharray='3 4'/%3E%3Cline x1='115' y1='88' x2='68' y2='158' stroke='%23a06487' stroke-opacity='.32' stroke-width='.75' stroke-dasharray='3 5'/%3E%3Cline x1='115' y1='88' x2='178' y2='152' stroke='%2391587a' stroke-opacity='.28' stroke-width='.7' stroke-dasharray='2 6'/%3E%3Cline x1='40' y1='38' x2='0' y2='98' stroke='%2391587a' stroke-opacity='.22' stroke-width='.55' stroke-dasharray='2 5'/%3E%3Cline x1='192' y1='52' x2='240' y2='28' stroke='%2391587a' stroke-opacity='.22' stroke-width='.55' stroke-dasharray='2 5'/%3E%3Cline x1='68' y1='158' x2='0' y2='178' stroke='%2382506e' stroke-opacity='.18' stroke-width='.5' stroke-dasharray='2 6'/%3E%3Cline x1='178' y1='152' x2='240' y2='165' stroke='%2382506e' stroke-opacity='.18' stroke-width='.5' stroke-dasharray='2 6'/%3E%3Cline x1='40' y1='38' x2='192' y2='52' stroke='%2391587a' stroke-opacity='.14' stroke-width='.5' stroke-dasharray='1 7'/%3E%3Cline x1='68' y1='158' x2='178' y2='152' stroke='%2391587a' stroke-opacity='.14' stroke-width='.5' stroke-dasharray='1 7'/%3E%3Ccircle cx='115' cy='88' r='4' fill='%23c087a8' fill-opacity='.55'/%3E%3Ccircle cx='115' cy='88' r='7' fill='%23c087a8' fill-opacity='.08'/%3E%3Ccircle cx='40' cy='38' r='3' fill='%23b07094' fill-opacity='.48'/%3E%3Ccircle cx='192' cy='52' r='3' fill='%23b07094' fill-opacity='.48'/%3E%3Ccircle cx='68' cy='158' r='2.5' fill='%23a06487' fill-opacity='.42'/%3E%3Ccircle cx='178' cy='152' r='2.5' fill='%23a06487' fill-opacity='.42'/%3E%3Ccircle cx='0' cy='98' r='1.5' fill='%2391587a' fill-opacity='.35'/%3E%3Ccircle cx='240' cy='28' r='1.5' fill='%2391587a' fill-opacity='.35'/%3E%3Ccircle cx='0' cy='178' r='1.5' fill='%2382506e' fill-opacity='.30'/%3E%3Ccircle cx='240' cy='165' r='1.5' fill='%2382506e' fill-opacity='.30'/%3E%3C/svg%3E"),
 
-    /* ── Dot grid — rose-pink, debajo del grafo ── */
-    radial-gradient(circle, rgba(190, 140, 175, .14) 1.2px, transparent 1.2px),
+    /* ── Dot grid ── */
+    radial-gradient(circle, rgba(190, 140, 175, .15) 1.2px, transparent 1.2px),
 
     /* ── Orb 1 — top-left · rose/magenta ── */
     radial-gradient(ellipse 62% 52% at var(--ox1) var(--oy1),
-      rgba(200, 100, 145, .68) 0%,
-      rgba(150,  80, 120, .30) 45%,
-      transparent 70%),
+      rgba(200, 100, 145, .68) 0%, rgba(150, 80, 120, .30) 45%, transparent 70%),
 
     /* ── Orb 2 — top-right · indigo/steel ── */
     radial-gradient(ellipse 56% 46% at var(--ox2) var(--oy2),
-      rgba( 68, 118, 160, .62) 0%,
-      rgba( 45,  80, 115, .25) 42%,
-      transparent 68%),
+      rgba(68, 118, 160, .62) 0%, rgba(45, 80, 115, .25) 42%, transparent 68%),
 
     /* ── Orb 3 — bottom center · deep rose ── */
     radial-gradient(ellipse 78% 46% at var(--ox3) var(--oy3),
-      rgba(175, 90, 130, .52) 0%,
-      rgba(130, 65,  95, .20) 50%,
-      transparent 72%),
+      rgba(175, 90, 130, .52) 0%, rgba(130, 65, 95, .20) 50%, transparent 72%),
 
     /* ── Orb 4 — mid-left · soft teal ── */
     radial-gradient(ellipse 38% 55% at var(--ox4) var(--oy4),
-      rgba( 55, 120, 150, .28) 0%,
-      transparent 65%),
+      rgba(55, 120, 150, .28) 0%, transparent 65%),
 
     /* ── Orb 5 — mid-right · violet ── */
     radial-gradient(ellipse 36% 52% at var(--ox5) var(--oy5),
-      rgba(140, 85, 160, .26) 0%,
-      transparent 62%),
+      rgba(140, 85, 160, .26) 0%, transparent 62%),
 
     /* ── Base: warm purple-black ── */
-    linear-gradient(158deg,
-      #0a0710 0%,
-      #09060e 35%,
-      #080710 65%,
-      #070810 100%);
+    linear-gradient(158deg, #0a0710 0%, #09060e 35%, #080710 65%, #070810 100%);
 
   background-size: 240px 200px, 22px 22px, auto, auto, auto, auto, auto, auto;
-  background-attachment: fixed;
 
-  /* Orb movement + graph breathing — 4 independent timelines */
   animation:
-    orb-top    12s ease-in-out infinite alternate,
-    orb-bottom 19s ease-in-out infinite alternate,
-    orb-mids   25s ease-in-out infinite alternate,
+    orb-top       12s ease-in-out infinite alternate,
+    orb-bottom    19s ease-in-out infinite alternate,
+    orb-mids      25s ease-in-out infinite alternate,
     graph-breathe 16s ease-in-out infinite alternate;
 }
 
-/* ── Respiración del grafo: muy suave para no distraer ── */
-@keyframes graph-breathe {
-  from { background-position:
-    0 0,
-    0 0,
-    var(--ox1) var(--oy1), var(--ox2) var(--oy2),
-    var(--ox3) var(--oy3),
-    var(--ox4) var(--oy4), var(--ox5) var(--oy5),
-    0 0;
-    /* solo cambia opacity vía filter para el svg tile */
-    filter: brightness(0.88);
-  }
-  to { filter: brightness(1); }
+body {
+  position: relative;
+  color: var(--jinx-shell-text);
+  background: transparent;
 }
 
-/* ── Orb 1 (rose) + Orb 2 (indigo): top corners drift inward/outward ── */
+/* ── Respiración suave del grafo ── */
+@keyframes graph-breathe {
+  from { filter: brightness(0.88); }
+  to   { filter: brightness(1);    }
+}
+
+/* ── Orbs: top corners ── */
 @keyframes orb-top {
   0%   { --ox1:  8%; --oy1:  -4%; --ox2: 93%; --oy2:  2%; }
   25%  { --ox1: 22%; --oy1:  14%; --ox2: 78%; --oy2: 18%; }
@@ -832,7 +818,7 @@ body {
   100% { --ox1: 10%; --oy1:  -8%; --ox2: 92%; --oy2:  4%; }
 }
 
-/* ── Orb 3 (bottom): sweeps left-right while breathing up ── */
+/* ── Orb 3: bottom sweep ── */
 @keyframes orb-bottom {
   0%   { --ox3: 50%; --oy3: 108%; }
   30%  { --ox3: 38%; --oy3:  98%; }
@@ -840,7 +826,7 @@ body {
   100% { --ox3: 45%; --oy3:  94%; }
 }
 
-/* ── Orbs 4 & 5 (mid depth): slow diagonal crossfade ── */
+/* ── Orbs 4 & 5: mid depth diagonal ── */
 @keyframes orb-mids {
   0%   { --ox4: 18%; --oy4: 58%; --ox5: 80%; --oy5: 65%; }
   35%  { --ox4: 28%; --oy4: 44%; --ox5: 70%; --oy5: 52%; }
@@ -848,10 +834,11 @@ body {
   100% { --ox4: 22%; --oy4: 50%; --ox5: 76%; --oy5: 60%; }
 }
 
-/* ── Reduced motion: freeze orbs at initial positions ── */
+/* ── Reduced motion ── */
 @media (prefers-reduced-motion: reduce) {
-  body { animation: none; background-attachment: scroll; }
+  html::before { animation: none; }
 }
+
 
 
 
