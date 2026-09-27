@@ -9,6 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     "/colecciones",
     "/libreria",
     "/acerca",
+    "/privacidad",
     ...collectionManifest.flatMap((collection) => [collection.href, collection.actionHref, `/libreria/${collection.librarySlug}`]),
   ];
   return paths.map((path) => ({
