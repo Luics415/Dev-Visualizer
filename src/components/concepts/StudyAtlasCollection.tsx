@@ -59,7 +59,18 @@ export function StudyAtlasCollection({
       <header className={`hero ${heroClassName}`}>
         <div>
           <span className={`eyebrow ${accentClassName}`}>Colección {collectionNumber} · {eyebrow}</span>
-          <h1>{title}</h1>
+          <h1 aria-label={title}>
+            {title.split(" ").map((word, i) => (
+              <span
+                key={i}
+                className="hero-word"
+                style={{ "--word-index": i } as React.CSSProperties}
+                aria-hidden="true"
+              >
+                {word}{" "}
+              </span>
+            ))}
+          </h1>
           <p>{description}</p>
         </div>
         <div className={`hero__counter ${accentClassName.replace("eyebrow", "hero__counter")}`}>

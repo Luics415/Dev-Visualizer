@@ -4,10 +4,11 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { createPortal } from "react-dom";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import type { ChangeEvent, ReactNode } from "react";
 import { collectionGroups, collectionLinks } from "@/data/collectionLinks";
 import { themeForPath } from "@/data/collectionManifest";
+import { useReadingProgress } from "@/hooks/useReadingProgress";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
 
@@ -64,6 +65,7 @@ export function CollectionNav() {
   const detailsRef = useRef<HTMLDetailsElement | null>(null);
   const [query, setQuery] = useState("");
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const readPct = useReadingProgress(); // A10
 
   const activeIndex = collectionLinks.findIndex((item) => normalizePathname(item.href) === normalizedPathname);
   const active = activeIndex >= 0 ? collectionLinks[activeIndex] : null;
@@ -213,7 +215,11 @@ export function CollectionNav() {
   );
 
   return (
-    <nav className="collection-nav" aria-label="Navegación de colecciones">
+    <nav
+      className="collection-nav"
+      aria-label="Navegación de colecciones"
+      style={{ "--nav-read": `${readPct}%` } as CSSProperties}
+    >
       <Link
         className="collection-nav__brand"
         href="/colecciones"

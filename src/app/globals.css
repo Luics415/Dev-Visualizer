@@ -737,21 +737,116 @@ button, input, textarea, select { font: inherit; }
 }
 
 html { background: var(--jinx-ink); }
+
+/* ── Decorative background rings for visual depth ── */
+html::before,
+html::after {
+  content: "";
+  position: fixed;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+/* Top-left large ring */
+html::before {
+  top: -280px;
+  left: -200px;
+  width: 700px;
+  height: 700px;
+  border: 1px solid rgba(131, 95, 134, .07);
+  background: radial-gradient(circle, rgba(131,95,134,.055) 0%, transparent 68%);
+  animation: ring-drift-a 26s ease-in-out infinite;
+}
+/* Bottom-right large ring */
+html::after {
+  bottom: -320px;
+  right: -240px;
+  width: 800px;
+  height: 800px;
+  border: 1px solid rgba(77, 114, 144, .06);
+  background: radial-gradient(circle, rgba(77,114,144,.045) 0%, transparent 65%);
+  animation: ring-drift-b 32s ease-in-out infinite;
+}
+
+@keyframes ring-drift-a {
+  0%, 100% { transform: translate(0, 0) scale(1);     }
+  33%       { transform: translate(28px, 18px) scale(1.04);  }
+  66%       { transform: translate(-12px, 30px) scale(0.97); }
+}
+@keyframes ring-drift-b {
+  0%, 100% { transform: translate(0, 0) scale(1);      }
+  40%       { transform: translate(-22px, -14px) scale(1.05); }
+  70%       { transform: translate(16px, 20px) scale(0.96);  }
+}
+
 body {
+  position: relative;
   color: var(--jinx-shell-text);
   background:
-    linear-gradient(rgba(77,114,144,.045) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(77,114,144,.045) 1px, transparent 1px),
-    radial-gradient(circle at 12% -8%, rgba(131,95,134,.30), transparent 31rem),
-    radial-gradient(circle at 86% 2%, rgba(77,114,144,.28), transparent 32rem),
-    radial-gradient(circle at 50% 118%, rgba(167,100,134,.22), transparent 40rem),
-    linear-gradient(145deg,
-      color-mix(in srgb, var(--jinx-slate) 24%, #09080d) 0%,
-      color-mix(in srgb, var(--jinx-wine) 22%, #0a080e) 45%,
-      color-mix(in srgb, var(--jinx-violet) 18%, #08080d) 72%,
-      color-mix(in srgb, var(--jinx-blue) 14%, #08080c) 100%);
-  background-size: 32px 32px, 32px 32px, auto, auto, auto, auto;
+    /* ── Dot matrix grid ── */
+    radial-gradient(circle, rgba(131,95,134,.20) 1px, transparent 1px),
+    /* ── Ambient blobs — top left (warm) ── */
+    radial-gradient(ellipse 52% 38% at 6% -4%,   rgba(131,95,134,.34), transparent),
+    /* ── Ambient blobs — top right (cool) ── */
+    radial-gradient(ellipse 44% 34% at 94% -2%,  rgba(77,114,144,.30), transparent),
+    /* ── Ambient blobs — mid left ── */
+    radial-gradient(ellipse 30% 42% at -2% 48%,  rgba(77,114,144,.14), transparent),
+    /* ── Ambient blobs — mid right ── */
+    radial-gradient(ellipse 28% 38% at 102% 52%, rgba(131,95,134,.12), transparent),
+    /* ── Ambient blobs — center horizon ── */
+    radial-gradient(ellipse 55% 22% at 50% 52%,  rgba(167,100,134,.09), transparent),
+    /* ── Ambient blobs — bottom glow ── */
+    radial-gradient(ellipse 70% 45% at 50% 112%, rgba(167,100,134,.26), transparent),
+    /* ── Base directional gradient ── */
+    linear-gradient(155deg,
+      color-mix(in srgb, var(--jinx-slate) 30%, #080509) 0%,
+      color-mix(in srgb, var(--jinx-wine)  26%, #09060c) 32%,
+      color-mix(in srgb, var(--jinx-violet)22%, #07060b) 60%,
+      color-mix(in srgb, var(--jinx-blue)  18%, #07080c) 100%
+    );
+  background-size:
+    20px 20px,
+    auto, auto, auto, auto, auto, auto, auto;
+  background-attachment: fixed;
+  animation: ambient-breathe 20s ease-in-out infinite;
 }
+
+@keyframes ambient-breathe {
+  0%, 100% {
+    background-position:
+      0 0,
+      6%   -4%,  94%  -2%,
+      -2%  48%,  102% 52%,
+      50%  52%,
+      50%  112%,
+      0 0;
+  }
+  30% {
+    background-position:
+      0 0,
+      4%   -7%,  96%  0%,
+      -4%  45%,  104% 55%,
+      52%  50%,
+      50%  115%,
+      0 0;
+  }
+  65% {
+    background-position:
+      0 0,
+      8%   -2%,  92%  -4%,
+      0%   51%,  100% 49%,
+      48%  54%,
+      50%  109%,
+      0 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  body        { animation: none; background-attachment: scroll; }
+  html::before,
+  html::after { animation: none; }
+}
+
 
 .collection-nav {
   border-color: var(--jinx-shell-line);
@@ -4685,4 +4780,239 @@ body {
 
 @media (max-width:900px) {
   .contract-relay__canvas,.contract-relay__evidence { min-width:980px; }
+}
+
+/* ================================================================
+   ANIMATION SYSTEM Vol. 2 — A1 through A12
+   ================================================================ */
+
+/* ── A1: Concept cards scroll-driven entrance ── */
+@supports (animation-timeline: view()) {
+  .concept-card {
+    animation: card-enter 0.44s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 26%;
+  }
+}
+@keyframes card-enter {
+  from { opacity: 0; transform: translateY(20px) scale(0.97); filter: blur(1px); }
+  to   { opacity: 1; transform: none;                         filter: none;      }
+}
+/* nth-child delay fallback for non-supporting browsers */
+@supports not (animation-timeline: view()) {
+  .concept-card { animation: card-enter 0.45s cubic-bezier(0.22, 1, 0.36, 1) both; }
+  .concept-card:nth-child(1)  { animation-delay: 0.03s; }
+  .concept-card:nth-child(2)  { animation-delay: 0.09s; }
+  .concept-card:nth-child(3)  { animation-delay: 0.15s; }
+  .concept-card:nth-child(n+4){ animation-delay: 0.20s; }
+}
+
+/* ── A2: Library cards entrance stagger ── */
+@supports (animation-timeline: view()) {
+  .library-card {
+    animation: library-card-enter 0.40s cubic-bezier(0.22, 1, 0.36, 1) both;
+    animation-timeline: view();
+    animation-range: entry 0% entry 28%;
+  }
+}
+@keyframes library-card-enter {
+  from { opacity: 0; transform: translateY(16px); filter: blur(2px); }
+  to   { opacity: 1; transform: none;             filter: none;       }
+}
+@supports not (animation-timeline: view()) {
+  .library-card { animation: library-card-enter 0.42s ease both; }
+  .library-card:nth-child(1) { animation-delay: 0.05s; }
+  .library-card:nth-child(2) { animation-delay: 0.12s; }
+  .library-card:nth-child(3) { animation-delay: 0.19s; }
+  .library-card:nth-child(4) { animation-delay: 0.26s; }
+  .library-card:nth-child(n+5){ animation-delay: 0.30s; }
+}
+
+/* ── A3: Hero word-by-word entrance support ── */
+.hero-word {
+  display: inline-block;
+  animation: hero-word-in 0.56s cubic-bezier(0.22, 1, 0.36, 1) both;
+  animation-delay: calc(var(--word-index, 0) * 0.065s + 0.06s);
+}
+@keyframes hero-word-in {
+  from { opacity: 0; transform: translateY(0.38em) rotateX(-16deg); }
+  to   { opacity: 1; transform: none; }
+}
+/* Wrap h1 text in .hero with perspective so rotateX works */
+.hero h1 { perspective: 600px; }
+
+/* ── A4: Scene "boot" flash on playback start ── */
+@keyframes scene-boot-flash {
+  0%   { box-shadow: inset 0 0 0   rgba(var(--collection-rgb, 59 211 255), 0),
+                     0 0 0   rgba(var(--collection-rgb, 59 211 255), 0); }
+  28%  { box-shadow: inset 0 0 18px rgba(var(--collection-rgb, 59 211 255), .14),
+                     0 0 32px rgba(var(--collection-rgb, 59 211 255), .18); }
+  100% { box-shadow: inset 0 0 0   rgba(var(--collection-rgb, 59 211 255), 0),
+                     0 0 0   rgba(var(--collection-rgb, 59 211 255), 0); }
+}
+.concept-card__stage {
+  animation: none;
+}
+.concept-card:has([data-playback="running"]) .concept-card__stage {
+  animation: scene-boot-flash 0.7s ease-out;
+}
+
+/* ── A5: scene-code terminal cursor blink ── */
+.scene-code::after {
+  content: "▋";
+  display: inline-block;
+  margin-left: 2px;
+  color: var(--collection-accent, var(--cyan));
+  font-size: .56rem;
+  vertical-align: -1px;
+  animation: cursor-blink 1.1s step-start infinite;
+}
+@keyframes cursor-blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+/* Only show cursor when scene is actively running */
+.concept-card:not(:has([data-playback="running"])) .scene-code::after {
+  display: none;
+}
+
+/* ── A6: Atlas orbit — CSS particle trail via offset-path ── */
+.atlas-orbit__core::before,
+.atlas-orbit__core::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 5px;
+  height: 5px;
+  margin: -2.5px;
+  border-radius: 50%;
+  background: var(--collection-accent, var(--cyan));
+  filter: blur(2px);
+  offset-path: circle(72px at center);
+  animation: orbit-particle 11s linear infinite;
+  pointer-events: none;
+}
+.atlas-orbit__core::after {
+  offset-path: circle(112px at center);
+  animation-delay: -4s;
+  opacity: 0.4;
+  width: 3px;
+  height: 3px;
+  margin: -1.5px;
+}
+@keyframes orbit-particle {
+  from { offset-distance: 0%;   }
+  to   { offset-distance: 100%; }
+}
+
+/* ── A7: Atlas timeline — animated connector line ── */
+.atlas-timeline {
+  position: relative;
+}
+.atlas-timeline::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 8%;
+  height: 1.5px;
+  width: 0%;
+  background: linear-gradient(90deg,
+    var(--collection-accent, var(--cyan)),
+    color-mix(in srgb, var(--collection-accent, var(--cyan)) 30%, transparent)
+  );
+  border-radius: 2px;
+  transform: translateY(-50%);
+  animation: timeline-sweep 11s ease-in-out infinite;
+  pointer-events: none;
+}
+@keyframes timeline-sweep {
+  0%   { width: 0%;  opacity: 0;   }
+  10%  { width: 0%;  opacity: 0.9; }
+  55%  { width: 80%; opacity: 1;   }
+  80%  { width: 80%; opacity: 0.5; }
+  100% { width: 0%;  opacity: 0;   }
+}
+
+/* ── A8: Atlas network — second token with delay ── */
+.atlas-network > i ~ i {
+  animation-delay: calc(var(--atlas-loop, 11s) * -0.46) !important;
+  background: var(--collection-tone-2, var(--violet)) !important;
+  box-shadow: 0 0 10px var(--collection-tone-2, var(--violet)) !important;
+  width: 7px !important;
+  height: 7px !important;
+}
+
+/* ── A9: CollectionNav brand icon micro-interaction ── */
+.collection-nav__brand {
+  transition: transform var(--t-fast), box-shadow var(--t-fast), background var(--t-fast);
+  will-change: transform;
+}
+.collection-nav__brand:hover {
+  transform: rotate(-9deg) scale(1.14);
+  box-shadow: 0 0 22px color-mix(in srgb, var(--cyan) 48%, transparent);
+}
+.collection-nav__brand:active {
+  transform: rotate(5deg) scale(0.94);
+  transition-duration: 0.08s;
+}
+
+/* ── A10: Reading progress bar on collection-nav ── */
+.collection-nav {
+  overflow: visible; /* allow ::after to escape the clip */
+}
+.collection-nav::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  height: 2px;
+  width: var(--nav-read, 0%);
+  border-radius: 0 2px 2px 0;
+  background: linear-gradient(90deg,
+    color-mix(in srgb, var(--collection-accent, var(--jinx-rose)) 70%, var(--jinx-violet)),
+    var(--collection-accent, var(--jinx-rose))
+  );
+  transition: width 0.12s linear;
+  pointer-events: none;
+}
+
+/* ── A11: Prev / Next arrows slide micro-interaction ── */
+.collection-nav__arrow {
+  transition: transform var(--t-fast), background var(--t-fast), color var(--t-fast);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+}
+.collection-nav__arrow:not(.collection-nav__arrow--disabled):first-of-type:hover {
+  transform: translateX(-4px);
+  background: color-mix(in srgb, var(--collection-accent, var(--cyan)) 10%, transparent);
+}
+.collection-nav__arrow:not(.collection-nav__arrow--disabled):last-of-type:hover {
+  transform: translateX(4px);
+  background: color-mix(in srgb, var(--collection-accent, var(--cyan)) 10%, transparent);
+}
+.collection-nav__arrow:not(.collection-nav__arrow--disabled):active {
+  transform: translateX(0) scale(0.88);
+  transition-duration: 0.07s;
+}
+
+/* ── Disable all Vol.2 animations on reduced-motion ── */
+@media (prefers-reduced-motion: reduce) {
+  .hero-word,
+  .card-enter,
+  .library-card-enter,
+  .scene-code::after,
+  .atlas-timeline::before,
+  .atlas-orbit__core::before,
+  .atlas-orbit__core::after {
+    animation: none !important;
+  }
+  .concept-card,
+  .library-card {
+    animation: none !important;
+    opacity: 1 !important;
+    transform: none !important;
+    filter: none !important;
+  }
 }
