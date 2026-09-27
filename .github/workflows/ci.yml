@@ -38,3 +38,6 @@ jobs:
 
       - name: Validate internal links
         run: npm run check:links
+
+      - name: Validate accessibility standards
+        run: npm run check:a11y
