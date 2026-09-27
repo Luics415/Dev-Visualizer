@@ -20,8 +20,8 @@ export const metadata: Metadata = {
   description: `Atlas visual educativo con ${atlasSummary} de desarrollo de software y una Librería profesional preservable.`,
   applicationName: "Dev Visualizer",
   authors: [
-    { name: "Luics415" },
-    { name: "Sharol (Azlynn)" },
+    { name: "Luics415", url: "https://github.com/Luics415" },
+    { name: "Sharol (Azlynn)", url: "https://github.com/Azlynn17" },
   ],
   creator: "Luics415",
   publisher: "Dev Visualizer",

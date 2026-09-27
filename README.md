@@ -270,8 +270,8 @@ Las versiones activas se revisan contra fuentes primarias al cerrar cada expansi
 | Libros y recursos de la Librería profesional | Propiedad de sus autores; adjunto local únicamente con permiso verificable |
 | Marcas, nombres y tecnologías citadas | Propiedad de sus titulares; uso nominativo y educativo |
 
-- Dirección, autoría y mantenimiento: **Luics415**.
-- Desarrollo y diseño visual: **Sharol (Azlynn)**.
+- Dirección, autoría y mantenimiento: **[Luics415](https://github.com/Luics415)**.
+- Desarrollo y diseño visual: **[Sharol (Azlynn)](https://github.com/Azlynn17)**.
 - Asistencia de IA acreditada: **OpenAI ChatGPT**.
 - Inspiración narrativa general: [AlgoInsight](https://www.instagram.com/algoinsight/), sin copiar publicaciones, textos, marcas ni recursos.
 
