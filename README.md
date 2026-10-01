@@ -13,13 +13,15 @@ Atlas visual animado para aprender desarrollo de software desde los fundamentos 
 </p>
 
 <p align="center">
-  <a href="https://luics415.github.io/Dev-Visualizer/"><strong>Abrir Dev Visualizer</strong></a>
+  <a href="https://dev-visualizer.vercel.app/"><strong>Abrir en Vercel (Recomendado)</strong></a>
   ·
-  <a href="https://luics415.github.io/Dev-Visualizer/colecciones/">Explorar las 71 colecciones</a>
+  <a href="https://luics415.github.io/Dev-Visualizer/">Espejo en GitHub Pages</a>
   ·
-  <a href="https://luics415.github.io/Dev-Visualizer/libreria/">Librería profesional</a>
+  <a href="https://dev-visualizer.vercel.app/colecciones/">Explorar las 71 colecciones</a>
   ·
-  <a href="https://luics415.github.io/Dev-Visualizer/acerca/">Acerca del proyecto</a>
+  <a href="https://dev-visualizer.vercel.app/libreria/">Librería profesional</a>
+  ·
+  <a href="https://dev-visualizer.vercel.app/acerca/">Acerca del proyecto</a>
 </p>
 
 <p align="center">
