@@ -1,0 +1,92 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="420" height="960" viewBox="0 0 420 960" fill="none">
+  <!-- Reglas verticales sutiles que enmarcan el contenido del celular -->
+  <line x1="60.5" y1="0" x2="60.5" y2="960" stroke="rgba(255, 255, 255, 0.16)" stroke-width="1" />
+  <line x1="359.5" y1="0" x2="359.5" y2="960" stroke="rgba(255, 255, 255, 0.16)" stroke-width="1" />
+  
+  <style>
+    .t { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; font-size: 10px; }
+    .muted { fill: rgba(244, 248, 255, 0.40); }
+    .white { fill: rgba(244, 248, 255, 0.70); }
+    .cyan { fill: rgba(59, 211, 255, 0.75); }
+    .amber { fill: rgba(245, 199, 66, 0.75); }
+    .purple { fill: rgba(156, 131, 255, 0.75); }
+    .emerald { fill: rgba(73, 225, 168, 0.75); }
+    .rose { fill: rgba(255, 111, 134, 0.75); }
+  </style>
+
+  <!-- COLUMNA IZQUIERDA (HEX STREAM PARA MÓVIL) -->
+  <text x="8" y="26" class="t cyan font-bold">0x7F00</text>
+  <text x="8" y="52" class="t amber">48 89</text>
+  <text x="8" y="78" class="t muted">E5 55</text>
+  <text x="8" y="104" class="t cyan">0x7F10</text>
+  <text x="8" y="130" class="t purple">48 83</text>
+  <text x="8" y="156" class="t muted">EC 20</text>
+  <text x="8" y="182" class="t cyan">0x7F20</text>
+  <text x="8" y="208" class="t emerald">89 7D</text>
+  <text x="8" y="234" class="t muted">FC 89</text>
+  <text x="8" y="260" class="t cyan">0x7F30</text>
+  <text x="8" y="286" class="t amber">75 F8</text>
+  <text x="8" y="312" class="t muted">8B 45</text>
+  <text x="8" y="338" class="t cyan">0x7F40</text>
+  <text x="8" y="364" class="t rose">01 D0</text>
+  <text x="8" y="390" class="t muted">5D C3</text>
+  <text x="8" y="416" class="t cyan">0x7F50</text>
+  <text x="8" y="442" class="t white">48 8D</text>
+  <text x="8" y="468" class="t muted">3D 00</text>
+  <text x="8" y="494" class="t cyan">0x7F60</text>
+  <text x="8" y="520" class="t emerald">E8 00</text>
+  <text x="8" y="546" class="t muted">00 00</text>
+  <text x="8" y="572" class="t cyan">0x7F70</text>
+  <text x="8" y="598" class="t purple">31 C0</text>
+  <text x="8" y="624" class="t muted">48 83</text>
+  <text x="8" y="650" class="t cyan">0x7F80</text>
+  <text x="8" y="676" class="t rose">C3 90</text>
+  <text x="8" y="702" class="t muted">90 90</text>
+  <text x="8" y="728" class="t cyan">0x7F90</text>
+  <text x="8" y="754" class="t amber">55 48</text>
+  <text x="8" y="780" class="t muted">89 E5</text>
+  <text x="8" y="806" class="t cyan">0x7FA0</text>
+  <text x="8" y="832" class="t emerald">41 57</text>
+  <text x="8" y="858" class="t muted">41 56</text>
+  <text x="8" y="884" class="t cyan">0x7FB0</text>
+  <text x="8" y="910" class="t purple">53 48</text>
+  <text x="8" y="936" class="t muted">83 EC</text>
+
+  <!-- COLUMNA DERECHA (OPCODES MNEMONICS PARA MÓVIL) -->
+  <text x="366" y="26" class="t purple font-bold">pushq</text>
+  <text x="366" y="52" class="t muted">movq</text>
+  <text x="366" y="78" class="t muted">subq</text>
+  <text x="366" y="104" class="t cyan">movq</text>
+  <text x="366" y="130" class="t amber">xorl</text>
+  <text x="366" y="156" class="t muted">cmpl</text>
+  <text x="366" y="182" class="t rose">jge</text>
+  <text x="366" y="208" class="t emerald font-bold">callq</text>
+  <text x="366" y="234" class="t muted">addq</text>
+  <text x="366" y="260" class="t purple">testq</text>
+  <text x="366" y="286" class="t rose">jnz</text>
+  <text x="366" y="312" class="t cyan">movq</text>
+  <text x="366" y="338" class="t purple">xorq</text>
+  <text x="366" y="364" class="t rose">jnz</text>
+  <text x="366" y="390" class="t amber">movl</text>
+  <text x="366" y="416" class="t purple">leave</text>
+  <text x="366" y="442" class="t rose font-bold">retq</text>
+  <text x="366" y="468" class="t muted">nop</text>
+  <text x="366" y="494" class="t purple font-bold">pushq</text>
+  <text x="366" y="520" class="t muted">movq</text>
+  <text x="366" y="546" class="t cyan">movq</text>
+  <text x="366" y="572" class="t emerald">callq</text>
+  <text x="366" y="598" class="t amber">xorl</text>
+  <text x="366" y="624" class="t rose">retq</text>
+  <text x="366" y="650" class="t muted">CR3</text>
+  <text x="366" y="676" class="t emerald">PML4</text>
+  <text x="366" y="702" class="t cyan">PDPT</text>
+  <text x="366" y="728" class="t amber">PDE</text>
+  <text x="366" y="754" class="t purple">PTE</text>
+  <text x="366" y="780" class="t white">ZF:1</text>
+  <text x="366" y="806" class="t muted">CF:0</text>
+  <text x="366" y="832" class="t muted">SF:0</text>
+  <text x="366" y="858" class="t emerald font-bold">IF:1</text>
+  <text x="366" y="884" class="t purple">pushq</text>
+  <text x="366" y="910" class="t muted">movq</text>
+  <text x="366" y="936" class="t rose">retq</text>
+</svg>

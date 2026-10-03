@@ -1,0 +1,82 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="290" height="1080" viewBox="0 0 290 1080" fill="none">
+  <!-- Borde separador lateral izquierdo -->
+  <line x1="0.5" y1="0" x2="0.5" y2="1080" stroke="rgba(255, 255, 255, 0.18)" stroke-width="1" />
+  
+  <style>
+    .t { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; font-size: 11px; }
+    .muted { fill: rgba(244, 248, 255, 0.45); }
+    .white { fill: rgba(244, 248, 255, 0.70); }
+    .cyan { fill: rgba(59, 211, 255, 0.75); }
+    .amber { fill: rgba(245, 199, 66, 0.75); }
+    .purple { fill: rgba(156, 131, 255, 0.75); }
+    .emerald { fill: rgba(73, 225, 168, 0.75); }
+    .rose { fill: rgba(255, 111, 134, 0.75); }
+    .head { font-weight: 700; font-size: 10px; letter-spacing: 0.1em; }
+    .div-line { stroke: rgba(255, 255, 255, 0.15); stroke-dasharray: 2 4; }
+  </style>
+
+  <!-- Encabezado de Desensamblador -->
+  <text x="20" y="32" class="t purple head">[DISASM x86_64]</text>
+  <text x="210" y="32" class="t muted head">AT&amp;T</text>
+  <line x1="20" y1="42" x2="274" y2="42" stroke="rgba(156, 131, 255, 0.25)" stroke-width="1" />
+
+  <!-- Bloque 1: Función Principal y Prólogo -->
+  <text x="20" y="68" class="t white font-bold">.globl _fast_dispatch</text>
+  <text x="20" y="94" class="t purple">pushq</text>   <text x="75" y="94" class="t muted">%rbp</text>
+  <text x="20" y="120" class="t purple">movq</text>    <text x="75" y="120" class="t muted">%rsp, %rbp</text>
+  <text x="20" y="146" class="t purple">subq</text>    <text x="75" y="146" class="t muted">$0x20, %rsp</text>
+  
+  <text x="20" y="172" class="t muted">// Stack Canary Check</text>
+  <text x="20" y="198" class="t cyan">movq</text>    <text x="75" y="198" class="t muted">%fs:0x28, %rax</text>
+  <text x="20" y="224" class="t cyan">movq</text>    <text x="75" y="224" class="t muted">%rax, -0x8(%rbp)</text>
+  <text x="20" y="250" class="t amber">xorl</text>    <text x="75" y="250" class="t muted">%eax, %eax</text>
+
+  <!-- Divisor Loop Pipeline -->
+  <line x1="20" y1="274" x2="274" y2="274" class="div-line" />
+  <text x="20" y="296" class="t amber head">.L_INNER_PIPELINE:</text>
+  
+  <text x="20" y="322" class="t cyan">movq</text>    <text x="75" y="322" class="t muted">-0x18(%rbp), %rdi</text>
+  <text x="20" y="348" class="t emerald">callq</text>   <text x="75" y="348" class="t muted">_concept_eval</text>
+  <text x="20" y="374" class="t cyan">movq</text>    <text x="75" y="374" class="t muted">%rax, -0x20(%rbp)</text>
+  <text x="20" y="400" class="t purple">testq</text>   <text x="75" y="400" class="t muted">%rax, %rax</text>
+  <text x="20" y="426" class="t rose">jz</text>      <text x="75" y="426" class="t muted">.L_PIPELINE_DRAIN</text>
+  <text x="20" y="452" class="t emerald">addq</text>    <text x="75" y="452" class="t muted">$0x1, -0x10(%rbp)</text>
+  <text x="20" y="478" class="t amber">cmpl</text>    <text x="75" y="478" class="t muted">$0x100, -0x10(%rbp)</text>
+  <text x="20" y="504" class="t rose">jl</text>      <text x="75" y="504" class="t muted">.L_INNER_PIPELINE</text>
+
+  <!-- Divisor Epílogo -->
+  <line x1="20" y1="528" x2="274" y2="528" class="div-line" />
+  <text x="20" y="550" class="t rose head">.L_PIPELINE_DRAIN:</text>
+  <text x="20" y="576" class="t cyan">movq</text>    <text x="75" y="576" class="t muted">-0x8(%rbp), %rax</text>
+  <text x="20" y="602" class="t purple">xorq</text>    <text x="75" y="602" class="t muted">%fs:0x28, %rax</text>
+  <text x="20" y="628" class="t rose">jnz</text>     <text x="75" y="628" class="t muted">.L_STACK_CHK_FAIL</text>
+  <text x="20" y="654" class="t amber">movl</text>    <text x="75" y="654" class="t muted">$0x0, %eax</text>
+  <text x="20" y="680" class="t purple">leaveq</text>
+  <text x="20" y="706" class="t rose">retq</text>
+
+  <!-- Divisor Registros de CPU -->
+  <line x1="20" y1="730" x2="274" y2="730" class="div-line" />
+  <text x="20" y="752" class="t emerald head">CPU REGISTERS DUMP</text>
+  <text x="20" y="778" class="t muted">RAX: <tspan class="t white">0x0000000000000000</tspan></text>
+  <text x="20" y="804" class="t muted">RBX: <tspan class="t cyan">0x00007FFF5F0010A0</tspan></text>
+  <text x="20" y="830" class="t muted">RSP: <tspan class="t emerald">0x00007FFF5F000FE0</tspan></text>
+  <text x="20" y="856" class="t muted">RBP: <tspan class="t purple">0x00007FFF5F001000</tspan></text>
+  <text x="20" y="882" class="t muted">RIP: <tspan class="t amber">0x0000000100003F80</tspan></text>
+
+  <!-- Divisor Banderas ALU -->
+  <line x1="20" y1="906" x2="274" y2="906" class="div-line" />
+  <text x="20" y="928" class="t cyan head">ALU FLAGS &amp; STATUS</text>
+  <rect x="20" y="942" width="44" height="20" rx="4" fill="rgba(255,255,255,0.06)" />
+  <text x="28" y="956" class="t cyan font-bold">ZF:1</text>
+  <rect x="72" y="942" width="44" height="20" rx="4" fill="rgba(255,255,255,0.06)" />
+  <text x="80" y="956" class="t muted">CF:0</text>
+  <rect x="124" y="942" width="44" height="20" rx="4" fill="rgba(255,255,255,0.06)" />
+  <text x="132" y="956" class="t muted">SF:0</text>
+  <rect x="176" y="942" width="44" height="20" rx="4" fill="rgba(255,255,255,0.06)" />
+  <text x="184" y="956" class="t emerald font-bold">IF:1</text>
+
+  <text x="20" y="996" class="t muted">RING 0 KERNEL SAFE</text>
+  <text x="20" y="1022" class="t white">64-BIT LONG MODE</text>
+  
+  <line x1="20" y1="1056" x2="274" y2="1056" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1" />
+</svg>

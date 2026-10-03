@@ -1,0 +1,75 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="280" height="1080" viewBox="0 0 280 1080" fill="none">
+  <!-- Borde separador lateral derecho -->
+  <line x1="279.5" y1="0" x2="279.5" y2="1080" stroke="rgba(255, 255, 255, 0.18)" stroke-width="1" />
+  
+  <style>
+    .t { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; font-size: 11px; }
+    .muted { fill: rgba(244, 248, 255, 0.45); }
+    .white { fill: rgba(244, 248, 255, 0.70); }
+    .cyan { fill: rgba(59, 211, 255, 0.75); }
+    .amber { fill: rgba(245, 199, 66, 0.75); }
+    .purple { fill: rgba(156, 131, 255, 0.75); }
+    .emerald { fill: rgba(73, 225, 168, 0.75); }
+    .rose { fill: rgba(255, 111, 134, 0.75); }
+    .head { font-weight: 700; font-size: 10px; letter-spacing: 0.1em; }
+    .div-line { stroke: rgba(255, 255, 255, 0.15); stroke-dasharray: 2 4; }
+  </style>
+
+  <!-- Encabezado de Mapa de Memoria -->
+  <text x="16" y="32" class="t cyan head">[VIRTUAL_MEM_MAP]</text>
+  <text x="210" y="32" class="t muted head">0x7FFF</text>
+  <line x1="16" y1="42" x2="264" y2="42" stroke="rgba(59, 211, 255, 0.25)" stroke-width="1" />
+
+  <!-- Bloque 1: Direcciones y Hex Dump -->
+  <text x="16" y="68" class="t muted">0x7FFF5F00</text> <text x="110" y="68" class="t amber">48 89 E5 55</text> <text x="220" y="68" class="t muted">..eU</text>
+  <text x="16" y="94" class="t muted">0x7FFF5F10</text> <text x="110" y="94" class="t cyan">48 83 EC 20</text> <text x="220" y="94" class="t muted">H.. </text>
+  <text x="16" y="120" class="t muted">0x7FFF5F20</text> <text x="110" y="120" class="t purple">89 7D FC 89</text> <text x="220" y="120" class="t muted">.}..</text>
+  <text x="16" y="146" class="t muted">0x7FFF5F30</text> <text x="110" y="146" class="t emerald">75 F8 8B 45</text> <text x="220" y="146" class="t muted">u..E</text>
+  <text x="16" y="172" class="t muted">0x7FFF5F40</text> <text x="110" y="172" class="t rose">01 D0 5D C3</text> <text x="220" y="172" class="t muted">..].</text>
+  <text x="16" y="198" class="t muted">0x7FFF5F50</text> <text x="110" y="198" class="t white">48 8D 3D 00</text> <text x="220" y="198" class="t muted">H.=.</text>
+  <text x="16" y="224" class="t muted">0x7FFF5F60</text> <text x="110" y="224" class="t amber">E8 00 00 00</text> <text x="220" y="224" class="t muted">....</text>
+  <text x="16" y="250" class="t muted">0x7FFF5F70</text> <text x="110" y="250" class="t cyan">31 C0 48 83</text> <text x="220" y="250" class="t muted">1.H.</text>
+  <text x="16" y="276" class="t muted">0x7FFF5F80</text> <text x="110" y="276" class="t purple">C3 90 90 90</text> <text x="220" y="276" class="t muted">....</text>
+
+  <!-- Divisor Segmento .TEXT -->
+  <line x1="16" y1="300" x2="264" y2="300" class="div-line" />
+  <text x="16" y="322" class="t cyan head">SEGMENT .TEXT (RX)</text>
+
+  <!-- Bloque 2: Continuación de Memoria -->
+  <text x="16" y="348" class="t muted">0x7FFF6000</text> <text x="110" y="348" class="t white">55 48 89 E5</text> <text x="220" y="348" class="t muted">UH..</text>
+  <text x="16" y="374" class="t muted">0x7FFF6010</text> <text x="110" y="374" class="t emerald">41 57 41 56</text> <text x="220" y="374" class="t muted">AWAV</text>
+  <text x="16" y="400" class="t muted">0x7FFF6020</text> <text x="110" y="400" class="t purple">41 55 41 54</text> <text x="220" y="400" class="t muted">AUAT</text>
+  <text x="16" y="426" class="t muted">0x7FFF6030</text> <text x="110" y="426" class="t amber">53 48 83 EC</text> <text x="220" y="426" class="t muted">SH..</text>
+  <text x="16" y="452" class="t muted">0x7FFF6040</text> <text x="110" y="452" class="t cyan">48 8B 05 00</text> <text x="220" y="452" class="t muted">H...</text>
+  <text x="16" y="478" class="t muted">0x7FFF6050</text> <text x="110" y="478" class="t rose">48 85 C0 74</text> <text x="220" y="478" class="t muted">H..t</text>
+  <text x="16" y="504" class="t muted">0x7FFF6060</text> <text x="110" y="504" class="t white">FF 15 00 00</text> <text x="220" y="504" class="t muted">....</text>
+  <text x="16" y="530" class="t muted">0x7FFF6070</text> <text x="110" y="530" class="t emerald">48 83 C4 18</text> <text x="220" y="530" class="t muted">H...</text>
+
+  <!-- Divisor Segmento .DATA -->
+  <line x1="16" y1="554" x2="264" y2="554" class="div-line" />
+  <text x="16" y="576" class="t amber head">SEGMENT .DATA (RW)</text>
+  <text x="16" y="602" class="t muted">0x7FFF6A00</text> <text x="110" y="602" class="t amber">68 65 6C 6C</text> <text x="220" y="602" class="t white">hell</text>
+  <text x="16" y="628" class="t muted">0x7FFF6A08</text> <text x="110" y="628" class="t amber">6F 20 77 6F</text> <text x="220" y="628" class="t white">o wo</text>
+  <text x="16" y="654" class="t muted">0x7FFF6A10</text> <text x="110" y="654" class="t amber">72 6C 64 00</text> <text x="220" y="654" class="t white">rld.</text>
+  <text x="16" y="680" class="t muted">0x7FFF6A18</text> <text x="110" y="680" class="t white">00 00 00 00</text> <text x="220" y="680" class="t muted">....</text>
+
+  <!-- Divisor Stack Frame -->
+  <line x1="16" y1="704" x2="264" y2="704" class="div-line" />
+  <text x="16" y="726" class="t purple head">STACK FRAME &amp; CANARY</text>
+  <text x="16" y="752" class="t muted">[RBP-0x08]</text> <text x="110" y="752" class="t cyan">PTR -&gt; HEAP</text>
+  <text x="16" y="778" class="t muted">[RBP-0x10]</text> <text x="110" y="778" class="t emerald">0x0000002A</text>
+  <text x="16" y="804" class="t muted">[RBP-0x18]</text> <text x="110" y="804" class="t purple">RET_ADDR</text>
+  <text x="16" y="830" class="t muted">[RBP-0x20]</text> <text x="110" y="830" class="t rose">SAVED_RBP</text>
+  <text x="16" y="856" class="t muted">[RBP-0x28]</text> <text x="110" y="856" class="t amber">CANARY_OK</text>
+
+  <!-- Divisor MMU Paging -->
+  <line x1="16" y1="880" x2="264" y2="880" class="div-line" />
+  <text x="16" y="902" class="t emerald head">MMU 4-LEVEL PAGING</text>
+  <text x="16" y="928" class="t muted">CR3:</text>   <text x="80" y="928" class="t white">0x0000000184A0</text>
+  <text x="16" y="954" class="t muted">PML4E:</text> <text x="80" y="954" class="t emerald">0x8000000002F0</text>
+  <text x="16" y="980" class="t muted">PDPTE:</text> <text x="80" y="980" class="t cyan">0x8000000003A0</text>
+  <text x="16" y="1006" class="t muted">PDE:</text>   <text x="80" y="1006" class="t amber">0x800000000410</text>
+  <text x="16" y="1032" class="t muted">PTE:</text>   <text x="80" y="1032" class="t purple">0x8000000005C8</text>
+
+  <line x1="16" y1="1056" x2="264" y2="1056" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1" />
+</svg>

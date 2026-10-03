@@ -36,8 +36,29 @@ body {
   margin: 0;
   min-height: 100vh;
   color: var(--text);
-  background: #000000;
+  background-color: #000000;
+  background-image:
+    url('/backgrounds/memory-tape-left.svg'),
+    url('/backgrounds/disasm-tape-right.svg');
+  background-position:
+    right calc(50% + 630px) top 0,
+    left calc(50% + 630px) top 0;
+  background-repeat:
+    repeat-y,
+    repeat-y;
+  background-size:
+    280px 1080px,
+    290px 1080px;
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+}
+
+@media (max-width: 1280px) {
+  body {
+    background-image: url('/backgrounds/memory-tape-mobile.svg') !important;
+    background-position: center top 0 !important;
+    background-repeat: repeat-y !important;
+    background-size: 100% 960px !important;
+  }
 }
 a { color: inherit; }
 button, input, textarea, select { font: inherit; }
@@ -735,7 +756,7 @@ html { background: #000000; }
 body {
   position: relative;
   color: var(--jinx-shell-text);
-  background: #000000;
+  background-color: #000000;
 }
 
 
@@ -3588,7 +3609,7 @@ body {
   --jinx-shell-panel: var(--shell-panel);
   --jinx-shell-panel-strong: var(--shell-panel-strong);
   color: var(--shell-text) !important;
-  background: #000000 !important;
+  background-color: #000000 !important;
 }
 
 .collection-nav {
