@@ -1,5 +1,5 @@
 :root {
-  --bg: #070910;
+  --bg: #000000;
   --panel: #0d1220;
   --panel-2: #11182a;
   --panel-3: #151d31;
@@ -31,18 +31,12 @@
 }
 
 * { box-sizing: border-box; }
-html { background: var(--bg); scroll-behavior: smooth; }
+html { background: #000000; scroll-behavior: smooth; }
 body {
   margin: 0;
   min-height: 100vh;
   color: var(--text);
-  background:
-    linear-gradient(rgba(255,255,255,.018) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.018) 1px, transparent 1px),
-    radial-gradient(circle at 15% -5%, rgba(59,211,255,.1), transparent 32rem),
-    radial-gradient(circle at 88% 0%, rgba(156,131,255,.08), transparent 28rem),
-    var(--bg);
-  background-size: 32px 32px, 32px 32px, auto, auto, auto;
+  background: #000000;
   font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
 }
 a { color: inherit; }
@@ -736,115 +730,12 @@ button, input, textarea, select { font: inherit; }
   --jinx-shell-panel-strong: color-mix(in srgb, var(--jinx-wine) 30%, #09080d);
 }
 
-html { background: var(--jinx-ink); }
-
-/* ── Decorative background rings for visual depth ── */
-html::before,
-html::after {
-  content: "";
-  position: fixed;
-  border-radius: 50%;
-  pointer-events: none;
-  z-index: 0;
-}
-/* Top-left large ring */
-html::before {
-  top: -280px;
-  left: -200px;
-  width: 700px;
-  height: 700px;
-  border: 1px solid rgba(131, 95, 134, .07);
-  background: radial-gradient(circle, rgba(131,95,134,.055) 0%, transparent 68%);
-  animation: ring-drift-a 26s ease-in-out infinite;
-}
-/* Bottom-right large ring */
-html::after {
-  bottom: -320px;
-  right: -240px;
-  width: 800px;
-  height: 800px;
-  border: 1px solid rgba(77, 114, 144, .06);
-  background: radial-gradient(circle, rgba(77,114,144,.045) 0%, transparent 65%);
-  animation: ring-drift-b 32s ease-in-out infinite;
-}
-
-@keyframes ring-drift-a {
-  0%, 100% { transform: translate(0, 0) scale(1);     }
-  33%       { transform: translate(28px, 18px) scale(1.04);  }
-  66%       { transform: translate(-12px, 30px) scale(0.97); }
-}
-@keyframes ring-drift-b {
-  0%, 100% { transform: translate(0, 0) scale(1);      }
-  40%       { transform: translate(-22px, -14px) scale(1.05); }
-  70%       { transform: translate(16px, 20px) scale(0.96);  }
-}
+html { background: #000000; }
 
 body {
   position: relative;
   color: var(--jinx-shell-text);
-  background:
-    /* ── Dot matrix grid ── */
-    radial-gradient(circle, rgba(131,95,134,.20) 1px, transparent 1px),
-    /* ── Ambient blobs — top left (warm) ── */
-    radial-gradient(ellipse 52% 38% at 6% -4%,   rgba(131,95,134,.34), transparent),
-    /* ── Ambient blobs — top right (cool) ── */
-    radial-gradient(ellipse 44% 34% at 94% -2%,  rgba(77,114,144,.30), transparent),
-    /* ── Ambient blobs — mid left ── */
-    radial-gradient(ellipse 30% 42% at -2% 48%,  rgba(77,114,144,.14), transparent),
-    /* ── Ambient blobs — mid right ── */
-    radial-gradient(ellipse 28% 38% at 102% 52%, rgba(131,95,134,.12), transparent),
-    /* ── Ambient blobs — center horizon ── */
-    radial-gradient(ellipse 55% 22% at 50% 52%,  rgba(167,100,134,.09), transparent),
-    /* ── Ambient blobs — bottom glow ── */
-    radial-gradient(ellipse 70% 45% at 50% 112%, rgba(167,100,134,.26), transparent),
-    /* ── Base directional gradient ── */
-    linear-gradient(155deg,
-      color-mix(in srgb, var(--jinx-slate) 30%, #080509) 0%,
-      color-mix(in srgb, var(--jinx-wine)  26%, #09060c) 32%,
-      color-mix(in srgb, var(--jinx-violet)22%, #07060b) 60%,
-      color-mix(in srgb, var(--jinx-blue)  18%, #07080c) 100%
-    );
-  background-size:
-    20px 20px,
-    auto, auto, auto, auto, auto, auto, auto;
-  background-attachment: fixed;
-  animation: ambient-breathe 20s ease-in-out infinite;
-}
-
-@keyframes ambient-breathe {
-  0%, 100% {
-    background-position:
-      0 0,
-      6%   -4%,  94%  -2%,
-      -2%  48%,  102% 52%,
-      50%  52%,
-      50%  112%,
-      0 0;
-  }
-  30% {
-    background-position:
-      0 0,
-      4%   -7%,  96%  0%,
-      -4%  45%,  104% 55%,
-      52%  50%,
-      50%  115%,
-      0 0;
-  }
-  65% {
-    background-position:
-      0 0,
-      8%   -2%,  92%  -4%,
-      0%   51%,  100% 49%,
-      48%  54%,
-      50%  109%,
-      0 0;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  body        { animation: none; background-attachment: scroll; }
-  html::before,
-  html::after { animation: none; }
+  background: #000000;
 }
 
 
@@ -3385,7 +3276,7 @@ html { scroll-padding-top: 112px; }
    remain in examples, while every collection owns a complete palette.
    ================================================================ */
 :root {
-  --shell-bg: #070a10;
+  --shell-bg: #000000;
   --shell-panel: #0d121d;
   --shell-panel-strong: #0a0f18;
   --shell-text: #eef4fb;
@@ -3683,27 +3574,21 @@ body[data-collection-theme="ci-cd"] { --collection-accent:#3bd3ff;--collection-r
 .atlas-literate-weave > i { display:grid; width:32px; height:32px; place-items:center; border:1px solid rgba(var(--card-accent-rgb),.4); border-radius:50%; color:var(--card-accent); font-style:normal; }
 .atlas-literate-weave__outputs { display:grid; gap:7px; }.atlas-literate-weave__outputs span{display:grid;min-height:50px;place-content:center;padding:7px;border:1px solid rgba(var(--card-accent-rgb),.28);border-radius:8px;background:#08101b;text-align:center}
 
-html { background: var(--shell-bg) !important; }
+html { background: #000000 !important; }
 body {
   --jinx-violet: var(--collection-tone-3);
   --jinx-wine: var(--collection-tone-5);
   --jinx-rose: var(--collection-accent);
   --jinx-blue: var(--collection-tone-2);
   --jinx-slate: #4b5667;
-  --jinx-ink: var(--shell-bg);
+  --jinx-ink: #000000;
   --jinx-shell-text: var(--shell-text);
   --jinx-shell-muted: var(--shell-muted);
   --jinx-shell-line: var(--shell-line);
   --jinx-shell-panel: var(--shell-panel);
   --jinx-shell-panel-strong: var(--shell-panel-strong);
   color: var(--shell-text) !important;
-  background:
-    linear-gradient(rgba(255,255,255,.015) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255,255,255,.015) 1px, transparent 1px),
-    radial-gradient(circle at 92% 2%, rgba(var(--collection-rgb),.12), transparent 31rem),
-    radial-gradient(circle at 8% 28%, rgba(var(--collection-tone-2-rgb),.055), transparent 28rem),
-    linear-gradient(115deg, #070a10 0%, #090d15 54%, #080b12 100%) !important;
-  background-size: 34px 34px,34px 34px,auto,auto,auto !important;
+  background: #000000 !important;
 }
 
 .collection-nav {
