@@ -1,9 +1,9 @@
-<svg xmlns="http://www.w3.org/2000/svg" width="360" height="960" viewBox="0 0 360 960" fill="none">
-  <!-- Riel vertical izquierdo de precisión para celular (40% de opacidad) -->
-  <line x1="38.5" y1="0" x2="38.5" y2="960" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1" />
+<svg xmlns="http://www.w3.org/2000/svg" width="140" height="960" viewBox="0 0 140 960" fill="none">
+  <!-- Borde separador derecho de la columna izquierda (40% de opacidad) -->
+  <line x1="139.5" y1="0" x2="139.5" y2="960" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1" />
   
   <style>
-    .t { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; font-size: 9.5px; }
+    .t { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; font-size: 10.5px; }
     .muted { fill: rgba(244, 248, 255, 0.28); }
     .white { fill: rgba(244, 248, 255, 0.40); }
     .cyan { fill: rgba(59, 211, 255, 0.45); }
@@ -11,55 +11,62 @@
     .purple { fill: rgba(156, 131, 255, 0.45); }
     .emerald { fill: rgba(73, 225, 168, 0.45); }
     .rose { fill: rgba(255, 111, 134, 0.45); }
+    .head { font-weight: 700; font-size: 9.5px; letter-spacing: 0.08em; }
+    .div-line { stroke: rgba(255, 255, 255, 0.10); stroke-dasharray: 2 3; }
   </style>
 
-  <!-- FLUJO VERTICAL LIMPIO EN EL MARGEN IZQUIERDO -->
-  <text x="4" y="24" class="t cyan font-bold">0x7F00</text>
-  <text x="4" y="48" class="t amber">48 89</text>
-  <text x="4" y="72" class="t muted">E5 55</text>
-  <text x="4" y="96" class="t purple">pushq</text>
+  <!-- Encabezado de Columna Móvil -->
+  <text x="6" y="20" class="t cyan head">[MEM_MAP]</text>
+  <text x="82" y="20" class="t muted head">40%</text>
+  <line x1="6" y1="28" x2="132" y2="28" stroke="rgba(59, 211, 255, 0.18)" stroke-width="1" />
 
-  <text x="4" y="120" class="t cyan font-bold">0x7F10</text>
-  <text x="4" y="144" class="t emerald">48 83</text>
-  <text x="4" y="168" class="t muted">EC 20</text>
-  <text x="4" y="192" class="t cyan">movq</text>
+  <!-- Bloque 1: Direcciones y Hex Dump -->
+  <text x="6" y="48" class="t muted">0x7F00</text> <text x="62" y="48" class="t amber">48 89 E5</text>
+  <text x="6" y="72" class="t muted">0x7F10</text> <text x="62" y="72" class="t cyan">48 83 EC</text>
+  <text x="6" y="96" class="t muted">0x7F20</text> <text x="62" y="96" class="t purple">89 7D FC</text>
+  <text x="6" y="120" class="t muted">0x7F30</text> <text x="62" y="120" class="t emerald">75 F8 8B</text>
+  <text x="6" y="144" class="t muted">0x7F40</text> <text x="62" y="144" class="t rose">01 D0 5D</text>
+  <text x="6" y="168" class="t muted">0x7F50</text> <text x="62" y="168" class="t white">48 8D 3D</text>
+  <text x="6" y="192" class="t muted">0x7F60</text> <text x="62" y="192" class="t amber">E8 00 00</text>
+  <text x="6" y="216" class="t muted">0x7F70</text> <text x="62" y="216" class="t cyan">31 C0 48</text>
+  <text x="6" y="240" class="t muted">0x7F80</text> <text x="62" y="240" class="t purple">C3 90 90</text>
 
-  <text x="4" y="216" class="t cyan font-bold">0x7F20</text>
-  <text x="4" y="240" class="t rose">89 7D</text>
-  <text x="4" y="264" class="t muted">FC 89</text>
-  <text x="4" y="288" class="t amber">xorl</text>
+  <!-- Divisor Segmento .TEXT -->
+  <line x1="6" y1="256" x2="132" y2="256" class="div-line" />
+  <text x="6" y="274" class="t cyan head">.TEXT (RX)</text>
+  <text x="6" y="296" class="t muted">0x7F90</text> <text x="62" y="296" class="t white">55 48 89</text>
+  <text x="6" y="320" class="t muted">0x7FA0</text> <text x="62" y="320" class="t emerald">41 57 41</text>
+  <text x="6" y="344" class="t muted">0x7FB0</text> <text x="62" y="344" class="t purple">41 55 41</text>
+  <text x="6" y="368" class="t muted">0x7FC0</text> <text x="62" y="368" class="t amber">53 48 83</text>
+  <text x="6" y="392" class="t muted">0x7FD0</text> <text x="62" y="392" class="t cyan">48 8B 05</text>
+  <text x="6" y="416" class="t muted">0x7FE0</text> <text x="62" y="416" class="t rose">48 85 C0</text>
+  <text x="6" y="440" class="t muted">0x7FF0</text> <text x="62" y="440" class="t white">FF 15 00</text>
+  <text x="6" y="464" class="t muted">0x8000</text> <text x="62" y="464" class="t emerald">48 83 C4</text>
 
-  <text x="4" y="312" class="t cyan font-bold">0x7F30</text>
-  <text x="4" y="336" class="t amber">75 F8</text>
-  <text x="4" y="360" class="t muted">8B 45</text>
-  <text x="4" y="384" class="t emerald">callq</text>
+  <!-- Divisor Opcodes -->
+  <line x1="6" y1="480" x2="132" y2="480" class="div-line" />
+  <text x="6" y="498" class="t purple head">OPCODES x86</text>
+  <text x="6" y="520" class="t purple">pushq</text>  <text x="62" y="520" class="t muted">%rbp</text>
+  <text x="6" y="544" class="t purple">movq</text>   <text x="62" y="544" class="t muted">%rsp,%rbp</text>
+  <text x="6" y="568" class="t purple">subq</text>   <text x="62" y="568" class="t muted">$0x20,%rsp</text>
+  <text x="6" y="592" class="t cyan">movq</text>   <text x="62" y="592" class="t muted">%fs:28,%rax</text>
+  <text x="6" y="616" class="t amber">xorl</text>   <text x="62" y="616" class="t muted">%eax,%eax</text>
+  <text x="6" y="640" class="t emerald">callq</text>  <text x="62" y="640" class="t muted">_eval</text>
+  <text x="6" y="664" class="t purple">testq</text>  <text x="62" y="664" class="t muted">%rax,%rax</text>
+  <text x="6" y="688" class="t rose">retq</text>    <text x="62" y="688" class="t muted">0x0</text>
 
-  <text x="4" y="408" class="t cyan font-bold">0x7F40</text>
-  <text x="4" y="432" class="t white">01 D0</text>
-  <text x="4" y="456" class="t muted">5D C3</text>
-  <text x="4" y="480" class="t purple">testq</text>
+  <!-- Divisor Stack & MMU -->
+  <line x1="6" y1="704" x2="132" y2="704" class="div-line" />
+  <text x="6" y="722" class="t emerald head">STACK &amp; MMU</text>
+  <text x="6" y="744" class="t muted">[RBP-8]</text>  <text x="62" y="744" class="t amber">CANARY</text>
+  <text x="6" y="768" class="t muted">[RBP-16]</text> <text x="62" y="768" class="t cyan">0x002A</text>
+  <text x="6" y="792" class="t muted">CR3:</text>      <text x="62" y="792" class="t white">0x184A0</text>
+  <text x="6" y="816" class="t muted">PML4:</text>     <text x="62" y="816" class="t emerald">0x02F0</text>
+  <text x="6" y="840" class="t muted">PDPT:</text>     <text x="62" y="840" class="t cyan">0x03A0</text>
+  <text x="6" y="864" class="t muted">PDE:</text>      <text x="62" y="864" class="t amber">0x0410</text>
+  <text x="6" y="888" class="t muted">PTE:</text>      <text x="62" y="888" class="t purple">0x05C8</text>
+  <text x="6" y="912" class="t cyan font-bold">ZF:1</text> <text x="62" y="912" class="t emerald font-bold">IF:1</text>
+  <text x="6" y="936" class="t white">RING 0</text>   <text x="62" y="936" class="t muted">64-BIT</text>
 
-  <text x="4" y="504" class="t cyan font-bold">0x7F50</text>
-  <text x="4" y="528" class="t cyan">48 8D</text>
-  <text x="4" y="552" class="t muted">3D 00</text>
-  <text x="4" y="576" class="t rose">retq</text>
-
-  <text x="4" y="600" class="t cyan font-bold">0x7F60</text>
-  <text x="4" y="624" class="t emerald">E8 00</text>
-  <text x="4" y="648" class="t muted">00 00</text>
-  <text x="4" y="672" class="t amber">subq</text>
-
-  <text x="4" y="696" class="t cyan font-bold">0x7F70</text>
-  <text x="4" y="720" class="t purple">31 C0</text>
-  <text x="4" y="744" class="t muted">48 83</text>
-  <text x="4" y="768" class="t cyan">movq</text>
-
-  <text x="4" y="792" class="t cyan font-bold">0x7F80</text>
-  <text x="4" y="816" class="t rose">C3 90</text>
-  <text x="4" y="840" class="t muted">90 90</text>
-  <text x="4" y="864" class="t purple">leave</text>
-
-  <text x="4" y="888" class="t cyan font-bold">0x7F90</text>
-  <text x="4" y="912" class="t amber">55 48</text>
-  <text x="4" y="936" class="t emerald">IF:1</text>
+  <line x1="6" y1="954" x2="132" y2="954" stroke="rgba(255, 255, 255, 0.10)" stroke-width="1" />
 </svg>
