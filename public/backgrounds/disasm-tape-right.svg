@@ -1,24 +1,24 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="290" height="1080" viewBox="0 0 290 1080" fill="none">
-  <!-- Borde separador lateral izquierdo -->
-  <line x1="0.5" y1="0" x2="0.5" y2="1080" stroke="rgba(255, 255, 255, 0.18)" stroke-width="1" />
+  <!-- Borde separador lateral izquierdo (40% de opacidad) -->
+  <line x1="0.5" y1="0" x2="0.5" y2="1080" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1" />
   
   <style>
     .t { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; font-size: 11px; }
-    .muted { fill: rgba(244, 248, 255, 0.45); }
-    .white { fill: rgba(244, 248, 255, 0.70); }
-    .cyan { fill: rgba(59, 211, 255, 0.75); }
-    .amber { fill: rgba(245, 199, 66, 0.75); }
-    .purple { fill: rgba(156, 131, 255, 0.75); }
-    .emerald { fill: rgba(73, 225, 168, 0.75); }
-    .rose { fill: rgba(255, 111, 134, 0.75); }
+    .muted { fill: rgba(244, 248, 255, 0.28); }
+    .white { fill: rgba(244, 248, 255, 0.40); }
+    .cyan { fill: rgba(59, 211, 255, 0.45); }
+    .amber { fill: rgba(245, 199, 66, 0.45); }
+    .purple { fill: rgba(156, 131, 255, 0.45); }
+    .emerald { fill: rgba(73, 225, 168, 0.45); }
+    .rose { fill: rgba(255, 111, 134, 0.45); }
     .head { font-weight: 700; font-size: 10px; letter-spacing: 0.1em; }
-    .div-line { stroke: rgba(255, 255, 255, 0.15); stroke-dasharray: 2 4; }
+    .div-line { stroke: rgba(255, 255, 255, 0.10); stroke-dasharray: 2 4; }
   </style>
 
   <!-- Encabezado de Desensamblador -->
   <text x="20" y="32" class="t purple head">[DISASM x86_64]</text>
   <text x="210" y="32" class="t muted head">AT&amp;T</text>
-  <line x1="20" y1="42" x2="274" y2="42" stroke="rgba(156, 131, 255, 0.25)" stroke-width="1" />
+  <line x1="20" y1="42" x2="274" y2="42" stroke="rgba(156, 131, 255, 0.18)" stroke-width="1" />
 
   <!-- Bloque 1: Función Principal y Prólogo -->
   <text x="20" y="68" class="t white font-bold">.globl _fast_dispatch</text>
@@ -66,17 +66,17 @@
   <!-- Divisor Banderas ALU -->
   <line x1="20" y1="906" x2="274" y2="906" class="div-line" />
   <text x="20" y="928" class="t cyan head">ALU FLAGS &amp; STATUS</text>
-  <rect x="20" y="942" width="44" height="20" rx="4" fill="rgba(255,255,255,0.06)" />
+  <rect x="20" y="942" width="44" height="20" rx="4" fill="rgba(255,255,255,0.05)" />
   <text x="28" y="956" class="t cyan font-bold">ZF:1</text>
-  <rect x="72" y="942" width="44" height="20" rx="4" fill="rgba(255,255,255,0.06)" />
+  <rect x="72" y="942" width="44" height="20" rx="4" fill="rgba(255,255,255,0.05)" />
   <text x="80" y="956" class="t muted">CF:0</text>
-  <rect x="124" y="942" width="44" height="20" rx="4" fill="rgba(255,255,255,0.06)" />
+  <rect x="124" y="942" width="44" height="20" rx="4" fill="rgba(255,255,255,0.05)" />
   <text x="132" y="956" class="t muted">SF:0</text>
-  <rect x="176" y="942" width="44" height="20" rx="4" fill="rgba(255,255,255,0.06)" />
+  <rect x="176" y="942" width="44" height="20" rx="4" fill="rgba(255,255,255,0.05)" />
   <text x="184" y="956" class="t emerald font-bold">IF:1</text>
 
   <text x="20" y="996" class="t muted">RING 0 KERNEL SAFE</text>
   <text x="20" y="1022" class="t white">64-BIT LONG MODE</text>
   
-  <line x1="20" y1="1056" x2="274" y2="1056" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1" />
+  <line x1="20" y1="1056" x2="274" y2="1056" stroke="rgba(255, 255, 255, 0.10)" stroke-width="1" />
 </svg>

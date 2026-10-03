@@ -272,6 +272,7 @@ Las versiones activas se revisan contra fuentes primarias al cerrar cada expansi
 
 - Dirección, autoría y mantenimiento: **[Luics415](https://github.com/Luics415)**.
 - Desarrollo y diseño visual: **[Sharol (Azlynn)](https://github.com/Azlynn17)**.
+- Co-autoría y contribución técnica: **[Luics4152](https://github.com/Luics4152)**.
 - Asistencia de IA acreditada: **OpenAI ChatGPT**.
 - Inspiración narrativa general: [AlgoInsight](https://www.instagram.com/algoinsight/), sin copiar publicaciones, textos, marcas ni recursos.
 

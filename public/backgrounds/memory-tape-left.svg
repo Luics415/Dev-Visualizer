@@ -1,24 +1,24 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="280" height="1080" viewBox="0 0 280 1080" fill="none">
-  <!-- Borde separador lateral derecho -->
-  <line x1="279.5" y1="0" x2="279.5" y2="1080" stroke="rgba(255, 255, 255, 0.18)" stroke-width="1" />
+  <!-- Borde separador lateral derecho (40% de opacidad) -->
+  <line x1="279.5" y1="0" x2="279.5" y2="1080" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1" />
   
   <style>
     .t { font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace; font-size: 11px; }
-    .muted { fill: rgba(244, 248, 255, 0.45); }
-    .white { fill: rgba(244, 248, 255, 0.70); }
-    .cyan { fill: rgba(59, 211, 255, 0.75); }
-    .amber { fill: rgba(245, 199, 66, 0.75); }
-    .purple { fill: rgba(156, 131, 255, 0.75); }
-    .emerald { fill: rgba(73, 225, 168, 0.75); }
-    .rose { fill: rgba(255, 111, 134, 0.75); }
+    .muted { fill: rgba(244, 248, 255, 0.28); }
+    .white { fill: rgba(244, 248, 255, 0.40); }
+    .cyan { fill: rgba(59, 211, 255, 0.45); }
+    .amber { fill: rgba(245, 199, 66, 0.45); }
+    .purple { fill: rgba(156, 131, 255, 0.45); }
+    .emerald { fill: rgba(73, 225, 168, 0.45); }
+    .rose { fill: rgba(255, 111, 134, 0.45); }
     .head { font-weight: 700; font-size: 10px; letter-spacing: 0.1em; }
-    .div-line { stroke: rgba(255, 255, 255, 0.15); stroke-dasharray: 2 4; }
+    .div-line { stroke: rgba(255, 255, 255, 0.10); stroke-dasharray: 2 4; }
   </style>
 
   <!-- Encabezado de Mapa de Memoria -->
   <text x="16" y="32" class="t cyan head">[VIRTUAL_MEM_MAP]</text>
   <text x="210" y="32" class="t muted head">0x7FFF</text>
-  <line x1="16" y1="42" x2="264" y2="42" stroke="rgba(59, 211, 255, 0.25)" stroke-width="1" />
+  <line x1="16" y1="42" x2="264" y2="42" stroke="rgba(59, 211, 255, 0.18)" stroke-width="1" />
 
   <!-- Bloque 1: Direcciones y Hex Dump -->
   <text x="16" y="68" class="t muted">0x7FFF5F00</text> <text x="110" y="68" class="t amber">48 89 E5 55</text> <text x="220" y="68" class="t muted">..eU</text>
@@ -71,5 +71,5 @@
   <text x="16" y="1006" class="t muted">PDE:</text>   <text x="80" y="1006" class="t amber">0x800000000410</text>
   <text x="16" y="1032" class="t muted">PTE:</text>   <text x="80" y="1032" class="t purple">0x8000000005C8</text>
 
-  <line x1="16" y1="1056" x2="264" y2="1056" stroke="rgba(255, 255, 255, 0.12)" stroke-width="1" />
+  <line x1="16" y1="1056" x2="264" y2="1056" stroke="rgba(255, 255, 255, 0.10)" stroke-width="1" />
 </svg>

@@ -22,6 +22,7 @@ export const metadata: Metadata = {
   authors: [
     { name: "Luics415", url: "https://github.com/Luics415" },
     { name: "Sharol (Azlynn)", url: "https://github.com/Azlynn17" },
+    { name: "Luics4152", url: "https://github.com/Luics4152" },
   ],
   creator: "Luics415",
   publisher: "Dev Visualizer",
