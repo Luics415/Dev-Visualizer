@@ -3,6 +3,7 @@ import { MotionProvider } from "@/components/providers/MotionProvider";
 import { SiteFooter } from "@/components/layout/SiteFooter";
 import { collectionManifest } from "@/data/collectionManifest";
 import { canonicalConceptCount } from "@/data/canonicalConceptCollections";
+import { GoogleAnalytics } from "@next/third-parties/google";
 import "@/data/catalogValidation";
 import "./globals.css";
 
@@ -84,6 +85,8 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
+  const gaId = process.env.NEXT_PUBLIC_GA_ID ?? "G-4BRLB19S8J";
+
   return (
     <html lang="es-MX">
       <body>
@@ -97,6 +100,7 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           <SiteFooter />
         </MotionProvider>
       </body>
+      {gaId ? <GoogleAnalytics gaId={gaId} /> : null}
     </html>
   );
 }
