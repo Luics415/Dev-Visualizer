@@ -85,7 +85,7 @@ export const viewport: Viewport = {
 };
 
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
-  const gaId = process.env.NEXT_PUBLIC_GA_ID ?? "G-4BRLB19S8J";
+  const gaId = process.env.NEXT_PUBLIC_GA_ID ?? "G-K3GRNYB3K6";
 
   return (
     <html lang="es-MX">
