@@ -4,6 +4,7 @@ import { CiCdArtifactPassportScene } from "@/components/scenes/CiCdArtifactPassp
 import { DistinctActionScene } from "@/components/scenes/DistinctActionScene";
 import type { DistinctActionSceneId } from "@/components/scenes/DistinctActionScene";
 import { PythonMediaPipeActionScene } from "@/components/scenes/PythonMediaPipeActionScene";
+import { FlutterDartActionScene } from "@/components/scenes/FlutterDartActionScene";
 import { NewLearningActionScene } from "@/components/scenes/NewLearningActionScene";
 import { isNewLearningActionSceneId } from "@/data/newLearningActionScenes";
 import type { ExpandedCollectionDefinition } from "@/data/expandedCollectionTypes";
@@ -36,9 +37,11 @@ export function ExpandedActionPage({ collection, manifest, collectionNumber }: E
           ? <CiCdArtifactPassportScene />
           : manifest.id === "mediapipe"
             ? <PythonMediaPipeActionScene />
-            : isNewLearningActionSceneId(manifest.id)
-              ? <NewLearningActionScene id={manifest.id} />
-              : <DistinctActionScene id={manifest.id as DistinctActionSceneId} />}
+            : manifest.id === "flutter"
+              ? <FlutterDartActionScene />
+              : isNewLearningActionSceneId(manifest.id)
+                ? <NewLearningActionScene id={manifest.id} />
+                : <DistinctActionScene id={manifest.id as DistinctActionSceneId} />}
       </section>
 
       <PracticalDeepDive modules={practical.steps} startAt={1} />

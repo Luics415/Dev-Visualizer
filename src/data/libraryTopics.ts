@@ -30,6 +30,7 @@ export const libraryTopics: readonly LibraryTopic[] = [
   topic("angularjs", "AngularJS", "AJS", "interfaces", "Mantenimiento de aplicaciones 1.x, digest cycle y migración gradual.", "#ef708a"),
   topic("react", "React", "React", "interfaces", "Componentes, estado, reconciliación, efectos y concurrencia.", "#3bd3ff", "react"),
   topic("react-native", "React Native", "RN", "interfaces", "Nueva Arquitectura, dispositivo, offline, rendimiento y releases.", "#55d7ed"),
+  topic("flutter", "Flutter & Dart", "Flutter", "interfaces", "Widgets, árbol de renderizado, Sound Null Safety, isolates e Impeller.", "#02569b", undefined, "flutter"),
   topic("apis", "APIs", "API", "platforms", "REST, GraphQL, gRPC, eventos, tiempo real, contratos y seguridad.", "#49e1a8"),
   topic("backend", "Backend", "Back", "platforms", "Arquitectura, seguridad, persistencia, mensajería y confiabilidad.", "#4f9dff"),
   topic("nodejs", "Node.js", "Node", "platforms", "Runtime, event loop, streams, workers, módulos y operación.", "#71d879", "nodejs"),
@@ -125,6 +126,7 @@ export const additionalOfficialSources: Readonly<Record<string, LibraryOfficialS
   "inteligencia-artificial": { title: "AI Risk Management Framework", url: "https://www.nist.gov/itl/ai-risk-management-framework", authority: "NIST", kind: "reference", version: "AI RMF 1.0" },
   latex: { title: "LaTeX Project Documentation", url: "https://www.latex-project.org/help/documentation/", authority: "LaTeX Project", kind: "official-docs", version: "vigente" },
   subversion: { title: "Version Control with Subversion", url: "https://svnbook.red-bean.com/", authority: "Apache Subversion Project", kind: "official-docs", version: "vigente" },
+  flutter: { title: "Flutter Documentation", url: "https://docs.flutter.dev/", authority: "Google / Flutter Team", kind: "official-docs", version: "vigente" },
 };
 
 export const libraryTopicBySlug = new Map(libraryTopics.map((entry) => [entry.slug, entry]));

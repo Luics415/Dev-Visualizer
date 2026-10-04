@@ -78,6 +78,7 @@ const collectionEntries: readonly CollectionManifestInput[] = [
   { id: "react-native", label: "React Native", short: "RN", href: "/react-native", actionHref: "/react-native-en-accion", group: "interfaces", theme: "react-native", lifecycle: "actual", summary: "Nueva Arquitectura, dispositivo, offline, performance y releases." },
   { id: "qwik", label: "Qwik", short: "Qwik", href: "/qwik", actionHref: "/qwik-en-accion", group: "interfaces", theme: "react", lifecycle: "actual", summary: "Resumibilidad, serialización, carga bajo demanda, routing y rendimiento." },
   { id: "angular", label: "Angular", short: "Ng", href: "/angular", actionHref: "/angular-en-accion", group: "interfaces", theme: "angularjs", lifecycle: "actual", summary: "Componentes, señales, DI, router, formularios, SSR, pruebas y producción." },
+  { id: "flutter", label: "Flutter & Dart", short: "Flutter", href: "/flutter", actionHref: "/flutter-en-accion", group: "interfaces", theme: "flutter", lifecycle: "actual", summary: "Widgets, árbol de renderizado, Sound Null Safety, isolates, Impeller y producción multiplataforma." },
 
   { id: "apis", label: "APIs", short: "API", href: "/apis", actionHref: "/apis-en-accion", group: "platforms", theme: "apis", lifecycle: "actual", summary: "REST, GraphQL, gRPC, eventos, tiempo real, contratos y seguridad.", legacyPaths: ["/apis-rest", "/apis-rest-en-accion"] },
   { id: "backend", label: "Backend", short: "Back", href: "/backend", actionHref: "/backend-en-accion", group: "platforms", theme: "backend", lifecycle: "actual", summary: "Arquitectura, seguridad, persistencia, mensajería y confiabilidad." },
@@ -137,7 +138,7 @@ export function themeForPath(pathname: string) {
 }
 
 function validateCollectionManifest() {
-  if (collectionManifest.length !== 71) throw new Error(`El manifiesto debe contener 71 colecciones; contiene ${collectionManifest.length}.`);
+  if (collectionManifest.length !== 72) throw new Error(`El manifiesto debe contener 72 colecciones; contiene ${collectionManifest.length}.`);
   const ids = new Set<string>();
   const routes = new Set<string>();
   const librarySlugs = new Set<string>();
