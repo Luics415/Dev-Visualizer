@@ -9,6 +9,8 @@ import { dotnetCollections } from "./dotnetCollections";
 import { webAutomationCollections } from "./webAutomationCollections";
 import { sqlServerCollection } from "./sqlServerCollection";
 import { newLearningCollections } from "./newLearningCollections";
+import { flutterCollection } from "./flutterCollection";
+import { dartCollection } from "./dartCollection";
 import { NEW_LEARNING_ACTION_SCENE_IDS } from "./newLearningActionScenes";
 import type { ExpandedCollectionDefinition } from "./expandedCollectionTypes";
 
@@ -25,6 +27,8 @@ export const expandedCollections: readonly ExpandedCollectionDefinition[] = [
   ...webAutomationCollections,
   sqlServerCollection,
   ...newLearningCollections,
+  flutterCollection,
+  dartCollection,
 ];
 
 export const expandedCollectionById = new Map(expandedCollections.map((collection) => [collection.id, collection]));

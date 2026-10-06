@@ -163,4 +163,12 @@ export const supplementalLibraryResources: readonly LibraryResource[] = [
   resource({ topicSlug: "nginx", slug: "beginners-guide", title: "NGINX Beginner's Guide", authority: "NGINX", kind: "tutorial", level: "beginner", primaryUrl: "https://nginx.org/en/docs/beginners_guide.html" }),
   resource({ topicSlug: "nginx", slug: "admin-guide", title: "NGINX Admin Guide", authority: "F5 NGINX", kind: "official-docs", level: "intermediate", primaryUrl: "https://docs.nginx.com/nginx/admin-guide/" }),
   resource({ topicSlug: "nginx", slug: "development-guide", title: "NGINX Development Guide", authority: "NGINX", kind: "reference", level: "advanced", primaryUrl: "https://nginx.org/en/docs/dev/development_guide.html" }),
+
+  resource({ topicSlug: "flutter", slug: "get-started", title: "Write your first Flutter app", authority: "Google / Flutter Team", kind: "tutorial", level: "beginner", primaryUrl: "https://docs.flutter.dev/get-started/codelab" }),
+  resource({ topicSlug: "flutter", slug: "state-management-guide", title: "Flutter State Management Architecture", authority: "Google / Flutter Team", kind: "official-docs", level: "intermediate", primaryUrl: "https://docs.flutter.dev/data-and-backend/state-mgmt/intro" }),
+  resource({ topicSlug: "flutter", slug: "impeller-internals", title: "Impeller Rendering Engine Architecture", authority: "Google / Flutter Team", kind: "reference", level: "advanced", primaryUrl: "https://docs.flutter.dev/perf/impeller" }),
+
+  resource({ topicSlug: "dart", slug: "dart-tour", title: "A tour of the Dart language", authority: "Google / Dart Team", kind: "tutorial", level: "beginner", primaryUrl: "https://dart.dev/language" }),
+  resource({ topicSlug: "dart", slug: "async-programming", title: "Asynchronous programming: Futures and Streams", authority: "Google / Dart Team", kind: "official-docs", level: "intermediate", primaryUrl: "https://dart.dev/codelabs/async-await" }),
+  resource({ topicSlug: "dart", slug: "concurrency-isolates", title: "Dart Concurrency: Isolates and Event Loop", authority: "Google / Dart Team", kind: "reference", level: "advanced", primaryUrl: "https://dart.dev/language/concurrency" }),
 ] as const;

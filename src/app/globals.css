@@ -2803,6 +2803,10 @@ html { scroll-padding-top: 112px; }
 .hero--firebase-practical { --hero-accent: #ffca28; --hero-rgb: 255, 202, 40; }
 .hero--debugging,
 .hero--debugging-practical { --hero-accent: #ff7a66; --hero-rgb: 255, 122, 102; }
+.hero--flutter,
+.hero--flutter-practical { --hero-accent: #02569b; --hero-rgb: 2, 86, 155; }
+.hero--dart,
+.hero--dart-practical { --hero-accent: #00b4ab; --hero-rgb: 0, 180, 171; }
 
 /* NGINX practical */
 .practical-stage--nginx {
@@ -3360,6 +3364,8 @@ body[data-collection-theme="n8n"] { --collection-accent:#ff6d5a;--collection-rgb
 body[data-collection-theme="dotnet"] { --collection-accent:#6d4aff;--collection-rgb:109,74,255;--collection-tone-2:#512bd4;--collection-tone-2-rgb:81,43,212;--collection-tone-3:#9c83ff;--collection-tone-3-rgb:156,131,255;--collection-tone-4:#4f9ed8;--collection-tone-4-rgb:79,158,216;--collection-tone-5:#c4b5fd;--collection-tone-5-rgb:196,181,253;--collection-tone-6:#835f86;--collection-tone-6-rgb:131,95,134; }
 body[data-collection-theme="github"] { --collection-accent:#d6deeb;--collection-rgb:214,222,235;--collection-tone-2:#8d9bb1;--collection-tone-2-rgb:141,155,177;--collection-tone-3:#9c83ff;--collection-tone-3-rgb:156,131,255;--collection-tone-4:#49e1a8;--collection-tone-4-rgb:73,225,168;--collection-tone-5:#f4f8ff;--collection-tone-5-rgb:244,248,255;--collection-tone-6:#4d7290;--collection-tone-6-rgb:77,114,144; }
 body[data-collection-theme="ci-cd"] { --collection-accent:#3bd3ff;--collection-rgb:59,211,255;--collection-tone-2:#49e1a8;--collection-tone-2-rgb:73,225,168;--collection-tone-3:#f5c742;--collection-tone-3-rgb:245,199,66;--collection-tone-4:#9c83ff;--collection-tone-4-rgb:156,131,255;--collection-tone-5:#7dd3fc;--collection-tone-5-rgb:125,211,252;--collection-tone-6:#e27ab6;--collection-tone-6-rgb:226,122,182; }
+body[data-collection-theme="flutter"] { --collection-accent:#02569b;--collection-rgb:2,86,155;--collection-tone-2:#0175c2;--collection-tone-2-rgb:1,117,194;--collection-tone-3:#40c4ff;--collection-tone-3-rgb:64,196,255;--collection-tone-4:#54c5f8;--collection-tone-4-rgb:84,197,248;--collection-tone-5:#80d8ff;--collection-tone-5-rgb:128,216,255;--collection-tone-6:#29b6f6;--collection-tone-6-rgb:41,182,246; }
+body[data-collection-theme="dart"] { --collection-accent:#00b4ab;--collection-rgb:0,180,171;--collection-tone-2:#00838f;--collection-tone-2-rgb:0,131,143;--collection-tone-3:#0175c2;--collection-tone-3-rgb:1,117,194;--collection-tone-4:#13b9fd;--collection-tone-4-rgb:19,185,253;--collection-tone-5:#80deea;--collection-tone-5-rgb:128,222,234;--collection-tone-6:#26a69a;--collection-tone-6-rgb:38,166,154; }
 
 .collection-notice { display:flex; gap:18px; align-items:flex-start; margin:-12px 0 28px; padding:16px 18px; border:1px solid color-mix(in srgb,var(--collection-accent) 40%,transparent); border-radius:14px; background:color-mix(in srgb,var(--collection-accent) 8%,rgba(10,14,24,.9)); }
 .collection-notice strong { color:var(--collection-accent); font-family:var(--mono); font-size:.66rem; letter-spacing:.07em; text-transform:uppercase; white-space:nowrap; }
@@ -4962,3 +4968,639 @@ body {
 #main-content:focus {
   outline: none;
 }
+
+/* ── Flutter Action Scene ── */
+.flutter-action {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  padding: 16px;
+  border: 1px solid rgba(2, 86, 155, 0.35);
+  border-radius: 16px;
+  background: radial-gradient(circle at 10% 10%, rgba(2, 86, 155, 0.12), transparent 45%),
+              linear-gradient(175deg, rgba(8, 14, 25, 0.95), rgba(4, 8, 15, 0.98));
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  font-family: var(--mono);
+}
+
+.flutter-action__legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  font-size: 0.65rem;
+  color: var(--jinx-shell-muted);
+}
+
+.flutter-action__legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.flutter-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.flutter-dot--tree {
+  background: #0175c2;
+  box-shadow: 0 0 10px rgba(1, 117, 194, 0.7);
+}
+
+.flutter-dot--pipeline {
+  background: #ffca28;
+  box-shadow: 0 0 10px rgba(255, 202, 40, 0.7);
+}
+
+.flutter-dot--layer {
+  background: #35c979;
+  box-shadow: 0 0 10px rgba(53, 201, 121, 0.7);
+}
+
+.flutter-dot--gpu {
+  background: #40c4ff;
+  box-shadow: 0 0 10px rgba(64, 196, 255, 0.8);
+}
+
+.flutter-action__board {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.flutter-action__stage {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  background: rgba(11, 19, 34, 0.65);
+  backdrop-filter: blur(8px);
+}
+
+.flutter-action__stage header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.flutter-action__stage header em {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: rgba(2, 86, 155, 0.25);
+  color: #40c4ff;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 0.62rem;
+}
+
+.flutter-action__stage header strong {
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  color: #e2e8f0;
+}
+
+.flutter-action__stage header small {
+  display: block;
+  font-size: 0.58rem;
+  color: #718399;
+}
+
+/* Flutter Stage 1: Tri-Tree */
+.flutter-action__tri-tree {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  padding: 8px 4px;
+}
+
+.flutter-action__node {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+  padding: 8px 4px;
+  border-radius: 8px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(2, 86, 155, 0.4);
+  text-align: center;
+}
+
+.flutter-action__node span {
+  font-size: 0.56rem;
+  font-weight: 800;
+  color: #40c4ff;
+}
+
+.flutter-action__node small {
+  font-size: 0.48rem;
+  color: #94a3b8;
+  white-space: nowrap;
+}
+
+.flutter-action__node em {
+  font-size: 0.45rem;
+  font-style: normal;
+  color: #64748b;
+}
+
+.flutter-action__node--render em {
+  color: #35c979;
+}
+
+.flutter-action__connector {
+  color: #0175c2;
+  font-weight: bold;
+  font-size: 0.75rem;
+}
+
+/* Flutter Stage 2: Pipeline */
+.flutter-action__pipeline-flow {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+}
+
+.flutter-action__steps-track {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-size: 0.58rem;
+}
+
+.flutter-action__pill {
+  padding: 4px 6px;
+  border-radius: 5px;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 202, 40, 0.4);
+  color: #ffca28;
+}
+
+.flutter-action__pulse-bar {
+  height: 4px;
+  border-radius: 2px;
+  background: linear-gradient(90deg, #0175c2, #40c4ff, #35c979);
+}
+
+.flutter-action__notice {
+  font-size: 0.52rem;
+  color: #718399;
+  text-align: center;
+}
+
+/* Flutter Stage 3: Boundary */
+.flutter-action__boundary-box {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px;
+  border: 1px dashed rgba(53, 201, 121, 0.4);
+  border-radius: 8px;
+  background: rgba(53, 201, 121, 0.04);
+}
+
+.flutter-action__tag {
+  font-size: 0.55rem;
+  color: #35c979;
+  text-transform: uppercase;
+}
+
+.flutter-action__layer-preview {
+  padding: 8px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(2, 86, 155, 0.3);
+  text-align: center;
+}
+
+.flutter-action__layer-preview code {
+  display: block;
+  font-size: 0.6rem;
+  color: #40c4ff;
+}
+
+.flutter-action__layer-preview small {
+  display: block;
+  font-size: 0.5rem;
+  color: #94a3b8;
+  margin-top: 4px;
+}
+
+.flutter-action__status-tag {
+  font-size: 0.5rem;
+  color: #35c979;
+  text-align: center;
+}
+
+/* Flutter Stage 4: GPU Impeller */
+.flutter-action__canvas-wrap {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+}
+
+.flutter-action__hud {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.55rem;
+}
+
+.flutter-action__fps {
+  color: #35c979;
+  font-weight: 800;
+}
+
+.flutter-action__latency {
+  color: #40c4ff;
+}
+
+.flutter-action__jank {
+  color: #ffca28;
+}
+
+.flutter-action__waveform {
+  width: 100%;
+  height: 52px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(64, 196, 255, 0.25);
+}
+
+.flutter-action__badge {
+  align-self: center;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(64, 196, 255, 0.12);
+  border: 1px solid rgba(64, 196, 255, 0.35);
+  color: #40c4ff;
+  font-size: 0.52rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+/* ── Dart Action Scene ── */
+.dart-action {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  padding: 16px;
+  border: 1px solid rgba(0, 180, 171, 0.35);
+  border-radius: 16px;
+  background: radial-gradient(circle at 10% 10%, rgba(0, 180, 171, 0.12), transparent 45%),
+              linear-gradient(175deg, rgba(6, 16, 22, 0.95), rgba(3, 8, 12, 0.98));
+  box-shadow: 0 12px 40px rgba(0, 0, 0, 0.4);
+  font-family: var(--mono);
+}
+
+.dart-action__legend {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 18px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.07);
+  font-size: 0.65rem;
+  color: var(--jinx-shell-muted);
+}
+
+.dart-action__legend span {
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+}
+
+.dart-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.dart-dot--loop {
+  background: #13b9fd;
+  box-shadow: 0 0 10px rgba(19, 185, 253, 0.7);
+}
+
+.dart-dot--isolate {
+  background: #00b4ab;
+  box-shadow: 0 0 10px rgba(0, 180, 171, 0.7);
+}
+
+.dart-dot--pattern {
+  background: #ff9f55;
+  box-shadow: 0 0 10px rgba(255, 159, 85, 0.7);
+}
+
+.dart-dot--aot {
+  background: #80deea;
+  box-shadow: 0 0 10px rgba(128, 222, 234, 0.8);
+}
+
+.dart-action__board {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 14px;
+}
+
+.dart-action__stage {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 12px;
+  background: rgba(9, 22, 28, 0.65);
+  backdrop-filter: blur(8px);
+}
+
+.dart-action__stage header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.dart-action__stage header em {
+  display: grid;
+  place-items: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 6px;
+  background: rgba(0, 180, 171, 0.25);
+  color: #13b9fd;
+  font-style: normal;
+  font-weight: 800;
+  font-size: 0.62rem;
+}
+
+.dart-action__stage header strong {
+  display: block;
+  font-size: 0.72rem;
+  letter-spacing: 0.05em;
+  color: #e2e8f0;
+}
+
+.dart-action__stage header small {
+  display: block;
+  font-size: 0.58rem;
+  color: #718399;
+}
+
+/* Dart Stage 1: Event Loop */
+.dart-action__queue-box {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.dart-action__queue {
+  padding: 6px 8px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.dart-action__queue--micro {
+  border-color: rgba(19, 185, 253, 0.35);
+}
+
+.dart-action__queue-label {
+  display: block;
+  font-size: 0.52rem;
+  color: #94a3b8;
+  margin-bottom: 4px;
+  text-transform: uppercase;
+}
+
+.dart-action__token {
+  font-size: 0.58rem;
+  padding: 4px 6px;
+  border-radius: 4px;
+  text-align: center;
+}
+
+.dart-action__token--micro {
+  background: rgba(19, 185, 253, 0.2);
+  color: #13b9fd;
+}
+
+.dart-action__token--event {
+  background: rgba(255, 255, 255, 0.04);
+  color: #cbd5e1;
+}
+
+.dart-action__loop-indicator {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 4px 6px;
+  font-size: 0.54rem;
+  color: #00b4ab;
+}
+
+.dart-action__spinner {
+  display: inline-block;
+  font-size: 0.8rem;
+}
+
+/* Dart Stage 2: Isolate */
+.dart-action__isolate-box {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 10px;
+  border: 1px dashed rgba(0, 180, 171, 0.35);
+  border-radius: 8px;
+  background: rgba(0, 180, 171, 0.04);
+}
+
+.dart-action__isolate-heap {
+  padding: 8px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.35);
+  text-align: center;
+}
+
+.dart-action__isolate-heap span {
+  display: block;
+  font-size: 0.52rem;
+  color: #00b4ab;
+  margin-bottom: 4px;
+}
+
+.dart-action__payload-pill code {
+  font-size: 0.6rem;
+  color: #80deea;
+}
+
+.dart-action__ports {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.dart-action__port-lane {
+  position: relative;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 4px 6px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.25);
+  font-size: 0.55rem;
+  color: #94a3b8;
+}
+
+.dart-action__msg-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #13b9fd;
+  box-shadow: 0 0 6px #13b9fd;
+}
+
+.dart-action__status-tag {
+  font-size: 0.5rem;
+  color: #718399;
+  text-align: center;
+}
+
+/* Dart Stage 3: Patterns & Records */
+.dart-action__pattern-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  padding: 8px;
+}
+
+.dart-action__record-def {
+  width: 100%;
+  padding: 6px 8px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 159, 85, 0.35);
+  text-align: center;
+}
+
+.dart-action__record-def code {
+  color: #ff9f55;
+  font-size: 0.6rem;
+}
+
+.dart-action__eval-arrow {
+  font-size: 0.55rem;
+  color: #718399;
+}
+
+.dart-action__switch-branch {
+  width: 100%;
+  padding: 6px 8px;
+  border-radius: 6px;
+  background: rgba(0, 180, 171, 0.15);
+  border: 1px solid rgba(0, 180, 171, 0.3);
+  font-size: 0.56rem;
+  text-align: center;
+  color: #e2e8f0;
+}
+
+.dart-action__switch-branch em {
+  color: #ffca28;
+  font-style: normal;
+  margin-right: 4px;
+}
+
+.dart-action__switch-branch code {
+  color: #80deea;
+  margin-right: 4px;
+}
+
+.dart-action__switch-branch b {
+  color: #35c979;
+}
+
+.dart-action__pattern-guarantee {
+  font-size: 0.5rem;
+  color: #00b4ab;
+  text-align: center;
+}
+
+/* Dart Stage 4: AOT */
+.dart-action__aot-box {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  padding: 8px;
+}
+
+.dart-action__aot-metrics {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 4px;
+  text-align: center;
+}
+
+.dart-action__metric-item {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  padding: 4px;
+  border-radius: 4px;
+  background: rgba(0, 0, 0, 0.3);
+}
+
+.dart-action__metric-item strong {
+  font-size: 0.5rem;
+  color: #94a3b8;
+}
+
+.dart-action__metric-item em {
+  font-size: 0.58rem;
+  font-style: normal;
+  color: #35c979;
+  font-weight: 800;
+}
+
+.dart-action__binary-stream {
+  padding: 6px;
+  border-radius: 6px;
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(128, 222, 234, 0.25);
+  text-align: center;
+}
+
+.dart-action__binary-stream code {
+  font-size: 0.52rem;
+  color: #80deea;
+}
+
+.dart-action__badge {
+  align-self: center;
+  padding: 3px 8px;
+  border-radius: 999px;
+  background: rgba(0, 180, 171, 0.15);
+  border: 1px solid rgba(0, 180, 171, 0.4);
+  color: #80deea;
+  font-size: 0.52rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+}
+
+

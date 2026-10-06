@@ -13,8 +13,8 @@ const officialSourcePaths = [
 const snapshot = JSON.parse(await readFile(snapshotPath, "utf8"));
 const expectedTopicCount = 42;
 const expectedResourceCount = 179;
-const expectedSupplementalTopicCount = 29;
-const expectedSupplementalResourceCount = 87;
+const expectedSupplementalTopicCount = 31;
+const expectedSupplementalResourceCount = 93;
 const validStatuses = new Set([
   "local-redistributable",
   "official-external",
@@ -145,7 +145,7 @@ function visitTopics(node) {
   ts.forEachChild(node, visitTopics);
 }
 visitTopics(topicsSource);
-if (topicsWithoutReferenceCatalog.size !== expectedSupplementalTopicCount) fail(`El manifiesto debe contener 29 temas sin Catálogo de referencia; contiene ${topicsWithoutReferenceCatalog.size}.`);
+if (topicsWithoutReferenceCatalog.size !== expectedSupplementalTopicCount) fail(`El manifiesto debe contener ${expectedSupplementalTopicCount} temas sin Catálogo de referencia; contiene ${topicsWithoutReferenceCatalog.size}.`);
 for (const topic of levelsByTopic.keys()) {
   if (!topicsWithoutReferenceCatalog.has(topic)) fail(`La curaduría complementaria invade el tema atribuido ${topic}.`);
 }

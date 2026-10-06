@@ -158,10 +158,10 @@ function isAbsoluteHttpUrl(value: string) {
 }
 
 function validateProfessionalLibrary() {
-  if (libraryTopics.length !== 71) throw new Error(`La Librería profesional debe contener 71 temas; contiene ${libraryTopics.length}.`);
+  if (libraryTopics.length !== 73) throw new Error(`La Librería profesional debe contener 73 temas; contiene ${libraryTopics.length}.`);
   if (libraryTopics.filter((topic) => topic.sourceTopicSlug).length !== sourceTopicCount) throw new Error("La instantánea no representa exactamente los 42 temas de origen.");
   if (importedLibraryResources.length !== sourceResourceCount) throw new Error(`La instantánea debe contener 179 recursos; contiene ${importedLibraryResources.length}.`);
-  if (supplementalLibraryResources.length !== 87) throw new Error(`La curaduría complementaria debe contener exactamente 87 recursos; contiene ${supplementalLibraryResources.length}.`);
+  if (supplementalLibraryResources.length !== 93) throw new Error(`La curaduría complementaria debe contener exactamente 93 recursos; contiene ${supplementalLibraryResources.length}.`);
   if (librarySourceSnapshot.expectedTopics !== sourceTopicCount || librarySourceSnapshot.expectedResources !== sourceResourceCount) throw new Error("Las cifras declaradas por la instantánea no coinciden con el contrato del catálogo.");
 
   const topicSlugs = new Set<string>();
@@ -219,7 +219,7 @@ function validateProfessionalLibrary() {
   }
 
   const topicsWithoutReferenceCatalog = libraryTopics.filter((topic) => !topic.sourceTopicSlug);
-  if (topicsWithoutReferenceCatalog.length !== 29) throw new Error(`La curaduría complementaria debe cubrir 29 temas; contiene ${topicsWithoutReferenceCatalog.length}.`);
+  if (topicsWithoutReferenceCatalog.length !== 31) throw new Error(`La curaduría complementaria debe cubrir 31 temas; contiene ${topicsWithoutReferenceCatalog.length}.`);
   for (const topic of topicsWithoutReferenceCatalog) {
     const resources = supplementalResourcesForTopic(topic.slug);
     const levels = new Set(resources.map((resource) => resource.level));

@@ -69,6 +69,7 @@ const collectionEntries: readonly CollectionManifestInput[] = [
   { id: "perl", label: "Perl", short: "Pl", href: "/perl", actionHref: "/perl-en-accion", group: "languages", theme: "laravel", lifecycle: "actual", summary: "Texto, expresiones regulares, referencias, módulos, automatización y operación." },
   { id: "raku", label: "Raku", short: "Rk", href: "/raku", actionHref: "/raku-en-accion", group: "languages", theme: "ux-ui", lifecycle: "actual", summary: "Gramáticas, tipos, junctions, concurrencia, metaprogramación y herramientas." },
   { id: "scala", label: "Scala", short: "Sc", href: "/scala", actionHref: "/scala-en-accion", group: "languages", theme: "c-sharp", lifecycle: "actual", summary: "Objetos y funciones, tipos, colecciones, efectos, concurrencia y JVM." },
+  { id: "dart", label: "Dart", short: "Dart", href: "/dart", actionHref: "/dart-en-accion", group: "languages", theme: "dart", lifecycle: "actual", summary: "Lenguaje orientado a objetos, Sound Null Safety, records, isolates, event loop y compilación dual JIT/AOT." },
 
   { id: "ux-ui", label: "UX/UI", short: "UX", href: "/ux-ui", actionHref: "/ux-ui-en-accion", group: "interfaces", theme: "ux-ui", lifecycle: "actual", summary: "Investigación, flujos, accesibilidad, prototipos y validación." },
   { id: "html-css", label: "HTML y CSS", short: "HTML", href: "/html-css", actionHref: "/html-css-en-accion", group: "interfaces", theme: "html-css", lifecycle: "actual", summary: "Semántica, cascade, layout, responsive y render del navegador." },
@@ -78,6 +79,7 @@ const collectionEntries: readonly CollectionManifestInput[] = [
   { id: "react-native", label: "React Native", short: "RN", href: "/react-native", actionHref: "/react-native-en-accion", group: "interfaces", theme: "react-native", lifecycle: "actual", summary: "Nueva Arquitectura, dispositivo, offline, performance y releases." },
   { id: "qwik", label: "Qwik", short: "Qwik", href: "/qwik", actionHref: "/qwik-en-accion", group: "interfaces", theme: "react", lifecycle: "actual", summary: "Resumibilidad, serialización, carga bajo demanda, routing y rendimiento." },
   { id: "angular", label: "Angular", short: "Ng", href: "/angular", actionHref: "/angular-en-accion", group: "interfaces", theme: "angularjs", lifecycle: "actual", summary: "Componentes, señales, DI, router, formularios, SSR, pruebas y producción." },
+  { id: "flutter", label: "Flutter", short: "Flutter", href: "/flutter", actionHref: "/flutter-en-accion", group: "interfaces", theme: "flutter", lifecycle: "actual", summary: "Framework UI declarativo multiplataforma, árbol tripartito, motor Impeller y renderizado autónomo por GPU." },
 
   { id: "apis", label: "APIs", short: "API", href: "/apis", actionHref: "/apis-en-accion", group: "platforms", theme: "apis", lifecycle: "actual", summary: "REST, GraphQL, gRPC, eventos, tiempo real, contratos y seguridad.", legacyPaths: ["/apis-rest", "/apis-rest-en-accion"] },
   { id: "backend", label: "Backend", short: "Back", href: "/backend", actionHref: "/backend-en-accion", group: "platforms", theme: "backend", lifecycle: "actual", summary: "Arquitectura, seguridad, persistencia, mensajería y confiabilidad." },
@@ -137,7 +139,7 @@ export function themeForPath(pathname: string) {
 }
 
 function validateCollectionManifest() {
-  if (collectionManifest.length !== 71) throw new Error(`El manifiesto debe contener 71 colecciones; contiene ${collectionManifest.length}.`);
+  if (collectionManifest.length !== 73) throw new Error(`El manifiesto debe contener 73 colecciones; contiene ${collectionManifest.length}.`);
   const ids = new Set<string>();
   const routes = new Set<string>();
   const librarySlugs = new Set<string>();

@@ -24,12 +24,14 @@ export const libraryTopics: readonly LibraryTopic[] = [
   topic("cweb", "CWEB", "CWEB", "languages", "Programación literaria con CTANGLE, CWEAVE, C y TeX.", "#c2a7ff"),
   topic("embedded-c", "Embedded C", "EC", "languages", "Microcontroladores, registros, interrupciones, timing y seguridad.", "#51d8bd"),
   topic("visual-basic", "Visual Basic .NET", "VB", "languages", "Lenguaje .NET, eventos, LINQ, WinForms e interoperabilidad.", "#8db8ff"),
+  topic("dart", "Dart", "Dart", "languages", "Sound Null Safety, records, isolates, event loop, metaprogramación y compilación JIT/AOT.", "#00b4ab"),
   topic("ux-ui", "UX/UI", "UX", "interfaces", "Investigación, arquitectura de información, accesibilidad, prototipos y validación.", "#ff7dc8"),
   topic("html-css", "HTML y CSS", "HTML", "interfaces", "Semántica, cascade, layout, responsive y render del navegador.", "#ff9f55", "html-css"),
   topic("bootstrap", "Bootstrap", "BS", "interfaces", "Grid, utilidades, componentes, Sass, accesibilidad y personalización.", "#9c83ff"),
   topic("angularjs", "AngularJS", "AJS", "interfaces", "Mantenimiento de aplicaciones 1.x, digest cycle y migración gradual.", "#ef708a"),
   topic("react", "React", "React", "interfaces", "Componentes, estado, reconciliación, efectos y concurrencia.", "#3bd3ff", "react"),
   topic("react-native", "React Native", "RN", "interfaces", "Nueva Arquitectura, dispositivo, offline, rendimiento y releases.", "#55d7ed"),
+  topic("flutter", "Flutter", "Flutter", "interfaces", "Widgets, árbol tripartito, motor Impeller y renderizado autónomo por GPU.", "#02569b"),
   topic("apis", "APIs", "API", "platforms", "REST, GraphQL, gRPC, eventos, tiempo real, contratos y seguridad.", "#49e1a8"),
   topic("backend", "Backend", "Back", "platforms", "Arquitectura, seguridad, persistencia, mensajería y confiabilidad.", "#4f9dff"),
   topic("nodejs", "Node.js", "Node", "platforms", "Runtime, event loop, streams, workers, módulos y operación.", "#71d879", "nodejs"),
@@ -125,6 +127,7 @@ export const additionalOfficialSources: Readonly<Record<string, LibraryOfficialS
   "inteligencia-artificial": { title: "AI Risk Management Framework", url: "https://www.nist.gov/itl/ai-risk-management-framework", authority: "NIST", kind: "reference", version: "AI RMF 1.0" },
   latex: { title: "LaTeX Project Documentation", url: "https://www.latex-project.org/help/documentation/", authority: "LaTeX Project", kind: "official-docs", version: "vigente" },
   subversion: { title: "Version Control with Subversion", url: "https://svnbook.red-bean.com/", authority: "Apache Subversion Project", kind: "official-docs", version: "vigente" },
+  flutter: { title: "Flutter Documentation", url: "https://docs.flutter.dev/", authority: "Google / Flutter Team", kind: "official-docs", version: "vigente" },
 };
 
 export const libraryTopicBySlug = new Map(libraryTopics.map((entry) => [entry.slug, entry]));
