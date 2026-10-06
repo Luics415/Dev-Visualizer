@@ -13,8 +13,8 @@ const officialSourcePaths = [
 const snapshot = JSON.parse(await readFile(snapshotPath, "utf8"));
 const expectedTopicCount = 42;
 const expectedResourceCount = 179;
-const expectedSupplementalTopicCount = 30;
-const expectedSupplementalResourceCount = 90;
+const expectedSupplementalTopicCount = 31;
+const expectedSupplementalResourceCount = 93;
 const validStatuses = new Set([
   "local-redistributable",
   "official-external",

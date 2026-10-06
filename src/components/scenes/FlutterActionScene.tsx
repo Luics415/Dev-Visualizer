@@ -6,7 +6,7 @@ import { useScenePlayback } from "@/components/visual/useScenePlayback";
 
 const LOOP = 12;
 
-export function FlutterDartActionScene() {
+export function FlutterActionScene() {
   const sceneRef = useRef<HTMLDivElement>(null);
   const { playback, shouldAnimate } = useScenePlayback(sceneRef);
   const repeat = { duration: shouldAnimate ? LOOP : 0, repeat: shouldAnimate ? Infinity : 0 } as const;
@@ -17,81 +17,24 @@ export function FlutterDartActionScene() {
       ref={sceneRef}
       data-playback={playback}
       role="img"
-      aria-label="Pipeline reactivo de Flutter y Dart: un isolate en segundo plano procesa telemetría y emite eventos hacia el hilo de UI, donde el árbol tripartito coordina la reconstrucción y el motor Impeller dibuja a 120 FPS sin shader jank"
+      aria-label="Pipeline gráfico y arquitectura de Flutter: el árbol tripartito coordina la reconciliación, el frame pipeline ejecuta build-layout-paint, RepaintBoundary aísla capas y el motor Impeller dibuja a 120 FPS sin shader jank"
     >
       <header className="flutter-action__legend">
-        <span><i className="flutter-dot flutter-dot--isolate" /> Dart Isolate (Worker)</span>
         <span><i className="flutter-dot flutter-dot--tree" /> Árbol Tripartito (Flutter)</span>
-        <span><i className="flutter-dot flutter-dot--gpu" /> Motor Impeller (120 FPS)</span>
+        <span><i className="flutter-dot flutter-dot--pipeline" /> Frame Pipeline (120 Hz)</span>
+        <span><i className="flutter-dot flutter-dot--layer" /> Capa RepaintBoundary</span>
+        <span><i className="flutter-dot flutter-dot--gpu" /> Motor Impeller (Vulkan/Metal)</span>
       </header>
 
       <Fragment key={playback}>
         <div className="flutter-action__board">
-          {/* Etapa 1: Dart Isolate Worker */}
-          <section className="flutter-action__stage flutter-action__stage--isolate" aria-label="Dart Isolate de telemetría">
+          {/* Etapa 1: El Árbol Tripartito (Widget -> Element -> RenderObject) */}
+          <section className="flutter-action__stage flutter-action__stage--tree" aria-label="Árbol tripartito de Flutter">
             <header>
               <em>01</em>
               <div>
-                <strong>DART ISOLATE</strong>
-                <small>hilo secundario sin locks</small>
-              </div>
-            </header>
-            <div className="flutter-action__isolate-box">
-              <span className="flutter-action__tag">Memoria Aislada</span>
-              <motion.div
-                className="flutter-action__packet"
-                animate={{ x: [-8, 0, 8, 0, -8], opacity: [0.7, 1, 1, 0.7, 0.7] }}
-                transition={{ ...repeat, times: [0, 0.25, 0.5, 0.75, 1] }}
-              >
-                <code>Record (id: 42, v: 3.84)</code>
-              </motion.div>
-              <div className="flutter-action__port">
-                <span>SendPort</span>
-                <motion.i
-                  className="flutter-action__signal"
-                  animate={{ scale: [1, 1.4, 1], opacity: [0.4, 1, 0.4] }}
-                  transition={{ ...repeat, duration: 1.6, repeat: Infinity }}
-                />
-              </div>
-            </div>
-          </section>
-
-          {/* Etapa 2: BLoC & Rebuild Selective */}
-          <section className="flutter-action__stage flutter-action__stage--bloc" aria-label="Gestión de estado reactivo">
-            <header>
-              <em>02</em>
-              <div>
-                <strong>REACTIVIDAD BLoC</strong>
-                <small>flujo unidireccional</small>
-              </div>
-            </header>
-            <div className="flutter-action__bloc-flow">
-              <motion.div
-                className="flutter-action__event-pill"
-                animate={{ opacity: [0.5, 1, 1, 0.5], y: [-2, 0, 0, -2] }}
-                transition={{ ...repeat, times: [0, 0.2, 0.8, 1] }}
-              >
-                <em>EVENT</em> Stream.listen()
-              </motion.div>
-              <i className="flutter-action__arrow">↓</i>
-              <motion.div
-                className="flutter-action__state-pill"
-                animate={{ borderColor: ["rgba(2,86,155,.2)", "rgba(64,196,255,.8)", "rgba(2,86,155,.2)"] }}
-                transition={{ ...repeat, times: [0, 0.4, 1] }}
-              >
-                <b>STATE</b> TelemetryActive
-              </motion.div>
-              <small className="flutter-action__notice">markNeedsBuild() selectivo</small>
-            </div>
-          </section>
-
-          {/* Etapa 3: El Árbol Tripartito (Widget -> Element -> RenderObject) */}
-          <section className="flutter-action__stage flutter-action__stage--tree" aria-label="Árbol tripartito de Flutter">
-            <header>
-              <em>03</em>
-              <div>
                 <strong>ÁRBOL TRIPARTITO</strong>
-                <small>intención, ciclo y geometría</small>
+                <small>intención, identidad y geometría</small>
               </div>
             </header>
             <div className="flutter-action__tri-tree">
@@ -124,6 +67,57 @@ export function FlutterDartActionScene() {
                 <small>RenderWaveform</small>
                 <em>BoxConstraints</em>
               </motion.div>
+            </div>
+          </section>
+
+          {/* Etapa 2: Frame Pipeline (Animate -> Build -> Layout -> Paint -> Composite) */}
+          <section className="flutter-action__stage flutter-action__stage--pipeline" aria-label="Pipeline de fotograma">
+            <header>
+              <em>02</em>
+              <div>
+                <strong>FRAME PIPELINE</strong>
+                <small>fases ordenadas del cuadro</small>
+              </div>
+            </header>
+            <div className="flutter-action__pipeline-flow">
+              <div className="flutter-action__steps-track">
+                <span className="flutter-action__pill">Animate</span>
+                <i>→</i>
+                <span className="flutter-action__pill">Build</span>
+                <i>→</i>
+                <span className="flutter-action__pill">Layout</span>
+                <i>→</i>
+                <span className="flutter-action__pill">Paint</span>
+              </div>
+              <motion.div
+                className="flutter-action__pulse-bar"
+                animate={{ width: ["15%", "100%", "15%"], opacity: [0.5, 1, 0.5] }}
+                transition={{ ...repeat, duration: 3, repeat: Infinity, ease: "easeInOut" }}
+              />
+              <small className="flutter-action__notice">Restricciones bajan · Tamaños suben</small>
+            </div>
+          </section>
+
+          {/* Etapa 3: Aislamiento con RepaintBoundary */}
+          <section className="flutter-action__stage flutter-action__stage--boundary" aria-label="Aislamiento con RepaintBoundary">
+            <header>
+              <em>03</em>
+              <div>
+                <strong>REPAINT BOUNDARY</strong>
+                <small>textura GPU aislada</small>
+              </div>
+            </header>
+            <div className="flutter-action__boundary-box">
+              <span className="flutter-action__tag">Capa Gráfica Independiente</span>
+              <motion.div
+                className="flutter-action__layer-preview"
+                animate={{ borderColor: ["rgba(2,86,155,.3)", "rgba(64,196,255,.8)", "rgba(2,86,155,.3)"] }}
+                transition={{ ...repeat, times: [0, 0.4, 1] }}
+              >
+                <code>LayerTree.add(OffsetLayer)</code>
+                <small>Cero invalidación en widgets hermanos</small>
+              </motion.div>
+              <div className="flutter-action__status-tag">Relayout Aislado · Cero Jank</div>
             </div>
           </section>
 

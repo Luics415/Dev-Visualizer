@@ -314,6 +314,7 @@ const baseReferenceList: readonly OfficialReference[] = [
 
   r("flutter-docs", "Flutter Documentation", "https://docs.flutter.dev/", "Google / Flutter", "official-docs", "Flutter 3.x", "Arquitectura, widgets, ciclo de vida, renderizado, estado y plataformas.", ["flutter", "widget", "element", "renderobject", "state", "layout", "impeller", "multiplataforma"]),
   r("dart-docs", "Dart Language & Core Libraries", "https://dart.dev/guides", "Google / Dart", "official-docs", "Dart 3.x", "Sintaxis, sound null safety, asincronía, streams, isolates y concurrencia.", ["dart", "null safety", "stream", "isolate", "asincron", "future", "tipo", "clase"]),
+  r("dart-api", "Dart API Reference", "https://api.dart.dev/", "Google / Dart", "official-api", "Dart API stable", "Referencia oficial de bibliotecas core, async, collection, isolate y ffi.", ["dart", "api", "core", "async", "isolate", "ffi", "biblioteca", "interoperabilidad"]),
   r("flutter-api", "Flutter API Reference", "https://api.flutter.dev/", "Google / Flutter", "official-api", "Flutter API stable", "Referencia de widgets, rendering, gestures, animation y painting.", ["api", "framework", "widget", "buildcontext", "stateful", "stateless", "inheritedwidget", "renderbox"]),
   r("flutter-arch", "Flutter Architectural Overview", "https://docs.flutter.dev/resources/architectural-overview", "Google / Flutter", "primary-manual", "Flutter 3.x", "Capas del framework, motor C++, DisplayList, Impeller y pipeline gráfico.", ["arquitectura", "motor", "c++", "impeller", "displaylist", "pipeline", "render"]),
 ];
@@ -504,7 +505,8 @@ const baseProfiles: readonly CollectionReferenceProfile[] = [
   p("angularjs", ["angularjs-guide", "angularjs-status"]),
   p("react", ["react-reference", "react-learn"], ["react-reference", "react-learn", "react-dom"]),
   p("react-native", ["rn-docs", "rn-architecture"], ["rn-docs", "rn-architecture", "rn-performance"]),
-  p("flutter", ["flutter-docs", "dart-docs"], ["flutter-docs", "dart-docs", "flutter-api", "flutter-arch"]),
+  p("flutter", ["flutter-docs", "flutter-api"], ["flutter-docs", "flutter-api", "flutter-arch", "dart-docs"]),
+  p("dart", ["dart-docs", "dart-api"], ["dart-docs", "dart-api", "flutter-docs", "flutter-arch"]),
   p("apis", ["rfc9110", "openapi32"], ["rfc9110", "openapi32", "graphql", "grpc", "websocket-rfc", "asyncapi", "oauth9700", "problem9457"]),
   p("backend", ["rfc9110", "openapi32"], ["rfc9110", "openapi32", "oauth9700", "problem9457", "asyncapi", "otel"]),
   p("nodejs", ["node-api", "node-event-loop"], ["node-api", "node-event-loop", "node-stream", "node-worker", "node-packages", "otel"]),

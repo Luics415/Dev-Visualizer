@@ -167,4 +167,8 @@ export const supplementalLibraryResources: readonly LibraryResource[] = [
   resource({ topicSlug: "flutter", slug: "get-started", title: "Write your first Flutter app", authority: "Google / Flutter Team", kind: "tutorial", level: "beginner", primaryUrl: "https://docs.flutter.dev/get-started/codelab" }),
   resource({ topicSlug: "flutter", slug: "state-management-guide", title: "Flutter State Management Architecture", authority: "Google / Flutter Team", kind: "official-docs", level: "intermediate", primaryUrl: "https://docs.flutter.dev/data-and-backend/state-mgmt/intro" }),
   resource({ topicSlug: "flutter", slug: "impeller-internals", title: "Impeller Rendering Engine Architecture", authority: "Google / Flutter Team", kind: "reference", level: "advanced", primaryUrl: "https://docs.flutter.dev/perf/impeller" }),
+
+  resource({ topicSlug: "dart", slug: "dart-tour", title: "A tour of the Dart language", authority: "Google / Dart Team", kind: "tutorial", level: "beginner", primaryUrl: "https://dart.dev/language" }),
+  resource({ topicSlug: "dart", slug: "async-programming", title: "Asynchronous programming: Futures and Streams", authority: "Google / Dart Team", kind: "official-docs", level: "intermediate", primaryUrl: "https://dart.dev/codelabs/async-await" }),
+  resource({ topicSlug: "dart", slug: "concurrency-isolates", title: "Dart Concurrency: Isolates and Event Loop", authority: "Google / Dart Team", kind: "reference", level: "advanced", primaryUrl: "https://dart.dev/language/concurrency" }),
 ] as const;
