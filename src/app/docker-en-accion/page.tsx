@@ -2,6 +2,7 @@ import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
 import { DockerPracticalScene } from "@/components/scenes/docker/DockerPracticalScene";
 import { collectionNumber } from "@/data/collectionManifest";
+import { collectionNotices } from "@/data/collectionNotices";
 import { dockerDeepDive } from "@/data/practicalDeepDives";
 
 export default function DockerActionPage() {
@@ -16,6 +17,11 @@ export default function DockerActionPage() {
         </div>
         <div className="hero__counter hero__counter--docker"><strong>14</strong><span>etapas de build, distribución y runtime</span></div>
       </header>
+
+      <aside className="collection-notice">
+        <strong>Contexto tecnológico</strong>
+        <p>{collectionNotices["docker"]}</p>
+      </aside>
 
       <section className="practical-stage practical-stage--docker" aria-label="Caso práctico integrado de Docker">
         <DockerPracticalScene />

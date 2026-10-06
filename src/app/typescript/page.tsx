@@ -1,9 +1,11 @@
 import type { ReactNode } from "react";
+import Link from "next/link";
 import { ConceptCard } from "@/components/concepts/ConceptCard";
 import { CollectionChapters } from "@/components/concepts/CollectionChapters";
 import { CollectionLibraryInvite } from "@/components/concepts/CollectionLibraryInvite";
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { AnimatedConceptScene } from "@/components/visual/AnimatedConceptScene";
+import { collectionNotices } from "@/data/collectionNotices";
 import { AnnotationsScene } from "@/components/scenes/typescript/AnnotationsScene";
 import { ArraysTuplesScene } from "@/components/scenes/typescript/ArraysTuplesScene";
 import { FunctionTypesScene } from "@/components/scenes/typescript/FunctionTypesScene";
@@ -61,6 +63,16 @@ export default function TypeScriptPage() {
           <span>conceptos en {sections.length} capítulos</span>
         </div>
       </header>
+
+      <aside className="collection-notice">
+        <strong>Contexto tecnológico</strong>
+        <p>{collectionNotices["typescript"]}</p>
+      </aside>
+
+      <div className="collection-action-link">
+        <span>Después de estudiar los mecanismos</span>
+        <Link href="/typescript-en-accion">Ver TypeScript en acción <b>↗</b></Link>
+      </div>
 
       <CollectionPrimer primer={collectionPrimers["typescript"]} />
 

@@ -2,6 +2,7 @@ import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
 import { BackendPracticalScene } from "@/components/scenes/backend/BackendPracticalScene";
 import { collectionNumber } from "@/data/collectionManifest";
+import { collectionNotices } from "@/data/collectionNotices";
 import { backendDeepDive } from "@/data/practicalDeepDives";
 
 export default function BackendActionPage() {
@@ -16,6 +17,11 @@ export default function BackendActionPage() {
         </div>
         <div className="hero__counter hero__counter--backend"><strong>14</strong><span>etapas del request a producción</span></div>
       </header>
+
+      <aside className="collection-notice">
+        <strong>Contexto tecnológico</strong>
+        <p>{collectionNotices["backend"]}</p>
+      </aside>
 
       <section className="practical-stage practical-stage--backend" aria-label="Ejemplo práctico integrado de backend">
         <BackendPracticalScene />

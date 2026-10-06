@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { ConceptCard } from "@/components/concepts/ConceptCard";
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { AnimatedConceptScene } from "@/components/visual/AnimatedConceptScene";
@@ -6,6 +7,7 @@ import { CollectionPrimer } from "@/components/concepts/CollectionPrimer";
 import { CollectionLibraryInvite } from "@/components/concepts/CollectionLibraryInvite";
 import { collectionNumber } from "@/data/collectionManifest";
 import { collectionPrimers } from "@/data/collectionPrimers";
+import { collectionNotices } from "@/data/collectionNotices";
 
 export default function HtmlCssPage() {
   return (
@@ -19,6 +21,16 @@ export default function HtmlCssPage() {
         </div>
         <div className="hero__counter hero__counter--html-css"><strong>{htmlCssConcepts.length}</strong><span>conceptos de estructura, layout y presentación</span></div>
       </header>
+
+      <aside className="collection-notice">
+        <strong>Contexto tecnológico</strong>
+        <p>{collectionNotices["html-css"]}</p>
+      </aside>
+
+      <div className="collection-action-link">
+        <span>Después de estudiar los mecanismos</span>
+        <Link href="/html-css-en-accion">Ver HTML y CSS en acción <b>↗</b></Link>
+      </div>
 
       <CollectionPrimer primer={collectionPrimers["html-css"]} />
       <CollectionLibraryInvite href="/libreria/html-css" collectionName="HTML y CSS" />

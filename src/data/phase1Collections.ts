@@ -1,4 +1,5 @@
 import { caseStudy, chapter, defineExpandedCollection, primer, source, step } from "./expandedCollectionFactory";
+import { collectionNotices } from "./collectionNotices";
 
 export const gitCollection = defineExpandedCollection({
   id: "git",
@@ -77,6 +78,7 @@ export const gitCollection = defineExpandedCollection({
       step("Recuperar el experimento", "El contexto anterior regresa", "git switch experiment && git stash pop", ["el prototipo vuelve al editor", "el hotfix permanece en historia"], ["HEAD cambia de rama", "stash aplica tres estados", "reflog conserva movimientos"], "trabajo completo y recuperable", "El resultado demuestra que la urgencia no exigía destruir el trabajo previo."),
     ],
   ),
+  notice: collectionNotices["git"],
 });
 
 export const githubCollection = defineExpandedCollection({
@@ -156,6 +158,7 @@ export const githubCollection = defineExpandedCollection({
       step("Publicar la versión", "Tag, notas y attestation", "Release v2.5.0", ["notas explican la mejora", "artefacto descargable"], ["tag firmado", "provenance asociada", "advisories sin pendientes"], "release verificable", "La versión conecta necesidad, código, revisión, evidencia y artefacto."),
     ],
   ),
+  notice: collectionNotices["github"],
 });
 
 export const apisCollection = defineExpandedCollection({
@@ -254,6 +257,7 @@ export const apisCollection = defineExpandedCollection({
       step("Cerrar la traza", "Una identidad cruza protocolos", "trace_id=repair_421", ["soporte ve toda la historia", "SLO mide la operación completa"], ["spans REST, GraphQL y gRPC", "evento enlazado", "webhook delivery correlacionado"], "operación explicable", "La observabilidad conecta tecnologías distintas con la intención del usuario."),
     ],
   ),
+  notice: collectionNotices["apis"],
 });
 
 export const ciCdCollection = defineExpandedCollection({
@@ -340,6 +344,7 @@ export const ciCdCollection = defineExpandedCollection({
       step("Entregar a Deployment", "La frontera queda explícita", "promote sha256:24b9…", ["staging recibe un digest", "aprobación queda auditada"], ["environment policy", "metadata de versión", "handoff sin rebuild"], "versión promocionable", "Deployment decide configuración, rollout, tráfico y rollback a partir de este artefacto."),
     ],
   ),
+  notice: collectionNotices["ci-cd"],
 });
 
 export const phase1Collections = [gitCollection, githubCollection, apisCollection, ciCdCollection] as const;

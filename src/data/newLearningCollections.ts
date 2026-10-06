@@ -1,4 +1,5 @@
 import { caseStudy, chapter, defineExpandedCollection, primer, source, step } from "./expandedCollectionFactory";
+import { collectionNotices } from "./collectionNotices";
 import { newLearningExtensionsFoundationsLanguages } from "./newLearningExtensionsFoundationsLanguages";
 import { newLearningExtensionsPlatformsData } from "./newLearningExtensionsPlatformsData";
 import { newLearningSourceExtensions } from "./newLearningSourceExtensions";
@@ -219,7 +220,7 @@ function buildCollection(seed: NewLearningSeed): ExpandedCollectionDefinition {
       ...seed.sources.map(([label, href]) => source(label, href)),
       ...(newLearningSourceExtensions[seed.id] ?? []),
     ].filter((entry, index, entries) => entries.findIndex((candidate) => candidate.href === entry.href) === index),
-    notice: seed.notice,
+    notice: seed.notice ?? collectionNotices[seed.id],
     caseStudy: caseStudy(seed.caseTitle, `Caso integrado de ${seed.name}`, seed.caseDescription, seed.caseFooter, buildCaseSteps(seed)),
   });
 }

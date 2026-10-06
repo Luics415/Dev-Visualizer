@@ -2,6 +2,7 @@ import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
 import { StateManagementPracticalScene } from "@/components/scenes/state-management/StateManagementPracticalScene";
 import { collectionNumber } from "@/data/collectionManifest";
+import { collectionNotices } from "@/data/collectionNotices";
 import { stateManagementDeepDive } from "@/data/practicalDeepDives";
 
 export default function StateManagementActionPage() {
@@ -16,6 +17,11 @@ export default function StateManagementActionPage() {
         </div>
         <div className="hero__counter hero__counter--state-management"><strong>14</strong><span>etapas de propiedad y sincronización</span></div>
       </header>
+
+      <aside className="collection-notice">
+        <strong>Contexto tecnológico</strong>
+        <p>{collectionNotices["state-management"]}</p>
+      </aside>
 
       <section className="practical-stage practical-stage--state-management" aria-label="Ejemplo práctico integrado de gestión de estado">
         <StateManagementPracticalScene />

@@ -1,6 +1,7 @@
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { HtmlCssPracticalScene } from "@/components/scenes/html-css/HtmlCssPracticalScene";
 import { collectionNumber } from "@/data/collectionManifest";
+import { collectionNotices } from "@/data/collectionNotices";
 
 export default function HtmlCssPracticalPage() {
   return (
@@ -14,6 +15,12 @@ export default function HtmlCssPracticalPage() {
         </div>
         <div className="hero__counter hero__counter--html-css"><strong>8</strong><span>etapas · 2 árboles · 1 interfaz</span></div>
       </header>
+
+      <aside className="collection-notice">
+        <strong>Contexto tecnológico</strong>
+        <p>{collectionNotices["html-css"]}</p>
+      </aside>
+
       <section className="practical-stage practical-stage--html" aria-label="Ejemplo integrado de HTML y CSS"><HtmlCssPracticalScene /></section>
       <footer className="project-note">La interfaz final es la consecuencia de múltiples modelos coordinados. Entenderlos permite diagnosticar semántica, cascade, layout, rendimiento y accesibilidad sin probar propiedades al azar.</footer>
     </main>

@@ -2,6 +2,7 @@ import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
 import { AwsPracticalScene } from "@/components/scenes/aws/AwsPracticalScene";
 import { collectionNumber } from "@/data/collectionManifest";
+import { collectionNotices } from "@/data/collectionNotices";
 import { awsDeepDive } from "@/data/practicalDeepDives";
 
 export default function AwsActionPage() {
@@ -16,6 +17,11 @@ export default function AwsActionPage() {
         </div>
         <div className="hero__counter hero__counter--aws"><strong>14</strong><span>etapas del edge a una plataforma operable</span></div>
       </header>
+
+      <aside className="collection-notice">
+        <strong>Contexto tecnológico</strong>
+        <p>{collectionNotices["aws"]}</p>
+      </aside>
 
       <section className="practical-stage practical-stage--aws" aria-label="Caso práctico integrado de AWS">
         <AwsPracticalScene />

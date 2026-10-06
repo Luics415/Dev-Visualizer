@@ -1,4 +1,5 @@
 import { caseStudy, chapter, defineExpandedCollection, primer, source, step } from "./expandedCollectionFactory";
+import { collectionNotices } from "./collectionNotices";
 
 export const dotnetCollection = defineExpandedCollection({
   id: "dotnet", eyebrow: "Runtime, bibliotecas y herramientas para múltiples lenguajes", title: ".NET visualizado",
@@ -26,6 +27,7 @@ export const dotnetCollection = defineExpandedCollection({
     step("Reducir y confirmar", "Buffers reutilizados", "ArrayPool<byte>.Shared", ["p95 vuelve al presupuesto", "working set se estabiliza"], ["menos Gen0", "sin LOH temporal", "trace comparada"], "runtime saludable", "La mejora se demuestra con el mismo workload y señales antes/después.", "recovery"),
     step("Publicar y cerrar", "Artefacto Linux con shutdown", "dotnet publish -r linux-x64", ["servicio arranca sin SDK", "SIGTERM drena solicitudes"], ["self-contained bundle", "health cambia a unready", "DisposeAsync"], "servicio operable", "Publicación y lifetime garantizan que el proceso puede arrancar, observarse y terminar sin perder trabajo."),
   ]),
+  notice: collectionNotices["dotnet"],
 });
 
 export const cSharpCollection = defineExpandedCollection({
@@ -54,6 +56,7 @@ export const cSharpCollection = defineExpandedCollection({
     step("Resolver buffer retenido", "Ownership después de await", "IMemoryOwner<byte> in using", ["working set se estabiliza", "ningún consumidor lee memoria devuelta"], ["owner explícito", "Dispose después de parse", "pool metrics"], "lifetime corregido", "El owner permanece vivo hasta que termina el último acceso y luego vuelve al pool.", "recovery"),
     step("Verificar el contrato", "Property tests y métricas", "accepted + rejected == received", ["tests exploran rangos", "dashboard conserva la igualdad"], ["generator de frames", "counter por resultado", "trace por batch"], "agregador demostrable", "La misma invariante valida el lenguaje, el flujo y la operación en producción."),
   ]),
+  notice: collectionNotices["c-sharp"],
 });
 
 export const visualBasicCollection = defineExpandedCollection({
@@ -81,6 +84,7 @@ export const visualBasicCollection = defineExpandedCollection({
     step("Cerrar el lifecycle", "Suscripción simétrica", "RemoveHandler ... in Dispose", ["cada cambio refresca una vez", "Forms antiguos se liberan"], ["IDisposable", "unsubscribe idempotente", "GC root eliminado"], "fuga corregida", "Dispose cierra tanto controles como suscripciones externas.", "recovery"),
     step("Compartir con C#", "Assembly común, dos lenguajes", "Domain.vbproj → CSharpWorker.csproj", ["worker procesa las mismas órdenes", "nombres públicos son naturales"], ["CLS-compliant API", "nullable contract", "unit tests cruzados"], "solución interoperable", "La plataforma común permite dividir responsabilidades sin traducir datos ni duplicar reglas."),
   ]),
+  notice: collectionNotices["visual-basic"],
 });
 
 export const dotnetCollections = [dotnetCollection, cSharpCollection, visualBasicCollection] as const;

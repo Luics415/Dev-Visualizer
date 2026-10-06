@@ -2,6 +2,7 @@ import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
 import { TypeScriptPracticalScene } from "@/components/scenes/typescript/TypeScriptPracticalScene";
 import { collectionNumber } from "@/data/collectionManifest";
+import { collectionNotices } from "@/data/collectionNotices";
 import { typescriptDeepDive } from "@/data/practicalDeepDives";
 
 export default function TypeScriptPracticalPage() {
@@ -21,6 +22,11 @@ export default function TypeScriptPracticalPage() {
           <span>capas de seguridad</span>
         </div>
       </header>
+
+      <aside className="collection-notice">
+        <strong>Contexto tecnológico</strong>
+        <p>{collectionNotices["typescript"]}</p>
+      </aside>
 
       <section className="practical-stage practical-stage--typescript" aria-label="Ejemplo práctico integrado de TypeScript">
         <TypeScriptPracticalScene />

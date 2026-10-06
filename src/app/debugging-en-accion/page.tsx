@@ -2,6 +2,7 @@ import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
 import { DebuggingPracticalScene } from "@/components/scenes/debugging/DebuggingPracticalScene";
 import { collectionNumber } from "@/data/collectionManifest";
+import { collectionNotices } from "@/data/collectionNotices";
 import { debuggingDeepDive } from "@/data/practicalDeepDives";
 
 export default function DebuggingActionPage() {
@@ -16,6 +17,11 @@ export default function DebuggingActionPage() {
         </div>
         <div className="hero__counter hero__counter--debugging"><strong>14</strong><span>etapas de una investigación causal</span></div>
       </header>
+
+      <aside className="collection-notice">
+        <strong>Contexto tecnológico</strong>
+        <p>{collectionNotices["debugging"]}</p>
+      </aside>
 
       <section className="practical-stage practical-stage--debugging" aria-label="Caso práctico integrado de debugging">
         <DebuggingPracticalScene />
