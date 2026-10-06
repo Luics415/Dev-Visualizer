@@ -2,6 +2,7 @@ import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
 import { FirebasePracticalScene } from "@/components/scenes/firebase/FirebasePracticalScene";
 import { collectionNumber } from "@/data/collectionManifest";
+import { collectionNotices } from "@/data/collectionNotices";
 import { firebaseDeepDive } from "@/data/practicalDeepDives";
 
 export default function FirebaseActionPage() {
@@ -16,6 +17,11 @@ export default function FirebaseActionPage() {
         </div>
         <div className="hero__counter hero__counter--firebase"><strong>14</strong><span>etapas entre cliente, reglas y servicios cloud</span></div>
       </header>
+
+      <aside className="collection-notice">
+        <strong>Contexto tecnológico</strong>
+        <p>{collectionNotices["firebase"]}</p>
+      </aside>
 
       <section className="practical-stage practical-stage--firebase" aria-label="Caso práctico integrado de Firebase">
         <FirebasePracticalScene />

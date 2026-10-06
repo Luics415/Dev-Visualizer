@@ -2,6 +2,7 @@ import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
 import { ReactNativePracticalScene } from "@/components/scenes/react-native/ReactNativePracticalScene";
 import { collectionNumber } from "@/data/collectionManifest";
+import { collectionNotices } from "@/data/collectionNotices";
 import { reactNativeDeepDive } from "@/data/practicalDeepDives";
 
 export default function ReactNativePracticalPage() {
@@ -21,6 +22,11 @@ export default function ReactNativePracticalPage() {
           <span>fronteras móvil–sistema–API</span>
         </div>
       </header>
+
+      <aside className="collection-notice">
+        <strong>Contexto tecnológico</strong>
+        <p>{collectionNotices["react-native"]}</p>
+      </aside>
 
       <section className="practical-stage practical-stage--react-native" aria-label="Ejemplo práctico integrado de React Native">
         <ReactNativePracticalScene />

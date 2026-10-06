@@ -2,6 +2,7 @@ import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
 import { LinuxPracticalScene } from "@/components/scenes/linux/LinuxPracticalScene";
 import { collectionNumber } from "@/data/collectionManifest";
+import { collectionNotices } from "@/data/collectionNotices";
 import { linuxDeepDive } from "@/data/practicalDeepDives";
 
 export default function LinuxActionPage() {
@@ -16,6 +17,11 @@ export default function LinuxActionPage() {
         </div>
         <div className="hero__counter hero__counter--linux"><strong>14</strong><span>etapas de diagnóstico y recuperación</span></div>
       </header>
+
+      <aside className="collection-notice">
+        <strong>Contexto tecnológico</strong>
+        <p>{collectionNotices["linux"]}</p>
+      </aside>
 
       <section className="practical-stage practical-stage--linux" aria-label="Caso práctico integrado de Linux">
         <LinuxPracticalScene />

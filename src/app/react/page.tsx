@@ -1,9 +1,11 @@
 import type { ReactNode } from "react";
+import Link from "next/link";
 import { ConceptCard } from "@/components/concepts/ConceptCard";
 import { CollectionChapters } from "@/components/concepts/CollectionChapters";
 import { CollectionLibraryInvite } from "@/components/concepts/CollectionLibraryInvite";
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { AnimatedConceptScene } from "@/components/visual/AnimatedConceptScene";
+import { collectionNotices } from "@/data/collectionNotices";
 import { ComponentsScene } from "@/components/scenes/react/ComponentsScene";
 import { ConditionalRenderingScene } from "@/components/scenes/react/ConditionalRenderingScene";
 import { ContextScene } from "@/components/scenes/react/ContextScene";
@@ -61,6 +63,16 @@ export default function ReactPage() {
           <span>conceptos en {sections.length} capítulos</span>
         </div>
       </header>
+
+      <aside className="collection-notice">
+        <strong>Contexto tecnológico</strong>
+        <p>{collectionNotices["react"]}</p>
+      </aside>
+
+      <div className="collection-action-link">
+        <span>Después de estudiar los mecanismos</span>
+        <Link href="/react-en-accion">Ver React en acción <b>↗</b></Link>
+      </div>
 
       <CollectionPrimer primer={collectionPrimers["react"]} />
 

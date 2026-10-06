@@ -1,4 +1,5 @@
 import { caseStudy, chapter, defineExpandedCollection, primer, source, step } from "./expandedCollectionFactory";
+import { collectionNotices } from "./collectionNotices";
 
 export const cCollection = defineExpandedCollection({
   id: "c", eyebrow: "Control explícito sobre datos, memoria y máquina", title: "C visualizado",
@@ -55,6 +56,7 @@ export const cCollection = defineExpandedCollection({
     step("Probar entradas hostiles", "Fuzzer y sanitizer cooperan", "clang -fsanitize=address,undefined", ["un corpus reproduce el fallo", "ningún crash queda silencioso"], ["coverage-guided mutation", "ASan redzone", "UBSan report"], "parser endurecido", "La instrumentación convierte una desviación de memoria en una traza localizada.", "recovery"),
     step("Liberar y observar", "Resultado o error, nunca fuga", "packet_free(packet)", ["métrica clasifica rechazos", "el proceso conserva memoria estable"], ["cleanup idempotente", "error code preservado", "contador por versión"], "lectura segura y explicable", "Cada camino termina con recursos liberados y evidencia suficiente para operar el parser."),
   ]),
+  notice: collectionNotices["c"],
 });
 
 export const cppCollection = defineExpandedCollection({
@@ -83,6 +85,7 @@ export const cppCollection = defineExpandedCollection({
     step("Perfilar locality", "Datos contiguos vencen a microajustes", "perf record · heaptrack", ["la simulación baja latencia", "menos memoria transitoria"], ["cache misses medidos", "vector reservado", "allocations agrupadas"], "rendimiento probado", "El perfil revela que el layout de datos importa más que una expresión aislada."),
     step("Empaquetar y probar", "Target reproducible", "cmake --build && ctest", ["Linux y Windows coinciden", "un benchmark protege la regresión"], ["targets exportados", "sanitizers en CI", "ABI versionada"], "simulador operable", "Build, tests y límites de ABI convierten el prototipo en software mantenible."),
   ]),
+  notice: collectionNotices["cpp"],
 });
 
 export const objectiveCCollection = defineExpandedCollection({
@@ -193,6 +196,7 @@ export const embeddedCCollection = defineExpandedCollection({
     step("Vigilar salud", "Watchdog alimentado por evidencia", "health_bits == ALL_OK → feed", ["un task atascado provoca reset", "fallos normales no reinician"], ["heartbeat por tarea", "ventana watchdog", "crash record en NVM"], "recuperación automática", "Una sola tarea no puede ocultar que otra dejó de cumplir su contrato."),
     step("Dormir y reanudar", "Energía sin perder estado", "STOP mode → timer wake", ["consumo baja entre muestras", "la primera lectura sigue válida"], ["clocks restaurados", "periféricos rearmados", "timestamp monotónico"], "controlador eficiente y trazable", "El wake path forma parte del caso normal y se prueba como cualquier otra transición."),
   ]),
+  notice: collectionNotices["embedded-c"],
 });
 
 export const cFamilyCollections = [cCollection, cppCollection, objectiveCCollection, cStarCollection, cwebCollection, embeddedCCollection] as const;

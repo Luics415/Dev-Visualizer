@@ -2,6 +2,7 @@ import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
 import { ReactPracticalScene } from "@/components/scenes/react/ReactPracticalScene";
 import { collectionNumber } from "@/data/collectionManifest";
+import { collectionNotices } from "@/data/collectionNotices";
 import { reactDeepDive } from "@/data/practicalDeepDives";
 
 export default function ReactPracticalPage() {
@@ -21,6 +22,11 @@ export default function ReactPracticalPage() {
           <span>etapas de una actualización</span>
         </div>
       </header>
+
+      <aside className="collection-notice">
+        <strong>Contexto tecnológico</strong>
+        <p>{collectionNotices["react"]}</p>
+      </aside>
 
       <section className="practical-stage practical-stage--react" aria-label="Ejemplo práctico integrado de React">
         <ReactPracticalScene />

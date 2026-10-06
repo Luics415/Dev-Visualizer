@@ -1,3 +1,4 @@
+import { collectionNotices } from "./collectionNotices";
 import { caseStudy, chapter, defineExpandedCollection, primer, source, step } from "./expandedCollectionFactory";
 import { structuredDataCollection } from "./structuredDataCollection";
 
@@ -15,6 +16,7 @@ export const xmlCollection = defineExpandedCollection({
   description: "Una ruta extensa desde cero por documentos XML: sintaxis, well-formedness, Infoset, namespaces, entidades, parsing, XPath, XSLT, vocabularios, canonicalización, firmas, seguridad, evolución, pruebas y operación.",
   counterLabel: "conceptos de XML",
   footer: "XML modela documentos ricos y ordenados. La interoperabilidad aparece cuando bytes, namespaces, vocabulario, resolución, transformación, seguridad y serialización forman un contrato explícito.",
+  notice: collectionNotices["xml"],
   primer: primer(
     "XML",
     "Es un lenguaje de marcado para representar documentos mediante elementos, atributos, texto y otras construcciones ordenadas bajo un único elemento raíz.",

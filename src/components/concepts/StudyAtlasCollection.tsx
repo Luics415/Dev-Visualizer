@@ -10,6 +10,7 @@ import { collectionPrimers, primerKeyFromHeroClass } from "@/data/collectionPrim
 import type { CollectionPrimer as CollectionPrimerData } from "@/data/collectionPrimers";
 import { officialReferencesForCollection } from "@/data/officialReferences";
 import { collectionManifest } from "@/data/collectionManifest";
+import { collectionNotices } from "@/data/collectionNotices";
 import { slugify } from "@/lib/slugify";
 
 type StudyAtlasCollectionProps = {
@@ -47,6 +48,13 @@ export function StudyAtlasCollection({
   const primer = providedPrimer ?? collectionPrimers[primerKeyFromHeroClass(heroClassName)];
   const sources = officialReferencesForCollection(collectionId);
   const manifest = collectionManifest.find((entry) => entry.id === collectionId);
+  const resolvedNotice = notice ?? collectionNotices[collectionId];
+  const resolvedActionHref = actionHref ?? manifest?.actionHref;
+  const isLegacy = manifest?.lifecycle === "legado";
+  const isHistorical = manifest?.lifecycle === "histórico";
+  const noticeLabel = isLegacy ? "Tecnología heredada" : isHistorical ? "Tecnología histórica" : "Contexto tecnológico";
+  const noticeClass = `collection-notice${isLegacy ? " collection-notice--legacy" : isHistorical ? " collection-notice--historical" : ""}`;
+  const displayNotice = resolvedNotice?.replace(/^(?:Tecnología heredada|Tecnología histórica):\s*/i, "");
   const chapters = sections.map((name) => ({
     name,
     count: concepts.filter((concept) => concept.section === name).length,
@@ -79,12 +87,17 @@ export function StudyAtlasCollection({
         </div>
       </header>
 
-      {notice ? <aside className="collection-notice"><strong>Contexto tecnológico</strong><p>{notice}</p></aside> : null}
+      {displayNotice ? (
+        <aside className={noticeClass}>
+          <strong>{noticeLabel}</strong>
+          <p>{displayNotice}</p>
+        </aside>
+      ) : null}
 
-      {actionHref ? (
+      {resolvedActionHref ? (
         <div className="collection-action-link">
           <span>Después de estudiar los mecanismos</span>
-          <Link href={actionHref}>Ver {title.replace(/ visualizad[oa]s?$/i, "")} en acción <b>↗</b></Link>
+          <Link href={resolvedActionHref}>Ver {title.replace(/ visualizad[oa]s?$/i, "")} en acción <b>↗</b></Link>
         </div>
       ) : null}
 

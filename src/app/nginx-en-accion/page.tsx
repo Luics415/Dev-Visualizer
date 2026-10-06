@@ -3,6 +3,7 @@ import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
 import { HttpsTunnelScene } from "@/components/scenes/HttpsTunnelScene";
 import { collectionNumber } from "@/data/collectionManifest";
+import { collectionNotices } from "@/data/collectionNotices";
 import { nginxDeepDive } from "@/data/practicalDeepDives";
 
 export const metadata: Metadata = {
@@ -23,6 +24,11 @@ export default function NginxActionPage() {
         </div>
         <div className="hero__counter hero__counter--nginx"><strong>14</strong><span>etapas de una petición completa</span></div>
       </header>
+
+      <aside className="collection-notice">
+        <strong>Contexto tecnológico</strong>
+        <p>{collectionNotices["nginx"]}</p>
+      </aside>
 
       <section className="practical-stage practical-stage--nginx" aria-label="Caso práctico integrado de NGINX">
         <HttpsTunnelScene />

@@ -2,6 +2,7 @@ import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
 import { DatabasePracticalScene } from "@/components/scenes/databases/DatabasePracticalScene";
 import { collectionNumber } from "@/data/collectionManifest";
+import { collectionNotices } from "@/data/collectionNotices";
 import { databaseDeepDive } from "@/data/practicalDeepDives";
 
 export default function DatabasesActionPage() {
@@ -16,6 +17,11 @@ export default function DatabasesActionPage() {
         </div>
         <div className="hero__counter hero__counter--databases"><strong>14</strong><span>etapas de consulta, commit y recuperación</span></div>
       </header>
+
+      <aside className="collection-notice">
+        <strong>Contexto tecnológico</strong>
+        <p>{collectionNotices["databases"]}</p>
+      </aside>
 
       <section className="practical-stage practical-stage--databases" aria-label="Ejemplo práctico integrado de bases de datos">
         <DatabasePracticalScene />

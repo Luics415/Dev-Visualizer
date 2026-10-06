@@ -8,6 +8,7 @@ import { FlutterActionScene } from "@/components/scenes/FlutterActionScene";
 import { DartActionScene } from "@/components/scenes/DartActionScene";
 import { NewLearningActionScene } from "@/components/scenes/NewLearningActionScene";
 import { isNewLearningActionSceneId } from "@/data/newLearningActionScenes";
+import { collectionNotices } from "@/data/collectionNotices";
 import type { ExpandedCollectionDefinition } from "@/data/expandedCollectionTypes";
 import type { CollectionManifestEntry } from "@/data/collectionManifest";
 
@@ -19,6 +20,13 @@ type ExpandedActionPageProps = {
 
 export function ExpandedActionPage({ collection, manifest, collectionNumber }: ExpandedActionPageProps) {
   const practical = collection.caseStudy;
+  const rawNotice = collection.notice ?? collectionNotices[manifest.id];
+  const isLegacy = manifest.lifecycle === "legado";
+  const isHistorical = manifest.lifecycle === "histórico";
+  const noticeLabel = isLegacy ? "Tecnología heredada" : isHistorical ? "Tecnología histórica" : "Contexto tecnológico";
+  const noticeClass = `collection-notice${isLegacy ? " collection-notice--legacy" : isHistorical ? " collection-notice--historical" : ""}`;
+  const notice = rawNotice?.replace(/^(?:Tecnología heredada|Tecnología histórica):\s*/i, "");
+
   return (
     <main className="page-shell">
       <CollectionNav />
@@ -31,7 +39,12 @@ export function ExpandedActionPage({ collection, manifest, collectionNumber }: E
         <div className="hero__counter"><strong>{practical.steps.length}</strong><span>etapas · una historia integrada</span></div>
       </header>
 
-      {collection.notice ? <aside className="collection-notice"><strong>Contexto tecnológico</strong><p>{collection.notice}</p></aside> : null}
+      {notice ? (
+        <aside className={noticeClass}>
+          <strong>{noticeLabel}</strong>
+          <p>{notice}</p>
+        </aside>
+      ) : null}
 
       <section className="practical-stage practical-stage--expanded" aria-label={`Caso práctico integrado de ${manifest.label}`}>
         {manifest.id === "ci-cd"

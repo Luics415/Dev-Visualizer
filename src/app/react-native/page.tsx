@@ -1,9 +1,11 @@
 import type { ReactNode } from "react";
+import Link from "next/link";
 import { ConceptCard } from "@/components/concepts/ConceptCard";
 import { CollectionChapters } from "@/components/concepts/CollectionChapters";
 import { CollectionLibraryInvite } from "@/components/concepts/CollectionLibraryInvite";
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { AnimatedConceptScene } from "@/components/visual/AnimatedConceptScene";
+import { collectionNotices } from "@/data/collectionNotices";
 import {
   NativeRenderingScene, CoreComponentsScene, StyleSheetScene, FlexboxScene, TextInputScene,
   PressableScene, ImagesScene, VirtualizedListScene, NavigationScene, SafeAreaKeyboardScene,
@@ -52,6 +54,16 @@ export default function ReactNativePage() {
           <span>conceptos en {sections.length} capítulos</span>
         </div>
       </header>
+
+      <aside className="collection-notice">
+        <strong>Contexto tecnológico</strong>
+        <p>{collectionNotices["react-native"]}</p>
+      </aside>
+
+      <div className="collection-action-link">
+        <span>Después de estudiar los mecanismos</span>
+        <Link href="/react-native-en-accion">Ver React Native en acción <b>↗</b></Link>
+      </div>
 
       <CollectionPrimer primer={collectionPrimers["react-native"]} />
 

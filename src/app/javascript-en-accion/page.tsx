@@ -2,6 +2,7 @@ import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
 import { JavaScriptPracticalScene } from "@/components/scenes/javascript/JavaScriptPracticalScene";
 import { collectionNumber } from "@/data/collectionManifest";
+import { collectionNotices } from "@/data/collectionNotices";
 import { javascriptDeepDive } from "@/data/practicalDeepDives";
 
 export default function JavaScriptPracticalPage() {
@@ -21,6 +22,11 @@ export default function JavaScriptPracticalPage() {
           <span>etapas conectadas</span>
         </div>
       </header>
+
+      <aside className="collection-notice">
+        <strong>Contexto tecnológico</strong>
+        <p>{collectionNotices["javascript"]}</p>
+      </aside>
 
       <section className="practical-stage" aria-label="Ejemplo práctico integrado de JavaScript">
         <JavaScriptPracticalScene />
