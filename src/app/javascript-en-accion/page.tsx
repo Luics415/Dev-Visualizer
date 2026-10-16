@@ -8,19 +8,9 @@ import { FloatingAudioBubble } from "@/components/audio/FloatingAudioBubble";
 import { buildPracticalModuleAudioTrack } from "@/lib/audioTrackHelper";
 
 export default function JavaScriptPracticalPage() {
-  const practicalTracks = [
-    {
-      id: "javascript-practical-intro",
-      title: "JavaScript en acción",
-      subtitle: "Caso integrado ampliado",
-      family: "Flujo general",
-      section: "Introducción",
-      text: "JavaScript en acción. Caso integrado ampliado. Una compra recorre eventos, estado, transformaciones, red, espera asíncrona y renderizado. Después, ocho cajas dobles explican normalización, closures, acceso defensivo, concurrencia, cancelación, módulos, persistencia y recuperación de errores.",
-    },
-    ...javascriptDeepDive.map((module, i) =>
-      buildPracticalModuleAudioTrack("javascript", module, 7 + i)
-    ),
-  ];
+  const practicalTracks = javascriptDeepDive.map((module, i) =>
+    buildPracticalModuleAudioTrack("javascript", module, 7 + i)
+  );
 
   return (
     <main className="page-shell">
