@@ -104,6 +104,7 @@ export default function Home() {
                 section={concept.section}
                 family={concept.family}
                 layout={concept.layout}
+                audioTrack={audioTracks[index]}
               >
                 {specialScenes.get(concept.title) ?? (concept.scene ? (
                   <AnimatedConceptScene
