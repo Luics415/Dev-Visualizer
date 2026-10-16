@@ -12,12 +12,28 @@ export type AudioNarratorStatus = "idle" | "speaking" | "paused";
 export const AUDIO_SPEEDS = [1, 1.25, 1.5, 0.85] as const;
 export type AudioSpeed = typeof AUDIO_SPEEDS[number];
 
+export type AudioNarratorSnapshot = {
+  readonly activeTrack: AudioTrack | null;
+  readonly status: AudioNarratorStatus;
+  readonly speed: AudioSpeed;
+  readonly isSupported: boolean;
+};
+
+export const DEFAULT_SERVER_SNAPSHOT: AudioNarratorSnapshot = Object.freeze({
+  activeTrack: null,
+  status: "idle",
+  speed: 1,
+  isSupported: false,
+});
+
 type Listener = () => void;
 
 class AudioNarrator {
   private activeTrack: AudioTrack | null = null;
   private status: AudioNarratorStatus = "idle";
   private speed: AudioSpeed = 1;
+  private isSupported = false;
+  private snapshot: AudioNarratorSnapshot = DEFAULT_SERVER_SNAPSHOT;
   private listeners = new Set<Listener>();
   private activeUtterance: SpeechSynthesisUtterance | null = null;
   private heartbeatTimer: ReturnType<typeof setInterval> | null = null;
@@ -27,28 +43,45 @@ class AudioNarrator {
   private initialized = false;
 
   constructor() {
-    if (typeof window !== "undefined" && "speechSynthesis" in window) {
-      this.initVoices();
-      if (typeof window.speechSynthesis.onvoiceschanged !== "undefined") {
-        window.speechSynthesis.onvoiceschanged = () => this.initVoices();
+    if (typeof window !== "undefined") {
+      try {
+        this.isSupported = "speechSynthesis" in window && typeof window.speechSynthesis !== "undefined";
+      } catch {
+        this.isSupported = false;
       }
+      this.updateSnapshot();
 
-      // Detener audio al cambiar de pestaña para no perturbar al usuario ni gastar recursos
-      if (typeof document !== "undefined") {
-        document.addEventListener("visibilitychange", () => {
-          if (document.visibilityState === "hidden" && this.status === "speaking") {
-            this.pause();
+      if (this.isSupported) {
+        try {
+          this.initVoices();
+          if (typeof window.speechSynthesis.onvoiceschanged !== "undefined") {
+            window.speechSynthesis.onvoiceschanged = () => this.initVoices();
           }
-        });
+        } catch {
+          // Entornos con restricciones
+        }
+
+        if (typeof document !== "undefined") {
+          document.addEventListener("visibilitychange", () => {
+            if (document.visibilityState === "hidden" && this.status === "speaking") {
+              this.pause();
+            }
+          });
+        }
       }
     }
   }
 
   private initVoices() {
-    if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
-    this.voices = window.speechSynthesis.getVoices();
-    this.selectedVoice = this.pickBestSpanishVoice(this.voices);
-    this.initialized = true;
+    if (typeof window === "undefined" || !this.isSupported) return;
+    try {
+      this.voices = window.speechSynthesis.getVoices() || [];
+      this.selectedVoice = this.pickBestSpanishVoice(this.voices);
+      this.initialized = true;
+    } catch {
+      this.voices = [];
+      this.selectedVoice = null;
+    }
   }
 
   private pickBestSpanishVoice(voices: SpeechSynthesisVoice[]): SpeechSynthesisVoice | null {
@@ -74,13 +107,18 @@ class AudioNarrator {
     return voices.find((v) => v.default) ?? voices[0] ?? null;
   }
 
-  public getSnapshot() {
-    return {
+  private updateSnapshot() {
+    this.snapshot = Object.freeze({
       activeTrack: this.activeTrack,
       status: this.status,
       speed: this.speed,
-      isSupported: typeof window !== "undefined" && "speechSynthesis" in window,
-    };
+      isSupported: this.isSupported,
+    });
+    this.notify();
+  }
+
+  public getSnapshot(): AudioNarratorSnapshot {
+    return this.snapshot;
   }
 
   public subscribe(listener: Listener) {
@@ -102,101 +140,126 @@ class AudioNarrator {
   }
 
   public speak(track: AudioTrack) {
-    if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
+    if (typeof window === "undefined" || !this.isSupported) return;
 
-    // Incrementar epoch para invalidar llamadas asíncronas anteriores (evita audios superpuestos)
     this.epoch++;
     const currentEpoch = this.epoch;
 
     this.clearHeartbeat();
-    window.speechSynthesis.cancel();
+
+    try {
+      window.speechSynthesis.cancel();
+    } catch {
+      // ignore
+    }
 
     this.activeTrack = track;
     this.status = "speaking";
-    this.notify();
+    this.updateSnapshot();
 
     if (!this.initialized || this.voices.length === 0) {
       this.initVoices();
     }
 
-    const utterance = new SpeechSynthesisUtterance(track.text);
-    this.activeUtterance = utterance;
+    try {
+      const utterance = new SpeechSynthesisUtterance(track.text);
+      this.activeUtterance = utterance;
 
-    if (this.selectedVoice) {
-      utterance.voice = this.selectedVoice;
-    }
-    utterance.lang = this.selectedVoice?.lang || "es-MX";
-    utterance.rate = this.speed;
-    utterance.pitch = 1.0;
-
-    utterance.onend = () => {
-      if (this.epoch !== currentEpoch) return;
-      this.clearHeartbeat();
-      this.status = "idle";
-      this.activeUtterance = null;
-      this.notify();
-    };
-
-    utterance.onerror = () => {
-      // "interrupted" y "canceled" son normales cuando el usuario cambia de tarjeta o detiene
-      if (this.epoch !== currentEpoch) return;
-      this.clearHeartbeat();
-      this.status = "idle";
-      this.activeUtterance = null;
-      this.notify();
-    };
-
-    utterance.onpause = () => {
-      if (this.epoch !== currentEpoch) return;
-      this.status = "paused";
-      this.notify();
-    };
-
-    utterance.onresume = () => {
-      if (this.epoch !== currentEpoch) return;
-      this.status = "speaking";
-      this.notify();
-    };
-
-    window.speechSynthesis.speak(utterance);
-
-    // Heartbeat cada 9.5s para evitar que Chrome detenga silenciosamente la locución larga
-    this.heartbeatTimer = setInterval(() => {
-      if (this.epoch === currentEpoch && window.speechSynthesis.speaking && !window.speechSynthesis.paused) {
-        window.speechSynthesis.pause();
-        window.speechSynthesis.resume();
+      if (this.selectedVoice) {
+        utterance.voice = this.selectedVoice;
       }
-    }, 9500);
+      utterance.lang = this.selectedVoice?.lang || "es-MX";
+      utterance.rate = this.speed;
+      utterance.pitch = 1.0;
+
+      utterance.onend = () => {
+        if (this.epoch !== currentEpoch) return;
+        this.clearHeartbeat();
+        this.status = "idle";
+        this.activeUtterance = null;
+        this.updateSnapshot();
+      };
+
+      utterance.onerror = () => {
+        if (this.epoch !== currentEpoch) return;
+        this.clearHeartbeat();
+        this.status = "idle";
+        this.activeUtterance = null;
+        this.updateSnapshot();
+      };
+
+      utterance.onpause = () => {
+        if (this.epoch !== currentEpoch) return;
+        this.status = "paused";
+        this.updateSnapshot();
+      };
+
+      utterance.onresume = () => {
+        if (this.epoch !== currentEpoch) return;
+        this.status = "speaking";
+        this.updateSnapshot();
+      };
+
+      window.speechSynthesis.speak(utterance);
+
+      // Heartbeat cada 9.5s para evitar suspensión en Chromium
+      this.heartbeatTimer = setInterval(() => {
+        try {
+          if (this.epoch === currentEpoch && window.speechSynthesis.speaking && !window.speechSynthesis.paused) {
+            window.speechSynthesis.pause();
+            window.speechSynthesis.resume();
+          }
+        } catch {
+          // ignore
+        }
+      }, 9500);
+    } catch {
+      this.status = "idle";
+      this.activeUtterance = null;
+      this.updateSnapshot();
+    }
   }
 
   public pause() {
-    if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
+    if (typeof window === "undefined" || !this.isSupported) return;
     if (this.status === "speaking") {
-      window.speechSynthesis.pause();
+      try {
+        window.speechSynthesis.pause();
+      } catch {
+        // ignore
+      }
       this.status = "paused";
-      this.notify();
+      this.updateSnapshot();
     }
   }
 
   public resume() {
-    if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
+    if (typeof window === "undefined" || !this.isSupported) return;
     if (this.status === "paused") {
-      window.speechSynthesis.resume();
+      try {
+        window.speechSynthesis.resume();
+      } catch {
+        // ignore
+      }
       this.status = "speaking";
-      this.notify();
+      this.updateSnapshot();
     } else if (this.activeTrack && this.status === "idle") {
       this.speak(this.activeTrack);
     }
   }
 
   public stop() {
-    if (typeof window === "undefined" || !("speechSynthesis" in window)) return;
+    if (typeof window === "undefined" || !this.isSupported) return;
     this.epoch++;
     this.clearHeartbeat();
-    window.speechSynthesis.cancel();
+    try {
+      window.speechSynthesis.cancel();
+    } catch {
+      // ignore
+    }
     this.status = "idle";
     this.activeUtterance = null;
-    this.notify();
+    this.updateSnapshot();
   }
 
   public toggle(track: AudioTrack) {
@@ -216,10 +279,9 @@ class AudioNarrator {
   public setSpeed(newSpeed: AudioSpeed) {
     this.speed = newSpeed;
     if (this.status === "speaking" && this.activeTrack) {
-      // Reiniciar suavemente la pista actual con la nueva velocidad
       this.speak(this.activeTrack);
     } else {
-      this.notify();
+      this.updateSnapshot();
     }
   }
 

@@ -2,6 +2,7 @@
 
 import { useState } from "react";
 import { useAudioNarrator } from "@/hooks/useAudioNarrator";
+import { useIsClient } from "@/hooks/useIsClient";
 import type { AudioTrack } from "@/lib/audioNarrator";
 
 type FloatingAudioBubbleProps = {
@@ -10,10 +11,11 @@ type FloatingAudioBubbleProps = {
 };
 
 export function FloatingAudioBubble({ collectionName, tracks }: FloatingAudioBubbleProps) {
+  const isClient = useIsClient();
   const [isExpanded, setIsExpanded] = useState(false);
   const { activeTrack, status, speed, speak, pause, resume, stop, cycleSpeed, isSupported } = useAudioNarrator();
 
-  if (!isSupported || tracks.length === 0) {
+  if (!isClient || !isSupported || !tracks || tracks.length === 0) {
     return null;
   }
 
@@ -23,7 +25,11 @@ export function FloatingAudioBubble({ collectionName, tracks }: FloatingAudioBub
 
   // Encontrar el índice de la pista activa o usar la primera como referencia inicial
   const currentIndex = activeTrack ? tracks.findIndex((t) => t.id === activeTrack.id) : 0;
-  const currentTrack = (currentIndex >= 0 ? tracks[currentIndex] : null) ?? tracks[0]!;
+  const currentTrack = (currentIndex >= 0 ? tracks[currentIndex] : null) ?? tracks[0];
+
+  if (!currentTrack) {
+    return null;
+  }
 
   const handlePlayPause = () => {
     if (isSpeaking) {
@@ -61,7 +67,7 @@ export function FloatingAudioBubble({ collectionName, tracks }: FloatingAudioBub
             onClick={() => setIsExpanded(true)}
             aria-label={
               isActive
-                ? `Audio activo: ${activeTrack?.title}. Abrir controles.`
+                ? `Audio activo: ${activeTrack?.title ?? "concepto"}. Abrir controles.`
                 : "Abrir guía de lectura por voz"
             }
             title="Abrir guía de lectura por voz"
