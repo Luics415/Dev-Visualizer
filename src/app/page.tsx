@@ -25,6 +25,8 @@ import { slugify } from "@/lib/slugify";
 import { CollectionPrimer } from "@/components/concepts/CollectionPrimer";
 import { collectionNumber } from "@/data/collectionManifest";
 import { collectionPrimers } from "@/data/collectionPrimers";
+import { FloatingAudioBubble } from "@/components/audio/FloatingAudioBubble";
+import { buildConceptAudioTrack } from "@/lib/audioTrackHelper";
 
 const specialScenes = new Map<string, ReactNode>([
   ["Variables", <VariablesScene key="variables" />],
@@ -47,6 +49,10 @@ const sections = [...new Set(javascriptConcepts.map((concept) => concept.section
 const chapters = sections.map((name) => ({ name, count: javascriptConcepts.filter((concept) => concept.section === name).length }));
 
 export default function Home() {
+  const audioTracks = javascriptConcepts.map((concept, index) =>
+    buildConceptAudioTrack("javascript", concept, index + 1)
+  );
+
   return (
     <main className="page-shell">
       <CollectionNav />
@@ -118,6 +124,8 @@ export default function Home() {
       <footer className="project-note">
         JavaScript no termina en la sintaxis: también incluye protocolos, modelo de objetos, colas, memoria y recursos que explican cómo se comporta el programa.
       </footer>
+
+      <FloatingAudioBubble collectionName="JavaScript ES6+" tracks={audioTracks} />
     </main>
   );
 }

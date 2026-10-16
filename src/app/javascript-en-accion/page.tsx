@@ -4,8 +4,24 @@ import { JavaScriptPracticalScene } from "@/components/scenes/javascript/JavaScr
 import { collectionNumber } from "@/data/collectionManifest";
 import { collectionNotices } from "@/data/collectionNotices";
 import { javascriptDeepDive } from "@/data/practicalDeepDives";
+import { FloatingAudioBubble } from "@/components/audio/FloatingAudioBubble";
+import { buildPracticalModuleAudioTrack } from "@/lib/audioTrackHelper";
 
 export default function JavaScriptPracticalPage() {
+  const practicalTracks = [
+    {
+      id: "javascript-practical-intro",
+      title: "JavaScript en acción",
+      subtitle: "Caso integrado ampliado",
+      family: "Flujo general",
+      section: "Introducción",
+      text: "JavaScript en acción. Caso integrado ampliado. Una compra recorre eventos, estado, transformaciones, red, espera asíncrona y renderizado. Después, ocho cajas dobles explican normalización, closures, acceso defensivo, concurrencia, cancelación, módulos, persistencia y recuperación de errores.",
+    },
+    ...javascriptDeepDive.map((module, i) =>
+      buildPracticalModuleAudioTrack("javascript", module, 7 + i)
+    ),
+  ];
+
   return (
     <main className="page-shell">
       <CollectionNav />
@@ -32,11 +48,14 @@ export default function JavaScriptPracticalPage() {
         <JavaScriptPracticalScene />
       </section>
 
-      <PracticalDeepDive modules={javascriptDeepDive} />
+      <PracticalDeepDive modules={javascriptDeepDive} collectionId="javascript" />
 
       <footer className="project-note">
         El caso completo sigue al dato desde la entrada del usuario hasta la memoria, las colas, la red, el almacenamiento y la ruta de recuperación.
       </footer>
+
+      <FloatingAudioBubble collectionName="JavaScript en acción" tracks={practicalTracks} />
     </main>
   );
 }
+

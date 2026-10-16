@@ -4,15 +4,18 @@ import { Fragment, useRef } from "react";
 import { motion } from "motion/react";
 import type { PracticalModule } from "@/data/practicalDeepDives";
 import { useScenePlayback } from "@/components/visual/useScenePlayback";
+import { ConceptAudioTrigger } from "@/components/audio/ConceptAudioTrigger";
+import { buildPracticalModuleAudioTrack } from "@/lib/audioTrackHelper";
 
 type PracticalDeepDiveProps = {
   modules: readonly PracticalModule[];
   startAt?: number;
+  collectionId?: string;
 };
 
 const LOOP = 10;
 
-export function PracticalDeepDive({ modules, startAt = 7 }: PracticalDeepDiveProps) {
+export function PracticalDeepDive({ modules, startAt = 7, collectionId }: PracticalDeepDiveProps) {
   const sectionRef = useRef<HTMLElement>(null);
   const { playback, shouldAnimate } = useScenePlayback(sectionRef);
   const transition = { duration: shouldAnimate ? LOOP : 0, repeat: shouldAnimate ? Infinity : 0 } as const;
@@ -35,6 +38,13 @@ export function PracticalDeepDive({ modules, startAt = 7 }: PracticalDeepDivePro
                 <h3>{module.title}</h3>
                 <p>{module.subtitle}</p>
               </div>
+              {collectionId ? (
+                <ConceptAudioTrigger
+                  track={buildPracticalModuleAudioTrack(collectionId, module, startAt + index)}
+                  compact
+                  className="practical-module__audio-trigger"
+                />
+              ) : null}
             </header>
 
             <div className="practical-module__pair">
