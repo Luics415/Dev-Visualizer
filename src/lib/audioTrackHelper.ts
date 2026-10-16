@@ -235,3 +235,33 @@ export function buildPracticalModuleAudioTrack(
     text,
   };
 }
+
+type PracticalPresentationInput = {
+  title: string;
+  subtitle: string;
+  family: string;
+  section?: string;
+  stagesExplanation: string;
+  visualOutcome: string;
+};
+
+/**
+ * Genera la pista de audio explicativa para la presentación interactiva integrada de "en acción".
+ * [Título]: [Subtítulo], familia [Familia]. [Explicación de etapas animadas]. Resultado visual: [Resultado visual].
+ */
+export function buildPracticalPresentationAudioTrack(
+  collectionId: string,
+  config: PracticalPresentationInput
+): AudioTrack {
+  const text = `${config.title}: ${config.subtitle}, familia ${config.family}. ${config.stagesExplanation} Resultado visual: ${config.visualOutcome}`;
+
+  return {
+    id: `${collectionId}-presentation`,
+    title: config.title,
+    subtitle: config.subtitle,
+    family: config.family,
+    section: config.section ?? "Presentación interactiva",
+    text,
+  };
+}
+

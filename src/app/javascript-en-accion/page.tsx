@@ -5,12 +5,30 @@ import { collectionNumber } from "@/data/collectionManifest";
 import { collectionNotices } from "@/data/collectionNotices";
 import { javascriptDeepDive } from "@/data/practicalDeepDives";
 import { FloatingAudioBubble } from "@/components/audio/FloatingAudioBubble";
-import { buildPracticalModuleAudioTrack } from "@/lib/audioTrackHelper";
+import { ConceptAudioTrigger } from "@/components/audio/ConceptAudioTrigger";
+import {
+  buildPracticalModuleAudioTrack,
+  buildPracticalPresentationAudioTrack,
+} from "@/lib/audioTrackHelper";
 
 export default function JavaScriptPracticalPage() {
-  const practicalTracks = javascriptDeepDive.map((module, i) =>
-    buildPracticalModuleAudioTrack("javascript", module, 7 + i)
-  );
+  const presentationTrack = buildPracticalPresentationAudioTrack("javascript", {
+    title: "JavaScript en acción",
+    subtitle: "Flujo integrado de una compra",
+    family: "flujo general coordinado",
+    section: "Presentación interactiva",
+    stagesExplanation:
+      "En esta presentación interactiva, un clic del usuario desencadena el ciclo de vida completo del dato a través de seis etapas animadas. Primero, en Evento, el clic en el botón Agregar activa el handler onClick. Segundo, en Estado, el array del carrito se actualiza inmutablemente mediante spread incorporando el teclado junto al monitor. Tercero, en Transformación, el pipeline ejecuta filter para validar stock, map para calcular precio por cantidad y reduce para consolidar el subtotal de $225. Cuarto, en Red, una petición POST envía el subtotal a la API y recibe un cupón de descuento de $25. Quinto, en Asincronía, la función se suspende en el await sin bloquear el hilo principal, permitiendo que la interfaz siga respondiendo a eventos y animaciones. Y sexto, en Render, el estado recalcula el total final en $200 y actualiza reactivamente el recibo en pantalla.",
+    visualOutcome:
+      "la animación ilumina secuencialmente cada una de las seis etapas sincronizadas, demostrando cómo JavaScript procesa eventos, transforma datos en memoria y coordina la red de forma asíncrona sin congelar la experiencia del usuario.",
+  });
+
+  const practicalTracks = [
+    presentationTrack,
+    ...javascriptDeepDive.map((module, i) =>
+      buildPracticalModuleAudioTrack("javascript", module, 7 + i)
+    ),
+  ];
 
   return (
     <main className="page-shell">
@@ -34,7 +52,21 @@ export default function JavaScriptPracticalPage() {
         <p>{collectionNotices["javascript"]}</p>
       </aside>
 
-      <section className="practical-stage" aria-label="Ejemplo práctico integrado de JavaScript">
+      <section className="practical-stage practical-stage--card" aria-label="Presentación interactiva: Flujo integrado de una compra">
+        <header className="practical-card__header">
+          <div className="practical-card__title-group">
+            <span className="practical-card__badge">00</span>
+            <div>
+              <h2>Flujo integrado de una compra</h2>
+              <p>Ciclo de vida interactivo de un dato a través de eventos, estado inmutable, transformaciones funcionales, red, asincronía y render.</p>
+            </div>
+          </div>
+          <div className="practical-card__actions">
+            <ConceptAudioTrigger track={presentationTrack} />
+            <span className="practical-card__family">{presentationTrack.family}</span>
+          </div>
+        </header>
+
         <JavaScriptPracticalScene />
       </section>
 
@@ -48,4 +80,3 @@ export default function JavaScriptPracticalPage() {
     </main>
   );
 }
-
