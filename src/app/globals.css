@@ -5993,5 +5993,87 @@ body {
   }
 }
 
+/* Cabecera didáctica tipo tarjeta para la presentación interactiva de "en acción" */
+.practical-card__header {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 16px;
+  margin-bottom: 20px;
+  padding-bottom: 14px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.practical-card__title-group {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+}
+
+.practical-card__badge {
+  display: grid;
+  place-items: center;
+  min-width: 32px;
+  height: 32px;
+  padding: 0 6px;
+  border-radius: 8px;
+  background: rgba(59, 211, 255, 0.14);
+  color: var(--cyan);
+  font-family: var(--mono);
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.practical-card__title-group h2 {
+  margin: 0;
+  color: var(--text);
+  font-size: 1.18rem;
+  font-weight: 700;
+  letter-spacing: -0.02em;
+}
+
+.practical-card__title-group p {
+  margin: 4px 0 0;
+  color: #8b9bb4;
+  font-size: 0.82rem;
+  line-height: 1.45;
+  max-width: 680px;
+}
+
+.practical-card__actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-shrink: 0;
+}
+
+.practical-card__family {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  border: 1px solid rgba(59, 211, 255, 0.28);
+  border-radius: 9999px;
+  background: rgba(59, 211, 255, 0.07);
+  color: var(--cyan);
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.02em;
+  text-transform: lowercase;
+}
+
+@media (max-width: 768px) {
+  .practical-card__header {
+    flex-direction: column;
+    gap: 12px;
+    margin-bottom: 14px;
+    padding-bottom: 12px;
+  }
+  .practical-card__actions {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
+
 
 
