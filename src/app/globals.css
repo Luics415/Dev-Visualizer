@@ -5607,4 +5607,391 @@ body {
   letter-spacing: 0.06em;
 }
 
+/* ==========================================================================
+   SISTEMA DE LECTURA AUDITIVA DIDÁCTICA Y GLOBO FLOTANTE INTERACTIVO
+   ========================================================================== */
+
+.concept-card__header-actions {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.concept-audio-trigger {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--muted);
+  cursor: pointer;
+  font-family: var(--mono);
+  font-size: 0.65rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+.concept-audio-trigger:hover {
+  border-color: var(--card-accent, var(--cyan));
+  color: #fff;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+.concept-audio-trigger--compact {
+  padding: 2px 6px;
+  min-width: 26px;
+  height: 24px;
+}
+
+.concept-audio-trigger--playing {
+  border-color: var(--card-accent, var(--cyan));
+  background: color-mix(in srgb, var(--card-accent, var(--cyan)) 18%, transparent);
+  color: var(--card-accent, var(--cyan));
+  box-shadow: 0 0 12px color-mix(in srgb, var(--card-accent, var(--cyan)) 30%, transparent);
+}
+
+.concept-audio-trigger--paused {
+  border-color: var(--yellow);
+  color: var(--yellow);
+  background: rgba(245, 199, 66, 0.12);
+}
+
+.practical-module__header-actions {
+  display: flex;
+  align-items: center;
+  margin-left: auto;
+}
+
+.practical-module__audio-trigger {
+  padding: 3px 6px;
+}
+
+/* Ecualizador animado con barras de audio */
+.audio-equalizer {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 2px;
+  height: 12px;
+  width: 12px;
+}
+
+.audio-equalizer__bar {
+  display: inline-block;
+  width: 2px;
+  height: 100%;
+  border-radius: 1px;
+  background: currentColor;
+  animation: audioWaveBar 0.85s ease-in-out infinite alternate;
+  transform-origin: bottom;
+}
+
+.audio-equalizer__bar:nth-child(1) { animation-delay: 0s; height: 35%; }
+.audio-equalizer__bar:nth-child(2) { animation-delay: 0.25s; height: 100%; }
+.audio-equalizer__bar:nth-child(3) { animation-delay: 0.5s; height: 60%; }
+
+@keyframes audioWaveBar {
+  0% { transform: scaleY(0.25); }
+  100% { transform: scaleY(1); }
+}
+
+/* --------------------------------------------------------------------------
+   GLOBO INTERACTIVO FLOTANTE (FLOATING AUDIO BUBBLE)
+   -------------------------------------------------------------------------- */
+
+.floating-audio-bubble {
+  position: fixed;
+  bottom: 24px;
+  right: 24px;
+  z-index: 999;
+  font-family: var(--sans);
+  pointer-events: auto;
+}
+
+/* Vista contraída: Píldora ultra-compacta para no tapar en móviles */
+.floating-audio-bubble__mini {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  background: rgba(9, 14, 26, 0.85);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(59, 211, 255, 0.35);
+  border-radius: 999px;
+  padding: 4px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.55), 0 0 20px rgba(59, 211, 255, 0.15);
+  transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.floating-audio-bubble--active .floating-audio-bubble__mini {
+  border-color: var(--cyan);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.6), 0 0 25px rgba(59, 211, 255, 0.35);
+}
+
+.floating-audio-bubble__pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 14px;
+  border-radius: 999px;
+  border: none;
+  background: transparent;
+  color: #fff;
+  cursor: pointer;
+  font-size: 0.78rem;
+  font-weight: 600;
+  transition: opacity 0.2s ease;
+}
+
+.floating-audio-bubble__pill:hover {
+  opacity: 0.9;
+}
+
+.floating-audio-bubble__pill-label {
+  max-width: 140px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.floating-audio-bubble__mini-toggle {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: none;
+  background: rgba(59, 211, 255, 0.18);
+  color: var(--cyan);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.floating-audio-bubble__mini-toggle:hover {
+  background: var(--cyan);
+  color: #041118;
+  transform: scale(1.05);
+}
+
+/* Vista extendida: Panel interactivo completo */
+.floating-audio-bubble__panel {
+  width: 360px;
+  max-width: calc(100vw - 32px);
+  background: rgba(10, 16, 28, 0.95);
+  backdrop-filter: blur(24px);
+  -webkit-backdrop-filter: blur(24px);
+  border: 1px solid rgba(59, 211, 255, 0.4);
+  border-radius: 18px;
+  padding: 16px;
+  box-shadow: 0 20px 50px rgba(0, 0, 0, 0.65), 0 0 35px rgba(59, 211, 255, 0.2);
+  animation: floatPanelAppear 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+@keyframes floatPanelAppear {
+  from {
+    opacity: 0;
+    transform: translateY(12px) scale(0.96);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+.floating-audio-bubble__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.floating-audio-bubble__brand {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.floating-audio-bubble__dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--cyan);
+  box-shadow: 0 0 8px var(--cyan);
+}
+
+.floating-audio-bubble__brand strong {
+  font-size: 0.85rem;
+  color: #fff;
+  letter-spacing: -0.01em;
+}
+
+.floating-audio-bubble__brand small {
+  font-size: 0.68rem;
+  color: var(--muted);
+  margin-left: 2px;
+}
+
+.floating-audio-bubble__close {
+  display: grid;
+  place-items: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--muted);
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.floating-audio-bubble__close:hover {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.3);
+  background: rgba(255, 255, 255, 0.1);
+}
+
+.floating-audio-bubble__body {
+  margin-bottom: 14px;
+}
+
+.floating-audio-bubble__meta {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 6px;
+}
+
+.floating-audio-bubble__badge {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 2px 7px;
+  border-radius: 4px;
+  background: rgba(59, 211, 255, 0.12);
+  color: var(--cyan);
+  border: 1px solid rgba(59, 211, 255, 0.3);
+}
+
+.floating-audio-bubble__section {
+  font-size: 0.68rem;
+  color: var(--muted);
+}
+
+.floating-audio-bubble__title {
+  margin: 0 0 6px;
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: #fff;
+}
+
+.floating-audio-bubble__text {
+  margin: 0;
+  font-size: 0.76rem;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.72);
+  display: -webkit-box;
+  -webkit-line-clamp: 3;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.floating-audio-bubble__controls {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding-top: 10px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.floating-audio-bubble__playback-group {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.floating-audio-bubble__btn {
+  display: grid;
+  place-items: center;
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.05);
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.floating-audio-bubble__btn:hover:not(:disabled) {
+  border-color: rgba(255, 255, 255, 0.25);
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.floating-audio-bubble__btn:disabled {
+  opacity: 0.35;
+  cursor: not-allowed;
+}
+
+.floating-audio-bubble__btn--primary {
+  width: 38px;
+  height: 38px;
+  border-radius: 50%;
+  background: var(--cyan);
+  border-color: var(--cyan);
+  color: #041118;
+  box-shadow: 0 0 15px rgba(59, 211, 255, 0.4);
+}
+
+.floating-audio-bubble__btn--primary:hover:not(:disabled) {
+  background: #6fe0ff;
+  border-color: #6fe0ff;
+  transform: scale(1.06);
+}
+
+.floating-audio-bubble__speed-btn {
+  padding: 4px 10px;
+  border-radius: 6px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  background: rgba(255, 255, 255, 0.04);
+  color: var(--muted);
+  cursor: pointer;
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+
+.floating-audio-bubble__speed-btn:hover {
+  border-color: var(--cyan);
+  color: var(--cyan);
+  background: rgba(59, 211, 255, 0.1);
+}
+
+/* Responsive para dispositivos móviles */
+@media (max-width: 640px) {
+  .floating-audio-bubble {
+    bottom: 16px;
+    right: 14px;
+    left: auto;
+  }
+  .floating-audio-bubble__panel {
+    width: calc(100vw - 28px);
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .audio-equalizer__bar {
+    animation: none;
+    height: 60%;
+  }
+}
+
+
 

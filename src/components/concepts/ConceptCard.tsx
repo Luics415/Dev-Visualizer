@@ -1,7 +1,10 @@
 import type { ReactNode } from "react";
 import { AnimatedConceptScene } from "@/components/visual/AnimatedConceptScene";
+import { ConceptAudioTrigger } from "@/components/audio/ConceptAudioTrigger";
 import { createStudyScene } from "@/data/atlasConceptFactory";
 import { officialReferenceKindLabels, officialReferencesForConcept } from "@/data/officialReferences";
+import { buildConceptAudioTrack } from "@/lib/audioTrackHelper";
+import type { AudioTrack } from "@/lib/audioNarrator";
 
 type ConceptCardProps = {
   index: number;
@@ -13,6 +16,8 @@ type ConceptCardProps = {
   status?: "ready" | "planned";
   family?: string;
   layout?: "standard" | "wide" | "compact" | "feature";
+  audioTrack?: AudioTrack;
+  enableAudio?: boolean;
 };
 
 export function ConceptCard({
@@ -25,9 +30,13 @@ export function ConceptCard({
   status = "ready",
   family = "flujo",
   layout = "standard",
+  audioTrack,
+  enableAudio,
 }: ConceptCardProps) {
   const references = officialReferencesForConcept(collectionId, { title, description, section });
   const fallbackScene = createStudyScene(title, description, section);
+  const isAudioEnabled = enableAudio ?? (collectionId === "javascript");
+  const track = isAudioEnabled ? (audioTrack ?? buildConceptAudioTrack(collectionId, { title, description, section, family }, index)) : null;
 
   return (
     <article className={`concept-card concept-card--${status} concept-card--${layout}`} data-family={family}>
@@ -36,7 +45,10 @@ export function ConceptCard({
           <span>{String(index).padStart(2, "0")}</span>
           {title}
         </h2>
-        <span className="concept-card__family">{family}</span>
+        <div className="concept-card__header-actions">
+          {track ? <ConceptAudioTrigger track={track} compact /> : null}
+          <span className="concept-card__family">{family}</span>
+        </div>
       </header>
 
       <div className="concept-card__stage">
