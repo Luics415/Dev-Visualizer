@@ -1,6 +1,7 @@
 "use client";
 
 import { useAudioNarrator } from "@/hooks/useAudioNarrator";
+import { useIsClient } from "@/hooks/useIsClient";
 import type { AudioTrack } from "@/lib/audioNarrator";
 
 type ConceptAudioTriggerProps = {
@@ -10,9 +11,10 @@ type ConceptAudioTriggerProps = {
 };
 
 export function ConceptAudioTrigger({ track, compact = false, className = "" }: ConceptAudioTriggerProps) {
+  const isClient = useIsClient();
   const { activeTrack, status, toggle } = useAudioNarrator();
 
-  const isCurrent = activeTrack?.id === track.id;
+  const isCurrent = isClient && activeTrack?.id === track.id;
   const isPlaying = isCurrent && status === "speaking";
   const isPaused = isCurrent && status === "paused";
 

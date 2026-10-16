@@ -1,14 +1,14 @@
 "use client";
 
 import { useSyncExternalStore } from "react";
-import { audioNarrator, type AudioTrack, type AudioSpeed } from "@/lib/audioNarrator";
+import {
+  audioNarrator,
+  DEFAULT_SERVER_SNAPSHOT,
+  type AudioTrack,
+  type AudioSpeed,
+} from "@/lib/audioNarrator";
 
-const getServerSnapshot = () => ({
-  activeTrack: null,
-  status: "idle" as const,
-  speed: 1 as AudioSpeed,
-  isSupported: false,
-});
+const getServerSnapshot = () => DEFAULT_SERVER_SNAPSHOT;
 
 export function useAudioNarrator() {
   const snapshot = useSyncExternalStore(
