@@ -1541,6 +1541,359 @@ const C_FAMILY_VISUAL_EXPLANATIONS: Record<string, string> = {
 };
 
 /**
+ * Explicaciones informativas y descriptivas de las animaciones visuales para colecciones de Paradigmas Funcionales y JVM (PR 7).
+ */
+const FUNCTIONAL_JVM_VISUAL_EXPLANATIONS: Record<string, string> = {
+  // Dart
+  "Inferencia var, final y const":
+    "en la asignación de variables de Dart, var infiere el tipo dinámico inicial, final congela la referencia en runtime y const materializa el valor en tiempo de compilación.",
+  "Sound Null Safety y sistema de tipos":
+    "en el analizador estático de Dart, el sistema de tipos garantiza que variables no anulables nunca alojen null previniendo fallos en tiempo de ejecución.",
+  "Promoción de tipos y análisis de flujo":
+    "en la comprobación condicional, comprobar que una variable no sea nula promueve automáticamente su tipo al subtipo concreto en esa rama léxica.",
+  "Operadores de navegación y asignación segura":
+    "en la navegación condicional, operadores signo de interrogación punto y doble interrogación acceden a miembros o inyectan valores de respaldo seguros.",
+  "Inicialización tardía con late":
+    "en la asignación diferida de Dart, el modificador late posterga la inicialización del campo no anulable hasta su primer acceso verificándolo en runtime.",
+  "Records posicionales y nombrados":
+    "en las estructuras inmutables de Dart 3, records agrupan valores heterogéneos con tipado estricto sin sobrecoste de clases auxiliares.",
+  "Desestructuración de tuplas y objetos":
+    "en la extracción declarativa, la desestructuración asigna campos de records y colecciones directamente a variables locales en una sola sentencia.",
+  "Pattern Matching en Switch Expressions":
+    "en el control funcional, expresiones switch emparejan patrones de datos exhaustivos devolviendo un valor calculado sin sentencias break imperativas.",
+  "Guard Clauses con cláusula when":
+    "en los filtros de patrones, la cláusula when añade condiciones booleanas adicionales refinando la coincidencia antes de activar la rama.",
+  "Clases Sealed para jerarquías cerradas":
+    "en el modelado algebraico de Dart, el modificador sealed obliga a que todos los subtipos residan en la misma biblioteca habilitando switches exhaustivos.",
+  "Mixins y reutilización con with":
+    "en la composición de clases, mixins inyectan comportamiento y métodos reutilizables mediante linealización limpia sin herencia múltiple.",
+  "Extension Methods sobre bibliotecas":
+    "en la extensión fluida de APIs, métodos de extensión añaden operaciones convenientes a clases cerradas sin mutar el código fuente original.",
+  "Arquitectura de dos colas del Event Loop":
+    "en el bucle de eventos de Dart, la cola de microtareas se vacía prioritariamente antes de que el motor atienda la cola de eventos de temporizadores e I/O.",
+  "Microtasks y scheduleMicrotask":
+    "en la programación de microtareas, scheduleMicrotask encola cómputos inmediatos que se ejecutan antes del siguiente ciclo del bucle de eventos.",
+  "Futures y estados uncompleted/completed":
+    "en el modelo asíncrono de Dart, un Future transita de estado pendiente a completado con valor exitoso o excepción mediante async y await.",
+  "StreamController y despacho reactivo":
+    "en el flujo de datos reactivo, el StreamController gestiona oyentes, pausas y emisiones de eventos continuos a través de un canal tipado.",
+  "Generadores asíncronos async* y yield":
+    "en las secuencias asíncronas, funciones generadoras async* emiten valores perezosamente con yield a medida que se demandan por el consumidor.",
+  "Arquitectura de Isolates sin memoria compartida":
+    "en la concurrencia de Dart, los isolates se ejecutan en hilos nativos independientes con sus propios montículos de memoria evitando carreras de datos.",
+  "Canales de comunicación SendPort y ReceivePort":
+    "en la mensajería entre isolates, puertos de envío y recepción transfieren mensajes inmutables serializados con cero contención de cerrojos.",
+  "Isolate.spawn para workers persistentes":
+    "en los procesos secundarios, Isolate.spawn inicia un worker de larga vida que procesa eventos continuos en segundo plano.",
+  "Isolate.run para cómputo intensivo puntual":
+    "en las tareas pesadas de CPU, Isolate.run despacha una función a un hilo temporal retornando el resultado al isolate principal con liberación automática.",
+  "Modo JIT para desarrollo iterativo rápido":
+    "en el entorno de desarrollo, la máquina virtual de Dart compila Just-In-Time permitiendo inyectar cambios de código con recarga en caliente en milisegundos.",
+  "Modo AOT a código binario nativo":
+    "en la compilación de producción, Dart AOT genera código máquina optimizado para procesadores ARM64 y x86_64 con arranque instantáneo.",
+  "Arquitectura de Foreign Function Interface (FFI)":
+    "en la interoperabilidad nativa, dart:ffi enlaza y ejecuta funciones compiladas en C o Rust directamente con acceso tipado a punteros y structs.",
+
+  // Prolog
+  "SWI-Prolog estable":
+    "en el entorno de ejecución lógica, la máquina virtual de SWI-Prolog carga la base de conocimiento y resuelve consultas interactivas.",
+  "Top level":
+    "en la consola interactiva de Prolog, la consulta busca sustituciones unificables mostrando bindings y permitiendo pedir soluciones alternativas.",
+  "Átomos y números":
+    "en los términos primitivos de Prolog, constantes simbólicas y literales numéricos representan identidades inmutables en la base de datos lógica.",
+  "Variables":
+    "en las variables lógicas, identificadores en mayúscula representan incógnitas que reciben bindings universales durante la unificación.",
+  "Términos compuestos":
+    "en las estructuras de Prolog, un functor con aridad fija agrupa argumentos modelando entidades relacionales y árboles sintácticos.",
+  "Listas, pares y colas abiertas":
+    "en las secuencias lógicas, la sintaxis cabeza-cola descompone listas y colas abiertas cuya cola sin instanciar permite extensiones en tiempo constante.",
+  "Hechos":
+    "en la base de conocimiento, los hechos afirman relaciones verdaderas incondicionales que sirven como axiomas elementales de la demostración.",
+  "Reglas":
+    "en el razonamiento deductivo, una regla declara una conclusión válida cuando todos los objetivos de su cuerpo se demuestran secuencialmente.",
+  "Consultas y objetivos":
+    "en la resolución de preguntas, el motor busca cláusulas cuyas cabezas unifiquen con la meta avanzando por el árbol de prueba.",
+  "Unificación implícita":
+    "en el emparejamiento de términos, la unificación resuelve ecuaciones simbólicas ligando variables libres a valores compatibles.",
+  "dif/2 frente a \\=/2":
+    "en la restricción declarativa, dif impone una desigualdad permanente entre variables libres que persiste incluso tras unificaciones futuras.",
+  "Puntos de elección y trail":
+    "en la pila de elección de Prolog, los choice points registran ramas alternas mientras el trail almacena bindings a deshacer en backtracking.",
+  "Búsqueda en profundidad":
+    "en el recorrido del árbol SLD, el motor desciende rama por rama explorando primero el subobjetivo más a la izquierda.",
+  "Generadores y verificadores":
+    "en el diseño relacional, un predicado genera candidatos sucesivos mientras metas subsiguientes verifican restricciones de dominio.",
+  "Relaciones reversibles":
+    "en la programación lógica pura, un predicado opera bidireccionalmente deduciendo entradas a partir de salidas o comprobando relaciones.",
+  "Caso base":
+    "en la recursión lógica, la cláusula base establece la condición de parada resolviendo el problema para la estructura mínima.",
+  "Paso recursivo":
+    "en la inducción computacional, el paso recursivo reduce el argumento estructural manteniendo invariantes demostrables en cada paso.",
+  "Listas diferencia":
+    "en la concatenación en O(1), un par de listas con cola abierta conecta secuencias sin recorrer elementos intermedios.",
+  "Cuts verdes y rojos":
+    "en el operador de poda cut, los cuts verdes eliminan alternativas redundantes sin cambiar respuestas mientras los rojos alteran la semántica lógica.",
+  "Evaluación con is/2":
+    "en la aritmética de Prolog, el operador is fuerza la evaluación numérica de la expresión derecha ligando el resultado a la variable izquierda.",
+  "findall/3":
+    "en la agregación de soluciones, findall agota el backtracking reuniendo todas las sustituciones exitosas en una lista de resultados.",
+  "Reglas -->":
+    "en las gramáticas de cláusulas definidas, la notación de flecha expande reglas gramaticales a predicados con pares de listas diferencia.",
+  "Variables de dominio finito":
+    "en CLP(FD), las variables delimitan rangos enteros permitiendo que los propagadores de restricciones reduzcan dominios antes de enumerar.",
+  "Warren Abstract Machine":
+    "en la arquitectura interna de Prolog, la WAM implementa registros, marcos de entorno y choice points para ejecutar lógica a alta velocidad.",
+  "Modelo Byrd de cuatro puertos":
+    "en el depurador de Prolog, el modelo de cuatro puertos rastrea eventos de call, exit, redo y fail a lo largo del árbol de resolución.",
+
+  // Haskell
+  "Funciones puras":
+    "en el paradigma funcional puro de Haskell, una función produce siempre el mismo resultado para las mismas entradas sin efectos colaterales observables.",
+  "Currying":
+    "en la aplicación parcial, toda función toma un único argumento devolviendo una nueva función que espera los argumentos restantes.",
+  "Inferencia Hindley-Milner":
+    "en el sistema de tipos estático, el algoritmo de inferencia deduce los tipos más generales posibles sin exigir anotaciones explícitas.",
+  "Tipos algebraicos":
+    "en el modelado algebraico de Haskell, tipos suma y producto modelan alternativas y tuplas con precisión formal matemáticamente cerrada.",
+  "Pattern matching":
+    "en la desestructuración funcional, el emparejamiento de patrones examina la estructura del constructor bifurcando hacia la rama correspondiente.",
+  "No estricta y perezosa":
+    "en la evaluación perezosa de Haskell, las expresiones no se calculan hasta que su resultado es estrictamente requerido por la salida.",
+  "Thunks":
+    "en el runtime de GHC, los thunks encapsulan cómputos suspendidos en el heap que se evalúan solo cuando su valor se demanda.",
+  "Normal forms":
+    "en la reducción de expresiones, la forma normal débilmente evaluada reduce el valor hasta el constructor exterior sin evaluar argumentos internos.",
+  "Typeclasses":
+    "en el polimorfismo ad-hoc, las typeclasses definen contratos de comportamiento que distintos tipos concretos implementan independientemente.",
+  "Functor":
+    "en la abstracción de Functor, la función fmap proyecta transformaciones puras sobre estructuras preservando su forma exterior inmutable.",
+  "Applicative":
+    "en la computación de Applicative, funciones envueltas en un contexto se aplican sobre valores dentro del mismo contexto combinando efectos.",
+  "Monad":
+    "en la secuenciación de efectos, el operador bind encadena transformaciones dependientes donde el siguiente paso depende del valor extraído previo.",
+  "Maybe y Either":
+    "en el manejo de errores sin excepciones, Maybe representa presencia opcional y Either transporta diagnósticos de fallo en su rama Left.",
+  "IO":
+    "en la separación de pureza, la mónada IO encapsula efectos de entrada y salida manteniéndolos aislados del núcleo computacional puro.",
+  "STM y concurrencia":
+    "en la memoria transaccional de software, bloques atómicos STM coordinan accesos concurrentes revirtiendo transacciones ante conflictos.",
+  "QuickCheck":
+    "en las pruebas basadas en propiedades, QuickCheck genera cientos de casos aleatorios verificando invariantes y reduciendo contraejemplos mínimos.",
+
+  // Kotlin
+  "Val, var e inferencia":
+    "en la declaración de variables de Kotlin, val impone referencias inmutables mientras var admite reasignaciones con inferencia estática.",
+  "Null safety":
+    "en el sistema de tipos de Kotlin, tipos anulables con interrogación exigen verificación explícita antes de desreferenciar métodos.",
+  "Funciones y lambdas":
+    "en la programación idiomática, funciones de orden superior y trailing lambdas permiten componer transformaciones fluidas y DSLs limpias.",
+  "Clases de datos":
+    "en el modelado inmutable, data classes generan automáticamente métodos equals, hashCode, toString y operaciones copy con sintaxis concisa.",
+  "Sealed classes":
+    "en las jerarquías algebraicas de Kotlin, sealed classes restringen herencia permitiendo que sentencias when evalúen todos los subtipos sin else.",
+  "Tipos plataforma":
+    "en la interoperabilidad con Java, tipos con signo de exclamación advierten sobre contratos de nulabilidad no especificados en la biblioteca externa.",
+  "Inline functions":
+    "en la optimización del compilador, funciones inline incrustan el cuerpo de la lambda en el sitio de llamada eliminando sobrecostes de objetos temporales.",
+  "Extension functions":
+    "en la ampliación de contratos, funciones de extensión dotan de nuevas operaciones a clases existentes respetando la visibilidad del paquete.",
+  "Generics y variance":
+    "en los tipos genéricos de Kotlin, modificadores out e in controlan covarianza y contravarianza en el sitio de declaración de la interfaz.",
+  "Coroutines":
+    "en la asincronía ligera de Kotlin, corutinas suspenden la ejecución sin bloquear hilos del sistema operativo conmutando tareas en microsegundos.",
+  "Flow":
+    "en los streams asíncronos reactivos, Flow emite valores secuenciales de forma fría suspendiendo el productor si el consumidor no está listo.",
+  "Structured concurrency":
+    "en la concurrencia estructurada, coroutineScope garantiza que tareas hijas completen o cancelen limpiamente antes de que retorne el padre.",
+  "Dispatchers":
+    "en la asignación de hilos, dispatchers Main, IO y Default canalizan corutinas hacia pools de procesador o interfaces según la naturaleza del trabajo.",
+  "Kotlin Multiplatform":
+    "en la arquitectura compartida, código común de lógica y dominio se compila nativamente a JVM, Android, iOS y JavaScript sin duplicación.",
+
+  // Java
+  "Tipos primitivos y referencias":
+    "en la representación de datos de la JVM, tipos primitivos residen directamente en la pila mientras referencias manejan punteros al heap.",
+  "Clases y records":
+    "en el modelado moderno de Java, records introducen portadores de datos inmutables y transparentes con constructores canónicos automáticos.",
+  "Interfaces":
+    "en los contratos polimórficos de Java, interfaces declaran métodos abstractos y default methods asegurando evolución binaria compatible.",
+  "Bytecode":
+    "en la portabilidad de Java, el compilador javac transforma el código fuente en instrucciones estándar de bytecode ejecutadas por la JVM.",
+  "Class loading":
+    "en la carga dinámica, cargadores jerárquicos de clases localizan, verifican y enlazan bytecode en memoria antes de permitir su ejecución.",
+  "Heap y garbage collection":
+    "en la administración de memoria, recolectores generacionales como G1 y ZGC recuperan objetos inalcanzables con pausas submilimétricas.",
+  "Collections":
+    "en la biblioteca estándar de colecciones, interfaces List, Set y Map proveen estructuras indexadas y tablas hash con soporte de inmutabilidad.",
+  "Generics":
+    "en el sistema de tipos de Java, comodines de tipo con extends y super aplican el principio PECS garantizando seguridad en colecciones genéricas.",
+  "Streams":
+    "en el procesamiento declarativo, canalizaciones de Streams componen filtros, mapas y reducciones evaluándose de forma perezosa sobre colecciones.",
+  "I/O y NIO":
+    "en la entrada y salida de alto rendimiento, buffers y canales no bloqueantes de Java NIO transfieren bloques de datos sin bloqueo de hilos.",
+  "Threads":
+    "en la concurrencia nativa, hilos de plataforma gestionan stacks dedicados del sistema operativo para ejecutar tareas independientes.",
+  "Executors":
+    "en la administración de pools, ExecutorService desacopla la sumisión de tareas de la asignación y reciclaje de hilos de procesamiento.",
+  "CompletableFuture":
+    "en la programación asíncrona no bloqueante, CompletableFuture compone promesas de ejecución reactiva encadenando transformaciones y recuperaciones.",
+  "Java Flight Recorder":
+    "en el diagnóstico de producción, JFR registra eventos de bajo nivel de la JVM sobre allocations, pausas de GC y bloqueos con impacto casi nulo.",
+
+  // R
+  "Vectores":
+    "en la unidad elemental de R, vectores homogéneos almacenan secuencias numéricas, lógicas o textuales sobre las que operan todas las funciones.",
+  "Tipos y NA":
+    "en los datos incompletos de R, el valor centinela NA propaga ausencia de forma segura en cálculos matemáticos sin convertirse en cero.",
+  "Matrices y arrays":
+    "en la estructura multidimensional, matrices ordenan vectores en filas y columnas mediante atributos de dimensión optimizados para álgebra lineal.",
+  "Data frames":
+    "en el almacenamiento tabular, un data frame agrupa vectores de igual longitud como columnas heterogéneas representando observaciones estadísticas.",
+  "Recycling":
+    "en las operaciones vectoriales, R reutiliza y extiende automáticamente vectores de menor longitud para emparejarlos con secuencias mayores.",
+  "Vectorización":
+    "en el cómputo de alto rendimiento, funciones vectorizadas aplican transformaciones en bucles nativos de C internos sin loops manuales en R.",
+  "Lexical scoping":
+    "en la búsqueda de variables, entornos anidados resuelven identificadores buscando hacia los marcos padres según el punto de definición léxica.",
+  "Lazy evaluation":
+    "en los argumentos de función de R, las promesas se evalúan únicamente en el instante en que el valor es consultado por primera vez.",
+  "Copy-on-modify":
+    "en la mutación de objetos, R duplica la estructura de datos únicamente cuando un objeto compartido sufre una modificación conservando inmutabilidad.",
+  "Modelos lineales":
+    "en el ajuste estadístico, la función lm resuelve mínimos cuadrados ordinarios ajustando coeficientes a partir de fórmulas sintácticas.",
+  "Quarto y R Markdown":
+    "en la publicación científica reproducible, documentos unificados entrelazan prosa, código estadístico y gráficos generados dinámicamente.",
+
+  // Assembly / Ensamblador
+  "ISA y microarquitectura":
+    "en la frontera de hardware, la arquitectura de conjunto de instrucciones define las instrucciones binarias y registros visibles para el programador.",
+  "Registros":
+    "en el procesador de alta velocidad, registros de propósito general sostienen operandos inmediatos con latencia de acceso de un solo ciclo.",
+  "Flags":
+    "en el registro de estado RFLAGS, banderas de cero, acarreo y signo registran el resultado de la última operación aritmética guiando saltos.",
+  "Memoria direccionable":
+    "en el direccionamiento por registros, cálculos de desplazamiento base y escala resuelven la dirección lineal en bytes del operando en memoria.",
+  "Ciclo fetch-decode-execute":
+    "en la unidad de control de la CPU, la instrucción se extrae de la caché, se decodifica en microoperaciones y se ejecuta en las ALUs.",
+  "Pila":
+    "en la memoria de ejecución LIFO, el puntero rsp desciende al apilar registros y asciende al restaurar valores mediante instrucciones push y pop.",
+  "Call y return":
+    "en el salto a subrutinas, call apila la dirección de retorno antes de transferir el control y ret desapila la dirección para reanudar el flujo.",
+  "Calling convention":
+    "en la convención System V AMD64, los primeros seis argumentos enteros se transfieren en registros rdi, rsi, rdx, rcx, r8 y r9 antes de recurrir a la pila.",
+  "Syscalls":
+    "en la transición a modo kernel, la instrucción syscall conmuta el nivel de privilegio de la CPU invocando servicios del sistema operativo.",
+  "SIMD":
+    "en el procesamiento vectorial de CPU, instrucciones AVX aplican la misma operación aritmética sobre múltiples datos en registros anchos simultáneamente.",
+  "Atomics":
+    "en la sincronización de hardware, el prefijo lock bloquea el bus de memoria garantizando atomicidad indivisible en instrucciones de modificación.",
+
+  // Erlang
+  "Términos":
+    "en los tipos de datos de la BEAM, átomos, tuplas, listas y binarios representan información inmutable empaquetada para paso de mensajes.",
+  "Procesos ligeros":
+    "en el runtime de Erlang, procesos livianos gestionan unos pocos kilobytes de memoria aislada conmutando contextos a velocidad masiva.",
+  "Mailboxes":
+    "en la recepción de mensajes, cada proceso almacena eventos entrantes en un buzón privado en cola ordenada esperando su lectura.",
+  "Selective receive":
+    "en la extracción de eventos, pattern matching en la cláusula receive selecciona mensajes prioritarios dejando los demás pendientes en el buzón.",
+  "Schedulers":
+    "en el motor de la BEAM, un scheduler por núcleo de CPU planifica procesos de forma expulsiva con recolección de basura completamente aislada.",
+  "GenServer":
+    "en el patrón cliente-servidor de OTP, GenServer estandariza el manejo de llamadas síncronas, emisiones asíncronas y ciclo de vida de procesos.",
+  "Supervisors":
+    "en la tolerancia a fallos, árboles de supervisores monitorean procesos hijos reiniciándolos automáticamente según estrategias de resiliencia predefinidas.",
+  "Links y monitors":
+    "en la supervisión de procesos, enlaces bidireccionales propagan fallos mientras monitores unidireccionales reciben notificaciones ante caídas.",
+  "Crash reports":
+    "en el diagnóstico de fallos, cuando un proceso falla la BEAM emite un reporte con stack trace, estado interno y causas del error.",
+  "Hot code loading":
+    "en la disponibilidad continua, la máquina virtual carga módulos nuevos en caliente permitiendo que procesos activos migren de versión sin detenerse.",
+
+  // Lisp
+  "S-expressions":
+    "en la sintaxis homoicónica de Lisp, listas entre paréntesis representan tanto los datos del programa como el código fuente ejecutable.",
+  "Átomos y listas":
+    "en los bloques constructores, símbolos atómicos y celdas cons encadenadas forman las estructuras jerárquicas universales del lenguaje.",
+  "Quote":
+    "en el control de evaluación, la comilla simple o quote previene que el evaluador interprete una lista como llamada a función conservándola como dato puro.",
+  "Evaluación":
+    "en el evaluador de Lisp, el primer elemento de la lista se resuelve como operador y los elementos restantes se evalúan como argumentos pasados.",
+  "REPL":
+    "en el ciclo de desarrollo interactivo, el bucle de lectura, evaluación, impresión y repetición permite redefinir funciones en caliente en la imagen viva.",
+  "Bindings léxicos":
+    "en el alcance de variables, la forma let establece ligaduras léxicas privadas que aíslan el entorno interno de modificaciones externas.",
+  "Macros":
+    "en la metaprogramación de Lisp, las macros reciben formas sintácticas como datos y las reescriben antes de la fase de compilación del programa.",
+  "Macroexpansion":
+    "en la inspección sintáctica, macroexpand-1 expone el código generado por la macro permitiendo verificar transformaciones antes de su ejecución.",
+  "Hygiene en Scheme":
+    "en la higiene sintáctica de Scheme, syntax-rules renombra identificadores automáticamente impidiendo colisiones accidentales de variables con el llamador.",
+  "Conditions":
+    "en el sistema de señalización de errores, condiciones notifican discrepancias sin desenrollar el marco de pila permitiendo recuperaciones flexibles.",
+  "Restarts":
+    "en la recuperación guiada de Common Lisp, manejadores seleccionan estrategias de reinicio interactivas retomando la ejecución en el punto del fallo.",
+
+  // Perl
+  "Scalars":
+    "en los tipos elementales de Perl, escalares con prefijo dólar almacenan números, cadenas de texto o referencias opacas de memoria.",
+  "Arrays":
+    "en las listas indexadas, arrays con arroba administran secuencias ordenadas de escalares con operaciones rápidas de inserción y extracción.",
+  "Hashes":
+    "en las tablas asociativas, hashes con porcentaje mapean claves de texto a valores escalares con búsquedas inmediatas en memoria.",
+  "Contexto escalar y lista":
+    "en la semántica de evaluación de Perl, una misma expresión devuelve un conteo numérico o una secuencia completa según el contexto donde se invoca.",
+  "Regex":
+    "en el motor de expresiones regulares, patrones textuales avanzados buscan y sustituyen secuencias complejas con soporte nativo en el lenguaje.",
+  "Capture groups":
+    "en la extracción de cadenas, paréntesis en la expresión regular capturan fragmentos de texto asignándolos a variables posicionales numeradas.",
+  "Referencias":
+    "en el direccionamiento indirecto, barras invertidas crean punteros a estructuras existentes permitiendo anidar arrays y hashes multidimensionales.",
+  "strict y warnings":
+    "en la programación segura, pragmas strict y warnings obligan a declarar variables con my alertando sobre errores potenciales en tiempo de compilación.",
+  "Pruebas TAP":
+    "en el protocolo de pruebas de Perl, Test Anything Protocol emite líneas estandarizadas con diagnósticos de aserciones para integración continua.",
+
+  // Raku
+  "Sigils y containers":
+    "en la semántica de contenedores de Raku, sigilos denotan la forma estructural del dato mientras contenedores escalares gestionan mutabilidad.",
+  "Tipos graduales":
+    "en el sistema de tipos de Raku, anotaciones de tipo opcionales combinan la flexibilidad dinámica con la verificación estática estricta.",
+  "Junctions":
+    "en la lógica multivariante, uniones all, any y one evalúan combinaciones de condiciones simultáneas con sintaxis matemática declarativa.",
+  "Signatures":
+    "en las firmas de subrutinas, contratos avanzados validan tipos de argumentos, valores por defecto y parámetros nombrados automáticamente.",
+  "Multi dispatch":
+    "en el despacho múltiple de Raku, el motor evalúa las firmas de todos los candidatos invocando la implementación más específica para los argumentos.",
+  "Grammars":
+    "en el motor de análisis sintáctico de Raku, gramáticas estructuradas descomponen reglas lingüísticas en componentes modulares y legibles.",
+  "Tokens":
+    "en el reconocimiento léxico, tokens emparejan secuencias de caracteres sin retroceso automático optimizando la velocidad del parser.",
+  "Rules":
+    "en el parsing avanzado, rules manejan espacios en blanco y retroceso controlado estructurando gramáticas complejas de lenguajes formales.",
+  "Promise":
+    "en la asincronía composable, objetos Promise representan valores futuros que pueden combinarse con operadores start, then y anyof.",
+  "Supply":
+    "en los flujos reactivos de Raku, canales Supply transmiten streams asíncronos de eventos a oyentes suscritos mediante el operador tap.",
+
+  // Scala
+  "Vals y vars":
+    "en la declaración de identificadores de Scala, val establece ligaduras inmutables constantes mientras var permite mutaciones de estado.",
+  "Classes y case classes":
+    "en el modelado orientado a objetos, case classes proveen constructores primarios, inmutabilidad por defecto y desestructuración en patrones.",
+  "Enums":
+    "en las definiciones algebraicas de Scala 3, enums declaran familias de casos cerrados con soporte integrado para tipos algebraicos de datos.",
+  "Traits":
+    "en la composición de comportamiento, traits permiten herencia múltiple modular resolviendo linealizaciones de métodos sin conflictos.",
+  "Contextual abstractions":
+    "en la resolución de contexto de Scala 3, cláusulas given y using inyectan dependencias y typeclasses de forma limpia en tiempo de compilación.",
+  "For comprehensions":
+    "en la composición monádica, for comprehensions transforman sintaxis imperativa en llamadas encadenadas de flatMap, map y withFilter.",
+  "Futures":
+    "en la asincronía sobre la JVM, Futures representan cómputos asíncronos concurrentes que se completan en ExecutionContexts dedicados.",
+};
+
+/**
  * Colecciones con audio narraciones didácticas activas.
  * PR 1: Interfaces, Web y Móvil (9 colecciones + javascript base).
  * PR 2: Plataformas y Servidores (10 colecciones).
@@ -1548,6 +1901,7 @@ const C_FAMILY_VISUAL_EXPLANATIONS: Record<string, string> = {
  * PR 4: Fundamentos de la Computación (5 colecciones).
  * PR 5: Lenguajes Web y Modernos (6 colecciones).
  * PR 6: Familia C, Embebidos y Compilados (8 colecciones).
+ * PR 7: Paradigmas Funcionales y JVM (12 colecciones).
  */
 export const AUDIO_ENABLED_COLLECTIONS = new Set<string>([
   // Base y PR 1
@@ -1615,6 +1969,20 @@ export const AUDIO_ENABLED_COLLECTIONS = new Set<string>([
   "cweb",
   "embedded-c",
   "visual-basic",
+  // PR 7: Paradigmas Funcionales y JVM
+  "dart",
+  "prolog",
+  "haskell",
+  "kotlin",
+  "java",
+  "r",
+  "assembly",
+  "ensamblador",
+  "erlang",
+  "lisp",
+  "perl",
+  "raku",
+  "scala",
 ]);
 
 export function isCollectionAudioEnabled(collectionId: string): boolean {
@@ -1637,7 +2005,8 @@ function getVisualExplanation(concept: ConceptInput): string {
     DATA_VISUAL_EXPLANATIONS[concept.title] ??
     FUNDAMENTALS_VISUAL_EXPLANATIONS[concept.title] ??
     MODERN_LANGUAGES_VISUAL_EXPLANATIONS[concept.title] ??
-    C_FAMILY_VISUAL_EXPLANATIONS[concept.title];
+    C_FAMILY_VISUAL_EXPLANATIONS[concept.title] ??
+    FUNCTIONAL_JVM_VISUAL_EXPLANATIONS[concept.title];
   if (bespoke) {
     return bespoke;
   }
@@ -2339,6 +2708,151 @@ export function getActionPresentationTrack(
           "En esta presentación interactiva, una aplicación empresarial de escritorio en Visual Basic .NET se moderniza en ocho etapas arquitectónicas. Primero, en Activar tipos estrictos, la directiva Option Strict On deshabilita el enlace tardío y conversiones implícitas dudosas forzando contratos tipados en tiempo de compilación. Segundo, en Modelar la orden, una clase de dominio encapsula reglas de validación en propiedades Get y Set evitando que formularios manipulen estados inconsistentes. Tercero, en Separar el presenter mediante el patrón MVP, la cláusula Handles intercepta clics del botón delegando la lógica del caso de uso a un presentador desacoplado y comprobable. Cuarto, en Validar y proyectar con LINQ, una consulta declarativa filtra órdenes activas y proyecta los datos en una vista de grilla sin recálculos redundantes. Quinto, en Guardar sin bloquear, el operador Await delega la persistencia asíncrona a un repositorio en segundo plano liberando el hilo principal para mantener la ventana interactiva. Sexto, en Encontrar suscripción doble, la inspección detecta que AddHandler registró suscriptores múltiples sin desvincularlos reteniendo ventanas en memoria. Séptimo, en Cerrar el lifecycle, la llamada simétrica a RemoveHandler dentro del método Dispose elimina la referencia del recolector de basura corrigiendo la fuga. Y octavo, en Compartir con C#, el ensamblado de dominio compilado en VB.NET se consume directamente desde un worker concurrente en C# compartiendo tipos en el mismo runtime de .NET.",
         visualOutcome:
           "la animación modela la arquitectura de la ventana WinForms, mostrando la fluidez de la interfaz gracias a tareas asíncronas, la corrección de suscripciones en Dispose y la interoperabilidad transparente con ensamblados de C#.",
+      });
+
+    case "dart":
+      return buildPracticalPresentationAudioTrack("dart", {
+        title: practical?.title ?? "Dart en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Ingesta masiva y serialización concurrente con Dart Isolates",
+        family: "memoria aislada con Isolates, Sound Null Safety y compilación dual JIT/AOT",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, un pipeline de telemetría de alta frecuencia se ejecuta en seis etapas de alto rendimiento en Dart. Primero, en Inicialización de Worker Isolate, se spawnea un hilo independiente sin memoria compartida coordinado por puertos SendPort y ReceivePort sin bloqueos de mutex. Segundo, en Normalización tipada con Records y Sound Null Safety, tuplas inmutables y contratos estrictos empaquetan los datos sin sobrecoste de asignaciones redundantes en el heap. Tercero, en Transformación reactiva con Streams y async*, generadores asíncronos procesan el flujo continuo con consumo perezoso mediante await for. Cuarto, en Detección de saturación en Microtask Queue, llamadas recursivas a microtareas monopolizan el event loop disparando alertas por inanición de eventos de I/O. Quinto, en Desacoplamiento y balanceo con Isolate.run, cómputos pesados se delegan a un worker temporal restaurando la latencia del bucle principal a menos de tres milisegundos. Y sexto, en Compilación nativa AOT y verificación de rendimiento, el compilador genera un binario ELF optimizado que procesa más de cien mil eventos por segundo con recolección generacional submilimétrica.",
+        visualOutcome:
+          "la animación ilustra la coordinación de isolates de Dart, la mitigación de sobrecarga en la cola de microtareas y el flujo ininterrumpido de telemetría procesado por el binario compilado en modo Ahead-Of-Time.",
+      });
+
+    case "prolog":
+      return buildPracticalPresentationAudioTrack("prolog", {
+        title: practical?.title ?? "Prolog en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Caso integrado · Planificador explicable de respuesta a incidentes",
+        family: "programación lógica relacional, CLP(FD), tabling y derivación de pruebas",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, un planificador de respuesta a incidentes en Prolog deduce la asignación óptima de equipos en quince etapas deductivas. Primero, en Definir el contrato, un módulo encapsula la interfaz pública. Segundo, en Cargar hechos versionados, integrantes y habilidades se modelan como axiomas relacionales. Tercero, en Analizar la solicitud, una gramática de cláusulas definidas (DCG) convierte texto en un AST tipado. Cuarto, en Validar la frontera, se exige que los términos sean cerrados y seguros. Quinto, en Derivar requisitos, reglas lógicas deducen los roles obligatorios. Sexto, en Generar candidatos, cláusulas reversibles proponen integrantes según turnos y destrezas. Séptimo, en Construir el plan, la recursión acumula parejas rol-persona. Octavo, en Propagar restricciones, CLP(FD) acota dominios enteros y cotas de tiempo de respuesta antes de enumerar. Noveno, en Resolver rutas, tabling memoiza búsquedas evitando ciclos infinitos. Décimo, en Detectar contradicción, la unificación falla al detectar una persona duplicada. Undécimo, en Retroceder, el trail desata bindings explorando ramas alternas. Duodécimo, en Completar soluciones, labeling materializa planes válidos. Decimotercero, en Elegir el menor costo, setof selecciona el plan de menor tiempo. Decimocuarto, en Construir la explicación, el árbol de derivación se expone como prueba auditable. Y decimoquinto, en Publicar el resultado, un endpoint seguro entrega la solución y justificación en formato JSON estructurado.",
+        visualOutcome:
+          "la animación despliega el árbol de búsqueda SLD de Prolog, visualizando la propagación de restricciones, el retroceso tras detectar la asignación duplicada y la derivación de la prueba lógica completa.",
+      });
+
+    case "haskell":
+      return buildPracticalPresentationAudioTrack("haskell", {
+        title: practical?.title ?? "Haskell en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Interpretar expresiones con tipos: AST, Applicative y QuickCheck",
+        family: "pureza funcional estricta, tipos algebraicos y evaluación perezosa",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, un intérprete de expresiones aritméticas se construye en cinco etapas funcionales puras en Haskell. Primero, en Definir el AST, tipos de datos algebraicos modelan literales, sumas y divisiones excluyendo estados sintácticos inválidos en tiempo de compilación. Segundo, en Evaluar composición, functores aplicativos combinan ramas de evaluación propagando contextos puros sin mutación. Tercero, en Encontrar división por cero, la rama anómala se captura como un constructor Left dentro del tipo Either sin lanzar excepciones no controladas ni usar centinelas. Cuarto, en Recuperar en frontera, la interfaz traduce el error explícito en un mensaje de diagnóstico manteniendo el núcleo matemático libre de efectos secundarios. Y quinto, en Probar propiedades con QuickCheck, generadores automáticos someten el evaluador a cientos de combinaciones aleatorias verificando la preservación de identidades algebraicas.",
+        visualOutcome:
+          "la animación recorre el árbol de sintaxis abstracta en Haskell, mostrando la reducción de thunks perezosos, la canalización del error en la mónada Either y la verificación formal con pruebas de propiedades QuickCheck.",
+      });
+
+    case "kotlin":
+      return buildPracticalPresentationAudioTrack("kotlin", {
+        title: practical?.title ?? "Kotlin en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Sincronizar datos sin perder cancelación: Flow y concurrencia estructurada",
+        family: "null safety estricto, coroutines reactivas y concurrencia estructurada",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, un servicio de sincronización móvil offline-first se ejecuta en cinco etapas coordinadas en Kotlin. Primero, en Modelar estados, una interfaz sellada (sealed interface) define estados discretos de pendiente, éxito y error forzando cobertura exhaustiva en sentencias when. Segundo, en Combinar cambios con Flow, un stream asíncrono emite mutaciones locales aplicando suspensión sin bloquear hilos. Tercero, en Detectar trabajo huérfano, el lanzamiento de tareas en GlobalScope provoca que una carga continúe en segundo plano tras abandonar la pantalla poniendo en riesgo la consistencia. Cuarto, en Vincular al scope, coroutineScope restaura la concurrencia estructurada garantizando que la cancelación del padre interrumpa ordenadamente a todas las tareas hijas. Y quinto, en Confirmar persistencia, la transacción local se confirma y la UI recibe el evento de éxito en orden estricto y trazable.",
+        visualOutcome:
+          "la animación traza el ciclo de vida de las coroutines de Kotlin, evidenciando la interrupción de la tarea huérfana al cerrar la vista y la confirmación reactiva del estado sincronizado a través de Flow.",
+      });
+
+    case "java":
+      return buildPracticalPresentationAudioTrack("java", {
+        title: practical?.title ?? "Java en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Procesar pedidos dentro de la JVM: Records, ThreadPools y Java Flight Recorder",
+        family: "runtime JVM, concurrencia administrada, records y observabilidad JFR",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, un motor de procesamiento de pedidos comerciales se opera en cinco fases de ingeniería sobre la JVM de Java. Primero, en Definir dominio, records inmutables declaran la estructura de la orden y sus líneas de compra con constructores canónicos transparentes. Segundo, en Ejecutar trabajo en ThreadPool, un executor administra workers para procesar transacciones concurrentes desacopladas del hilo principal. Tercero, en Detectar cola infinita, el uso de una LinkedBlockingQueue no acotada provoca saturación de memoria al acumular solicitudes más rápido de lo que se procesan. Cuarto, en Aplicar backpressure, un ThreadPoolExecutor reconfigurado con ArrayBlockingQueue de capacidad fija y política de descarte controlado protege el heap estabilizando el consumo de RAM. Y quinto, en Observar y cerrar, Java Flight Recorder registra métricas de pausas de recolección de basura y latencia, concluyendo con un apagado elegante (shutdown) y drenaje ordenado de tareas en vuelo.",
+        visualOutcome:
+          "la animación reproduce la actividad interna de la JVM, visualizando la saturación del heap por la cola ilimitada, la estabilización del buffer con backpressure y el análisis de telemetría de hilos mediante Java Flight Recorder.",
+      });
+
+    case "r":
+      return buildPracticalPresentationAudioTrack("r", {
+        title: practical?.title ?? "R en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Publicar un análisis reproducible: vectores, modelos lineales y Quarto",
+        family: "cómputo estadístico vectorial, fórmulas lineales y publicación reproducible",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, un estudio bioestadístico se procesa a través de cinco etapas rigurosas en R. Primero, en Importar con esquema, un archivo CSV se carga en un data frame preservando tipos y tipificando valores ausentes como centinelas NA sin inventar ceros. Segundo, en Explorar distribución, resúmenes estadísticos y gráficos vectoriales examinan la varianza y rangos intercuartiles. Tercero, en Detectar sesgo, la aplicación imprudente de na.omit descarta una gran proporción de registros alterando la representatividad poblacional del ajuste lineal. Cuarto, en Explicar y recuperar, variables de cobertura analizan la distribución de los faltantes por estrato y aplican imputaciones documentadas y justificadas. Y quinto, en Renderizar evidencia con Quarto, el script genera un reporte reproducible unificando prosa, tablas, modelos y entorno sessionInfo con semilla determinista.",
+        visualOutcome:
+          "la animación ilustra las transformaciones tabulares de R, alertando sobre el sesgo de selección introducido por el descarte ingenuo de datos y culminando en el renderizado del informe interactivo en Quarto.",
+      });
+
+    case "assembly":
+    case "ensamblador":
+      return buildPracticalPresentationAudioTrack("assembly", {
+        title: practical?.title ?? "Ensamblador en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Corregir una rutina de suma nativa: ABI System V, alineación de pila y SIMD",
+        family: "arquitectura de procesador, registros x86-64, pila y alineación de ABI",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, una rutina crítica de procesamiento en ensamblador x86-64 se depura en cinco etapas a nivel de máquina. Primero, en Fijar contrato ABI, los registros de entrada rdi y rsi reciben el puntero al buffer y su longitud, designando a rax como acumulador del retorno según la convención System V. Segundo, en Recorrer el buffer, instrucciones aritméticas iteran por el vector de memoria leyendo palabras contiguas de ocho bytes. Tercero, en Detectar pila desalineada, una instrucción call hacia una función auxiliar falla estrepitosamente debido a que el puntero rsp no respeta la frontera obligatoria de alineación a dieciséis bytes. Cuarto, en Restaurar frame, ajustes en el prólogo mediante sub rsp de ocho bytes realinean la pila satisfaciendo el estándar de la ABI y preservando registros del llamador. Y quinto, en Contrastar implementación, aserciones automatizadas comparan la salida de la subrutina en ensamblador contra una función de referencia escrita en C verificando equivalencia binaria y casos de borde.",
+        visualOutcome:
+          "la animación expone los registros de la CPU y el stack frame en memoria, evidenciando el desajuste del puntero de pila y su corrección quirúrgica para cumplir estrictamente con la ABI de 64 bits.",
+      });
+
+    case "erlang":
+      return buildPracticalPresentationAudioTrack("erlang", {
+        title: practical?.title ?? "Erlang en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Supervisar un procesador de mensajes: procesos BEAM, GenServer y OTP",
+        family: "máquina virtual BEAM, modelo de actores y árboles de supervisión tolerantes a fallos",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, un servicio de mensajería tolerante a fallos se orquesta en cinco etapas sobre la máquina virtual BEAM de Erlang. Primero, en Iniciar aplicación OTP, el supervisor raíz arranca registrando especificaciones de procesos hijos con estrategia de resiliencia one_for_one. Segundo, en Procesar mensaje, un proceso GenServer recibe eventos en su buzón privado extrayéndolos secuencialmente sin memoria compartida. Tercero, en Provocar crash aislado, un paquete de datos malformado dispara una excepción interna derribando únicamente al worker afectado mientras un enlace supervisado emite el reporte de caída. Cuarto, en Reiniciar desde checkpoint, el supervisor detecta la señal de salida e instancia inmediatamente un nuevo worker que retoma el procesamiento desde el último offset confirmado en disco. Y quinto, en Verificar entrega, el sistema confirma que no se produjeron duplicaciones de eventos y que el árbol de procesos permanece saludable y disponible.",
+        visualOutcome:
+          "la animación recrea el árbol de supervisión de Erlang/OTP, mostrando el aislamiento de la caída del proceso defectuoso, la intervención inmediata del supervisor y la reanudación del flujo sin afectar al resto del sistema.",
+      });
+
+    case "lisp":
+      return buildPracticalPresentationAudioTrack("lisp", {
+        title: practical?.title ?? "Lisp en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Construir una DSL con macros: S-expressions, gensym y evaluación",
+        family: "homoiconicidad, macroexpansión sintáctica y entornos léxicos interactivos",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, un lenguaje específico de dominio (DSL) para evaluación de reglas se construye en cinco etapas metaprogramadas en Lisp. Primero, en Leer la regla, el reader traduce la sintaxis en un árbol de listas y símbolos (S-expressions) tratándolos como datos de primera clase. Segundo, en Expandir la DSL, una macro reescribe la estructura de la regla transformándola en una función evaluable antes de la compilación. Tercero, en Detectar captura, un identificador auxiliar introducido por la macro colisiona accidentalmente con una variable del entorno llamador alterando el resultado. Cuarto, en Generar símbolo fresco, la función gensym genera un identificador único e irrepetible eliminando la interferencia léxica y garantizando una macroexpansión higiénica. Y quinto, en Compilar y probar, la función resultante se compila en memoria nativa y una suite de pruebas verifica la evaluación correcta de condiciones normales y límites.",
+        visualOutcome:
+          "la animación exhibe la metamorfosis de las S-expressions durante la fase de macroexpansión en Lisp, revelando la resolución de la colisión de variables con gensym y la ejecución optimizada en el REPL.",
+      });
+
+    case "perl":
+      return buildPracticalPresentationAudioTrack("perl", {
+        title: practical?.title ?? "Perl en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Transformar un log como stream: expresiones regulares, Unicode y TAP",
+        family: "procesamiento de streams de texto, regex nativas y pruebas TAP",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, una tubería de procesamiento de bitácoras del sistema se opera en cinco fases de texto en Perl. Primero, en Abrir de forma segura, el descriptor de archivo se inicializa con la capa de codificación UTF-8 procesando el archivo línea por línea sin cargar gigabytes en memoria. Segundo, en Extraer campos, expresiones regulares con grupos de captura extraen identificadores y estados en variables numéricas sin copias superfluas. Tercero, en Detectar byte inválido, una secuencia de bytes malformada que viola el estándar Unicode detiene el analizador alertando sobre la corrupción. Cuarto, en Separar cuarentena, un bloque defensivo con eval y el módulo Encode captura la excepción enviando el registro anómalo a un archivo de auditoría mientras el stream principal continúa sin interrupciones. Y quinto, en Comprobar resumen con TAP, pruebas automatizadas validan los agregados y conteos emitiendo diagnósticos bajo el protocolo estándar Test Anything Protocol.",
+        visualOutcome:
+          "la animación sigue el flujo de líneas de registro a través de las expresiones regulares de Perl, destacando el aislamiento defensivo de la línea corrupta en cuarentena y la generación del reporte final verificado.",
+      });
+
+    case "raku":
+      return buildPracticalPresentationAudioTrack("raku", {
+        title: practical?.title ?? "Raku en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Parsear una configuración con Grammar: tokens, rules y AST",
+        family: "gramáticas integradas, despacho múltiple y árboles sintácticos declarativos",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, un analizador de archivos de configuración se implementa en cinco etapas gramaticales en Raku. Primero, en Definir grammar, bloques estructurados de tokens y rules descomponen pares de clave y valor con coincidencia declarativa. Segundo, en Construir AST, una clase de acciones separada intercepta capturas sintácticas y las traduce en un árbol de objetos fuertemente tipado. Tercero, en Detectar ambigüedad, una entrada con operadores duplicados produce un emparejamiento parcial con residuo no consumido señalando la inconsistencia del formato. Cuarto, en Ajustar regla y mensaje, la regla gramatical incorpora anclas de fin de línea y mensajes de error claros delimitando con precisión los valores admitidos. Y quinto, en Aplicar con pruebas, el parser se valida contra un banco de casos válidos y extremos confirmando que la configuración resultante es segura antes de alimentar al sistema operativo.",
+        visualOutcome:
+          "la animación modela el árbol de parsing de la gramática de Raku, evidenciando la separación limpia entre el reconocimiento sintáctico de la regla y la instanciación del árbol de sintaxis abstracta en la clase de acciones.",
+      });
+
+    case "scala":
+      return buildPracticalPresentationAudioTrack("scala", {
+        title: practical?.title ?? "Scala en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Procesar un flujo de eventos tipado: Enums, case classes y JVM",
+        family: "orientación a objetos y programación funcional, Scala 3 y sistema de tipos JVM",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, un flujo de eventos transaccionales se procesa a través de cinco etapas tipadas en Scala 3 sobre la JVM. Primero, en Modelar eventos, un enum algebraico define los eventos posibles de apertura y cierre estableciendo una jerarquía sellada para análisis exhaustivo. Segundo, en Transformar colección, métodos funcionales como groupMapReduce agregan transacciones por identificador componiendo mapas y reducciones en una sola pasada. Tercero, en Añadir caso sin manejar, la incorporación de un nuevo evento de reintento activa una advertencia del compilador por pattern matching no exhaustivo impidiendo generar un build incompleto. Cuarto, en Recuperar semántica, el caso faltante se incorpora explícitamente en la función de mapeo garantizando la coherencia del contrato de negocio. Y quinto, en Publicar evidencia, pruebas unitarias automatizadas con sbt validan la integridad de las transformaciones y la compatibilidad binaria del artefacto generado.",
+        visualOutcome:
+          "la animación ilustra la agregación funcional de eventos en Scala, destacando la protección del compilador ante patrones no exhaustivos y la compilación exitosa a bytecode optimizado para la máquina virtual de Java.",
       });
 
     default: {
