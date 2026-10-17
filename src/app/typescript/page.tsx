@@ -25,6 +25,8 @@ import { slugify } from "@/lib/slugify";
 import { CollectionPrimer } from "@/components/concepts/CollectionPrimer";
 import { collectionNumber } from "@/data/collectionManifest";
 import { collectionPrimers } from "@/data/collectionPrimers";
+import { FloatingAudioBubble } from "@/components/audio/FloatingAudioBubble";
+import { buildConceptAudioTrack } from "@/lib/audioTrackHelper";
 
 const specialScenes = new Map<string, ReactNode>([
   ["Inferencia de tipos", <InferenceScene key="inference" />],
@@ -47,6 +49,10 @@ const sections = [...new Set(typescriptConcepts.map((concept) => concept.section
 const chapters = sections.map((name) => ({ name, count: typescriptConcepts.filter((concept) => concept.section === name).length }));
 
 export default function TypeScriptPage() {
+  const audioTracks = typescriptConcepts.map((concept, index) =>
+    buildConceptAudioTrack("typescript", concept, index + 1)
+  );
+
   return (
     <main className="page-shell">
       <CollectionNav />
@@ -101,6 +107,8 @@ export default function TypeScriptPage() {
       <footer className="project-note">
         TypeScript protege relaciones durante el desarrollo; los datos externos siguen atravesando una frontera de validación real antes de considerarse confiables.
       </footer>
+
+      <FloatingAudioBubble collectionName="TypeScript" tracks={audioTracks} />
     </main>
   );
 }

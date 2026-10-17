@@ -633,11 +633,79 @@ const FUNDAMENTALS_VISUAL_EXPLANATIONS: Record<string, string> = {
 };
 
 /**
+ * Explicaciones informativas y descriptivas de las animaciones visuales para colecciones de Lenguajes Web y Modernos (PR 5).
+ */
+const MODERN_LANGUAGES_VISUAL_EXPLANATIONS: Record<string, string> = {
+  // TypeScript
+  "Inferencia de tipos":
+    "en el motor de inferencia de TypeScript, la asignación de un valor inicial determina el tipo estático sin necesidad de anotaciones redundantes.",
+  "Uniones y Narrowing":
+    "en la bifurcación de narrowing, comprobaciones con typeof o in reducen la unión al tipo concreto exacto dentro de cada rama del código.",
+  "Genéricos":
+    "en la función genérica, el parámetro de tipo T captura la forma exacta del argumento entrante devolviendo el mismo tipo preservado.",
+  "Interfaces y Type Aliases":
+    "en la definición estructural, interfaces y type aliases declaran las propiedades y métodos requeridos para satisfacer el contrato del objeto.",
+  "Tipos de utilidad":
+    "en transformaciones con Partial, Pick o Omit, tipos derivados modifican la opcionalidad y selección de campos de forma programática.",
+  "Satisfies y validación de tipos":
+    "en el operador satisfies, el compilador valida la conformidad contra el tipo sin ensanchar los tipos literales inferidos.",
+
+  // Python
+  "Indentación significativa":
+    "en el analizador de Python, bloques delimitados por espacios determinan el alcance y la estructura jerárquica del flujo de ejecución.",
+  "Objetos y referencias":
+    "en el modelo de objetos de CPython, identificadores apuntan a instancias en memoria gestionadas mediante conteo de referencias y recolector de ciclos.",
+  "Asyncio y event loop":
+    "en el bucle de eventos asyncio, tareas cooperativas ceden el control con await permitiendo alta concurrencia de entrada y salida en un solo hilo.",
+  "Generadores e iteradores":
+    "en la función generadora, yield suspende la ejecución y emite valores perezosamente bajo demanda preservando el estado de la pila.",
+  "Context managers y with":
+    "en el bloque with, los métodos enter y exit garantizan la adquisición y liberación determinista de recursos incluso ante excepciones.",
+
+  // Go
+  "Goroutines y scheduler G-M-P":
+    "en el scheduler de Go, goroutines livianas se multiplexan sobre hilos del sistema operativo logrando concurrencia masiva con sobrecarga mínima.",
+  "Canales y select":
+    "en la comunicación por canales, select espera concurrentemente sobre múltiples operaciones despachando el mensaje disponible o atendiendo la cancelación.",
+  "Interfaces implícitas":
+    "en el sistema de tipos de Go, cualquier struct que implemente los métodos requeridos satisface la interfaz automáticamente sin declaraciones explicitas.",
+  "Context y propagación de plazos":
+    "en la jerarquía de context, la llamada a cancel o el vencimiento de timeout propaga la señal de interrupción a todas las goroutines dependientes.",
+
+  // Rust
+  "Ownership y borrowing":
+    "en el comprobador de préstamos de Rust, las referencias exclusivas mutables o compartidas inmutables previenen carreras de datos en tiempo de compilación.",
+  "Lifetimes y ciclo de vida":
+    "en las anotaciones de lifetime, el compilador garantiza que ninguna referencia sobreviva a los datos sobre los que apunta en memoria.",
+  "Tipos Option y Result":
+    "en el manejo de errores sin excepciones, Option y Result encapsulan presencia o fallo obligando al desarrollador a desestructurarlos exhaustivamente.",
+  "Traits y despacho estático":
+    "en la implementación de traits, monomorfización genera código especializado en tiempo de compilación logrando polimorfismo con costo cero.",
+
+  // Ruby
+  "Objetos y mensajes":
+    "en el modelo dinámico de Ruby, toda operación es un mensaje enviado a un objeto cuya clase resuelve el método en la cadena de ancestros.",
+  "Bloques, Proc y lambda":
+    "en la iteración idiomática, bloques pasados a métodos con yield ejecutan código contextual con semántica de clausura léxica.",
+  "Módulo Enumerable":
+    "en el módulo Enumerable, colecciones componen transformaciones encadenadas de filter, map y reduce sin mutar la fuente original.",
+
+  // PHP
+  "Ciclo request-response en PHP":
+    "en el modelo de PHP-FPM, cada petición web inicializa su propio entorno de memoria aislado y lo destruye completamente al emitir la respuesta.",
+  "PDO y consultas parametrizadas":
+    "en la abstracción de base de datos PDO, marcadores de posición separan la consulta de los parámetros neutralizando ataques de inyección SQL.",
+  "Autoloading PSR-4 y Composer":
+    "en la resolución de clases PSR-4, namespaces mapean directamente a rutas del sistema de archivos cargando código bajo demanda.",
+};
+
+/**
  * Colecciones con audio narraciones didácticas activas.
  * PR 1: Interfaces, Web y Móvil (9 colecciones + javascript base).
  * PR 2: Plataformas y Servidores (10 colecciones).
  * PR 3: Datos y Bases de Datos (10 colecciones).
  * PR 4: Fundamentos de la Computación (5 colecciones).
+ * PR 5: Lenguajes Web y Modernos (6 colecciones).
  */
 export const AUDIO_ENABLED_COLLECTIONS = new Set<string>([
   // Base y PR 1
@@ -689,6 +757,13 @@ export const AUDIO_ENABLED_COLLECTIONS = new Set<string>([
   "methodologies",
   "metodologias-desarrollo",
   "scratch",
+  // PR 5: Lenguajes Web y Modernos
+  "typescript",
+  "python",
+  "go",
+  "rust",
+  "ruby",
+  "php",
 ]);
 
 export function isCollectionAudioEnabled(collectionId: string): boolean {
@@ -709,7 +784,8 @@ function getVisualExplanation(concept: ConceptInput): string {
     INTERFACES_VISUAL_EXPLANATIONS[concept.title] ??
     PLATFORMS_VISUAL_EXPLANATIONS[concept.title] ??
     DATA_VISUAL_EXPLANATIONS[concept.title] ??
-    FUNDAMENTALS_VISUAL_EXPLANATIONS[concept.title];
+    FUNDAMENTALS_VISUAL_EXPLANATIONS[concept.title] ??
+    MODERN_LANGUAGES_VISUAL_EXPLANATIONS[concept.title];
   if (bespoke) {
     return bespoke;
   }
@@ -1243,6 +1319,78 @@ export function getActionPresentationTrack(
           "En esta presentación interactiva, un videojuego arcade interactivo se construye paso a paso en cinco fases de programación por bloques. Primero, en Preparación del mundo y variables, el bloque al presionar bandera verde reinicia puntuaciones globales, vidas y posiciones iniciales de los sprites. Segundo, en Coordinación con mensajes broadcast, el emisor despacha eventos asíncronos para generar objetos en pantalla desacoplando lógica y renderizado. Tercero, en Detección de fuga de clones, un bucle sin condición genera clones continuos saturando el límite de trescientos clones y congelando el escenario. Cuarto, en Eliminación controlada de clones, sensores de colisión contra el borde activan el bloque borrar este clon estabilizando el consumo de memoria. Y quinto, en Verificación de victoria, al alcanzar diez puntos se dispara el mensaje de victoria congelando entradas para evitar trampas o puntuaciones espurias.",
         visualOutcome:
           "la animación recrea el escenario de Scratch mostrando el despacho de mensajes entre personajes, la saturación por proliferación de clones y la recuperación de una tasa fluida de cuadros por segundo.",
+      });
+
+    case "typescript":
+      return buildPracticalPresentationAudioTrack("typescript", {
+        title: practical?.title ?? "TypeScript en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Contratos de tipos, genéricos, uniones discriminadas y verificación de runtime",
+        family: "sistema de tipos estructural, narrowing y tipado estático verificable",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, el procesamiento de una orden comercial se valida a través de catorce capas de seguridad de tipos en TypeScript. Primero, en Contrato de tipos, se declaran interfaces estrictas para la entidad de compra. Segundo, en Parámetros genéricos, funciones tipadas capturan y preservan la estructura del dato sin degradar a tipo any. Tercero, en Uniones discriminadas, el estado del pedido utiliza una propiedad tag para garantizar cobertura exhaustiva en sentencias switch. Cuarto, en Narrowing y comprobaciones de tipo, operadores type-guards afinan tipos desconocidos hacia contratos verificados en tiempo de ejecución. Quinto, en Operador satisfies, los objetos validan su adhesión a un esquema sin perder los literales inferidos. Sexto, en Importaciones type-only, el compilador purga dependencias de solo tipo reduciendo el tamaño del bundle generado. Y séptimo, en Integración con esquemas de validación, la frontera de entrada analiza los datos externos asegurando que el runtime refleje fielmente las garantías del analizador estático.",
+        visualOutcome:
+          "la animación guía el payload por las compuertas de análisis estático de TypeScript, mostrando la eliminación de tipos en la compilación a JavaScript limpio y la protección total contra valores indefinidos.",
+      });
+
+    case "python":
+      return buildPracticalPresentationAudioTrack("python", {
+        title: practical?.title ?? "Python en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Observatorio de telemetría reproducible: streams asíncronos, multiprocessing y resiliencia",
+        family: "runtime CPython, concurrencia asyncio y procesamiento multiproceso",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, un observatorio de telemetría en Python procesa mediciones heterogéneas a través de catorce etapas coordinadas. Primero, en Definición del contrato y entorno, un entorno virtual aislado con dependencias fijadas y hashes criptográficos asegura reproducibilidad total. Segundo, en Lectura como stream con asyncio, el consumo se realiza por fragmentos continuos con control de backpressure sin desbordar la memoria del proceso. Tercero, en Decodificación y validación de modelos, cadenas UTF-8 se convierten en objetos inmutables con tipos y zonas horarias explícitas. Cuarto, en Normalización y cálculo paralelo, transformaciones puras en funciones desacopladas se despachan a un ProcessPoolExecutor liberando el Global Interpreter Lock para trabajo pesado de CPU. Quinto, en Detección de lote corrupto y cuarentena, un fallo de checksum aísla la carga defectuosa sin detener el resto del flujo. Sexto, en Reanudación idempotente y persistencia atómica, checkpoints persistidos en disco y escrituras mediante archivos temporales con fsync garantizan que ningún dato quede a medio escribir. Y séptimo, en Observabilidad y empaquetado, métricas estructuradas y el empaquetado en formato wheel culminan un ciclo de producción robusto.",
+        visualOutcome:
+          "la animación sigue el flujo de eventos desde la ingesta asíncrona hasta la delegación en hilos de procesamiento secundarios, destacando la recuperación automática ante lotes corruptos y la escritura atómica en disco.",
+      });
+
+    case "go":
+      return buildPracticalPresentationAudioTrack("go", {
+        title: practical?.title ?? "Go en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Rastrear sitios con concurrencia acotada: scheduler G-M-P, canales y context cancelable",
+        family: "concurrencia CSP, scheduler de goroutines y sincronización por canales",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, un rastreador web concurrente en Go procesa URLs mediante el modelo CSP en cinco etapas de alto rendimiento. Primero, en Preparación de frontera con Context, se establece un temporizador de timeout que viaja a través de todas las llamadas para gobernar el tiempo de vida de la operación. Segundo, en Lanzamiento de workers concurrentes, el scheduler multiplexa goroutines livianas sobre núcleos de procesador repartiendo el trabajo a través de un canal con búfer. Tercero, en Detección de bloqueo de goroutine, un canal sin receptor activo durante la cancelación amenaza con provocar una fuga de recursos. Cuarto, en Envío cancelable con Select, la instrucción select evalúa simultáneamente el envío de datos o la señal del contexto interrumpiendo limpiamente a los workers cancelados. Y quinto, en Drenaje y cierre con WaitGroup, un grupo de espera sincroniza la finalización de todas las tareas activas permitiendo al productor cerrar el canal de salida sin condiciones de carrera.",
+        visualOutcome:
+          "la animación visualiza el despacho de goroutines en el scheduler de Go, mostrando la interacción con canales tipados y el rescate de workers bloqueados mediante la interrupción controlada por Context.",
+      });
+
+    case "rust":
+      return buildPracticalPresentationAudioTrack("rust", {
+        title: practical?.title ?? "Rust en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Ingerir telemetría sin carreras: ownership, borrowing, hilos y tipos algebraicos",
+        family: "seguridad de memoria estática, ownership y concurrencia sin carreras de datos",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, un servicio de ingesta de telemetría en Rust procesa paquetes de red sin necesidad de recolector de basura en cinco etapas deterministas. Primero, en Modelado de paquetes con tipos de datos algebraicos, un struct tipado asume la propiedad directa del vector de bytes asignado en el heap. Segundo, en Distribución de trabajo por canales, la propiedad de cada paquete se transfiere de forma segura entre hilos a través de un canal MPSC sin copias innecesarias en memoria. Tercero, en Detección de préstamo fugitivo, el compilador intercepta un intento de transferir una referencia prestada que podría sobrevivir al búfer de origen, deteniendo la compilación con mensaje explícito. Cuarto, en Transferencia de ownership seguro, el paquete se convierte en un vector con propiedad completa que satisface la restricción estática permitiendo la ejecución segura en el hilo trabajador. Y quinto, en Cierre ordenado y join de hilos, el cierre del emisor drena los paquetes en tránsito y unifica los hilos secundarios asegurando que no se pierdan datos ni existan recursos huérfanos.",
+        visualOutcome:
+          "la animación demuestra la gestión de memoria en Rust, evidenciando el paso de pertenencia entre hilos, el bloqueo en compilación ante referencias no válidas y la ejecución libre de fugas de memoria o condiciones de carrera.",
+      });
+
+    case "ruby":
+      return buildPracticalPresentationAudioTrack("ruby", {
+        title: practical?.title ?? "Ruby en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Analizar registros con una tubería expresiva: Enumerable, bloques y manejo de encoding",
+        family: "diseño orientado a objetos dinámico, bloques iterativos y pipelines Enumerable",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, una herramienta de línea de comandos en Ruby analiza un flujo masivo de eventos del sistema en cinco fases expresivas. Primero, en Apertura del stream de datos, el método foreach lee el archivo línea por línea evitando cargar el conjunto completo en memoria. Segundo, en Transformación con Enumerable, bloques pasados a filter_map extraen y estructuran los registros válidos preservando el contexto léxico. Tercero, en Detección de codificación corrupta, una secuencia de bytes inválida en UTF-8 detiene el análisis señalando con precisión el número de línea. Cuarto, en Aislamiento y recuperación con scrub, el registro anómalo se sanea sustituyendo caracteres rotos y enviando el evento dudoso a cuarentena con trazabilidad del byte offset. Y quinto, en Emisión del reporte ordenado, métodos como tally y sort_by agregan las estadísticas sin mutar los datos originales, emitiendo un resumen claro y reproducible.",
+        visualOutcome:
+          "la animación ilustra el viaje de las líneas de texto por el pipeline funcional de Ruby, mostrando la detección visual de bytes mal codificados y su posterior recuperación en una tabla ordenada de incidencias.",
+      });
+
+    case "php":
+      return buildPracticalPresentationAudioTrack("php", {
+        title: practical?.title ?? "PHP en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Procesar una solicitud web segura: ciclo request-response, PDO parametrizado y transacciones",
+        family: "arquitectura request-response, persistencia segura PDO y tipos modernos",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, una orden comercial se procesa a través del ciclo de vida web de PHP en cinco etapas de seguridad. Primero, en Recepción de la petición HTTP, el flujo procesa el cuerpo JSON entrante dentro de un espacio de memoria completamente aislado por el servidor PHP-FPM. Segundo, en Validación del contrato con DTOs tipados, una clase inmutable castea atributos y rechaza campos ausentes o valores fuera de rango antes de tocar la base de datos. Tercero, en Detección de concatenación SQL insegura, el analizador detecta una consulta dinámica vulnerable a inyección deteniendo la persistencia. Cuarto, en Preparación con PDO, la sentencia se separa de los datos mediante consultas preparadas donde el driver enlaza los valores de forma segura sin interpretar código malicioso. Y quinto, en Confirmación transaccional y respuesta 201, una transacción atómica confirma los cambios en la base de datos emitiendo una respuesta HTTP estructurada con identificador de correlación.",
+        visualOutcome:
+          "la animación recrea el ciclo de vida de la petición web en PHP, resaltando la neutralización de la inyección SQL mediante sentencias preparadas y la confirmación atómica de la transacción con código de estado doscientos uno.",
       });
 
     default: {
