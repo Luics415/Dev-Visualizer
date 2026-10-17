@@ -5,8 +5,22 @@ import { TypeScriptPracticalScene } from "@/components/scenes/typescript/TypeScr
 import { collectionNumber } from "@/data/collectionManifest";
 import { collectionNotices } from "@/data/collectionNotices";
 import { typescriptDeepDive } from "@/data/practicalDeepDives";
+import { ConceptAudioTrigger } from "@/components/audio/ConceptAudioTrigger";
+import { FloatingAudioBubble } from "@/components/audio/FloatingAudioBubble";
+import {
+  buildPracticalModuleAudioTrack,
+  getActionPresentationTrack,
+} from "@/lib/audioTrackHelper";
 
 export default function TypeScriptPracticalPage() {
+  const presentationTrack = getActionPresentationTrack("typescript");
+  const practicalTracks = [
+    presentationTrack,
+    ...typescriptDeepDive.map((module, i) =>
+      buildPracticalModuleAudioTrack("typescript", module, 7 + i)
+    ),
+  ];
+
   return (
     <main className="page-shell">
       <CollectionNav />
@@ -34,15 +48,31 @@ export default function TypeScriptPracticalPage() {
         <Link href="/typescript">Ver conceptos y catálogo de TypeScript <b>←</b></Link>
       </div>
 
-      <section className="practical-stage practical-stage--typescript" aria-label="Ejemplo práctico integrado de TypeScript">
+      <section className="practical-stage practical-stage--typescript practical-stage--card" aria-label="Ejemplo práctico integrado de TypeScript">
+        <header className="practical-card__header">
+          <div className="practical-card__title-group">
+            <span className="practical-card__badge">00</span>
+            <div>
+              <h2>Flujo seguro de órdenes con tipado estático</h2>
+              <p>Contratos estrictos, genéricos, uniones discriminadas, narrowing, satisfies y verificación de runtime.</p>
+            </div>
+          </div>
+          <div className="practical-card__actions">
+            <ConceptAudioTrigger track={presentationTrack} />
+            <span className="practical-card__family">{presentationTrack.family}</span>
+          </div>
+        </header>
+
         <TypeScriptPracticalScene />
       </section>
 
-      <PracticalDeepDive modules={typescriptDeepDive} />
+      <PracticalDeepDive modules={typescriptDeepDive} collectionId="typescript" />
 
       <footer className="project-note">
         Los tipos protegen el desarrollo; los esquemas protegen la frontera de runtime y el build conserva una experiencia depurable para autores y consumidores.
       </footer>
+
+      <FloatingAudioBubble collectionName="TypeScript en acción" tracks={practicalTracks} />
     </main>
   );
 }
