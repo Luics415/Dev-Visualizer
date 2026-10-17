@@ -700,12 +700,854 @@ const MODERN_LANGUAGES_VISUAL_EXPLANATIONS: Record<string, string> = {
 };
 
 /**
+ * Explicaciones informativas y descriptivas de las animaciones visuales para colecciones de Familia C, Embebidos y Compilados (PR 6).
+ */
+const C_FAMILY_VISUAL_EXPLANATIONS: Record<string, string> = {
+  // C
+  "Fases de traducción":
+    "en el pipeline del compilador, el preprocesador expande macros, la unidad de compilación genera ensamblador y el linker unifica símbolos en el ejecutable final.",
+  "Función main y entorno hospedado":
+    "en el inicio del programa, el entorno pasa argc y argv inicializando descriptores estándar antes de transferir el control a la función principal.",
+  "Declaraciones y definiciones":
+    "en la tabla de símbolos, las declaraciones reservan el tipo e identificador mientras la definición asigna el bloque de almacenamiento físico.",
+  "Headers y linkage":
+    "en las cabeceras protegidas por include guards, declaraciones públicas comparten contratos entre unidades sin duplicar definiciones en el binario.",
+  "Preprocesador":
+    "en el analizador léxico previo, directivas hash sustituyen texto y evalúan condiciones de compilación antes de la fase de análisis sintáctico.",
+  "Pragmas y extensiones del compilador":
+    "en las directivas de compilador, pragmas y atributos afinan optimizaciones, alineaciones y empaquetado de memoria específicos de la arquitectura.",
+  "Tipos enteros y promociones":
+    "en la unidad aritmético-lógica, enteros de menor rango sufren promoción automática a int conservando signo antes de la operación binaria.",
+  "Punto flotante":
+    "en el registro de coma flotante, la mantisa y el exponente sesgado aproximan magnitudes continuas evidenciando límites de precisión finita.",
+  "Arrays y decaimiento a puntero":
+    "en la expresión de acceso, el identificador del array decae a un puntero hacia su elemento inicial conservando contigüidad en memoria.",
+  "Struct, union y padding":
+    "en la disposición de memoria, bytes de relleno alinean campos a múltiplos de su tamaño natural según el ABI de la arquitectura.",
+  "Enum, typedef y qualifiers":
+    "en el sistema de tipos de C, calificadores const y volatile imponen restricciones de mutabilidad sin introducir sobrecoste en el binario.",
+  "Enteros de ancho fijo stdint":
+    "en las definiciones stdint, tipos exactos de 8, 16, 32 y 64 bits garantizan portabilidad binaria determinista en tramas de red.",
+  "Direcciones y aritmética de punteros":
+    "en la cuadrícula de memoria contigua, sumar una unidad al puntero desplaza la dirección exactamente el tamaño en bytes del tipo apuntado.",
+  "Punteros void y alineación":
+    "en el transporte genérico de memoria, el puntero void almacena la dirección pura requiriendo un cast estricto al tipo con alineación compatible.",
+  "Punteros nulos y comprobación":
+    "en la compuerta defensiva, la evaluación de puntero nulo previene la desreferenciación fatal bifurcando el flujo hacia la ruta de manejo de error.",
+  "Puntero a puntero y mutación":
+    "en la llamada a función, pasar la dirección de un puntero permite mutar la referencia original del llamador sin variables globales.",
+  "Punteros a funciones y callbacks":
+    "en la tabla de despacho dinámico, el puntero de función salta a la dirección de memoria de la rutina destino invocándola con los argumentos dados.",
+  "Punteros constantes y restrict":
+    "en la optimización de punteros, restrict garantiza ausencia de solapamiento de memoria permitiendo al compilador vectorizar operaciones contiguas.",
+  "Stack, static storage y heap":
+    "en la segmentación de memoria, variables automáticas residen en marcos de pila temporales mientras el heap administra bloques dinámicos.",
+  "malloc, calloc, realloc y free":
+    "en el gestor del heap, malloc reserva bytes sin inicializar, calloc los limpia a cero y free devuelve el bloque contiguo al sistema.",
+  "Ownership y responsabilidad de liberación":
+    "en la política de propiedad, un único módulo asume la responsabilidad de liberar el buffer adquirido evitando fugas o dobles liberaciones.",
+  "Doble liberación y use-after-free":
+    "en la trampa de memoria, acceder o liberar un puntero ya destruido corrompe el heap o dispara una señal de fallo de segmentación inmediata.",
+  "Fragmentación del heap":
+    "en el mapa de asignaciones, patrones dispares de reservas y liberaciones fragmentan la memoria impidiendo alojar bloques contiguos extensos.",
+  "Asignadores de arena y pools":
+    "en la asignación por arenas, múltiples objetos de vida idéntica se reservan en un bloque contiguo y se liberan simultáneamente a costo constante.",
+  "Aliasing y effective type":
+    "en el análisis de aliasing, el compilador verifica qué accesos pueden observar un objeto garantizando la validez de optimizaciones de registro.",
+  "Strict aliasing rule":
+    "en el optimizador del compilador, dos punteros de tipos incompatibles se asumen como regiones independientes salvo casts autorizados como char.",
+  "El calificador restrict":
+    "en la firma de la función, restrict promete que el puntero es el acceso exclusivo a su bloque habilitando vectorización agresiva.",
+  "Casts de tipos y type punning":
+    "en la reinterpretación de representación binaria, uniones bien definidas o llamadas a memcpy transfieren bits sin violar reglas de aliasing.",
+  "Memory clobbers y optimizaciones":
+    "en la barrera del optimizador, una directiva de clobber fuerza a releer valores desde memoria descartando cachés obsoletas en registros.",
+  "Punteros volátiles en hardware":
+    "en la interacción con periféricos mapeados, volatile obliga a emitir lecturas y escrituras físicas sin omisiones del compilador.",
+  "Expresiones y sequence rules":
+    "en los puntos de secuencia, el estándar garantiza que todos los efectos secundarios previos se hayan completado antes de avanzar.",
+  "Control de flujo condicional":
+    "en la bifurcación condicional, la evaluación booleana dirige el flujo hacia el bloque verdadero descartando la rama alterna.",
+  "Sentencias switch y fallthrough":
+    "en la tabla de salto del switch, la ejecución cae secuencialmente entre casos salvo que una instrucción break interrumpa el control.",
+  "Loops while, for y do-while":
+    "en los bucles estructurados, la condición de parada evalúa invariantes garantizando terminación determinista sin ciclos infinitos.",
+  "Saltos locales y goto de limpieza":
+    "en la salida de la función, una etiqueta común centraliza la desasignación de recursos adquiridos sin código duplicado.",
+  "setjmp y longjmp en recuperación":
+    "en la restauración del entorno, longjmp desenrolla la pila restaurando registros y contexto guardados previamente por setjmp.",
+  "Funciones y calling convention":
+    "en el prólogo y epílogo de la llamada, argumentos y retornos se colocan en registros específicos o en el stack según la convención ABI.",
+  "Pila de llamadas y frame pointers":
+    "en el registro de activación, el frame pointer conserva la base de la pila permitiendo desenrollado y depuración precisos.",
+  "Argumentos variables con stdarg":
+    "en la lista variádica, macros va_start y va_arg recorren argumentos consecutivos en memoria terminando en va_end.",
+  "Funciones inline y linkage interno":
+    "en la optimización de código, funciones inline sustituyen el cuerpo directamente en el sitio de llamada reduciendo el sobrecoste.",
+  "Recursión y límites de stack":
+    "en la recursión profunda, llamadas sucesivas consumen marcos de pila hasta aproximarse a la guardia de memoria del sistema.",
+  "Estabilidad de ABI y exportación":
+    "en la interfaz binaria pública, estructuras opacas y convenciones fijas permiten enlazar bibliotecas compartidas sin romper compatibilidad.",
+  "stdio y buffering":
+    "en el canal de entrada y salida, buffers intermedios acumulan caracteres antes de emitir la llamada al sistema de escritura por bloques.",
+  "Archivos y descriptores del sistema":
+    "en el acceso a disco, descriptores de archivo gestionan handles del kernel garantizando su cierre seguro en todas las rutas de salida.",
+  "Lecturas binarias fread y fwrite":
+    "en la transferencia por bloques, buffers estructurados leen y escriben registros continuos verificando la cantidad de elementos procesados.",
+  "Posicionamiento con fseek y ftell":
+    "en el cursor del archivo, desplazamientos numéricos navegan offsets binarios respetando límites de tipo off_t.",
+  "Formateo seguro con snprintf":
+    "en la construcción de cadenas delimitadas, snprintf trunca el texto al límite del buffer evitando desbordamientos de memoria.",
+  "Errores, errno y códigos de retorno":
+    "en el reporte de fallos, códigos de error en errno capturan la causa inmediata de la llamada al sistema antes de que otra operación la sobrescriba.",
+  "Atomics y memory order":
+    "en el bus de memoria compartida, operaciones atómicas con barreras de memoria sincronizan hilos sin riesgo de estados intermedios inconsistentes.",
+  "Tipos atómicos y operaciones lock-free":
+    "en la sincronización sin bloqueos, primitivas compare-and-swap actualizan punteros y contadores concurrentes sin adquirir cerrojos.",
+  "Threads estándar de C11":
+    "en la gestión de hilos nativos, thrd_create inicializa la ejecución concurrente y thrd_join sincroniza su terminación.",
+  "Mutexes y variables de condición":
+    "en la exclusión mutua, un mutex protege la sección crítica mientras la variable de condición coordina señales de espera.",
+  "Memory barriers y sequential consistency":
+    "en la sincronización multiprocesador, barreras de memoria impiden el reordenamiento de lecturas y escrituras en el hardware.",
+  "Data races y comportamiento indefinido":
+    "en el acceso concurrente no sincronizado, dos hilos que acceden a la misma celda de memoria causan comportamiento indefinido.",
+  "Warnings como contrato estricto":
+    "en la compilación estricta, banderas de advertencia elevan potenciales discrepancias a errores deteniendo el build.",
+  "Sanitizers de memoria ASan y UBSan":
+    "en la ejecución instrumentada, AddressSanitizer coloca zonas rojas alrededor de reservas detectando desbordamientos de buffer al instante.",
+  "Mitigación de desbordamientos de buffer":
+    "en la codificación defensiva, funciones con límites explícitos de longitud impiden corromper memoria adyacente en el stack o heap.",
+  "Protección de stack canaries y FORTIFY_SOURCE":
+    "en la seguridad del compilador, valores centinela en la pila interceptan la corrupción del puntero de retorno antes de saltar.",
+  "Debugger LLDB/GDB y core dumps":
+    "en el análisis post-mortem, el debugger reconstruye el estado de registros, pila y memoria en la línea exacta del fallo.",
+  "Fuzzing con libFuzzer y AFL":
+    "en las pruebas de robustez, mutaciones guiadas por cobertura inyectan entradas anómalas descubriendo excepciones no controladas.",
+
+  // C++
+  "Compilación y One Definition Rule":
+    "en la fase de enlace de C++, la regla de definición única garantiza que cada plantilla y clase compartan una representación idéntica entre bibliotecas.",
+  "Inicialización":
+    "en la construcción de objetos, inicialización por lista previene conversiones con pérdida y garantiza el orden estricto de miembros.",
+  "const y constexpr":
+    "en la evaluación de expresiones, const protege variables contra mutaciones en runtime mientras constexpr calcula valores directamente en compilación.",
+  "Namespaces y lookup":
+    "en la resolución de nombres, el mecanismo ADL busca sobrecargas en los espacios de nombres de los tipos de los argumentos pasados.",
+  "Modules y headers":
+    "en la arquitectura de módulos de C++20, unidades de interfaz exportan símbolos compilados reduciendo tiempos de construcción textual.",
+  "Linkage y visibilidad de símbolos":
+    "en la tabla de exportación, atributos de visibilidad controlan qué clases y funciones trascienden la frontera de la biblioteca compartida.",
+  "Storage y object lifetime":
+    "en el ciclo de vida de C++, el objeto comienza formalmente su existencia al completar su constructor y concluye con su destructor.",
+  "Constructores y destructores":
+    "en la adquisición y liberación simétrica, constructores establecen invariantes válidas y destructores retornan recursos al sistema.",
+  "RAII":
+    "en el patrón de adquisición determinista, el constructor adquiere el recurso del sistema y el destructor lo libera automáticamente al salir del ámbito léxico.",
+  "Smart pointers":
+    "en la gestión moderna de memoria, unique_ptr asegura propiedad exclusiva sin sobrecoste mientras shared_ptr mantiene conteo atómico de referencias.",
+  "Regla del cero, tres y cinco":
+    "en el diseño de clases, implementar destructores o constructores de copia obliga a definir explícitamente operaciones de movimiento y asignación.",
+  "Invariantes de clase y estado válido":
+    "en la encapsulación estricta, métodos públicos garantizan que el estado interno nunca quede inconsistente ante excepciones.",
+  "Lvalues, prvalues y xvalues":
+    "en la categorización de valores, expresiones temporales xvalues se identifican para habilitar el robo de recursos mediante semántica de movimiento.",
+  "Constructores y asignación de movimiento":
+    "en la transferencia eficiente, los punteros internos del objeto origen se asignan al nuevo contenedor dejándolo en estado nulo válido.",
+  "std::move y casts incondicionales":
+    "en la conversión estática, std::move castea un lvalue a rvalue reference permitiendo invocar la sobrecarga de movimiento.",
+  "Perfect forwarding con std::forward":
+    "en el reenvío de argumentos en plantillas, std::forward preserva si la entidad original era un lvalue o un rvalue temporal.",
+  "Referencias a rvalues (T&&)":
+    "en la deducción de plantillas, referencias universales colapsan enlaces preservando la naturaleza original de los argumentos pasados.",
+  "Movimiento sin excepciones noexcept":
+    "en la reubicación de vectores, el calificador noexcept asegura que los elementos se muevan en lugar de copiarse durante el crecimiento.",
+  "Elisión de copia y RVO":
+    "en la optimización del compilador, la elisión de copia construye el objeto directamente en el almacenamiento de destino del llamador.",
+  "Clases e invariantes":
+    "en la estructura de datos orientada a objetos, constructores y métodos privados protegen la coherencia de los campos de datos.",
+  "Herencia y substitución":
+    "en el principio de sustitución de Liskov, clases derivadas honran el contrato de la clase base sin debilitar precondiciones ni alterar invariantes.",
+  "Virtual dispatch y vtables":
+    "en el despacho polimórfico dinámico, el puntero vptr consulta la tabla virtual para resolver la implementación correspondiente en runtime.",
+  "Destructores virtuales":
+    "en la destrucción polimórfica, un destructor virtual en la clase base asegura que se invoque el destructor de la clase derivada al eliminar mediante puntero.",
+  "Herencia múltiple y clases virtuales":
+    "en el problema del diamante, la herencia virtual unifica el subobjeto base compartido previniendo duplicaciones de estado en memoria.",
+  "std::variant y polimorfismo cerrado":
+    "en las uniones discriminadas seguras, std::variant almacena alternativas tipadas y std::visit aplica visitantes exhaustivos sin vtables.",
+  "Function y class templates":
+    "en la instanciación de plantillas, el compilador genera código de máquina especializado para cada tipo concreto sin costo de indirección.",
+  "Type deduction":
+    "en la deducción de tipos con auto y plantillas, el compilador resuelve la estructura estática descartando o conservando referencias según la regla aplicada.",
+  "Especialización explícita y parcial":
+    "en la personalización de plantillas, ramas especializadas optimizan algoritmos para tipos específicos como punteros o estructuras empaquetadas.",
+  "Variadic templates y parameter packs":
+    "en las plantillas variádicas, paquetes de parámetros desglosan argumentos de longitud variable recursivamente o mediante fold expressions.",
+  "Fold expressions":
+    "en la reducción de paquetes de parámetros de C++17, operadores binarios pliegan secuencias de argumentos en una única expresión compacta.",
+  "SFINAE y std::enable_if":
+    "en la resolución de sobrecargas, la sustitución fallida descarta silenciosamente candidatos de plantilla inválidos sin emitir error.",
+  "Template template parameters":
+    "en la composición de tipos genéricos, plantillas de plantillas aceptan contenedores paramétricos como argumentos de abstracciones superiores.",
+  "Concepts como contratos de tipos":
+    "en el análisis estático de C++20, los conceptos validan que los tipos genéricos satisfagan operaciones requeridas antes de compilar.",
+  "Cláusula requires":
+    "en la restricción de plantillas, la cláusula requires declara expresiones válidas, tipos asociados y conversiones obligatorias.",
+  "Type traits en std::type_traits":
+    "en la metaprogramación estática, constantes booleanas evalúan propiedades de tipos en compilación para bifurcar algoritmos.",
+  "Concepts estándar en std::concepts":
+    "en la biblioteca estándar de C++20, conceptos predefinidos como movable, invocable o regular imponen interfaces estandarizadas.",
+  "Sobrecargas restringidas por conceptos":
+    "en el motor de overload resolution, el compilador elige la sobrecarga más restringida según la subsunción de predicados.",
+  "Diagnósticos claros del compilador":
+    "en la compilación moderna, las restricciones no satisfechas emiten trazas de error legibles y directas sobre la propiedad faltante.",
+  "Contenedores y localidad de memoria":
+    "en la jerarquía de memoria, std::vector almacena datos contiguos maximizando aciertos de caché frente a listas de punteros dispersos.",
+  "Iteradores y categorías de acceso":
+    "en el puente de la STL, iteradores de acceso aleatorio o continuo permiten a algoritmos genéricos operar sobre secuencias con costos predecibles.",
+  "Vistas y pipelines en std::ranges":
+    "en las canalizaciones de rangos, transformaciones y filtros se componen con el operador pipe evaluándose de forma perezosa bajo demanda.",
+  "Polymorphic memory resources (PMR)":
+    "en los asignadores polimórficos, contenedores desacoplan su tipo estático del mecanismo de reserva de memoria en tiempo de ejecución.",
+  "std::string_view y std::span":
+    "en el acceso no propietario, vistas contiguas referencian secuencias existentes con puntero y longitud sin realizar copias en memoria.",
+  "Algoritmos paralelos de la STL":
+    "en la ejecución paralela, políticas std::execution::par distribuyen iteraciones entre múltiples núcleos de la CPU de forma transparente.",
+  "Estructuras asociadas planas (flat_map)":
+    "en los contenedores planos modernos, claves y valores residen en vectores contiguos ordenados mejorando la velocidad de búsqueda binaria.",
+  "Hilos nativos con std::jthread":
+    "en la concurrencia moderna, jthread solicita cancelación cooperativa mediante stop_token y une el hilo automáticamente en su destrucción.",
+  "Locks RAII y mutexes":
+    "en la sincronización de hilos, std::scoped_lock adquiere múltiples cerrojos sin riesgo de deadlocks liberándolos deterministamente.",
+  "Variables de condición":
+    "en la coordinación de hilos, predicados asociados a la variable de condición evitan despertares espurios manteniendo los hilos suspendidos.",
+  "Modelo de memoria atómica std::atomic":
+    "en las operaciones atómicas de C++, órdenes de memoria relaxed, acquire y release coordinan sincronización fina sin cerrojos pesados.",
+  "Coroutines y co_await":
+    "en la suspensión cooperativa de C++20, co_await preserva el estado en el frame de la corutina cediendo la CPU sin bloquear hilos del sistema.",
+  "Generadores con co_yield":
+    "en las secuencias asíncronas, co_yield emite valores sucesivos bajo demanda preservando la pila de la corutina.",
+  "std::future y std::promise":
+    "en la transferencia asíncrona, promesas canalizan resultados computados hacia futuros que bloquean o consultan su disponibilidad.",
+  "Funciones constexpr":
+    "en la evaluación temprana, funciones constexpr se ejecutan durante la compilación cuando reciben argumentos constantes inmutables.",
+  "Funciones consteval (immediate functions)":
+    "en la evaluación forzada, la función consteval se resuelve obligatoriamente en tiempo de compilación produciendo una constante pura.",
+  "if constexpr y compilación condicional":
+    "en el metaprogramming, if constexpr descarta ramas que no coinciden con las propiedades de los tipos simplificando plantillas.",
+  "Variables y estructuras constexpr":
+    "en los datos estáticos, tablas precalculadas se incrustan en el segmento de solo lectura del binario con cero sobrecoste de inicialización.",
+  "std::is_constant_evaluated":
+    "en la detección de contexto, la función identifica si el código se ejecuta en compilación para elegir algoritmos ultraoptimizados.",
+  "Reflexión estática emergente":
+    "en la inspección estática, metadatos de tipos y miembros permiten serialización y registro automatizados sin macros invasivas.",
+  "Metaprogramación basada en valores":
+    "en la programación moderna en compilación, algoritmos imperativos constexpr sustituyen trucos históricos de tipos basados en recursión.",
+  "CMake y targets modernos":
+    "en el sistema de construcción, targets de CMake propagan opciones de compilación, cabeceras y dependencias de forma transitiva y limpia.",
+  "Sanitizers de Clang y GCC":
+    "en la verificación continua, AddressSanitizer y ThreadSanitizer instrumentan el ejecutable revelando accesos ilegales y carreras en tiempo real.",
+  "Perfilado de CPU y memoria":
+    "en el análisis de rendimiento, herramientas como perf y heaptrack identifican cuellos de botella y exceso de reservas en el heap.",
+  "Control de ABI y compatibilidad binaria":
+    "en la exportación de librerías, visibilidad oculta por defecto y versionado de símbolos garantizan estabilidad binaria entre versiones.",
+  "Fuzz testing con libFuzzer":
+    "en las pruebas de resistencia, entradas aleatorias mutadas descubren violaciones de aserciones e invariantes no contempladas.",
+  "Hardening de binarios y directivas de seguridad":
+    "en la protección de producción, banderas RELRO, canary y control de flujo fortalecen el binario contra exploits de memoria.",
+  "Auditoría con C++ Core Guidelines y Clang-Tidy":
+    "en el control de calidad, analizadores estáticos aplican reglas automáticas erradicando patrones inseguros u obsoletos.",
+
+  // Objective-C
+  "Clases, objetos e isa":
+    "en el modelo dinámico de Objective-C, el puntero isa de cada objeto referencia su clase para guiar la búsqueda de selectores en runtime.",
+  "Mensajes y selectors (SEL)":
+    "en la sintaxis de corchetes, un selector representa el nombre del mensaje desacoplado de la implementación de la función en memoria.",
+  "Métodos de instancia y clase":
+    "en la jerarquía de clases, métodos de instancia atienden a objetos mientras métodos de clase operan sobre la metaclase correspondiente.",
+  "Properties e ivars":
+    "en la encapsulación de Cocoa, propiedades sintetizan getters y setters con semántica explícita de retención, copia o referencia débil.",
+  "Inicializadores y ciclo de vida":
+    "en la construcción de instancias, inicializadores designados invocan a super antes de configurar el estado propio de la clase.",
+  "Literales de Foundation":
+    "en la sintaxis abreviada, literales con arroba crean instancias de NSArray, NSDictionary y NSNumber de forma limpia y directa.",
+  "Función objc_msgSend":
+    "en el motor de despacho de Apple, objc_msgSend consulta la caché de métodos y despacha el puntero de función IMP correspondiente.",
+  "Method lookup y cache interno":
+    "en la resolución de llamadas, una tabla hash rápida reutiliza punteros IMP cacheados evitando recorridos repetidos de la jerarquía.",
+  "Method Swizzling":
+    "en la modificación en caliente del runtime, se intercambian las implementaciones de dos métodos para interceptar o instrumentar llamadas de Cocoa.",
+  "Punteros de implementación IMP":
+    "en la optimización crítica, la obtención directa del puntero de función IMP elude el despacho dinámico en bucles intensivos.",
+  "Resolución dinámica de métodos":
+    "en el manejo dinámico, resolveInstanceMethod permite añadir funciones en tiempo de ejecución antes de considerar un selector no reconocido.",
+  "Estructura objc_class y metaclases":
+    "en las entrañas del runtime, metaclases almacenan la tabla de métodos de clase completando la arquitectura de objetos de Objective-C.",
+  "Introspección con isKindOfClass y respondsToSelector":
+    "en la verificación de tipos, la consulta en runtime comprueba la compatibilidad de clases y la existencia de métodos antes de invocarlos.",
+  "Fast forwarding con forwardingTargetForSelector":
+    "en el reenvío liviano de mensajes, el objeto delega la atención del selector a un segundo destino sin construir un NSInvocation completo.",
+  "Normal forwarding con forwardInvocation":
+    "en el reenvío completo, un objeto NSInvocation captura argumentos y firma permitiendo reescribir y despachar el mensaje dinámicamente.",
+  "Clasificación NSMethodSignature":
+    "en la introspección de firmas, NSMethodSignature describe los tipos de retorno y argumentos codificados según convenciones de Objective-C.",
+  "Manejo de doesNotRecognizeSelector":
+    "en la última frontera de fallo, un selector no atendido lanza una excepción NSInvalidArgumentException con diagnóstico del mensaje no reconocido.",
+  "Dynamic proxying con NSProxy":
+    "en la arquitectura de intermediación, subclases de NSProxy interceptan todos los mensajes entrantes para logging o llamadas remotas.",
+  "Strong, weak y unsafe references":
+    "en la gestión de memoria ARC, referencias strong incrementan retención, weak se limpian a nil automáticamente y assign opera sin gestión.",
+  "Autorelease pools y @autoreleasepool":
+    "en la gestión de referencias diferidas, el bloque autoreleasepool drena y libera los objetos temporales al cerrar el ámbito.",
+  "Retain cycles en bloques y delegates":
+    "en la prevención de ciclos, referencias débiles capturadas en bloques rompen la retención mutua permitiendo el dealloc oportuno.",
+  "Bridging con Core Foundation":
+    "en el cruce de APIs de Apple, directivas bridge transfieren ownership entre objetos administrados por ARC y punteros de memoria opacos C.",
+  "Semántica de copia para bloques":
+    "en la persistencia de bloques, copiar un bloque traslada su frame del stack al heap permitiendo ejecuciones asíncronas seguras.",
+  "Método dealloc y limpieza de recursos":
+    "en la destrucción de la instancia, dealloc desuscribe observers y cierra handles del sistema sin invocar llamadas manuales a retain o release.",
+  "Protocols y métodos requeridos u opcionales":
+    "en los contratos de interfaz, protocolos declaran métodos obligatorios y directivas optional para capacidades condicionales.",
+  "Categories y class extensions":
+    "en la modularización de clases, categorías añaden métodos a tipos existentes sin necesidad de subclases ni acceso al código fuente.",
+  "Patrón Delegation":
+    "en la arquitectura Cocoa, delegados con referencias débiles reciben eventos y toman decisiones operativas desacopladas de la vista.",
+  "Key-Value Coding (KVC)":
+    "en el acceso por reflexión, métodos valueForKey y setValueForKey leen y escriben propiedades mediante nombres de cadena en runtime.",
+  "Key-Value Observing (KVO)":
+    "en la observación reactiva, observadores registrados reciben notificaciones automáticas ante mutaciones en las propiedades supervisadas.",
+  "Associated Objects":
+    "en la extensión en runtime, claves arbitrarias vinculan estado adicional a instancias existentes sin modificar su estructura física.",
+  "Colas seriales y concurrentes en GCD":
+    "en Grand Central Dispatch, bloques de código se despachan a colas del sistema distribuyendo trabajo en paralelo sin gestión manual de hilos.",
+  "Main Queue y actualizaciones de interfaz":
+    "en la manipulación de UI, dispatch_async hacia la cola principal garantiza que modificaciones visuales se ejecuten en el hilo de pantalla.",
+  "Dispatch groups y sincronización":
+    "en la orquestación asíncrona, dispatch_group rastrea la conclusión de múltiples tareas concurrentes notificando al completarse todas.",
+  "Dispatch barriers y patrón reader-writer":
+    "en la concurrencia segura, barreras de despacho permiten lecturas paralelas simultáneas bloqueando accesos durante escrituras exclusivas.",
+  "Bloques como callbacks de finalización":
+    "en la asincronía idiomática, bloques pasados como argumento encapsulan respuestas y errores ejecutándose al finalizar operaciones remotas.",
+  "Operaciones NSOperation y NSOperationQueue":
+    "en la gestión avanzada de tareas, NSOperation modela dependencias de ejecución, prioridades y estados de cancelación cooperativos.",
+  "Nullability annotations (_Nonnull, _Nullable)":
+    "en la frontera con Swift, anotaciones explícitas definen si los punteros admiten ausencia eliminando opcionales implícitos dudosos.",
+  "Generics ligeros en colecciones":
+    "en la interoperabilidad tipada, NSArray y NSDictionary parametrizados exponen tipos concretos al compilador de Swift.",
+  "Bridging headers de proyecto":
+    "en la integración mixta, cabeceras puente exponen clases y métodos de Objective-C al espacio de trabajo de Swift.",
+  "Atributos NS_SWIFT_NAME y NS_REFINED_FOR_SWIFT":
+    "en la adaptación idiomática, macroatributos redefinen nombres de métodos haciéndolos naturales en la sintaxis moderna de Swift.",
+  "NS_ENUM y NS_OPTIONS":
+    "en las enumeraciones tipadas, macros de Foundation unifican enteros C con enums y conjuntos de opciones exhaustivos de Swift.",
+  "Aislamiento de módulos legados detrás de protocolos":
+    "en la modernización incremental, fachadas basadas en protocolos aíslan código histórico de Cocoa permitiendo su reemplazo progresivo.",
+  "Depuración con LLDB y comandos po":
+    "en la consola de depuración, el comando po evalúa e imprime descripciones de objetos de Foundation en tiempo real.",
+  "Herramienta Leaks y Allocations en Instruments":
+    "en el análisis de memoria de Xcode, Instruments traza el grafo de objetos identificando retenciones cíclicas y fugas no reclamadas.",
+  "Time Profiler y cuellos de botella de CPU":
+    "en el perfilado de rendimiento, muestreos estadísticos identifican métodos de Cocoa que saturan el hilo principal.",
+  "Zombies y depuración de memoria liberada":
+    "en la detección de errores de memoria, activar NSZombieEnabled convierte objetos liberados en centinelas que reportan selectores ilegales.",
+  "Clang Static Analyzer integrado":
+    "en el análisis estático de código, el analizador detecta posibles fugas de memoria, nulos accidentales y lógicas inconsistentes antes del build.",
+  "Pruebas unitarias con XCTest":
+    "en la suite de pruebas, casos de XCTest verifican invariantes y aserciones sobre clases históricas garantizando ausencia de regresiones.",
+
+  // C*
+  "Front end y processing elements":
+    "en la arquitectura de la Connection Machine, el ordenador anfitrión emite órdenes escalares hacia miles de procesadores elementales paralelos.",
+  "Modelo SIMD puro":
+    "en el cómputo masivamente paralelo, una única instrucción se propaga y ejecuta simultáneamente sobre todos los procesadores activos de la máquina.",
+  "Memoria distribuida masiva":
+    "en la organización física, cada procesador elemental gestiona su propia memoria local comunicándose con otros a través de la red interna.",
+  "Máquinas CM-2 y CM-5":
+    "en la evolución de supercomputadores, la arquitectura transitó desde procesadores SIMD bit-serial hacia nodos SPARC MIMD con red sincronizada.",
+  "Microcódigo del secuenciador":
+    "en el control de hardware, el secuenciador traduce instrucciones paralelas de alto nivel en microinstrucciones de ciclo elemental.",
+  "Toolchain de compilación C*":
+    "en la construcción de software, el compilador cs traduce código paralelo separando el flujo escalar del host de las instrucciones de nodos.",
+  "Definición de shapes":
+    "en la topología de datos de C*, el shape define las dimensiones geométricas de la cuadrícula sobre la que residen las variables paralelas.",
+  "Coordenadas intrínsecas pcoord":
+    "en la localización espacial, la función pcoord devuelve a cada procesador su coordenada en la dimensión de la cuadrícula consultada.",
+  "Mapeo de shapes físicos y virtuales":
+    "en la virtualización de procesadores, el runtime asigna millones de celdas lógicas sobre miles de procesadores físicos repartiendo ciclos.",
+  "Dimensiones múltiples en shapes":
+    "en el modelado espacial, shapes bidimensionales y tridimensionales representan mallas de elementos finitos y matrices densas.",
+  "Variables paralelas (poly)":
+    "en la asignación distribuida, las variables poly residen con una instancia independiente en la memoria local de cada procesador.",
+  "Alineación de shapes compatibles":
+    "en las operaciones paralelas, variables poly que comparten el mismo shape se combinan aritméticamente elemento a elemento sin comunicación.",
+  "Calificador poly":
+    "en la semántica de tipos de C*, poly declara que el dato existe paralelamente en todos los elementos activos del dominio actual.",
+  "Active set de procesadores":
+    "en la selección paralela, las compuertas lógicas activan o inhiben procesadores según su estado local antes de aplicar la instrucción.",
+  "Contextos de ejecución paralela":
+    "en la delimitación de alcance, bloques with establecen el shape activo sobre el que se ejecutan las expresiones paralelas siguientes.",
+  "Operaciones mono sobre poly":
+    "en el intercambio de datos, valores escalares mono se difunden a procesadores paralelos o se reducen a un resultado único.",
+  "Punteros paralelos a memoria poly":
+    "en el direccionamiento distribuido, punteros paralelos permiten a un elemento referenciar memoria ubicada en otros nodos de la máquina.",
+  "Persistencia de estado en memoria local":
+    "en la memoria distribuida, variables poly conservan su valor entre llamadas sucesivas sin necesidad de guardarse en almacenamiento externo.",
+  "Sentencia where paralela":
+    "en el filtrado condicional, la cláusula where evalúa una máscara booleana reduciendo el active set sin saltos en el contador de programa.",
+  "Cláusula elsewhere":
+    "en la bifurcación paralela, elsewhere invierte la máscara condicional ejecutando la rama alternativa en los nodos previamente inhibidos.",
+  "Anidamiento de bloques where":
+    "en la restricción sucesiva, where anidados aplican conjunciones lógicas de máscaras acotando progresivamente los procesadores participantes.",
+  "Condiciones sin saltos de programa":
+    "en la ejecución SIMD, las sentencias condicionales deshabilitan escrituras en procesadores sin desviar el flujo secuencial del anfitrión.",
+  "Impacto en rendimiento por divergencia":
+    "en la ejecución paralela, caminos condicionales dispares se evalúan secuencialmente sumando los tiempos de ejecución de cada rama.",
+  "Máscaras de borde y fronteras":
+    "en simulaciones físicas, máscaras geométricas aíslan celdas perimetrales aplicando condiciones de contorno fijas.",
+  "Operador de reducción += y suma global":
+    "en el árbol de hardware, operadores de reducción suman los valores de todos los procesadores en un único escalar en tiempo logarítmico.",
+  "Reducciones de mínimo y máximo":
+    "en el análisis global, reducciones de extremos encuentran el valor límite o mayor divergencia en toda la cuadrícula distribuida.",
+  "Reducción lógica and y or":
+    "en la evaluación de criterios globales, reducciones lógicas verifican si todos o algún procesador han alcanzado la condición de parada.",
+  "Scans de prefijos y sumas acumuladas":
+    "en el paralelismo de datos, operaciones de escaneo calculan sumas prefijas a lo largo de ejes coordenados en tiempo logarítmico.",
+  "Segmented scans con banderas de reinicio":
+    "en los escaneos segmentados, banderas booleanas reinician el acumulador calculando prefijos independientes por partición.",
+  "Árboles de reducción por hardware":
+    "en los circuitos integrados de la Connection Machine, redes combinacionales dedicadas resuelven sumas globales a velocidad de silicio.",
+  "Red de interconexión Hypercube":
+    "en el enrutador de Thinking Machines, paquetes cruzan un hipercubo de múltiples dimensiones resolviendo comunicaciones arbitrarias.",
+  "Comunicación con vecinos NEWS":
+    "en la cuadrícula contigua, procesadores intercambian valores con vecinos de norte, sur, este y oeste a través de enlaces rápidos de red.",
+  "El router general de la CM":
+    "en la conmutación de paquetes, el router resuelve transferencias punto a punto arbitrarias gestionando colisiones y desvíos en tránsito.",
+  "Conflictos de envío y combinadores":
+    "en la recepción de colisiones, combinadores aritméticos suman o eligen el valor ganador cuando múltiples mensajes convergen en el mismo destino.",
+  "Latencia de comunicación vs cálculo local":
+    "en la optimización masivamente paralela, algoritmos eficientes priorizan cómputo local y comunicación con vecinos cercanos sobre el router general.",
+  "Permutaciones y transposiciones de matrices":
+    "en el álgebra paralela, patrones de comunicación precalculados rotan y transponen matrices distribuidas sin contención de red.",
+  "Arquitectura DataVault de I/O paralelo":
+    "en el almacenamiento masivo, múltiples cabezales de disco leen y escriben simultáneamente hacia arreglos de procesadores a gigabytes por segundo.",
+  "Instrucciones de bajo nivel Paris":
+    "en el lenguaje de interfaz del secuenciador, primitivas Paris manipulan directamente registros y operaciones de los procesadores de la máquina.",
+  "Entorno de visualización Prism":
+    "en la consola gráfica de Thinking Machines, Prism visualiza mapas térmicos y estados de procesamiento de la máquina en tiempo real.",
+  "Influencia de C* en CUDA y compute shaders":
+    "en la genealogía computacional, conceptos de shapes, variables poly y máscaras de C* anticiparon los hilos, warps y kernels de las GPUs modernas.",
+  "Paralelismo de datos moderno":
+    "en la computación contemporánea, instrucciones vectoriales AVX-512 y tensores heredan la semántica SIMD unificada de las supercomputadoras históricas.",
+  "Lecciones de diseño en HPC":
+    "en el diseño de supercómputo, el balance entre ancho de banda de comunicación y densidad de cálculo local permanece como principio rector inmutable.",
+
+  // CWEB
+  "Filosofía de la programación literaria":
+    "en la propuesta de Knuth, el código y la narrativa ensayística coexisten como un libro técnico estructurado para la comprensión humana.",
+  "Dualidad fuente única (.w)":
+    "en el archivo fuente unificado, un solo documento contiene tanto el texto tipográfico con fórmulas como la implementación de software.",
+  "Inversión de orden estructural":
+    "en la composición literaria, los conceptos se exponen en el orden conceptual más comprensible sin atarse a las restricciones top-down del compilador.",
+  "Prosa intercalada y tipografía":
+    "en la documentación técnica, TeX renderiza expresiones matemáticas, diagramas y descripciones precisas intercaladas entre fragmentos de código.",
+  "Fragmentos nombrados como abstracción":
+    "en la descomposición literaria, bloques de código nombrados reemplazan comentarios y se ensamblan en cualquier orden explicativo.",
+  "Indexación automática de identificadores":
+    "en el procesamiento documental, cada variable y función se cataloga en un índice alfabético exhaustivo con referencias a todas sus apariciones.",
+  "Secciones numeradas automáticamente":
+    "en la estructura del libro, secciones secuenciales dividen el razonamiento algorítmico sirviendo como anclas precisas para referencias cruzadas.",
+  "Sintaxis @<Fragmento@>=":
+    "en la definición literaria, delimitadores con arroba definen el nombre descriptivo de un fragmento de código reutilizable.",
+  "Fragmentos acumulativos":
+    "en la construcción progresiva, múltiples bloques bajo el mismo nombre acumulan código secuencialmente a medida que se explican detalles adicionales.",
+  "Secciones estrella @* (capítulos)":
+    "en la jerarquía del libro, secciones mayores encabezan partes y capítulos principales organizando programas de gran escala.",
+  "Fragmentos sin nombre @c":
+    "en el punto de entrada de compilación, bloques arroba-c declaran código inicial que servirá como raíz para el ensamblado del archivo C.",
+  "Comentarios y texto verbatim @=":
+    "en la tipografía de TeX, secuencias verbatim presentan caracteres especiales y símbolos de código sin interpretación de comandos.",
+  "Proceso de Tangling":
+    "en la herramienta CTANGLE, los fragmentos se leen y reordenan recursivamente eliminando la prosa para emitir código C válido con directivas de línea.",
+  "Directivas #line de sincronización":
+    "en la integración con herramientas, CTANGLE inyecta números de línea del archivo .w original permitiendo que depuradores apunten a la fuente literaria.",
+  "Eliminación de prosa explicativa":
+    "en la generación del compilador, toda la narrativa y fórmulas se omiten entregando al preprocesador de C un archivo limpio y optimizado.",
+  "Manejo de macros de preprocesador":
+    "en las definiciones literarias, la directiva arroba-d define constantes y macros tipográficas sincronizadas con el código generado.",
+  "Soporte para código C++ (@+ y @-)":
+    "en el formateador de CWEB, directivas especiales controlan indentaciones y formatos propios de clases y operadores de C++.",
+  "Automatización en Makefiles y build systems":
+    "en el flujo de compilación, reglas de Makefile automatizan la llamada a CTANGLE para compilar y CWEAVE para producir la documentación PDF.",
+  "Proceso de Weaving":
+    "en la herramienta CWEAVE, la prosa y el código se transforman en un documento TeX con resaltado sintáctico, referencias cruzadas e índices automáticos.",
+  "Pretty printing automático":
+    "en la presentación visual, palabras clave en negrita, identificadores en cursiva y operadores alineados embellecen el código fuente.",
+  "Referencias cruzadas de fragmentos":
+    "en el índice tipográfico, cada fragmento documenta las secciones precisas donde se define y todos los lugares donde es consumido.",
+  "Construcción de tablas de contenido":
+    "en la encuadernación digital, CWEAVE genera el sumario temático navegable de capítulos, secciones y apéndices del programa.",
+  "El archivo de formato cwebmac.tex":
+    "en el diseño tipográfico, un paquete de macros de TeX define dimensiones de página, fuentes y encabezados del libro de código.",
+  "Generación de PDF interactivo":
+    "en la publicación moderna, pdfTeX compila la salida de CWEAVE produciendo un documento con hipervínculos bidireccionales interactivos.",
+  "El concepto de change file (.ch)":
+    "en el control de parches literarios, bloques de sustitución adaptan el programa a plataformas específicas sin bifurcar el documento principal.",
+  "Bloques de reemplazo @x, @y, @z":
+    "en la aplicación de parches, el change file busca el bloque coincidente entre x e y sustituyéndolo quirúrgicamente por el contenido de y a z.",
+  "Validación estricta de contexto":
+    "en la seguridad del parche, CTANGLE y CWEAVE rechazan cambios si el texto original no coincide carácter por carácter previniendo parches desalineados.",
+  "Capas de adaptación multiplataforma":
+    "en el soporte de sistemas, archivos .ch separados mantienen variantes para Linux, Windows o embebidos conservando un único .w maestro.",
+  "Facilidad de actualización del original":
+    "en la evolución de software, correcciones en el archivo principal .w se propagan automáticamente mientras los change files conservan sus diferencias locales.",
+  "Auditoría transparente de parches":
+    "en la revisión de código, la lectura del archivo .ch expone con total transparencia las adaptaciones mínimas exigidas por el entorno.",
+  "Directiva de definición @d":
+    "en la parametrización literaria, directivas arroba-d declaran constantes documentadas que CTANGLE traduce como directivas define de C.",
+  "Directiva de formato @f":
+    "en el análisis tipográfico, arroba-f enseña a CWEAVE a tratar identificadores nuevos con el mismo estilo tipográfico de tipos nativos o palabras clave.",
+  "Exclusión de términos del índice @!":
+    "en la curaduría documental, marcadores especiales excluyen variables triviales para mantener el índice analítico enfocado en conceptos clave.",
+  "Citas tipográficas en prosa |variable|":
+    "en la integración textual, encerrar identificadores entre barras verticales aplica el formato tipográfico exacto del código dentro de la prosa.",
+  "Manejo de caracteres especiales TeX":
+    "en la sintaxis de escape, secuencias dobles protegen caracteres reservados permitiendo escribir fórmulas complejas sin errores de compilación.",
+  "Garantía de completitud del índice":
+    "en la exhaustividad literaria, ningún identificador declarado escapa al índice garantizando trazabilidad total de la obra.",
+  "Depuración con LLDB y GDB sobre .w":
+    "en la sesión de depuración, el depurador salta a los párrafos del archivo literario original gracias a las directivas line generadas por CTANGLE.",
+  "Pruebas de software literarias":
+    "en la verificación formal, casos de prueba y condiciones de borde se explican como teoremas dentro del texto antes de su ejecución.",
+  "CWEB frente a herramientas docgen (Doxygen)":
+    "en el contraste arquitectónico, CWEB organiza el programa alrededor de la narrativa humana mientras Doxygen extrae comentarios de estructuras técnicas.",
+  "CWEB frente a Notebooks modernos (Jupyter)":
+    "en la comparación evolutiva, CWEB prioriza una obra unificada e inmutable para lectura y compilación frente a la naturaleza interactiva de celdas ejecutables.",
+  "Mantenibilidad a largo plazo":
+    "en la preservación de software, programas escritos en CWEB continúan siendo legibles y compilables con absoluta precisión décadas después de su creación.",
+  "El legado de Donald Knuth":
+    "en la historia de la informática, TeX y METAFONT permanecen como monumentos vivientes del poder de la programación literaria para crear software libre de errores.",
+
+  // Embedded C
+  "CPU, buses y periféricos":
+    "en la placa de silicio, el procesador se comunica con temporizadores, conversores y puertos mediante buses AHB y APB de alta velocidad.",
+  "Flash, SRAM y memoria no volátil":
+    "en la partición física, la memoria Flash almacena instrucciones inmutables mientras la SRAM sostiene variables de trabajo y pilas de ejecución.",
+  "Startup code y vector table":
+    "en el arranque eléctrico, el código de inicialización configura la tabla de vectores y copia segmentos antes de transferir el control a main.",
+  "Linker scripts (.ld)":
+    "en el mapa de enlace, directivas del script colocan secciones de texto, datos y bss en direcciones físicas específicas de Flash y RAM.",
+  "Puntero de pila (MSP/PSP) y límites de RAM":
+    "en la gestión de pila de ARM Cortex, el Main Stack Pointer y Process Stack Pointer aíslan excepciones del sistema de tareas de aplicación.",
+  "Sistemas de reloj y PLL":
+    "en el árbol de reloj, lazos de seguimiento de fase multiplican la frecuencia del oscilador de cristal para sincronizar periféricos y núcleos.",
+  "Memory-mapped I/O (MMIO)":
+    "en el mapa de memoria del microcontrolador, escribir en una dirección física concreta conmuta señales eléctricas de los pines de entrada y salida.",
+  "El calificador volatile en hardware":
+    "en registros de hardware que mutan fuera del hilo de la CPU, volatile fuerza lecturas directas evitando que el compilador las almacene en caché.",
+  "Máscaras de bits y operaciones atómicas":
+    "en la manipulación de registros, operaciones lógicas or, and y not activan banderas de control sin corromper campos adyacentes.",
+  "Bit-banding y acceso directo a bits":
+    "en la arquitectura Cortex-M, regiones de bit-banding mapean celdas de palabra a bits individuales permitiendo mutaciones atómicas sin lecturas previas.",
+  "Barreras de memoria de hardware (DMB, DSB, ISB)":
+    "en el pipeline de instrucciones, barreras de datos e instrucciones fuerzan la finalización de transferencias antes de continuar la ejecución.",
+  "Definiciones CMSIS y estructuras periféricas":
+    "en las cabeceras estandarizadas de ARM, estructuras de C representan registros periféricos contiguos facilitando el acceso tipado y portable.",
+  "Rutinas de servicio de interrupción (ISR)":
+    "en la respuesta a eventos eléctricos, la CPU interrumpe el flujo principal, ejecuta la rutina prioritaria y reanuda el superloop.",
+  "Controlador de interrupciones NVIC":
+    "en la gestión de prioridades, el NVIC arbitra interrupciones concurrentes y anidadas determinando la prioridad inmediata de ejecución.",
+  "Latencia de interrupción y jitter":
+    "en los sistemas de tiempo real, el guardado de contexto de registros introduce una latencia predecible de pocos ciclos de reloj.",
+  "Interrupciones anidadas y priorización":
+    "en la jerarquía de eventos, interrupciones de mayor prioridad interrumpen la atención de eventos menores asegurando respuesta a fallos críticos.",
+  "Secciones críticas y desactivación temporal":
+    "en la protección de recursos compartidos, desactivar momentáneamente interrupciones previene condiciones de carrera durante escrituras críticas.",
+  "Compartición de datos atómica con ISRs":
+    "en la comunicación con interrupciones, colas circulares sin cerrojos o variables atómicas transfieren información de forma segura a main.",
+  "Controlador DMA (Direct Memory Access)":
+    "en transferencias de alta velocidad, el DMA traslada bloques de datos entre periféricos y RAM sin consumir ciclos del procesador.",
+  "Modo circular de DMA":
+    "en la captura continua de streams, el DMA reinicia automáticamente el puntero de memoria al alcanzar el final del buffer asignado.",
+  "Interrupciones Half-Transfer y Transfer-Complete":
+    "en la coordinación de buffers, banderas de mitad y completitud señalan cuándo procesar una porción sin detener la adquisición.",
+  "Double buffering sin carreras":
+    "en la recepción continua de muestras, el DMA escribe en la mitad libre de la memoria mientras la CPU procesa la mitad ya completada.",
+  "Coherencia de caché y atributos de memoria":
+    "en microcontroladores con caché de datos, operaciones de limpieza e invalidación sincronizan memorias intermedias con transferencias DMA.",
+  "Manejo de errores de bus en DMA":
+    "en la robustez del bus, excepciones de error de transferencia capturan colisiones o accesos a regiones desalineadas en hardware.",
+  "Protocolo UART y framing de bytes":
+    "en la comunicación serie asíncrona, bits de inicio, datos, paridad y parada estructuran la recepción en registros FIFO de hardware.",
+  "Bus serie SPI síncrono":
+    "en la transferencia de alta velocidad, líneas de reloj, datos de entrada y salida transmiten paquetes en modo full-duplex sincronizados por Chip Select.",
+  "Bus I2C bifilar y direccionamiento":
+    "en el bus serie direccionable, señales de reloj SCL y datos SDA coordinan múltiples periféricos mediante arbitraje de maestro y esclavo.",
+  "Detección de timeouts y bus hang":
+    "en la recuperación de bus, temporizadores de guardia detectan líneas de datos atascadas en bajo forzando secuencias de desbloqueo manual.",
+  "Control de flujo por hardware (RTS/CTS)":
+    "en las líneas eléctricas serie, señales de control pausan la transmisión del transmisor cuando el receptor satura su capacidad de búfer.",
+  "Superloop y máquinas de estado":
+    "en el firmware determinista, un bucle continuo interroga banderas de tiempo ejecutando transiciones de estado sin sobrecoste de SO.",
+  "Planificador preemptivo de FreeRTOS":
+    "en el sistema operativo en tiempo real, el timer de SysTick evalúa prioridades conmutando contextos de tarea con latencia mínima.",
+  "Colas de mensajes inter-tarea":
+    "en la mensajería entre hilos, colas protegidas por el RTOS copian descriptores desacoplando tareas productoras de consumidoras.",
+  "Semáforos binarios y mutexes en RTOS":
+    "en la sincronización de tareas, primitivas de RTOS garantizan exclusión mutua de puertos físicos coordinando señales de finalización.",
+  "Inversión de prioridad y herencia":
+    "en la prevención de bloqueos, el mecanismo de herencia de prioridad eleva temporalmente la tarea que retiene un cerrojo compartido.",
+  "Worst-Case Execution Time (WCET)":
+    "en el diseño temporal estricto, el cálculo del peor camino de ejecución asegura que todas las tareas completen dentro de su plazo fatal.",
+  "Modos de bajo consumo (Sleep, Stop, Standby)":
+    "en la conservación energética, apagar osciladores y desenergizar periféricos reduce el consumo de microamperios en periodos de inactividad.",
+  "Fuentes de despertar (Wake-up sources)":
+    "en la reanudación de actividad, pulsos en pines de GPIO o alarmas de RTC despiertan al procesador devolviéndolo a su frecuencia nominal.",
+  "Instrucciones WFI (Wait For Interrupt) y WFE":
+    "en la detención de núcleos, instrucciones WFI suspenden el reloj de la CPU hasta la llegada de la siguiente interrupción de hardware.",
+  "Presupuesto energético y duty cycling":
+    "en dispositivos autónomos, ráfagas breves de procesamiento alternadas con sueño profundo extienden la vida útil de baterías por años.",
+  "Restauración de relojes al despertar":
+    "en la secuencia de reactivación, el firmware reconfigura multiplicadores de frecuencia antes de comunicarse con sensores externos.",
+  "Watchdog independiente (IWDG)":
+    "en la seguridad de hardware, un oscilador independiente fuerza el reinicio del sistema si el firmware no restablece la cuenta a tiempo.",
+  "Watchdog con ventana (WWDG)":
+    "en la vigilancia temporal estricta, la tarea debe refrescar el temporizador dentro de una ventana de tiempo predefinida ni antes ni después.",
+  "Detector de caídas de tensión (Brown-out Reset)":
+    "en la protección de alimentación, circuitos de brown-out congelan el microcontrolador en estado de reset seguro ante caídas de voltaje.",
+  "Registro de causas de reinicio (RCC CSR)":
+    "en la trazabilidad de arranque, banderas en registros de control identifican si el inicio se debió a reinicio manual, caída eléctrica o watchdog.",
+  "Estado seguro físico ante fallo (Fail-Safe)":
+    "en la seguridad funcional, resistencias pull-down y salidas desconectadas llevan la maquinaria a una postura pasiva ante fallos críticos.",
+  "Bootloaders primarios y secundarios":
+    "en la gestión de imágenes de software, el cargador de arranque valida firmas criptográficas antes de saltar a la aplicación en Flash.",
+  "Esquema de doble partición (A/B updates)":
+    "en actualizaciones inalámbricas, el firmware nuevo se escribe en el slot alterno permitiendo rollback automático si falla el arranque.",
+  "Comprobación de integridad CRC32 y SHA-256":
+    "en la verificación de memoria, aceleradores de hardware calculan sumas de verificación asegurando que el binario en Flash no se haya corrompido.",
+  "Protección de lectura de Flash (RDP)":
+    "en la protección contra ingeniería inversa, niveles de protección RDP bloquean el acceso al código a través de puertos de depuración física.",
+  "Reglas MISRA-C en firmware crítico":
+    "en el desarrollo automotriz e industrial, estándares MISRA-C eliminan construcciones ambiguas y operadores peligrosos del lenguaje.",
+  "Protocolos de depuración SWD y JTAG":
+    "en la interfaz de desarrollo, sondas de depuración leen y escriben registros de CPU y memoria mediante dos o cuatro líneas de señal.",
+  "Puntos de ruptura por hardware (Hardware Breakpoints)":
+    "en la inspección en vivo, comparadores de hardware detienen el procesador en direcciones específicas de Flash sin alterar el código grabado.",
+  "HardFault Handler y análisis de stack":
+    "en el diagnóstico de caídas, la rutina de excepción captura los registros PC y LR apilados localizando la instrucción exacta del fallo.",
+  "Instrumentación ligera con Segger RTT":
+    "en la telemetría sin latencia, buffers circulares en RAM transmiten texto a la PC en microsegundos sin frenar el flujo del procesador.",
+  "Pruebas Hardware-in-the-Loop (HIL)":
+    "en la validación física, bancos de prueba electrónicos inyectan señales de sensores reales evaluando la respuesta del firmware bajo estrés.",
+
+  // C#
+  "Value y reference types":
+    "en la gestión de tipos de .NET, tipos de valor encapsulan datos directamente mientras tipos de referencia manejan punteros al heap administrado.",
+  "Variables nullable y análisis de flujo":
+    "en el compilador de C#, el análisis estático alerta sobre accesos a variables que podrían contener null antes de su desreferenciación.",
+  "Conversiones y pattern variables":
+    "en la comprobación de tipos, pattern matching evalúa la compatibilidad asignando variables fuertemente tipadas en una sola expresión.",
+  "Tuples y deconstruction":
+    "en la manipulación de datos ligeros, tuplas nombradas agrupan valores y los deconstruyen limpiamente en variables independientes.",
+  "Enums y flags con operaciones de bits":
+    "en los conjuntos de opciones, enumeraciones con atributo Flags combinan máscaras de bits mediante operadores lógicos or y and.",
+  "Sintaxis Target-typed new":
+    "en la simplificación de código, la palabra clave new omite la repetición del tipo cuando este se infiere directamente del contexto.",
+  "Raw string literals e interpolación avanzada":
+    "en el formateo de texto, literales de cadena sin formato permiten incrustar bloques de JSON multilínea sin caracteres de escape.",
+  "Classes y encapsulación":
+    "en la arquitectura de objetos, modificadores de acceso y constructores aseguran que las propiedades cumplan invariantes del dominio.",
+  "Structs readonly y ref structs":
+    "en la optimización de memoria, ref structs se confinan estrictamente a la pila impidiendo que sean promovidos al heap administrado.",
+  "Records y records struct":
+    "en el modelado inmutable, los records ofrecen igualdad por valor, constructores primarios y mutación no destructiva con la cláusula with.",
+  "Interfaces y default interface methods":
+    "en la evolución de APIs, métodos por defecto en interfaces proporcionan implementaciones de respaldo sin romper implementadores existentes.",
+  "Required members y modificador init":
+    "en la inicialización de objetos, modificadores required exigen inicializar propiedades clave al instanciar la clase.",
+  "Primary constructors en clases y structs":
+    "en la sintaxis moderna de C#, parámetros de constructor declarados en la cabecera de la clase se asignan directamente al estado interno.",
+  "Jerarquías selladas (sealed)":
+    "en la optimización del compilador, la palabra clave sealed bloquea la herencia permitiendo que llamadas virtuales se desvirtualicen en llamadas directas.",
+  "Switch expressions exhaustivas":
+    "en el control funcional, expresiones switch emparejan patrones de tipos y propiedades garantizando cobertura total de casos.",
+  "Property y relational patterns":
+    "en la evaluación de condiciones, patrones de propiedades comparan campos anidados y rangos numéricos sin encadenar múltiples sentencias if.",
+  "List patterns y slices":
+    "en el emparejamiento de colecciones, patrones de lista identifican prefijos, sufijos y elementos centrales mediante operadores de rango.",
+  "Type testing y cast seguro (is/as)":
+    "en la verificación de tipos, el operador is comprueba la clase y enlaza una variable tipada descartando conversiones inválidas.",
+  "Patrones posicionales y Tuple patterns":
+    "en el análisis multidimensional, tuplas deconstruidas evalúan combinaciones de estado de forma tabular y legible.",
+  "Exceptions y exception filters (when)":
+    "en la captura de fallos, cláusulas when inspeccionan el contenido del error sin desenrollar el marco de pila innecesariamente.",
+  "Using declarations y await using":
+    "en la gestión determinista de recursos, declaraciones using invocan automáticamente a Dispose o DisposeAsync al salir del ámbito.",
+  "Generic constraints (where)":
+    "en los contratos genéricos, cláusulas where restringen parámetros de tipo a interfaces, clases no administradas o constructores públicos.",
+  "Varianza en interfaces (in/out)":
+    "en el polimorfismo genérico, modificadores in y out habilitan covarianza y contravarianza para intercambiar colecciones de forma segura.",
+  "Delegates, acciones, funciones y lambdas":
+    "en la programación funcional de C#, expresiones lambda capturan estado léxico permitiendo despachar funciones como parámetros de primer orden.",
+  "LINQ deferred execution":
+    "en las consultas LINQ, la expresión define una canalización perezosa que solo se evalúa al recorrerla con foreach o materializarla con ToList.",
+  "IEnumerable e IQueryable":
+    "en la ejecución de consultas, IEnumerable opera en memoria mientras IQueryable traduce árboles de expresiones a sentencias SQL remotas.",
+  "Expresiones de colección y spread operator":
+    "en la inicialización unificada de C# 12, corchetes y el operador de propagación combinan arrays, listas y spans con sintaxis uniforme.",
+  "Métodos de extensión y composición funcional":
+    "en la modularización fluida, métodos de extensión añaden operaciones a tipos existentes sin modificar sus definiciones originales.",
+  "Task y async/await":
+    "en el modelo asíncrono basado en tareas, await cede el hilo al ThreadPool y reanuda la continuación una vez completada la operación de red o disco.",
+  "CancellationToken y cancelación cooperativa":
+    "en la propagación de interrupciones, el token de cancelación notifica a todas las tareas asíncronas para abortar limpiamente.",
+  "ConfigureAwait y sincronización de contexto":
+    "en la optimización de librerías, ConfigureAwait false evita el regreso forzado al hilo de UI reduciendo contención de sincronización.",
+  "IAsyncEnumerable y streams asíncronos":
+    "en el procesamiento reactivo de flujos, await foreach consume elementos uno a uno a medida que se generan de forma asíncrona.",
+  "ValueTask e IValueTaskSource":
+    "en operaciones de alto rendimiento, ValueTask evita reservar objetos Task en el heap cuando las operaciones concluyen de forma síncrona.",
+  "Manejo de excepciones en Task.WhenAll":
+    "en la ejecución paralela, Task.WhenAll espera todas las operaciones agregando cualquier fallo en una AggregateException trazable.",
+  "Channels para productor-consumidor":
+    "en la arquitectura asíncrona, canales con límite de capacidad coordinan productores y consumidores aplicando backpressure natural.",
+  "Span<T>, ReadOnlySpan<T> y memoria contigua":
+    "en el procesamiento de alto rendimiento, Span permite inspeccionar segmentos de memoria contigua en la pila con cero asignaciones en el heap.",
+  "Memory<T> e IMemoryOwner<T>":
+    "en buffers asíncronos que cruzan métodos, IMemoryOwner garantiza que la memoria alquilada vuelva ordenadamente al pool tras su consumo.",
+  "ArrayPool<T> y alquiler de buffers":
+    "en la mitigación de presión de recolección de basura, ArrayPool alquila y recicla matrices de bytes evitando fragmentar el Large Object Heap.",
+  "Boxing y unboxing de Value Types":
+    "en el rendimiento del runtime, evitar envolver tipos de valor en objetos de referencia previene asignaciones innecesarias de memoria.",
+  "Source Generators en compilación":
+    "en la generación estática de código, generadores de código de Roslyn analizan la sintaxis y emiten clases auxiliares en tiempo de compilación.",
+  "Modificador unsafe y punteros nativos":
+    "en interoperabilidad y algoritmos críticos, bloques unsafe permiten aritmética de punteros directa bajo supervisión explícita del desarrollador.",
+  "Interlocked y primitivas de bajo nivel":
+    "en operaciones atómicas de CPU, métodos Interlocked incrementan contadores e intercambian referencias sin coste de exclusión mutua pesada.",
+  "Analizadores Roslyn y reglas de estilo":
+    "en la calidad de código, analizadores estáticos inspeccionan el código en vivo aplicando reglas arquitectónicas y sugerencias de rendimiento.",
+  "Pruebas unitarias con xUnit y FluentAssertions":
+    "en la suite de pruebas, aserciones declarativas y verificaciones de comportamiento comprueban el cumplimiento estricto de las reglas de negocio.",
+  "Falsos y mocks con interfaces pequeñas":
+    "en el desacoplamiento para pruebas, dobles de prueba simulan servicios externos garantizando ejecuciones unitarias veloces y deterministas.",
+  "Diseño guiado por el dominio (DDD) en C#":
+    "en el modelado empresarial, entidades, objetos de valor y eventos de dominio encapsulan la lógica central del negocio con tipado riguroso.",
+  "Arquitectura limpia y puertos/adaptadores":
+    "en la estructura por capas, dependencias apuntan exclusivamente hacia el núcleo de la aplicación aislando interfaces de usuario y bases de datos.",
+  "Pruebas de arquitectura con NetArchTest":
+    "en el cumplimiento arquitectónico, pruebas unitarias verifican que ninguna capa interna referencie componentes de infraestructura externa.",
+  "Benchmarking con BenchmarkDotNet":
+    "en la medición de rendimiento, BenchmarkDotNet calcula con rigor estadístico nanosegundos y consumo de memoria de rutinas críticas.",
+
+  // Visual Basic
+  "Option Strict y tipado estricto":
+    "en el compilador de Visual Basic, Option Strict bloquea conversiones de tipo con estrechamiento implícito exigiendo casts explícitos y seguros.",
+  "Option Explicit y declaración obligatoria":
+    "en la validación sintáctica, Option Explicit exige declarar todas las variables previniendo la creación de campos accidentales por erratas.",
+  "Option Infer y tipos deducidos":
+    "en la inferencia local de tipos, Option Infer deduce el tipo estático de la variable según su expresión inicial conservando seguridad.",
+  "Variables, Dim y alcance (Scope)":
+    "en la visibilidad de datos, la instrucción Dim y modificadores de acceso delimitan el ciclo de vida de variables en bloques y módulos.",
+  "Procedures y Functions":
+    "en la modularización del código, Sub ejecuta acciones sin retorno mientras Function devuelve un valor fuertemente tipado al llamador.",
+  "Módulos estándar frente a Clases":
+    "en la organización de miembros, los módulos exponen funciones estáticas accesibles globalmente mientras las clases requieren instanciación.",
+  "Properties con Get y Set explícitos":
+    "en la encapsulación orientada a objetos, los bloques Get y Set aplican validaciones de rango antes de mutar los campos privados de la clase.",
+  "Auto-implemented Properties":
+    "en la sintaxis concisa, propiedades automáticas crean getters y setters estándar sin requerir la declaración manual del campo de respaldo.",
+  "Constructores Sub New y sobrecargas":
+    "en la inicialización de objetos, Sub New establece invariantes obligatorias invocando a MyBase.New para clases derivadas.",
+  "Herencia con Inherits y Overrides":
+    "en el polimorfismo de VB.NET, Overrides permite a clases hijas especializar métodos marcados como Overridable en la clase padre.",
+  "Interfaces con Implements explícito":
+    "en la adhesión a contratos, la cláusula Implements vincula explícitamente procedimientos de la clase a los métodos declarados por la interfaz.",
+  "Estructuras (Structure) y Value Types":
+    "en los datos ligeros, estructuras se transmiten por valor en la memoria de la pila siendo ideales para coordenadas y unidades matemáticas.",
+  "Eventos con Event y RaiseEvent":
+    "en el patrón de observación, RaiseEvent despacha notificaciones tipadas a todos los delegados suscritos en el entorno de la aplicación.",
+  "Cláusula Handles declarativa":
+    "en los formularios de Windows, la instrucción Handles conecta eventos de botones y controles a métodos gestores en tiempo de compilación.",
+  "Suscripción dinámica con AddHandler y RemoveHandler":
+    "en la gestión de listeners en runtime, AddHandler y RemoveHandler conectan y desconectan eventos previniendo fugas por referencias retenidas.",
+  "Custom Events y almacenamiento de delegates":
+    "en la optimización de memoria, Custom Events almacenan suscriptores en estructuras especializadas reduciendo el sobrecoste en listas masivas.",
+  "WithEvents y variables con eventos":
+    "en los campos con escucha de eventos, WithEvents habilita la conexión automática de eventos mediante la sintaxis Handles en la clase.",
+  "Eliminación de suscripciones en Dispose":
+    "en la limpieza del ciclo de vida, desvincular handlers en el método Dispose garantiza que formularios antiguos sean reclamados por el recolector de basura.",
+  "Colecciones genéricas List(Of T) y Dictionary":
+    "en las colecciones tipadas, listas y diccionarios genéricos almacenan elementos sin sobrecoste de boxing ni riesgo de conversión inválida.",
+  "Sintaxis declarativa de LINQ (From ... In ... Select)":
+    "en la manipulación de colecciones, consultas legibles similares a SQL filtran y proyectan datos tipados en memoria.",
+  "Operadores Where, Order By y Group By":
+    "en el procesamiento de datos, cláusulas de LINQ ordenan y agrupan colecciones estructuradas con sintaxis declarativa limpia.",
+  "Ejecución diferida en LINQ":
+    "en la evaluación de consultas, la ejecución diferida garantiza que el filtrado ocurra al iterar el resultado y no en la definición.",
+  "Anonymous Types y proyecciones":
+    "en la proyección de datos, tipos anónimos seleccionan columnas y cálculos intermedios sin crear clases de modelo manuales.",
+  "Funciones Lambda multilínea y de una línea":
+    "en las expresiones funcionales, operadores Function y Sub anónimos pasan comportamiento encapsulado a métodos y eventos.",
+  "Literales XML incrustados en código":
+    "en la integración de datos de VB.NET, árboles XML se escriben directamente en el editor con validación de sintaxis en tiempo de diseño.",
+  "Expresiones embebidas <%= %> en XML":
+    "en la interpolación de datos XML, expresiones embebidas insertan variables dinámicas dentro de nodos y atributos de forma tipada.",
+  "Ejes XML y navegación de nodos (...<nodo>)":
+    "en la consulta de documentos XML, operadores de eje permiten navegar hijos y atributos directamente mediante sintaxis nativa.",
+  "LINQ to XML y transformaciones de datos":
+    "en la manipulación documental, objetos XElement y XDocument leen, modifican y serializan estructuras XML con facilidad expresiva.",
+  "Serialización tipada de esquemas":
+    "en la persistencia de datos, la validación contra esquemas garantiza que los documentos XML generados cumplan contratos formales.",
+  "Casos de uso en configuración y Office":
+    "en la automatización de escritorio, literales XML simplifican la generación de documentos para suites ofimáticas y archivos de configuración.",
+  "Modificador Async y operador Await":
+    "en la asincronía de Visual Basic, Async y Await delegan operaciones de entrada y salida liberando el hilo principal de la interfaz.",
+  "Task y Task(Of TResult)":
+    "en las promesas asíncronas, objetos Task representan trabajos pendientes en segundo plano integrándose con el ecosistema de .NET.",
+  "CancellationToken en bucles asíncronos":
+    "en la cancelación de tareas, tokens de cancelación verifican solicitudes de parada abortando bucles asíncronos de forma ordenada.",
+  "Control de SynchronizationContext en WinForms":
+    "en la respuesta a interfaces de usuario, Await retoma la ejecución en el contexto de sincronización de UI actualizando controles de pantalla sin Invoke.",
+  "Manejo de excepciones con Try...Catch...Finally":
+    "en la robustez del código, bloques Try y Catch capturan fallos y Finally asegura la liberación obligatoria de recursos abiertos.",
+  "Uso de bloques Using en recursos asíncronos":
+    "en la desasignación garantizada, bloques Using llaman a Dispose automáticamente incluso si ocurren excepciones durante la ejecución.",
+  "Ciclo de vida del Form (Load, Shown, FormClosing)":
+    "en el ciclo de ventanas WinForms, eventos Load y FormClosing coordinan la inicialización de controles y la persistencia de cambios.",
+  "Data Binding tipado con BindingSource":
+    "en el enlace de datos, componentes BindingSource sincronizan colecciones de objetos de dominio con grillas y cajas de texto automáticamente.",
+  "Patrón Model-View-Presenter (MVP)":
+    "en la arquitectura de escritorio, el Presenter coordina las reglas del negocio desacoplando los formularios de la lógica de prueba.",
+  "Evitar congelamiento de UI con BackgroundWorker o Task":
+    "en la fluidez de ventanas, tareas en segundo plano procesan operaciones pesadas evitando que la interfaz gráfica deje de responder.",
+  "Validación de controles con ErrorProvider":
+    "en la experiencia de usuario, componentes ErrorProvider muestran iconos de alerta visual junto a campos con datos inválidos.",
+  "Arquitectura por componentes y UserControls":
+    "en la reutilización visual, controles de usuario modulares empaquetan paneles interactivos para integrarse en múltiples formularios.",
+  "Bibliotecas de clases interoperables con C#":
+    "en el ecosistema .NET unificado, ensamblados generados en Visual Basic se consumen transparentemente desde proyectos en C# y viceversa.",
+  "Consumo de metadatos Nullable de C#":
+    "en la compatibilidad entre lenguajes, el compilador interpreta anotaciones de nulabilidad de C# alertando sobre posibles referencias nulas.",
+  "Interoperabilidad con COM nativo y ActiveX":
+    "en la modernización gradual, wrappers de interoperabilidad COM permiten a aplicaciones .NET comunicarse con componentes antiguos de Windows.",
+  "Pruebas unitarias con MSTest y xUnit":
+    "en la garantía de calidad, pruebas automatizadas validan métodos de presentadores y servicios de datos de forma aislada.",
+  "Estrategia de modernización desde VB6":
+    "en la evolución empresarial, aislar llamadas COM y migrar formularios hacia clases tipadas de .NET asegura continuidad operativa.",
+  "Perfilado de memoria y compilación cruzada":
+    "en el diagnóstico de producción, analizadores de memoria de Visual Studio detectan formularios retenidos y optimizan el consumo de RAM.",
+};
+
+/**
  * Colecciones con audio narraciones didácticas activas.
  * PR 1: Interfaces, Web y Móvil (9 colecciones + javascript base).
  * PR 2: Plataformas y Servidores (10 colecciones).
  * PR 3: Datos y Bases de Datos (10 colecciones).
  * PR 4: Fundamentos de la Computación (5 colecciones).
  * PR 5: Lenguajes Web y Modernos (6 colecciones).
+ * PR 6: Familia C, Embebidos y Compilados (8 colecciones).
  */
 export const AUDIO_ENABLED_COLLECTIONS = new Set<string>([
   // Base y PR 1
@@ -764,6 +1606,15 @@ export const AUDIO_ENABLED_COLLECTIONS = new Set<string>([
   "rust",
   "ruby",
   "php",
+  // PR 6: Familia C, Embebidos y Compilados
+  "c",
+  "cpp",
+  "c-sharp",
+  "objective-c",
+  "c-star",
+  "cweb",
+  "embedded-c",
+  "visual-basic",
 ]);
 
 export function isCollectionAudioEnabled(collectionId: string): boolean {
@@ -785,7 +1636,8 @@ function getVisualExplanation(concept: ConceptInput): string {
     PLATFORMS_VISUAL_EXPLANATIONS[concept.title] ??
     DATA_VISUAL_EXPLANATIONS[concept.title] ??
     FUNDAMENTALS_VISUAL_EXPLANATIONS[concept.title] ??
-    MODERN_LANGUAGES_VISUAL_EXPLANATIONS[concept.title];
+    MODERN_LANGUAGES_VISUAL_EXPLANATIONS[concept.title] ??
+    C_FAMILY_VISUAL_EXPLANATIONS[concept.title];
   if (bespoke) {
     return bespoke;
   }
@@ -1391,6 +2243,102 @@ export function getActionPresentationTrack(
           "En esta presentación interactiva, una orden comercial se procesa a través del ciclo de vida web de PHP en cinco etapas de seguridad. Primero, en Recepción de la petición HTTP, el flujo procesa el cuerpo JSON entrante dentro de un espacio de memoria completamente aislado por el servidor PHP-FPM. Segundo, en Validación del contrato con DTOs tipados, una clase inmutable castea atributos y rechaza campos ausentes o valores fuera de rango antes de tocar la base de datos. Tercero, en Detección de concatenación SQL insegura, el analizador detecta una consulta dinámica vulnerable a inyección deteniendo la persistencia. Cuarto, en Preparación con PDO, la sentencia se separa de los datos mediante consultas preparadas donde el driver enlaza los valores de forma segura sin interpretar código malicioso. Y quinto, en Confirmación transaccional y respuesta 201, una transacción atómica confirma los cambios en la base de datos emitiendo una respuesta HTTP estructurada con identificador de correlación.",
         visualOutcome:
           "la animación recrea el ciclo de vida de la petición web en PHP, resaltando la neutralización de la inyección SQL mediante sentencias preparadas y la confirmación atómica de la transacción con código de estado doscientos uno.",
+      });
+
+    case "c":
+      return buildPracticalPresentationAudioTrack("c", {
+        title: practical?.title ?? "C en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Caso integrado · Parser binario seguro",
+        family: "control explícito de memoria, ABI y programación defensiva de sistemas",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, un parser de telemetría binaria no confiable procesa paquetes en ocho etapas defensivas en C. Primero, en Recibir bytes, la función read captura un fragmento en un buffer acotado sin bloquear el proceso ante lecturas parciales. Segundo, en Validar cabecera, se verifican números mágicos, versión y longitud mínima rechazando tramas cortas antes de interpretar campos. Tercero, en Calcular capacidad, una suma comprobada con control de desbordamiento de size_t previene reservas insuficientes ante entradas maliciosas. Cuarto, en Reservar ownership, calloc adquiere memoria limpia en el heap con un único dueño responsable y bloque de limpieza explícito. Quinto, en Decodificar campos, memcpy transfiere los bytes a estructuras alineadas evitando accesos ilegales por aliasing o desalineación de hardware. Sexto, en Validar semántica, se comprueba que lecturas físicas como temperatura caigan dentro de rangos operativos reales descartando valores corruptos. Séptimo, en Probar entradas hostiles, compilación instrumentada con AddressSanitizer y UndefinedBehaviorSanitizer verifica que el parser resista fuzzing sin caídas silenciosas ni corrupción de memoria. Y octavo, en Liberar y observar, una función de limpieza idempotente libera la memoria adquirida y registra métricas sin fugar recursos ni dejar punteros colgantes.",
+        visualOutcome:
+          "la animación traza el flujo de bytes a través de las compuertas de validación de C, evidenciando el rechazo preventivo de tramas desbordadas, la decodificación segura en memoria contigua y la liberación limpia de recursos sin fugas.",
+      });
+
+    case "cpp":
+      return buildPracticalPresentationAudioTrack("cpp", {
+        title: practical?.title ?? "C++ en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Caso integrado · Simulador concurrente con RAII",
+        family: "abstracciones de costo cero, RAII determinista y concurrencia moderna",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, un simulador de rutas concurrente en C++ procesa escenarios en ocho fases de alto rendimiento. Primero, en Modelar el dominio, tipos fuertes inmutables expresan unidades físicas impidiendo mezclar costos o distancias por error. Segundo, en Adquirir recursos con RAII, un mapeo de archivo en memoria vincula la vida del descriptor al objeto liberando recursos automáticamente al salir del scope. Tercero, en Preparar trabajo con Ranges, vistas perezosas componen transformaciones y filtros sin copias temporales. Cuarto, en Ejecutar en paralelo con jthread, hilos modernos coordinan tareas independientes con unión automática y señales de parada cooperativa. Quinto, en Detectar carrera, la instrumentación con ThreadSanitizer localiza accesos concurrentes no coordinados en un vector compartido. Sexto, en Reducir sin compartir, el diseño migra hacia tareas que devuelven resultados mediante futuros evitando contención por cerrojos globales. Séptimo, en Perfilar localidad de datos, mediciones con perf y heaptrack optimizan el layout contiguo en caché reduciendo accesos indirectos a memoria. Y octavo, en Empaquetar y probar, CMake y pruebas automatizadas con CTest fijan la compatibilidad del ABI y garantizan resultados reproducibles.",
+        visualOutcome:
+          "la animación expone la orquestación de tareas en C++, destacando la eliminación de condiciones de carrera con ThreadSanitizer, el ordenamiento contiguo en caché y la gestión automática de recursos gobernada por RAII.",
+      });
+
+    case "objective-c":
+      return buildPracticalPresentationAudioTrack("objective-c", {
+        title: practical?.title ?? "Objective-C en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Caso integrado · Módulo iOS legado con frontera Swift",
+        family: "runtime dinámico de mensajes, semántica ARC y puentes con Swift",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, un módulo heredado de carga de imágenes en iOS se estabiliza y moderniza en ocho etapas de ingeniería en Objective-C. Primero, en Reproducir la fuga, una secuencia repetible en Instruments identifica que el controlador no se libera al cerrar la pantalla. Segundo, en Inspeccionar ownership, el grafo de retención revela un ciclo fuerte entre la operación de fondo, el bloque de callback y la instancia del controlador. Tercero, en Romper el ciclo, una referencia weakSelf combinada con strongSelf temporal en el bloque permite a ARC desasignar la vista si la pantalla se cierra antes de terminar la descarga. Cuarto, en Ordenar callbacks, una cola serial de Grand Central Dispatch coordina el estado interno y despacha actualizaciones de interfaz estrictamente en el Main Thread. Quinto, en Sanear el observer, tokens simétricos de notificación se desuscriben explícitamente en el método dealloc evitando llamadas fantasmas. Sexto, en Definir protocolo, una interfaz limpia con anotaciones de nullability oculta el runtime dinámico detrás de contratos estables. Séptimo, en Probar el puente, pruebas unitarias verifican la interoperabilidad bidireccional entre Objective-C y Swift a través del bridging header. Y octavo, en Migrar por módulo, la implementación interna se reemplaza gradualmente por componentes nativos de Swift sin alterar los consumidores externos.",
+        visualOutcome:
+          "la animación sigue el grafo de retención de memoria en Instruments, visualizando la ruptura del retain cycle mediante referencias débiles y la encapsulación limpia del código de Objective-C tras un protocolo consumible por Swift.",
+      });
+
+    case "c-star":
+      return buildPracticalPresentationAudioTrack("c-star", {
+        title: practical?.title ?? "C* en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Caso integrado · Difusión térmica paralela",
+        family: "arquitectura Connection Machine, shapes y paralelismo de datos SIMD",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, una simulación de difusión térmica sobre la Connection Machine se ejecuta en ocho etapas de computación paralela en C*. Primero, en Definir el shape, una cuadrícula bidimensional de ciento veintiocho por ciento veintiocho celdas asigna topología y coordenadas espaciales pcoord a dieciséis mil trescientos ochenta y cuatro procesadores elementales. Segundo, en Cargar condiciones, una sentencia where selecciona el active set perimetral fijando la temperatura de borde en veinte grados mientras el interior inicia caliente. Tercero, en Leer vecinos, el enrutador traslada simultáneamente lecturas de norte, sur, este y oeste entre procesadores adyacentes. Cuarto, en Actualizar en paralelo, todos los nodos activos calculan el promedio ponderado en un búfer secundario sin interferir con la iteración en curso. Quinto, en Detectar el borde inválido, una máscara incompleta contamina una franja perimetral deteniendo la simulación y ajustando las condiciones de contorno. Sexto, en Reducir el error, el árbol de reducción por hardware calcula en tiempo logarítmico el mayor delta de cambio consolidando el valor en el host escalar. Séptimo, en Iterar hasta converger, el procesador anfitrión evalúa el criterio de parada mientras los procesadores masivos continúan el recálculo paralelo. Y octavo, en Exportar evidencia, el sistema de entrada y salida masiva vuelca el mapa térmico estabilizado con checksum y trazabilidad de parámetros.",
+        visualOutcome:
+          "la animación recrea el tapiz bidimensional de la Connection Machine, exhibiendo la propagación coordinada de calor, el filtrado de procesadores mediante la máscara where y la reducción instantánea del error en el árbol de hardware.",
+      });
+
+    case "cweb":
+      return buildPracticalPresentationAudioTrack("cweb", {
+        title: practical?.title ?? "CWEB en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Caso integrado · Parser explicado y compilado",
+        family: "programación literaria Knuth, fragmentos tangling y documentos weaving TeX",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, la construcción de un analizador de comandos mediante programación literaria en CWEB se desarrolla en ocho etapas documentales. Primero, en Plantear el contrato, la prosa tipográfica define los invariantes, gramática y casos de uso antes de escribir la primera línea de código. Segundo, en Nombrar fragmentos, bloques de código descriptivos descomponen el problema según la lógica del razonamiento humano y no según el orden del compilador. Tercero, en Implementar scanner, el bucle de lectura se contextualiza junto a la explicación formal del manejo de caracteres de escape. Cuarto, en Tangle a C, la herramienta CTANGLE extrae y reordena recursivamente los fragmentos generando código C limpio con directivas de sincronización de línea. Quinto, en Encontrar una divergencia, un change file desfasado no coincide con el texto base emitiendo un diagnóstico preciso que impide aplicar parches en ubicaciones incorrectas. Sexto, en Actualizar la variante, directivas x, y y z aplican las adaptaciones multiplataforma necesarias conservando intacto el archivo maestro. Séptimo, en Weave a TeX, la herramienta CWEAVE transforma la fuente en un documento tipográfico con referencias cruzadas e índices automáticos. Y octavo, en Verificar ambas salidas, el binario compilado y el libro técnico en PDF se contrastan con casos de prueba demostrando reproducibilidad total.",
+        visualOutcome:
+          "la animación ilustra la bifurcación simétrica desde un único archivo .w hacia el código ejecutable generado por CTANGLE y el documento tipografiado indexado producido por CWEAVE, demostrando la elegancia de la programación literaria.",
+      });
+
+    case "embedded-c":
+      return buildPracticalPresentationAudioTrack("embedded-c", {
+        title: practical?.title ?? "Embedded C en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Caso integrado · Controlador de sensor resiliente",
+        family: "firmware bare-metal, DMA circular, interrupciones y watchdogs de hardware",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, un controlador de adquisición de vibración para maquinaria industrial se ejecuta en ocho etapas de firmware en Embedded C. Primero, en Arrancar con seguridad, el código de startup inicializa el stack pointer, copia el segmento de datos, limpia bss y lee el registro de causa del último reinicio manteniendo las salidas en estado pasivo seguro. Segundo, en Configurar el muestreo, un temporizador de hardware dispara periódicamente conversiones del ADC a diez kilohercios sin consumir ciclos de CPU. Tercero, en Transferir con DMA, un canal en modo circular llena un búfer doble emitiendo interrupciones de mitad y final de transferencia. Cuarto, en Cruzar la ISR, la rutina de interrupción reconoce la bandera y encola un descriptor liviano difiriendo el procesamiento pesado fuera del contexto de interrupción. Quinto, en Detectar overflow, el sistema identifica que el consumidor se ha retrasado impidiendo la sobreescritura accidental del búfer circular. Sexto, en Reducir la carga, el algoritmo conmuta a cálculo de media cuadrática en punto fijo con decimación asegurando el cumplimiento estricto del tiempo de ejecución en el peor de los casos. Séptimo, en Vigilar salud, el perro guardián independiente se alimenta únicamente si todas las tareas del sistema reportan latidos válidos dentro de su ventana temporal. Y octavo, en Dormir y reanudar, el microcontrolador entra en modo de bajo consumo apagando osciladores periféricos hasta que el temporizador despierta el núcleo para el siguiente ciclo.",
+        visualOutcome:
+          "la animación sincroniza la actividad del microcontrolador en tiempo real, exhibiendo la adquisición autónoma por DMA, la protección del perro guardián ante bloqueos y la alternancia eficiente entre procesamiento y suspensión de bajo consumo.",
+      });
+
+    case "c-sharp":
+      return buildPracticalPresentationAudioTrack("c-sharp", {
+        title: practical?.title ?? "C# en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Caso integrado · Agregador asíncrono de telemetría",
+        family: "modelado inmutable con records, Span de alto rendimiento y canales asíncronos .NET",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, un agregador de telemetría de alto rendimiento en C# procesa corrientes masivas de sensores en ocho etapas coordinadas sobre .NET. Primero, en Modelar la lectura, un record inmutable con constructores primarios y tipos fuertemente tipados garantiza igualdad por valor e integridad de unidades físicas. Segundo, en Analizar paquetes con Span, segmentos de memoria contigua en la pila decodifican tramas binarias con cero asignaciones en el heap. Tercero, en Validar con patterns, pattern matching relacional y de propiedades clasifica las lecturas descartando temperaturas fuera del rango operativo. Cuarto, en Publicar al Channel, un canal asíncrono delimitado aplica contrapresión automática suspendiendo al emisor cuando el búfer alcanza su capacidad. Quinto, en Agrupar con LINQ, consultas expresivas agrupan los eventos por identificador de dispositivo y calculan agregados materializando el resultado en una frontera temporal concreta. Sexto, en Propagar cancelación, señales cooperativas con CancellationToken atraviesan las expresiones await foreach cerrando los bucles sin dejar tareas huérfanas. Séptimo, en Resolver buffer retenido, la encapsulación de buffers en bloques using con IMemoryOwner garantiza la devolución inmediata de la memoria al ArrayPool. Y octavo, en Verificar el contrato, pruebas basadas en propiedades y contadores de telemetría comprueban que cada lectura recibida fue aceptada, rechazada o agregada exactamente una vez.",
+        visualOutcome:
+          "la animación visualiza la ingesta de telemetría a través del runtime de .NET, destacando el procesamiento de bajo consumo de memoria con Span, la amortiguación del Channel delimitado y la cancelación limpia sin pérdida de eventos.",
+      });
+
+    case "visual-basic":
+      return buildPracticalPresentationAudioTrack("visual-basic", {
+        title: practical?.title ?? "Visual Basic en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Caso integrado · WinForms y biblioteca compartida",
+        family: "arquitectura MVP de escritorio, tipado estricto e interoperabilidad .NET",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, una aplicación empresarial de escritorio en Visual Basic .NET se moderniza en ocho etapas arquitectónicas. Primero, en Activar tipos estrictos, la directiva Option Strict On deshabilita el enlace tardío y conversiones implícitas dudosas forzando contratos tipados en tiempo de compilación. Segundo, en Modelar la orden, una clase de dominio encapsula reglas de validación en propiedades Get y Set evitando que formularios manipulen estados inconsistentes. Tercero, en Separar el presenter mediante el patrón MVP, la cláusula Handles intercepta clics del botón delegando la lógica del caso de uso a un presentador desacoplado y comprobable. Cuarto, en Validar y proyectar con LINQ, una consulta declarativa filtra órdenes activas y proyecta los datos en una vista de grilla sin recálculos redundantes. Quinto, en Guardar sin bloquear, el operador Await delega la persistencia asíncrona a un repositorio en segundo plano liberando el hilo principal para mantener la ventana interactiva. Sexto, en Encontrar suscripción doble, la inspección detecta que AddHandler registró suscriptores múltiples sin desvincularlos reteniendo ventanas en memoria. Séptimo, en Cerrar el lifecycle, la llamada simétrica a RemoveHandler dentro del método Dispose elimina la referencia del recolector de basura corrigiendo la fuga. Y octavo, en Compartir con C#, el ensamblado de dominio compilado en VB.NET se consume directamente desde un worker concurrente en C# compartiendo tipos en el mismo runtime de .NET.",
+        visualOutcome:
+          "la animación modela la arquitectura de la ventana WinForms, mostrando la fluidez de la interfaz gracias a tareas asíncronas, la corrección de suscripciones en Dispose y la interoperabilidad transparente con ensamblados de C#.",
       });
 
     default: {
