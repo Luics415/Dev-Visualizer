@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
 import { LinuxPracticalScene } from "@/components/scenes/linux/LinuxPracticalScene";
@@ -22,6 +23,11 @@ export default function LinuxActionPage() {
         <strong>Contexto tecnológico</strong>
         <p>{collectionNotices["linux"]}</p>
       </aside>
+
+      <div className="collection-action-link">
+        <span>Fundamentos y mecanismos de la colección</span>
+        <Link href="/linux">Ver conceptos y catálogo de Linux <b>←</b></Link>
+      </div>
 
       <section className="practical-stage practical-stage--linux" aria-label="Caso práctico integrado de Linux">
         <LinuxPracticalScene />

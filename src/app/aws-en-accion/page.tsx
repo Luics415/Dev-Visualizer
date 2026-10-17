@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
 import { AwsPracticalScene } from "@/components/scenes/aws/AwsPracticalScene";
@@ -22,6 +23,11 @@ export default function AwsActionPage() {
         <strong>Contexto tecnológico</strong>
         <p>{collectionNotices["aws"]}</p>
       </aside>
+
+      <div className="collection-action-link">
+        <span>Fundamentos y mecanismos de la colección</span>
+        <Link href="/aws">Ver conceptos y catálogo de AWS <b>←</b></Link>
+      </div>
 
       <section className="practical-stage practical-stage--aws" aria-label="Caso práctico integrado de AWS">
         <AwsPracticalScene />

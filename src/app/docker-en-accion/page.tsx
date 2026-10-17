@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
 import { DockerPracticalScene } from "@/components/scenes/docker/DockerPracticalScene";
@@ -22,6 +23,11 @@ export default function DockerActionPage() {
         <strong>Contexto tecnológico</strong>
         <p>{collectionNotices["docker"]}</p>
       </aside>
+
+      <div className="collection-action-link">
+        <span>Fundamentos y mecanismos de la colección</span>
+        <Link href="/docker">Ver conceptos y catálogo de Docker <b>←</b></Link>
+      </div>
 
       <section className="practical-stage practical-stage--docker" aria-label="Caso práctico integrado de Docker">
         <DockerPracticalScene />

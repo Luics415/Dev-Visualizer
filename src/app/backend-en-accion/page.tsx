@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
 import { BackendPracticalScene } from "@/components/scenes/backend/BackendPracticalScene";
@@ -22,6 +23,11 @@ export default function BackendActionPage() {
         <strong>Contexto tecnológico</strong>
         <p>{collectionNotices["backend"]}</p>
       </aside>
+
+      <div className="collection-action-link">
+        <span>Fundamentos y mecanismos de la colección</span>
+        <Link href="/backend">Ver conceptos y catálogo de Backend <b>←</b></Link>
+      </div>
 
       <section className="practical-stage practical-stage--backend" aria-label="Ejemplo práctico integrado de backend">
         <BackendPracticalScene />

@@ -12,15 +12,15 @@ collectionManifest.ts (ligero)
   └─ sitemap y metadatos de catálogo
 
 libraryTopics.ts (ligero)
-  ├─ 71 temas y relación colección ↔ biblioteca
+  ├─ 73 temas y relación colección ↔ biblioteca
   └─ grupos, descripciones y semillas oficiales
 
 professionalLibrary.ts + libraryResources.snapshot.json (servidor/build)
   ├─ 179 recursos bibliográficos importados
-  ├─ 87 recursos complementarios para los otros 29 temas
+  ├─ 93 recursos complementarios para los otros 31 temas (incluyendo Flutter y Dart)
   ├─ procedencia, formatos, niveles y licencias
   ├─ adjuntos verificables y enlaces externos
-  └─ índice y 71 rutas estáticas de librería
+  └─ índice y 73 rutas estáticas de librería
 
 expandedCollections.ts (servidor/build)
   ├─ primers y capítulos
@@ -29,7 +29,7 @@ expandedCollections.ts (servidor/build)
   └─ casos integrados y profundización
 
 canonicalConceptCollections.ts (servidor/build)
-  └─ inventario normalizado de 71 colecciones y conceptos derivados
+  └─ inventario normalizado de 73 colecciones y conceptos derivados
 
 officialReferences.ts (servidor/build)
   ├─ autoridades, estándares, manuales y documentación
@@ -40,7 +40,7 @@ catalogValidation.ts (servidor/build)
   └─ invariantes de catálogo, escenas, fuentes y casos
 ```
 
-`src/app/[slug]/page.tsx` genera estáticamente las colecciones registradas mediante parámetros cerrados. `src/app/libreria/[tema]/page.tsx` hace lo mismo para los 71 temas bibliográficos. Los componentes especializados originales se conservan; la navegación cliente recibe manifiestos ligeros y no importa los módulos educativos grandes.
+`src/app/[slug]/page.tsx` genera estáticamente las colecciones registradas mediante parámetros cerrados. `src/app/libreria/[tema]/page.tsx` hace lo mismo para los 73 temas bibliográficos. Los componentes especializados originales se conservan; la navegación cliente recibe manifiestos ligeros y no importa los módulos educativos grandes.
 
 ## Fuente única
 
@@ -67,7 +67,7 @@ Python y MediaPipe son definiciones diferentes. XML, XSD y JSON también tienen 
 
 El código comprueba:
 
-- exactamente 71 colecciones y 71 slugs de librería;
+- exactamente 73 colecciones y 73 slugs de librería;
 - IDs y rutas canónicas únicos;
 - pareja colección/caso para cada identidad;
 - rutas heredadas sin colisiones;
@@ -78,6 +78,6 @@ El código comprueba:
 - referencias HTTPS con autoridad, tipo, versión, vigencia y fecha de verificación;
 - caso integrado con etapas y profundización;
 - 42 temas y 179 recursos procedentes del catálogo atribuido;
-- 29 temas complementarios con tres niveles y 87 recursos sin duplicados;
+- 31 temas complementarios con tres niveles y 93 recursos sin duplicados (incluyendo Flutter y Dart);
 - adjuntos locales con licencia, evidencia, tamaño y hash;
 - enlaces internos resueltos a una página o recurso exportado.

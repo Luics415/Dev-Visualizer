@@ -2,7 +2,7 @@
 
 Atlas visual animado para aprender desarrollo de software desde los fundamentos hasta producción.
 
-**71 colecciones · 142 rutas canónicas · 6,881 conceptos · 71 casos integrados · 71 bibliotecas**
+**73 colecciones · 146 rutas canónicas · 7,410 conceptos · 73 casos integrados · 73 bibliotecas**
 
 <p align="center">
   <a href="https://github.com/Luics415/Dev-Visualizer/actions/workflows/ci.yml"><img src="https://github.com/Luics415/Dev-Visualizer/actions/workflows/ci.yml/badge.svg" alt="Quality checks" /></a>
@@ -15,7 +15,7 @@ Atlas visual animado para aprender desarrollo de software desde los fundamentos 
 <p align="center">
   <a href="https://luics415.github.io/Dev-Visualizer/"><strong>Abrir Dev Visualizer</strong></a>
   ·
-  <a href="https://luics415.github.io/Dev-Visualizer/colecciones/">Explorar las 71 colecciones</a>
+  <a href="https://luics415.github.io/Dev-Visualizer/colecciones/">Explorar las 73 colecciones</a>
   ·
   <a href="https://luics415.github.io/Dev-Visualizer/libreria/">Librería profesional</a>
   ·
@@ -121,7 +121,7 @@ Las antiguas URLs `/git-github*`, `/apis-rest*` y `/xml-xsd-json*` se conservan 
 | Microsoft SQL Server | 24 | 120 | T-SQL, almacenamiento, planes, transacciones, seguridad, continuidad y operación |
 | AWS | 18 | 228 | Nube, identidad, red, compute, datos y seis recorridos nuevos derivados de apuntes de arquitectura y operación |
 
-Python incluye documentación oficial para personas principiantes y avanza de forma progresiva. MediaPipe usa Python en su caso práctico, pero mantiene currículo, fuentes, ruta y escena propios. Del mismo modo, XML define documentos, XSD define schemas XML y JSON define una sintaxis de valores; una colección no sustituye a las otras.
+Python incluye documentación oficial para personas principiantes y avanza de forma progresiva. MediaPipe usa Python en su caso práctico, pero mantiene currículo, fuentes, ruta y escena propios. Del mismo modo, XML define documentos, XSD define schemas XML y JSON define una sintaxis de valores; una colección no sustituye a las otras. Flutter y Dart se estructuran de forma complementaria y autónoma con 60 conceptos y 12 capítulos cada una, cubriendo el motor gráfico Impeller y el runtime AOT/JIT de Dart VM.
 
 Las 30 colecciones incorporadas en la expansión de la Librería profesional ya no siguen una cuota fija: reúnen **3,184 conceptos en 13–20 capítulos por colección**, con entre 76 y 130 conceptos según la amplitud real de cada tecnología. Sus capítulos tienen profundidades distintas, explicaciones extensas, fuentes primarias resueltas por tema y selección visual semántica.
 
@@ -142,13 +142,13 @@ Las 30 colecciones incorporadas en la expansión de la Librería profesional ya 
 
 La Librería profesional ofrece un índice accesible y una ruta estática por colección. Cada tema separa documentación oficial y especificaciones de libros, cursos y referencias comunitarias. La invitación aparece después de la ruta de estudio y antes del capítulo 1; las animaciones y páginas **En acción** no contienen fichas bibliográficas.
 
-El **Catálogo de referencia** acredita a [midudev/libros-programacion-gratis](https://github.com/midudev/libros-programacion-gratis) y [librosgratis.dev](https://librosgratis.dev/) como fuente de descubrimiento de **179 recursos en 42 temas**. Dev Visualizer conserva ese bloque y añade una curaduría independiente de **87 recursos en los 29 temas restantes**, con niveles principiante, intermedio y avanzado, textos y diseño propios y autoría visible en cada ficha.
+El **Catálogo de referencia** acredita a [midudev/libros-programacion-gratis](https://github.com/midudev/libros-programacion-gratis) y [librosgratis.dev](https://librosgratis.dev/) como fuente de descubrimiento de **179 recursos en 42 temas**. Dev Visualizer conserva ese bloque y añade una curaduría independiente de **93 recursos en los 31 temas complementarios restantes** (incluyendo las incorporaciones para Flutter y Dart), con niveles principiante, intermedio y avanzado, textos y diseño propios y autoría visible en cada ficha.
 
 Los adjuntos siguen una política híbrida: solo se aloja localmente un archivo con licencia o autorización de redistribución verificable. Los demás aparecen como enlaces externos con procedencia y estado de preservación. Un workflow mensual produce un informe no bloqueante de disponibilidad.
 
 ## Narrativa En acción
 
-Las 56 colecciones incorporadas mediante el registro escalable usan escenas configuradas por mecanismo. Las 30 rutas nuevas suman diez gramáticas visuales —rutas, grafos, campos, escenarios, pipelines, forjas, canales, runtimes, registros y manuscritos— sin terminar en gris ni romper la identidad del atlas. Entre las escenas previas se conservan la mesa forense de C, la estación de ownership de C++, el switchboard de Objective-C, la cuadrícula térmica de C*, el libro-telar de CWEB, el osciloscopio de Embedded C, el árbol de prueba de Prolog y el patio ferroviario de SQL Server.
+Las 58 colecciones incorporadas mediante el registro escalable usan escenas configuradas por mecanismo. Las 30 rutas ampliadas suman diez gramáticas visuales —rutas, grafos, campos, escenarios, pipelines, forjas, canales, runtimes, registros y manuscritos— sin terminar en gris ni romper la identidad del atlas. Entre las escenas previas se conservan la mesa forense de C, la estación de ownership de C++, el switchboard de Objective-C, la cuadrícula térmica de C*, el libro-telar de CWEB, el osciloscopio de Embedded C, el árbol de prueba de Prolog y el patio ferroviario de SQL Server.
 
 Los guiños a League of Legends y Arcane se limitan a microcopy original y referencias ambientales. No se usan personajes, audio, logotipos, mapas ni recursos de Riot Games, y no se sugiere afiliación.
 
@@ -161,11 +161,11 @@ src/data/collectionManifest.ts
   └─ identidad, orden, grupo, rutas, biblioteca, tema y vigencia
 
 src/data/libraryTopics.ts
-  └─ identidad ligera y relación obligatoria de las 71 bibliotecas
+  └─ identidad ligera y relación obligatoria de las 73 bibliotecas
 
 src/data/professionalLibrary.ts + libraryResources.snapshot.json
   ├─ 179 recursos importados del Catálogo de referencia
-  └─ 87 recursos complementarios, fuentes oficiales, procedencia y licencias
+  └─ 93 recursos complementarios, fuentes oficiales, procedencia y licencias
 
 src/data/expandedCollections.ts
   └─ registro de primers, capítulos, conceptos y casos ampliados
@@ -177,13 +177,13 @@ src/data/newLearningSourceCoverage.ts
   └─ cobertura temática verificable, sin reparto posicional ni fallback silencioso
 
 src/data/catalogValidation.ts
-  └─ invariantes de 71 colecciones y 6,881 conceptos
+  └─ invariantes de 73 colecciones y 7,410 conceptos
 
 src/app/[slug]/page.tsx
-  └─ 112 rutas expandidas generadas con parámetros cerrados
+  └─ 116 rutas expandidas generadas con parámetros cerrados
 
 src/app/libreria/[tema]/page.tsx
-  └─ 71 bibliotecas generadas con parámetros cerrados
+  └─ 73 bibliotecas generadas con parámetros cerrados
 
 src/components/visual/useScenePlayback.ts
   └─ viewport, visibilidad de pestaña y movimiento reducido
@@ -215,19 +215,19 @@ Validación completa:
 npm run check
 ```
 
-`npm run check` ejecuta ESLint, TypeScript estricto, validación del catálogo bibliográfico, exportación estática, comprobación de enlaces internos y auditoría automatizada de accesibilidad (`check:a11y`). La compilación produce **228 páginas HTML**: 142 canónicas, 72 de Librería profesional, seis puentes heredados y ocho páginas de soporte (incluyendo las rutas jurídicas `/privacidad`, `/terminos` y `/cookies`).
+`npm run check` ejecuta ESLint, TypeScript estricto, validación del catálogo bibliográfico, exportación estática, comprobación de enlaces internos y auditoría automatizada de accesibilidad (`check:a11y`). La compilación produce **234 páginas HTML**: 146 canónicas, 74 de Librería profesional (incluyendo el índice general), seis puentes heredados y ocho páginas de soporte (incluyendo las rutas jurídicas `/privacidad`, `/terminos` y `/cookies`).
 
 ### Evidencia de calidad
 
 | Control | Resultado esperado |
 |---|---|
-| Catálogo | 71/71 colecciones y 71/71 bibliotecas; IDs, rutas y slugs únicos |
-| Currículo | 6,881/6,881 conceptos con capítulo, explicación y escena efectiva |
-| Fuentes | 6,881/6,881 conceptos con al menos dos referencias primarias |
-| Recursos | 179/179 fichas atribuidas en 42 temas de origen + 87/87 fichas curadas para los otros 29 temas |
-| Casos | 71/71 pares colección / En acción con profundización |
-| Exportación | 228 páginas estáticas y cero enlaces internos rotos |
-| Accesibilidad | 228 páginas conformes a WCAG 2.1 AA (100% alt en imágenes y controles accesibles) |
+| Catálogo | 73/73 colecciones y 73/73 bibliotecas; IDs, rutas y slugs únicos |
+| Currículo | 7,410/7,410 conceptos con capítulo, explicación y escena efectiva |
+| Fuentes | 7,410/7,410 conceptos con al menos dos referencias primarias |
+| Recursos | 179/179 fichas atribuidas en 42 temas de origen + 93/93 fichas curadas para los otros 31 temas complementarios |
+| Casos | 73/73 pares colección / En acción con profundización |
+| Exportación | 234 páginas estáticas y cero enlaces internos rotos |
+| Accesibilidad | 234 páginas conformes a WCAG 2.1 AA (100% alt en imágenes y controles accesibles) |
 | Responsive | Sin overflow global; escenas anchas usan scroll local |
 | Movimiento | Loop infinito visible, pausa fuera del viewport y estado seguro con `prefers-reduced-motion` |
 

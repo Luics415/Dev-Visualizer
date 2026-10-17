@@ -1,6 +1,6 @@
 # Roadmap
 
-## Atlas actual: 71 colecciones
+## Atlas actual: 73 colecciones
 
 - [x] Manifiesto ligero, registro servidor, navegación y sitemap derivados.
 - [x] Git y GitHub como colecciones independientes.
@@ -17,10 +17,11 @@
 - [x] Microsoft SQL Server independiente: 24 capítulos y 120 conceptos, con T-SQL, internals y operación.
 - [x] AWS ampliado a 228 conceptos con sitios privados, serverless, DynamoDB, CloudWatch, IAM y FinOps.
 - [x] 30 colecciones adicionales ampliadas a 3,184 conceptos, entre 76 y 130 por colección y sin una cuota artificial común.
-- [x] 71 casos En acción con profundización y sin bibliografía duplicada.
-- [x] 142 rutas canónicas y seis puentes heredados.
-- [x] Al menos dos fuentes oficiales o especificaciones para 6,881 de 6,881 conceptos.
-- [x] Escenas configuradas para las 56 rutas ampliadas En acción; las 30 nuevas usan diez familias visuales.
+- [x] Flutter y Dart incorporadas como colecciones independientes con 120 conceptos (60 c/u) y escenas especializadas Impeller y Dart VM / AOT.
+- [x] 73 casos En acción con profundización y sin bibliografía duplicada.
+- [x] 146 rutas canónicas y seis puentes heredados.
+- [x] Al menos dos fuentes oficiales o especificaciones para 7,410 de 7,410 conceptos.
+- [x] Escenas configuradas y animaciones únicas diferenciadas para todas las 73 rutas En acción.
 - [x] Loops legibles, pausa fuera del viewport y vista de movimiento reducido.
 - [x] Banner firmado de Acerca y banner del ancla preservado en Colecciones.
 - [x] Presentación social Luics415 integrada en Open Graph, Twitter Card y descarga.
@@ -29,14 +30,14 @@
 ## Librería profesional
 
 - [x] Índice, búsqueda y filtros por área, formato, nivel, procedencia y disponibilidad.
-- [x] 71 rutas temáticas y una relación obligatoria por colección.
+- [x] 73 rutas temáticas y una relación obligatoria por colección.
 - [x] Instantánea reproducible de 42 temas y 179 recursos atribuida a midudev.
-- [x] Curaduría complementaria de 87 recursos para los otros 29 temas, con niveles principiante, intermedio y avanzado.
+- [x] Curaduría complementaria de 93 recursos para los otros 31 temas (incluyendo Flutter y Dart), con niveles principiante, intermedio y avanzado.
 - [x] Documentación oficial o fuente primaria en cada biblioteca.
 - [x] Política híbrida de adjuntos, licencias, hashes y enlaces externos.
 - [x] Invitación antes del capítulo 1, sin bibliografía dentro de En acción.
 - [x] Auditoría mensual no bloqueante de recursos externos.
-- [x] Exportación total de 228 páginas estáticas con cero enlaces internos rotos.
+- [x] Exportación total de 234 páginas estáticas con cero enlaces internos rotos.
 
 ## Calidad permanente
 

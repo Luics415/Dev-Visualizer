@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
 import { TypeScriptPracticalScene } from "@/components/scenes/typescript/TypeScriptPracticalScene";
@@ -27,6 +28,11 @@ export default function TypeScriptPracticalPage() {
         <strong>Contexto tecnológico</strong>
         <p>{collectionNotices["typescript"]}</p>
       </aside>
+
+      <div className="collection-action-link">
+        <span>Fundamentos y mecanismos de la colección</span>
+        <Link href="/typescript">Ver conceptos y catálogo de TypeScript <b>←</b></Link>
+      </div>
 
       <section className="practical-stage practical-stage--typescript" aria-label="Ejemplo práctico integrado de TypeScript">
         <TypeScriptPracticalScene />

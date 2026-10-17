@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
 import { CiCdArtifactPassportScene } from "@/components/scenes/CiCdArtifactPassportScene";
@@ -45,6 +46,11 @@ export function ExpandedActionPage({ collection, manifest, collectionNumber }: E
           <p>{notice}</p>
         </aside>
       ) : null}
+
+      <div className="collection-action-link">
+        <span>Fundamentos y mecanismos de la colección</span>
+        <Link href={manifest.href}>Ver conceptos y catálogo de {manifest.label} <b>←</b></Link>
+      </div>
 
       <section className="practical-stage practical-stage--expanded" aria-label={`Caso práctico integrado de ${manifest.label}`}>
         {manifest.id === "ci-cd"

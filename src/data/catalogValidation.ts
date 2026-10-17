@@ -87,7 +87,7 @@ function validateCatalog(): CatalogValidationReport {
   if (conceptsWithoutSemanticScene.length > 0) {
     throw new Error(`${conceptsWithoutSemanticScene.length} conceptos ampliados no tienen una familia visual vinculada a su mecanismo: ${conceptsWithoutSemanticScene.slice(0, 20).join(", ")}.`);
   }
-  if (canonicalConceptCount < 6881) throw new Error(`El catálogo perdió conceptos respecto de la base validada: existen ${canonicalConceptCount}.`);
+  if (canonicalConceptCount < 7410) throw new Error(`El catálogo perdió conceptos respecto de la base validada: existen ${canonicalConceptCount}.`);
   if (sourcedConcepts !== canonicalConceptCount || unresolvedReferences > 0) {
     throw new Error(`Cobertura de fuentes incompleta: ${sourcedConcepts}/${canonicalConceptCount}; conceptos con menos de dos referencias: ${unresolvedReferences}.`);
   }
@@ -101,3 +101,4 @@ function validateCatalog(): CatalogValidationReport {
 }
 
 export const catalogValidationReport = validateCatalog();
+

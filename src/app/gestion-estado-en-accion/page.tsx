@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
 import { StateManagementPracticalScene } from "@/components/scenes/state-management/StateManagementPracticalScene";
@@ -22,6 +23,11 @@ export default function StateManagementActionPage() {
         <strong>Contexto tecnológico</strong>
         <p>{collectionNotices["state-management"]}</p>
       </aside>
+
+      <div className="collection-action-link">
+        <span>Fundamentos y mecanismos de la colección</span>
+        <Link href="/gestion-estado">Ver conceptos y catálogo de Gestión de estado <b>←</b></Link>
+      </div>
 
       <section className="practical-stage practical-stage--state-management" aria-label="Ejemplo práctico integrado de gestión de estado">
         <StateManagementPracticalScene />
