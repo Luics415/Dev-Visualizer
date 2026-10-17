@@ -1179,3 +1179,1813 @@
     transition-duration: .001ms !important;
   }
 }
+
+
+/* ========================================================
+   30 BESPOKE SCENE LAYOUTS (100% UNIQUE)
+   ======================================================== */
+
+/* 1. SQL */
+.sqlLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-height: 292px;
+  padding: 24px 4%;
+}
+.sqlTables {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 16px;
+  align-items: center;
+}
+.sqlTable {
+  background: rgba(6, 18, 37, 0.92);
+  border: 1px solid color-mix(in srgb, var(--scene-accent) 40%, #243957);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.sqlTable header {
+  padding: 8px 12px;
+  background: rgba(16, 38, 66, 0.85);
+  font: 700 0.72rem var(--font-mono, monospace);
+  color: var(--scene-accent);
+  display: flex;
+  justify-content: space-between;
+}
+.sqlTable header i {
+  font-size: 0.6rem;
+  color: var(--scene-accent-alt);
+  font-style: normal;
+}
+.sqlRow {
+  padding: 8px 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  display: flex;
+  gap: 12px;
+  font: 500 0.68rem var(--font-mono, monospace);
+  color: #c9dbed;
+}
+.sqlRowSelected {
+  background: color-mix(in srgb, var(--scene-accent) 15%, transparent);
+  border-left: 3px solid var(--scene-accent);
+}
+.sqlJoin {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.sqlJoinBeam {
+  padding: 6px 10px;
+  border: 1px dashed var(--scene-accent);
+  border-radius: 6px;
+  background: rgba(4, 13, 29, 0.85);
+  font: 700 0.62rem var(--font-mono, monospace);
+  color: var(--scene-accent);
+}
+.sqlTx {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 16px;
+  background: rgba(4, 13, 29, 0.75);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  gap: 12px;
+}
+.sqlTxStep {
+  font: 700 0.68rem var(--font-mono, monospace);
+  color: var(--scene-accent);
+}
+.sqlTxStatus {
+  display: flex;
+  flex-direction: column;
+  padding: 6px 12px;
+  border: 1px solid var(--scene-accent);
+  border-radius: 6px;
+  background: color-mix(in srgb, var(--scene-accent) 10%, #051326);
+}
+.sqlTxStatus span {
+  font: 800 0.7rem var(--font-mono, monospace);
+  color: #fff;
+}
+.sqlTxStatus small {
+  font-size: 0.58rem;
+  color: #8da4be;
+}
+.sqlTx code {
+  font: 500 0.65rem var(--font-mono, monospace);
+  color: #61e6a8;
+}
+
+/* 2. NoSQL */
+.nosqlLayout {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 18px;
+  min-height: 292px;
+  padding: 24px 4%;
+  align-items: center;
+}
+.nosqlDoc {
+  background: rgba(6, 18, 37, 0.92);
+  border: 1px solid color-mix(in srgb, var(--scene-accent) 35%, #243957);
+  border-radius: 8px;
+  padding: 12px;
+}
+.nosqlDocHeader {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 8px;
+  font: 700 0.68rem var(--font-mono, monospace);
+  color: var(--scene-accent);
+}
+.nosqlJson {
+  font: 500 0.65rem/1.35 var(--font-mono, monospace);
+  color: #a6d8ff;
+  margin: 0;
+  white-space: pre;
+}
+.nosqlSharding {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.nosqlRing {
+  position: relative;
+  height: 60px;
+  border: 1px dashed var(--scene-accent-alt);
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font: 700 0.62rem var(--font-mono, monospace);
+  color: var(--scene-accent-alt);
+}
+.nosqlHashPointer {
+  position: absolute;
+  top: -8px;
+  font-size: 0.9rem;
+  color: var(--scene-accent);
+}
+.nosqlShards {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.nosqlShard {
+  padding: 8px 6px;
+  background: rgba(6, 18, 37, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  text-align: center;
+  font: 600 0.6rem var(--font-mono, monospace);
+}
+.nosqlShardActive {
+  border-color: var(--scene-accent);
+  background: color-mix(in srgb, var(--scene-accent) 15%, #051326);
+  color: #fff;
+}
+.nosqlShard small {
+  display: block;
+  font-size: 0.52rem;
+  color: #61e6a8;
+  margin-top: 3px;
+}
+
+/* 3. Blockchain */
+.blockchainLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  min-height: 292px;
+  padding: 24px 4%;
+  justify-content: center;
+}
+.blockchainChain {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+}
+.blockchainBlock {
+  background: rgba(6, 18, 37, 0.94);
+  border: 1px solid color-mix(in srgb, var(--scene-accent) 45%, #243957);
+  border-radius: 8px;
+  padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.blockchainBlockHeader {
+  display: flex;
+  justify-content: space-between;
+  font: 700 0.72rem var(--font-mono, monospace);
+  color: var(--scene-accent);
+}
+.blockchainData {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font: 500 0.6rem var(--font-mono, monospace);
+  color: #a4bed8;
+}
+.blockchainData b { color: #fff; }
+.blockchainData i { font-style: normal; color: var(--scene-accent-alt); }
+.blockchainMerkle {
+  font: 600 0.58rem var(--font-mono, monospace);
+  color: #61e6a8;
+  padding-top: 4px;
+  border-top: 1px dashed rgba(255, 255, 255, 0.08);
+}
+.blockchainConsensus {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 16px;
+  background: color-mix(in srgb, var(--scene-accent) 12%, #051326);
+  border: 1px solid var(--scene-accent);
+  border-radius: 8px;
+  font: 700 0.68rem var(--font-mono, monospace);
+  color: var(--scene-accent);
+}
+.blockchainConsensus small { color: #d0e4f7; }
+
+/* 4. Operating Systems */
+.osLayout {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 18px;
+  min-height: 292px;
+  padding: 24px 4%;
+  align-items: center;
+}
+.osScheduler {
+  background: rgba(6, 18, 37, 0.9);
+  border: 1px solid color-mix(in srgb, var(--scene-accent) 35%, #243957);
+  border-radius: 8px;
+  padding: 12px;
+}
+.osSchedulerHeader {
+  display: flex;
+  justify-content: space-between;
+  font: 700 0.65rem var(--font-mono, monospace);
+  color: var(--scene-accent);
+  margin-bottom: 10px;
+}
+.osQueue {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.osProcess {
+  padding: 8px 10px;
+  background: rgba(12, 28, 52, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  font: 600 0.65rem var(--font-mono, monospace);
+}
+.osProcessRunning {
+  border-color: var(--scene-accent);
+  background: color-mix(in srgb, var(--scene-accent) 18%, #07172c);
+  color: #fff;
+}
+.osContextSwitch {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.osRegisters, .osMmu {
+  background: rgba(6, 18, 37, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 10px;
+  font: 600 0.62rem var(--font-mono, monospace);
+}
+.osRegisters span, .osMmu span {
+  display: block;
+  color: var(--scene-accent-alt);
+  margin-bottom: 4px;
+}
+.osRegisters code {
+  color: #61e6a8;
+  font-size: 0.62rem;
+}
+.osPageRow {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: #b0c9e2;
+  margin-top: 4px;
+}
+
+/* 5. Assembly */
+.assemblyLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 292px;
+  padding: 24px 4%;
+}
+.assemblyRegGrid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 8px;
+}
+.assemblyReg {
+  padding: 6px 8px;
+  background: rgba(6, 18, 37, 0.92);
+  border: 1px solid color-mix(in srgb, var(--scene-accent) 30%, #243957);
+  border-radius: 6px;
+  font: 600 0.62rem var(--font-mono, monospace);
+  color: var(--scene-accent);
+}
+.assemblyExecution {
+  display: grid;
+  grid-template-columns: 1.4fr 0.6fr;
+  gap: 12px;
+}
+.assemblyInstructions {
+  background: rgba(6, 18, 37, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 10px;
+}
+.assemblyInstructions header, .assemblyStack header {
+  font: 700 0.65rem var(--font-mono, monospace);
+  color: var(--scene-accent-alt);
+  margin-bottom: 8px;
+}
+.assemblyLine {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 8px;
+  border-radius: 4px;
+  font: 500 0.65rem var(--font-mono, monospace);
+  color: #cadff4;
+}
+.assemblyLineActive {
+  background: color-mix(in srgb, var(--scene-accent) 20%, transparent);
+  border-left: 2px solid var(--scene-accent);
+  color: #fff;
+}
+.assemblyLine span { color: #7693b1; font-size: 0.58rem; }
+.assemblyStack {
+  background: rgba(6, 18, 37, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.assemblyStackItem {
+  padding: 4px 6px;
+  background: rgba(12, 28, 52, 0.7);
+  border-radius: 4px;
+  font: 500 0.6rem var(--font-mono, monospace);
+  color: #9cb6d0;
+  text-align: center;
+}
+.assemblyStackTop {
+  border: 1px solid var(--scene-accent);
+  color: #fff;
+}
+
+/* 6. Rust */
+.rustLayout {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: 18px;
+  min-height: 292px;
+  padding: 24px 4%;
+  align-items: center;
+}
+.rustForgeCore {
+  display: flex;
+  justify-content: center;
+}
+.rustHexagon {
+  position: relative;
+  width: 140px;
+  height: 140px;
+  border: 2px solid var(--scene-accent);
+  border-radius: 24px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background: color-mix(in srgb, var(--scene-accent) 8%, #051326);
+  box-shadow: 0 0 24px color-mix(in srgb, var(--scene-accent) 20%, transparent);
+}
+.rustTurntable {
+  position: absolute;
+  inset: -12px;
+  border: 1px dashed var(--scene-accent-alt);
+  border-radius: 36px;
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  color: var(--scene-accent-alt);
+}
+.rustCoreText {
+  text-align: center;
+  font: 700 0.68rem var(--font-mono, monospace);
+}
+.rustCoreText strong { display: block; color: #fff; }
+.rustCoreText small { color: var(--scene-accent); font-size: 0.55rem; }
+.rustOwnershipRules {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.rustRuleCard {
+  background: rgba(6, 18, 37, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 8px;
+  padding: 10px 12px;
+  font: 600 0.62rem var(--font-mono, monospace);
+}
+.rustRuleCard b { display: block; color: var(--scene-accent); margin-bottom: 4px; }
+.rustRuleCard code { display: block; color: #61e6a8; font-size: 0.6rem; margin-bottom: 2px; }
+.rustRuleCard small { color: #8ba5c1; font-size: 0.55rem; }
+
+/* 7. Erlang */
+.erlangLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 292px;
+  padding: 24px 4%;
+  justify-content: center;
+}
+.erlangSupervisor {
+  background: rgba(6, 18, 37, 0.92);
+  border: 1px solid color-mix(in srgb, var(--scene-accent) 35%, #243957);
+  border-radius: 8px;
+  padding: 12px;
+}
+.erlangSuperHeader {
+  display: flex;
+  justify-content: space-between;
+  font: 700 0.68rem var(--font-mono, monospace);
+  color: var(--scene-accent);
+  margin-bottom: 12px;
+}
+.erlangActors {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.erlangActor {
+  background: rgba(12, 28, 52, 0.85);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  padding: 8px;
+}
+.erlangActorRecovered {
+  border-color: #61e6a8;
+  background: color-mix(in srgb, #61e6a8 10%, #081a2e);
+}
+.erlangActor header {
+  display: flex;
+  justify-content: space-between;
+  font: 700 0.6rem var(--font-mono, monospace);
+  margin-bottom: 6px;
+}
+.erlangBadgeOk { color: #61e6a8; font-size: 0.52rem; }
+.erlangBadgeNorm { color: var(--scene-accent); font-size: 0.52rem; }
+.erlangMailbox {
+  font: 500 0.55rem var(--font-mono, monospace);
+  color: #92acc8;
+}
+.erlangMsgDots {
+  display: flex;
+  gap: 3px;
+  margin-top: 4px;
+}
+.erlangMsgDots i {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--scene-accent-alt);
+}
+.erlangPhilosophy {
+  text-align: center;
+  font: 600 0.65rem var(--font-mono, monospace);
+  color: var(--scene-accent);
+}
+
+/* 8. Kotlin */
+.kotlinLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 292px;
+  padding: 24px 4%;
+  justify-content: center;
+}
+.kotlinScope {
+  background: rgba(6, 18, 37, 0.92);
+  border: 1px solid color-mix(in srgb, var(--scene-accent) 35%, #243957);
+  border-radius: 8px;
+  padding: 12px;
+}
+.kotlinScopeHeader {
+  display: flex;
+  justify-content: space-between;
+  font: 700 0.65rem var(--font-mono, monospace);
+  color: var(--scene-accent);
+  margin-bottom: 12px;
+}
+.kotlinLanes {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr;
+  gap: 12px;
+  align-items: center;
+}
+.kotlinLane {
+  background: rgba(12, 28, 52, 0.8);
+  border-radius: 6px;
+  padding: 10px;
+}
+.kotlinLane header {
+  font: 700 0.62rem var(--font-mono, monospace);
+  color: var(--scene-accent-alt);
+  margin-bottom: 6px;
+}
+.kotlinTask {
+  padding: 6px 8px;
+  background: rgba(4, 13, 29, 0.85);
+  border-radius: 4px;
+  font: 500 0.6rem var(--font-mono, monospace);
+  color: #b7cee4;
+  margin-top: 4px;
+}
+.kotlinTaskUi {
+  border-left: 2px solid var(--scene-accent);
+  color: #fff;
+}
+.kotlinBridge {
+  font: 700 0.65rem var(--font-mono, monospace);
+  color: #61e6a8;
+}
+.kotlinZDrive {
+  text-align: center;
+  font: 500 0.65rem var(--font-mono, monospace);
+  color: #8da4be;
+}
+
+/* 9. Go */
+.goLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 292px;
+  padding: 24px 4%;
+  justify-content: center;
+}
+.goProducers {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(6, 18, 37, 0.92);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font: 600 0.65rem var(--font-mono, monospace);
+}
+.goProducers span { color: var(--scene-accent); }
+.goRoutines { display: flex; gap: 8px; }
+.goRoutines code {
+  padding: 4px 6px;
+  background: rgba(12, 28, 52, 0.8);
+  border-radius: 4px;
+  color: #61e6a8;
+}
+.goChannel {
+  background: rgba(6, 18, 37, 0.92);
+  border: 1px solid var(--scene-accent);
+  border-radius: 8px;
+  padding: 12px;
+}
+.goChanHeader {
+  display: flex;
+  justify-content: space-between;
+  font: 700 0.65rem var(--font-mono, monospace);
+  color: var(--scene-accent);
+  margin-bottom: 8px;
+}
+.goBufferSlots {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.goSlot {
+  padding: 8px;
+  background: rgba(12, 28, 52, 0.8);
+  border-radius: 6px;
+  text-align: center;
+  font: 600 0.6rem var(--font-mono, monospace);
+  color: #6d88a4;
+}
+.goSlotFilled {
+  border: 1px solid var(--scene-accent-alt);
+  color: #fff;
+  background: color-mix(in srgb, var(--scene-accent-alt) 15%, #051326);
+}
+.goSelect {
+  background: rgba(6, 18, 37, 0.92);
+  border-radius: 8px;
+  padding: 10px 14px;
+}
+.goSelectCode {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  font: 500 0.62rem var(--font-mono, monospace);
+  color: #a8c4df;
+}
+
+/* 10. PHP */
+.phpLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 292px;
+  padding: 24px 4%;
+  justify-content: center;
+}
+.phpFpm {
+  background: rgba(6, 18, 37, 0.92);
+  border: 1px solid color-mix(in srgb, var(--scene-accent) 35%, #243957);
+  border-radius: 8px;
+  padding: 12px;
+}
+.phpHeader {
+  display: flex;
+  justify-content: space-between;
+  font: 700 0.65rem var(--font-mono, monospace);
+  color: var(--scene-accent);
+  margin-bottom: 10px;
+}
+.phpWorkers {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.phpWorker {
+  background: rgba(12, 28, 52, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font: 600 0.58rem var(--font-mono, monospace);
+}
+.phpWorkerBusy {
+  border-color: var(--scene-accent-alt);
+  background: color-mix(in srgb, var(--scene-accent-alt) 12%, #051326);
+  color: #fff;
+}
+.phpWorker code { font-size: 0.52rem; color: #8ba5c1; }
+.phpWorker small { font-size: 0.52rem; color: #61e6a8; }
+.phpOpcache {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(6, 18, 37, 0.92);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font: 600 0.62rem var(--font-mono, monospace);
+}
+.phpOpcacheHit b { color: #61e6a8; }
+.phpOpcacheHit small { display: block; font-size: 0.55rem; color: #7f99b4; }
+.phpOpcache code { color: #9fbad5; font-size: 0.6rem; }
+
+/* 11. Perl */
+.perlLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 292px;
+  padding: 24px 4%;
+  justify-content: center;
+}
+.perlEngine {
+  background: rgba(6, 18, 37, 0.92);
+  border: 1px solid color-mix(in srgb, var(--scene-accent) 35%, #243957);
+  border-radius: 8px;
+  padding: 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.perlRegexHeader {
+  display: flex;
+  justify-content: space-between;
+  font: 700 0.68rem var(--font-mono, monospace);
+  color: var(--scene-accent);
+}
+.perlTape {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(4, 13, 29, 0.9);
+  padding: 10px;
+  border-radius: 6px;
+  overflow-x: auto;
+}
+.perlTapeLabel {
+  font: 700 0.65rem var(--font-mono, monospace);
+  color: var(--scene-accent-alt);
+}
+.perlTapeChar {
+  width: 24px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  background: rgba(12, 28, 52, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  font: 700 0.72rem var(--font-mono, monospace);
+}
+.perlTapeG1 { border-color: #49d7ff; color: #49d7ff; }
+.perlTapeG2 { border-color: #61e6a8; color: #61e6a8; }
+.perlTapeDelimiter { border-color: #ffb35e; color: #ffb35e; }
+.perlCaptures {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  font: 600 0.65rem var(--font-mono, monospace);
+  color: #cadff4;
+}
+.perlCap b { color: var(--scene-accent); }
+.perlCaptures small { color: #7f99b4; font-size: 0.58rem; }
+
+/* 12. Ruby */
+.rubyLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 292px;
+  padding: 24px 4%;
+  justify-content: center;
+}
+.rubyPipeline {
+  background: rgba(6, 18, 37, 0.92);
+  border: 1px solid color-mix(in srgb, var(--scene-accent) 35%, #243957);
+  border-radius: 8px;
+  padding: 12px;
+}
+.rubyPipeHeader {
+  display: flex;
+  justify-content: space-between;
+  font: 700 0.68rem var(--font-mono, monospace);
+  color: var(--scene-accent);
+  margin-bottom: 10px;
+}
+.rubyBlocks {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.rubyBlockStep {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 8px 12px;
+  background: rgba(12, 28, 52, 0.8);
+  border-radius: 6px;
+  font: 600 0.65rem var(--font-mono, monospace);
+}
+.rubyBlockStep b { color: var(--scene-accent-alt); min-width: 120px; }
+.rubyBlockStep span { color: #b7d1ec; }
+.rubyDispatch {
+  padding: 10px 14px;
+  background: rgba(6, 18, 37, 0.92);
+  border-radius: 8px;
+  font: 600 0.62rem var(--font-mono, monospace);
+  display: flex;
+  justify-content: space-between;
+  color: #7f99b4;
+}
+.rubyDispatch code { color: #61e6a8; }
+
+/* 13. Android */
+.androidLayout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  min-height: 292px;
+  padding: 24px 4%;
+  align-items: center;
+}
+.androidLifecycle, .androidCompose {
+  background: rgba(6, 18, 37, 0.92);
+  border: 1px solid color-mix(in srgb, var(--scene-accent) 35%, #243957);
+  border-radius: 8px;
+  padding: 12px;
+}
+.androidHeader, .androidComposeHeader {
+  display: flex;
+  justify-content: space-between;
+  font: 700 0.65rem var(--font-mono, monospace);
+  color: var(--scene-accent);
+  margin-bottom: 10px;
+}
+.androidStates {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.androidState {
+  padding: 4px 8px;
+  background: rgba(12, 28, 52, 0.8);
+  border-radius: 4px;
+  font: 500 0.6rem var(--font-mono, monospace);
+  color: #8faecb;
+}
+.androidStateActive {
+  border-left: 2px solid #61e6a8;
+  background: color-mix(in srgb, #61e6a8 15%, #051326);
+  color: #fff;
+}
+.androidTree {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.androidNodeSkipped {
+  padding: 6px 10px;
+  background: rgba(12, 28, 52, 0.6);
+  border: 1px dashed rgba(255, 255, 255, 0.1);
+  border-radius: 6px;
+  font: 500 0.6rem var(--font-mono, monospace);
+  color: #6f8ba6;
+}
+.androidNodeRecomposed {
+  padding: 6px 10px;
+  background: color-mix(in srgb, var(--scene-accent) 15%, #051326);
+  border: 1px solid var(--scene-accent);
+  border-radius: 6px;
+  font: 700 0.6rem var(--font-mono, monospace);
+  color: #fff;
+}
+
+/* 14. Qwik */
+.qwikLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 292px;
+  padding: 24px 4%;
+  justify-content: center;
+}
+.qwikResumability {
+  background: rgba(6, 18, 37, 0.92);
+  border: 1px solid color-mix(in srgb, var(--scene-accent) 35%, #243957);
+  border-radius: 8px;
+  padding: 14px;
+}
+.qwikHeader {
+  display: flex;
+  justify-content: space-between;
+  font: 700 0.68rem var(--font-mono, monospace);
+  color: var(--scene-accent);
+  margin-bottom: 10px;
+}
+.qwikHtml {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background: rgba(4, 13, 29, 0.9);
+  padding: 10px 14px;
+  border-radius: 6px;
+  font: 600 0.65rem var(--font-mono, monospace);
+}
+.qwikHtml code { color: #4fe4ed; }
+.qwikStatus { color: #61e6a8; }
+.qwikInteraction {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: center;
+}
+.qwikArrow {
+  font: 700 0.65rem var(--font-mono, monospace);
+  color: var(--scene-accent-alt);
+}
+.qwikFetch {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  background: color-mix(in srgb, var(--scene-accent) 12%, #051326);
+  border: 1px solid var(--scene-accent);
+  border-radius: 6px;
+  padding: 10px 14px;
+  font: 600 0.65rem var(--font-mono, monospace);
+  color: #fff;
+}
+.qwikFetch code { color: #61e6a8; }
+
+/* 15. Scratch */
+.scratchLayout {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  min-height: 292px;
+  padding: 24px 4%;
+  align-items: center;
+}
+.scratchCodeBlocks {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.scratchBlockHat {
+  background: #ffbf00;
+  color: #332200;
+  padding: 8px 12px;
+  border-radius: 12px 12px 4px 4px;
+  font: 700 0.65rem sans-serif;
+  width: fit-content;
+}
+.scratchBlockLoop {
+  background: #ffab19;
+  color: #fff;
+  padding: 8px 10px;
+  border-radius: 4px;
+  font: 700 0.62rem sans-serif;
+}
+.scratchBlockInner {
+  margin-left: 12px;
+  margin-top: 6px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.scratchBlockAction {
+  background: #4c97ff;
+  color: #fff;
+  padding: 6px 10px;
+  border-radius: 4px;
+  font: 600 0.6rem sans-serif;
+}
+.scratchBlockCondition {
+  background: #ffab19;
+  color: #fff;
+  padding: 6px 8px;
+  border-radius: 4px;
+  font: 600 0.6rem sans-serif;
+}
+.scratchBlockInner2 {
+  margin-left: 10px;
+  margin-top: 4px;
+}
+.scratchBlockEvent {
+  background: #ffbf00;
+  color: #332200;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font: 600 0.58rem sans-serif;
+}
+.scratchStageView {
+  background: rgba(6, 18, 37, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  overflow: hidden;
+}
+.scratchStageView header {
+  padding: 6px 10px;
+  background: rgba(12, 28, 52, 0.8);
+  font: 700 0.6rem var(--font-mono, monospace);
+  color: var(--scene-accent);
+}
+.scratchWorld {
+  position: relative;
+  height: 120px;
+  background: #04101e;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+}
+.scratchSprite {
+  position: absolute;
+  padding: 6px 10px;
+  background: #ffab19;
+  color: #fff;
+  border-radius: 12px;
+  font: 700 0.65rem sans-serif;
+}
+.scratchTarget {
+  position: absolute;
+  right: 20px;
+  font-size: 0.8rem;
+  color: #61e6a8;
+}
+
+/* 16. Angular */
+.angularLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 292px;
+  padding: 24px 4%;
+  justify-content: center;
+}
+.angularDi {
+  background: rgba(6, 18, 37, 0.92);
+  border: 1px solid color-mix(in srgb, var(--scene-accent) 35%, #243957);
+  border-radius: 8px;
+  padding: 12px;
+}
+.angularDiHeader {
+  display: flex;
+  justify-content: space-between;
+  font: 700 0.65rem var(--font-mono, monospace);
+  color: var(--scene-accent);
+  margin-bottom: 8px;
+}
+.angularTree {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font: 600 0.62rem var(--font-mono, monospace);
+  color: #cadff4;
+}
+.angularNodeIndent { margin-left: 18px; color: var(--scene-accent-alt); }
+.angularNodeIndent2 { margin-left: 36px; color: #61e6a8; }
+.angularSignals {
+  background: rgba(6, 18, 37, 0.92);
+  border-radius: 8px;
+  padding: 12px;
+}
+.angularSignalsHeader {
+  display: flex;
+  justify-content: space-between;
+  font: 700 0.65rem var(--font-mono, monospace);
+  color: var(--scene-accent-alt);
+  margin-bottom: 8px;
+}
+.angularSignalFlow {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  overflow-x: auto;
+}
+.angularSig {
+  padding: 6px 10px;
+  background: rgba(12, 28, 52, 0.9);
+  border: 1px solid var(--scene-accent);
+  border-radius: 6px;
+  font: 600 0.62rem var(--font-mono, monospace);
+  color: #fff;
+  white-space: nowrap;
+}
+.angularArrow { color: #61e6a8; font-weight: bold; }
+
+/* 17. Lisp */
+.lispLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+  min-height: 292px;
+  padding: 24px 4%;
+  justify-content: center;
+}
+.lispAst {
+  background: rgba(6, 18, 37, 0.92);
+  border: 1px solid color-mix(in srgb, var(--scene-accent) 35%, #243957);
+  border-radius: 8px;
+  padding: 12px;
+}
+.lispAstHeader {
+  display: flex;
+  justify-content: space-between;
+  font: 700 0.65rem var(--font-mono, monospace);
+  color: var(--scene-accent);
+  margin-bottom: 10px;
+}
+.lispTree {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.lispNode {
+  font: 600 0.65rem var(--font-mono, monospace);
+  color: var(--scene-accent-alt);
+}
+.lispExpandArrow {
+  font: 600 0.6rem var(--font-mono, monospace);
+  color: #61e6a8;
+}
+.lispExpanded {
+  padding: 8px 12px;
+  background: rgba(4, 13, 29, 0.9);
+  border-radius: 6px;
+  font: 500 0.65rem var(--font-mono, monospace);
+  color: #9fe6ff;
+}
+.lispRepl {
+  text-align: center;
+  font: 700 0.65rem var(--font-mono, monospace);
+  color: var(--scene-accent);
+}
+
+/* 18. Algorithms */
+.algorithmsLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 292px;
+  padding: 20px 4%;
+  justify-content: center;
+}
+.algorithmsGraph {
+  background: rgba(6, 18, 37, 0.92);
+  border: 1px solid color-mix(in srgb, var(--scene-accent) 35%, #243957);
+  border-radius: 8px;
+  padding: 12px;
+}
+.algorithmsHeader {
+  display: flex;
+  justify-content: space-between;
+  font: 700 0.65rem var(--font-mono, monospace);
+  color: var(--scene-accent);
+  margin-bottom: 6px;
+}
+.algorithmsSvg {
+  width: 100%;
+  height: 120px;
+}
+.algorithmsQueue {
+  padding: 8px 12px;
+  background: rgba(6, 18, 37, 0.92);
+  border-radius: 6px;
+  font: 600 0.62rem var(--font-mono, monospace);
+  color: #61e6a8;
+  text-align: center;
+}
+
+/* 19. AI */
+.aiLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 292px;
+  padding: 20px 4%;
+  justify-content: center;
+}
+.aiNetwork {
+  background: rgba(6, 18, 37, 0.92);
+  border: 1px solid color-mix(in srgb, var(--scene-accent) 35%, #243957);
+  border-radius: 8px;
+  padding: 12px;
+}
+.aiHeader {
+  display: flex;
+  justify-content: space-between;
+  font: 700 0.65rem var(--font-mono, monospace);
+  color: var(--scene-accent);
+  margin-bottom: 12px;
+}
+.aiLayers {
+  display: grid;
+  grid-template-columns: 1fr auto 1fr auto 1fr;
+  gap: 12px;
+  align-items: center;
+}
+.aiLayer {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.aiLayer header {
+  font: 700 0.55rem var(--font-mono, monospace);
+  color: var(--scene-accent-alt);
+  margin-bottom: 2px;
+}
+.aiNeuron {
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--scene-accent);
+  box-shadow: 0 0 8px var(--scene-accent);
+}
+.aiNeuronHidden {
+  background: var(--scene-accent-alt);
+  box-shadow: 0 0 8px var(--scene-accent-alt);
+}
+.aiNeuronOutput {
+  background: #61e6a8;
+  box-shadow: 0 0 8px #61e6a8;
+}
+.aiWeights {
+  font: 700 0.58rem var(--font-mono, monospace);
+  color: #61e6a8;
+}
+.aiMetrics {
+  text-align: center;
+  font: 500 0.62rem var(--font-mono, monospace);
+  color: #8da5c0;
+}
+
+/* 20. R */
+.rLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 292px;
+  padding: 20px 4%;
+  justify-content: center;
+}
+.rStats {
+  background: rgba(6, 18, 37, 0.92);
+  border: 1px solid color-mix(in srgb, var(--scene-accent) 35%, #243957);
+  border-radius: 8px;
+  padding: 12px;
+}
+.rHeader {
+  display: flex;
+  justify-content: space-between;
+  font: 700 0.65rem var(--font-mono, monospace);
+  color: var(--scene-accent);
+  margin-bottom: 12px;
+}
+.rVisuals {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+}
+.rBoxplot, .rRegression {
+  background: rgba(12, 28, 52, 0.8);
+  border-radius: 6px;
+  padding: 10px;
+}
+.rBoxplot header, .rRegression header {
+  font: 700 0.6rem var(--font-mono, monospace);
+  color: var(--scene-accent-alt);
+  margin-bottom: 8px;
+}
+.rBoxWrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 3px;
+}
+.rWhiskerTop, .rWhiskerBottom {
+  width: 20px;
+  height: 2px;
+  background: var(--scene-accent);
+}
+.rBox {
+  width: 120px;
+  padding: 6px;
+  border: 1px solid var(--scene-accent);
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--scene-accent) 15%, transparent);
+  text-align: center;
+  font: 600 0.58rem var(--font-mono, monospace);
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.rBox b { color: #fff; }
+.rOutlier {
+  color: #ff718e;
+  font: 700 0.55rem var(--font-mono, monospace);
+  margin-top: 4px;
+}
+.rRow {
+  display: flex;
+  justify-content: space-between;
+  font: 500 0.62rem var(--font-mono, monospace);
+  color: #b0c9e2;
+  margin-top: 4px;
+}
+.rRow b { color: #61e6a8; }
+
+/* 21. Mathematics */
+.mathLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 292px;
+  padding: 20px 4%;
+  justify-content: center;
+}
+.mathContour {
+  background: rgba(6, 18, 37, 0.92);
+  border: 1px solid color-mix(in srgb, var(--scene-accent) 35%, #243957);
+  border-radius: 8px;
+  padding: 12px;
+}
+.mathHeader {
+  display: flex;
+  justify-content: space-between;
+  font: 700 0.65rem var(--font-mono, monospace);
+  color: var(--scene-accent);
+  margin-bottom: 10px;
+}
+.mathGrid {
+  position: relative;
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 4px;
+  height: 100px;
+}
+.mathCell {
+  background: linear-gradient(135deg, var(--scene-accent), var(--scene-accent-alt));
+  border-radius: 2px;
+}
+.mathBall {
+  position: absolute;
+  width: 22px;
+  height: 22px;
+  border-radius: 50%;
+  background: #fff;
+  color: #04111f;
+  display: grid;
+  place-items: center;
+  font: 800 0.6rem var(--font-mono, monospace);
+  box-shadow: 0 0 14px #fff;
+}
+.mathConvergence {
+  text-align: center;
+  font: 600 0.62rem var(--font-mono, monospace);
+  color: #61e6a8;
+}
+
+/* 22. Django */
+.djangoLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 292px;
+  padding: 20px 4%;
+  justify-content: center;
+}
+.djangoMtv {
+  background: rgba(6, 18, 37, 0.92);
+  border: 1px solid color-mix(in srgb, var(--scene-accent) 35%, #243957);
+  border-radius: 8px;
+  padding: 12px;
+}
+.djangoHeader {
+  display: flex;
+  justify-content: space-between;
+  font: 700 0.65rem var(--font-mono, monospace);
+  color: var(--scene-accent);
+  margin-bottom: 10px;
+}
+.djangoSteps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+.djangoStep {
+  background: rgba(12, 28, 52, 0.8);
+  border-radius: 6px;
+  padding: 8px 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.djangoStep b { font: 700 0.62rem var(--font-mono, monospace); color: var(--scene-accent-alt); }
+.djangoStep code { font: 500 0.58rem var(--font-mono, monospace); color: #cadff4; }
+.djangoTx {
+  text-align: center;
+  font: 600 0.62rem var(--font-mono, monospace);
+  color: #61e6a8;
+}
+
+/* 23. Methodologies (Kanban) */
+.kanbanLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 292px;
+  padding: 20px 4%;
+  justify-content: center;
+}
+.kanbanHeader {
+  display: flex;
+  justify-content: space-between;
+  font: 700 0.65rem var(--font-mono, monospace);
+  color: var(--scene-accent);
+}
+.kanbanColumns {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 8px;
+}
+.kanbanCol {
+  background: rgba(6, 18, 37, 0.92);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 6px;
+  padding: 8px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+.kanbanColWip {
+  border-color: var(--scene-accent);
+  background: color-mix(in srgb, var(--scene-accent) 8%, #051326);
+}
+.kanbanCol header {
+  font: 700 0.58rem var(--font-mono, monospace);
+  color: var(--scene-accent);
+  margin-bottom: 2px;
+}
+.kanbanCard {
+  padding: 6px 8px;
+  background: rgba(12, 28, 52, 0.85);
+  border-radius: 4px;
+  font: 600 0.58rem var(--font-mono, monospace);
+  color: #cadff4;
+}
+.kanbanCardActive {
+  border-left: 2px solid var(--scene-accent-alt);
+  color: #fff;
+}
+.kanbanCardDone {
+  padding: 6px 8px;
+  background: color-mix(in srgb, #61e6a8 15%, #051326);
+  border-left: 2px solid #61e6a8;
+  border-radius: 4px;
+  font: 600 0.58rem var(--font-mono, monospace);
+  color: #fff;
+}
+.kanbanMetric {
+  text-align: center;
+  font: 600 0.62rem var(--font-mono, monospace);
+  color: #8da4bd;
+}
+
+/* 24. Fundamentals (Flowchart) */
+.flowchartLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 292px;
+  padding: 20px 4%;
+  justify-content: center;
+}
+.flowchartHeader {
+  display: flex;
+  justify-content: space-between;
+  font: 700 0.65rem var(--font-mono, monospace);
+  color: var(--scene-accent);
+  margin-bottom: 6px;
+}
+.flowchartNodes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.fcTerminal {
+  padding: 6px 14px;
+  background: var(--scene-accent);
+  color: #04111f;
+  border-radius: 12px;
+  font: 800 0.62rem var(--font-mono, monospace);
+}
+.fcArrow {
+  font: 700 0.65rem var(--font-mono, monospace);
+  color: var(--scene-accent-alt);
+}
+.fcProcess {
+  padding: 6px 14px;
+  background: rgba(12, 28, 52, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  font: 600 0.62rem var(--font-mono, monospace);
+  color: #cadff4;
+}
+.fcDecision {
+  padding: 8px 14px;
+  background: rgba(6, 18, 37, 0.95);
+  border: 1px solid var(--scene-accent-alt);
+  border-radius: 6px;
+  text-align: center;
+  font: 700 0.62rem var(--font-mono, monospace);
+}
+.fcDecision span { color: var(--scene-accent-alt); display: block; margin-bottom: 4px; }
+.fcBranches { display: flex; gap: 14px; }
+.fcBranchYes { color: #61e6a8; font-size: 0.58rem; }
+.fcBranchNo { color: #ff718e; font-size: 0.58rem; }
+
+/* 25. Java */
+.jvmLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 292px;
+  padding: 20px 4%;
+  justify-content: center;
+}
+.jvmHeader {
+  display: flex;
+  justify-content: space-between;
+  font: 700 0.65rem var(--font-mono, monospace);
+  color: var(--scene-accent);
+  margin-bottom: 6px;
+}
+.jvmArchitecture {
+  display: grid;
+  grid-template-columns: 1fr 1.2fr;
+  gap: 12px;
+}
+.jvmSubsystem, .jvmHeap {
+  background: rgba(6, 18, 37, 0.92);
+  border: 1px solid color-mix(in srgb, var(--scene-accent) 35%, #243957);
+  border-radius: 8px;
+  padding: 10px;
+}
+.jvmSubsystem header, .jvmHeap header {
+  font: 700 0.6rem var(--font-mono, monospace);
+  color: var(--scene-accent-alt);
+  margin-bottom: 8px;
+}
+.jvmSubsystem code {
+  font: 500 0.58rem var(--font-mono, monospace);
+  color: #cadff4;
+}
+.jvmSpaces {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 6px;
+}
+.jvmEden, .jvmSurvivor, .jvmOld {
+  padding: 6px;
+  background: rgba(12, 28, 52, 0.8);
+  border-radius: 4px;
+  font: 600 0.58rem var(--font-mono, monospace);
+  text-align: center;
+}
+.jvmEden { border-bottom: 2px solid var(--scene-accent); }
+.jvmSurvivor { border-bottom: 2px solid var(--scene-accent-alt); }
+.jvmOld { border-bottom: 2px solid #61e6a8; }
+.jvmEden small, .jvmSurvivor small, .jvmOld small {
+  display: block;
+  font-size: 0.5rem;
+  color: #8da4be;
+  margin-top: 2px;
+}
+.jvmJfr {
+  text-align: center;
+  font: 600 0.62rem var(--font-mono, monospace);
+  color: #61e6a8;
+}
+
+/* 26. Scala */
+.scalaLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 292px;
+  padding: 20px 4%;
+  justify-content: center;
+}
+.scalaAdt {
+  background: rgba(6, 18, 37, 0.92);
+  border: 1px solid color-mix(in srgb, var(--scene-accent) 35%, #243957);
+  border-radius: 8px;
+  padding: 12px;
+}
+.scalaHeader {
+  display: flex;
+  justify-content: space-between;
+  font: 700 0.65rem var(--font-mono, monospace);
+  color: var(--scene-accent);
+  margin-bottom: 8px;
+}
+.scalaCodeBlock {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  font: 500 0.6rem var(--font-mono, monospace);
+  color: #cadff4;
+}
+.scalaMatch {
+  margin-top: 6px;
+  padding: 6px 10px;
+  background: rgba(4, 13, 29, 0.9);
+  border-radius: 4px;
+  color: #61e6a8;
+}
+.scalaTraits {
+  text-align: center;
+  font: 600 0.62rem var(--font-mono, monospace);
+  color: var(--scene-accent-alt);
+}
+
+/* 27. Haskell */
+.haskellLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 292px;
+  padding: 20px 4%;
+  justify-content: center;
+}
+.haskellThunks {
+  background: rgba(6, 18, 37, 0.92);
+  border: 1px solid color-mix(in srgb, var(--scene-accent) 35%, #243957);
+  border-radius: 8px;
+  padding: 12px;
+}
+.haskellHeader {
+  display: flex;
+  justify-content: space-between;
+  font: 700 0.65rem var(--font-mono, monospace);
+  color: var(--scene-accent);
+  margin-bottom: 10px;
+}
+.haskellNodes {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+}
+.haskellThunk {
+  padding: 6px 12px;
+  border: 1px dashed var(--scene-accent-alt);
+  border-radius: 4px;
+  font: 600 0.62rem var(--font-mono, monospace);
+  color: var(--scene-accent-alt);
+}
+.haskellForceArrow {
+  font: 600 0.6rem var(--font-mono, monospace);
+  color: #61e6a8;
+}
+.haskellValue {
+  padding: 6px 12px;
+  background: color-mix(in srgb, #61e6a8 15%, #051326);
+  border: 1px solid #61e6a8;
+  border-radius: 4px;
+  font: 700 0.62rem var(--font-mono, monospace);
+  color: #fff;
+}
+.haskellMonad {
+  text-align: center;
+  font: 600 0.62rem var(--font-mono, monospace);
+  color: #8da4be;
+}
+
+/* 28. Subversion */
+.svnLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 292px;
+  padding: 20px 4%;
+  justify-content: center;
+}
+.svnCentral {
+  background: rgba(6, 18, 37, 0.92);
+  border: 1px solid color-mix(in srgb, var(--scene-accent) 35%, #243957);
+  border-radius: 8px;
+  padding: 12px;
+}
+.svnHeader {
+  display: flex;
+  justify-content: space-between;
+  font: 700 0.65rem var(--font-mono, monospace);
+  color: var(--scene-accent);
+  margin-bottom: 8px;
+}
+.svnTree {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.svnDir {
+  padding: 4px 8px;
+  background: rgba(12, 28, 52, 0.8);
+  border-radius: 4px;
+  font: 500 0.6rem var(--font-mono, monospace);
+  color: #cadff4;
+}
+.svnRevisionLine {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: rgba(6, 18, 37, 0.92);
+  border-radius: 8px;
+  padding: 10px 14px;
+  font: 600 0.62rem var(--font-mono, monospace);
+}
+.svnRevisionLine span { color: var(--scene-accent-alt); }
+.svnRevs { display: flex; align-items: center; gap: 8px; }
+.svnRev {
+  padding: 4px 8px;
+  background: rgba(12, 28, 52, 0.8);
+  border-radius: 4px;
+  color: #8da4be;
+}
+.svnRevActive {
+  background: color-mix(in srgb, var(--scene-accent) 20%, #051326);
+  border: 1px solid var(--scene-accent);
+  color: #fff;
+}
+
+/* 29. Raku */
+.rakuLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 292px;
+  padding: 20px 4%;
+  justify-content: center;
+}
+.rakuGrammar {
+  background: rgba(6, 18, 37, 0.92);
+  border: 1px solid color-mix(in srgb, var(--scene-accent) 35%, #243957);
+  border-radius: 8px;
+  padding: 12px;
+}
+.rakuHeader {
+  display: flex;
+  justify-content: space-between;
+  font: 700 0.65rem var(--font-mono, monospace);
+  color: var(--scene-accent);
+  margin-bottom: 10px;
+}
+.rakuTokens {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  font: 500 0.62rem var(--font-mono, monospace);
+  color: #cadff4;
+}
+.rakuToken {
+  padding: 5px 8px;
+  background: rgba(12, 28, 52, 0.8);
+  border-radius: 4px;
+}
+.rakuJunction {
+  margin-top: 6px;
+  padding: 8px 10px;
+  background: color-mix(in srgb, var(--scene-accent-alt) 12%, #051326);
+  border-radius: 6px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+.rakuJunction span { color: var(--scene-accent-alt); font-weight: bold; }
+.rakuJunction code { color: #61e6a8; }
+
+/* 30. LaTeX */
+.latexLayout {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  min-height: 292px;
+  padding: 20px 4%;
+  justify-content: center;
+}
+.latexEngine {
+  background: rgba(6, 18, 37, 0.92);
+  border: 1px solid color-mix(in srgb, var(--scene-accent) 35%, #243957);
+  border-radius: 8px;
+  padding: 12px;
+}
+.latexHeader {
+  display: flex;
+  justify-content: space-between;
+  font: 700 0.65rem var(--font-mono, monospace);
+  color: var(--scene-accent);
+  margin-bottom: 10px;
+}
+.latexBoxes {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  justify-content: center;
+}
+.latexBoxItem {
+  padding: 8px 12px;
+  background: rgba(12, 28, 52, 0.9);
+  border: 1px solid var(--scene-accent);
+  border-radius: 4px;
+  font: 600 0.6rem var(--font-mono, monospace);
+  color: #fff;
+}
+.latexGlueItem {
+  padding: 6px 10px;
+  border: 1px dashed var(--scene-accent-alt);
+  border-radius: 4px;
+  font: 500 0.58rem var(--font-mono, monospace);
+  color: var(--scene-accent-alt);
+}
+.latexOutput {
+  text-align: center;
+  font: 600 0.62rem var(--font-mono, monospace);
+  color: #61e6a8;
+}
