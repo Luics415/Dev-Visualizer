@@ -12,6 +12,13 @@ import { isNewLearningActionSceneId } from "@/data/newLearningActionScenes";
 import { collectionNotices } from "@/data/collectionNotices";
 import type { ExpandedCollectionDefinition } from "@/data/expandedCollectionTypes";
 import type { CollectionManifestEntry } from "@/data/collectionManifest";
+import { FloatingAudioBubble } from "@/components/audio/FloatingAudioBubble";
+import { ConceptAudioTrigger } from "@/components/audio/ConceptAudioTrigger";
+import {
+  buildPracticalModuleAudioTrack,
+  getActionPresentationTrack,
+  isCollectionAudioEnabled,
+} from "@/lib/audioTrackHelper";
 
 type ExpandedActionPageProps = {
   collection: ExpandedCollectionDefinition;
@@ -27,6 +34,19 @@ export function ExpandedActionPage({ collection, manifest, collectionNumber }: E
   const noticeLabel = isLegacy ? "Tecnología heredada" : isHistorical ? "Tecnología histórica" : "Contexto tecnológico";
   const noticeClass = `collection-notice${isLegacy ? " collection-notice--legacy" : isHistorical ? " collection-notice--historical" : ""}`;
   const notice = rawNotice?.replace(/^(?:Tecnología heredada|Tecnología histórica):\s*/i, "");
+
+  const isAudioActive = isCollectionAudioEnabled(manifest.id);
+  const presentationTrack = isAudioActive
+    ? getActionPresentationTrack(manifest.id, practical)
+    : null;
+  const practicalTracks = isAudioActive && presentationTrack
+    ? [
+        presentationTrack,
+        ...practical.steps.map((step, i) =>
+          buildPracticalModuleAudioTrack(manifest.id, step, i + 1)
+        ),
+      ]
+    : [];
 
   return (
     <main className="page-shell">
@@ -52,7 +72,23 @@ export function ExpandedActionPage({ collection, manifest, collectionNumber }: E
         <Link href={manifest.href}>Ver conceptos y catálogo de {manifest.label} <b>←</b></Link>
       </div>
 
-      <section className="practical-stage practical-stage--expanded" aria-label={`Caso práctico integrado de ${manifest.label}`}>
+      <section className="practical-stage practical-stage--expanded practical-stage--card" aria-label={`Caso práctico integrado de ${manifest.label}`}>
+        {presentationTrack ? (
+          <header className="practical-card__header">
+            <div className="practical-card__title-group">
+              <span className="practical-card__badge">00</span>
+              <div>
+                <h2>{practical.title}</h2>
+                <p>{practical.eyebrow ?? practical.description}</p>
+              </div>
+            </div>
+            <div className="practical-card__actions">
+              <ConceptAudioTrigger track={presentationTrack} />
+              <span className="practical-card__family">{presentationTrack.family}</span>
+            </div>
+          </header>
+        ) : null}
+
         {manifest.id === "ci-cd"
           ? <CiCdArtifactPassportScene />
           : manifest.id === "mediapipe"
@@ -66,8 +102,12 @@ export function ExpandedActionPage({ collection, manifest, collectionNumber }: E
                   : <DistinctActionScene id={manifest.id as DistinctActionSceneId} />}
       </section>
 
-      <PracticalDeepDive modules={practical.steps} startAt={1} />
+      <PracticalDeepDive modules={practical.steps} startAt={1} collectionId={manifest.id} />
       <footer className="project-note">{practical.footer}</footer>
+
+      {isAudioActive && practicalTracks.length > 0 ? (
+        <FloatingAudioBubble collectionName={practical.title} tracks={practicalTracks} />
+      ) : null}
     </main>
   );
 }

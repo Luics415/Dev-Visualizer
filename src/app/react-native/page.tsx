@@ -16,6 +16,8 @@ import { slugify } from "@/lib/slugify";
 import { CollectionPrimer } from "@/components/concepts/CollectionPrimer";
 import { collectionNumber } from "@/data/collectionManifest";
 import { collectionPrimers } from "@/data/collectionPrimers";
+import { FloatingAudioBubble } from "@/components/audio/FloatingAudioBubble";
+import { buildConceptAudioTrack } from "@/lib/audioTrackHelper";
 
 const specialScenes = new Map<string, ReactNode>([
   ["Renderizado nativo", <NativeRenderingScene key="native-rendering" />],
@@ -38,6 +40,9 @@ const sections = [...new Set(reactNativeConcepts.map((concept) => concept.sectio
 const chapters = sections.map((name) => ({ name, count: reactNativeConcepts.filter((concept) => concept.section === name).length }));
 
 export default function ReactNativePage() {
+  const audioTracks = reactNativeConcepts.map((concept, index) =>
+    buildConceptAudioTrack("react-native", concept, index + 1)
+  );
   return (
     <main className="page-shell">
       <CollectionNav />
@@ -92,6 +97,7 @@ export default function ReactNativePage() {
       <footer className="project-note">
         Una aplicación móvil completa atraviesa React, runtime JavaScript, renderer nativo, servicios del sistema, datos, builds y operación en dispositivos reales.
       </footer>
+      <FloatingAudioBubble collectionName="React Native" tracks={audioTracks} />
     </main>
   );
 }

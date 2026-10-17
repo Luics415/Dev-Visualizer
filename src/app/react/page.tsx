@@ -25,6 +25,8 @@ import { slugify } from "@/lib/slugify";
 import { CollectionPrimer } from "@/components/concepts/CollectionPrimer";
 import { collectionNumber } from "@/data/collectionManifest";
 import { collectionPrimers } from "@/data/collectionPrimers";
+import { FloatingAudioBubble } from "@/components/audio/FloatingAudioBubble";
+import { buildConceptAudioTrack } from "@/lib/audioTrackHelper";
 
 const specialScenes = new Map<string, ReactNode>([
   ["Componentes", <ComponentsScene key="components" />],
@@ -47,6 +49,9 @@ const sections = [...new Set(reactConcepts.map((concept) => concept.section))];
 const chapters = sections.map((name) => ({ name, count: reactConcepts.filter((concept) => concept.section === name).length }));
 
 export default function ReactPage() {
+  const audioTracks = reactConcepts.map((concept, index) =>
+    buildConceptAudioTrack("react", concept, index + 1)
+  );
   return (
     <main className="page-shell">
       <CollectionNav />
@@ -101,6 +106,7 @@ export default function ReactPage() {
       <footer className="project-note">
         React no es solo Hooks: es un modelo de identidad, prioridades, fronteras de render y sincronización que se extiende del cliente al servidor.
       </footer>
+      <FloatingAudioBubble collectionName="React" tracks={audioTracks} />
     </main>
   );
 }

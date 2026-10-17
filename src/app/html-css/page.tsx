@@ -8,8 +8,13 @@ import { CollectionLibraryInvite } from "@/components/concepts/CollectionLibrary
 import { collectionNumber } from "@/data/collectionManifest";
 import { collectionPrimers } from "@/data/collectionPrimers";
 import { collectionNotices } from "@/data/collectionNotices";
+import { FloatingAudioBubble } from "@/components/audio/FloatingAudioBubble";
+import { buildConceptAudioTrack } from "@/lib/audioTrackHelper";
 
 export default function HtmlCssPage() {
+  const audioTracks = htmlCssConcepts.map((concept, index) =>
+    buildConceptAudioTrack("html-css", concept, index + 1)
+  );
   return (
     <main className="page-shell">
       <CollectionNav />
@@ -44,6 +49,7 @@ export default function HtmlCssPage() {
       </section>
 
       <footer className="project-note">HTML aporta significado y relaciones; CSS participa en una cascade, crea cajas y las dispone. El navegador convierte ambos en árboles, geometría, píxeles y capas de composición.</footer>
+      <FloatingAudioBubble collectionName="HTML y CSS" tracks={audioTracks} />
     </main>
   );
 }

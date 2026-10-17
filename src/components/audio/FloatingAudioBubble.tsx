@@ -6,11 +6,13 @@ import { useIsClient } from "@/hooks/useIsClient";
 import type { AudioTrack } from "@/lib/audioNarrator";
 
 type FloatingAudioBubbleProps = {
-  collectionName: string;
+  collectionName?: string;
+  collectionTitle?: string;
   tracks: readonly AudioTrack[];
 };
 
-export function FloatingAudioBubble({ collectionName, tracks }: FloatingAudioBubbleProps) {
+export function FloatingAudioBubble({ collectionName, collectionTitle, tracks }: FloatingAudioBubbleProps) {
+  const resolvedName = collectionName ?? collectionTitle ?? "Colección";
   const isClient = useIsClient();
   const [isExpanded, setIsExpanded] = useState(false);
   const { activeTrack, status, speed, speak, pause, resume, stop, cycleSpeed, isSupported } = useAudioNarrator();
@@ -115,7 +117,7 @@ export function FloatingAudioBubble({ collectionName, tracks }: FloatingAudioBub
             <div className="floating-audio-bubble__brand">
               <span className="floating-audio-bubble__dot" aria-hidden="true" />
               <strong>Lectura didáctica</strong>
-              <small>{collectionName}</small>
+              <small>{resolvedName}</small>
             </div>
             <button
               type="button"

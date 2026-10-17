@@ -12,6 +12,8 @@ import { officialReferencesForCollection } from "@/data/officialReferences";
 import { collectionManifest } from "@/data/collectionManifest";
 import { collectionNotices } from "@/data/collectionNotices";
 import { slugify } from "@/lib/slugify";
+import { FloatingAudioBubble } from "@/components/audio/FloatingAudioBubble";
+import { buildConceptAudioTrack, isCollectionAudioEnabled } from "@/lib/audioTrackHelper";
 
 type StudyAtlasCollectionProps = {
   collectionId: string;
@@ -59,6 +61,12 @@ export function StudyAtlasCollection({
     name,
     count: concepts.filter((concept) => concept.section === name).length,
   }));
+  const isAudioActive = isCollectionAudioEnabled(collectionId);
+  const audioTracks = isAudioActive
+    ? concepts.map((concept, index) =>
+        buildConceptAudioTrack(collectionId, concept, index + 1)
+      )
+    : [];
 
   return (
     <main className="page-shell">
@@ -151,6 +159,10 @@ export function StudyAtlasCollection({
       ) : null}
 
       <footer className="project-note">{footer}</footer>
+
+      {isAudioActive && audioTracks.length > 0 ? (
+        <FloatingAudioBubble collectionName={title} tracks={audioTracks} />
+      ) : null}
     </main>
   );
 }
