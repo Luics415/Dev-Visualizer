@@ -5,8 +5,22 @@ import { StateManagementPracticalScene } from "@/components/scenes/state-managem
 import { collectionNumber } from "@/data/collectionManifest";
 import { collectionNotices } from "@/data/collectionNotices";
 import { stateManagementDeepDive } from "@/data/practicalDeepDives";
+import { ConceptAudioTrigger } from "@/components/audio/ConceptAudioTrigger";
+import { FloatingAudioBubble } from "@/components/audio/FloatingAudioBubble";
+import {
+  buildPracticalModuleAudioTrack,
+  getActionPresentationTrack,
+} from "@/lib/audioTrackHelper";
 
 export default function StateManagementActionPage() {
+  const presentationTrack = getActionPresentationTrack("state-management");
+  const practicalTracks = [
+    presentationTrack,
+    ...stateManagementDeepDive.map((module, i) =>
+      buildPracticalModuleAudioTrack("state-management", module, 7 + i)
+    ),
+  ];
+
   return (
     <main className="page-shell">
       <CollectionNav />
@@ -29,13 +43,29 @@ export default function StateManagementActionPage() {
         <Link href="/gestion-estado">Ver conceptos y catálogo de Gestión de estado <b>←</b></Link>
       </div>
 
-      <section className="practical-stage practical-stage--state-management" aria-label="Ejemplo práctico integrado de gestión de estado">
+      <section className="practical-stage practical-stage--state-management practical-stage--card" aria-label="Ejemplo práctico integrado de gestión de estado">
+        <header className="practical-card__header">
+          <div className="practical-card__title-group">
+            <span className="practical-card__badge">00</span>
+            <div>
+              <h2>Constructor de equipos en tiempo real</h2>
+              <p>Fronteras de estado: local, URL, store global, server state, mutaciones optimistas y persistencia offline.</p>
+            </div>
+          </div>
+          <div className="practical-card__actions">
+            <ConceptAudioTrigger track={presentationTrack} />
+            <span className="practical-card__family">{presentationTrack.family}</span>
+          </div>
+        </header>
+
         <StateManagementPracticalScene />
       </section>
 
-      <PracticalDeepDive modules={stateManagementDeepDive} />
+      <PracticalDeepDive modules={stateManagementDeepDive} collectionId="state-management" />
 
       <footer className="project-note">El caso conecta lo visible con ownership, snapshots, selectores, query cache, optimismo, persistencia, offline y observabilidad.</footer>
+
+      <FloatingAudioBubble collectionName="Gestión de estado en acción" tracks={practicalTracks} />
     </main>
   );
 }
