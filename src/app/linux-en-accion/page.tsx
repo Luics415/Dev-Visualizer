@@ -5,8 +5,22 @@ import { LinuxPracticalScene } from "@/components/scenes/linux/LinuxPracticalSce
 import { collectionNumber } from "@/data/collectionManifest";
 import { collectionNotices } from "@/data/collectionNotices";
 import { linuxDeepDive } from "@/data/practicalDeepDives";
+import { ConceptAudioTrigger } from "@/components/audio/ConceptAudioTrigger";
+import { FloatingAudioBubble } from "@/components/audio/FloatingAudioBubble";
+import {
+  buildPracticalModuleAudioTrack,
+  getActionPresentationTrack,
+} from "@/lib/audioTrackHelper";
 
 export default function LinuxActionPage() {
+  const presentationTrack = getActionPresentationTrack("linux");
+  const practicalTracks = [
+    presentationTrack,
+    ...linuxDeepDive.map((module, i) =>
+      buildPracticalModuleAudioTrack("linux", module, 7 + i)
+    ),
+  ];
+
   return (
     <main className="page-shell">
       <CollectionNav />
@@ -29,12 +43,28 @@ export default function LinuxActionPage() {
         <Link href="/linux">Ver conceptos y catálogo de Linux <b>←</b></Link>
       </div>
 
-      <section className="practical-stage practical-stage--linux" aria-label="Caso práctico integrado de Linux">
+      <section className="practical-stage practical-stage--linux practical-stage--card" aria-label="Caso práctico integrado de Linux">
+        <header className="practical-card__header">
+          <div className="practical-card__title-group">
+            <span className="practical-card__badge">00</span>
+            <div>
+              <h2>Diagnóstico y recuperación del servicio hexgate-api</h2>
+              <p>Incidente en producción: socket, procesos, journalctl, cgroups, permisos de archivos, memoria y restauración de servicio sin reinicio destructivo.</p>
+            </div>
+          </div>
+          <div className="practical-card__actions">
+            <ConceptAudioTrigger track={presentationTrack} />
+            <span className="practical-card__family">{presentationTrack.family}</span>
+          </div>
+        </header>
+
         <LinuxPracticalScene />
       </section>
 
-      <PracticalDeepDive modules={linuxDeepDive} />
+      <PracticalDeepDive modules={linuxDeepDive} collectionId="linux" />
       <footer className="project-note">El caso conecta síntomas externos con sockets, units, procesos, permisos y recursos del kernel; cada comando reduce hipótesis antes de cambiar el sistema.</footer>
+
+      <FloatingAudioBubble collectionName="Linux en acción" tracks={practicalTracks} />
     </main>
   );
 }
