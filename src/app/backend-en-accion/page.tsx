@@ -5,8 +5,22 @@ import { BackendPracticalScene } from "@/components/scenes/backend/BackendPracti
 import { collectionNumber } from "@/data/collectionManifest";
 import { collectionNotices } from "@/data/collectionNotices";
 import { backendDeepDive } from "@/data/practicalDeepDives";
+import { ConceptAudioTrigger } from "@/components/audio/ConceptAudioTrigger";
+import { FloatingAudioBubble } from "@/components/audio/FloatingAudioBubble";
+import {
+  buildPracticalModuleAudioTrack,
+  getActionPresentationTrack,
+} from "@/lib/audioTrackHelper";
 
 export default function BackendActionPage() {
+  const presentationTrack = getActionPresentationTrack("backend");
+  const practicalTracks = [
+    presentationTrack,
+    ...backendDeepDive.map((module, i) =>
+      buildPracticalModuleAudioTrack("backend", module, 7 + i)
+    ),
+  ];
+
   return (
     <main className="page-shell">
       <CollectionNav />
@@ -29,13 +43,29 @@ export default function BackendActionPage() {
         <Link href="/backend">Ver conceptos y catálogo de Backend <b>←</b></Link>
       </div>
 
-      <section className="practical-stage practical-stage--backend" aria-label="Ejemplo práctico integrado de backend">
+      <section className="practical-stage practical-stage--backend practical-stage--card" aria-label="Ejemplo práctico integrado de backend">
+        <header className="practical-card__header">
+          <div className="practical-card__title-group">
+            <span className="practical-card__badge">00</span>
+            <div>
+              <h2>Reparación de Fishbones en producción</h2>
+              <p>Ciclo completo de backend: API gateway, autenticación, autorización, validación de schema, dominio, transacción ACID, transactional outbox y workers.</p>
+            </div>
+          </div>
+          <div className="practical-card__actions">
+            <ConceptAudioTrigger track={presentationTrack} />
+            <span className="practical-card__family">{presentationTrack.family}</span>
+          </div>
+        </header>
+
         <BackendPracticalScene />
       </section>
 
-      <PracticalDeepDive modules={backendDeepDive} />
+      <PracticalDeepDive modules={backendDeepDive} collectionId="backend" />
 
       <footer className="project-note">El ejemplo une contrato HTTP, identidad, reglas, persistencia, asincronía, resiliencia y operación observable.</footer>
+
+      <FloatingAudioBubble collectionName="Backend en acción" tracks={practicalTracks} />
     </main>
   );
 }

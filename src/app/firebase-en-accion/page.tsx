@@ -5,8 +5,22 @@ import { FirebasePracticalScene } from "@/components/scenes/firebase/FirebasePra
 import { collectionNumber } from "@/data/collectionManifest";
 import { collectionNotices } from "@/data/collectionNotices";
 import { firebaseDeepDive } from "@/data/practicalDeepDives";
+import { ConceptAudioTrigger } from "@/components/audio/ConceptAudioTrigger";
+import { FloatingAudioBubble } from "@/components/audio/FloatingAudioBubble";
+import {
+  buildPracticalModuleAudioTrack,
+  getActionPresentationTrack,
+} from "@/lib/audioTrackHelper";
 
 export default function FirebaseActionPage() {
+  const presentationTrack = getActionPresentationTrack("firebase");
+  const practicalTracks = [
+    presentationTrack,
+    ...firebaseDeepDive.map((module, i) =>
+      buildPracticalModuleAudioTrack("firebase", module, 7 + i)
+    ),
+  ];
+
   return (
     <main className="page-shell">
       <CollectionNav />
@@ -29,12 +43,28 @@ export default function FirebaseActionPage() {
         <Link href="/firebase">Ver conceptos y catálogo de Firebase <b>←</b></Link>
       </div>
 
-      <section className="practical-stage practical-stage--firebase" aria-label="Caso práctico integrado de Firebase">
+      <section className="practical-stage practical-stage--firebase practical-stage--card" aria-label="Caso práctico integrado de Firebase">
+        <header className="practical-card__header">
+          <div className="practical-card__title-group">
+            <span className="practical-card__badge">00</span>
+            <div>
+              <h2>Calibración de Fishbones y sincronización offline</h2>
+              <p>Ciclo móvil y BaaS: autenticación, App Check, Firestore local, Security Rules, Cloud Functions, Cloud Storage, FCM y sincronización offline.</p>
+            </div>
+          </div>
+          <div className="practical-card__actions">
+            <ConceptAudioTrigger track={presentationTrack} />
+            <span className="practical-card__family">{presentationTrack.family}</span>
+          </div>
+        </header>
+
         <FirebasePracticalScene />
       </section>
 
-      <PracticalDeepDive modules={firebaseDeepDive} />
+      <PracticalDeepDive modules={firebaseDeepDive} collectionId="firebase" />
       <footer className="project-note">La app no confía en el cliente por estar instalada: cada operación combina identidad, attestation, autorización declarativa y validación. La caché local mejora la experiencia, mientras el backend administrado conserva el estado confirmado y los side effects.</footer>
+
+      <FloatingAudioBubble collectionName="Firebase en acción" tracks={practicalTracks} />
     </main>
   );
 }
