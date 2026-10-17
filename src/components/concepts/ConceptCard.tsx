@@ -3,7 +3,7 @@ import { AnimatedConceptScene } from "@/components/visual/AnimatedConceptScene";
 import { ConceptAudioTrigger } from "@/components/audio/ConceptAudioTrigger";
 import { createStudyScene } from "@/data/atlasConceptFactory";
 import { officialReferenceKindLabels, officialReferencesForConcept } from "@/data/officialReferences";
-import { buildConceptAudioTrack } from "@/lib/audioTrackHelper";
+import { buildConceptAudioTrack, isCollectionAudioEnabled } from "@/lib/audioTrackHelper";
 import type { AudioTrack } from "@/lib/audioNarrator";
 
 type ConceptCardProps = {
@@ -35,7 +35,7 @@ export function ConceptCard({
 }: ConceptCardProps) {
   const references = officialReferencesForConcept(collectionId, { title, description, section });
   const fallbackScene = createStudyScene(title, description, section);
-  const isAudioEnabled = enableAudio ?? (collectionId === "javascript");
+  const isAudioEnabled = enableAudio ?? isCollectionAudioEnabled(collectionId);
   const track = isAudioEnabled ? (audioTrack ?? buildConceptAudioTrack(collectionId, { title, description, section, family }, index)) : null;
 
   return (

@@ -5,8 +5,22 @@ import { ReactNativePracticalScene } from "@/components/scenes/react-native/Reac
 import { collectionNumber } from "@/data/collectionManifest";
 import { collectionNotices } from "@/data/collectionNotices";
 import { reactNativeDeepDive } from "@/data/practicalDeepDives";
+import { ConceptAudioTrigger } from "@/components/audio/ConceptAudioTrigger";
+import { FloatingAudioBubble } from "@/components/audio/FloatingAudioBubble";
+import {
+  buildPracticalModuleAudioTrack,
+  getActionPresentationTrack,
+} from "@/lib/audioTrackHelper";
 
 export default function ReactNativePracticalPage() {
+  const presentationTrack = getActionPresentationTrack("react-native");
+  const practicalTracks = [
+    presentationTrack,
+    ...reactNativeDeepDive.map((module, i) =>
+      buildPracticalModuleAudioTrack("react-native", module, 7 + i)
+    ),
+  ];
+
   return (
     <main className="page-shell">
       <CollectionNav />
@@ -34,15 +48,31 @@ export default function ReactNativePracticalPage() {
         <Link href="/react-native">Ver conceptos y catálogo de React Native <b>←</b></Link>
       </div>
 
-      <section className="practical-stage practical-stage--react-native" aria-label="Ejemplo práctico integrado de React Native">
+      <section className="practical-stage practical-stage--react-native practical-stage--card" aria-label="Ejemplo práctico integrado de React Native">
+        <header className="practical-card__header">
+          <div className="practical-card__title-group">
+            <span className="practical-card__badge">00</span>
+            <div>
+              <h2>Reporte fotográfico y hardware móvil</h2>
+              <p>Ciclo móvil integral: pulsación nativa, estado y render, autorización de permisos, cámara y hardware, subida HTTP y navegación.</p>
+            </div>
+          </div>
+          <div className="practical-card__actions">
+            <ConceptAudioTrigger track={presentationTrack} />
+            <span className="practical-card__family">{presentationTrack.family}</span>
+          </div>
+        </header>
+
         <ReactNativePracticalScene />
       </section>
 
-      <PracticalDeepDive modules={reactNativeDeepDive} />
+      <PracticalDeepDive modules={reactNativeDeepDive} collectionId="react-native" />
 
       <footer className="project-note">
         Una experiencia móvil real sigue funcionando entre dispositivos, estados de red, ciclos del sistema y releases que llegan a usuarios.
       </footer>
+
+      <FloatingAudioBubble collectionName="React Native en acción" tracks={practicalTracks} />
     </main>
   );
 }

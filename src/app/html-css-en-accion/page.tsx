@@ -3,8 +3,13 @@ import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { HtmlCssPracticalScene } from "@/components/scenes/html-css/HtmlCssPracticalScene";
 import { collectionNumber } from "@/data/collectionManifest";
 import { collectionNotices } from "@/data/collectionNotices";
+import { ConceptAudioTrigger } from "@/components/audio/ConceptAudioTrigger";
+import { FloatingAudioBubble } from "@/components/audio/FloatingAudioBubble";
+import { getActionPresentationTrack } from "@/lib/audioTrackHelper";
 
 export default function HtmlCssPracticalPage() {
+  const presentationTrack = getActionPresentationTrack("html-css");
+
   return (
     <main className="page-shell">
       <CollectionNav />
@@ -27,8 +32,27 @@ export default function HtmlCssPracticalPage() {
         <Link href="/html-css">Ver conceptos y catálogo de HTML y CSS <b>←</b></Link>
       </div>
 
-      <section className="practical-stage practical-stage--html" aria-label="Ejemplo integrado de HTML y CSS"><HtmlCssPracticalScene /></section>
+      <section className="practical-stage practical-stage--html practical-stage--card" aria-label="Ejemplo integrado de HTML y CSS">
+        <header className="practical-card__header">
+          <div className="practical-card__title-group">
+            <span className="practical-card__badge">00</span>
+            <div>
+              <h2>Del código fuente a la pantalla: Champion card de Jinx</h2>
+              <p>Pipeline completo del motor del navegador a través de 8 etapas continuas: source, parser, cascade, layout, paint, composite, responsive y accesibilidad.</p>
+            </div>
+          </div>
+          <div className="practical-card__actions">
+            <ConceptAudioTrigger track={presentationTrack} />
+            <span className="practical-card__family">{presentationTrack.family}</span>
+          </div>
+        </header>
+
+        <HtmlCssPracticalScene />
+      </section>
+
       <footer className="project-note">La interfaz final es la consecuencia de múltiples modelos coordinados. Entenderlos permite diagnosticar semántica, cascade, layout, rendimiento y accesibilidad sin probar propiedades al azar.</footer>
+
+      <FloatingAudioBubble collectionName="HTML y CSS en acción" tracks={[presentationTrack]} />
     </main>
   );
 }

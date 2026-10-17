@@ -5,8 +5,22 @@ import { ReactPracticalScene } from "@/components/scenes/react/ReactPracticalSce
 import { collectionNumber } from "@/data/collectionManifest";
 import { collectionNotices } from "@/data/collectionNotices";
 import { reactDeepDive } from "@/data/practicalDeepDives";
+import { ConceptAudioTrigger } from "@/components/audio/ConceptAudioTrigger";
+import { FloatingAudioBubble } from "@/components/audio/FloatingAudioBubble";
+import {
+  buildPracticalModuleAudioTrack,
+  getActionPresentationTrack,
+} from "@/lib/audioTrackHelper";
 
 export default function ReactPracticalPage() {
+  const presentationTrack = getActionPresentationTrack("react");
+  const practicalTracks = [
+    presentationTrack,
+    ...reactDeepDive.map((module, i) =>
+      buildPracticalModuleAudioTrack("react", module, 7 + i)
+    ),
+  ];
+
   return (
     <main className="page-shell">
       <CollectionNav />
@@ -34,15 +48,31 @@ export default function ReactPracticalPage() {
         <Link href="/react">Ver conceptos y catálogo de React <b>←</b></Link>
       </div>
 
-      <section className="practical-stage practical-stage--react" aria-label="Ejemplo práctico integrado de React">
+      <section className="practical-stage practical-stage--react practical-stage--card" aria-label="Ejemplo práctico integrado de React">
+        <header className="practical-card__header">
+          <div className="practical-card__title-group">
+            <span className="practical-card__badge">00</span>
+            <div>
+              <h2>Búsqueda reactiva de Jinx y reconciliación</h2>
+              <p>Ciclo declarativo de React: evento onChange, estado en cola, re-render, reconciliación del Virtual DOM, efecto asíncrono y commit atómico.</p>
+            </div>
+          </div>
+          <div className="practical-card__actions">
+            <ConceptAudioTrigger track={presentationTrack} />
+            <span className="practical-card__family">{presentationTrack.family}</span>
+          </div>
+        </header>
+
         <ReactPracticalScene />
       </section>
 
-      <PracticalDeepDive modules={reactDeepDive} />
+      <PracticalDeepDive modules={reactDeepDive} collectionId="react" />
 
       <footer className="project-note">
         El ejemplo conecta lo que el usuario percibe con snapshots, prioridades, fronteras de render y trabajo del compilador.
       </footer>
+
+      <FloatingAudioBubble collectionName="React en acción" tracks={practicalTracks} />
     </main>
   );
 }
