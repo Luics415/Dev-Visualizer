@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
 import { FirebasePracticalScene } from "@/components/scenes/firebase/FirebasePracticalScene";
@@ -22,6 +23,11 @@ export default function FirebaseActionPage() {
         <strong>Contexto tecnológico</strong>
         <p>{collectionNotices["firebase"]}</p>
       </aside>
+
+      <div className="collection-action-link">
+        <span>Fundamentos y mecanismos de la colección</span>
+        <Link href="/firebase">Ver conceptos y catálogo de Firebase <b>←</b></Link>
+      </div>
 
       <section className="practical-stage practical-stage--firebase" aria-label="Caso práctico integrado de Firebase">
         <FirebasePracticalScene />

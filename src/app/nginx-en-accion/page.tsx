@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
 import { HttpsTunnelScene } from "@/components/scenes/HttpsTunnelScene";
@@ -29,6 +30,11 @@ export default function NginxActionPage() {
         <strong>Contexto tecnológico</strong>
         <p>{collectionNotices["nginx"]}</p>
       </aside>
+
+      <div className="collection-action-link">
+        <span>Fundamentos y mecanismos de la colección</span>
+        <Link href="/nginx">Ver conceptos y catálogo de NGINX <b>←</b></Link>
+      </div>
 
       <section className="practical-stage practical-stage--nginx" aria-label="Caso práctico integrado de NGINX">
         <HttpsTunnelScene />

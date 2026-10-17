@@ -14,7 +14,7 @@ import styles from "./library.module.css";
 
 export const metadata: Metadata = {
   title: "Librería profesional",
-  description: "Documentación oficial, especificaciones, libros y guías organizados para las 71 colecciones de Dev Visualizer.",
+  description: "Documentación oficial, especificaciones, libros y guías organizados para las 73 colecciones de Dev Visualizer.",
   alternates: { canonical: "/libreria" },
 };
 

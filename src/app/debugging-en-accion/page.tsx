@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
 import { DebuggingPracticalScene } from "@/components/scenes/debugging/DebuggingPracticalScene";
@@ -22,6 +23,11 @@ export default function DebuggingActionPage() {
         <strong>Contexto tecnológico</strong>
         <p>{collectionNotices["debugging"]}</p>
       </aside>
+
+      <div className="collection-action-link">
+        <span>Fundamentos y mecanismos de la colección</span>
+        <Link href="/debugging">Ver conceptos y catálogo de Debugging <b>←</b></Link>
+      </div>
 
       <section className="practical-stage practical-stage--debugging" aria-label="Caso práctico integrado de debugging">
         <DebuggingPracticalScene />

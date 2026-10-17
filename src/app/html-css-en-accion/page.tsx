@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { HtmlCssPracticalScene } from "@/components/scenes/html-css/HtmlCssPracticalScene";
 import { collectionNumber } from "@/data/collectionManifest";
@@ -20,6 +21,11 @@ export default function HtmlCssPracticalPage() {
         <strong>Contexto tecnológico</strong>
         <p>{collectionNotices["html-css"]}</p>
       </aside>
+
+      <div className="collection-action-link">
+        <span>Fundamentos y mecanismos de la colección</span>
+        <Link href="/html-css">Ver conceptos y catálogo de HTML y CSS <b>←</b></Link>
+      </div>
 
       <section className="practical-stage practical-stage--html" aria-label="Ejemplo integrado de HTML y CSS"><HtmlCssPracticalScene /></section>
       <footer className="project-note">La interfaz final es la consecuencia de múltiples modelos coordinados. Entenderlos permite diagnosticar semántica, cascade, layout, rendimiento y accesibilidad sin probar propiedades al azar.</footer>

@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
 import { JavaScriptPracticalScene } from "@/components/scenes/javascript/JavaScriptPracticalScene";
@@ -51,6 +52,11 @@ export default function JavaScriptPracticalPage() {
         <strong>Contexto tecnológico</strong>
         <p>{collectionNotices["javascript"]}</p>
       </aside>
+
+      <div className="collection-action-link">
+        <span>Fundamentos y mecanismos de la colección</span>
+        <Link href="/">Ver conceptos y catálogo de JavaScript ES6+ <b>←</b></Link>
+      </div>
 
       <section className="practical-stage practical-stage--card" aria-label="Presentación interactiva: Flujo integrado de una compra">
         <header className="practical-card__header">

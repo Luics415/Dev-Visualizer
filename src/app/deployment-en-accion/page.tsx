@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
 import { DistinctActionScene } from "@/components/scenes/DistinctActionScene";
@@ -19,6 +20,11 @@ export default function DeploymentActionPage() {
         <strong>Contexto tecnológico</strong>
         <p>{collectionNotices["deployment"]}</p>
       </aside>
+
+      <div className="collection-action-link">
+        <span>Fundamentos y mecanismos de la colección</span>
+        <Link href="/deployment">Ver conceptos y catálogo de Deployment <b>←</b></Link>
+      </div>
 
       <section className="practical-stage practical-stage--expanded" aria-label="Caso práctico integrado de Deployment"><DistinctActionScene id="deployment" /></section>
       <PracticalDeepDive modules={practical.steps} startAt={1} />

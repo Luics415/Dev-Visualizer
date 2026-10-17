@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
 import { DatabasePracticalScene } from "@/components/scenes/databases/DatabasePracticalScene";
@@ -22,6 +23,11 @@ export default function DatabasesActionPage() {
         <strong>Contexto tecnológico</strong>
         <p>{collectionNotices["databases"]}</p>
       </aside>
+
+      <div className="collection-action-link">
+        <span>Fundamentos y mecanismos de la colección</span>
+        <Link href="/bases-datos">Ver conceptos y catálogo de Bases de datos <b>←</b></Link>
+      </div>
 
       <section className="practical-stage practical-stage--databases" aria-label="Ejemplo práctico integrado de bases de datos">
         <DatabasePracticalScene />

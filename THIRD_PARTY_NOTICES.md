@@ -7,7 +7,7 @@ Este documento establece la procedencia de los recursos, el marco de uso de marc
 ## 1. Veracidad Informativa y Ausencia de Testimonios Ficticios
 
 - **Cero reseñas o testimonios falsos:** Dev Visualizer no publica reseñas, testimonios, valoraciones de clientes ni declaraciones de éxito simuladas.
-- **Métricas respaldadas por código:** Todas las métricas presentadas en el atlas (71 colecciones, 142 rutas canónicas, 6,881 conceptos estructurados, 71 bibliotecas temáticas y 266 recursos catalogados) están respaldadas por suites de validación automatizadas (`catalogValidation.ts`, `validate-library-catalog.mjs`, `validate-static-links.mjs`) que se ejecutan antes de cada despliegue.
+- **Métricas respaldadas por código:** Todas las métricas presentadas en el atlas (73 colecciones, 146 rutas canónicas, 7,410 conceptos estructurados, 73 bibliotecas temáticas y 272 recursos catalogados) están respaldadas por suites de validación automatizadas (`catalogValidation.ts`, `validate-library-catalog.mjs`, `validate-static-links.mjs`) que se ejecutan antes de cada despliegue.
 - **Propósito pedagógico:** Las escenas y casos de estudio representan modelos mentales y pruebas de concepto didácticas; no constituyen garantías comerciales ni asesoría vinculante para entornos críticos de producción.
 
 ---

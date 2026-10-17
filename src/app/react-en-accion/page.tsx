@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
 import { ReactPracticalScene } from "@/components/scenes/react/ReactPracticalScene";
@@ -27,6 +28,11 @@ export default function ReactPracticalPage() {
         <strong>Contexto tecnológico</strong>
         <p>{collectionNotices["react"]}</p>
       </aside>
+
+      <div className="collection-action-link">
+        <span>Fundamentos y mecanismos de la colección</span>
+        <Link href="/react">Ver conceptos y catálogo de React <b>←</b></Link>
+      </div>
 
       <section className="practical-stage practical-stage--react" aria-label="Ejemplo práctico integrado de React">
         <ReactPracticalScene />
