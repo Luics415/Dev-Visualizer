@@ -5,8 +5,22 @@ import { DatabasePracticalScene } from "@/components/scenes/databases/DatabasePr
 import { collectionNumber } from "@/data/collectionManifest";
 import { collectionNotices } from "@/data/collectionNotices";
 import { databaseDeepDive } from "@/data/practicalDeepDives";
+import { ConceptAudioTrigger } from "@/components/audio/ConceptAudioTrigger";
+import { FloatingAudioBubble } from "@/components/audio/FloatingAudioBubble";
+import {
+  buildPracticalModuleAudioTrack,
+  getActionPresentationTrack,
+} from "@/lib/audioTrackHelper";
 
 export default function DatabasesActionPage() {
+  const presentationTrack = getActionPresentationTrack("databases");
+  const practicalTracks = [
+    presentationTrack,
+    ...databaseDeepDive.map((module, i) =>
+      buildPracticalModuleAudioTrack("databases", module, 7 + i)
+    ),
+  ];
+
   return (
     <main className="page-shell">
       <CollectionNav />
@@ -29,13 +43,29 @@ export default function DatabasesActionPage() {
         <Link href="/bases-datos">Ver conceptos y catálogo de Bases de datos <b>←</b></Link>
       </div>
 
-      <section className="practical-stage practical-stage--databases" aria-label="Ejemplo práctico integrado de bases de datos">
+      <section className="practical-stage practical-stage--databases practical-stage--card" aria-label="Ejemplo práctico integrado de bases de datos">
+        <header className="practical-card__header">
+          <div className="practical-card__title-group">
+            <span className="practical-card__badge">00</span>
+            <div>
+              <h2>Reserva Hextech concurrente</h2>
+              <p>Concurrencia, índices, MVCC, locks de fila, transacción ACID, durabilidad en log y réplicas secundarias.</p>
+            </div>
+          </div>
+          <div className="practical-card__actions">
+            <ConceptAudioTrigger track={presentationTrack} />
+            <span className="practical-card__family">{presentationTrack.family}</span>
+          </div>
+        </header>
+
         <DatabasePracticalScene />
       </section>
 
-      <PracticalDeepDive modules={databaseDeepDive} />
+      <PracticalDeepDive modules={databaseDeepDive} collectionId="databases" />
 
       <footer className="project-note">El caso conecta modelo, constraints, planner, índices, transacciones, MVCC, replicación, migraciones, backups y gobierno del dato.</footer>
+
+      <FloatingAudioBubble collectionName="Bases de datos en acción" tracks={practicalTracks} />
     </main>
   );
 }

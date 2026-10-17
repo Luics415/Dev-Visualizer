@@ -439,9 +439,121 @@ const PLATFORMS_VISUAL_EXPLANATIONS: Record<string, string> = {
 };
 
 /**
+ * Explicaciones informativas y descriptivas de las animaciones visuales para colecciones de Datos y Bases de Datos (PR 3).
+ */
+const DATA_VISUAL_EXPLANATIONS: Record<string, string> = {
+  // Bases de datos y SQL
+  "Qué es una base de datos":
+    "en el flujo de datos persistentes, la aplicación emite una petición de escritura que el motor coordina en memoria y confirma en disco con reglas de consistencia.",
+  "DBMS":
+    "en la arquitectura del DBMS, el cliente envía la consulta que el planner optimiza antes de consultar el buffer pool y acceder a las páginas de almacenamiento.",
+  "Esquema":
+    "en el esquema relacional, tablas, columnas y constraints imponen reglas estructurales que rechazan datos malformados antes de su persistencia.",
+  "Modelado relacional y normalización":
+    "en el diagrama de entidades, las relaciones eliminan dependencias transitivas y anomalías de inserción manteniendo claves primarias estables.",
+  "Índices y B-Trees":
+    "en el árbol B-Tree, el puntero navega desde el nodo raíz hasta las páginas hoja reduciendo el costo de búsqueda de O(N) a O(log N).",
+  "Transacciones y ACID":
+    "en la unidad de trabajo ACID, todas las modificaciones se confirman juntas en el log de transacciones o se revierten por completo ante cualquier fallo.",
+  "MVCC y niveles de aislamiento":
+    "en el control de concurrencia multiversión, las lecturas consultan un snapshot temporal evitando bloquear a las transacciones que escriben simultáneamente.",
+  "Optimizador de consultas y Execution Plans":
+    "en el árbol del plan de ejecución, el optimizador compara el costo estimado de escaneos de índice frente a escaneos secuenciales eligiendo la ruta más eficiente.",
+  "Replicación y alta disponibilidad":
+    "en el cluster distribuido, el nodo primario transmite el flujo de registros de transacción a los secundarios asegurando failover inmediato.",
+
+  // Gestión de estado
+  "Estado local y elevación de estado":
+    "en el árbol de componentes, el estado de un input se eleva al ancestro común más cercano para sincronizar reactivamente las vistas dependientes.",
+  "Redux y patrón Flux":
+    "en el flujo unidireccional de Redux, la acción despachada atraviesa un reducer puro que calcula el siguiente estado inmutable sin efectos colaterales.",
+  "Context API y sus límites":
+    "en el proveedor de contexto, cualquier cambio en el valor notifica a todos los consumidores suscritos, destacando por qué datos de alta frecuencia requieren stores atómicos.",
+  "Zustand y stores ligeros":
+    "en el store de Zustand, selectores granulares suscriben componentes únicamente a las propiedades que consumen evitando re-renders innecesarios.",
+  "TanStack Query y server state":
+    "en la caché remota, el gestor de queries deduplica peticiones en vuelo, sirve datos de caché instantáneamente y revalida en segundo plano.",
+  "Actualizaciones optimistas":
+    "en la interfaz optimista, el estado visual se actualiza de inmediato al hacer clic y se revierte suavemente si el servidor rechaza la mutación.",
+  "Persistencia y offline-first":
+    "en el motor offline, las mutaciones se guardan en IndexedDB y se despachan en cola ordenada en cuanto se restablece la conectividad.",
+
+  // SQL Server
+  "Database Engine de SQL Server":
+    "en el Database Engine de SQL Server, el analizador compila T-SQL, el gestor de memoria administra el buffer pool y el transaction log garantiza durabilidad.",
+  "Batches y directiva GO":
+    "en el editor de T-SQL, GO separa lotes de instrucciones que se envían y compilan independientemente en el motor de base de datos.",
+  "Locks, Deadlocks y modo víctima":
+    "en el grafo de bloqueo, cuando dos sesiones intentan acceder a recursos cruzados, SQL Server detecta el ciclo y aborta a la transacción con menor costo como víctima 1205.",
+  "Query Store y regresión de planes":
+    "en el catálogo de Query Store, el historial de consultas expone variaciones de tiempo de CPU permitiendo fijar un plan óptimo anterior.",
+  "Always On Availability Groups":
+    "en el grupo de disponibilidad, el listener de red enruta lecturas a réplicas secundarias mientras las escrituras sincronizan transacciones en el primario.",
+
+  // NoSQL
+  "Modelo clave-valor":
+    "en el almacén clave-valor, una función hash mapea la clave directamente a un bloque de memoria para lecturas y escrituras de latencia submilimétrica.",
+  "Bases de datos documentales":
+    "en el almacén documental, registros JSON semiestructurados se consultan mediante índices secundarios flexibles sin migraciones rígidas de esquema.",
+  "Columnas anchas y Cassandra":
+    "en la tabla de columnas anchas, la clave de partición distribuye datos en el anillo mientras la clave de clustering ordena las filas dentro del nodo.",
+  "Grafos y traversal":
+    "en la base de grafos, las relaciones se recorren mediante punteros directos entre nodos sin costosas operaciones de join matricial.",
+  "Consistencia eventual y quórum":
+    "en el modelo distribuido, lecturas y escrituras con quórum mayoritario R + W > N garantizan que al menos una réplica devuelva el valor más reciente.",
+
+  // XML, XSD y JSON
+  "Documento XML e Infoset":
+    "en el documento XML, el parser jerárquico valida el elemento raíz único y construye un árbol de nodos Infoset bien formado.",
+  "Namespaces en XML":
+    "en la resolución de namespaces, cada prefijo se asocia a su URI única evitando colisiones entre vocabularios de distinto origen en el mismo documento.",
+  "XPath y expresiones de selección":
+    "en la evaluación XPath, la ruta navega por ejes de ancestros y atributos seleccionando quirúrgicamente conjuntos de nodos coincidentes.",
+  "XSLT y hojas de estilo de transformación":
+    "en el motor XSLT, plantillas por coincidencia de patrones transforman recursivamente el árbol XML en HTML accesible o JSON.",
+  "Schema set y validación XSD":
+    "en el validador XSD, el documento XML se contrasta con las declaraciones de tipos y restricciones del schema produciendo un resultado conforme.",
+  "Tipos simples y facetas XSD":
+    "en las facetas XSD, valores de texto se restringen mediante expresiones regulares, longitudes y rangos numéricos estrictos.",
+  "JSON text y tipos primitivos":
+    "en el parser JSON, la cadena UTF-8 se decodifica en los seis valores estándar: objeto, array, string, number, boolean y null.",
+  "JSON Schema 2020-12":
+    "en la validación JSON Schema, el payload se verifica contra palabras clave de propiedades requeridas, tipos y esquemas dependientes.",
+  "JSON Pointer y JSON Patch":
+    "en la actualización JSON Patch, operaciones atómicas de test, add y replace navegan mediante rutas Pointer aplicando mutaciones seguras.",
+  "Canonicalización JCS":
+    "en el esquema JCS, las claves del objeto JSON se ordenan lexicográficamente para producir un hash criptográfico determinista e inequívoco.",
+
+  // Blockchain
+  "Hash criptográfico y Merkle trees":
+    "en el árbol de Merkle, pares de hashes de transacciones se combinan recursivamente hasta formar la raíz de Merkle en la cabecera del bloque.",
+  "Transacciones y firmas digitales":
+    "en la firma criptográfica, la clave privada produce una firma ECDSA que los nodos validan con la clave pública sin exponer la llave secreta.",
+  "Mempool y propagación de bloques":
+    "en el nodo distribuido, las transacciones válidas esperan en la mempool hasta que un minero o validador las empaqueta en el siguiente bloque.",
+  "Consenso Proof of Work y Proof of Stake":
+    "en el mecanismo de consenso, la red converge hacia la cadena con mayor trabajo acumulado o mayor participación validada por los nodos.",
+  "Reorganizaciones de cadena y finalidad":
+    "en la resolución de forks, cuando una rama alternativa supera a la actual, el nodo revierte los bloques huérfanos y adopta la cadena ganadora.",
+
+  // Inteligencia Artificial
+  "Aprendizaje supervisado y datasets":
+    "en el pipeline de entrenamiento, los datos de entrada se dividen en conjuntos de entrenamiento, validación y prueba preservando la distribución real.",
+  "Función de pérdida y gradiente descendente":
+    "en la optimización del modelo, el descenso de gradiente calcula la derivada de la pérdida y actualiza los pesos hacia el mínimo error global.",
+  "Sobreajuste y regularización":
+    "en las curvas de aprendizaje, la divergencia entre la pérdida de entrenamiento y la de validación evidencia sobreajuste corregido con dropout.",
+  "Data leakage y validación cruzada":
+    "en la detección de leakage, retirar variables espurias que contienen información futura restablece una evaluación honesta y generalizable.",
+  "Monitoreo de deriva de datos y gobernanza":
+    "en la consola de observabilidad, métricas estadísticas comparan la distribución de inferencias en producción contra el dataset base detectando drift.",
+};
+
+/**
  * Colecciones con audio narraciones didácticas activas.
  * PR 1: Interfaces, Web y Móvil (9 colecciones + javascript base).
  * PR 2: Plataformas y Servidores (10 colecciones).
+ * PR 3: Datos y Bases de Datos (10 colecciones).
  */
 export const AUDIO_ENABLED_COLLECTIONS = new Set<string>([
   // Base y PR 1
@@ -466,6 +578,22 @@ export const AUDIO_ENABLED_COLLECTIONS = new Set<string>([
   "firebase",
   "android",
   "django",
+  // PR 3: Datos y Bases de Datos
+  "databases",
+  "bases-datos",
+  "sql",
+  "sql-server",
+  "nosql",
+  "state-management",
+  "gestion-estado",
+  "xml",
+  "xsd",
+  "json",
+  "blockchain",
+  "artificial-intelligence",
+  "ia",
+  "inteligencia-artificial",
+  "xml-xsd-json",
 ]);
 
 export function isCollectionAudioEnabled(collectionId: string): boolean {
@@ -484,7 +612,8 @@ function getVisualExplanation(concept: ConceptInput): string {
   const bespoke =
     JAVASCRIPT_VISUAL_EXPLANATIONS[concept.title] ??
     INTERFACES_VISUAL_EXPLANATIONS[concept.title] ??
-    PLATFORMS_VISUAL_EXPLANATIONS[concept.title];
+    PLATFORMS_VISUAL_EXPLANATIONS[concept.title] ??
+    DATA_VISUAL_EXPLANATIONS[concept.title];
   if (bespoke) {
     return bespoke;
   }
@@ -829,6 +958,130 @@ export function getActionPresentationTrack(
           "En esta presentación interactiva, una solicitud web recorre el pipeline completo del framework Django a través de seis etapas robustas. Primero, en Enrutamiento y URLconf, la URL entrante se resuelve asociando la petición con la vista correspondiente. Segundo, en Middleware de seguridad, se aplican protecciones contra ataques CSRF, Clickjacking y validación de sesiones seguras. Tercero, en Vistas y formularios, los Form classes sanean los datos y validan las restricciones del dominio. Cuarto, en Django ORM, las consultas se optimizan con select_related y prefetch_related eliminando el problema de consultas n más uno en la base de datos. Quinto, en Transacciones atómicas, la operación se encapsula en un bloque atomic que garantiza consistencia o rollback ante excepciones. Y sexto, en Tareas asíncronas con Celery, los envíos de correos y procesos de análisis se delegan a workers asíncronos respondiendo rápidamente con el renderizado final de la plantilla.",
         visualOutcome:
           "la animación representa la secuencia segura de middlewares, consultas optimizadas al ORM y delegación de tareas en segundo plano, evidenciando la solidez de una arquitectura web basada en convenciones probadas.",
+      });
+
+    case "databases":
+    case "bases-datos":
+      return buildPracticalPresentationAudioTrack("databases", {
+        title: practical?.title ?? "Bases de datos en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Reserva Hextech concurrente: índices, snapshots, transacciones ACID y replicación",
+        family: "concurrencia transaccional, MVCC y durabilidad WAL",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, dos solicitudes concurrentes intentan reservar la última pieza Hextech en el taller. Primero, en Consulta e índice, el planner utiliza un índice B-Tree para ubicar la tupla sin realizar un escaneo secuencial de toda la tabla. Segundo, en Snapshot MVCC, el motor genera una vista aislada de los datos para garantizar lecturas consistentes. Tercero, en Bloqueo y concurrencia, una de las solicitudes adquiere un lock exclusivo sobre la fila mientras la segunda entra en espera controlada. Cuarto, en Ejecución de la transacción, se descuenta la unidad disponible y se valida la restricción de que el stock nunca sea negativo. Quinto, en Registro Write-Ahead Logging, la modificación se escribe de forma síncrona en el log antes de tocar las páginas de datos en disco. Sexto, en Commit durable, la transacción se confirma devolviendo éxito a la primera solicitud y rechazando ordenadamente a la segunda por falta de inventario. Y séptimo, en Replicación y failover, el cambio confirmado se transmite a los nodos secundarios preservando la invariante en todo el cluster.",
+        visualOutcome:
+          "la animación sincroniza las dos peticiones entrantes, evidenciando la protección del lock de fila, la persistencia en el log de transacciones y la réplica hacia nodos secundarios sin sobreventa de inventario.",
+      });
+
+    case "state-management":
+    case "gestion-estado":
+      return buildPracticalPresentationAudioTrack("state-management", {
+        title: practical?.title ?? "Gestión de estado en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Constructor de equipos: ownership, stores, mutación optimista y caché remota",
+        family: "ownership de estado, sincronización unidireccional y actualización optimista",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, un constructor de equipos interactúa con el estado de la aplicación distribuyendo cada dato en su frontera correcta. Primero, en Estado local de UI, la selección de inputs temporales y pestañas activas se confina al componente sin contaminar el resto del árbol. Segundo, en Estado de URL, los filtros de búsqueda y paginación se serializan en los parámetros de la dirección web permitiendo enlaces compartibles. Tercero, en Store global de cliente, la lista del equipo seleccionado se gestiona mediante un store inmutable con reducers predecibles. Cuarto, en Caché de servidor, los datos remotos de campeones se consultan mediante una librería de query cache que gestiona reintentos y deduplicación. Quinto, en Mutación optimista, al marcar a Jinx como favorita la interfaz actualiza el icono instantáneamente mientras dispara la mutación a la red. Sexto, en Reversión por error, una caída de red simulada activa el rollback restaurando el estado anterior sin inconsistencias visuales. Y séptimo, en Sincronización offline y persistencia, los cambios validados se guardan en IndexedDB para disponibilidad inmediata sin conexión.",
+        visualOutcome:
+          "la animación traza la frontera de cada dato a través del componente, la URL, el store global y la caché remota, destacando la respuesta instantánea del favorito optimista y su recuperación ante fallos de red.",
+      });
+
+    case "sql-server":
+      return buildPracticalPresentationAudioTrack("sql-server", {
+        title: practical?.title ?? "Microsoft SQL Server en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Reserva de inventario sin ventas duplicadas en T-SQL transaccional",
+        family: "Database Engine, transacciones T-SQL, Query Store y durabilidad",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, una orden de compra se procesa en Microsoft SQL Server 2025 protegiendo el inventario contra concurrencia destructiva. Primero, en Definición de invariantes y esquema, tablas con claves primarias y constraints CHECK garantizan que el stock nunca sea menor a cero. Segundo, en Autenticación y permisos, la conexión segura TLS aplica el principio de mínimo privilegio ejecutando procedimientos almacenados específicos. Tercero, en Enlace de parámetros y transacción, la solicitud se envía parametrizada abriendo una transacción atómica con SET XACT_ABORT ON. Cuarto, en Reserva atómica, un UPDATE condicional descuenta las unidades directamente sobre la fila protegiendo la operación con un lock exclusivo. Quinto, en Registro en Ledger y Commit, la orden y el movimiento se confirman en el transaction log asegurando durabilidad inmediata. Sexto, en Detección de Deadlock y reintento, dos transacciones cruzadas provocan un interbloqueo donde el motor elige una víctima 1205 y la aplicación reintenta con backoff ordenado. Séptimo, en Estabilización de plan con Query Store, una regresión de rendimiento por estadísticas desactualizadas se mitiga fijando un plan óptimo. Y octavo, en Recuperación y Always On, se verifica la cadena de backups y la conmutación por error hacia la réplica secundaria.",
+        visualOutcome:
+          "la animación exhibe el procesamiento de la orden en el motor relacional, mostrando la resolución de bloqueos, la escritura en el transaction log y la estabilización del plan de ejecución mediante Query Store.",
+      });
+
+    case "sql":
+      return buildPracticalPresentationAudioTrack("sql", {
+        title: practical?.title ?? "SQL en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Optimización declarativa de consultas, índices y planes de ejecución",
+        family: "álgebra relacional, optimizador de costos y transacciones ACID",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, una consulta de agregación sobre millones de registros es diagnosticada y optimizada en cinco etapas de ingeniería relacional. Primero, en Expresión declarativa, la consulta SELECT agrupa pedidos por cliente definiendo el resultado deseado mediante operadores lógicos. Segundo, en Inspección del plan de ejecución, el comando EXPLAIN ANALYZE desglosa el árbol de operadores contrastando las filas estimadas contra las reales. Tercero, en Detección de filtro no sargable, se descubre que una función envolvente sobre la columna de correo anula el uso de índices obligando al motor a realizar un escaneo secuencial masivo. Cuarto, en Creación de índice sargable, se define un índice funcional sobre la expresión exacta transformando el escaneo en una búsqueda directa por índice. Y quinto, en Verificación transaccional, una suite de pruebas comprueba la equivalencia estricta de resultados considerando valores nulos, duplicados y tiempos de respuesta.",
+        visualOutcome:
+          "la animación visualiza la sustitución del costoso Sequential Scan por un Index Scan optimizado, reduciendo drásticamente el consumo de buffers y el tiempo de ejecución de la consulta.",
+      });
+
+    case "nosql":
+      return buildPracticalPresentationAudioTrack("nosql", {
+        title: practical?.title ?? "NoSQL en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Particionamiento distribuido, quórums y consistencia eventual",
+        family: "escalabilidad horizontal, quórum de lectura y particionado hash",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, un flujo masivo de telemetría de dispositivos se distribuye a través de un cluster NoSQL en cinco fases clave. Primero, en Definición de patrones de acceso, el modelo de datos se diseña en torno a las consultas exactas que la aplicación necesita ejecutar. Segundo, en Ingesta particionada, una función de hash consistente distribuye las claves de dispositivo uniformemente entre los nodos del cluster. Tercero, en Detección de partición caliente, el uso de una fecha de baja cardinalidad concentra todas las escrituras en un único nodo saturándolo. Cuarto, en Rediseño con clave compuesta, la partición se combina con cubos horarios dispersando la carga sin perder la capacidad de consulta por dispositivo. Y quinto, en Consistencia de quórum y reparación, lecturas con quórum mayoritario y procesos de reparación en segundo plano reconcilian discrepancias entre réplicas.",
+        visualOutcome:
+          "la animación ilustra la dispersión balanceada de lecturas y escrituras en el cluster distribuido, mostrando la eliminación del cuello de botella en la partición caliente y la convergencia de réplicas.",
+      });
+
+    case "xml":
+      return buildPracticalPresentationAudioTrack("xml", {
+        title: practical?.title ?? "XML en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Procesamiento seguro de manuales técnicos, namespaces, XSLT y firmas digitales",
+        family: "Infoset documental, transformación XSLT y firma canónica XML-DSig",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, un manual técnico multilingüe se procesa y publica a través de diez etapas de procesamiento documental seguro. Primero, en Recepción e Infoset, se validan los límites de tamaño y la codificación UTF-8. Segundo, en Parseo seguro, se deshabilitan entidades externas para prevenir vulnerabilidades de inyección XXE. Tercero, en Resolución de namespaces, cada elemento y atributo se asocia a su URI canónica. Cuarto, en Contexto e idioma, se evalúan atributos reservados como xml:lang y xml:base calculando el alcance efectivo de los enlaces. Quinto, en Selección con XPath, se filtran los capítulos requeridos preservando el orden jerárquico. Sexto, en Detección de XInclude hostil, el resolver bloquea una inclusión remota fuera de la lista de permitidos. Séptimo, en Recuperación con catalog local, el recurso faltante se obtiene de forma determinista desde el almacenamiento local. Octavo, en Transformación con XSLT 3.0, el árbol de nodos se transforma en un documento HTML accesible. Noveno, en Verificación de firma XML-DSig, el subárbol publicado se canonicaliza mediante C14N confirmando su integridad criptográfica. Y décimo, en Publicación y traza, el artefacto resultante se emite con trazabilidad completa.",
+        visualOutcome:
+          "la animación muestra el análisis del árbol Infoset, el bloqueo de llamadas externas no autorizadas y la transformación limpia a HTML firmada digitalmente sin alteración documental.",
+      });
+
+    case "xsd":
+      return buildPracticalPresentationAudioTrack("xsd", {
+        title: practical?.title ?? "XSD en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Validación estructural, tipos simples, facetas, identidades y reglas XSD 1.1",
+        family: "schema assessment, validación tipada y reglas de co-ocurrencia",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, un certificado de calibración industrial se valida mediante un conjunto de schemas XSD a lo largo de diez etapas de evaluación. Primero, en Recepción de la instancia, el documento XML bien formado entra al pipeline de validación. Segundo, en Carga del schema set, se compilan las definiciones locales resolviendo imports e includes autorizados. Tercero, en Resolución de declaraciones globales, el elemento raíz se asocia con su tipo complejo en el namespace de calibración. Cuarto, en Validación de tipos y facetas, valores de fecha, decimales y cadenas se verifican contra patrones y rangos tipados. Quinto, en Secuencia y cardinalidad, se comprueba el orden de los elementos y las restricciones de ocurrencias mínimas y máximas. Sexto, en Detección de identidad duplicada, una compuerta xs:key señala una colisión de identificadores de medición. Séptimo, en Corrección de key y keyref, la asignación de claves únicas restablece la integridad referencial. Octavo, en Evaluación de assertion XSD 1.1, una regla XPath comprueba que la desviación de calibración no supere la tolerancia permitida. Noveno, en Generación de PSVI, el documento se enriquece con el Post-Schema-Validation Infoset aportando tipos y valores normalizados. Y décimo, en Matriz de compatibilidad, se comprueba la interoperabilidad entre validadores 1.0 y 1.1.",
+        visualOutcome:
+          "la animación exhibe el paso del documento por las compuertas de validación de XSD, resaltando la corrección de claves duplicadas y la emisión del Infoset post-validación enriquecido con tipos fuertes.",
+      });
+
+    case "json":
+      return buildPracticalPresentationAudioTrack("json", {
+        title: practical?.title ?? "JSON en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Ciclo offline de órdenes, JSON Schema 2020-12, precisión y JSON Patch atómico",
+        family: "contratos de intercambio, JSON Pointer/Patch y canonicalización JCS",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, una orden de compra creada en modo sin conexión se procesa y sincroniza a través de diez etapas de ingeniería JSON. Primero, en Recepción y límites, el payload se limita en bytes descomprimidos para mitigar ataques de denegación de servicio. Segundo, en Decodificación y lexer, los bytes UTF-8 se convierten en tokens identificando llaves, corchetes y tipos de valor. Tercero, en Detección de nombres duplicados, el parser intercepta miembros con la misma clave rechazando la entrada ambigua. Cuarto, en Validación con JSON Schema 2020-12, se comprueban propiedades requeridas y se restringen campos no evaluados. Quinto, en Detección de pérdida de precisión, un número entero que excede 2 elevado a la 53 genera una alerta de interoperabilidad. Sexto, en Recuperación con formato decimal, el importe se modela como cadena tipada preservando exactitud contable absoluta. Séptimo, en Detección de colisión de parche, una prueba compare-and-set con JSON Pointer rechaza un patch aplicado sobre una revisión obsoleta. Octavo, en Aplicación de JSON Patch, el documento se actualiza atómicamente incrementando el número de versión. Noveno, en Canonicalización JCS y digest, las propiedades se ordenan determinísticamente emitiendo una firma SHA-256. Y décimo, en Secuencia observable, la orden aprobada se emite como flujo delimitado en un stream de eventos.",
+        visualOutcome:
+          "la animación ilustra el filtrado de números fuera de rango, el rechazo preventivo del patch ante colisiones de versión y la confirmación final del documento canonicalizado con hash SHA-256.",
+      });
+
+    case "blockchain":
+      return buildPracticalPresentationAudioTrack("blockchain", {
+        title: practical?.title ?? "Blockchain en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Ciclo de vida de una transferencia: firmas criptográficas, mempool, reorg y finalidad",
+        family: "registro distribuido, consenso de mayor peso y finalidad económica",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, una transferencia de activos recorre el ciclo de vida de un registro distribuido a través de cinco etapas críticas. Primero, en Firma criptográfica de la transacción, el remitente utiliza su clave privada para autorizar el valor, destino y nonce sin revelar su secreto criptográfico. Segundo, en Validación e inclusión en bloque, los nodos de la red verifican saldos y reglas de consenso incluyendo la transacción en un bloque candidato. Tercero, en Observación de reorganización de cadena, una cadena competidora con mayor dificultad acumulada supera la rama actual, convirtiendo el bloque en huérfano y devolviendo la transferencia al estado pendiente. Cuarto, en Reversión y reaplicación de estado, el nodo deshace ordenadamente los cambios de la rama descartada y reaplica los bloques de la cadena ganadora recuperando consistencia. Y quinto, en Espera de finalidad, la transacción acumula confirmaciones y alcanza un punto de control irreversible donde la interfaz eleva su estado de confirmada a definitiva.",
+        visualOutcome:
+          "la animación traza el camino de la transacción entre los nodos, destacando la resolución del reorg mediante la cadena más larga y el cambio de color al alcanzar la finalidad criptográfica.",
+      });
+
+    case "artificial-intelligence":
+    case "ia":
+    case "inteligencia-artificial":
+      return buildPracticalPresentationAudioTrack("artificial-intelligence", {
+        title: practical?.title ?? "Inteligencia artificial en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Entrenamiento de clasificadores: baseline, detección de data leakage y gobierno de modelos",
+        family: "aprendizaje automático, diagnóstico de fugas de datos y gobernanza de IA",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, el ciclo de desarrollo de un modelo de aprendizaje automático para clasificación de incidentes se ejecuta en cinco etapas rigurosas. Primero, en Definición de la tarea y métricas, se delimita el problema, se seleccionan los datos de entrenamiento y se define una función de pérdida alineada al impacto de falsos positivos y falsos negativos. Segundo, en Entrenamiento del modelo base, el pipeline de preprocesamiento ajusta los pesos del algoritmo evaluando el rendimiento en conjuntos de validación aislados. Tercero, en Detección de fuga de datos, se identifica que una variable del dataset contiene información que solo existe después de resuelto el incidente, inflando artificialmente la precisión del modelo. Cuarto, en Saneamiento del pipeline, se elimina la variable contaminada y se reentrena el modelo asegurando transformaciones estrictamente previas a la predicción. Y quinto, en Evaluación responsable y gobernanza, el clasificador validado se documenta en una ficha técnica con métricas por subgrupo, umbrales de decisión y monitoreo continuo contra deriva de datos.",
+        visualOutcome:
+          "la animación visualiza las curvas de entrenamiento y validación, evidenciando la caída de la métrica inflada al retirar la fuga de datos y la estabilización de un modelo con generalización real y trazabilidad ética.",
       });
 
     default: {
