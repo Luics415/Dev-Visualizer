@@ -550,10 +550,94 @@ const DATA_VISUAL_EXPLANATIONS: Record<string, string> = {
 };
 
 /**
+ * Explicaciones informativas y descriptivas de las animaciones visuales para colecciones de Fundamentos de la Computación (PR 4).
+ */
+const FUNDAMENTALS_VISUAL_EXPLANATIONS: Record<string, string> = {
+  // Fundamentos de programación
+  "Problema, entrada y salida":
+    "en la descomposición computacional, el problema se divide en puertos explícitos de entrada de datos, reglas de transformación y resultados esperados.",
+  "Valores, tipos y representación":
+    "en la representación de tipos básicos, enteros, cadenas y booleanos reservan espacio diferenciado en memoria según su semántica.",
+  "Variables y constantes":
+    "en la memoria de variables, identificadores simbólicos apuntan a celdas cuyo valor puede mutar o permanecer congelado como constante.",
+  "Condiciones y ramas":
+    "en la bifurcación condicional, la evaluación booleana activa el camino verdadero y descarta ordenadamente la rama falsa alternativa.",
+  "Bucles e invariantes":
+    "en la iteración estructurada, el contador avanza preservando la condición de invariante hasta alcanzar el criterio de terminación.",
+  "Funciones y parámetros":
+    "en el marco de pila de la función, los argumentos se transfieren por valor aislando las variables locales del ámbito llamador.",
+  "Depuración por evidencia":
+    "en el diagnóstico sistemático, trazas de ejecución e inspección de variables localizan la discrepancia lógica antes de aplicar correcciones.",
+
+  // Algoritmos y estructuras de datos
+  "Corrección y terminación":
+    "en el análisis formal, la prueba por inducción demuestra que el algoritmo produce la respuesta correcta y termina en un número finito de pasos.",
+  "Notación O, Ω y Θ":
+    "en la curva de complejidad asintótica, el orden de crecimiento clasifica el tiempo de ejecución ignorando constantes menores y términos de bajo orden.",
+  "Arrays y listas enlazadas":
+    "en la comparativa de acceso, los arrays acceden por índice en O(1) contiguo en memoria mientras las listas recorren punteros encadenados.",
+  "Pilas, colas y deques":
+    "en las estructuras secuenciales, la pila opera con disciplina LIFO en su tope mientras la cola despacha en orden FIFO estricto.",
+  "Tablas hash":
+    "en la tabla hash, la función de dispersión mapea claves a índices de cubetas resolviendo colisiones mediante encadenamiento o sondeo abierto.",
+  "Árboles de búsqueda":
+    "en el árbol binario de búsqueda, cada nodo mantiene a su izquierda subclaves menores y a su derecha mayores permitiendo búsquedas en O(log N).",
+  "Heaps y colas de prioridad":
+    "en el montículo binario min-heap, el elemento de menor valor asciende a la raíz permitiendo extracciones prioritarias en tiempo logarítmico.",
+  "Caminos mínimos y Dijkstra":
+    "en la relajación de aristas de Dijkstra, la frontera de exploración actualiza iterativamente las distancias mínimas desde el nodo de origen.",
+
+  // Matemáticas para programación
+  "Lógica proposicional":
+    "en las tablas de verdad, conectores lógicos evalúan conjunciones, disyunciones e implicaciones determinando tautologías y contingencias.",
+  "Enteros y modularidad":
+    "en la aritmética modular, los números enteros se envuelven cíclicamente dentro del anillo del módulo base para operaciones criptográficas seguras.",
+  "Punto flotante IEEE 754":
+    "en el estándar IEEE 754, bit de signo, exponente sesgado y mantisa normalizada representan números reales exhibiendo límites de precisión finita.",
+  "Vectores y matrices":
+    "en el espacio vectorial, multiplicaciones y transformaciones lineales rotan y escalan puntos en el plano conservando el origen.",
+  "Derivadas y gradientes":
+    "en el campo escalar multivariable, el vector gradiente apunta en la dirección de máxima pendiente guiando algoritmos de optimización continua.",
+  "Conteo y combinatoria":
+    "en el análisis combinatorio, permutaciones y combinaciones calculan el espacio muestral de configuraciones posibles sin enumeración exhaustiva.",
+  "Descenso de gradiente":
+    "en la optimización convexa, el paso proporcional a la derivada desciende suavemente por la cuenca hacia el mínimo global de la función.",
+
+  // Metodologías de desarrollo
+  "Valores ágiles":
+    "en el manifiesto ágil, individuos e interacciones y software funcionando se priorizan sobre procesos rígidos y documentación exhaustiva.",
+  "Entrega incremental":
+    "en el ciclo iterativo, incrementos pequeños y verticales entregan valor operable a producción reduciendo el riesgo de integración tardía.",
+  "Backlog y objetivos":
+    "en la priorización del backlog, los elementos se ordenan por valor de negocio y riesgo técnico asegurando foco en el objetivo del sprint.",
+  "Límites de trabajo en curso":
+    "en el tablero Kanban, los límites WIP restringen la cantidad de tareas activas simultáneamente eliminando atascos y sobrecarga cognitiva.",
+  "Lead time y cycle time":
+    "en las métricas de flujo, el tiempo de entrega mide desde la concepción hasta producción y el tiempo de ciclo cronometra el trabajo activo.",
+  "Daily y coordinación":
+    "en la sincronización diaria, el equipo inspecciona el progreso hacia el objetivo del sprint identificando impedimentos de forma inmediata.",
+
+  // Scratch
+  "Proyecto, escenario y sprites":
+    "en el escenario de Scratch, los sprites responden a coordenadas X e Y ejecutando guiones visuales apilados en bloques encajables.",
+  "Eventos de inicio":
+    "en el disparador de eventos, pulsar la bandera verde envía la señal de arranque sincronizando el inicio de todos los personajes.",
+  "Variables y listas en Scratch":
+    "en los bloques de datos, variables naranjas almacenan puntuaciones y listas acumulan inventarios dinámicos durante la partida.",
+  "Mensajes broadcast":
+    "en la mensajería interna, un sprite emite un broadcast que despierta guiones receptores en otros personajes sin acoplamiento directo.",
+  "Clones y concurrencia":
+    "en el generador de clones, duplicados temporales heredan el aspecto del sprite base y ejecutan comportamientos concurrentes independientes.",
+  "Sensores y colisiones":
+    "en la detección de contacto, bloques sensores evalúan intersección de bordes o colores disparando respuestas de rebote o daño.",
+};
+
+/**
  * Colecciones con audio narraciones didácticas activas.
  * PR 1: Interfaces, Web y Móvil (9 colecciones + javascript base).
  * PR 2: Plataformas y Servidores (10 colecciones).
  * PR 3: Datos y Bases de Datos (10 colecciones).
+ * PR 4: Fundamentos de la Computación (5 colecciones).
  */
 export const AUDIO_ENABLED_COLLECTIONS = new Set<string>([
   // Base y PR 1
@@ -594,6 +678,17 @@ export const AUDIO_ENABLED_COLLECTIONS = new Set<string>([
   "ia",
   "inteligencia-artificial",
   "xml-xsd-json",
+  // PR 4: Fundamentos de la Computación
+  "programming-fundamentals",
+  "fundamentos-programacion",
+  "algorithms",
+  "algoritmos",
+  "mathematics",
+  "matematicas-programacion",
+  "math-cs",
+  "methodologies",
+  "metodologias-desarrollo",
+  "scratch",
 ]);
 
 export function isCollectionAudioEnabled(collectionId: string): boolean {
@@ -613,7 +708,8 @@ function getVisualExplanation(concept: ConceptInput): string {
     JAVASCRIPT_VISUAL_EXPLANATIONS[concept.title] ??
     INTERFACES_VISUAL_EXPLANATIONS[concept.title] ??
     PLATFORMS_VISUAL_EXPLANATIONS[concept.title] ??
-    DATA_VISUAL_EXPLANATIONS[concept.title];
+    DATA_VISUAL_EXPLANATIONS[concept.title] ??
+    FUNDAMENTALS_VISUAL_EXPLANATIONS[concept.title];
   if (bespoke) {
     return bespoke;
   }
@@ -1082,6 +1178,71 @@ export function getActionPresentationTrack(
           "En esta presentación interactiva, el ciclo de desarrollo de un modelo de aprendizaje automático para clasificación de incidentes se ejecuta en cinco etapas rigurosas. Primero, en Definición de la tarea y métricas, se delimita el problema, se seleccionan los datos de entrenamiento y se define una función de pérdida alineada al impacto de falsos positivos y falsos negativos. Segundo, en Entrenamiento del modelo base, el pipeline de preprocesamiento ajusta los pesos del algoritmo evaluando el rendimiento en conjuntos de validación aislados. Tercero, en Detección de fuga de datos, se identifica que una variable del dataset contiene información que solo existe después de resuelto el incidente, inflando artificialmente la precisión del modelo. Cuarto, en Saneamiento del pipeline, se elimina la variable contaminada y se reentrena el modelo asegurando transformaciones estrictamente previas a la predicción. Y quinto, en Evaluación responsable y gobernanza, el clasificador validado se documenta en una ficha técnica con métricas por subgrupo, umbrales de decisión y monitoreo continuo contra deriva de datos.",
         visualOutcome:
           "la animación visualiza las curvas de entrenamiento y validación, evidenciando la caída de la métrica inflada al retirar la fuga de datos y la estabilización de un modelo con generalización real y trazabilidad ética.",
+      });
+
+    case "programming-fundamentals":
+    case "fundamentos-programacion":
+      return buildPracticalPresentationAudioTrack("programming-fundamentals", {
+        title: practical?.title ?? "Fundamentos de programación en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "De una necesidad a un programa comprobable",
+        family: "descomposición algorítmica, contratos de datos y ejecución verificable",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, una calculadora de consumo doméstico convierte requisitos de usuario en un programa formal a través de cinco etapas. Primero, en Definición del contrato, se especifican entradas de lectura y tarifas con precondiciones claras separando datos, reglas de cálculo y presentación. Segundo, en Diseño del algoritmo, el pseudocódigo desglosa las transformaciones matemáticas conservando unidades explícitas. Tercero, en Detección de lectura inválida, la precondición de que la lectura actual sea mayor o igual a la anterior falla al detectar consumo negativo, deteniendo la ejecución con diagnóstico. Cuarto, en Recuperación del dato, la interfaz solicita la confirmación de la lectura corregida e invalida el cálculo previo repitiendo el flujo de forma trazable. Y quinto, en Verificación del resultado, aserciones automáticas validan el cálculo final cubriendo casos normales, cero y bordes extremos emitiendo un resumen comprobable.",
+        visualOutcome:
+          "la animación traza el flujo de ejecución desde la definición del contrato hasta la corrección interactiva del dato inválido y la confirmación final de resultados con aserciones automáticas.",
+      });
+
+    case "algorithms":
+    case "algoritmos":
+      return buildPracticalPresentationAudioTrack("algorithms", {
+        title: practical?.title ?? "Algoritmos y estructuras de datos en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Optimizar las rutas de una brigada con Dijkstra y grafos ponderados",
+        family: "teoría de grafos, cola de prioridad y complejidad asintótica",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, un sistema de ruteo urbano optimiza la trayectoria de una brigada en cinco etapas algorítmicas. Primero, en Modelado del grafo, una lista de adyacencia mapea intersecciones y tiempos de traslado urbanos en memoria con consumo óptimo. Segundo, en Cálculo con Dijkstra, una cola de prioridad basada en min-heap extrae iterativamente la menor distancia acumulada explorando la frontera de nodos. Tercero, en Detección de peso negativo, el algoritmo detecta una arista anómala con tiempo negativo que rompería la invariante de relajación de Dijkstra. Cuarto, en Saneamiento y recálculo, el módulo aísla y sanea los pesos del grafo reconstruyendo distancias desde un estado matemáticamente válido. Y quinto, en Comparativa y benchmark, mediciones empíricas comparan tiempo y memoria contra alternativas garantizando una solución óptima en O((V + E) log V).",
+        visualOutcome:
+          "la animación ilustra la exploración del grafo urbano mediante la frontera de prioridad de Dijkstra, el rechazo preventivo del ciclo con peso negativo y la convergencia en la ruta más rápida verificada.",
+      });
+
+    case "mathematics":
+    case "matematicas-programacion":
+    case "math-cs":
+      return buildPracticalPresentationAudioTrack("mathematics", {
+        title: practical?.title ?? "Matemáticas para programación en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Ajustar una función de error mediante descenso de gradiente numéricamente estable",
+        family: "optimización continua, cálculo multivariable y estabilidad numérica IEEE 754",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, un modelo predictivo optimiza sus parámetros minimizando el error en cinco fases matemáticas. Primero, en Definición de la función objetivo, se formula el error cuadrático medio estableciendo variables de dominio, escala y unidades físicas. Segundo, en Cálculo del gradiente, derivadas parciales orientan iterativamente el vector de parámetros en la dirección de máximo descenso. Tercero, en Detección de divergencia numérica, una tasa de aprendizaje excesiva provoca oscilaciones descontroladas y desbordamiento en coma flotante. Cuarto, en Normalización y reintento, se aplica normalización z-score a las variables de entrada y se reduce la tasa de aprendizaje restaurando la trayectoria hacia el mínimo. Y quinto, en Verificación de convergencia, el algoritmo comprueba que la norma del gradiente sea inferior al umbral de tolerancia prescrito con resultados deterministas y semilla fija.",
+        visualOutcome:
+          "la animación exhibe la superficie tridimensional de pérdida, la trayectoria errática provocada por la tasa de aprendizaje divergente y la suave convergencia al mínimo global tras la normalización numérica.",
+      });
+
+    case "methodologies":
+    case "metodologias-desarrollo":
+      return buildPracticalPresentationAudioTrack("methodologies", {
+        title: practical?.title ?? "Metodologías de desarrollo en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Recuperar el flujo de entrega: límites WIP, swarming y feedback empírico",
+        family: "sistemas de feedback, flujo continuo Kanban y mejora empírica",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, un equipo de ingeniería estabiliza su cadencia de entrega de software en cinco fases ágiles. Primero, en Alineación del objetivo, el tablero Kanban vincula la hipótesis de valor con criterios de aceptación observables y medibles. Segundo, en División en incrementos verticales, las historias de usuario se dividen en rebanadas delgadas operables de punta a punta con definición de terminado explícita. Tercero, en Detección de saturación WIP, la columna en desarrollo supera el límite asignado provocando bloqueos, esperas y aumento exponencial del lead time. Cuarto, en Desbloqueo mediante swarming, el equipo detiene nuevos inicios para colaborar en resolver el bloqueo activo drenando las colas acumuladas. Y quinto, en Revisión y aprendizaje, métricas de cycle time y diagramas de flujo acumulado guían la retrospectiva para institucionalizar políticas operativas mejoradas.",
+        visualOutcome:
+          "la animación modela el movimiento de tarjetas a través del tablero Kanban, evidenciando la alerta visual por desbordamiento del límite WIP y el restablecimiento del flujo ágil mediante trabajo colaborativo.",
+      });
+
+    case "scratch":
+      return buildPracticalPresentationAudioTrack("scratch", {
+        title: practical?.title ?? "Scratch en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Construir un videojuego interactivo: eventos, clones concurrentes y colisiones",
+        family: "programación visual orientada a eventos y concurrencia cooperativa",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, un videojuego arcade interactivo se construye paso a paso en cinco fases de programación por bloques. Primero, en Preparación del mundo y variables, el bloque al presionar bandera verde reinicia puntuaciones globales, vidas y posiciones iniciales de los sprites. Segundo, en Coordinación con mensajes broadcast, el emisor despacha eventos asíncronos para generar objetos en pantalla desacoplando lógica y renderizado. Tercero, en Detección de fuga de clones, un bucle sin condición genera clones continuos saturando el límite de trescientos clones y congelando el escenario. Cuarto, en Eliminación controlada de clones, sensores de colisión contra el borde activan el bloque borrar este clon estabilizando el consumo de memoria. Y quinto, en Verificación de victoria, al alcanzar diez puntos se dispara el mensaje de victoria congelando entradas para evitar trampas o puntuaciones espurias.",
+        visualOutcome:
+          "la animación recrea el escenario de Scratch mostrando el despacho de mensajes entre personajes, la saturación por proliferación de clones y la recuperación de una tasa fluida de cuadros por segundo.",
       });
 
     default: {
