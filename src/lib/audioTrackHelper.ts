@@ -322,10 +322,129 @@ const INTERFACES_VISUAL_EXPLANATIONS: Record<string, string> = {
 };
 
 /**
+ * Explicaciones informativas y didácticas para conceptos clave de plataformas y servidores.
+ */
+const PLATFORMS_VISUAL_EXPLANATIONS: Record<string, string> = {
+  // Backend
+  "Qué hace un backend":
+    "en el caso de request a rules y response, el servidor recibe la solicitud, comprueba invariantes de negocio y emite un contrato seguro sin confiar en el cliente.",
+  "Cliente y servidor":
+    "en la separación de responsabilidades, la animación contrasta el dispositivo emisor frente a la autoridad central que posee los datos y la lógica.",
+  "Protocolo HTTP":
+    "en la trama HTTP, el flujo visualiza cabeceras, códigos de estado y cuerpo de respuesta sincronizando la comunicación sobre conexiones TCP o TLS seguras.",
+  Middleware:
+    "en la cadena de middleware, la petición atraviesa capas secuenciales de logging, autenticación y rate limiting antes de alcanzar el controlador.",
+  "Inyección de dependencias":
+    "en el contenedor de dependencias, las interfaces se resuelven en instancias desacopladas facilitando pruebas aisladas y sustitución de adaptadores.",
+  "Patrón Repository":
+    "en el repositorio de datos, la capa de dominio solicita entidades mediante métodos limpios abstrayendo si provienen de base de datos o memoria.",
+  "Transacciones y ACID":
+    "en el bloque transaccional, todas las operaciones de base de datos se confirman en conjunto con commit o se deshacen limpiamente con rollback ante cualquier error.",
+  "Caché distribuida":
+    "en la lectura con Redis o Memcached, el backend atiende solicitudes frecuentes directamente en memoria reduciendo la carga y latencia de la base de datos.",
+  "Colas y workers":
+    "en el encolado de mensajes, el proceso principal libera la respuesta al cliente inmediatamente mientras workers en segundo plano ejecutan el trabajo pesado.",
+  "Idempotencia y deduplicación":
+    "en el ledger con clave de idempotencia, peticiones repetidas por fallos de red devuelven el resultado almacenado sin duplicar transacciones ni cargos.",
+  "Circuit breaker y resiliencia":
+    "en la máquina de estados del circuit breaker, fallos sucesivos en un servicio externo abren el circuito protegiendo el sistema general contra caídas en cascada.",
+  "Observabilidad y métricas":
+    "en la telemetría distribuida, trazas, métricas p95 y logs estructurados correlacionan cada solicitud a través de múltiples microservicios.",
+
+  // APIs
+  "REST y recursos":
+    "en el diseño REST, los endpoints se modelan como sustantivos y recursos con representaciones JSON y URI predecibles.",
+  "Verbos y semántica HTTP":
+    "en los métodos GET, POST, PUT, PATCH y DELETE, el flujo asocia cada verbo con su semántica idempotente o de creación de recursos.",
+  "GraphQL y esquemas":
+    "en la consulta GraphQL tipada, el cliente solicita en un único viaje exactamente los campos necesarios eliminando sobrecarga de red.",
+  "gRPC y Protocol Buffers":
+    "en la conexión gRPC, los mensajes binarios serializados con Protobuf se transmiten por HTTP/2 con mínima latencia y validación estricta de contratos.",
+  "WebSockets y tiempo real":
+    "en el handshake WebSocket, la conexión TCP bidireccional permanente transmite eventos en ambos sentidos con cero latencia de sondeo.",
+  "Webhooks y firmas HMAC":
+    "en el webhook saliente, el payload se firma con secreto criptográfico HMAC permitiendo al receptor autenticar la procedencia del evento.",
+
+  // Node.js
+  "Event loop y fases":
+    "en las fases del Event Loop, timers, I/O callbacks, poll, check y microtareas de Promise se procesan ordenadamente sin bloquear el hilo de ejecución.",
+  "Streams y piping":
+    "en el flujo de streams con pipe, fragmentos de datos continuos viajan del origen al destino procesándose con memoria constante.",
+  "Buffers y datos binarios":
+    "en la memoria fuera de V8, Buffer asigna bloques contiguos de bytes para procesar sockets de red y archivos de disco a máxima velocidad.",
+  "Cluster y Worker Threads":
+    "en el escalado multiproceso, Worker Threads distribuyen cálculos intensivos en hilos paralelos mientras Cluster clona el proceso en cada CPU disponible.",
+  "Señales del sistema y graceful shutdown":
+    "en la señal SIGTERM, el servidor deja de aceptar conexiones nuevas, drena las activas y libera sockets antes de terminar de forma controlada.",
+
+  // Laravel
+  "Contenedor de servicios":
+    "en el Service Container de Laravel, la inyección automática por reflexión resuelve dependencias tipadas en controladores y comandos.",
+  "Eloquent ORM y relaciones":
+    "en las relaciones de Eloquent, llamadas fluidas traducen consultas con eager loading evitando el cuello de botella de consultas N+1.",
+  "Migrations y rollback":
+    "en el versionado de base de datos, las migraciones aplican esquemas reproducibles y permiten regresar al estado anterior con rollback seguro.",
+  "Políticas de autorización (Policies)":
+    "en la evaluación de Policies, el método can intercepta la acción comprobando si el usuario autenticado tiene permisos específicos sobre el modelo.",
+
+  // n8n
+  "Nodos y flujo de ejecución":
+    "en el lienzo de n8n, datos estructurados en matrices JSON fluyen nodo a nodo transformándose y enriqueciéndose visualmente.",
+  "Gestión segura de credenciales":
+    "en el almacén encriptado de credenciales, las claves de API y OAuth se autentican en tiempo de ejecución sin exponer secretos en los nodos.",
+  "Nodos condicionales y conmutadores":
+    "en el nodo If y Switch, las expresiones evalúan propiedades del ítem derivando el flujo hacia diferentes ramas de acción según el caso.",
+
+  // .NET
+  "Common Language Runtime (CLR)":
+    "en el motor CLR, la máquina virtual gestiona la ejecución del código intermedio, la seguridad de tipos, el aislamiento y la memoria.",
+  "JIT y compilación Ahead-Of-Time (AOT)":
+    "en la compilación AOT de .NET, el ensamblado se convierte en binario nativo antes de la ejecución eliminando tiempo de calentamiento y reduciendo memoria.",
+  "Garbage Collector y generaciones":
+    "en las generaciones 0, 1 y 2 del GC, los objetos efímeros se limpian con mínima pausa mientras los objetos longevos se promueven eficientemente.",
+
+  // MediaPipe
+  "Tasks API y preprocesamiento":
+    "en la pipeline de MediaPipe Tasks, la imagen de entrada se recorta y normaliza automáticamente antes de entrar al grafo de inferencia neuronal.",
+  "Detección y seguimiento de manos":
+    "en el modelo de manos, la GPU predice en tiempo real 21 puntos articulares tridimensionales superponiendo la estructura anatómica sobre el vídeo.",
+  "Modelos On-Device y aceleración GPU":
+    "en la ejecución en el borde, los pesos de TensorFlow Lite se ejecutan directamente en la GPU local garantizando privacidad y baja latencia.",
+
+  // Firebase
+  "Firebase Authentication y tokens":
+    "en el flujo de autenticación, el SDK emite tokens JWT seguros con reclamaciones personalizadas que viajan en cada petición a la base de datos.",
+  "Cloud Firestore y modelo NoSQL":
+    "en las colecciones y documentos de Firestore, los índices compuestos resuelven consultas complejas en tiempo constante proporcional al resultado.",
+  "Security Rules y validación":
+    "en las Security Rules, el servidor evalúa request.auth y resource.data denegando por defecto cualquier lectura o escritura no autorizada.",
+  "Sincronización y persistencia offline":
+    "en la persistencia local de Firestore, los cambios se escriben en disco local y se transmiten automáticamente al servidor en cuanto se reconecta la red.",
+
+  // Android
+  "Jetpack Compose y UI declarativa":
+    "en el árbol de composición de Compose, funciones anotadas con Composable recalculan reactivamente únicamente los nodos visuales afectados por el nuevo estado.",
+  "ViewModel y StateFlow reactivo":
+    "en el ViewModel de Android, el StateFlow emite estados inmutables que sobreviven a rotaciones de pantalla y recreaciones de la actividad.",
+  "WorkManager y tareas en background":
+    "en el planificador WorkManager, las tareas en diferido se garantizan mediante alarmas del sistema respetando restricciones de batería y red.",
+
+  // Django
+  "Arquitectura MVT y WSGI/ASGI":
+    "en el ciclo de Django, la petición atraviesa WSGI o ASGI, se despacha mediante la URLconf y se procesa en la vista renderizando el template final.",
+  "Django ORM y QuerySets":
+    "en las consultas perezosas de QuerySets, SQL se compila únicamente al iterar los resultados optimizándose con select_related y prefetch_related.",
+  "Formularios y protección CSRF":
+    "en los formularios de Django, el token CSRF valida la procedencia de la petición POST previniendo ataques de falsificación de peticiones en sitios cruzados.",
+};
+
+/**
  * Colecciones con audio narraciones didácticas activas.
  * PR 1: Interfaces, Web y Móvil (9 colecciones + javascript base).
+ * PR 2: Plataformas y Servidores (10 colecciones).
  */
 export const AUDIO_ENABLED_COLLECTIONS = new Set<string>([
+  // Base y PR 1
   "javascript",
   "html-css",
   "react",
@@ -336,6 +455,17 @@ export const AUDIO_ENABLED_COLLECTIONS = new Set<string>([
   "angular",
   "qwik",
   "flutter",
+  // PR 2: Plataformas y Servidores
+  "backend",
+  "apis",
+  "nodejs",
+  "laravel",
+  "n8n",
+  "dotnet",
+  "mediapipe",
+  "firebase",
+  "android",
+  "django",
 ]);
 
 export function isCollectionAudioEnabled(collectionId: string): boolean {
@@ -353,7 +483,8 @@ function decapitalize(str: string): string {
 function getVisualExplanation(concept: ConceptInput): string {
   const bespoke =
     JAVASCRIPT_VISUAL_EXPLANATIONS[concept.title] ??
-    INTERFACES_VISUAL_EXPLANATIONS[concept.title];
+    INTERFACES_VISUAL_EXPLANATIONS[concept.title] ??
+    PLATFORMS_VISUAL_EXPLANATIONS[concept.title];
   if (bespoke) {
     return bespoke;
   }
@@ -578,6 +709,126 @@ export function getActionPresentationTrack(
           "En esta presentación interactiva, una consola de telemetría de alta frecuencia demuestra el pipeline gráfico autónomo de Flutter. Primero, en el Árbol Tripartito, los Widgets declaran la configuración inmutable, los Elements administran la identidad y el ciclo de vida en memoria, y los RenderObjects calculan las geometrías y emiten primitivas de dibujo. Segundo, en el Frame Pipeline, se sincroniza el ciclo continuo de build, layout y paint a 120 hercios con el hardware de la pantalla. Tercero, en Aislamiento de capas, un RepaintBoundary confina la gráfica del osciloscopio en su propia textura de composición en GPU evitando que las oscilaciones invaliden los widgets circundantes. Cuarto, en Detección de sobrecosto, un setState inexperto intenta reconstruir la pantalla entera provocando caída de cuadros. Quinto, en Despacho reactivo, el patrón BLoC con streams filtra y restringe las actualizaciones exclusivamente a la gráfica vectorial. Y sexto, en Motor Impeller, los comandos DisplayList se envían a la GPU mediante Vulkan o Metal con shaders precompilados AOT, logrando una animación fluida sin shader jank.",
         visualOutcome:
           "la animación exhibe la canalización de órdenes desde el árbol de widgets hacia la GPU, destacando la capa aislada de RepaintBoundary y el renderizado suave a 120 cuadros por segundo impulsado por el motor Impeller.",
+      });
+
+    case "backend":
+      return buildPracticalPresentationAudioTrack("backend", {
+        title: practical?.title ?? "Backend en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Caso integrado ampliado: Reparación de Fishbones en producción",
+        family: "arquitectura distribuida y transactional outbox",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, una orden de reparación para Fishbones recorre el ciclo de vida de backend en producción a través de ocho etapas coordinadas. Primero, en Gateway, el punto de entrada valida TLS y aplica limitación de tasa antes de distribuir el tráfico. Segundo, en Autenticación, se verifica la identidad criptográfica y se extrae el contexto seguro del token JWT. Tercero, en Autorización, las políticas de control de acceso comprueban los permisos sobre el recurso solicitado. Cuarto, en Validación de Schema, se analizan los datos de entrada rechazando cualquier payload malformado antes de tocar la lógica de negocio. Quinto, en Servicio de Dominio, se aplican las reglas puras del negocio garantizando los invariantes del sistema. Sexto, en Transacción ACID, la base de datos registra el estado y escribe el evento en la tabla Outbox de forma atómica. Séptimo, en Transactional Outbox, un proceso en segundo plano lee el evento persistido y lo publica de forma garantizada en el broker de mensajería. Y octavo, en Workers asíncronos, los consumidores procesan el trabajo pesado y la telemetría en paralelo con idempotencia y trazabilidad distribuida.",
+        visualOutcome:
+          "la animación traza el viaje de la solicitud desde el edge de la red hasta el almacenamiento transaccional y los consumidores asíncronos, demostrando una arquitectura tolerante a fallos con cero pérdida de órdenes.",
+      });
+
+    case "apis":
+      return buildPracticalPresentationAudioTrack("apis", {
+        title: practical?.title ?? "APIs en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Seguimiento multiparadigma de una orden",
+        family: "contratos multiparadigma y ledger idempotente",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, el ciclo de vida de una orden interactúa simultáneamente a través de seis protocolos de comunicación en el nexo de APIs. Primero, en REST, el cliente emite una petición POST para crear la orden con semántica de estado HTTP estandarizada. Segundo, en GraphQL, el panel de control consulta exactamente los campos requeridos del cliente y los productos en un único grafo sin sobre-descarga. Tercero, en gRPC, los microservicios internos transmiten la confirmación en binario tipado de alta velocidad mediante Protocol Buffers. Cuarto, en Eventos, el bus de mensajería emite el cambio de estado a los sistemas suscritos. Quinto, en WebSockets, la interfaz del usuario recibe actualizaciones de ubicación en tiempo real sin sondeo repetitivo. Y sexto, en Webhooks con firmas HMAC, el sistema despacha notificaciones seguras hacia servicios externos con ledger de deduplicación que previene eventos duplicados.",
+        visualOutcome:
+          "la animación representa la coordinación armónica entre REST, GraphQL, gRPC, WebSockets y webhooks autenticados, manteniendo un único identificador de traza y compatibilidad de contratos en todo el ecosistema.",
+      });
+
+    case "nodejs":
+      return buildPracticalPresentationAudioTrack("nodejs", {
+        title: practical?.title ?? "Node.js en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Ingesta de telemetría con backpressure",
+        family: "runtime asíncrono, streams y workers",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, un flujo masivo de telemetría es procesado por el motor de Node.js a través de seis etapas de alto rendimiento. Primero, en Streams, la carga comprimida entra como un flujo continuo procesado en pequeños fragmentos de memoria. Segundo, en Descompresión, el parser procesa la estructura JSON sin almacenar el archivo completo en el heap. Tercero, en Backpressure, el buffer de escritura detecta saturación en el destino y suspende la lectura hasta recibir el evento drain, evitando desbordamientos de memoria. Cuarto, en Worker Threads, los cálculos matemáticos pesados se transfieren a hilos de CPU secundarios manteniendo el bucle de eventos desahogado. Quinto, en Base de datos, los lotes de datos se insertan de forma agrupada y transaccional. Y sexto, en Apagado elegante con SIGTERM, el servidor drena las conexiones activas y libera recursos de forma segura sin interrumpir lotes en vuelo.",
+        visualOutcome:
+          "la animación visualiza el control de flujo por backpressure y el desvío de trabajo hacia hilos trabajadores, manteniendo la latencia del bucle de eventos en 7 milisegundos y un uso de memoria perfectamente estable.",
+      });
+
+    case "laravel":
+      return buildPracticalPresentationAudioTrack("laravel", {
+        title: practical?.title ?? "Laravel en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Orden transaccional con evento afterCommit",
+        family: "pipeline HTTP, Eloquent y colas",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, una transacción de comercio electrónico se orquesta mediante el framework Laravel en seis etapas integradas. Primero, en Validación con Form Request, los datos entrantes se sanean y verifican contra reglas de negocio. Segundo, en Políticas de autorización con Policies, el contenedor evalúa si el usuario autenticado tiene permiso sobre la entidad. Tercero, en Transacción de base de datos, el gestor de transacciones ejecuta las consultas de Eloquent asegurando atomicidad estricta. Cuarto, en Modelo Eloquent, los hooks del ciclo de vida y los casts transforman los atributos de forma transparente. Quinto, en Eventos afterCommit, la emisión del evento de orden creada se pospone hasta que la transacción se confirma de forma definitiva en disco. Y sexto, en Colas de trabajo, un Job asíncrono e idempotente se encola para enviar la notificación y actualizar inventarios sin retrasar la respuesta HTTP doscientos uno al cliente.",
+        visualOutcome:
+          "la animación refleja el flujo limpio entre el pipeline HTTP, las políticas de seguridad y la garantía de que ningún trabajo en cola se despache antes de la confirmación exitosa de la transacción en la base de datos.",
+      });
+
+    case "n8n":
+      return buildPracticalPresentationAudioTrack("n8n", {
+        title: practical?.title ?? "n8n en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Solicitud enriquecida, aprobada y enrutada",
+        family: "automatización de flujos y orquestación visual",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, un flujo automatizado de n8n procesa una solicitud operativa crítica a través de seis nodos conectados. Primero, en Nodo Webhook, la ejecución se dispara al recibir una carga HTTP externa autenticada con credenciales seguras. Segundo, en Normalización, un nodo de código mapea y limpia las propiedades JSON preparando una estructura de datos estándar. Tercero, en Enriquecimiento, múltiples peticiones a servicios cloud complementan la solicitud con información de contexto. Cuarto, en Aprobación humana, el flujo detiene su ejecución emitiendo una notificación interactiva y esperando la decisión de un supervisor en el carril manual. Quinto, en Nodo Switch condicional, la decisión dirige el flujo por la rama de aprobación o rechazo. Y sexto, en Recuperación y auditoría, los reintentos automáticos y el subflujo de errores registran la evidencia completa de la transacción.",
+        visualOutcome:
+          "la animación ilustra el movimiento de datos entre los nodos del flujo, mostrando cómo las credenciales encriptadas, la intervención humana y el manejo defensivo de errores garantizan una automatización robusta y auditable.",
+      });
+
+    case "dotnet":
+      return buildPracticalPresentationAudioTrack("dotnet", {
+        title: practical?.title ?? ".NET en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Servicio multiplataforma dentro del runtime .NET",
+        family: "runtime CLR, compilación AOT y memoria gestionada",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, un microservicio de alto rendimiento se ejecuta dentro del Common Language Runtime de punto net a través de seis etapas clave. Primero, en MSBuild, la solución compila el código fuente en ensamblados estándar de Código Intermedio. Segundo, en Motor de Ejecución CLR, el runtime inicializa el host, el inyector de dependencias nativo y el pipeline HTTP optimizado con Kestrel. Tercero, en Compilación JIT y AOT, las instrucciones intermedias se transforman en código de máquina nativo para la arquitectura destino. Cuarto, en Asignación de memoria y buffers, el uso de ArrayPool reduce la fragmentación en el Large Object Heap mitigando pausas del recolector de basura. Quinto, en Tareas asíncronas con ValueTask, el manejo de I O sin asignaciones excesivas maximiza el rendimiento por núcleo. Y sexto, en Diagnóstico y recolección de basura, las métricas confirman una reducción del 63% en pausas del Garbage Collector con un binario autónomo y seguro.",
+        visualOutcome:
+          "la animación visualiza la órbita de ejecución del runtime, evidenciando el reciclaje eficiente de buffers y el desempeño constante sin degradación en aplicaciones de alta concurrencia.",
+      });
+
+    case "mediapipe":
+      return buildPracticalPresentationAudioTrack("mediapipe", {
+        title: practical?.title ?? "MediaPipe en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Inferencia on-device y tracking multimodal a 60 FPS",
+        family: "visión computacional on-device y grafos de inferencia",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, una secuencia de vídeo en tiempo real se analiza mediante el motor On-Device de MediaPipe en seis etapas fluidas. Primero, en Ingesta de vídeo, los cuadros de la cámara se reciben y decodifican a 60 cuadros por segundo en el hilo gráfico. Segundo, en Preprocesamiento de tensores, la imagen se normaliza, recorta y ajusta de color según los requisitos del modelo de aprendizaje automático. Tercero, en Grafo de inferencia, los calculadores canalizan los datos hacia la GPU del dispositivo para ejecutar la inferencia de forma totalmente local sin enviar datos a la nube. Cuarto, en Detección de manos y landmarks, el modelo predice las coordenadas tridimensionales de veintiún puntos articulares en cada mano. Quinto, en Malla facial y postura, la inferencia simultánea extrae puntos clave de expresión y orientación corporal. Y sexto, en Renderizado y telemetría, las capas vectoriales se superponen instantáneamente sobre la imagen en pantalla con una latencia de inferencia menor a diez milisegundos.",
+        visualOutcome:
+          "la animación exhibe el rastreo vectorial tridimensional de landmarks articulares en tiempo real sobre la GPU del dispositivo, demostrando privacidad total y cero latencia de red.",
+      });
+
+    case "firebase":
+      return buildPracticalPresentationAudioTrack("firebase", {
+        title: practical?.title ?? "Firebase en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Caso integrado ampliado: Calibración de Fishbones y sincronización offline",
+        family: "BaaS reactivo, reglas de seguridad y sincronización cloud",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, la actualización de calibración de un taller se propaga a través de la infraestructura administrada de Firebase en ocho etapas sincronizadas. Primero, en Autenticación, Firebase Auth valida el token de sesión inyectando el identificador del usuario. Segundo, en Atestación con App Check, se verifica que la solicitud provenga de una aplicación genuina no alterada. Tercero, en Escritura local con Firestore, el dato se escribe de forma optimista en la base de datos local con latencia cero. Cuarto, en Security Rules, las reglas declarativas en el servidor verifican la propiedad del documento y la estructura del payload rechazando modificaciones no autorizadas. Quinto, en Triggers de Cloud Functions, el evento onCreate dispara una función en la nube que procesa los cálculos de calibración. Sexto, en Cloud Storage, se almacena el plano vectorial resultante con enlaces de descarga firmados. Séptimo, en Firebase Cloud Messaging, se envía una notificación push al dispositivo del operador. Y octavo, en Reconciliación offline, si la conexión a internet se interrumpe durante el proceso, la caché local retiene las mutaciones y las sincroniza en orden sin pérdida al restablecerse la red.",
+        visualOutcome:
+          "la animación ilustra la interacción continua entre el dispositivo móvil, la caché offline, las compuertas de Security Rules y las funciones en la nube, garantizando coherencia de datos y una experiencia sin interrupciones.",
+      });
+
+    case "android":
+      return buildPracticalPresentationAudioTrack("android", {
+        title: practical?.title ?? "Android en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Flujo de trabajo en segundo plano con WorkManager y Jetpack Compose",
+        family: "componentes del sistema, Compose y sincronización en background",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, una tarea crítica de sincronización móvil se ejecuta en el sistema Android a través de seis etapas nativas. Primero, en UI declarativa con Jetpack Compose, la interfaz reacciona automáticamente a los estados emitidos sin manipulación manual de vistas XML. Segundo, en ViewModel y StateFlow, el estado de la pantalla se preserva ante rotaciones y cambios de configuración del dispositivo. Tercero, en Base de datos Room, los registros se almacenan localmente en SQLite mediante una interfaz reactiva y tipada. Cuarto, en WorkManager, la tarea de sincronización en segundo plano se programa respetando restricciones de batería y conectividad a red no medida. Quinto, en Ejecución de Worker, el sistema operativo despierta el worker de forma confiable incluso si la aplicación se cierra o el dispositivo se reinicia. Y sexto, en Actualización y confirmación, el resultado se persiste de forma idempotente y el StateFlow notifica a la interfaz de Compose que la orden ha sido sincronizada.",
+        visualOutcome:
+          "la animación muestra la conexión entre la interfaz de Jetpack Compose, el almacenamiento en Room y la persistencia de tareas en WorkManager, asegurando que ningún trabajo se pierda ante caídas de red o suspensión del sistema.",
+      });
+
+    case "django":
+      return buildPracticalPresentationAudioTrack("django", {
+        title: practical?.title ?? "Django en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Modelo, vistas y operación web en Python",
+        family: "patrón MVT, ORM y transacciones en servidor",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, una solicitud web recorre el pipeline completo del framework Django a través de seis etapas robustas. Primero, en Enrutamiento y URLconf, la URL entrante se resuelve asociando la petición con la vista correspondiente. Segundo, en Middleware de seguridad, se aplican protecciones contra ataques CSRF, Clickjacking y validación de sesiones seguras. Tercero, en Vistas y formularios, los Form classes sanean los datos y validan las restricciones del dominio. Cuarto, en Django ORM, las consultas se optimizan con select_related y prefetch_related eliminando el problema de consultas n más uno en la base de datos. Quinto, en Transacciones atómicas, la operación se encapsula en un bloque atomic que garantiza consistencia o rollback ante excepciones. Y sexto, en Tareas asíncronas con Celery, los envíos de correos y procesos de análisis se delegan a workers asíncronos respondiendo rápidamente con el renderizado final de la plantilla.",
+        visualOutcome:
+          "la animación representa la secuencia segura de middlewares, consultas optimizadas al ORM y delegación de tareas en segundo plano, evidenciando la solidez de una arquitectura web basada en convenciones probadas.",
       });
 
     default: {
