@@ -5,8 +5,22 @@ import { DockerPracticalScene } from "@/components/scenes/docker/DockerPractical
 import { collectionNumber } from "@/data/collectionManifest";
 import { collectionNotices } from "@/data/collectionNotices";
 import { dockerDeepDive } from "@/data/practicalDeepDives";
+import { ConceptAudioTrigger } from "@/components/audio/ConceptAudioTrigger";
+import { FloatingAudioBubble } from "@/components/audio/FloatingAudioBubble";
+import {
+  buildPracticalModuleAudioTrack,
+  getActionPresentationTrack,
+} from "@/lib/audioTrackHelper";
 
 export default function DockerActionPage() {
+  const presentationTrack = getActionPresentationTrack("docker");
+  const practicalTracks = [
+    presentationTrack,
+    ...dockerDeepDive.map((module, i) =>
+      buildPracticalModuleAudioTrack("docker", module, 7 + i)
+    ),
+  ];
+
   return (
     <main className="page-shell">
       <CollectionNav />
@@ -29,12 +43,28 @@ export default function DockerActionPage() {
         <Link href="/docker">Ver conceptos y catálogo de Docker <b>←</b></Link>
       </div>
 
-      <section className="practical-stage practical-stage--docker" aria-label="Caso práctico integrado de Docker">
+      <section className="practical-stage practical-stage--docker practical-stage--card" aria-label="Caso práctico integrado de Docker">
+        <header className="practical-card__header">
+          <div className="practical-card__title-group">
+            <span className="practical-card__badge">00</span>
+            <div>
+              <h2>Empaquetado y ejecución de Fishbones API</h2>
+              <p>Pipeline de contenedores: BuildKit multi-stage, capas inmutables, seguridad sin root, publicación por digest OCI y orquestación con Docker Compose.</p>
+            </div>
+          </div>
+          <div className="practical-card__actions">
+            <ConceptAudioTrigger track={presentationTrack} />
+            <span className="practical-card__family">{presentationTrack.family}</span>
+          </div>
+        </header>
+
         <DockerPracticalScene />
       </section>
 
-      <PracticalDeepDive modules={dockerDeepDive} />
+      <PracticalDeepDive modules={dockerDeepDive} collectionId="docker" />
       <footer className="project-note">El caso distingue el filesystem de build, las capas inmutables, el artefacto publicado y el estado runtime. También muestra por qué un contenedor saludable, no root y observable es una decisión de diseño, no una propiedad automática de Docker.</footer>
+
+      <FloatingAudioBubble collectionName="Docker en acción" tracks={practicalTracks} />
     </main>
   );
 }

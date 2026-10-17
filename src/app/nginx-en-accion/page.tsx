@@ -6,6 +6,12 @@ import { HttpsTunnelScene } from "@/components/scenes/HttpsTunnelScene";
 import { collectionNumber } from "@/data/collectionManifest";
 import { collectionNotices } from "@/data/collectionNotices";
 import { nginxDeepDive } from "@/data/practicalDeepDives";
+import { ConceptAudioTrigger } from "@/components/audio/ConceptAudioTrigger";
+import { FloatingAudioBubble } from "@/components/audio/FloatingAudioBubble";
+import {
+  buildPracticalModuleAudioTrack,
+  getActionPresentationTrack,
+} from "@/lib/audioTrackHelper";
 
 export const metadata: Metadata = {
   title: "HTTPS y NGINX en acción",
@@ -14,6 +20,14 @@ export const metadata: Metadata = {
 };
 
 export default function NginxActionPage() {
+  const presentationTrack = getActionPresentationTrack("nginx");
+  const practicalTracks = [
+    presentationTrack,
+    ...nginxDeepDive.map((module, i) =>
+      buildPracticalModuleAudioTrack("nginx", module, 7 + i)
+    ),
+  ];
+
   return (
     <main className="page-shell">
       <CollectionNav />
@@ -36,12 +50,28 @@ export default function NginxActionPage() {
         <Link href="/nginx">Ver conceptos y catálogo de NGINX <b>←</b></Link>
       </div>
 
-      <section className="practical-stage practical-stage--nginx" aria-label="Caso práctico integrado de NGINX">
+      <section className="practical-stage practical-stage--nginx practical-stage--card" aria-label="Caso práctico integrado de NGINX">
+        <header className="practical-card__header">
+          <div className="practical-card__title-group">
+            <span className="practical-card__badge">00</span>
+            <div>
+              <h2>Terminación TLS 1.3 y enrutamiento en NGINX</h2>
+              <p>Tráfico seguro de producción: negociación TCP, intercambio de claves Diffie-Hellman efímeras, validación de certificados X.509 y proxy pass a upstreams.</p>
+            </div>
+          </div>
+          <div className="practical-card__actions">
+            <ConceptAudioTrigger track={presentationTrack} />
+            <span className="practical-card__family">{presentationTrack.family}</span>
+          </div>
+        </header>
+
         <HttpsTunnelScene />
       </section>
 
-      <PracticalDeepDive modules={nginxDeepDive} />
+      <PracticalDeepDive modules={nginxDeepDive} collectionId="nginx" />
       <footer className="project-note">El caso diferencia la conexión TCP, el handshake TLS, la identidad del servidor, las claves de tráfico y el HTTP que NGINX procesa después de terminar el cifrado. Un certificado inválido detiene el canal antes de exponer datos de aplicación.</footer>
+
+      <FloatingAudioBubble collectionName="NGINX en acción" tracks={practicalTracks} />
     </main>
   );
 }

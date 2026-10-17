@@ -1893,6 +1893,532 @@ const FUNCTIONAL_JVM_VISUAL_EXPLANATIONS: Record<string, string> = {
     "en la asincronía sobre la JVM, Futures representan cómputos asíncronos concurrentes que se completan en ExecutionContexts dedicados.",
 };
 
+const DEVOPS_TOOLS_VISUAL_EXPLANATIONS: Record<string, string> = {
+  "Repositorio y directorio .git":
+    "en la estructura interna de Git, el directorio oculto .git almacena el almacén inmutable de objetos, referencias de ramas y reflogs separándolos del working tree visible.",
+  "Blobs, trees y commits":
+    "en el modelo de objetos direccionado por contenido, los blobs conservan datos puros, los trees estructuran directorios y los commits registran snapshots históricos con autor y padres.",
+  "Hashes y direccionamiento por contenido":
+    "en la integridad criptográfica, hashes SHA representan la identidad unívoca de cada objeto asegurando que modificaciones mínimas generen identificadores completamente distintos.",
+  "HEAD y referencias simbólicas":
+    "en el puntero activo del repositorio, HEAD referencia simbólicamente la rama en curso o un commit específico determinando la base del siguiente commit.",
+  "Índice o staging area":
+    "en el área intermedia de preparación, el índice actúa como el borrador binario del próximo snapshot desacoplando cambios del working tree de los commits confirmados.",
+  "Configuración y alcance":
+    "en la jerarquía de configuración de Git, valores system, global y local resuelven precedencias de identidad, firmas y comportamiento por repositorio.",
+  "git status":
+    "en la inspección no destructiva, git status compara working tree, staging y HEAD categorizando archivos modificados, preparados o no rastreados sin alterar el repositorio.",
+  "git add y selección por hunks":
+    "en la preparación granular de cambios, git add interactivo selecciona regiones coherentes de un archivo permitiendo construir commits enfocados y atómicos.",
+  "git diff y rangos":
+    "en la comparación de estados, git diff calcula diferencias exactas entre working tree, índice o commits facilitando la revisión antes de confirmar.",
+  "git commit y metadatos":
+    "en la creación de snapshots históricos, git commit empaqueta el árbol del índice vinculando autor, marca temporal, mensaje y apuntador al commit padre.",
+  "git restore y git switch":
+    "en la separación moderna de responsabilidades, git switch conmuta ramas de trabajo mientras git restore recupera archivos descartando o desmarcando cambios.",
+  ".gitignore y archivos tracked":
+    "en el filtrado de artefactos, .gitignore omite archivos temporales y dependencias locales sin afectar a aquellos que ya fueron registrados previamente en el índice.",
+  "Ramas como punteros móviles":
+    "en la gestión de líneas de desarrollo, las ramas son referencias ligeras y móviles que avanzan automáticamente al incorporar nuevos commits.",
+  "Fast-forward":
+    "en la integración lineal de ramas, fast-forward desplaza el puntero de la rama hacia el commit más reciente sin generar un commit de unión innecesario.",
+  "Merge commits":
+    "en la fusión de historias divergentes, un merge commit reúne dos líneas de desarrollo independientes preservando la topología de ambos ancestros.",
+  "Conflictos de contenido":
+    "en la resolución de divergencias, Git detiene la integración cuando dos ramas modifican la misma región marcando los bloques en disputa para decisión humana.",
+  "Rebase":
+    "en la linealización de la historia, rebase traslada commits propios sobre una nueva base recreando cada snapshot con identificadores únicos.",
+  "Rebase interactivo":
+    "en la edición forense de commits locales, el rebase interactivo permite reordenar, fusionar con squash, renombrar o descartar cambios antes de publicarlos.",
+  "Clone y repositorios completos":
+    "en la distribución descentralizada, git clone replica la base de objetos íntegra, ramas remotas y configuración inicial en una copia local autónoma.",
+  "Remotos origin y upstream":
+    "en la sincronización entre pares, alias remotos como origin y upstream conectan el repositorio local con servidores remotos sin jerarquías rígidas.",
+  "Fetch":
+    "en la descarga segura de novedades, git fetch transfiere objetos y avanza ramas de seguimiento remotas sin modificar el working tree ni las ramas locales.",
+  "Push y non-fast-forward":
+    "en la publicación de código, git push envía commits al servidor remoto rechazando avances no lineales si la rama remota contiene cambios no integrados.",
+  "Tracking branches":
+    "en el seguimiento de ramas, referencias de tracking sincronizan la posición relativa entre ramas locales y remotas reportando estados ahead y behind.",
+  "log, show y graph":
+    "en la visualización cronológica, git log con formato de grafo expone la topología de ancestros, bifurcaciones y etiquetas del historial.",
+  "blame como contexto":
+    "en la arqueología de código, git blame anota cada línea con el autor, commit y fecha correspondientes para contextualizar decisiones arquitectónicas pasadas.",
+  "bisect":
+    "en la búsqueda binaria de anomalías, git bisect acota el commit que introdujo un error ejecutando pruebas sucesivas entre versiones conocidas buenas y malas.",
+  "Reflog":
+    "en la red de seguridad local, el reflog registra cada movimiento de HEAD y ramas permitiendo recuperar commits huérfanos o descartados por error.",
+  "fsck y objetos inalcanzables":
+    "en la auditoría de integridad, git fsck examina la conectividad de la base de datos de objetos detectando dangling blobs y commits desconectados.",
+  "Hooks locales":
+    "en la automatización en cliente, scripts pre-commit y commit-msg validan reglas de formato y estándares de mensaje antes de confirmar el snapshot.",
+  "Reset, restore y revert":
+    "en la rectificación de estados, reset mueve ramas hacia atrás, restore recupera archivos y revert genera un nuevo commit inverso preservando el historial compartido.",
+  "Cherry-pick":
+    "en la portabilidad de cambios puntuales, cherry-pick extrae el diff de un commit específico y lo aplica directamente sobre la rama activa sin fusionar ramas enteras.",
+  "Stash":
+    "en el almacenamiento temporal, git stash preserva cambios locales no confirmados en una pila recuperable dejando el espacio de trabajo limpio para cambios de contexto.",
+  "Tags anotados y firmas":
+    "en la publicación de hitos de versión, tags anotados fijan nombres inmutables con metadatos y firmas criptográficas verificables.",
+  "Git LFS":
+    "en la gestión de archivos pesados, Large File Storage sustituye binarios por punteros ligeros en el repositorio almacenando los datos reales en un servidor dedicado.",
+  "Mantenimiento y garbage collection":
+    "en la optimización del almacén de objetos, git gc empaqueta objetos sueltos en archivos pack y purga referencias caducadas optimizando el rendimiento.",
+  "Comandos de plomería vs porcelana":
+    "en la arquitectura interna de Git, comandos de porcelana ofrecen interfaces amigables mientras comandos de bajo nivel operan directamente sobre el almacén de objetos.",
+  "Objetos empaquetados y archivos .pack/.idx":
+    "en el almacenamiento eficiente, archivos pack comprimen millones de objetos delta mientras índices idx permiten búsquedas binarias instantáneas en disco.",
+  "Packed-refs y desfragmentación de referencias":
+    "en la aceleración de lecturas, packed-refs consolida miles de punteros de ramas y etiquetas sueltos en un único archivo indexado.",
+  "El índice binario (.git/index) al microscopio":
+    "en la anatomía del staging, el archivo binario index registra marcas temporales de inodos, tamaños, hashes y banderas de conflicto por ruta.",
+  "Commit-graph e indexación de ancestros":
+    "en la aceleración de recorridos históricos, la estructura commit-graph precalcula generaciones y relaciones de ancestros acelerando búsquedas complejas.",
+  "Multi-pack index (MIDX)":
+    "en repositorios a gran escala, MIDX unifica índices de múltiples archivos pack permitiendo localizar objetos sin necesidad de un reempaquetado global.",
+  "git worktree y desarrollo en paralelo":
+    "en el trabajo concurrente sobre el mismo repositorio, git worktree asocia múltiples carpetas de trabajo a ramas independientes sin clonar dos veces.",
+  "git sparse-checkout y repositorios gigantes":
+    "en la optimización de monorepos, sparse-checkout descarga y proyecta exclusivamente los directorios seleccionados reduciendo el working tree a lo esencial.",
+  "git submodules y repositorios anidados":
+    "en la composición de proyectos, submódulos enlazan commits SHA específicos de repositorios externos manteniendo historias independientes.",
+  "git subtrees y fusión sin submódulos":
+    "en la integración de código externo, subtrees incrustan proyectos de terceros como subcarpetas fusionando historias limpiamente sin metadatos de submódulos.",
+  "Estrategias de ramificación (Trunk-based vs Gitflow)":
+    "en la dinámica de equipos, trunk-based promueve ramas de corta duración e integración frecuente mientras Gitflow estructura ciclos formales con ramas de release.",
+  "Monorepos y escalado de Git":
+    "en la ingeniería de grandes volúmenes, monitores de sistema de archivos, índices virtuales y prefetching aceleran operaciones de estado en repositorios con millones de archivos.",
+  "git filter-repo vs filter-branch":
+    "en el saneamiento forense de historia, filter-repo reescribe commits y árboles velozmente purgando secretos o archivos masivos sin riesgos de corrupción.",
+  "git replace y costuras de historia":
+    "en la modificación no invasiva, git replace sustituye objetos en tiempo de ejecución permitiendo acortar historias profundas sin reescribir hashes de commits.",
+  "Firma criptográfica GPG y SSH":
+    "en la verificación de autoría, firmas con claves públicas garantizan que commits y tags fueron generados por identidades de confianza no suplantadas.",
+  "Detección de identidades y .mailmap":
+    "en la unificación de autorías, el archivo .mailmap consolida variaciones de nombres y correos electrónicos de un mismo colaborador a lo largo de los años.",
+  "Reparación de repositorios corruptos":
+    "en la recuperación forense, inspección manual de objetos sueltos y reflogs rescata árboles y commits ante cortes de energía o fallos de almacenamiento.",
+  "Pruning agresivo y git gc --prune=now":
+    "en la liberación inmediata de espacio, pruning agresivo elimina irrevocablemente objetos inalcanzables saltándose el periodo de gracia habitual.",
+  "Estrategia ortogonal (Ort merge strategy)":
+    "en el motor de fusión moderno de Git, ort resuelve renombrados de archivos y conflictos de tres vías con rendimiento exponencialmente más veloz.",
+  "git rerere (Reuse Recorded Resolution)":
+    "en la aceleración de integraciones repetitivas, rerere memoriza cómo se resolvió un conflicto de contenido y lo reaplica automáticamente en futuros rebases.",
+  "Diff de tres vías y bases comunes (merge-base)":
+    "en el cálculo de diferencias de fusión, merge-base localiza el ancestro común más reciente comparándolo contra ambas puntas de las ramas.",
+  "Controladores de diferencias personalizados (.gitattributes)":
+    "en el tratamiento semántico de formatos, .gitattributes asigna herramientas de diff especializadas para binarios, esquemas SQL o archivos JSON.",
+  "Checkout interactivo de conflictos (--ours vs --theirs)":
+    "en la resolución de disputas de archivos enteros, opciones ours o theirs adoptan íntegramente la versión local o entrante durante un merge.",
+  "Merge octopus y uniones multidireccionales":
+    "en integraciones polimórficas, un merge octopus une simultáneamente tres o más ramas cuando comparten una base común limpia sin conflictos cruzados.",
+  "Repositorio, visibilidad y propietario":
+    "en la plataforma de GitHub, el repositorio define la frontera de gobernanza, visibilidad pública o privada y asignación de colaboradores.",
+  "Clone, fork y template":
+    "en los patrones de colaboración, un fork crea una copia remota en otra cuenta facilitando contribuciones mediante pull requests sin acceso directo de escritura.",
+  "Rama predeterminada":
+    "en el flujo de integración de GitHub, la rama default como main actúa como destino canónico de fusiones y disparador de workflows de producción.",
+  "README, licencia y comunidad":
+    "en los estándares de código abierto, archivos de documentación, licencias y directrices de contribución establecen el marco legal y operativo del proyecto.",
+  "Topics, releases y Packages":
+    "en la distribución de artefactos, GitHub unifica etiquetas de descubrimiento, paquetes en registros de dependencias y versiones compiladas.",
+  "GitHub Pages":
+    "en la publicación estática, GitHub Pages despliega sitios web y documentación directamente desde el repositorio o mediante GitHub Actions.",
+  "Issues":
+    "en la gestión ágil de tareas, los issues articulan problemas, solicitudes de funcionalidades y tareas rastreables vinculadas al código fuente.",
+  "Plantillas y formularios":
+    "en la captura estructurada de contexto, issue templates guían a los reportadores solicitando pasos de reproducción y logs necesarios.",
+  "Labels, milestones y assignees":
+    "en la organización del trabajo, etiquetas y metas agrupan tareas por sprint y asignan responsabilidades explícitas al equipo.",
+  "Discussions":
+    "en la conversación abierta con la comunidad, GitHub Discussions desacopla debates, preguntas y lluvia de ideas del trabajo accionable de los issues.",
+  "Notificaciones y mentions":
+    "en la coordinación de equipos, menciones dirigidas y centros de notificaciones alertan a colaboradores específicos minimizando el ruido innecesario.",
+  "Pull request como propuesta":
+    "en la revisión colaborativa, un pull request expone diffs interactivos, discusiones línea por línea y resultados de integración continua antes de fusionar.",
+  "Draft y ready for review":
+    "en la visibilidad del estado de trabajo, draft pull requests señalan trabajo en curso impidiendo fusiones accidentales hasta que el autor lo declare listo.",
+  "Review comments y threads":
+    "en la discusión técnica focalizada, hilos de comentarios anclados a líneas específicas rastrean sugerencias hasta que son resueltas.",
+  "Approve, request changes y comment":
+    "en el gobierno de revisiones, estados formales de aprobación o solicitud de cambios controlan el cumplimiento de las políticas del equipo.",
+  "CODEOWNERS":
+    "en la gobernanza de componentes, el archivo CODEOWNERS asigna automáticamente revisores requeridos según los patrones de rutas modificadas en el PR.",
+  "Merge, squash y rebase merge":
+    "en las estrategias de integración en GitHub, opciones de merge commit, squash o rebase determinan la estructura visible del historial en la rama principal.",
+  "Roles de repositorio y organización":
+    "en el control de accesos, roles de lectura, triage, escritura y administración aplican el principio de mínimo privilegio.",
+  "Protected branches y rulesets":
+    "en la protección de ramas críticas, rulesets modernos impiden push directos y exigen revisiones y checks aprobados antes de fusionar.",
+  "Required reviews":
+    "en la calidad de código compartida, revisiones requeridas exigen un número mínimo de aprobaciones autorizadas antes de desbloquear la fusión.",
+  "Required status checks":
+    "en las compuertas de calidad, checks obligatorios de CI exigen que pruebas unitarias y linters completen exitosamente antes del merge.",
+  "Environments y approvals":
+    "en el despliegue controlado, entornos protegidos retienen la ejecución de workflows requiriendo aprobaciones manuales y secretos aislados.",
+  "Audit log":
+    "en el cumplimiento y seguridad, el registro de auditoría de GitHub rastrea cambios de configuración, permisos y acciones sensibles de usuarios.",
+  "Dependabot alerts y updates":
+    "en la seguridad de la cadena de suministro, Dependabot escanea dependencias y genera pull requests automáticos ante vulnerabilidades conocidas.",
+  "Code scanning y CodeQL":
+    "en el análisis estático avanzado, CodeQL rastrea flujos de datos tainted detectando fallos de seguridad y vulnerabilidades en el código.",
+  "Secret scanning y push protection":
+    "en la prevención de fugas de credenciales, push protection bloquea envíos que contengan tokens o claves de acceso a APIs.",
+  "Security advisories":
+    "en la divulgación responsable, security advisories permiten colaborar privadamente en parches de vulnerabilidades antes de hacerlas públicas.",
+  "Artifact attestations":
+    "en la verificación de procedencia, atestaciones criptográficas vinculan binarios construidos en GitHub Actions con el commit y workflow exactos.",
+  "Tokens, apps y OIDC":
+    "en la autenticación máquina a máquina, OpenID Connect permite que runners de GitHub Actions asuman roles en nubes sin secretos estáticos.",
+  "GitHub Actions como capacidad":
+    "en la orquestación de flujos de trabajo, GitHub Actions automatiza pruebas, empaquetado y releases en respuesta a eventos del repositorio.",
+  "Webhooks":
+    "en la integración reactiva, webhooks notifican a servicios externos mediante cargas firmadas con HMAC ante eventos como pushes o aperturas de PR.",
+  "GitHub Apps":
+    "en las integraciones avanzadas, GitHub Apps proveen identidades de servicio con permisos granulares independientes de cuentas de usuario individuales.",
+  "REST y GraphQL API":
+    "en la automatización de la plataforma, endpoints REST y GraphQL permiten consultar y mutar cualquier recurso de GitHub de forma programática.",
+  "Releases y notas":
+    "en la distribución pública, releases asocian etiquetas de versión con notas de cambios generadas automáticamente y binarios descargables.",
+  "Insights y métricas":
+    "en el análisis de actividad, paneles de métricas revelan frecuencia de contribuciones, dependencias utilizadas y velocidad de resolución de trabajo.",
+  "Forks de organizaciones y sincronización":
+    "en el desarrollo federado entre equipos, sincronización automática de forks mantiene al día repositorios derivados con los cambios de la fuente original.",
+  "Sponsors y sostenibilidad de código abierto":
+    "en el financiamiento de proyectos abiertos, GitHub Sponsors canaliza apoyo económico directo a desarrolladores y mantenedores de dependencias clave.",
+  "Plantillas de repositorio y blueprints":
+    "en la estandarización corporativa, repositorios de plantilla generan nuevos proyectos con estructuras de carpetas, linters y pipelines ya homologados.",
+  "GitHub CLI (gh) y automatización de terminal":
+    "en la experiencia de desarrollo por consola, gh permite crear repositorios, gestionar issues y revisar pull requests sin salir del terminal.",
+  "Menciones de equipo y revisiones asignadas":
+    "en el reparto de carga técnica, grupos de revisión automática distribuyen solicitudes de feedback rotativamente entre ingenieros calificados.",
+  "Reconocimiento y contribuciones en perfil":
+    "en la visibilidad profesional del desarrollador, el gráfico de contribuciones registra actividad pública y privada verificada en ramas protegidas.",
+  "Reusable Workflows y llamadas modulares":
+    "en la arquitectura de CI/CD escalable, workflows reutilizables centralizan la lógica de compilación y despliegue para cientos de proyectos.",
+  "Self-hosted Runners y autoscaling":
+    "en la infraestructura personalizada de ejecución, runners auto-hospedados con escalado dinámico procesan cargas pesadas dentro de redes seguras.",
+  "Concurrencia y cancelación de jobs obsoletos":
+    "en la optimización de computación, grupos de concurrencia abortan jobs en ejecución cuando se recibe un nuevo commit en el pull request.",
+  "Matrix builds y pruebas multiplataforma":
+    "en la verificación de compatibilidad, matrices de compilación prueban código paralelamente sobre múltiples sistemas operativos y versiones de compiladores.",
+  "Composite Actions vs Docker Actions":
+    "en la modularidad de pasos, composite actions empaquetan secuencias de comandos reutilizables con menor sobrecarga que contenedores Docker dedicados.",
+  "Artifacts y retención de binarios":
+    "en el almacenamiento de resultados de build, artefactos temporales conservan reportes de pruebas y binarios con políticas de expiración automática.",
+  "GitHub Advanced Security (GHAS)":
+    "en la seguridad empresarial integral, GHAS consolida paneles de escaneo de secretos, análisis estático y dependencias para toda la organización.",
+  "Environment Secrets vs Repository Secrets":
+    "en el aislamiento de credenciales, secretos a nivel de entorno se liberan exclusivamente a ramas autorizadas y tras aprobaciones requeridas.",
+  "OpenID Connect (OIDC) sin secretos estáticos":
+    "en la federación de identidades cloud, tokens OIDC efímeros intercambian la identidad del job por credenciales temporales en AWS, Azure o GCP.",
+  "Políticas de branch protection vs Rulesets modernos":
+    "en la evolución de la gobernanza, rulesets permiten aplicar reglas de protección jerárquicas a múltiples repositorios y ramas simultáneamente.",
+  "Control de acceso a nivel de actor (Bypass actors)":
+    "en las excepciones de emergencia, actores de bypass permiten que automatizaciones autorizadas o roles de emergencia apliquen parches urgentes.",
+  "Security Advisories y asignación de CVEs":
+    "en el reporte de vulnerabilidades, mantenedores pueden publicar avisos oficiales y solicitar identificadores CVE directamente desde el repositorio.",
+  "SAML SSO y aprovisionamiento SCIM":
+    "en la gestión de identidades corporativas, SCIM y SAML sincronizan accesos y bajas de empleados desde el proveedor de identidad institucional.",
+  "GitHub Enterprise Managed Users (EMU)":
+    "en el aislamiento corporativo, cuentas administradas por la empresa garantizan que el código de la compañía resida únicamente en identidades controladas.",
+  "Exportación y transmisión del Audit Log":
+    "en la auditoría y cumplimiento legal, streams de eventos de auditoría envían registros de seguridad en tiempo real hacia sistemas SIEM externos.",
+  "Políticas de IP Allow Lists":
+    "en la seguridad perimetral de código, listas de direcciones IP permitidas restringen accesos al repositorio a redes internas o VPN corporativa.",
+  "GitHub Packages y distribución de dependencias":
+    "en el registro unificado de software, GitHub Packages aloja imágenes OCI, paquetes npm, Maven y NuGet integrados con los permisos del repositorio.",
+  "Copilot for Enterprise y políticas de IA":
+    "en la asistencia asistida por IA, directivas organizacionales configuran filtros de coincidencia de código público y límites de telemetría de IA.",
+  "Integración continua":
+    "en el principio rector de CI, desarrolladores fusionan cambios pequeños frecuentemente validándolos mediante builds y pruebas automáticas.",
+  "Continuous delivery":
+    "en la entrega continua, cada versión que supera las pruebas se mantiene en un estado apto para ser desplegado a producción en cualquier momento.",
+  "Continuous deployment":
+    "en el despliegue continuo, cada cambio que aprueba el pipeline automatizado se libera a producción sin intervención manual.",
+  "Pipeline como DAG":
+    "en la orquestación de tareas, grafos dirigidos acíclicos modelan dependencias entre jobs paralelizando etapas independientes para acelerar el feedback.",
+  "Trigger y alcance":
+    "en la activación de pipelines, filtros por rama, etiquetas y rutas evitan ejecuciones innecesarias optimizando el uso de computación.",
+  "Feedback rápido y profundo":
+    "en la pirámide de pruebas del pipeline, checks rápidos como linters preceden a pruebas de integración complejas para fallar temprano.",
+  "Runner hospedado o propio":
+    "en la infraestructura de ejecución, runners efímeros en la nube o agentes auto-hospedados ofrecen aislamiento o acceso a redes internas.",
+  "Matrices de prueba":
+    "en la validación multiplataforma, matrices de configuración ejecutan jobs en paralelo combinando versiones de lenguajes y sistemas operativos.",
+  "Servicios efímeros":
+    "en las pruebas de integración, contenedores temporales de bases de datos y colas se inicializan y destruyen junto con el job de prueba.",
+  "Concurrencia y cancelación":
+    "en la optimización de recursos, reglas de concurrencia cancelan ejecuciones obsoletas de un PR cuando se envían nuevos commits.",
+  "Timeouts y límites":
+    "en la protección operativa, límites de tiempo abortan jobs colgados previniendo consumo descontrolado de minutos de computación.",
+  "Lint y análisis estático":
+    "en el control inicial de código, analizadores estáticos identifican errores de sintaxis, violaciones de estilo y malas prácticas sin ejecutar el código.",
+  "Pruebas unitarias":
+    "en la validación aislada, tests unitarios prueban funciones y clases individuales con dependencias simuladas en milisegundos.",
+  "Pruebas de integración":
+    "en la verificación de subsistemas, tests de integración comprueban la comunicación real entre servicios, esquemas y bases de datos.",
+  "Pruebas end-to-end":
+    "en la validación del usuario final, suites e2e recorren flujos críticos completos simulando interacciones reales en navegadores o interfaces.",
+  "Cobertura y mutation testing":
+    "en la evaluación de la calidad de tests, análisis de cobertura y mutación de código miden la efectividad real de las aserciones.",
+  "Flaky tests":
+    "en la confiabilidad del pipeline, la detección de pruebas no deterministas evita falsos positivos que degradan la confianza del equipo.",
+  "Build reproducible":
+    "en la ingeniería de artefactos, entornos aislados y dependencias fijadas aseguran que compilar el mismo commit produzca idéntico binario.",
+  "Lockfiles y dependencias":
+    "en la reproducibilidad del software, archivos lock fijan versiones exactas y checksums de dependencias transitivas.",
+  "Caché de dependencias":
+    "en la aceleración de compilaciones, cachés indexadas por hash de lockfiles restauran paquetes sin repetir descargas de red.",
+  "Artefactos inmutables":
+    "en la promoción de versiones, el mismo binario o imagen probado en desarrollo avanza hacia producción sin recompilar.",
+  "Versiones, tags y digests":
+    "en la trazabilidad de releases, identificadores semánticos y digests SHA aseguran inmutabilidad absoluta del artefacto entregado.",
+  "Retención y provenance":
+    "en la auditoría de compilación, políticas de retención conservan metadatos de procedencia, logs y binarios durante el ciclo regulatorio.",
+  "Permisos mínimos del workflow":
+    "en la seguridad de pipelines, directivas de permisos restringen tokens de ejecución a solo lectura en los recursos no esenciales.",
+  "OIDC y credenciales efímeras":
+    "en la integración segura con nubes, tokens OpenID Connect federados eliminan la necesidad de almacenar contraseñas permanentes en repositorios.",
+  "SBOM":
+    "en la transparencia del software, el Software Bill of Materials cataloga todas las librerías, versiones y licencias empaquetadas en la entrega.",
+  "Firma y attestations":
+    "en la autenticidad del artefacto, firmas digitales criptográficas garantizan que el binario proviene de un pipeline autorizado y sin manipulaciones.",
+  "Dependency review":
+    "en la mitigación preventiva de riesgos, revisiones automatizadas evalúan vulnerabilidades y licencias antes de admitir nuevas dependencias.",
+  "SLSA y niveles de confianza":
+    "en los estándares de seguridad de software, marcos de trabajo SLSA clasifican la resistencia del build ante ataques a la cadena de suministro.",
+  "Checks requeridos":
+    "en las políticas de control, compuertas de calidad bloquean la incorporación de cambios si alguno de los análisis obligatorios falla.",
+  "Approvals y separación de funciones":
+    "en la segregación de funciones, aprobaciones independientes evitan que un mismo autor pueda aprobar y desplegar cambios críticos a producción.",
+  "Environments":
+    "en el gobierno de entornos, configuraciones aisladas administran aprobadores, secretos y políticas de despliegue para staging y producción.",
+  "Feature flags":
+    "en la entrega desacoplada, modificadores booleanos activan o desactivan funciones en runtime independizando despliegues de lanzamientos comerciales.",
+  "Policy as code":
+    "en el cumplimiento automatizado, motores de políticas evalúan reglas de seguridad e infraestructura antes de permitir la promoción del cambio.",
+  "Handoff a Deployment":
+    "en la frontera entre integración y entrega, el pipeline transfiere el digest verificado y metadatos al sistema de despliegue.",
+  "Logs estructurados y anotaciones":
+    "en la depuración de pipelines, registros con marcas de tiempo y anotaciones directas en el diff señalan la línea exacta del fallo.",
+  "Métricas de flujo":
+    "en el rendimiento del equipo DORA, métricas miden lead time, frecuencia de despliegue, tasa de fallos y tiempo de recuperación.",
+  "Costo de runners":
+    "en la eficiencia financiera de CI, el monitoreo del consumo de minutos y tipos de máquinas optimiza la relación entre coste y velocidad de feedback.",
+  "Reintentos de jobs":
+    "en la resiliencia transitoria, reintentos automáticos recuperan fallos esporádicos de red sin ocultar defectos de código persistentes.",
+  "Reutilización de workflows":
+    "en el mantenimiento de pipelines, plantillas compartidas evitan duplicación asegurando estándares uniformes de seguridad y pruebas.",
+  "Diagnóstico de pipeline":
+    "en la resolución de incidencias de CI/CD, análisis forenses diferencian errores de aplicación de fallos de infraestructura del propio runner.",
+  "Linux: kernel y distribución":
+    "en la arquitectura de Linux, el núcleo gestiona hardware y recursos mientras distribuciones empaquetan utilidades de usuario y gestores de paquetes.",
+  "Kernel space y user space":
+    "en la separación de privilegios, el espacio de kernel ejecuta código con acceso total al hardware mientras el espacio de usuario aísla procesos de aplicación.",
+  "System calls":
+    "en la interfaz programática del sistema operativo, las syscalls transfieren el control al kernel para ejecutar operaciones privilegiadas como lectura de disco o red.",
+  "ABI, libc y utilidades":
+    "en la compatibilidad binaria, la interfaz binaria de aplicación y la biblioteca de C ofrecen contratos estables entre programas de usuario y el núcleo.",
+  "Distribuciones Linux":
+    "en el ecosistema de distribución, familias Debian, Red Hat y Arch organizan políticas de release, empaquetado y arranque del sistema.",
+  "Filesystem Hierarchy Standard":
+    "en la topología de archivos, el estándar FHS ubica binarios en bin, configuración en etc, estado variable en var y puntos de montaje en mnt.",
+  "Todo es un archivo":
+    "en la filosofía Unix, descriptores unificados tratan archivos regulares, tuberías, sockets de red y periféricos de hardware como secuencias de bytes.",
+  "Dispositivos en /dev":
+    "en los nodos de dispositivos, ficheros de caracteres y de bloques en dev comunican aplicaciones con controladores de hardware administrados por udev.",
+  "procfs: /proc":
+    "en el sistema de archivos virtual procfs, el kernel expone información viva sobre procesos activos, memoria virtual y parámetros del sistema.",
+  "sysfs: /sys":
+    "en la jerarquía sysfs, estructuras de kernel reflejan buses, dispositivos conectados y controladores permitiendo consultar y ajustar parámetros en runtime.",
+  "Qué problema resuelve Docker":
+    "en la reproducibilidad del software, Docker elimina discrepancias entre entornos empaquetando código, dependencias y runtime en artefactos inmutables.",
+  "Contenedor frente a máquina virtual":
+    "en el modelo de virtualización ligera, los contenedores comparten el kernel del host mediante namespaces y cgroups sin sobrecarga de emulación de hardware.",
+  "Imagen frente a contenedor":
+    "en el ciclo de vida de Docker, una imagen es una plantilla inmutable de solo lectura mientras un contenedor es una instancia ejecutable con capa de escritura.",
+  "Docker Engine":
+    "en el núcleo de la plataforma, Docker Engine opera como cliente-servidor con un daemon central, API REST e interfaz de línea de comandos.",
+  "Docker Desktop":
+    "en la estación de trabajo de desarrollo, Docker Desktop integra virtualización ligera, Kubernetes local y extensiones para desarrollo ágil.",
+  "Docker CLI":
+    "en la gestión por consola, comandos de Docker invocan la API del daemon para construir imágenes, gestionar redes y controlar contenedores.",
+  "Docker daemon":
+    "en el servicio de fondo, dockerd atiende peticiones de API gestionando imágenes, contenedores, redes y volúmenes de almacenamiento.",
+  "Aislamiento de procesos":
+    "en la seguridad del host, namespaces de PID y UTS aíslan la vista de procesos y nombres de host impidiendo interferencias entre contenedores.",
+  "Límites de recursos":
+    "en la asignación controlada, cgroups imponen límites estrictos de CPU, memoria y cuotas de entrada/salida evitando agotamiento del host.",
+  "Cloud computing":
+    "en el paradigma de computación en la nube, recursos bajo demanda con facturación por uso reemplazan centros de datos físicos locales.",
+  "IaaS, PaaS y serverless":
+    "en los modelos de servicio en la nube, responsabilidades se transfieren progresivamente al proveedor desde infraestructura hasta funciones serverless puras.",
+  "Regiones":
+    "en la infraestructura global de AWS, regiones geográficas independientes albergan zonas de disponibilidad redundantes para tolerancia a fallos.",
+  "Availability Zones":
+    "en la alta disponibilidad física, zonas de disponibilidad separadas albergan uno o más centros de datos interconectados por redes de ultra baja latencia.",
+  "Edge locations":
+    "en la presencia perimetral global, puntos de presencia edge entregan contenido en caché y mitigan ataques DDoS cerca de los usuarios finales.",
+  "Modelo de responsabilidad compartida":
+    "en la seguridad de la nube, AWS asegura la infraestructura física mientras el cliente es responsable de configurar datos, identidades y redes.",
+  "AWS accounts":
+    "en la gobernanza de recursos, cuentas independientes de AWS proveen fronteras estrictas de facturación, límites de servicio y seguridad.",
+  "Multi-account strategy":
+    "en la arquitectura empresarial, organizaciones multi-cuenta con AWS Organizations aíslan cargas de producción, desarrollo y auditoría.",
+  "ARNs":
+    "en la identificación unívoca, Amazon Resource Names especifican partición, servicio, región y cuenta para cualquier recurso en AWS.",
+  "Qué es un deployment":
+    "en la entrega continua, un despliegue instala una versión verificada del software en un entorno destino habilitándola para recibir tráfico de usuarios.",
+  "Build, release y run":
+    "en el principio 12-factor, se separan estrictamente la compilación de artefactos inmutables, la combinación con configuración de entorno y la ejecución en el runtime.",
+  "Deploy vs release":
+    "en la gestión de lanzamientos, se distingue el acto técnico de desplegar binarios en servidores del acto de negocio de exponer funcionalidades a usuarios.",
+  "Artefacto inmutable":
+    "en la estabilidad de producción, el mismo contenedor o binario probado en staging se promueve a producción sin modificaciones ni recompilación.",
+  "Reproducible builds":
+    "en la integridad del build, entradas fijadas y entornos deterministas garantizan que idéntico código fuente genere exactamente el mismo digest.",
+  "Release versioning":
+    "en el control de cambios, versionado semántico formal identifica unívocamente la naturaleza de parches, mejoras o cambios incompatibles.",
+  "Entornos":
+    "en la progresión de entrega, entornos de desarrollo, staging y producción aplican configuraciones aisladas conservando paridad arquitectónica.",
+  "Promotion":
+    "en el ciclo de vida de artefactos, la promoción traslada digests verificados a través de compuertas de calidad automáticas y aprobaciones humanas.",
+  "Qué es debugging":
+    "en la ingeniería de software, debugging es el proceso sistemático de identificar, aislar y corregir la causa raíz de comportamientos incorrectos.",
+  "Síntoma frente a causa raíz":
+    "en el análisis forense, distinguir las consecuencias visibles del defecto original evita aplicar soluciones superficiales que no resuelven el problema.",
+  "Comportamiento esperado":
+    "en la especificación del sistema, definir con precisión el resultado correcto esperado proporciona la referencia contra la que contrastar el error.",
+  "Comportamiento observado":
+    "en la recolección de evidencia, documentar exhaustivamente datos empíricos, trazas y mensajes de error delimita la anomalía real.",
+  "Hipótesis falsable":
+    "en el método científico de depuración, formular conjeturas comprobables y refutables guía los experimentos evitando cambios a ciegas.",
+  "Método científico":
+    "en la investigación rigurosa, ciclos iterativos de observación, hipótesis, predicción y verificación resuelven anomalías complejas de forma estructurada.",
+  "Una variable a la vez":
+    "en el control de experimentos, alterar un solo parámetro en cada iteración demuestra causalidad directa descartando efectos colaterales.",
+  "Sesgos cognitivos":
+    "en el razonamiento analítico, reconocer el sesgo de confirmación previene descartar evidencia que contradiga la hipótesis preferida del desarrollador.",
+  "Rubber duck debugging":
+    "en la clarificación mental, explicar el código y el problema paso a paso a un interlocutor pasivo revela incongruencias lógicas inadvertidas.",
+  "Leer el error completo":
+    "en la interpretación de diagnósticos, examinar la traza completa de la excepción identifica la causa raíz en lugar de detenerse en la primera línea.",
+  "Qué es NGINX":
+    "en la infraestructura web moderna, NGINX opera como servidor HTTP de alto rendimiento, proxy inverso y balanceador de carga ultra eficiente.",
+  "NGINX Open Source y NGINX Plus":
+    "en las ediciones del software, NGINX Plus añade métricas activas en tiempo real, balanceo de carga avanzado y soporte comercial a la versión comunitaria.",
+  "Servidor web, proxy y gateway":
+    "en los roles de red, NGINX entrega contenido estático a velocidad de kernel, intermedia tráfico hacia upstreams y actúa como puerta de enlace de APIs.",
+  "Arquitectura orientada a eventos":
+    "en el modelo de concurrencia de NGINX, bucles de eventos no bloqueantes atienden miles de conexiones concurrentes por proceso trabajador con mínimo consumo de RAM.",
+  "Proceso master":
+    "en el control del servicio, el proceso master lee la configuración, abre puertos privilegiados y supervisa el ciclo de vida de los procesos worker.",
+  "Procesos worker":
+    "en la atención de tráfico, procesos worker independientes sin memoria compartida procesan solicitudes de red con alta eficiencia y afinidad a núcleos de CPU.",
+  "Worker connections":
+    "en la capacidad de concurrencia, el límite de conexiones por worker determina el volumen máximo de conexiones simultáneas que cada trabajador puede sostener.",
+  "Event loop del worker":
+    "en el motor reactivo, el event loop monitoriza sockets de red despachando eventos de lectura y escritura en microsegundos.",
+  "I/O no bloqueante":
+    "en la transferencia de datos, operaciones de entrada y salida asíncronas devuelven el control inmediatamente sin congelar el hilo del trabajador.",
+  "epoll, kqueue y event methods":
+    "en la optimización del kernel, mecanismos nativos epoll en Linux y kqueue en BSD notifican eventos de red escalando de forma lineal con la carga.",
+  "Interrupciones":
+    "en la señalización de hardware, interrupciones físicas suspenden la CPU temporalmente transfiriendo el control a manejadores del kernel.",
+  "Privilegios":
+    "en la seguridad del procesador, anillos de privilegio delimitan las instrucciones de máquina que el código puede ejecutar protegiendo el hardware.",
+  "Boot":
+    "en la inicialización de la máquina, el proceso de arranque transfiere el control desde el firmware UEFI al cargador y al núcleo del sistema operativo.",
+  "Procesos":
+    "en la abstracción computacional, un proceso encapsula un programa en ejecución con su propio espacio de memoria virtual y descriptores de archivo.",
+  "Threads":
+    "en la unidad de planificación, hilos de ejecución comparten el espacio de direcciones del proceso permitiendo procesamiento concurrente ligero.",
+  "Scheduling":
+    "en la distribución de cómputo, algoritmos de planificación asignan ráfagas de tiempo de CPU a hilos listos según prioridades y equidad.",
+  "Context switch":
+    "en la conmutación de tareas, el procesador guarda los registros del proceso actual y carga el estado del siguiente proceso en la cola de ejecución.",
+  "Sincronización":
+    "en la concurrencia de memoria compartida, primitivas de sincronización coordinan el acceso de múltiples hilos a recursos críticos evitando corrupción.",
+  "Clase":
+    "en la estructura de documentos LaTeX, las clases definen las convenciones tipográficas globales y la disposición editorial para artículos, reportes o libros.",
+  "Preámbulo":
+    "en la configuración del documento, el preámbulo carga paquetes, define macros y establece parámetros de diseño antes de iniciar el cuerpo del texto.",
+  "Estructura":
+    "en la organización jerárquica de contenidos, comandos semánticos estructuran capítulos, secciones y subsecciones sin mezclar contenido con formato manual.",
+  "Macros":
+    "en el lenguaje programable de TeX, macros encapsulan patrones tipográficos reutilizables y reglas de sustitución textual expandibles durante la compilación.",
+  "Expansión":
+    "en el motor de evaluación de TeX, la fase de macroexpansión sustituye progresivamente tokens y delimitadores antes de la construcción tipográfica.",
+  "Cajas y glue":
+    "en el modelo geométrico de Knuth, caracteres y bloques se empaquetan en cajas rectangulares unidas por pegamento elástico que se comprime o expande para justificar líneas.",
+  "Saltos de página":
+    "en la paginación automática, el algoritmo de corte evalúa penalizaciones y holguras evitando líneas huérfanas y viudas en el documento.",
+  "Matemáticas":
+    "en la composición tipográfica de fórmulas, modos matemáticos en línea y en bloque aplican reglas de espaciado y simbología de alta precisión.",
+  "Referencias cruzadas":
+    "en la coherencia documental, comandos de etiquetado y referencia vinculan figuras, tablas y ecuaciones calculando numeraciones en pasadas sucesivas.",
+  "Bibliografía":
+    "en la gestión de citas académicas, motores como Biber y paquetes como BibLaTeX formatean referencias según estándares internacionales como APA o IEEE.",
+  "latexmk":
+    "en la automatización de la compilación, latexmk detecta cambios en archivos auxiliares ejecutando las pasadas necesarias hasta estabilizar referencias y bibliografía.",
+  "pdfLaTeX XeLaTeX LuaLaTeX":
+    "en la evolución de motores TeX, compiladores modernos incorporan soporte nativo para Unicode, fuentes OpenType y programación en lenguaje Lua.",
+  "PDF/A":
+    "en la preservación digital a largo plazo, el estándar PDF/A exige incrustación de fuentes, metadatos estructurados y ausencia de dependencias externas en el documento.",
+  "Repositorio":
+    "en el control de versiones centralizado de Apache Subversion, el repositorio central almacena el historial unificado como un árbol de ficheros versionado.",
+  "Revisión global":
+    "en el modelo temporal de SVN, cada confirmación incrementa un número entero global único que representa el snapshot completo del repositorio.",
+  "Working copy":
+    "en el espacio de trabajo local, la working copy contiene copias de trabajo editables respaldadas por metadatos prístinos y una base SQLite interna.",
+  "Checkout":
+    "en la inicialización del proyecto, svn checkout descarga una versión específica del árbol del repositorio creando la estructura de la copia de trabajo local.",
+  "Status":
+    "en la comprobación de modificaciones, svn status analiza las diferencias locales entre la copia de trabajo y los archivos prístinos sin consultar a la red.",
+  "Diff":
+    "en la inspección de cambios, svn diff genera diferencias unificadas contextuales entre el código modificado y la revisión base de la copia de trabajo.",
+  "Commit atómico":
+    "en la persistencia indivisible de cambios, el commit de SVN garantiza que todas las modificaciones entren como una transacción atómica o se desechen íntegramente.",
+  "Update":
+    "en la sincronización de novedades, svn update descarga cambios remotos e integra automáticamente las modificaciones en la copia de trabajo local.",
+  "Branches":
+    "en la ramificación ligera de SVN, las ramas se crean como copias baratas en espacio de nombres dentro del árbol del repositorio compartiendo historial.",
+  "Merge tracking":
+    "en la gestión de fusiones, propiedades svn:mergeinfo registran revisiones integradas previniendo aplicaciones redundantes y simplificando reincorporaciones.",
+  "Text conflicts":
+    "en la resolución de divergencias textuales, Subversion marca regiones en conflicto con marcadores visuales permitiendo elegir versiones locales, entrantes o combinadas.",
+  "Tree conflicts":
+    "en conflictos estructurales, Subversion alerta cuando una operación local colisiona con el renombrado, borrado o movimiento remoto de un directorio o fichero.",
+  "Pull":
+    "en la sincronización de código y contenedores, pull descarga objetos o capas inmutables desde un registro remoto actualizando el estado local.",
+  "Projects":
+    "en la gestión visual de proyectos y Compose, Projects agrupan tareas, servicios y recursos bajo una vista unificada.",
+  "Blast radius":
+    "en la gestión de riesgos e incidentes, blast radius acota el impacto de un fallo o despliegue evitando propagación en cascada al resto del sistema.",
+  "Entorno limpio":
+    "en la reproducibilidad de builds y depuración, un entorno limpio asegura la ausencia de residuos de ejecuciones previas garantizando resultados deterministas.",
+  "Audit trail":
+    "en la gobernanza y despliegue, el registro de auditoría conserva evidencia inmutable de aprobaciones, acciones de usuarios y promociones de versiones.",
+  "Clock synchronization":
+    "en sistemas distribuidos y núcleos, protocolos como NTP y PTP sincronizan relojes evitando derivas que corrompan marcas temporales y orden de eventos.",
+  "CORS":
+    "en la seguridad web y proxy inverso, cabeceras Cross-Origin Resource Sharing controlan qué orígenes externos tienen permitido consumir recursos de la API.",
+  "Canary":
+    "en estrategias de lanzamiento y diagnóstico, un despliegue canary enruta un porcentaje reducido de usuarios reales para detectar anomalías antes de la promoción total.",
+  "Linux capabilities":
+    "en el endurecimiento de permisos, capabilities dividen los privilegios de superusuario en permisos granulares evitando conceder acceso root completo a contenedores o procesos.",
+  "cgroups v2":
+    "en el control de recursos del kernel, cgroups unificados aplican límites jerárquicos estrictos de CPU, memoria y E/S a grupos de procesos y contenedores.",
+  "Graceful shutdown":
+    "en la finalización ordenada de servicios, el proceso completa las conexiones en vuelo y libera descriptores de archivo antes de terminar su ejecución.",
+  "Journaling":
+    "en la integridad del almacenamiento, el registro transaccional de cambios pendientes en un journal previene inconsistencias y corrupciones ante cortes imprevistos de energía.",
+  "Swap":
+    "en la gestión de memoria secundaria, el espacio de swap descarga páginas inactivas de memoria RAM a disco para liberar memoria física ante picos de demanda.",
+  "Memoria virtual":
+    "en la abstracción de memoria del sistema, un espacio de direcciones lineal y virtual aísla cada proceso del mapa de memoria física real.",
+};
 /**
  * Colecciones con audio narraciones didácticas activas.
  * PR 1: Interfaces, Web y Móvil (9 colecciones + javascript base).
@@ -1983,6 +2509,20 @@ export const AUDIO_ENABLED_COLLECTIONS = new Set<string>([
   "perl",
   "raku",
   "scala",
+  // PR 8: DevOps, Nube, Herramientas y Sistemas Operativos
+  "git",
+  "github",
+  "debugging",
+  "linux",
+  "aws",
+  "ci-cd",
+  "deployment",
+  "nginx",
+  "docker",
+  "operating-systems",
+  "sistemas-operativos",
+  "latex",
+  "subversion",
 ]);
 
 export function isCollectionAudioEnabled(collectionId: string): boolean {
@@ -2006,7 +2546,8 @@ function getVisualExplanation(concept: ConceptInput): string {
     FUNDAMENTALS_VISUAL_EXPLANATIONS[concept.title] ??
     MODERN_LANGUAGES_VISUAL_EXPLANATIONS[concept.title] ??
     C_FAMILY_VISUAL_EXPLANATIONS[concept.title] ??
-    FUNCTIONAL_JVM_VISUAL_EXPLANATIONS[concept.title];
+    FUNCTIONAL_JVM_VISUAL_EXPLANATIONS[concept.title] ??
+    DEVOPS_TOOLS_VISUAL_EXPLANATIONS[concept.title];
   if (bespoke) {
     return bespoke;
   }
@@ -2853,6 +3394,151 @@ export function getActionPresentationTrack(
           "En esta presentación interactiva, un flujo de eventos transaccionales se procesa a través de cinco etapas tipadas en Scala 3 sobre la JVM. Primero, en Modelar eventos, un enum algebraico define los eventos posibles de apertura y cierre estableciendo una jerarquía sellada para análisis exhaustivo. Segundo, en Transformar colección, métodos funcionales como groupMapReduce agregan transacciones por identificador componiendo mapas y reducciones en una sola pasada. Tercero, en Añadir caso sin manejar, la incorporación de un nuevo evento de reintento activa una advertencia del compilador por pattern matching no exhaustivo impidiendo generar un build incompleto. Cuarto, en Recuperar semántica, el caso faltante se incorpora explícitamente en la función de mapeo garantizando la coherencia del contrato de negocio. Y quinto, en Publicar evidencia, pruebas unitarias automatizadas con sbt validan la integridad de las transformaciones y la compatibilidad binaria del artefacto generado.",
         visualOutcome:
           "la animación ilustra la agregación funcional de eventos en Scala, destacando la protección del compilador ante patrones no exhaustivos y la compilación exitosa a bytecode optimizado para la máquina virtual de Java.",
+      });
+
+    case "git":
+      return buildPracticalPresentationAudioTrack("git", {
+        title: practical?.title ?? "Git en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Caso integrado · Hotfix recuperable",
+        family: "control de versiones distribuido, grafo de objetos inmutables y referencias",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, una reparación urgente se aísla, resuelve y publica en ocho etapas preservando un experimento local en Git. Primero, en Inspeccionar el síntoma, status y log establecen una línea base identificando modificaciones sin alterar el repositorio. Segundo, en Guardar el experimento, git stash guarda el prototipo incompleto en stash@{0} dejando el working tree completamente limpio. Tercero, en Crear la rama de reparación, git switch crea la rama hotfix aislando el trabajo en un puntero independiente. Cuarto, en Construir un commit preciso, la selección interactiva por hunks añade exclusivamente la corrección al índice. Quinto, en Actualizar la base, fetch descarga objetos de main y rebase sitúa la rama sobre la punta remota detectando un conflicto localizado. Sexto, en Resolver y verificar, el conflicto se soluciona en el archivo y rebase continúa generando un commit con nuevo hash. Séptimo, en Publicar y etiquetar, push actualiza la referencia remota y crea un tag firmado criptográficamente para la versión. Y octavo, en Recuperar el experimento, git stash pop restaura el prototipo previo sobre su rama original demostrando que la urgencia no destruyó el trabajo en curso.",
+        visualOutcome:
+          "la animación traza los desplazamientos de HEAD, el índice y los punteros de ramas sobre el grafo de commits de Git, evidenciando el aislamiento del hotfix y la recuperación intacta del stash.",
+      });
+
+    case "github":
+      return buildPracticalPresentationAudioTrack("github", {
+        title: practical?.title ?? "GitHub en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Caso integrado · Contribución gobernada",
+        family: "plataforma de colaboración, gobernanza de código y automatización segura",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, una contribución externa se gestiona a lo largo de ocho etapas desde el planteamiento del problema hasta la publicación en GitHub. Primero, en Definir el problema, un issue documenta el comportamiento anómalo, criterios de aceptación y asignación formal. Segundo, en Preparar la contribución, un fork del repositorio aísla el desarrollo en una cuenta externa sin privilegios directos de escritura. Tercero, en Abrir un draft, un pull request preliminar expone la propuesta temprana para debate técnico sin solicitar aprobación formal. Cuarto, en Ejecutar controles, GitHub Actions activa análisis estático con CodeQL, matrices de pruebas y escaneo de secretos mediante credenciales OIDC efímeras. Quinto, en Corregir y revisar, revisores designados por CODEOWNERS comentan sobre líneas concretas y la autora sube el commit correctivo. Sexto, en Aplicar el ruleset, políticas de ramas protegidas exigen revisiones aprobadas y firmas válidas antes de habilitar la fusión. Séptimo, en Integrar con autoría, un squash merge incorpora la unidad de cambio en la rama principal preservando la atribución del autor. Y octavo, en Publicar la versión, una release oficial vincula notas de cambio, un tag firmado y atestaciones de procedencia del artefacto.",
+        visualOutcome:
+          "la animación ilustra el ciclo de vida de la contribución en GitHub, sincronizando issues, workflows automatizados, aprobaciones de políticas y la publicación de releases verificables.",
+      });
+
+    case "debugging":
+      return buildPracticalPresentationAudioTrack("debugging", {
+        title: "Debugging en acción",
+        subtitle: "Caso integrado ampliado: Investigación causal de la duplicación de órdenes",
+        family: "método científico de investigación causal y aislamiento de fallos",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, un fallo de duplicación de órdenes en producción se investiga a través de seis etapas de depuración causal. Primero, en Registro del síntoma, se captura el reporte anómalo estableciendo condiciones de entorno, navegadores y datos involucrados. Segundo, en Trazas y red, un correlation ID único rastrea la solicitud entre la consola del cliente, peticiones HTTP repetidas y registros de backend. Tercero, en Pausa en punto de quiebre, el depurador detiene la ejecución en el listener del botón descubriendo un doble despacho disparado por falta de desacoplamiento de eventos. Cuarto, en Aislamiento de variables, se replica el comportamiento en un entorno de pruebas controlado confirmando que la desconexión del listener erradica la duplicación. Quinto, en Corrección y prueba de regresión, se implementa protección de debounce en el frontend junto con una clave de idempotencia en la base de datos para prevenir inconsistencias futuras. Y sexto, en Verificación en canary, la versión corregida se valida con telemetría en tiempo real confirmando cero recurrencias del defecto en producción.",
+        visualOutcome:
+          "la animación expone el flujo metodológico de debugging, destacando el seguimiento de trazas entre frontend y backend, la inspección en el breakpoint y la verificación definitiva mediante pruebas de regresión.",
+      });
+
+    case "linux":
+      return buildPracticalPresentationAudioTrack("linux", {
+        title: "Linux en acción",
+        subtitle: "Caso integrado ampliado: Diagnóstico y recuperación del servicio hexgate-api",
+        family: "operación de sistemas operativos, diagnóstico de kernel y gestión de servicios",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, una interrupción del servicio hexgate-api se diagnostica y resuelve en seis etapas sistemáticas en Linux. Primero, en Síntoma y conectividad, utilidades de red comprueban que el puerto responde con conexión rechazada sin resolver el tráfico entrante. Segundo, en Inspección de systemd, systemctl status revela que la unidad entró en estado failed por un fallo de arranque reiterado. Tercero, en Análisis de journalctl, los logs del servicio exponen un error de permisos EACCES al intentar abrir un descriptor de archivo en un directorio protegido. Cuarto, en Permisos y cgroups, se verifica la propiedad de usuarios y límites de memoria evitando reinicios destructivos a ciegas. Quinto, en Corrección de permisos y reload, chown ajusta el propietario del socket y systemctl daemon-reload reactiva la unidad en estado active running. Y sexto, en Auditoría de sockets y recursos, herramientas de monitoreo confirman descriptores abiertos, consumo controlado de memoria y estabilidad operativa continua.",
+        visualOutcome:
+          "la animación modela las capas del sistema Linux, mostrando la interacción entre el socket de red, el gestor systemd, la lectura de registros en journalctl y la restauración del servicio sin degradación.",
+      });
+
+    case "aws":
+      return buildPracticalPresentationAudioTrack("aws", {
+        title: "AWS en acción",
+        subtitle: "Caso integrado ampliado: Arquitectura Well-Architected en AWS",
+        family: "arquitectura en la nube, infraestructura elástica y servicios administrados",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, una solicitud web recorre una arquitectura elástica y resiliente en AWS a lo largo de seis etapas. Primero, en DNS y Edge, Route 53 enruta la consulta hacia distribuciones globales de CloudFront protegidas por reglas de AWS WAF contra ataques maliciosos. Segundo, en Balanceo y VPC, un Application Load Balancer en subnets públicas distribuye el tráfico cifrado hacia instancias privadas distribuidas en múltiples zonas de disponibilidad. Tercero, en Compute serverless, tareas de ECS en AWS Fargate procesan la lógica del negocio asumiendo roles de IAM efímeros sin credenciales estáticas. Cuarto, en Caché distribuida, clústeres de ElastiCache Redis atienden consultas frecuentes con latencia submilimétrica liberando carga a la capa de persistencia. Quinto, en Base de datos relacional, Amazon Aurora gestiona transacciones ACID con almacenamiento replicado automáticamente en seis copias entre tres zonas. Y sexto, en Observabilidad y eventos, CloudWatch y SQS recopilan trazas y desacoplan tareas asíncronas garantizando elasticidad y control de costes.",
+        visualOutcome:
+          "la animación ilustra el recorrido de la petición por la infraestructura multi-AZ de AWS, resaltando la autenticación IAM, la distribución de carga y la redundancia de datos entre zonas de disponibilidad.",
+      });
+
+    case "ci-cd":
+      return buildPracticalPresentationAudioTrack("ci-cd", {
+        title: practical?.title ?? "CI/CD en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Caso integrado · Artefacto promocionable",
+        family: "integración continua, tuberías declarativas y seguridad de supply chain",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, un cambio de código avanza por ocho fases de integración y entrega continua produciendo un artefacto verificado para CI/CD. Primero, en Detectar el cambio, filtros de rutas y concurrencia evitan compilar documentos o ramas no afectadas optimizando recursos del pipeline. Segundo, en Feedback temprano, linters, validadores de tipos y pruebas unitarias rápidas reportan observaciones en minutos antes de fases pesadas. Tercero, en Probar fronteras, bases de datos efímeras y pruebas de contrato validan la integración con dependencias externas en entornos limpios. Cuarto, en Construir una vez, lockfiles congelados garantizan un build reproducible que calcula el hash inmutable del artefacto. Quinto, en Examinar supply chain, herramientas de escaneo generan el SBOM y analizan dependencias bloqueando componentes con vulnerabilidades conocidas. Sexto, en Autenticar sin secreto largo, tokens OIDC intercambian identidad del runner por roles temporales en la nube sin almacenar credenciales en el repositorio. Séptimo, en Firmar y atestiguar, claves criptográficas firman el contenedor adjuntando atestaciones de procedencia SLSA. Y octavo, en Entregar a Deployment, el digest verificado se promociona formalmente a entornos de despliegue con trazabilidad completa.",
+        visualOutcome:
+          "la animación reproduce las compuertas de calidad del pipeline de CI/CD, evidenciando el filtrado temprano de errores, la emisión del SBOM y la entrega del digest inmutable listo para producción.",
+      });
+
+    case "deployment":
+      return buildPracticalPresentationAudioTrack("deployment", {
+        title: practical?.title ?? "Deployment en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Caso integrado · Del digest aprobado al tráfico seguro",
+        family: "estrategias de despliegue, entrega continua y reversión segura",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, un artefacto verificado se incorpora al entorno de producción a través de ocho etapas operables de despliegue. Primero, en Aceptar el artefacto, el motor de admisión valida firmas criptográficas y atestaciones admitiendo únicamente digests autorizados. Segundo, en Resolver configuración, variables de entorno y referencias a bóvedas de secretos se inyectan en tiempo de ejecución sin alterar el binario. Tercero, en Expandir el esquema, una migración aditiva de base de datos aplica el patrón expand-contract manteniendo compatibilidad con la versión anterior. Cuarto, en Crear capacidad candidata, nuevos pods o contenedores inician en segundo plano completando verificaciones de liveness y readiness antes de recibir tráfico. Quinto, en Abrir canary, el balanceador redirige un 5% de usuarios reales hacia la versión candidata evaluando señales operativas en tiempo real. Sexto, en Detectar regresión, monitores automáticos identifican un incremento en latencia de negocio que supera el presupuesto de errores deteniendo la promoción. Séptimo, en Revertir tráfico, el enrutador conmuta instantáneamente el 100% de peticiones a la versión estable drenando conexiones limpiamente. Y octavo, en Aprender y cerrar, la telemetría del incidente genera una prueba de regresión y actualiza los runbooks del equipo para futuros rollouts.",
+        visualOutcome:
+          "la animación visualiza el tráfico oscilando entre versiones durante el despliegue canary, la activación de las alarmas ante la degradación de latencia y la conmutación segura hacia la versión anterior sin pérdida de transacciones.",
+      });
+
+    case "nginx":
+      return buildPracticalPresentationAudioTrack("nginx", {
+        title: "HTTPS y NGINX en acción",
+        subtitle: "Caso integrado ampliado: Terminación TLS 1.3 y enrutamiento en NGINX",
+        family: "servidores web de alto rendimiento, proxy inverso y terminación criptográfica",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, una conexión segura se procesa a lo largo de seis etapas fundamentales en NGINX. Primero, en Conexión TCP inicial, el socket del cliente establece el apretón de manos de tres vías sincronizando números de secuencia en el puerto 443. Segundo, en Negociación TLS 1.3, el cliente y NGINX negocian cifradores criptográficos modernos intercambiando extensiones SNI para seleccionar el virtual host correcto. Tercero, en Validación de certificado y claves efímeras, NGINX presenta la cadena de certificados X.509 y calcula claves simétricas de sesión mediante Diffie-Hellman en curva elíptica. Cuarto, en Terminación TLS y lectura HTTP, el motor descifra la solicitud entrante inspeccionando método, cabeceras y URI en la fase de procesamiento de peticiones. Quinto, en Enrutamiento upstream y buffers, directivas proxy_pass canalizan el flujo hacia el pool de servidores backend aplicando balanceo de carga y reutilización de conexiones keepalive. Y sexto, en Respuesta comprimida y registro de accesos, NGINX aplica compresión gzip o brotli y escribe una línea estructurada en el access log con métricas de tiempo y bytes transmitidos.",
+        visualOutcome:
+          "la animación representa el túnel TLS 1.3 siendo establecido, descifrado por NGINX y enrutado con baja latencia hacia los servidores upstream mientras se conservan las garantías de seguridad y observabilidad.",
+      });
+
+    case "docker":
+      return buildPracticalPresentationAudioTrack("docker", {
+        title: "Docker en acción",
+        subtitle: "Caso integrado ampliado: Empaquetado y ejecución de Fishbones API",
+        family: "contenedores de software, arquitectura OCI y orquestación ligera",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, una aplicación se construye, empaqueta y orquesta en seis etapas sobre la plataforma de Docker. Primero, en Contexto de build y dependencias, BuildKit analiza el Dockerfile aprovechando cachés por capas y descartando archivos temporales con un archivo .dockerignore estricto. Segundo, en Multi-stage build, una etapa inicial compila artefactos mientras la imagen final ligera contiene exclusivamente el binario de ejecución minimizando la superficie de ataque. Tercero, en Configuración de usuario no root, directivas USER asignan privilegios mínimos impidiendo que procesos internos adquieran control de superusuario sobre el host. Cuarto, en Publicación por digest, la imagen se firma y referencia mediante su SHA-256 inmutable garantizando paridad exacta entre desarrollo y producción. Quinto, en Redes y Compose, docker-compose levanta servicios interconectados a través de redes bridge privadas con resolución DNS interna automática y volúmenes persistentes. Y sexto, en Monitoreo de salud y límites, healthchecks activos y cuotas de memoria cgroups aseguran autorecuperación y previenen que un contenedor sature los recursos del servidor.",
+        visualOutcome:
+          "la animación escenifica la consolidación de capas durante el build multi-stage de Docker, la verificación del digest de imagen y el levantamiento coordinado de servicios con volúmenes y redes aisladas.",
+      });
+
+    case "operating-systems":
+    case "sistemas-operativos":
+      return buildPracticalPresentationAudioTrack(collectionId, {
+        title: practical?.title ?? "Sistemas operativos en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Caso integrado · Ciclo del proceso: syscall, memoria virtual y E/S",
+        family: "núcleos de sistemas operativos, abstracción de hardware y gestión de recursos",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, una tarea computacional interactúa con los subsistemas del sistema operativo a través de cinco etapas esenciales. Primero, en Invocación de syscall, una aplicación en espacio de usuario ejecuta una trampa de software conmutando el procesador a modo kernel con privilegios elevados. Segundo, en Planificación y PCB, el scheduler actualiza el bloque de control del proceso asignándole un quantum de tiempo en la cola de ejecución. Tercero, en Traducción de memoria virtual, la unidad MMU consulta la tabla de páginas y el buffer TLB traduciendo direcciones lógicas en marcos físicos de RAM y gestionando fallos de página cuando el bloque reside en swap. Cuarto, en Entrada/salida y drivers, el controlador de disco transfiere datos directamente a memoria mediante DMA notificando al kernel mediante una interrupción de hardware. Y quinto, en Sincronización y retorno, primitivas de mutex protegen la sección crítica antes de que el proceso retorne de forma transparente a espacio de usuario.",
+        visualOutcome:
+          "la animación recrea el cambio de contexto del procesador entre modo usuario y modo kernel, la resolución de direcciones virtuales en la MMU y la sincronización con el controlador de almacenamiento.",
+      });
+
+    case "latex":
+      return buildPracticalPresentationAudioTrack("latex", {
+        title: practical?.title ?? "LaTeX en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Caso integrado · Compilación de documento científico: TeX, fuentes y PDF/A",
+        family: "tipografía digital programable, composición matemática y estándares de publicación",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, un manuscrito científico se procesa en cinco etapas por el motor tipográfico de LaTeX. Primero, en Lectura del fuente y tokens, el procesador descompone el archivo en categorías de caracteres identificando comandos y estructuras de preámbulo. Segundo, en Expansión de macros y paquetes, el motor sustituye definiciones y carga librerías tipográficas configurando márgenes y codificaciones de fuentes. Tercero, en Construcción de cajas y glue, párrafos y fórmulas matemáticas se ensamblan con microtipografía minimizando hyphenation y evitando cajas desbordadas overfull. Cuarto, en Resolución de referencias y bibliografía, herramientas automatizadas como latexmk y Biber ejecutan pasadas sucesivas unificando citas, índices y referencias cruzadas mediante archivos auxiliares. Y quinto, en Emisión del artefacto accesible, el compilador genera un documento final bajo el estándar PDF/A con estructura etiquetada, texto alternativo y metadatos reproducibles.",
+        visualOutcome:
+          "la animación muestra la transformación de comandos TeX en cajas tipográficas elásticas, la resolución de referencias bibliográficas en múltiples pasadas y la exportación de un PDF reproducible de calidad editorial.",
+      });
+
+    case "subversion":
+      return buildPracticalPresentationAudioTrack("subversion", {
+        title: practical?.title ?? "Subversion en acción",
+        subtitle: practical?.subtitle ?? practical?.eyebrow ?? "Caso integrado · Control centralizado: checkout, commit atómico y merge tracking",
+        family: "control de versiones centralizado, árboles de revisión y persistencia FSFS",
+        section: "Presentación interactiva",
+        stagesExplanation:
+          "En esta presentación interactiva, un flujo de colaboración centralizado se administra en cinco etapas en Apache Subversion. Primero, en Checkout y working copy, el cliente contacta al servidor y descarga una copia de trabajo local administrada por la base de datos sqlite wc.db y un almacén prístino de archivos. Segundo, en Modificación y status, el desarrollador altera archivos locales mientras svn status identifica adiciones y cambios sin comunicación de red. Tercero, en Commit atómico, la transacción envía los deltas al repositorio central creando un nuevo número de revisión global e indivisible que actualiza el backend FSFS. Cuarto, en Actualización y merge tracking, un svn update incorpora cambios remotos aplicando el algoritmo de mezcla de tres vías y registrando metadatos en la propiedad svn:mergeinfo. Y quinto, en Resolución y confirmación, cualquier conflicto en árbol o texto se dirime formalmente garantizando la integridad de la historia compartida.",
+        visualOutcome:
+          "la animación exhibe el avance atómico de las revisiones en el servidor central de Subversion, la sincronización bidireccional con la copia de trabajo local y la resolución estructurada de ramas y metadatos de mezcla.",
       });
 
     default: {
