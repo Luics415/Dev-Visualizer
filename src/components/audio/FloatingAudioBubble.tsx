@@ -302,7 +302,7 @@ export function FloatingAudioBubble({ collectionName, collectionTitle, tracks }:
               </div>
 
               {/* Controles de desplazamiento manual y feedback visual */}
-              <div className="floating-audio-bubble__scroll-hints" aria-hidden="true">
+              <div className="floating-audio-bubble__scroll-hints">
                 <button
                   type="button"
                   className="floating-audio-bubble__scroll-btn"

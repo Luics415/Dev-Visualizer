@@ -5705,11 +5705,13 @@ body {
 
 .floating-audio-bubble {
   position: fixed;
-  bottom: 24px;
-  right: 24px;
+  bottom: max(24px, env(safe-area-inset-bottom, 24px));
+  right: max(24px, env(safe-area-inset-right, 24px));
   z-index: 999;
   font-family: var(--sans);
   pointer-events: auto;
+  transform: translateZ(0);
+  will-change: transform;
 }
 
 /* Vista contraída: Píldora ultra-compacta para no tapar en móviles */
@@ -6078,8 +6080,8 @@ body {
 /* Responsive para dispositivos móviles */
 @media (max-width: 640px) {
   .floating-audio-bubble {
-    bottom: 16px;
-    right: 14px;
+    bottom: max(14px, env(safe-area-inset-bottom, 14px));
+    right: max(14px, env(safe-area-inset-right, 14px));
     left: auto;
   }
   .floating-audio-bubble__panel {
