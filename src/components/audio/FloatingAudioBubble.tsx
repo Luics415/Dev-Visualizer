@@ -1,9 +1,9 @@
 "use client";
 
-import { useState } from "react";
+import { useMemo, useRef, useEffect, useState } from "react";
 import { useAudioNarrator } from "@/hooks/useAudioNarrator";
 import { useIsClient } from "@/hooks/useIsClient";
-import type { AudioTrack } from "@/lib/audioNarrator";
+import { splitTextIntoNarrationChunks, type AudioTrack } from "@/lib/audioNarrator";
 
 type FloatingAudioBubbleProps = {
   collectionName?: string;
@@ -15,21 +15,125 @@ export function FloatingAudioBubble({ collectionName, collectionTitle, tracks }:
   const resolvedName = collectionName ?? collectionTitle ?? "Colección";
   const isClient = useIsClient();
   const [isExpanded, setIsExpanded] = useState(false);
-  const { activeTrack, status, speed, speak, pause, resume, stop, cycleSpeed, isSupported } = useAudioNarrator();
+  const {
+    activeTrack,
+    status,
+    speed,
+    currentChunkIndex,
+    chunks,
+    progress,
+    speak,
+    pause,
+    resume,
+    stop,
+    seekChunk,
+    cycleSpeed,
+    isSupported,
+  } = useAudioNarrator();
 
-  if (!isClient || !isSupported || !tracks || tracks.length === 0) {
-    return null;
-  }
+  const scrollerRef = useRef<HTMLDivElement>(null);
+  const sentenceRefs = useRef<(HTMLSpanElement | null)[]>([]);
+  const isUserInteractingRef = useRef(false);
+  const userInteractionTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  const isSpeaking = status === "speaking";
-  const isPaused = status === "paused";
-  const isActive = isSpeaking || isPaused;
+  const [canScrollUp, setCanScrollUp] = useState(false);
+  const [canScrollDown, setCanScrollDown] = useState(false);
 
   // Encontrar el índice de la pista activa o usar la primera como referencia inicial
   const currentIndex = activeTrack ? tracks.findIndex((t) => t.id === activeTrack.id) : 0;
   const currentTrack = (currentIndex >= 0 ? tracks[currentIndex] : null) ?? tracks[0];
 
-  if (!currentTrack) {
+  const isSpeaking = status === "speaking";
+  const isPaused = status === "paused";
+  const isActive = isSpeaking || isPaused;
+  const isCurrentTrackActive = Boolean(activeTrack && currentTrack && activeTrack.id === currentTrack.id);
+
+  // Dividir el texto en fragmentos para visualización sincronizada
+  const displayChunks = useMemo(() => {
+    if (!currentTrack) return [];
+    if (isCurrentTrackActive && chunks && chunks.length > 0) {
+      return chunks;
+    }
+    return splitTextIntoNarrationChunks(currentTrack.text);
+  }, [isCurrentTrackActive, chunks, currentTrack]);
+
+  const updateScrollButtons = () => {
+    const el = scrollerRef.current;
+    if (!el) return;
+    const hasOverflow = el.scrollHeight > el.clientHeight + 2;
+    setCanScrollUp(el.scrollTop > 4);
+    setCanScrollDown(hasOverflow && el.scrollTop + el.clientHeight < el.scrollHeight - 4);
+  };
+
+  const handleUserInteraction = () => {
+    isUserInteractingRef.current = true;
+    if (userInteractionTimeoutRef.current) {
+      clearTimeout(userInteractionTimeoutRef.current);
+    }
+    userInteractionTimeoutRef.current = setTimeout(() => {
+      isUserInteractingRef.current = false;
+    }, 3500);
+    updateScrollButtons();
+  };
+
+  const scrollByDirection = (dir: "up" | "down") => {
+    const scroller = scrollerRef.current;
+    if (!scroller) return;
+    handleUserInteraction();
+    const delta = dir === "down" ? 44 : -44;
+    scroller.scrollBy({ top: delta, behavior: "smooth" });
+    setTimeout(updateScrollButtons, 150);
+  };
+
+  // Sincronización automática de desplazamiento al ritmo de la locución
+  useEffect(() => {
+    if (!isCurrentTrackActive || (!isSpeaking && !isPaused)) return;
+    if (isUserInteractingRef.current) return;
+
+    const activeEl = sentenceRefs.current[currentChunkIndex];
+    const scroller = scrollerRef.current;
+    if (!activeEl || !scroller) return;
+
+    const scrollerRect = scroller.getBoundingClientRect();
+    const elRect = activeEl.getBoundingClientRect();
+    const relativeTop = elRect.top - scrollerRect.top + scroller.scrollTop;
+    const targetTop = Math.max(0, relativeTop - (scroller.clientHeight / 2) + (elRect.height / 2));
+
+    scroller.scrollTo({
+      top: targetTop,
+      behavior: "smooth",
+    });
+
+    setTimeout(updateScrollButtons, 150);
+  }, [isCurrentTrackActive, isSpeaking, isPaused, currentChunkIndex]);
+
+  // Reset de posición al cambiar de track o detenerse
+  useEffect(() => {
+    if (status === "idle" || !isCurrentTrackActive) {
+      scrollerRef.current?.scrollTo({ top: 0, behavior: "smooth" });
+      setTimeout(updateScrollButtons, 150);
+    }
+  }, [status, currentTrack?.id, isCurrentTrackActive]);
+
+  // Verificar capacidad de scroll inicial al cambiar track o expandir panel
+  useEffect(() => {
+    if (isExpanded) {
+      const timer = setTimeout(updateScrollButtons, 100);
+      return () => clearTimeout(timer);
+    }
+  }, [isExpanded, currentTrack?.id, displayChunks]);
+
+  useEffect(() => {
+    return () => {
+      if (userInteractionTimeoutRef.current) {
+        clearTimeout(userInteractionTimeoutRef.current);
+      }
+    };
+  }, []);
+
+  const isAudioUnsupported = isClient && !isSupported && !(typeof window !== "undefined" && "speechSynthesis" in window);
+
+  if (isAudioUnsupported || !tracks || tracks.length === 0 || !currentTrack) {
     return null;
   }
 
@@ -54,6 +158,19 @@ export function FloatingAudioBubble({ collectionName, collectionTitle, tracks }:
     const prevTrack = tracks[prevIdx];
     if (prevTrack) speak(prevTrack);
   };
+
+  const handleSentenceClick = (index: number) => {
+    handleUserInteraction();
+    if (isCurrentTrackActive) {
+      seekChunk(index);
+    } else {
+      speak(currentTrack, index);
+    }
+  };
+
+  const progressPct = isCurrentTrackActive && (isSpeaking || isPaused)
+    ? Math.round(progress * 100)
+    : 0;
 
   return (
     <aside
@@ -111,7 +228,7 @@ export function FloatingAudioBubble({ collectionName, collectionTitle, tracks }:
           </button>
         </div>
       ) : (
-        /* VISTA EXTENDIDA: Panel interactivo completo con controles didácticos */
+        /* VISTA EXTENDIDA: Panel interactivo completo con controles didácticos y lectura sincronizada */
         <div className="floating-audio-bubble__panel">
           <header className="floating-audio-bubble__header">
             <div className="floating-audio-bubble__brand">
@@ -143,7 +260,83 @@ export function FloatingAudioBubble({ collectionName, collectionTitle, tracks }:
             </div>
 
             <h4 className="floating-audio-bubble__title">{currentTrack.title}</h4>
-            <p className="floating-audio-bubble__text">{currentTrack.text}</p>
+
+            {/* Contenedor de lectura sincronizada con scroll bidireccional (PC y Android) */}
+            <div className="floating-audio-bubble__text-container">
+              <div
+                ref={scrollerRef}
+                className="floating-audio-bubble__text-scroller"
+                onWheel={handleUserInteraction}
+                onTouchStart={handleUserInteraction}
+                onScroll={updateScrollButtons}
+                role="region"
+                aria-label="Lectura didáctica con desplazamiento sincronizado"
+                tabIndex={0}
+              >
+                {displayChunks.map((chunk, idx) => {
+                  const isSentenceActive =
+                    isCurrentTrackActive && (isSpeaking || isPaused) && currentChunkIndex === idx;
+                  return (
+                    <span
+                      key={`${currentTrack.id}-chunk-${idx}`}
+                      ref={(el) => {
+                        sentenceRefs.current[idx] = el;
+                      }}
+                      className={`floating-audio-bubble__sentence ${isSentenceActive ? "floating-audio-bubble__sentence--active" : ""}`}
+                      onClick={() => handleSentenceClick(idx)}
+                      role="button"
+                      tabIndex={0}
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter" || e.key === " ") {
+                          e.preventDefault();
+                          handleSentenceClick(idx);
+                        }
+                      }}
+                      title={`Ir a esta frase: "${chunk}"`}
+                      aria-current={isSentenceActive ? "true" : undefined}
+                    >
+                      {chunk}{" "}
+                    </span>
+                  );
+                })}
+              </div>
+
+              {/* Controles de desplazamiento manual y feedback visual */}
+              <div className="floating-audio-bubble__scroll-hints" aria-hidden="true">
+                <button
+                  type="button"
+                  className="floating-audio-bubble__scroll-btn"
+                  onClick={() => scrollByDirection("up")}
+                  aria-label="Desplazar texto hacia arriba"
+                  title="Desplazar hacia arriba"
+                  disabled={!canScrollUp}
+                >
+                  <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="18 15 12 9 6 15" />
+                  </svg>
+                </button>
+                <button
+                  type="button"
+                  className="floating-audio-bubble__scroll-btn"
+                  onClick={() => scrollByDirection("down")}
+                  aria-label="Desplazar texto hacia abajo"
+                  title="Desplazar hacia abajo"
+                  disabled={!canScrollDown}
+                >
+                  <svg viewBox="0 0 24 24" width="12" height="12" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round">
+                    <polyline points="6 9 12 15 18 9" />
+                  </svg>
+                </button>
+              </div>
+
+              {/* Barra de progreso de lectura ultra-fina */}
+              <div className="floating-audio-bubble__progress-track" aria-hidden="true">
+                <div
+                  className="floating-audio-bubble__progress-fill"
+                  style={{ width: `${progressPct}%` }}
+                />
+              </div>
+            </div>
           </div>
 
           <footer className="floating-audio-bubble__controls">

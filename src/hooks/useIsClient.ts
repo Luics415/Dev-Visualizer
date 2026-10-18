@@ -2,15 +2,19 @@
 
 import { useSyncExternalStore } from "react";
 
-const emptySubscribe = () => () => {};
+function subscribe(onStoreChange: () => void) {
+  // Notifica tras el montaje para actualizar de getServerSnapshot (false) a getSnapshot (true)
+  const timer = setTimeout(onStoreChange, 0);
+  return () => clearTimeout(timer);
+}
 
 /**
- * Hook canónico para detectar montaje en el cliente de forma segura en React 19 y Next.js 16,
- * evitando discrepancias de hidratación y sin violar la regla set-state-in-effect.
+ * Hook canónico para detectar montaje en el cliente de forma confiable en React 19 y Next.js 16,
+ * evitando discrepancias de hidratación y cumpliendo con las reglas de linting de React 19.
  */
 export function useIsClient(): boolean {
   return useSyncExternalStore(
-    emptySubscribe,
+    subscribe,
     () => true,
     () => false
   );

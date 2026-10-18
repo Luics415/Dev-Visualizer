@@ -17,6 +17,10 @@ export type AudioNarratorSnapshot = {
   readonly status: AudioNarratorStatus;
   readonly speed: AudioSpeed;
   readonly isSupported: boolean;
+  readonly currentChunkIndex: number;
+  readonly totalChunks: number;
+  readonly chunks: readonly string[];
+  readonly progress: number; // 0 a 1
 };
 
 export const DEFAULT_SERVER_SNAPSHOT: AudioNarratorSnapshot = Object.freeze({
@@ -24,19 +28,75 @@ export const DEFAULT_SERVER_SNAPSHOT: AudioNarratorSnapshot = Object.freeze({
   status: "idle",
   speed: 1,
   isSupported: false,
+  currentChunkIndex: 0,
+  totalChunks: 0,
+  chunks: [],
+  progress: 0,
 });
 
 type Listener = () => void;
+
+/**
+ * Divide el texto de la locución en frases breves y naturales (<= 140 caracteres).
+ * Esto evita el límite de buffer en los motores TTS de Android y elimina la necesidad
+ * de heartbeats de pause/resume en Chromium que cortan abruptamente el audio en móviles.
+ */
+export function splitTextIntoNarrationChunks(text: string): string[] {
+  if (!text || typeof text !== "string") return [];
+  const clean = text.replace(/\s+/g, " ").trim();
+  if (!clean) return [];
+
+  // Paso 1: Dividir por puntuación fuerte: punto, exclamación, interrogación
+  const rawParts = clean.split(/(?<=[.!?])\s+/);
+  const chunks: string[] = [];
+
+  for (const part of rawParts) {
+    const trimmed = part.trim();
+    if (!trimmed) continue;
+
+    // Si el bloque cabe cómodamente (<= 140 caracteres), usarlo directamente
+    if (trimmed.length <= 140) {
+      chunks.push(trimmed);
+      continue;
+    }
+
+    // Si excede 140 caracteres, subdividir por punto y coma, dos puntos o comas
+    const subParts = trimmed.split(/(?<=[;:])\s+|(?<=,)\s+/);
+    let current = "";
+
+    for (const sub of subParts) {
+      if (!current) {
+        current = sub;
+      } else if ((current + " " + sub).length <= 140) {
+        current += " " + sub;
+      } else {
+        chunks.push(current.trim());
+        current = sub;
+      }
+    }
+    if (current.trim()) {
+      chunks.push(current.trim());
+    }
+  }
+
+  return chunks.length > 0 ? chunks : [clean];
+}
+
+// Conjunto a nivel de módulo para evitar que el Garbage Collector de V8 en Android
+// destruya la referencia al SpeechSynthesisUtterance en reproducción activa.
+const activeUtterancesSet = new Set<SpeechSynthesisUtterance>();
 
 class AudioNarrator {
   private activeTrack: AudioTrack | null = null;
   private status: AudioNarratorStatus = "idle";
   private speed: AudioSpeed = 1;
   private isSupported = false;
+  private currentChunkIndex = 0;
+  private chunks: string[] = [];
   private snapshot: AudioNarratorSnapshot = DEFAULT_SERVER_SNAPSHOT;
   private listeners = new Set<Listener>();
   private activeUtterance: SpeechSynthesisUtterance | null = null;
-  private heartbeatTimer: ReturnType<typeof setInterval> | null = null;
+  private watchdogTimer: ReturnType<typeof setTimeout> | null = null;
   private epoch = 0;
   private voices: SpeechSynthesisVoice[] = [];
   private selectedVoice: SpeechSynthesisVoice | null = null;
@@ -87,7 +147,7 @@ class AudioNarrator {
   private pickBestSpanishVoice(voices: SpeechSynthesisVoice[]): SpeechSynthesisVoice | null {
     if (!voices || voices.length === 0) return null;
 
-    // Prioridad 1: Voces en español neuronales o naturales (Edge / Chrome / Siri)
+    // Prioridad 1: Voces en español neuronales o naturales (Edge / Chrome / Google / Siri)
     const naturalSpanish = voices.find(
       (v) =>
         v.lang.toLowerCase().startsWith("es") &&
@@ -108,16 +168,48 @@ class AudioNarrator {
   }
 
   private updateSnapshot() {
+    const total = this.chunks.length;
+    const progress =
+      total > 0 && this.status !== "idle"
+        ? Math.min(1, Math.max(0, (this.currentChunkIndex + (this.status === "speaking" ? 0.5 : 0)) / total))
+        : 0;
+
     this.snapshot = Object.freeze({
       activeTrack: this.activeTrack,
       status: this.status,
       speed: this.speed,
       isSupported: this.isSupported,
+      currentChunkIndex: this.currentChunkIndex,
+      totalChunks: total,
+      chunks: this.chunks,
+      progress,
     });
     this.notify();
   }
 
+  public ensureClientSupported(): boolean {
+    if (typeof window === "undefined") return false;
+    if (!this.isSupported) {
+      try {
+        this.isSupported = "speechSynthesis" in window && typeof window.speechSynthesis !== "undefined";
+        if (this.isSupported && !this.initialized) {
+          this.initVoices();
+          if (typeof window.speechSynthesis.onvoiceschanged !== "undefined") {
+            window.speechSynthesis.onvoiceschanged = () => this.initVoices();
+          }
+        }
+      } catch {
+        this.isSupported = false;
+      }
+      this.updateSnapshot();
+    }
+    return this.isSupported;
+  }
+
   public getSnapshot(): AudioNarratorSnapshot {
+    if (typeof window !== "undefined" && !this.isSupported) {
+      this.ensureClientSupported();
+    }
     return this.snapshot;
   }
 
@@ -132,28 +224,34 @@ class AudioNarrator {
     this.listeners.forEach((listener) => listener());
   }
 
-  private clearHeartbeat() {
-    if (this.heartbeatTimer) {
-      clearInterval(this.heartbeatTimer);
-      this.heartbeatTimer = null;
+  private clearWatchdog() {
+    if (this.watchdogTimer) {
+      clearTimeout(this.watchdogTimer);
+      this.watchdogTimer = null;
     }
   }
 
-  public speak(track: AudioTrack) {
-    if (typeof window === "undefined" || !this.isSupported) return;
+  private cancelNativeSpeech() {
+    activeUtterancesSet.clear();
+    if (typeof window !== "undefined" && window.speechSynthesis) {
+      try {
+        window.speechSynthesis.cancel();
+      } catch {
+        // ignore
+      }
+    }
+  }
+
+  public speak(track: AudioTrack, startChunkIndex = 0) {
+    if (typeof window === "undefined" || !this.ensureClientSupported()) return;
 
     this.epoch++;
-    const currentEpoch = this.epoch;
-
-    this.clearHeartbeat();
-
-    try {
-      window.speechSynthesis.cancel();
-    } catch {
-      // ignore
-    }
+    this.clearWatchdog();
+    this.cancelNativeSpeech();
 
     this.activeTrack = track;
+    this.chunks = splitTextIntoNarrationChunks(track.text);
+    this.currentChunkIndex = Math.max(0, Math.min(startChunkIndex, Math.max(0, this.chunks.length - 1)));
     this.status = "speaking";
     this.updateSnapshot();
 
@@ -161,9 +259,40 @@ class AudioNarrator {
       this.initVoices();
     }
 
+    this.speakCurrentChunk();
+  }
+
+  private speakCurrentChunk() {
+    if (typeof window === "undefined" || !this.isSupported) return;
+    if (!this.activeTrack || this.chunks.length === 0) {
+      this.finishPlayback();
+      return;
+    }
+
+    if (this.currentChunkIndex >= this.chunks.length) {
+      this.finishPlayback();
+      return;
+    }
+
+    const currentEpoch = this.epoch;
+    const chunkText = this.chunks[this.currentChunkIndex];
+    if (!chunkText) {
+      this.finishPlayback();
+      return;
+    }
+
+    this.clearWatchdog();
+
     try {
-      const utterance = new SpeechSynthesisUtterance(track.text);
+      window.speechSynthesis.cancel();
+    } catch {
+      // ignore
+    }
+
+    try {
+      const utterance = new SpeechSynthesisUtterance(chunkText);
       this.activeUtterance = utterance;
+      activeUtterancesSet.add(utterance);
 
       if (this.selectedVoice) {
         utterance.voice = this.selectedVoice;
@@ -173,96 +302,98 @@ class AudioNarrator {
       utterance.pitch = 1.0;
 
       utterance.onend = () => {
+        activeUtterancesSet.delete(utterance);
         if (this.epoch !== currentEpoch) return;
-        this.clearHeartbeat();
-        this.status = "idle";
-        this.activeUtterance = null;
-        this.updateSnapshot();
+        this.clearWatchdog();
+
+        if (this.currentChunkIndex + 1 < this.chunks.length) {
+          this.currentChunkIndex++;
+          this.updateSnapshot();
+          this.speakCurrentChunk();
+        } else {
+          this.finishPlayback();
+        }
       };
 
-      utterance.onerror = () => {
+      utterance.onerror = (e) => {
+        activeUtterancesSet.delete(utterance);
         if (this.epoch !== currentEpoch) return;
-        this.clearHeartbeat();
-        this.status = "idle";
-        this.activeUtterance = null;
-        this.updateSnapshot();
+        this.clearWatchdog();
+
+        // Si fue cancelación voluntaria por pausa, stop o salto, ignorar
+        if (e.error === "canceled" || e.error === "interrupted") {
+          return;
+        }
+
+        // Si falló este fragmento por el motor TTS, avanzar al siguiente para no bloquear la lectura
+        if (this.currentChunkIndex + 1 < this.chunks.length) {
+          this.currentChunkIndex++;
+          this.updateSnapshot();
+          this.speakCurrentChunk();
+        } else {
+          this.finishPlayback();
+        }
       };
 
-      utterance.onpause = () => {
-        if (this.epoch !== currentEpoch) return;
-        this.status = "paused";
-        this.updateSnapshot();
-      };
-
-      utterance.onresume = () => {
-        if (this.epoch !== currentEpoch) return;
-        this.status = "speaking";
-        this.updateSnapshot();
-      };
+      // Watchdog de seguridad contra cuelgues del motor TTS en móviles
+      const estimatedSeconds = Math.max(8, Math.ceil((chunkText.length / 8) / this.speed) + 4);
+      this.watchdogTimer = setTimeout(() => {
+        if (this.epoch === currentEpoch && this.status === "speaking") {
+          activeUtterancesSet.delete(utterance);
+          if (this.currentChunkIndex + 1 < this.chunks.length) {
+            this.currentChunkIndex++;
+            this.updateSnapshot();
+            this.speakCurrentChunk();
+          } else {
+            this.finishPlayback();
+          }
+        }
+      }, estimatedSeconds * 1000);
 
       window.speechSynthesis.speak(utterance);
-
-      // Heartbeat cada 9.5s para evitar suspensión en Chromium
-      this.heartbeatTimer = setInterval(() => {
-        try {
-          if (this.epoch === currentEpoch && window.speechSynthesis.speaking && !window.speechSynthesis.paused) {
-            window.speechSynthesis.pause();
-            window.speechSynthesis.resume();
-          }
-        } catch {
-          // ignore
-        }
-      }, 9500);
     } catch {
-      this.status = "idle";
-      this.activeUtterance = null;
-      this.updateSnapshot();
+      this.finishPlayback();
     }
   }
 
+  private finishPlayback() {
+    this.clearWatchdog();
+    this.cancelNativeSpeech();
+    this.status = "idle";
+    this.currentChunkIndex = 0;
+    this.activeUtterance = null;
+    this.updateSnapshot();
+  }
+
   public pause() {
-    if (typeof window === "undefined" || !this.isSupported) return;
+    if (typeof window === "undefined" || !this.ensureClientSupported()) return;
     if (this.status === "speaking") {
-      try {
-        window.speechSynthesis.pause();
-      } catch {
-        // ignore
-      }
+      this.clearWatchdog();
+      this.cancelNativeSpeech();
       this.status = "paused";
       this.updateSnapshot();
     }
   }
 
   public resume() {
-    if (typeof window === "undefined" || !this.isSupported) return;
-    if (this.status === "paused") {
-      try {
-        window.speechSynthesis.resume();
-      } catch {
-        // ignore
-      }
+    if (typeof window === "undefined" || !this.ensureClientSupported()) return;
+    if (this.status === "paused" && this.activeTrack) {
       this.status = "speaking";
       this.updateSnapshot();
+      this.speakCurrentChunk();
     } else if (this.activeTrack && this.status === "idle") {
       this.speak(this.activeTrack);
     }
   }
 
   public stop() {
-    if (typeof window === "undefined" || !this.isSupported) return;
+    if (typeof window === "undefined" || !this.ensureClientSupported()) return;
     this.epoch++;
-    this.clearHeartbeat();
-    try {
-      window.speechSynthesis.cancel();
-    } catch {
-      // ignore
-    }
-    this.status = "idle";
-    this.activeUtterance = null;
-    this.updateSnapshot();
+    this.finishPlayback();
   }
 
   public toggle(track: AudioTrack) {
+    if (typeof window === "undefined" || !this.ensureClientSupported()) return;
     if (this.activeTrack?.id === track.id) {
       if (this.status === "speaking") {
         this.pause();
@@ -276,10 +407,23 @@ class AudioNarrator {
     }
   }
 
+  public seekChunk(index: number) {
+    if (typeof window === "undefined" || !this.ensureClientSupported() || !this.activeTrack) return;
+    if (index < 0 || index >= this.chunks.length) return;
+    this.epoch++;
+    this.currentChunkIndex = index;
+    if (this.status === "speaking") {
+      this.speakCurrentChunk();
+    } else {
+      this.updateSnapshot();
+    }
+  }
+
   public setSpeed(newSpeed: AudioSpeed) {
     this.speed = newSpeed;
     if (this.status === "speaking" && this.activeTrack) {
-      this.speak(this.activeTrack);
+      this.epoch++;
+      this.speakCurrentChunk();
     } else {
       this.updateSnapshot();
     }

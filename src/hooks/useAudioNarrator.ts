@@ -19,11 +19,12 @@ export function useAudioNarrator() {
 
   return {
     ...snapshot,
-    speak: (track: AudioTrack) => audioNarrator.speak(track),
+    speak: (track: AudioTrack, startChunkIndex?: number) => audioNarrator.speak(track, startChunkIndex),
     pause: () => audioNarrator.pause(),
     resume: () => audioNarrator.resume(),
     stop: () => audioNarrator.stop(),
     toggle: (track: AudioTrack) => audioNarrator.toggle(track),
+    seekChunk: (index: number) => audioNarrator.seekChunk(index),
     setSpeed: (speed: AudioSpeed) => audioNarrator.setSpeed(speed),
     cycleSpeed: () => audioNarrator.cycleSpeed(),
   };
