@@ -19,6 +19,7 @@ import { apisQuestions } from "./apis";
 import { nodejsQuestions } from "./nodejs";
 import { databasesQuestions } from "./databases";
 import { nosqlQuestions } from "./nosql";
+import { algorithmsQuestions } from "./algorithms";
 
 // Registro extensible de bancos de preguntas explícitas
 const explicitQuestionBanks: Record<string, QuizQuestion[]> = {};
@@ -50,6 +51,7 @@ registerCollectionQuestions("apis", apisQuestions);
 registerCollectionQuestions("nodejs", nodejsQuestions);
 registerCollectionQuestions("databases", databasesQuestions);
 registerCollectionQuestions("nosql", nosqlQuestions);
+registerCollectionQuestions("algorithms", algorithmsQuestions);
 
 /**
  * Obtiene el banco de preguntas completo para una colección.
