@@ -14,6 +14,7 @@ import { collectionNotices } from "@/data/collectionNotices";
 import { slugify } from "@/lib/slugify";
 import { FloatingAudioBubble } from "@/components/audio/FloatingAudioBubble";
 import { buildConceptAudioTrack, isCollectionAudioEnabled } from "@/lib/audioTrackHelper";
+import { StudyNotesExportButton } from "@/components/concepts/StudyNotesExportButton";
 
 type StudyAtlasCollectionProps = {
   collectionId: string;
@@ -102,12 +103,25 @@ export function StudyAtlasCollection({
         </aside>
       ) : null}
 
-      {resolvedActionHref ? (
-        <div className="collection-action-link">
-          <span>Después de estudiar los mecanismos</span>
-          <Link href={resolvedActionHref}>Ver {title.replace(/ visualizad[oa]s?$/i, "")} en acción <b>↗</b></Link>
-        </div>
-      ) : null}
+      <div className="collection-actions-bar">
+        {resolvedActionHref ? (
+          <div className="collection-action-link">
+            <span>Después de estudiar los mecanismos</span>
+            <Link href={resolvedActionHref}>Ver {title.replace(/ visualizad[oa]s?$/i, "")} en acción <b>↗</b></Link>
+          </div>
+        ) : null}
+
+        <StudyNotesExportButton
+          collectionId={collectionId}
+          collectionNumber={collectionNumber}
+          title={title}
+          eyebrow={eyebrow}
+          description={description}
+          concepts={concepts}
+          primer={primer}
+          sources={sources}
+        />
+      </div>
 
       <CollectionPrimer primer={primer} />
 
