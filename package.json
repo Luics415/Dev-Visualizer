@@ -10,6 +10,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "build:search-index": "tsx scripts/build-concept-search-index.ts",
     "check:links": "node scripts/validate-static-links.mjs",
     "check:library": "node scripts/validate-library-catalog.mjs",
     "check:a11y": "node scripts/validate-a11y-standards.mjs",
