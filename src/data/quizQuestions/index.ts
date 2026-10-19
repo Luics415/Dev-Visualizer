@@ -14,6 +14,7 @@ import { rustQuestions } from "./rust";
 import { javaQuestions } from "./java";
 import { kotlinQuestions } from "./kotlin";
 import { linuxQuestions } from "./linux";
+import { backendQuestions } from "./backend";
 
 // Registro extensible de bancos de preguntas explícitas
 const explicitQuestionBanks: Record<string, QuizQuestion[]> = {};
@@ -40,6 +41,7 @@ registerCollectionQuestions("rust", rustQuestions);
 registerCollectionQuestions("java", javaQuestions);
 registerCollectionQuestions("kotlin", kotlinQuestions);
 registerCollectionQuestions("linux", linuxQuestions);
+registerCollectionQuestions("backend", backendQuestions);
 
 /**
  * Obtiene el banco de preguntas completo para una colección.
