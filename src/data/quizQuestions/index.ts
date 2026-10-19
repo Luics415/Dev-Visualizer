@@ -28,6 +28,7 @@ import { reactNativeQuestions } from "./reactNative";
 import { flutterQuestions } from "./flutter";
 import { dartQuestions } from "./dart";
 import { awsQuestions } from "./aws";
+import { ciCdQuestions } from "./ciCd";
 
 // Registro extensible de bancos de preguntas explícitas
 const explicitQuestionBanks: Record<string, QuizQuestion[]> = {};
@@ -68,6 +69,7 @@ registerCollectionQuestions("react-native", reactNativeQuestions);
 registerCollectionQuestions("flutter", flutterQuestions);
 registerCollectionQuestions("dart", dartQuestions);
 registerCollectionQuestions("aws", awsQuestions);
+registerCollectionQuestions("ci-cd", ciCdQuestions);
 
 /**
  * Obtiene el banco de preguntas completo para una colección.
