@@ -24,6 +24,7 @@ import { programmingFundamentalsQuestions } from "./programmingFundamentals";
 import { mathematicsQuestions } from "./mathematics";
 import { methodologiesQuestions } from "./methodologies";
 import { htmlCssQuestions } from "./htmlCss";
+import { reactNativeQuestions } from "./reactNative";
 
 // Registro extensible de bancos de preguntas explícitas
 const explicitQuestionBanks: Record<string, QuizQuestion[]> = {};
@@ -60,6 +61,7 @@ registerCollectionQuestions("programming-fundamentals", programmingFundamentalsQ
 registerCollectionQuestions("mathematics", mathematicsQuestions);
 registerCollectionQuestions("methodologies", methodologiesQuestions);
 registerCollectionQuestions("html-css", htmlCssQuestions);
+registerCollectionQuestions("react-native", reactNativeQuestions);
 
 /**
  * Obtiene el banco de preguntas completo para una colección.
