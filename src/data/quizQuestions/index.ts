@@ -23,6 +23,7 @@ import { algorithmsQuestions } from "./algorithms";
 import { programmingFundamentalsQuestions } from "./programmingFundamentals";
 import { mathematicsQuestions } from "./mathematics";
 import { methodologiesQuestions } from "./methodologies";
+import { htmlCssQuestions } from "./htmlCss";
 
 // Registro extensible de bancos de preguntas explícitas
 const explicitQuestionBanks: Record<string, QuizQuestion[]> = {};
@@ -58,6 +59,7 @@ registerCollectionQuestions("algorithms", algorithmsQuestions);
 registerCollectionQuestions("programming-fundamentals", programmingFundamentalsQuestions);
 registerCollectionQuestions("mathematics", mathematicsQuestions);
 registerCollectionQuestions("methodologies", methodologiesQuestions);
+registerCollectionQuestions("html-css", htmlCssQuestions);
 
 /**
  * Obtiene el banco de preguntas completo para una colección.
