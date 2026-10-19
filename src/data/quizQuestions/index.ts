@@ -26,6 +26,7 @@ import { methodologiesQuestions } from "./methodologies";
 import { htmlCssQuestions } from "./htmlCss";
 import { reactNativeQuestions } from "./reactNative";
 import { flutterQuestions } from "./flutter";
+import { dartQuestions } from "./dart";
 
 // Registro extensible de bancos de preguntas explícitas
 const explicitQuestionBanks: Record<string, QuizQuestion[]> = {};
@@ -64,6 +65,7 @@ registerCollectionQuestions("methodologies", methodologiesQuestions);
 registerCollectionQuestions("html-css", htmlCssQuestions);
 registerCollectionQuestions("react-native", reactNativeQuestions);
 registerCollectionQuestions("flutter", flutterQuestions);
+registerCollectionQuestions("dart", dartQuestions);
 
 /**
  * Obtiene el banco de preguntas completo para una colección.
