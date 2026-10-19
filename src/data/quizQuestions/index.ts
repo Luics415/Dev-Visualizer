@@ -11,6 +11,7 @@ import { cppQuestions } from "./cpp";
 import { cSharpQuestions } from "./cSharp";
 import { goQuestions } from "./go";
 import { rustQuestions } from "./rust";
+import { javaQuestions } from "./java";
 
 // Registro extensible de bancos de preguntas explícitas
 const explicitQuestionBanks: Record<string, QuizQuestion[]> = {};
@@ -34,6 +35,7 @@ registerCollectionQuestions("cpp", cppQuestions);
 registerCollectionQuestions("c-sharp", cSharpQuestions);
 registerCollectionQuestions("go", goQuestions);
 registerCollectionQuestions("rust", rustQuestions);
+registerCollectionQuestions("java", javaQuestions);
 
 /**
  * Obtiene el banco de preguntas completo para una colección.
