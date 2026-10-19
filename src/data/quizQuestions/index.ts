@@ -1,5 +1,6 @@
 import type { QuizQuestion } from "@/data/quizTypes";
 import { expandedCollectionById } from "@/data/expandedCollections";
+import { javascriptQuestions } from "./javascript";
 
 // Registro extensible de bancos de preguntas explícitas
 const explicitQuestionBanks: Record<string, QuizQuestion[]> = {};
@@ -10,6 +11,9 @@ const explicitQuestionBanks: Record<string, QuizQuestion[]> = {};
 export function registerCollectionQuestions(collectionId: string, questions: QuizQuestion[]): void {
   explicitQuestionBanks[collectionId] = questions;
 }
+
+// Registro inicial de bancos especializados
+registerCollectionQuestions("javascript", javascriptQuestions);
 
 /**
  * Obtiene el banco de preguntas completo para una colección.
