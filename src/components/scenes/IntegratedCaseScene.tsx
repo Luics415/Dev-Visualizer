@@ -31,7 +31,7 @@ export function IntegratedCaseScene({ title, steps }: IntegratedCaseSceneProps) 
         <motion.i
           className="integrated-case__token"
           aria-hidden="true"
-          animate={{ left: ["2%", "96%"], opacity: [0, 1, 1, 0] }}
+          animate={{ left: ["2%", "2%", "96%", "96%"], opacity: [0, 1, 1, 0] }}
           transition={{ duration: shouldAnimate ? LOOP : 0, repeat: shouldAnimate ? Infinity : 0, ease: "linear", times: [0, .06, .94, 1] }}
         />
 

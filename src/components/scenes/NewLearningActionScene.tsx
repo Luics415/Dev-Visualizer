@@ -675,31 +675,42 @@ function OperatingSystemsBody({ shouldAnimate }: BodyProps) {
           <small>Quantum: 10ms</small>
         </div>
         <div className={styles.osQueue}>
-          {["P1 (Heimerdinger Core)", "P2 (Zaun Telemetry)", "P3 (Hexgate Controller)"].map((proc, i) => (
-            <motion.div
-              key={proc}
-              className={`${styles.osProcess} ${i === 0 ? styles.osProcessRunning : ""}`}
-              animate={shouldAnimate ? { x: [0, 8, 0] } : { x: 0 }}
-              transition={{ duration: 3, delay: i * 0.4, repeat: shouldAnimate ? Infinity : 0 }}
-            >
-              <b>{proc}</b>
-              <small>{i === 0 ? "RUNNING (CPU 0)" : "READY IN QUEUE"}</small>
-            </motion.div>
-          ))}
+          {["P1 (Heimerdinger Core)", "P2 (Zaun Telemetry)", "P3 (Hexgate Controller)"].map((proc, i) => {
+            const t0 = 0.08 + i * 0.28;
+            return (
+              <motion.div
+                key={proc}
+                className={`${styles.osProcess} ${i === 0 ? styles.osProcessRunning : ""}`}
+                animate={shouldAnimate ? { x: [0, 0, 8, 8, 0], opacity: [0.75, 0.75, 1, 1, 0.75] } : { x: 0, opacity: 1 }}
+                transition={{ duration: 6, repeat: shouldAnimate ? Infinity : 0, times: [0, t0, t0 + 0.08, t0 + 0.22, 1] }}
+              >
+                <b>{proc}</b>
+                <small>{i === 0 ? "RUNNING (CPU 0)" : "READY IN QUEUE"}</small>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
       <div className={styles.osContextSwitch}>
-        <div className={styles.osRegisters}>
+        <motion.div
+          className={styles.osRegisters}
+          animate={shouldAnimate ? { borderColor: ["rgba(255,255,255,.08)", "var(--scene-accent)", "rgba(255,255,255,.08)"] } : {}}
+          transition={{ duration: 3, repeat: shouldAnimate ? Infinity : 0 }}
+        >
           <span>CONTEXT SWITCH (2.1μs)</span>
           <code>SAVE RAX, RSP → RESTORE P2</code>
-        </div>
+        </motion.div>
         <div className={styles.osMmu}>
           <span>TABLA DE PÁGINAS (MMU)</span>
-          <div className={styles.osPageRow}>
+          <motion.div
+            className={styles.osPageRow}
+            animate={shouldAnimate ? { opacity: [0.6, 1, 0.6] } : { opacity: 1 }}
+            transition={{ duration: 4, repeat: shouldAnimate ? Infinity : 0 }}
+          >
             <span>Virtual 0x7FFF1000</span>
             <i>→</i>
             <b>RAM Frame 0x1A4F</b>
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>
@@ -707,13 +718,20 @@ function OperatingSystemsBody({ shouldAnimate }: BodyProps) {
 }
 
 /* 5. Assembly: Registros CPU, flujo de instrucciones y Stack Frame */
-function AssemblyBody(_props: BodyProps) {
+function AssemblyBody({ shouldAnimate }: BodyProps) {
   return (
     <div className={styles.assemblyLayout}>
       <div className={styles.assemblyRegisters}>
         <div className={styles.assemblyRegGrid}>
-          {["RAX: 0x0000002A", "RBX: 0x00001000", "RCX: 0x000000FF", "RDX: 0x00000000", "RSP: 0x7FFFFFFF", "RBP: 0x7FFFFFF0"].map((reg) => (
-            <div key={reg} className={styles.assemblyReg}><code>{reg}</code></div>
+          {["RAX: 0x0000002A", "RBX: 0x00001000", "RCX: 0x000000FF", "RDX: 0x00000000", "RSP: 0x7FFFFFFF", "RBP: 0x7FFFFFF0"].map((reg, regIndex) => (
+            <motion.div
+              key={reg}
+              className={styles.assemblyReg}
+              animate={shouldAnimate ? { opacity: [0.7, 0.7, 1, 0.7], borderColor: ["rgba(255,255,255,.1)", "rgba(255,255,255,.1)", "var(--scene-accent)", "rgba(255,255,255,.1)"] } : { opacity: 1 }}
+              transition={{ duration: 6, repeat: shouldAnimate ? Infinity : 0, times: [0, (regIndex * 0.15) % 0.8, ((regIndex * 0.15) % 0.8) + 0.15, 1] }}
+            >
+              <code>{reg}</code>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -725,18 +743,32 @@ function AssemblyBody(_props: BodyProps) {
             { asm: "ADD RAX, RBX", note: "hextech accumulate" },
             { asm: "CMP RAX, 100", note: "verify threshold" },
             { asm: "JNZ .stabilize", note: "branch if uncalibrated" },
-          ].map((ins, i) => (
-            <div key={ins.asm} className={`${styles.assemblyLine} ${i === 1 ? styles.assemblyLineActive : ""}`}>
-              <code>{ins.asm}</code>
-              <span>; {ins.note}</span>
-            </div>
-          ))}
+          ].map((ins, i) => {
+            const stepTime = 0.1 + i * 0.22;
+            return (
+              <motion.div
+                key={ins.asm}
+                className={`${styles.assemblyLine} ${i === 1 ? styles.assemblyLineActive : ""}`}
+                animate={shouldAnimate ? { x: [0, 0, 6, 6, 0], opacity: [0.65, 0.65, 1, 1, 0.65] } : { x: 0, opacity: 1 }}
+                transition={{ duration: 6, repeat: shouldAnimate ? Infinity : 0, times: [0, stepTime, stepTime + 0.08, stepTime + 0.18, 1] }}
+              >
+                <code>{ins.asm}</code>
+                <span>; {ins.note}</span>
+              </motion.div>
+            );
+          })}
         </div>
         <div className={styles.assemblyStack}>
           <header>STACK FRAME</header>
           <div className={styles.assemblyStackItem}>[RBP+16] arg2</div>
           <div className={styles.assemblyStackItem}>[RBP+8] ret addr</div>
-          <div className={`${styles.assemblyStackItem} ${styles.assemblyStackTop}`}>[RBP-8] local var (RSP)</div>
+          <motion.div
+            className={`${styles.assemblyStackItem} ${styles.assemblyStackTop}`}
+            animate={shouldAnimate ? { scale: [0.97, 1.03, 0.97] } : { scale: 1 }}
+            transition={{ duration: 3, repeat: shouldAnimate ? Infinity : 0 }}
+          >
+            [RBP-8] local var (RSP)
+          </motion.div>
         </div>
       </div>
     </div>
@@ -779,21 +811,30 @@ function RustBody({ shouldAnimate }: BodyProps) {
 }
 
 /* 7. Erlang: Árbol de supervisión BEAM, buzones de actores y aislamiento */
-function ErlangBody(_props: BodyProps) {
+function ErlangBody({ shouldAnimate }: BodyProps) {
   return (
     <div className={styles.erlangLayout}>
       <div className={styles.erlangSupervisor}>
-        <div className={styles.erlangSuperHeader}>
+        <motion.div
+          className={styles.erlangSuperHeader}
+          animate={shouldAnimate ? { borderColor: ["rgba(255,255,255,0.08)", "var(--scene-accent)", "rgba(255,255,255,0.08)"] } : {}}
+          transition={{ duration: 4, repeat: shouldAnimate ? Infinity : 0 }}
+        >
           <span>SUPERVISION TREE (one_for_one)</span>
           <small>Erlang/OTP BEAM VM</small>
-        </div>
+        </motion.div>
         <div className={styles.erlangActors}>
           {[
             { id: "worker_1", status: "ONLINE", msgs: 3 },
             { id: "worker_2 (zaun_pipe)", status: "RESTARTED (34ms)", msgs: 1, recovered: true },
             { id: "worker_3", status: "ONLINE", msgs: 0 },
-          ].map((act) => (
-            <div key={act.id} className={`${styles.erlangActor} ${act.recovered ? styles.erlangActorRecovered : ""}`}>
+          ].map((act, i) => (
+            <motion.div
+              key={act.id}
+              className={`${styles.erlangActor} ${act.recovered ? styles.erlangActorRecovered : ""}`}
+              animate={shouldAnimate ? (act.recovered ? { scale: [1, 0.96, 1.02, 1], borderColor: ["rgba(255,255,255,0.08)", "rgba(255,90,110,0.6)", "var(--scene-accent)", "rgba(255,255,255,0.08)"] } : { opacity: [0.8, 1, 0.8] }) : {}}
+              transition={{ duration: 5, repeat: shouldAnimate ? Infinity : 0, times: act.recovered ? [0, 0.35, 0.55, 1] : undefined }}
+            >
               <header>
                 <b>{act.id}</b>
                 <span className={act.recovered ? styles.erlangBadgeOk : styles.erlangBadgeNorm}>{act.status}</span>
@@ -801,10 +842,19 @@ function ErlangBody(_props: BodyProps) {
               <div className={styles.erlangMailbox}>
                 <span>Mailbox: {act.msgs} msgs</span>
                 <div className={styles.erlangMsgDots}>
-                  {Array.from({ length: act.msgs }).map((_, m) => <i key={m} />)}
+                  {Array.from({ length: act.msgs }).map((_, m) => {
+                    const t0 = (m * 0.2 + i * 0.15) % 0.6;
+                    return (
+                      <motion.i
+                        key={m}
+                        animate={shouldAnimate ? { opacity: [0.35, 0.35, 1, 1, 0.35], scale: [0.85, 0.85, 1.3, 1, 0.85] } : {}}
+                        transition={{ duration: 3, repeat: shouldAnimate ? Infinity : 0, times: [0, t0, t0 + 0.12, t0 + 0.25, 1] }}
+                      />
+                    );
+                  })}
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
         </div>
       </div>
@@ -860,9 +910,15 @@ function GoBody({ shouldAnimate }: BodyProps) {
       <div className={styles.goProducers}>
         <span>Goroutines Productoras</span>
         <div className={styles.goRoutines}>
-          <code>go scrape(url1)</code>
-          <code>go scrape(url2)</code>
-          <code>go scrape(url3)</code>
+          {["go scrape(url1)", "go scrape(url2)", "go scrape(url3)"].map((code, i) => (
+            <motion.code
+              key={code}
+              animate={shouldAnimate ? { borderColor: ["rgba(255,255,255,.08)", "var(--scene-accent)", "rgba(255,255,255,.08)"], opacity: [0.75, 1, 0.75] } : {}}
+              transition={{ duration: 3, repeat: shouldAnimate ? Infinity : 0, times: [0, 0.15 + i * 0.25, 1] }}
+            >
+              {code}
+            </motion.code>
+          ))}
         </div>
       </div>
       <div className={styles.goChannel}>
@@ -871,16 +927,19 @@ function GoBody({ shouldAnimate }: BodyProps) {
           <small>CSP Pipeline</small>
         </div>
         <div className={styles.goBufferSlots}>
-          {[1, 2, 3, 4].map((slot, i) => (
-            <motion.div
-              key={slot}
-              className={`${styles.goSlot} ${i < 3 ? styles.goSlotFilled : ""}`}
-              animate={shouldAnimate ? { opacity: [.6, 1, .6] } : { opacity: 1 }}
-              transition={{ duration: 2, delay: i * 0.3, repeat: shouldAnimate ? Infinity : 0 }}
-            >
-              {i < 3 ? `job #${slot}` : "empty"}
-            </motion.div>
-          ))}
+          {[1, 2, 3, 4].map((slot, i) => {
+            const t0 = (i * 0.2) % 0.7;
+            return (
+              <motion.div
+                key={slot}
+                className={`${styles.goSlot} ${i < 3 ? styles.goSlotFilled : ""}`}
+                animate={shouldAnimate ? { opacity: [0.6, 0.6, 1, 1, 0.6], scale: [0.96, 0.96, 1.04, 1, 0.96] } : { opacity: 1, scale: 1 }}
+                transition={{ duration: 3, repeat: shouldAnimate ? Infinity : 0, times: [0, t0, t0 + 0.12, t0 + 0.26, 1] }}
+              >
+                {i < 3 ? `job #${slot}` : "empty"}
+              </motion.div>
+            );
+          })}
         </div>
       </div>
       <div className={styles.goSelect}>
@@ -896,7 +955,7 @@ function GoBody({ shouldAnimate }: BodyProps) {
 }
 
 /* 10. PHP: Worker pool FastCGI/PHP-FPM y OPcache */
-function PhpBody(_props: BodyProps) {
+function PhpBody({ shouldAnimate }: BodyProps) {
   return (
     <div className={styles.phpLayout}>
       <div className={styles.phpFpm}>
@@ -910,21 +969,33 @@ function PhpBody(_props: BodyProps) {
             { id: "worker #2", state: "IDLE", req: "waiting request", time: "--" },
             { id: "worker #3", state: "BUSY", req: "GET /api/inventory", time: "8ms" },
             { id: "worker #4", state: "IDLE", req: "waiting request", time: "--" },
-          ].map((w) => (
-            <div key={w.id} className={`${styles.phpWorker} ${w.state === "BUSY" ? styles.phpWorkerBusy : ""}`}>
-              <b>{w.id}</b>
-              <span>{w.state}</span>
-              <code>{w.req}</code>
-              <small>{w.time}</small>
-            </div>
-          ))}
+          ].map((w, idx) => {
+            const t0 = (idx * 0.22) % 0.7;
+            return (
+              <motion.div
+                key={w.id}
+                className={`${styles.phpWorker} ${w.state === "BUSY" ? styles.phpWorkerBusy : ""}`}
+                animate={shouldAnimate ? { borderColor: ["rgba(255,255,255,.08)", "rgba(255,255,255,.08)", "var(--scene-accent)", "rgba(255,255,255,.08)"], scale: [0.98, 0.98, 1.02, 0.98] } : {}}
+                transition={{ duration: 4, repeat: shouldAnimate ? Infinity : 0, times: [0, t0, t0 + 0.15, 1] }}
+              >
+                <b>{w.id}</b>
+                <span>{w.state}</span>
+                <code>{w.req}</code>
+                <small>{w.time}</small>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
       <div className={styles.phpOpcache}>
-        <div className={styles.phpOpcacheHit}>
+        <motion.div
+          className={styles.phpOpcacheHit}
+          animate={shouldAnimate ? { boxShadow: ["0 0 4px rgba(79,228,237,.1)", "0 0 16px rgba(79,228,237,.35)", "0 0 4px rgba(79,228,237,.1)"] } : {}}
+          transition={{ duration: 3, repeat: shouldAnimate ? Infinity : 0 }}
+        >
           <b>OPCACHE HIT: 100%</b>
           <small>Bytecode precompilado en memoria compartida</small>
-        </div>
+        </motion.div>
         <code>Ciclo de vida efímero sin estado compartido entre peticiones</code>
       </div>
     </div>
@@ -942,20 +1013,35 @@ function PerlBody({ shouldAnimate }: BodyProps) {
         </div>
         <div className={styles.perlTape}>
           <span className={styles.perlTapeLabel}>TAPE:</span>
-          {["P", "I", "L", "T", "O", "V", "E", "R", "-", "4", "2", "0", "1"].map((char, i) => (
-            <motion.span
-              key={i}
-              className={`${styles.perlTapeChar} ${i === 8 ? styles.perlTapeDelimiter : i < 8 ? styles.perlTapeG1 : styles.perlTapeG2}`}
-              animate={shouldAnimate ? { scale: [1, 1.1, 1] } : { scale: 1 }}
-              transition={{ duration: 1.5, delay: i * 0.1, repeat: shouldAnimate ? Infinity : 0 }}
-            >
-              {char}
-            </motion.span>
-          ))}
+          {["P", "I", "L", "T", "O", "V", "E", "R", "-", "4", "2", "0", "1"].map((char, i) => {
+            const charTime = (i / 13) * 0.8;
+            return (
+              <motion.span
+                key={i}
+                className={`${styles.perlTapeChar} ${i === 8 ? styles.perlTapeDelimiter : i < 8 ? styles.perlTapeG1 : styles.perlTapeG2}`}
+                animate={shouldAnimate ? { scale: [1, 1, 1.22, 1, 1], color: ["#a9bdd1", "#a9bdd1", "var(--scene-accent)", "#a9bdd1", "#a9bdd1"] } : { scale: 1 }}
+                transition={{ duration: 3.5, repeat: shouldAnimate ? Infinity : 0, times: [0, charTime, charTime + 0.06, Math.min(1, charTime + 0.14), 1] }}
+              >
+                {char}
+              </motion.span>
+            );
+          })}
         </div>
         <div className={styles.perlCaptures}>
-          <div className={styles.perlCap}><b>$1</b>: &quot;PILTOVER&quot;</div>
-          <div className={styles.perlCap}><b>$2</b>: &quot;4201&quot;</div>
+          <motion.div
+            className={styles.perlCap}
+            animate={shouldAnimate ? { opacity: [0.7, 0.7, 1, 1, 0.7], x: [0, 0, 4, 4, 0] } : {}}
+            transition={{ duration: 3.5, repeat: shouldAnimate ? Infinity : 0, times: [0, 0.55, 0.65, 0.9, 1] }}
+          >
+            <b>$1</b>: &quot;PILTOVER&quot;
+          </motion.div>
+          <motion.div
+            className={styles.perlCap}
+            animate={shouldAnimate ? { opacity: [0.7, 0.7, 1, 1, 0.7], x: [0, 0, 4, 4, 0] } : {}}
+            transition={{ duration: 3.5, repeat: shouldAnimate ? Infinity : 0, times: [0, 0.65, 0.75, 0.95, 1] }}
+          >
+            <b>$2</b>: &quot;4201&quot;
+          </motion.div>
           <small>Atomic matching sin backtracking catastrófico</small>
         </div>
       </div>
@@ -964,7 +1050,7 @@ function PerlBody({ shouldAnimate }: BodyProps) {
 }
 
 /* 12. Ruby: Enumerable lazy pipeline y resolución dinámica de métodos */
-function RubyBody(_props: BodyProps) {
+function RubyBody({ shouldAnimate }: BodyProps) {
   return (
     <div className={styles.rubyLayout}>
       <div className={styles.rubyPipeline}>
@@ -977,24 +1063,37 @@ function RubyBody(_props: BodyProps) {
             { step: ".lazy", desc: "procesamiento perezoso línea a línea" },
             { step: ".filter_map", desc: "parse(line) descartando líneas corruptas" },
             { step: ".group_by(&:service)", desc: "agrupación por servicio y severidad" },
-          ].map((b) => (
-            <div key={b.step} className={styles.rubyBlockStep}>
-              <b>{b.step}</b>
-              <span>{b.desc}</span>
-            </div>
-          ))}
+          ].map((b, i) => {
+            const stepTime = 0.1 + i * 0.28;
+            return (
+              <motion.div
+                key={b.step}
+                className={styles.rubyBlockStep}
+                animate={shouldAnimate ? { x: [0, 0, 6, 6, 0], opacity: [0.65, 0.65, 1, 1, 0.65], borderColor: ["rgba(255,255,255,0.08)", "rgba(255,255,255,0.08)", "var(--scene-accent)", "var(--scene-accent)", "rgba(255,255,255,0.08)"] } : {}}
+                transition={{ duration: 5, repeat: shouldAnimate ? Infinity : 0, times: [0, stepTime, stepTime + 0.1, stepTime + 0.22, 1] }}
+              >
+                <b>{b.step}</b>
+                <span>{b.desc}</span>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
       <div className={styles.rubyDispatch}>
         <span>Method Dispatch Ancestry:</span>
-        <code>TelemetryParser ➔ Enumerable ➔ Object ➔ BasicObject</code>
+        <motion.code
+          animate={shouldAnimate ? { opacity: [0.75, 1, 0.75] } : {}}
+          transition={{ duration: 3.5, repeat: shouldAnimate ? Infinity : 0 }}
+        >
+          TelemetryParser ➔ Enumerable ➔ Object ➔ BasicObject
+        </motion.code>
       </div>
     </div>
   );
 }
 
 /* 13. Android: Pila de ciclo de vida de Activity y recomposición inteligente */
-function AndroidBody(_props: BodyProps) {
+function AndroidBody({ shouldAnimate }: BodyProps) {
   return (
     <div className={styles.androidLayout}>
       <div className={styles.androidLifecycle}>
@@ -1003,11 +1102,19 @@ function AndroidBody(_props: BodyProps) {
           <small>Supervivencia a rotación y background</small>
         </div>
         <div className={styles.androidStates}>
-          {["onCreate()", "onStart()", "onResume() (Active)", "onPause()", "onStop()", "onDestroy()"].map((st, i) => (
-            <div key={st} className={`${styles.androidState} ${i === 2 ? styles.androidStateActive : ""}`}>
-              <span>{st}</span>
-            </div>
-          ))}
+          {["onCreate()", "onStart()", "onResume() (Active)", "onPause()", "onStop()", "onDestroy()"].map((st, i) => {
+            const stepTime = (i / 6) * 0.8;
+            return (
+              <motion.div
+                key={st}
+                className={`${styles.androidState} ${i === 2 ? styles.androidStateActive : ""}`}
+                animate={shouldAnimate ? { opacity: [0.55, 0.55, 1, 1, 0.55], scale: [0.97, 0.97, 1.04, 1, 0.97] } : {}}
+                transition={{ duration: 6, repeat: shouldAnimate ? Infinity : 0, times: [0, stepTime, stepTime + 0.08, stepTime + 0.16, 1] }}
+              >
+                <span>{st}</span>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
       <div className={styles.androidCompose}>
@@ -1018,7 +1125,13 @@ function AndroidBody(_props: BodyProps) {
         <div className={styles.androidTree}>
           <div className={styles.androidNodeSkipped}>OrderScreen (Skipped)</div>
           <div className={styles.androidNodeSkipped}>HeaderView (Skipped)</div>
-          <div className={styles.androidNodeRecomposed}>StatusBadge (Recomposed ✓)</div>
+          <motion.div
+            className={styles.androidNodeRecomposed}
+            animate={shouldAnimate ? { scale: [0.98, 1.04, 0.98], borderColor: ["var(--scene-accent)", "#5ce2a8", "var(--scene-accent)"] } : {}}
+            transition={{ duration: 2.8, repeat: shouldAnimate ? Infinity : 0 }}
+          >
+            StatusBadge (Recomposed ✓)
+          </motion.div>
         </div>
       </div>
     </div>
@@ -1026,7 +1139,7 @@ function AndroidBody(_props: BodyProps) {
 }
 
 /* 14. Qwik: Resumabilidad pura con símbolos QRL lazy sin hidratación */
-function QwikBody(_props: BodyProps) {
+function QwikBody({ shouldAnimate }: BodyProps) {
   return (
     <div className={styles.qwikLayout}>
       <div className={styles.qwikResumability}>
@@ -1035,16 +1148,31 @@ function QwikBody(_props: BodyProps) {
           <small>Carga inmediata desde HTML serializado</small>
         </div>
         <div className={styles.qwikHtml}>
-          <code>&lt;button on:click=&quot;chunk_42.js#handleClick&quot;&gt;Interact&lt;/button&gt;</code>
+          <motion.code
+            animate={shouldAnimate ? { scale: [1, 1, 0.97, 1.02, 1], borderColor: ["rgba(255,255,255,.08)", "rgba(255,255,255,.08)", "var(--scene-accent)", "rgba(255,255,255,.08)", "rgba(255,255,255,.08)"] } : {}}
+            transition={{ duration: 4, repeat: shouldAnimate ? Infinity : 0, times: [0, 0.25, 0.3, 0.38, 1] }}
+          >
+            &lt;button on:click=&quot;chunk_42.js#handleClick&quot;&gt;Interact&lt;/button&gt;
+          </motion.code>
           <div className={styles.qwikStatus}>0kB JS ejecutado en render inicial</div>
         </div>
       </div>
       <div className={styles.qwikInteraction}>
-        <div className={styles.qwikArrow}>⬇ Usuario hace Click</div>
-        <div className={styles.qwikFetch}>
+        <motion.div
+          className={styles.qwikArrow}
+          animate={shouldAnimate ? { y: [0, 4, 0], opacity: [0.7, 1, 0.7] } : {}}
+          transition={{ duration: 2.5, repeat: shouldAnimate ? Infinity : 0 }}
+        >
+          ⬇ Usuario hace Click
+        </motion.div>
+        <motion.div
+          className={styles.qwikFetch}
+          animate={shouldAnimate ? { opacity: [0.65, 0.65, 1, 1, 0.65], borderColor: ["rgba(255,255,255,0.08)", "rgba(255,255,255,0.08)", "var(--scene-accent)", "var(--scene-accent)", "rgba(255,255,255,0.08)"] } : {}}
+          transition={{ duration: 4, repeat: shouldAnimate ? Infinity : 0, times: [0, 0.35, 0.45, 0.8, 1] }}
+        >
           <b>Descarga bajo demanda:</b>
           <code>fetch(&apos;/build/chunk_42.js&apos;) ➔ 3.1kB ejecutado en 18ms ✓</code>
-        </div>
+        </motion.div>
       </div>
     </div>
   );
@@ -1085,7 +1213,7 @@ function ScratchBody({ shouldAnimate }: BodyProps) {
 }
 
 /* 16. Angular: Inyección de dependencias jerárquica y Signals reactivas */
-function AngularBody(_props: BodyProps) {
+function AngularBody({ shouldAnimate }: BodyProps) {
   return (
     <div className={styles.angularLayout}>
       <div className={styles.angularDi}>
@@ -1105,11 +1233,33 @@ function AngularBody(_props: BodyProps) {
           <small>Zoneless Change Detection</small>
         </div>
         <div className={styles.angularSignalFlow}>
-          <div className={styles.angularSig}>id = signal(42)</div>
-          <div className={styles.angularArrow}>➔</div>
-          <div className={styles.angularSig}>order = resource(() =&gt; id())</div>
-          <div className={styles.angularArrow}>➔</div>
-          <div className={styles.angularSig}>total = computed(() =&gt; sum(order()))</div>
+          {[
+            { text: "id = signal(42)" },
+            { text: "order = resource(() => id())" },
+            { text: "total = computed(() => sum(order()))" },
+          ].map((sig, i) => {
+            const stepTime = 0.1 + i * 0.28;
+            return (
+              <Fragment key={sig.text}>
+                {i > 0 && (
+                  <motion.div
+                    className={styles.angularArrow}
+                    animate={shouldAnimate ? { x: [0, 4, 0], opacity: [0.5, 1, 0.5] } : {}}
+                    transition={{ duration: 2.5, repeat: shouldAnimate ? Infinity : 0 }}
+                  >
+                    ➔
+                  </motion.div>
+                )}
+                <motion.div
+                  className={styles.angularSig}
+                  animate={shouldAnimate ? { opacity: [0.65, 0.65, 1, 1, 0.65], scale: [0.97, 0.97, 1.04, 1, 0.97], borderColor: ["rgba(255,255,255,0.08)", "rgba(255,255,255,0.08)", "var(--scene-accent)", "var(--scene-accent)", "rgba(255,255,255,0.08)"] } : {}}
+                  transition={{ duration: 4.5, repeat: shouldAnimate ? Infinity : 0, times: [0, stepTime, stepTime + 0.1, stepTime + 0.22, 1] }}
+                >
+                  {sig.text}
+                </motion.div>
+              </Fragment>
+            );
+          })}
         </div>
       </div>
     </div>
@@ -1117,7 +1267,7 @@ function AngularBody(_props: BodyProps) {
 }
 
 /* 17. Lisp: Árbol homoicónico de S-Expressions y expansión de macros */
-function LispBody(_props: BodyProps) {
+function LispBody({ shouldAnimate }: BodyProps) {
   return (
     <div className={styles.lispLayout}>
       <div className={styles.lispAst}>
@@ -1127,21 +1277,35 @@ function LispBody(_props: BodyProps) {
         </div>
         <div className={styles.lispTree}>
           <div className={styles.lispNode}>LIST: (when-valid order (process order))</div>
-          <div className={styles.lispExpandArrow}>⬇ macroexpand-1 (con gensym higiénico)</div>
-          <div className={styles.lispExpanded}>
+          <motion.div
+            className={styles.lispExpandArrow}
+            animate={shouldAnimate ? { y: [0, 4, 0], opacity: [0.65, 1, 0.65] } : {}}
+            transition={{ duration: 2.5, repeat: shouldAnimate ? Infinity : 0 }}
+          >
+            ⬇ macroexpand-1 (con gensym higiénico)
+          </motion.div>
+          <motion.div
+            className={styles.lispExpanded}
+            animate={shouldAnimate ? { opacity: [0.65, 0.65, 1, 1, 0.65], borderColor: ["rgba(255,255,255,0.08)", "rgba(255,255,255,0.08)", "var(--scene-accent)", "var(--scene-accent)", "rgba(255,255,255,0.08)"] } : {}}
+            transition={{ duration: 4.5, repeat: shouldAnimate ? Infinity : 0, times: [0, 0.45, 0.55, 0.85, 1] }}
+          >
             <code>(let ((#:g104 order)) (if (valid-p #:g104) (process #:g104) nil))</code>
-          </div>
+          </motion.div>
         </div>
       </div>
-      <div className={styles.lispRepl}>
+      <motion.div
+        className={styles.lispRepl}
+        animate={shouldAnimate ? { opacity: [0.75, 1, 0.75] } : {}}
+        transition={{ duration: 3.5, repeat: shouldAnimate ? Infinity : 0 }}
+      >
         <span>REPL: READ ➔ EVAL ➔ PRINT ➔ LOOP</span>
-      </div>
+      </motion.div>
     </div>
   );
 }
 
 /* 18. Algorithms: Búsqueda de caminos A* en grafo con cola de prioridad */
-function AlgorithmsBody(_props: BodyProps) {
+function AlgorithmsBody({ shouldAnimate }: BodyProps) {
   return (
     <div className={styles.algorithmsLayout}>
       <div className={styles.algorithmsGraph}>
@@ -1152,9 +1316,27 @@ function AlgorithmsBody(_props: BodyProps) {
         <svg viewBox="0 0 400 160" className={styles.algorithmsSvg}>
           <line x1="50" y1="80" x2="140" y2="40" stroke="#243957" strokeWidth="2" />
           <line x1="50" y1="80" x2="140" y2="120" stroke="#243957" strokeWidth="2" />
-          <line x1="140" y1="40" x2="260" y2="40" stroke="#61e6a8" strokeWidth="3" />
+          <motion.line
+            x1="140"
+            y1="40"
+            x2="260"
+            y2="40"
+            stroke="#61e6a8"
+            strokeWidth="3"
+            animate={shouldAnimate ? { strokeOpacity: [0.5, 1, 0.5] } : {}}
+            transition={{ duration: 3, repeat: shouldAnimate ? Infinity : 0 }}
+          />
           <line x1="140" y1="120" x2="260" y2="120" stroke="#243957" strokeWidth="2" />
-          <line x1="260" y1="40" x2="350" y2="80" stroke="#61e6a8" strokeWidth="3" />
+          <motion.line
+            x1="260"
+            y1="40"
+            x2="350"
+            y2="80"
+            stroke="#61e6a8"
+            strokeWidth="3"
+            animate={shouldAnimate ? { strokeOpacity: [0.5, 1, 0.5] } : {}}
+            transition={{ duration: 3, repeat: shouldAnimate ? Infinity : 0 }}
+          />
           <line x1="260" y1="120" x2="350" y2="80" stroke="#243957" strokeWidth="2" />
           <circle cx="50" cy="80" r="14" fill="#49d7ff" />
           <text x="50" y="84" textAnchor="middle" fill="#04111f" fontSize="10" fontWeight="bold">A</text>
@@ -1168,11 +1350,21 @@ function AlgorithmsBody(_props: BodyProps) {
           <text x="260" y="124" textAnchor="middle" fill="#eef8ff" fontSize="10" fontWeight="bold">D</text>
           <circle cx="350" cy="80" r="14" fill="#ffd05a" />
           <text x="350" y="84" textAnchor="middle" fill="#04111f" fontSize="10" fontWeight="bold">F</text>
+          <motion.circle
+            r="6"
+            fill="#ffffff"
+            animate={shouldAnimate ? { cx: [50, 50, 140, 260, 350, 350, 50], cy: [80, 80, 40, 40, 80, 80, 80], opacity: [0, 1, 1, 1, 1, 0, 0] } : { cx: 350, cy: 80, opacity: 1 }}
+            transition={{ duration: 6, repeat: shouldAnimate ? Infinity : 0, times: [0, 0.08, 0.32, 0.6, 0.85, 0.94, 1] }}
+          />
         </svg>
       </div>
-      <div className={styles.algorithmsQueue}>
+      <motion.div
+        className={styles.algorithmsQueue}
+        animate={shouldAnimate ? { opacity: [0.8, 1, 0.8] } : {}}
+        transition={{ duration: 3, repeat: shouldAnimate ? Infinity : 0 }}
+      >
         <span>OPEN SET: [C (f=7), B (f=11)] ➔ RUTA ÓPTIMA: A➔C➔E➔F (Costo: 17)</span>
-      </div>
+      </motion.div>
     </div>
   );
 }
@@ -1194,8 +1386,8 @@ function AiBody({ shouldAnimate }: BodyProps) {
           <div className={styles.aiWeights}>
             <motion.div
               className={styles.aiForwardPass}
-              animate={shouldAnimate ? { x: [-15, 80, -15], opacity: [0, 1, 0] } : { x: 35, opacity: 1 }}
-              transition={{ duration: 4, repeat: shouldAnimate ? Infinity : 0 }}
+              animate={shouldAnimate ? { x: [-15, 80, 80, -15, -15], opacity: [0, 1, 0, 0, 0] } : { x: 35, opacity: 1 }}
+              transition={{ duration: 6, repeat: shouldAnimate ? Infinity : 0, times: [0, 0.25, 0.45, 0.46, 1] }}
             >
               Forward ➔
             </motion.div>
@@ -1207,8 +1399,8 @@ function AiBody({ shouldAnimate }: BodyProps) {
           <div className={styles.aiWeights}>
             <motion.div
               className={styles.aiBackwardPass}
-              animate={shouldAnimate ? { x: [80, -15, 80], opacity: [0, 1, 0] } : { x: 35, opacity: 1 }}
-              transition={{ duration: 4, delay: 2, repeat: shouldAnimate ? Infinity : 0 }}
+              animate={shouldAnimate ? { x: [80, 80, -15, -15, 80], opacity: [0, 0, 1, 0, 0] } : { x: 35, opacity: 1 }}
+              transition={{ duration: 6, repeat: shouldAnimate ? Infinity : 0, times: [0, 0.52, 0.75, 0.95, 1] }}
             >
               ⬅ Backprop
             </motion.div>
@@ -1227,7 +1419,7 @@ function AiBody({ shouldAnimate }: BodyProps) {
 }
 
 /* 20. R: Dataframe estadístico, boxplot con cuartiles y regresión */
-function RBody(_props: BodyProps) {
+function RBody({ shouldAnimate }: BodyProps) {
   return (
     <div className={styles.rLayout}>
       <div className={styles.rStats}>
@@ -1240,21 +1432,35 @@ function RBody(_props: BodyProps) {
             <header>BOXPLOT &amp; QUARTILES</header>
             <div className={styles.rBoxWrapper}>
               <div className={styles.rWhiskerTop} />
-              <div className={styles.rBox}>
+              <motion.div
+                className={styles.rBox}
+                animate={shouldAnimate ? { scaleY: [0.96, 1.04, 0.96] } : {}}
+                transition={{ duration: 3.5, repeat: shouldAnimate ? Infinity : 0 }}
+              >
                 <span>Q3: 78.4</span>
                 <b>Median: 62.1</b>
                 <span>Q1: 45.8</span>
-              </div>
+              </motion.div>
               <div className={styles.rWhiskerBottom} />
-              <div className={styles.rOutlier}>• Outlier: 104.2</div>
+              <motion.div
+                className={styles.rOutlier}
+                animate={shouldAnimate ? { opacity: [0.4, 1, 0.4], scale: [0.95, 1.05, 0.95] } : {}}
+                transition={{ duration: 2.5, repeat: shouldAnimate ? Infinity : 0 }}
+              >
+                • Outlier: 104.2
+              </motion.div>
             </div>
           </div>
-          <div className={styles.rRegression}>
+          <motion.div
+            className={styles.rRegression}
+            animate={shouldAnimate ? { borderColor: ["rgba(255,255,255,.08)", "var(--scene-accent)", "rgba(255,255,255,.08)"] } : {}}
+            transition={{ duration: 4.5, repeat: shouldAnimate ? Infinity : 0 }}
+          >
             <header>RESUMEN DEL MODELO (broom::glance)</header>
             <div className={styles.rRow}><span>R² ajustado:</span><b>0.814</b></div>
             <div className={styles.rRow}><span>p-value:</span><b>&lt; 0.0001 (Significativo)</b></div>
             <div className={styles.rRow}><span>F-statistic:</span><b>142.6 en 2 y 198 DF</b></div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>
@@ -1271,17 +1477,20 @@ function MathematicsBody({ shouldAnimate }: BodyProps) {
           <code>θ(t+1) = θ(t) - α∇f(θ(t))</code>
         </div>
         <div className={styles.mathGrid}>
-          {Array.from({ length: 36 }).map((_, i) => (
-            <motion.div
-              key={i}
-              className={styles.mathCell}
-              animate={shouldAnimate ? { opacity: [.3 + (i % 5) * 0.1, .8, .3] } : { opacity: .5 }}
-              transition={{ duration: 4, delay: i * 0.05, repeat: shouldAnimate ? Infinity : 0 }}
-            />
-          ))}
+          {Array.from({ length: 36 }).map((_, i) => {
+            const t0 = (i * 0.02) % 0.6;
+            return (
+              <motion.div
+                key={i}
+                className={styles.mathCell}
+                animate={shouldAnimate ? { opacity: [.3 + (i % 5) * 0.1, .3 + (i % 5) * 0.1, .8, .8, .3 + (i % 5) * 0.1] } : { opacity: .5 }}
+                transition={{ duration: 4, repeat: shouldAnimate ? Infinity : 0, times: [0, t0, t0 + 0.15, Math.min(0.9, t0 + 0.35), 1] }}
+              />
+            );
+          })}
           <motion.div
             className={styles.mathBall}
-            animate={shouldAnimate ? { x: [10, 120, 220], y: [10, 50, 80] } : { x: 220, y: 80 }}
+            animate={shouldAnimate ? { x: [10, 120, 220, 120, 10], y: [10, 50, 80, 50, 10] } : { x: 220, y: 80 }}
             transition={{ duration: 6, repeat: shouldAnimate ? Infinity : 0, ease: "easeInOut" }}
           >
             ∇f
@@ -1296,7 +1505,7 @@ function MathematicsBody({ shouldAnimate }: BodyProps) {
 }
 
 /* 22. Django: Arquitectura MTV, enrutador y QuerySet transaccional */
-function DjangoBody(_props: BodyProps) {
+function DjangoBody({ shouldAnimate }: BodyProps) {
   return (
     <div className={styles.djangoLayout}>
       <div className={styles.djangoMtv}>
@@ -1305,29 +1514,39 @@ function DjangoBody(_props: BodyProps) {
           <small>POST /bookings/42</small>
         </div>
         <div className={styles.djangoSteps}>
-          <div className={styles.djangoStep}>
-            <b>1. URLconf</b>
-            <code>path(&apos;bookings/&lt;id&gt;&apos;, view)</code>
-          </div>
-          <div className={styles.djangoStep}>
-            <b>2. View &amp; ORM</b>
-            <code>Booking.objects.select_for_update()</code>
-          </div>
-          <div className={styles.djangoStep}>
-            <b>3. Template</b>
-            <code>render(request, &apos;detail.html&apos;, ctx)</code>
-          </div>
+          {[
+            { title: "1. URLconf", code: "path('bookings/<id>', view)" },
+            { title: "2. View & ORM", code: "Booking.objects.select_for_update()" },
+            { title: "3. Template", code: "render(request, 'detail.html', ctx)" },
+          ].map((st, i) => {
+            const stepTime = 0.1 + i * 0.28;
+            return (
+              <motion.div
+                key={st.title}
+                className={styles.djangoStep}
+                animate={shouldAnimate ? { x: [0, 0, 6, 6, 0], opacity: [0.65, 0.65, 1, 1, 0.65], borderColor: ["rgba(255,255,255,0.08)", "rgba(255,255,255,0.08)", "var(--scene-accent)", "var(--scene-accent)", "rgba(255,255,255,0.08)"] } : {}}
+                transition={{ duration: 5, repeat: shouldAnimate ? Infinity : 0, times: [0, stepTime, stepTime + 0.1, stepTime + 0.22, 1] }}
+              >
+                <b>{st.title}</b>
+                <code>{st.code}</code>
+              </motion.div>
+            );
+          })}
         </div>
       </div>
-      <div className={styles.djangoTx}>
+      <motion.div
+        className={styles.djangoTx}
+        animate={shouldAnimate ? { opacity: [0.75, 1, 0.75], borderColor: ["rgba(255,255,255,0.08)", "#5ce2a8", "rgba(255,255,255,0.08)"] } : {}}
+        transition={{ duration: 3.5, repeat: shouldAnimate ? Infinity : 0 }}
+      >
         <code>transaction.atomic() + on_commit(queue_notification) · Cupos consistentes</code>
-      </div>
+      </motion.div>
     </div>
   );
 }
 
 /* 23. Methodologies: Tablero Kanban interactivo con columnas y WIP */
-function MethodologiesBody(_props: BodyProps) {
+function MethodologiesBody({ shouldAnimate }: BodyProps) {
   return (
     <div className={styles.kanbanLayout}>
       <div className={styles.kanbanHeader}>
@@ -1342,27 +1561,55 @@ function MethodologiesBody(_props: BodyProps) {
         </div>
         <div className={styles.kanbanCol}>
           <header>READY (1)</header>
-          <div className={styles.kanbanCard}>US-103: API Gate</div>
+          <motion.div
+            className={styles.kanbanCard}
+            animate={shouldAnimate ? { opacity: [0.7, 1, 0.7] } : {}}
+            transition={{ duration: 3, repeat: shouldAnimate ? Infinity : 0 }}
+          >
+            US-103: API Gate
+          </motion.div>
         </div>
         <div className={`${styles.kanbanCol} ${styles.kanbanColWip}`}>
           <header>WIP (LÍMITE: 2) [2/2]</header>
-          <div className={`${styles.kanbanCard} ${styles.kanbanCardActive}`}>US-104: Payment Fix</div>
-          <div className={`${styles.kanbanCard} ${styles.kanbanCardActive}`}>US-105: Hexgate Refactor</div>
+          <motion.div
+            className={`${styles.kanbanCard} ${styles.kanbanCardActive}`}
+            animate={shouldAnimate ? { scale: [0.98, 1.02, 0.98], borderColor: ["var(--scene-accent)", "#ffd05a", "var(--scene-accent)"] } : {}}
+            transition={{ duration: 3, repeat: shouldAnimate ? Infinity : 0 }}
+          >
+            US-104: Payment Fix
+          </motion.div>
+          <motion.div
+            className={`${styles.kanbanCard} ${styles.kanbanCardActive}`}
+            animate={shouldAnimate ? { scale: [1.02, 0.98, 1.02], borderColor: ["#ffd05a", "var(--scene-accent)", "#ffd05a"] } : {}}
+            transition={{ duration: 3, repeat: shouldAnimate ? Infinity : 0 }}
+          >
+            US-105: Hexgate Refactor
+          </motion.div>
         </div>
         <div className={styles.kanbanCol}>
           <header>HECHO (✓)</header>
-          <div className={styles.kanbanCardDone}>US-99: Core Init</div>
+          <motion.div
+            className={styles.kanbanCardDone}
+            animate={shouldAnimate ? { opacity: [0.75, 1, 0.75] } : {}}
+            transition={{ duration: 3.5, repeat: shouldAnimate ? Infinity : 0 }}
+          >
+            US-99: Core Init
+          </motion.div>
         </div>
       </div>
-      <div className={styles.kanbanMetric}>
+      <motion.div
+        className={styles.kanbanMetric}
+        animate={shouldAnimate ? { opacity: [0.75, 1, 0.75] } : {}}
+        transition={{ duration: 4, repeat: shouldAnimate ? Infinity : 0 }}
+      >
         <span>Lead Time: 2.4 días · Cycle Time: 1.1 días · Sin cuellos de botella</span>
-      </div>
+      </motion.div>
     </div>
   );
 }
 
 /* 24. Programming Fundamentals: Diagrama de flujo estructurado */
-function FundamentalsBody(_props: BodyProps) {
+function FundamentalsBody({ shouldAnimate }: BodyProps) {
   return (
     <div className={styles.flowchartLayout}>
       <div className={styles.flowchartHeader}>
@@ -1370,26 +1617,48 @@ function FundamentalsBody(_props: BodyProps) {
         <small>Secuencia, Selección e Iteración</small>
       </div>
       <div className={styles.flowchartNodes}>
-        <div className={styles.fcTerminal}>INICIO: Recibir Minutos</div>
-        <div className={styles.fcArrow}>↓</div>
-        <div className={styles.fcProcess}>base = 5.00</div>
-        <div className={styles.fcArrow}>↓</div>
-        <div className={styles.fcDecision}>
+        <motion.div
+          className={styles.fcTerminal}
+          animate={shouldAnimate ? { opacity: [0.7, 0.7, 1, 1, 0.7], borderColor: ["rgba(255,255,255,0.08)", "rgba(255,255,255,0.08)", "var(--scene-accent)", "var(--scene-accent)", "rgba(255,255,255,0.08)"] } : {}}
+          transition={{ duration: 6, repeat: shouldAnimate ? Infinity : 0, times: [0, 0.05, 0.15, 0.25, 1] }}
+        >
+          INICIO: Recibir Minutos
+        </motion.div>
+        <motion.div className={styles.fcArrow} animate={shouldAnimate ? { y: [0, 3, 0], opacity: [0.5, 1, 0.5] } : {}} transition={{ duration: 2, repeat: shouldAnimate ? Infinity : 0 }}>↓</motion.div>
+        <motion.div
+          className={styles.fcProcess}
+          animate={shouldAnimate ? { opacity: [0.7, 0.7, 1, 1, 0.7], borderColor: ["rgba(255,255,255,0.08)", "rgba(255,255,255,0.08)", "var(--scene-accent)", "var(--scene-accent)", "rgba(255,255,255,0.08)"] } : {}}
+          transition={{ duration: 6, repeat: shouldAnimate ? Infinity : 0, times: [0, 0.25, 0.35, 0.45, 1] }}
+        >
+          base = 5.00
+        </motion.div>
+        <motion.div className={styles.fcArrow} animate={shouldAnimate ? { y: [0, 3, 0], opacity: [0.5, 1, 0.5] } : {}} transition={{ duration: 2, repeat: shouldAnimate ? Infinity : 0 }}>↓</motion.div>
+        <motion.div
+          className={styles.fcDecision}
+          animate={shouldAnimate ? { opacity: [0.7, 0.7, 1, 1, 0.7], borderColor: ["rgba(255,255,255,0.08)", "rgba(255,255,255,0.08)", "var(--scene-accent)", "var(--scene-accent)", "rgba(255,255,255,0.08)"] } : {}}
+          transition={{ duration: 6, repeat: shouldAnimate ? Infinity : 0, times: [0, 0.45, 0.55, 0.65, 1] }}
+        >
           <span>¿minutos &lt;= 30?</span>
           <div className={styles.fcBranches}>
             <div className={styles.fcBranchYes}>SÍ ➔ tarifa = base</div>
             <div className={styles.fcBranchNo}>NO ➔ tarifa = base + extra</div>
           </div>
-        </div>
-        <div className={styles.fcArrow}>↓</div>
-        <div className={styles.fcTerminal}>FIN: Retornar Tarifa</div>
+        </motion.div>
+        <motion.div className={styles.fcArrow} animate={shouldAnimate ? { y: [0, 3, 0], opacity: [0.5, 1, 0.5] } : {}} transition={{ duration: 2, repeat: shouldAnimate ? Infinity : 0 }}>↓</motion.div>
+        <motion.div
+          className={styles.fcTerminal}
+          animate={shouldAnimate ? { opacity: [0.7, 0.7, 1, 1, 0.7], borderColor: ["rgba(255,255,255,0.08)", "rgba(255,255,255,0.08)", "#5ce2a8", "#5ce2a8", "rgba(255,255,255,0.08)"] } : {}}
+          transition={{ duration: 6, repeat: shouldAnimate ? Infinity : 0, times: [0, 0.7, 0.8, 0.92, 1] }}
+        >
+          FIN: Retornar Tarifa
+        </motion.div>
       </div>
     </div>
   );
 }
 
 /* 25. Java: Arquitectura HotSpot JVM con regiones de memoria GC */
-function JavaBody(_props: BodyProps) {
+function JavaBody({ shouldAnimate }: BodyProps) {
   return (
     <div className={styles.jvmLayout}>
       <div className={styles.jvmHeader}>
@@ -1397,37 +1666,57 @@ function JavaBody(_props: BodyProps) {
         <small>JDK 21 LTS · G1 / ZGC</small>
       </div>
       <div className={styles.jvmArchitecture}>
-        <div className={styles.jvmSubsystem}>
+        <motion.div
+          className={styles.jvmSubsystem}
+          animate={shouldAnimate ? { opacity: [0.75, 1, 0.75] } : {}}
+          transition={{ duration: 3.5, repeat: shouldAnimate ? Infinity : 0 }}
+        >
           <header>CLASSLOADER &amp; JIT</header>
           <code>Bytecode ➔ C1 Compiler (Tier 3) ➔ C2 HotSpot (Tier 4)</code>
-        </div>
+        </motion.div>
         <div className={styles.jvmHeap}>
           <header>HEAP MEMORY REGIONS</header>
           <div className={styles.jvmSpaces}>
-            <div className={styles.jvmEden}>
+            <motion.div
+              className={styles.jvmEden}
+              animate={shouldAnimate ? { opacity: [0.7, 0.7, 1, 1, 0.7], borderColor: ["rgba(255,255,255,0.08)", "rgba(255,255,255,0.08)", "var(--scene-accent)", "var(--scene-accent)", "rgba(255,255,255,0.08)"] } : {}}
+              transition={{ duration: 5, repeat: shouldAnimate ? Infinity : 0, times: [0, 0.1, 0.22, 0.38, 1] }}
+            >
               <b>Eden Space</b>
               <small>New Objects (8ms GC)</small>
-            </div>
-            <div className={styles.jvmSurvivor}>
+            </motion.div>
+            <motion.div
+              className={styles.jvmSurvivor}
+              animate={shouldAnimate ? { opacity: [0.7, 0.7, 1, 1, 0.7], borderColor: ["rgba(255,255,255,0.08)", "rgba(255,255,255,0.08)", "var(--scene-accent)", "var(--scene-accent)", "rgba(255,255,255,0.08)"] } : {}}
+              transition={{ duration: 5, repeat: shouldAnimate ? Infinity : 0, times: [0, 0.4, 0.52, 0.68, 1] }}
+            >
               <b>Survivor (S0/S1)</b>
               <small>Tenuring Threshold</small>
-            </div>
-            <div className={styles.jvmOld}>
+            </motion.div>
+            <motion.div
+              className={styles.jvmOld}
+              animate={shouldAnimate ? { opacity: [0.7, 0.7, 1, 1, 0.7], borderColor: ["rgba(255,255,255,0.08)", "rgba(255,255,255,0.08)", "var(--scene-accent-alt)", "var(--scene-accent-alt)", "rgba(255,255,255,0.08)"] } : {}}
+              transition={{ duration: 5, repeat: shouldAnimate ? Infinity : 0, times: [0, 0.7, 0.82, 0.95, 1] }}
+            >
               <b>Tenured (Old Gen)</b>
               <small>Long-lived singletons</small>
-            </div>
+            </motion.div>
           </div>
         </div>
       </div>
-      <div className={styles.jvmJfr}>
+      <motion.div
+        className={styles.jvmJfr}
+        animate={shouldAnimate ? { opacity: [0.75, 1, 0.75] } : {}}
+        transition={{ duration: 4, repeat: shouldAnimate ? Infinity : 0 }}
+      >
         <code>JDK Flight Recorder (JFR): Cero fugas · p95 latencia 11ms</code>
-      </div>
+      </motion.div>
     </div>
   );
 }
 
 /* 26. Scala: Case classes, pattern matching exhaustivo y linearización de traits */
-function ScalaBody(_props: BodyProps) {
+function ScalaBody({ shouldAnimate }: BodyProps) {
   return (
     <div className={styles.scalaLayout}>
       <div className={styles.scalaAdt}>
@@ -1438,23 +1727,31 @@ function ScalaBody(_props: BodyProps) {
         <div className={styles.scalaCodeBlock}>
           <code>case class OrderCreated(id: Long, total: BigDecimal) extends Event</code>
           <code>case class OrderCancelled(id: Long, reason: String) extends Event</code>
-          <div className={styles.scalaMatch}>
+          <motion.div
+            className={styles.scalaMatch}
+            animate={shouldAnimate ? { borderColor: ["rgba(255,255,255,0.08)", "var(--scene-accent)", "rgba(255,255,255,0.08)"], scale: [0.99, 1.015, 0.99] } : {}}
+            transition={{ duration: 3.8, repeat: shouldAnimate ? Infinity : 0 }}
+          >
             <code>event match &#123;</code>
             <code>  case OrderCreated(id, total) =&gt; emitPayment(id, total)</code>
             <code>  case OrderCancelled(id, r)   =&gt; rollback(id, r)</code>
             <code>&#125;</code>
-          </div>
+          </motion.div>
         </div>
       </div>
-      <div className={styles.scalaTraits}>
+      <motion.div
+        className={styles.scalaTraits}
+        animate={shouldAnimate ? { opacity: [0.75, 1, 0.75] } : {}}
+        transition={{ duration: 4, repeat: shouldAnimate ? Infinity : 0 }}
+      >
         <span>Trait Linearization: EventStream with Checkpointing with Logging</span>
-      </div>
+      </motion.div>
     </div>
   );
 }
 
 /* 27. Haskell: Thunks de evaluación perezosa y encadenamiento monádico */
-function HaskellBody(_props: BodyProps) {
+function HaskellBody({ shouldAnimate }: BodyProps) {
   return (
     <div className={styles.haskellLayout}>
       <div className={styles.haskellThunks}>
@@ -1463,20 +1760,42 @@ function HaskellBody(_props: BodyProps) {
           <code>pure functional · call-by-need</code>
         </div>
         <div className={styles.haskellNodes}>
-          <div className={styles.haskellThunk}>Thunk: (map validate configs)</div>
-          <div className={styles.haskellForceArrow}>⬇ Forzar a WHNF por demanda de I/O</div>
-          <div className={styles.haskellValue}>ValidatedConfig [Port 8080, Mode Prod]</div>
+          <motion.div
+            className={styles.haskellThunk}
+            animate={shouldAnimate ? { opacity: [0.65, 1, 0.65] } : {}}
+            transition={{ duration: 4, repeat: shouldAnimate ? Infinity : 0 }}
+          >
+            Thunk: (map validate configs)
+          </motion.div>
+          <motion.div
+            className={styles.haskellForceArrow}
+            animate={shouldAnimate ? { y: [0, 4, 0], opacity: [0.6, 1, 0.6] } : {}}
+            transition={{ duration: 2.5, repeat: shouldAnimate ? Infinity : 0 }}
+          >
+            ⬇ Forzar a WHNF por demanda de I/O
+          </motion.div>
+          <motion.div
+            className={styles.haskellValue}
+            animate={shouldAnimate ? { opacity: [0.7, 0.7, 1, 1, 0.7], borderColor: ["rgba(255,255,255,0.08)", "rgba(255,255,255,0.08)", "var(--scene-accent)", "var(--scene-accent)", "rgba(255,255,255,0.08)"] } : {}}
+            transition={{ duration: 4, repeat: shouldAnimate ? Infinity : 0, times: [0, 0.45, 0.55, 0.85, 1] }}
+          >
+            ValidatedConfig [Port 8080, Mode Prod]
+          </motion.div>
         </div>
       </div>
-      <div className={styles.haskellMonad}>
+      <motion.div
+        className={styles.haskellMonad}
+        animate={shouldAnimate ? { opacity: [0.75, 1, 0.75] } : {}}
+        transition={{ duration: 3.5, repeat: shouldAnimate ? Infinity : 0 }}
+      >
         <code>Monad Bind Pipeline: decode &gt;=&gt; validate &gt;=&gt; bootService (bracket safety)</code>
-      </div>
+      </motion.div>
     </div>
   );
 }
 
 /* 28. Subversion: Repositorio centralizado con árbol de rutas y revisiones atómicas */
-function SubversionBody(_props: BodyProps) {
+function SubversionBody({ shouldAnimate }: BodyProps) {
   return (
     <div className={styles.svnLayout}>
       <div className={styles.svnCentral}>
@@ -1485,7 +1804,13 @@ function SubversionBody(_props: BodyProps) {
           <code>svn://repo.piltover.gov/project</code>
         </div>
         <div className={styles.svnTree}>
-          <div className={styles.svnDir}>/trunk (Desarrollo activo)</div>
+          <motion.div
+            className={styles.svnDir}
+            animate={shouldAnimate ? { borderColor: ["rgba(255,255,255,0.08)", "var(--scene-accent)", "rgba(255,255,255,0.08)"] } : {}}
+            transition={{ duration: 3.5, repeat: shouldAnimate ? Infinity : 0 }}
+          >
+            /trunk (Desarrollo activo)
+          </motion.div>
           <div className={styles.svnDir}>/branches/release-1.8 (Mantenimiento)</div>
           <div className={styles.svnDir}>/tags/v1.8.6 (Snapshot inmutable)</div>
         </div>
@@ -1493,11 +1818,22 @@ function SubversionBody(_props: BodyProps) {
       <div className={styles.svnRevisionLine}>
         <span>REVISIÓN GLOBAL ATÓMICA:</span>
         <div className={styles.svnRevs}>
-          <div className={styles.svnRev}>r184</div>
-          <i>➔</i>
-          <div className={styles.svnRev}>r185</div>
-          <i>➔</i>
-          <div className={`${styles.svnRev} ${styles.svnRevActive}`}>r186 (HEAD)</div>
+          {[
+            { rev: "r184", active: false, t: 0.1 },
+            { rev: "r185", active: false, t: 0.4 },
+            { rev: "r186 (HEAD)", active: true, t: 0.7 },
+          ].map((item, i) => (
+            <Fragment key={item.rev}>
+              {i > 0 && <i>➔</i>}
+              <motion.div
+                className={`${styles.svnRev} ${item.active ? styles.svnRevActive : ""}`}
+                animate={shouldAnimate ? { opacity: [0.65, 0.65, 1, 1, 0.65], scale: [0.97, 0.97, 1.05, 1, 0.97] } : {}}
+                transition={{ duration: 4.5, repeat: shouldAnimate ? Infinity : 0, times: [0, item.t, item.t + 0.12, item.t + 0.24, 1] }}
+              >
+                {item.rev}
+              </motion.div>
+            </Fragment>
+          ))}
         </div>
       </div>
     </div>
@@ -1505,7 +1841,7 @@ function SubversionBody(_props: BodyProps) {
 }
 
 /* 29. Raku: Gramáticas con reglas y tokens, y evaluación cuántica por junctions */
-function RakuBody(_props: BodyProps) {
+function RakuBody({ shouldAnimate }: BodyProps) {
   return (
     <div className={styles.rakuLayout}>
       <div className={styles.rakuGrammar}>
@@ -1514,12 +1850,28 @@ function RakuBody(_props: BodyProps) {
           <code>grammar ArcaneSyntax &#123; ... &#125;</code>
         </div>
         <div className={styles.rakuTokens}>
-          <div className={styles.rakuToken}>rule TOP &#123; &lt;command&gt; &lt;priority&gt; &#125;</div>
-          <div className={styles.rakuToken}>token priority &#123; \d+ &#125;</div>
-          <div className={styles.rakuJunction}>
+          <motion.div
+            className={styles.rakuToken}
+            animate={shouldAnimate ? { x: [0, 0, 4, 4, 0], opacity: [0.7, 0.7, 1, 1, 0.7] } : {}}
+            transition={{ duration: 4, repeat: shouldAnimate ? Infinity : 0, times: [0, 0.15, 0.25, 0.45, 1] }}
+          >
+            rule TOP &#123; &lt;command&gt; &lt;priority&gt; &#125;
+          </motion.div>
+          <motion.div
+            className={styles.rakuToken}
+            animate={shouldAnimate ? { x: [0, 0, 4, 4, 0], opacity: [0.7, 0.7, 1, 1, 0.7] } : {}}
+            transition={{ duration: 4, repeat: shouldAnimate ? Infinity : 0, times: [0, 0.35, 0.45, 0.65, 1] }}
+          >
+            token priority &#123; \d+ &#125;
+          </motion.div>
+          <motion.div
+            className={styles.rakuJunction}
+            animate={shouldAnimate ? { borderColor: ["rgba(255,255,255,0.08)", "var(--scene-accent)", "rgba(255,255,255,0.08)"], scale: [0.99, 1.02, 0.99] } : {}}
+            transition={{ duration: 3, repeat: shouldAnimate ? Infinity : 0 }}
+          >
             <span>Junction Superposition:</span>
             <code>if $level == any(1, 3, 7) &#123; trigger_alarm() &#125;</code>
-          </div>
+          </motion.div>
         </div>
       </div>
     </div>
@@ -1527,7 +1879,7 @@ function RakuBody(_props: BodyProps) {
 }
 
 /* 30. LaTeX: Tipografía matemática de dos pasadas con cajas y pegamento TeX */
-function LatexBody(_props: BodyProps) {
+function LatexBody({ shouldAnimate }: BodyProps) {
   return (
     <div className={styles.latexLayout}>
       <div className={styles.latexEngine}>
@@ -1536,14 +1888,36 @@ function LatexBody(_props: BodyProps) {
           <code>pdflatex / lualatex · 3 Pasadas</code>
         </div>
         <div className={styles.latexBoxes}>
-          <div className={styles.latexBoxItem}>Horizontal Boxes (HBox: Palabras)</div>
-          <div className={styles.latexGlueItem}>Glue (Espaciado elástico)</div>
-          <div className={styles.latexBoxItem}>Vertical Boxes (VBox: Párrafos)</div>
+          <motion.div
+            className={styles.latexBoxItem}
+            animate={shouldAnimate ? { opacity: [0.7, 1, 0.7] } : {}}
+            transition={{ duration: 3, repeat: shouldAnimate ? Infinity : 0 }}
+          >
+            Horizontal Boxes (HBox: Palabras)
+          </motion.div>
+          <motion.div
+            className={styles.latexGlueItem}
+            animate={shouldAnimate ? { scaleX: [0.94, 1.06, 0.94], opacity: [0.7, 1, 0.7] } : {}}
+            transition={{ duration: 3.2, repeat: shouldAnimate ? Infinity : 0 }}
+          >
+            Glue (Espaciado elástico)
+          </motion.div>
+          <motion.div
+            className={styles.latexBoxItem}
+            animate={shouldAnimate ? { opacity: [0.7, 1, 0.7] } : {}}
+            transition={{ duration: 3, repeat: shouldAnimate ? Infinity : 0 }}
+          >
+            Vertical Boxes (VBox: Párrafos)
+          </motion.div>
         </div>
       </div>
-      <div className={styles.latexOutput}>
+      <motion.div
+        className={styles.latexOutput}
+        animate={shouldAnimate ? { opacity: [0.75, 1, 0.75], borderColor: ["rgba(255,255,255,0.08)", "var(--scene-accent)", "rgba(255,255,255,0.08)"] } : {}}
+        transition={{ duration: 4, repeat: shouldAnimate ? Infinity : 0 }}
+      >
         <span>Salida Vectorial: PDF accesible con referencias cruzadas resueltas sin citas huérfanas</span>
-      </div>
+      </motion.div>
     </div>
   );
 }

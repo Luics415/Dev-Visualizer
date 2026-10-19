@@ -43,12 +43,25 @@ export function CiCdArtifactPassportScene() {
               >
                 <span>{name}</span>
                 <small>{detail}</small>
-                <motion.i animate={{ scale: [.7, .7, 1.2, 1, .7], opacity: [.35, .35, 1, .72, .35] }} transition={{ ...repeat, delay: index * .35 }}>✓</motion.i>
+                <motion.i
+                  animate={{ scale: [.7, .7, 1.2, 1, .7], opacity: [.35, .35, 1, .72, .35] }}
+                  transition={{ ...repeat, times: [0, .14 + index * .08, .22 + index * .08, .62, 1] }}
+                >
+                  ✓
+                </motion.i>
               </motion.div>
             ))}
           </section>
 
-          <motion.section className="cicd-passport__artifact" animate={{ opacity: [.72, .72, 1, 1, .8], boxShadow: ["0 0 0 transparent", "0 0 34px rgba(59,211,255,.3)", "0 0 0 transparent"] }} transition={{ ...repeat, times: [0, .42, .55, .84, 1] }} aria-label="Pasaporte verificable del artefacto">
+          <motion.section
+            className="cicd-passport__artifact"
+            animate={{
+              opacity: [.72, .72, 1, 1, .72],
+              boxShadow: ["0 0 0 transparent", "0 0 0 transparent", "0 0 34px rgba(59,211,255,.3)", "0 0 34px rgba(59,211,255,.3)", "0 0 0 transparent"],
+            }}
+            transition={{ ...repeat, times: [0, .42, .55, .84, 1] }}
+            aria-label="Pasaporte verificable del artefacto"
+          >
             <span>ARTEFACTO INMUTABLE</span>
             <strong>sha256:24b9…</strong>
             <div><b>SBOM</b><b>FIRMA</b><b>PROVENANCE</b></div>

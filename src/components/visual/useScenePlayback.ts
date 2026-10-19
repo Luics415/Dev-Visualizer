@@ -65,20 +65,26 @@ function sharedViewportObserver() {
   if (typeof IntersectionObserver === "undefined") return null;
   viewportObserver ??= new IntersectionObserver((entries) => {
     for (const entry of entries) {
-      const visible = entry.isIntersecting && entry.intersectionRatio >= .08;
+      const visible = entry.isIntersecting;
       viewportSubscribers.get(entry.target)?.forEach((notify) => notify(visible));
     }
-  }, { threshold: [0, .08] });
+  }, { threshold: 0, rootMargin: "80px 0px" });
   return viewportObserver;
 }
 
 function useSharedInView(ref: RefObject<HTMLElement | null>) {
-  const [inView, setInView] = useState(false);
+  const [inView, setInView] = useState(() => typeof IntersectionObserver === "undefined");
 
   useEffect(() => {
     const element = ref.current;
+    if (!element) return undefined;
+    if (typeof IntersectionObserver === "undefined") {
+      return undefined;
+    }
     const observer = sharedViewportObserver();
-    if (!element || !observer) return undefined;
+    if (!observer) {
+      return undefined;
+    }
     const subscribers = viewportSubscribers.get(element) ?? new Set<(visible: boolean) => void>();
     subscribers.add(setInView);
     viewportSubscribers.set(element, subscribers);
@@ -86,13 +92,9 @@ function useSharedInView(ref: RefObject<HTMLElement | null>) {
     return () => {
       const current = viewportSubscribers.get(element);
       current?.delete(setInView);
-      if (current?.size === 0) {
+      if (!current || current.size === 0) {
         viewportSubscribers.delete(element);
         observer.unobserve(element);
-      }
-      if (viewportSubscribers.size === 0) {
-        observer.disconnect();
-        viewportObserver = null;
       }
     };
   }, [ref]);

@@ -48,7 +48,10 @@ export function AwsPracticalScene() {
           <section>
             <header><b>CloudWatch</b><span>service lens</span></header>
             <div className="aws-action__metrics"><p><small>requests</small><b>2.4k/min</b></p><p><small>p95</small><b>118 ms</b></p><p><small>5xx</small><b>0.08%</b></p><p><small>cache hit</small><b>87%</b></p></div>
-            <div className="aws-action__spark">{[35,48,42,61,58,72,67,83,75,88,80,76].map((h,index)=><motion.i key={index} style={{height:`${h}%`}} animate={{opacity:[.3,1,.55,.3]}} transition={{duration:3,repeat:Infinity,delay:index*.12}} />)}</div>
+            <div className="aws-action__spark">{[35,48,42,61,58,72,67,83,75,88,80,76].map((h,index)=>{
+              const t0 = (index * 0.06) % 0.6;
+              return <motion.i key={index} style={{height:`${h}%`}} animate={{opacity:[.3,.3,1,.55,.3]}} transition={{duration:3,repeat:Infinity,times:[0,t0,t0+0.15,Math.min(0.9,t0+0.3),1]}} />;
+            })}</div>
           </section>
           <section>
             <header><b>Identity + cost</b><span>guardrails</span></header>

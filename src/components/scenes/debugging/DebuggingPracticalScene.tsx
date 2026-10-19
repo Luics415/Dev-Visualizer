@@ -54,9 +54,9 @@ export function DebuggingPracticalScene() {
           <header><b>Lo observado</b><span>prod · app 2.18.0</span></header>
           <div className="debug-action__ui">
             <div><span>Repair Fishbones</span><b>stabilizer calibration</b></div>
-            <motion.button animate={{ scale: [1, 1, .95, 1, 1] }} transition={{ ...repeat, times: [0, .14, .18, .24, .42] }}>Crear orden</motion.button>
-            <motion.p animate={{ opacity: [0, 0, 1, 1, 0] }} transition={{ ...repeat, times: [0, .25, .33, .85, .96] }}><b>#421</b> creada</motion.p>
-            <motion.p animate={{ opacity: [0, 0, 1, 1, 0], color: ["#ff7185", "#ff7185"] }} transition={{ ...repeat, times: [0, .29, .37, .85, .96] }}><b>#422</b> creada</motion.p>
+            <motion.button animate={{ scale: [1, 1, .95, 1, 1] }} transition={{ ...repeat, times: [0, .14, .18, .24, 1] }}>Crear orden</motion.button>
+            <motion.p animate={{ opacity: [0, 0, 1, 1, 0] }} transition={{ ...repeat, times: [0, .25, .33, .85, 1] }}><b>#421</b> creada</motion.p>
+            <motion.p animate={{ opacity: [0, 0, 1, 1, 0] }} style={{ color: "#ff7185" }} transition={{ ...repeat, times: [0, .29, .37, .85, 1] }}><b>#422</b> creada</motion.p>
           </div>
           <div className="debug-action__scope">
             <small>scope confirmado</small>
