@@ -11,6 +11,7 @@ import {
   QUIZ_SAMPLE_SIZE,
   QUIZ_PASS_PERCENTAGE,
 } from "@/lib/quizEngine";
+import { QuizAnchorBadge } from "./QuizAnchorBadge";
 
 type QuizRunnerProps = {
   collectionId: string;
@@ -166,13 +167,12 @@ export function QuizRunner({
         </div>
 
         {result.passed ? (
-          <aside className="quiz-insignia-unlocked">
-            <div className="quiz-insignia-unlocked__icon">🎖️</div>
-            <div>
-              <strong>Insignia de maestría registrada en tu navegador</strong>
-              <p>Tu reconocimiento queda almacenado localmente en este dispositivo sin requerir registro ni inicio de sesión.</p>
-            </div>
-          </aside>
+          <QuizAnchorBadge
+            collectionTitle={collectionTitle}
+            score={result.score}
+            totalQuestions={result.totalQuestions}
+            percentage={result.percentage}
+          />
         ) : null}
 
         <div className="quiz-finished__actions">
