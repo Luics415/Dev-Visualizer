@@ -8,6 +8,7 @@ import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react"
 import type { ChangeEvent, ReactNode } from "react";
 import { collectionGroups, collectionLinks } from "@/data/collectionLinks";
 import { themeForPath } from "@/data/collectionManifest";
+import { searchTechnicalConcepts } from "@/data/conceptSearchIndex";
 import { useReadingProgress } from "@/hooks/useReadingProgress";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
@@ -86,9 +87,14 @@ export function CollectionNav() {
       .filter((group) => group.links.length > 0);
   }, [query]);
 
+  const matchingConcepts = useMemo(() => {
+    return searchTechnicalConcepts(query, 8);
+  }, [query]);
+
   function closeMobileMenu() {
     setMobileMenuOpen(false);
     setQuery("");
+    detailsRef.current?.removeAttribute("open");
   }
 
   useEffect(() => {
@@ -167,14 +173,51 @@ export function CollectionNav() {
       </header>
 
       <label className="collection-picker__search">
-        <span>Buscar colección</span>
+        <span>Buscar colección o concepto técnico</span>
         <input
           type="search"
           value={query}
           onChange={(event: ChangeEvent<HTMLInputElement>) => setQuery(event.target.value)}
-          placeholder="JavaScript, React Native, Git..."
+          placeholder="Colección o concepto (ej. Closures, useEffect, Docker...)"
         />
       </label>
+
+      {matchingConcepts.length > 0 ? (
+        <section className="collection-picker__concepts" aria-label="Conceptos técnicos coincidentes">
+          <header className="collection-picker__concepts-header">
+            <strong>
+              <svg viewBox="0 0 24 24" width="13" height="13" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+                <circle cx="11" cy="11" r="8" />
+                <line x1="21" y1="21" x2="16.65" y2="16.65" />
+              </svg>
+              Conceptos técnicos coincidentes
+            </strong>
+            <small>{matchingConcepts.length} resultado{matchingConcepts.length === 1 ? "" : "s"}</small>
+          </header>
+          <div className="collection-picker__concepts-grid">
+            {matchingConcepts.map((item) => (
+              <Link
+                key={`${item.collectionId}-${item.anchor}`}
+                href={item.href}
+                className="collection-picker__concept-link"
+                onClick={closeMobileMenu}
+                title={`Ir a ${item.title} en ${item.collectionLabel}`}
+              >
+                <div className="collection-picker__concept-main">
+                  <span className="collection-picker__concept-badge" data-theme={item.theme}>
+                    {item.collectionShort}
+                  </span>
+                  <div className="collection-picker__concept-info">
+                    <strong>{item.title}</strong>
+                    <small>{item.collectionLabel} · {item.section}</small>
+                  </div>
+                </div>
+                <em>↗</em>
+              </Link>
+            ))}
+          </div>
+        </section>
+      ) : null}
 
       <div className="collection-picker__groups">
         {visibleGroups.map((group) => (
@@ -208,8 +251,8 @@ export function CollectionNav() {
         ))}
       </div>
 
-      {visibleGroups.length === 0 ? (
-        <p className="collection-picker__empty">No encontré una colección con ese nombre.</p>
+      {visibleGroups.length === 0 && matchingConcepts.length === 0 ? (
+        <p className="collection-picker__empty">No se encontraron colecciones ni conceptos técnicos coincidentes.</p>
       ) : null}
     </>
   );
