@@ -27,5 +27,6 @@ export function useAudioNarrator() {
     seekChunk: (index: number) => audioNarrator.seekChunk(index),
     setSpeed: (speed: AudioSpeed) => audioNarrator.setSpeed(speed),
     cycleSpeed: () => audioNarrator.cycleSpeed(),
+    setVoice: (voiceURI: string) => audioNarrator.setVoice(voiceURI),
   };
 }
