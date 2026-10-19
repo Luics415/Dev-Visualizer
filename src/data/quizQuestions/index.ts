@@ -13,6 +13,7 @@ import { goQuestions } from "./go";
 import { rustQuestions } from "./rust";
 import { javaQuestions } from "./java";
 import { kotlinQuestions } from "./kotlin";
+import { linuxQuestions } from "./linux";
 
 // Registro extensible de bancos de preguntas explícitas
 const explicitQuestionBanks: Record<string, QuizQuestion[]> = {};
@@ -38,6 +39,7 @@ registerCollectionQuestions("go", goQuestions);
 registerCollectionQuestions("rust", rustQuestions);
 registerCollectionQuestions("java", javaQuestions);
 registerCollectionQuestions("kotlin", kotlinQuestions);
+registerCollectionQuestions("linux", linuxQuestions);
 
 /**
  * Obtiene el banco de preguntas completo para una colección.
