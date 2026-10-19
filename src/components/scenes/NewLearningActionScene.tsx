@@ -1608,50 +1608,340 @@ function MethodologiesBody({ shouldAnimate }: BodyProps) {
   );
 }
 
-/* 24. Programming Fundamentals: Diagrama de flujo estructurado */
+/* 24. Programming Fundamentals: Diagrama de flujo interactivo y motor de ejecución en vivo */
 function FundamentalsBody({ shouldAnimate }: BodyProps) {
+  const loopT = { duration: 7.5, repeat: shouldAnimate ? Infinity : 0, ease: "linear" as const };
+
   return (
     <div className={styles.flowchartLayout}>
-      <div className={styles.flowchartHeader}>
-        <span>DIAGRAMA DE FLUJO ESTRUCTURADO</span>
-        <small>Secuencia, Selección e Iteración</small>
-      </div>
-      <div className={styles.flowchartNodes}>
-        <motion.div
-          className={styles.fcTerminal}
-          animate={shouldAnimate ? { opacity: [0.7, 0.7, 1, 1, 0.7], borderColor: ["rgba(255,255,255,0.08)", "rgba(255,255,255,0.08)", "var(--scene-accent)", "var(--scene-accent)", "rgba(255,255,255,0.08)"] } : {}}
-          transition={{ duration: 6, repeat: shouldAnimate ? Infinity : 0, times: [0, 0.05, 0.15, 0.25, 1] }}
-        >
-          INICIO: Recibir Minutos
-        </motion.div>
-        <motion.div className={styles.fcArrow} animate={shouldAnimate ? { y: [0, 3, 0], opacity: [0.5, 1, 0.5] } : {}} transition={{ duration: 2, repeat: shouldAnimate ? Infinity : 0 }}>↓</motion.div>
-        <motion.div
-          className={styles.fcProcess}
-          animate={shouldAnimate ? { opacity: [0.7, 0.7, 1, 1, 0.7], borderColor: ["rgba(255,255,255,0.08)", "rgba(255,255,255,0.08)", "var(--scene-accent)", "var(--scene-accent)", "rgba(255,255,255,0.08)"] } : {}}
-          transition={{ duration: 6, repeat: shouldAnimate ? Infinity : 0, times: [0, 0.25, 0.35, 0.45, 1] }}
-        >
-          base = 5.00
-        </motion.div>
-        <motion.div className={styles.fcArrow} animate={shouldAnimate ? { y: [0, 3, 0], opacity: [0.5, 1, 0.5] } : {}} transition={{ duration: 2, repeat: shouldAnimate ? Infinity : 0 }}>↓</motion.div>
-        <motion.div
-          className={styles.fcDecision}
-          animate={shouldAnimate ? { opacity: [0.7, 0.7, 1, 1, 0.7], borderColor: ["rgba(255,255,255,0.08)", "rgba(255,255,255,0.08)", "var(--scene-accent)", "var(--scene-accent)", "rgba(255,255,255,0.08)"] } : {}}
-          transition={{ duration: 6, repeat: shouldAnimate ? Infinity : 0, times: [0, 0.45, 0.55, 0.65, 1] }}
-        >
-          <span>¿minutos &lt;= 30?</span>
-          <div className={styles.fcBranches}>
-            <div className={styles.fcBranchYes}>SÍ ➔ tarifa = base</div>
-            <div className={styles.fcBranchNo}>NO ➔ tarifa = base + extra</div>
+      {/* Panel Izquierdo: Diagrama de Flujo con Token de Ejecución en Tiempo Real */}
+      <div className={styles.fcFlowchartPane}>
+        <div className={styles.fcFlowHeader}>
+          <span>DIAGRAMA DE FLUJO INTERACTIVO</span>
+          <small>Token de ejecución activo</small>
+        </div>
+
+        <div className={styles.fcFlowTrack}>
+          {/* Guía de cableado vertical con chispa de ejecución */}
+          <div className={styles.fcParticleTrack} />
+          <motion.div
+            className={styles.fcParticleSpark}
+            animate={
+              shouldAnimate
+                ? {
+                    top: ["4%", "4%", "24%", "48%", "68%", "94%", "94%", "4%"],
+                    opacity: [0, 1, 1, 1, 1, 1, 0, 0],
+                  }
+                : { top: "4%", opacity: 0 }
+            }
+            transition={{
+              ...loopT,
+              times: [0, 0.05, 0.22, 0.44, 0.65, 0.88, 0.94, 1],
+            }}
+          />
+
+          {/* Nodo 1: Inicio */}
+          <motion.div
+            className={`${styles.fcNode} ${styles.fcNodePill}`}
+            animate={
+              shouldAnimate
+                ? {
+                    scale: [1, 1, 1.05, 1, 1],
+                    borderColor: [
+                      "var(--scene-accent)",
+                      "var(--scene-accent)",
+                      "#ffffff",
+                      "var(--scene-accent)",
+                      "var(--scene-accent)",
+                    ],
+                  }
+                : { scale: 1 }
+            }
+            transition={{ ...loopT, times: [0, 0.04, 0.14, 0.22, 1] }}
+          >
+            INICIO: leer(minutos = 45)
+          </motion.div>
+
+          <div className={styles.fcWire}>↓</div>
+
+          {/* Nodo 2: Proceso Secuencial */}
+          <motion.div
+            className={styles.fcNode}
+            animate={
+              shouldAnimate
+                ? {
+                    scale: [1, 1, 1.04, 1, 1],
+                    borderColor: [
+                      "rgba(255,255,255,0.12)",
+                      "rgba(255,255,255,0.12)",
+                      "var(--scene-accent)",
+                      "rgba(255,255,255,0.12)",
+                      "rgba(255,255,255,0.12)",
+                    ],
+                  }
+                : { scale: 1 }
+            }
+            transition={{ ...loopT, times: [0, 0.18, 0.28, 0.38, 1] }}
+          >
+            base = 5.00 · extra = 0.00
+          </motion.div>
+
+          <div className={styles.fcWire}>↓</div>
+
+          {/* Nodo 3: Decisión / Selección Condicional */}
+          <motion.div
+            className={`${styles.fcNode} ${styles.fcNodeDiamond}`}
+            animate={
+              shouldAnimate
+                ? {
+                    scale: [1, 1, 1.05, 1, 1],
+                    borderColor: [
+                      "var(--scene-accent-alt)",
+                      "var(--scene-accent-alt)",
+                      "#ffd05a",
+                      "var(--scene-accent-alt)",
+                      "var(--scene-accent-alt)",
+                    ],
+                  }
+                : { scale: 1 }
+            }
+            transition={{ ...loopT, times: [0, 0.38, 0.48, 0.58, 1] }}
+          >
+            ¿minutos &gt; 30? (45 &gt; 30 → SÍ)
+          </motion.div>
+
+          {/* Bifurcación SÍ / NO */}
+          <div className={styles.fcBranchesGrid}>
+            <motion.div
+              className={`${styles.fcBranchCard} ${styles.fcBranchYes}`}
+              animate={
+                shouldAnimate
+                  ? {
+                      scale: [1, 1, 1.05, 1, 1],
+                      borderColor: [
+                        "color-mix(in srgb, #61e6a8 35%, transparent)",
+                        "color-mix(in srgb, #61e6a8 35%, transparent)",
+                        "#61e6a8",
+                        "color-mix(in srgb, #61e6a8 35%, transparent)",
+                        "color-mix(in srgb, #61e6a8 35%, transparent)",
+                      ],
+                      opacity: [0.65, 0.65, 1, 0.75, 0.65],
+                    }
+                  : { opacity: 1 }
+              }
+              transition={{ ...loopT, times: [0, 0.48, 0.6, 0.72, 1] }}
+            >
+              <b>SÍ: calcular recargo</b>
+              <code>extra = (45 - 30) * 0.15 = 2.25</code>
+            </motion.div>
+
+            <div className={`${styles.fcBranchCard} ${styles.fcBranchNo}`}>
+              <b>NO: tarifa base plana</b>
+              <code>extra = 0.00</code>
+            </div>
           </div>
-        </motion.div>
-        <motion.div className={styles.fcArrow} animate={shouldAnimate ? { y: [0, 3, 0], opacity: [0.5, 1, 0.5] } : {}} transition={{ duration: 2, repeat: shouldAnimate ? Infinity : 0 }}>↓</motion.div>
-        <motion.div
-          className={styles.fcTerminal}
-          animate={shouldAnimate ? { opacity: [0.7, 0.7, 1, 1, 0.7], borderColor: ["rgba(255,255,255,0.08)", "rgba(255,255,255,0.08)", "#5ce2a8", "#5ce2a8", "rgba(255,255,255,0.08)"] } : {}}
-          transition={{ duration: 6, repeat: shouldAnimate ? Infinity : 0, times: [0, 0.7, 0.8, 0.92, 1] }}
-        >
-          FIN: Retornar Tarifa
-        </motion.div>
+
+          <div className={styles.fcWire}>↓</div>
+
+          {/* Nodo 4: Fin y Retorno */}
+          <motion.div
+            className={`${styles.fcNode} ${styles.fcNodePillEnd}`}
+            animate={
+              shouldAnimate
+                ? {
+                    scale: [1, 1, 1.06, 1, 1],
+                    borderColor: [
+                      "#61e6a8",
+                      "#61e6a8",
+                      "#ffffff",
+                      "#61e6a8",
+                      "#61e6a8",
+                    ],
+                  }
+                : { scale: 1 }
+            }
+            transition={{ ...loopT, times: [0, 0.72, 0.84, 0.94, 1] }}
+          >
+            FIN: total = base + extra = $7.25 ✓
+          </motion.div>
+        </div>
+      </div>
+
+      {/* Panel Derecho: Motor de Ejecución, Stepper de Código y Memoria RAM */}
+      <div className={styles.fcEnginePane}>
+        {/* Sub-panel 1: Stepper de Código en Vivo */}
+        <div className={styles.fcCodeCard}>
+          <div className={styles.fcCodeHeader}>
+            <span>PROGRAM COUNTER · STEPPER EN VIVO</span>
+            <code>tarifa.py</code>
+          </div>
+          <div className={styles.fcCodeLines}>
+            {[
+              { num: 1, code: "def calcular_tarifa(minutos: int = 45):", t: [0.04, 0.16] },
+              { num: 2, code: "    base: float = 5.00", t: [0.18, 0.28] },
+              { num: 3, code: "    extra: float = 0.00", t: [0.28, 0.38] },
+              { num: 4, code: "    if minutos > 30:  # 45 > 30 -> True", t: [0.38, 0.5] },
+              { num: 5, code: "        extra = (minutos - 30) * 0.15  # 2.25", t: [0.5, 0.65] },
+              { num: 6, code: "    total: float = base + extra  # 7.25", t: [0.65, 0.78] },
+              { num: 7, code: "    return total  # assert == 7.25 ✓", t: [0.78, 0.94] },
+            ].map((line) => {
+              const [t1, t2] = line.t;
+              return (
+                <motion.div
+                  key={line.num}
+                  className={styles.fcCodeLine}
+                  animate={
+                    shouldAnimate
+                      ? {
+                          backgroundColor: [
+                            "transparent",
+                            "transparent",
+                            "color-mix(in srgb, var(--scene-accent) 22%, transparent)",
+                            "transparent",
+                            "transparent",
+                          ],
+                          color: ["#cadff4", "#cadff4", "#ffffff", "#cadff4", "#cadff4"],
+                          x: [0, 0, 4, 0, 0],
+                        }
+                      : {}
+                  }
+                  transition={{
+                    ...loopT,
+                    times: [0, t1, (t1 + t2) / 2, t2, 1],
+                  }}
+                >
+                  <span className={styles.fcLineNum}>{line.num}</span>
+                  <code>{line.code}</code>
+                </motion.div>
+              );
+            })}
+          </div>
+        </div>
+
+        {/* Sub-panel 2: Estado de Variables en Memoria RAM */}
+        <div className={styles.fcMemoryCard}>
+          <div className={styles.fcMemoryHeader}>
+            <span>TABLA DE ESTADO (MEMORIA RAM)</span>
+            <small>Snapshot reactivo</small>
+          </div>
+          <div className={styles.fcMemGrid}>
+            <motion.div
+              className={styles.fcMemSlot}
+              animate={
+                shouldAnimate
+                  ? {
+                      borderColor: ["rgba(255,255,255,0.08)", "rgba(255,255,255,0.08)", "var(--scene-accent)", "rgba(255,255,255,0.08)"],
+                      scale: [1, 1, 1.05, 1],
+                    }
+                  : {}
+              }
+              transition={{ ...loopT, times: [0, 0.05, 0.18, 1] }}
+            >
+              <span className={styles.fcMemVar}>minutos</span>
+              <b className={styles.fcMemVal}>45</b>
+              <span className={styles.fcMemAddr}>0x10A · int</span>
+            </motion.div>
+
+            <motion.div
+              className={styles.fcMemSlot}
+              animate={
+                shouldAnimate
+                  ? {
+                      borderColor: ["rgba(255,255,255,0.08)", "rgba(255,255,255,0.08)", "var(--scene-accent)", "rgba(255,255,255,0.08)"],
+                      scale: [1, 1, 1.05, 1],
+                    }
+                  : {}
+              }
+              transition={{ ...loopT, times: [0, 0.2, 0.32, 1] }}
+            >
+              <span className={styles.fcMemVar}>base</span>
+              <b className={styles.fcMemVal}>$5.00</b>
+              <span className={styles.fcMemAddr}>0x10B · float</span>
+            </motion.div>
+
+            <motion.div
+              className={styles.fcMemSlot}
+              animate={
+                shouldAnimate
+                  ? {
+                      borderColor: ["rgba(255,255,255,0.08)", "rgba(255,255,255,0.08)", "#ffd05a", "rgba(255,255,255,0.08)"],
+                      scale: [1, 1, 1.08, 1],
+                    }
+                  : {}
+              }
+              transition={{ ...loopT, times: [0, 0.5, 0.64, 1] }}
+            >
+              <span className={styles.fcMemVar}>extra</span>
+              <b className={styles.fcMemVal}>$2.25</b>
+              <span className={styles.fcMemAddr}>0x10C · float</span>
+            </motion.div>
+
+            <motion.div
+              className={styles.fcMemSlot}
+              animate={
+                shouldAnimate
+                  ? {
+                      borderColor: ["rgba(255,255,255,0.08)", "rgba(255,255,255,0.08)", "#61e6a8", "rgba(255,255,255,0.08)"],
+                      scale: [1, 1, 1.08, 1],
+                    }
+                  : {}
+              }
+              transition={{ ...loopT, times: [0, 0.68, 0.82, 1] }}
+            >
+              <span className={styles.fcMemVar}>total</span>
+              <b className={styles.fcMemVal}>$7.25</b>
+              <span className={styles.fcMemAddr}>0x10D · float</span>
+            </motion.div>
+          </div>
+        </div>
+
+        {/* Sub-panel 3: Los 3 Pilares Fundamentales de la Programación */}
+        <div className={styles.fcPillarsBar}>
+          <motion.div
+            className={styles.fcPillar}
+            animate={
+              shouldAnimate
+                ? {
+                    borderColor: ["rgba(255,255,255,0.08)", "rgba(255,255,255,0.08)", "var(--scene-accent)", "rgba(255,255,255,0.08)"],
+                    color: ["#8da4bd", "#8da4bd", "#fff", "#8da4bd"],
+                  }
+                : {}
+            }
+            transition={{ ...loopT, times: [0, 0.1, 0.28, 1] }}
+          >
+            <span>⚡ SECUENCIA</span>
+          </motion.div>
+
+          <motion.div
+            className={styles.fcPillar}
+            animate={
+              shouldAnimate
+                ? {
+                    borderColor: ["rgba(255,255,255,0.08)", "rgba(255,255,255,0.08)", "var(--scene-accent-alt)", "rgba(255,255,255,0.08)"],
+                    color: ["#8da4bd", "#8da4bd", "#fff", "#8da4bd"],
+                  }
+                : {}
+            }
+            transition={{ ...loopT, times: [0, 0.38, 0.62, 1] }}
+          >
+            <span>🔀 SELECCIÓN</span>
+          </motion.div>
+
+          <motion.div
+            className={styles.fcPillar}
+            animate={
+              shouldAnimate
+                ? {
+                    borderColor: ["rgba(255,255,255,0.08)", "rgba(255,255,255,0.08)", "#61e6a8", "rgba(255,255,255,0.08)"],
+                    color: ["#8da4bd", "#8da4bd", "#fff", "#8da4bd"],
+                  }
+                : {}
+            }
+            transition={{ ...loopT, times: [0, 0.72, 0.92, 1] }}
+          >
+            <span>🔄 ITERACIÓN [1/3]</span>
+          </motion.div>
+        </div>
       </div>
     </div>
   );
