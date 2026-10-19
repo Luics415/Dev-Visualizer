@@ -185,6 +185,7 @@ button, input, textarea, select { font: inherit; }
   overflow: hidden;
   border: 1px solid var(--line-soft);
   border-radius: 17px;
+  scroll-margin-top: 96px;
   background:
     linear-gradient(180deg, rgba(21,29,49,.72), rgba(9,13,23,.9)),
     var(--panel);

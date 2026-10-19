@@ -4,6 +4,7 @@ import { ConceptAudioTrigger } from "@/components/audio/ConceptAudioTrigger";
 import { createStudyScene } from "@/data/atlasConceptFactory";
 import { officialReferenceKindLabels, officialReferencesForConcept } from "@/data/officialReferences";
 import { buildConceptAudioTrack, isCollectionAudioEnabled } from "@/lib/audioTrackHelper";
+import { slugify } from "@/lib/slugify";
 import type { AudioTrack } from "@/lib/audioNarrator";
 
 type ConceptCardProps = {
@@ -39,7 +40,11 @@ export function ConceptCard({
   const track = isAudioEnabled ? (audioTrack ?? buildConceptAudioTrack(collectionId, { title, description, section, family }, index)) : null;
 
   return (
-    <article className={`concept-card concept-card--${status} concept-card--${layout}`} data-family={family}>
+    <article
+      id={`concepto-${slugify(title)}`}
+      className={`concept-card concept-card--${status} concept-card--${layout}`}
+      data-family={family}
+    >
       <header className="concept-card__header">
         <h2>
           <span>{String(index).padStart(2, "0")}</span>
