@@ -2082,6 +2082,123 @@ html { scroll-padding-top: 112px; }
 .collection-picker__link em { color: var(--jinx-shell-muted); font-style: normal; }
 .collection-picker__empty { margin: 18px 0 4px; color: var(--jinx-shell-muted); text-align: center; }
 
+/* Sección de conceptos técnicos coincidentes en el selector de colecciones */
+.collection-picker__concepts {
+  margin-bottom: 16px;
+  padding: 12px;
+  border: 1px solid rgba(59, 211, 255, 0.25);
+  border-radius: 14px;
+  background: rgba(4, 9, 20, 0.65);
+}
+
+.collection-picker__concepts-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+}
+
+.collection-picker__concepts-header strong {
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: var(--cyan);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.collection-picker__concepts-header small {
+  font-size: 0.62rem;
+  color: var(--muted);
+  font-family: var(--mono);
+}
+
+.collection-picker__concepts-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 6px;
+}
+
+.collection-picker__concept-link {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  padding: 7px 10px;
+  border-radius: 9px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  background: rgba(255, 255, 255, 0.03);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.collection-picker__concept-link:hover {
+  background: rgba(59, 211, 255, 0.12);
+  border-color: rgba(59, 211, 255, 0.35);
+  transform: translateY(-1px);
+}
+
+.collection-picker__concept-main {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+}
+
+.collection-picker__concept-badge {
+  display: grid;
+  place-items: center;
+  min-width: 26px;
+  height: 22px;
+  padding: 0 4px;
+  border-radius: 5px;
+  border: 1px solid rgba(59, 211, 255, 0.3);
+  background: rgba(59, 211, 255, 0.1);
+  color: var(--cyan);
+  font-family: var(--mono);
+  font-size: 0.52rem;
+  font-weight: 700;
+}
+
+.collection-picker__concept-info {
+  display: grid;
+  min-width: 0;
+}
+
+.collection-picker__concept-info strong {
+  font-size: 0.72rem;
+  color: #fff;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.collection-picker__concept-info small {
+  font-size: 0.55rem;
+  color: var(--muted);
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.collection-picker__concept-link em {
+  font-style: normal;
+  color: var(--muted);
+  font-size: 0.75rem;
+  transition: transform 0.2s ease, color 0.2s ease;
+}
+
+.collection-picker__concept-link:hover em {
+  color: var(--cyan);
+  transform: translate(2px, -2px);
+}
+
+@media (max-width: 640px) {
+  .collection-picker__concepts-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .chapter-index {
   display: grid;
   grid-template-columns: 180px minmax(0,1fr);
