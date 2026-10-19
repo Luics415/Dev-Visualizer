@@ -28,6 +28,9 @@ export function FloatingAudioBubble({ collectionName, collectionTitle, tracks }:
     stop,
     seekChunk,
     cycleSpeed,
+    availableVoices,
+    selectedVoiceURI,
+    setVoice,
     isSupported,
   } = useAudioNarrator();
 
@@ -400,15 +403,35 @@ export function FloatingAudioBubble({ collectionName, collectionTitle, tracks }:
               </button>
             </div>
 
-            <button
-              type="button"
-              className="floating-audio-bubble__speed-btn"
-              onClick={cycleSpeed}
-              aria-label={`Velocidad de locución actual: ${speed}x. Cambiar velocidad.`}
-              title={`Velocidad: ${speed}x (Clic para cambiar)`}
-            >
-              <span>{speed}x</span>
-            </button>
+            <div className="floating-audio-bubble__actions">
+              {availableVoices.length > 1 ? (
+                <div className="floating-audio-bubble__voice-wrapper">
+                  <select
+                    className="floating-audio-bubble__voice-select"
+                    value={selectedVoiceURI ?? ""}
+                    onChange={(e) => setVoice(e.target.value)}
+                    aria-label="Seleccionar acento regional y voz de narración"
+                    title="Cambiar voz / acento"
+                  >
+                    {availableVoices.map((v) => (
+                      <option key={v.voiceURI} value={v.voiceURI}>
+                        {v.region} · {v.name.slice(0, 16)} {v.isNeural ? "✦" : ""}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              ) : null}
+
+              <button
+                type="button"
+                className="floating-audio-bubble__speed-btn"
+                onClick={cycleSpeed}
+                aria-label={`Velocidad de locución actual: ${speed}x. Cambiar velocidad.`}
+                title={`Velocidad: ${speed}x (Clic para cambiar)`}
+              >
+                <span>{speed}x</span>
+              </button>
+            </div>
           </footer>
         </div>
       )}
