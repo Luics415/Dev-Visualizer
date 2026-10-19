@@ -4,6 +4,7 @@ import { javascriptQuestions } from "./javascript";
 import { typescriptQuestions } from "./typescript";
 import { pythonQuestions } from "./python";
 import { gitQuestions } from "./git";
+import { dockerQuestions } from "./docker";
 
 // Registro extensible de bancos de preguntas explícitas
 const explicitQuestionBanks: Record<string, QuizQuestion[]> = {};
@@ -20,6 +21,7 @@ registerCollectionQuestions("javascript", javascriptQuestions);
 registerCollectionQuestions("typescript", typescriptQuestions);
 registerCollectionQuestions("python", pythonQuestions);
 registerCollectionQuestions("git", gitQuestions);
+registerCollectionQuestions("docker", dockerQuestions);
 
 /**
  * Obtiene el banco de preguntas completo para una colección.
