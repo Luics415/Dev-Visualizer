@@ -12,6 +12,14 @@ export type AudioNarratorStatus = "idle" | "speaking" | "paused";
 export const AUDIO_SPEEDS = [1, 1.25, 1.5, 0.85] as const;
 export type AudioSpeed = typeof AUDIO_SPEEDS[number];
 
+export type SpanishVoiceOption = {
+  voiceURI: string;
+  name: string;
+  lang: string;
+  region: string;
+  isNeural: boolean;
+};
+
 export type AudioNarratorSnapshot = {
   readonly activeTrack: AudioTrack | null;
   readonly status: AudioNarratorStatus;
@@ -21,6 +29,8 @@ export type AudioNarratorSnapshot = {
   readonly totalChunks: number;
   readonly chunks: readonly string[];
   readonly progress: number; // 0 a 1
+  readonly availableVoices: readonly SpanishVoiceOption[];
+  readonly selectedVoiceURI: string | null;
 };
 
 export const DEFAULT_SERVER_SNAPSHOT: AudioNarratorSnapshot = Object.freeze({
@@ -32,6 +42,8 @@ export const DEFAULT_SERVER_SNAPSHOT: AudioNarratorSnapshot = Object.freeze({
   totalChunks: 0,
   chunks: [],
   progress: 0,
+  availableVoices: [],
+  selectedVoiceURI: null,
 });
 
 type Listener = () => void;
@@ -86,6 +98,23 @@ export function splitTextIntoNarrationChunks(text: string): string[] {
 // destruya la referencia al SpeechSynthesisUtterance en reproducción activa.
 const activeUtterancesSet = new Set<SpeechSynthesisUtterance>();
 
+const VOICE_STORAGE_KEY = "dev-visualizer-narrator-voice-uri";
+
+function getVoiceRegionLabel(lang: string, name: string): string {
+  const normalizedLang = (lang || "").toLowerCase().replace(/_/g, "-");
+  if (normalizedLang.includes("mx")) return "México";
+  if (normalizedLang.includes("es")) return "España";
+  if (normalizedLang.includes("co")) return "Colombia";
+  if (normalizedLang.includes("ar")) return "Argentina";
+  if (normalizedLang.includes("cl")) return "Chile";
+  if (normalizedLang.includes("pe")) return "Perú";
+  if (normalizedLang.includes("us")) return "EE. UU.";
+  if (normalizedLang.includes("419")) return "Latinoamérica";
+  if (/mexic|méxic/i.test(name)) return "México";
+  if (/spain|españ/i.test(name)) return "España";
+  return "Español";
+}
+
 class AudioNarrator {
   private activeTrack: AudioTrack | null = null;
   private status: AudioNarratorStatus = "idle";
@@ -99,7 +128,9 @@ class AudioNarrator {
   private watchdogTimer: ReturnType<typeof setTimeout> | null = null;
   private epoch = 0;
   private voices: SpeechSynthesisVoice[] = [];
+  private availableVoices: SpanishVoiceOption[] = [];
   private selectedVoice: SpeechSynthesisVoice | null = null;
+  private selectedVoiceURI: string | null = null;
   private initialized = false;
 
   constructor() {
@@ -136,11 +167,37 @@ class AudioNarrator {
     if (typeof window === "undefined" || !this.isSupported) return;
     try {
       this.voices = window.speechSynthesis.getVoices() || [];
-      this.selectedVoice = this.pickBestSpanishVoice(this.voices);
+      const spanishVoices = this.voices.filter((v) => v.lang.toLowerCase().startsWith("es"));
+      const targetList = spanishVoices.length > 0 ? spanishVoices : this.voices.slice(0, 5);
+
+      this.availableVoices = targetList.map((v) => ({
+        voiceURI: v.voiceURI,
+        name: v.name.replace(/(Microsoft|Google|Apple)\s*/gi, "").trim() || v.name,
+        lang: v.lang,
+        region: getVoiceRegionLabel(v.lang, v.name),
+        isNeural: /(natural|neural|online|premium|enhanced|google)/i.test(v.name),
+      }));
+
+      let savedVoiceURI: string | null = null;
+      try {
+        savedVoiceURI = localStorage.getItem(VOICE_STORAGE_KEY);
+      } catch {
+        // Entornos sin acceso a localStorage
+      }
+
+      if (savedVoiceURI && this.voices.some((v) => v.voiceURI === savedVoiceURI)) {
+        this.selectedVoice = this.voices.find((v) => v.voiceURI === savedVoiceURI) ?? null;
+      } else {
+        this.selectedVoice = this.pickBestSpanishVoice(this.voices);
+      }
+
+      this.selectedVoiceURI = this.selectedVoice?.voiceURI ?? null;
       this.initialized = true;
     } catch {
       this.voices = [];
+      this.availableVoices = [];
       this.selectedVoice = null;
+      this.selectedVoiceURI = null;
     }
   }
 
@@ -183,6 +240,8 @@ class AudioNarrator {
       totalChunks: total,
       chunks: this.chunks,
       progress,
+      availableVoices: this.availableVoices,
+      selectedVoiceURI: this.selectedVoiceURI,
     });
     this.notify();
   }
@@ -433,6 +492,28 @@ class AudioNarrator {
     const currentIndex = AUDIO_SPEEDS.indexOf(this.speed);
     const nextSpeed = AUDIO_SPEEDS[(currentIndex + 1) % AUDIO_SPEEDS.length] ?? 1;
     this.setSpeed(nextSpeed);
+  }
+
+  public setVoice(voiceURI: string) {
+    if (typeof window === "undefined" || !this.ensureClientSupported()) return;
+    const target = this.voices.find((v) => v.voiceURI === voiceURI);
+    if (!target) return;
+
+    this.selectedVoice = target;
+    this.selectedVoiceURI = target.voiceURI;
+
+    try {
+      localStorage.setItem(VOICE_STORAGE_KEY, target.voiceURI);
+    } catch {
+      // ignore
+    }
+
+    if (this.status === "speaking" && this.activeTrack) {
+      this.epoch++;
+      this.speakCurrentChunk();
+    } else {
+      this.updateSnapshot();
+    }
   }
 }
 
