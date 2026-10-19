@@ -22,6 +22,7 @@ import { nosqlQuestions } from "./nosql";
 import { algorithmsQuestions } from "./algorithms";
 import { programmingFundamentalsQuestions } from "./programmingFundamentals";
 import { mathematicsQuestions } from "./mathematics";
+import { methodologiesQuestions } from "./methodologies";
 
 // Registro extensible de bancos de preguntas explícitas
 const explicitQuestionBanks: Record<string, QuizQuestion[]> = {};
@@ -56,6 +57,7 @@ registerCollectionQuestions("nosql", nosqlQuestions);
 registerCollectionQuestions("algorithms", algorithmsQuestions);
 registerCollectionQuestions("programming-fundamentals", programmingFundamentalsQuestions);
 registerCollectionQuestions("mathematics", mathematicsQuestions);
+registerCollectionQuestions("methodologies", methodologiesQuestions);
 
 /**
  * Obtiene el banco de preguntas completo para una colección.
