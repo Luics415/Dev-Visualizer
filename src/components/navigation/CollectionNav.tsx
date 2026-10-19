@@ -2,7 +2,7 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { createPortal } from "react-dom";
 import { useEffect, useMemo, useRef, useState, type CSSProperties } from "react";
 import type { ChangeEvent, ReactNode } from "react";
@@ -61,10 +61,12 @@ function PickerShell({ children, mobile = false, onClose }: PickerContentProps) 
 }
 
 export function CollectionNav() {
+  const router = useRouter();
   const pathname = usePathname();
   const normalizedPathname = normalizePathname(pathname);
   const detailsRef = useRef<HTMLDetailsElement | null>(null);
   const [query, setQuery] = useState("");
+  const [highlightedIndex, setHighlightedIndex] = useState(-1);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const readPct = useReadingProgress(); // A10
 
@@ -91,11 +93,55 @@ export function CollectionNav() {
     return searchTechnicalConcepts(query, 8);
   }, [query]);
 
+  const flatNavigableItems = useMemo(() => {
+    const items: { href: string; id: string }[] = [];
+    matchingConcepts.forEach((c) => {
+      items.push({ href: c.href, id: `concept-${c.collectionId}-${c.anchor}` });
+    });
+    visibleGroups.forEach((g) => {
+      g.links.forEach((l) => {
+        items.push({ href: l.href, id: `collection-${l.href}` });
+      });
+    });
+    return items;
+  }, [matchingConcepts, visibleGroups]);
+
   function closeMobileMenu() {
     setMobileMenuOpen(false);
     setQuery("");
+    setHighlightedIndex(-1);
     detailsRef.current?.removeAttribute("open");
   }
+
+  const handleSearchKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (flatNavigableItems.length === 0) return;
+
+    if (e.key === "ArrowDown") {
+      e.preventDefault();
+      setHighlightedIndex((prev) => (prev + 1 >= flatNavigableItems.length ? 0 : prev + 1));
+    } else if (e.key === "ArrowUp") {
+      e.preventDefault();
+      setHighlightedIndex((prev) => (prev <= 0 ? flatNavigableItems.length - 1 : prev - 1));
+    } else if (e.key === "Enter") {
+      e.preventDefault();
+      const targetItem =
+        highlightedIndex >= 0 && highlightedIndex < flatNavigableItems.length
+          ? flatNavigableItems[highlightedIndex]
+          : flatNavigableItems[0];
+      if (targetItem) {
+        closeMobileMenu();
+        router.push(targetItem.href);
+      }
+    } else if (e.key === "Escape") {
+      e.preventDefault();
+      if (query) {
+        setQuery("");
+        setHighlightedIndex(-1);
+      } else {
+        closeMobileMenu();
+      }
+    }
+  };
 
   useEffect(() => {
     detailsRef.current?.removeAttribute("open");
@@ -177,8 +223,17 @@ export function CollectionNav() {
         <input
           type="search"
           value={query}
-          onChange={(event: ChangeEvent<HTMLInputElement>) => setQuery(event.target.value)}
+          onChange={(event: ChangeEvent<HTMLInputElement>) => {
+            setQuery(event.target.value);
+            setHighlightedIndex(-1);
+          }}
+          onKeyDown={handleSearchKeyDown}
           placeholder="Colección o concepto (ej. Closures, useEffect, Docker...)"
+          aria-activedescendant={
+            highlightedIndex >= 0 && highlightedIndex < flatNavigableItems.length
+              ? flatNavigableItems[highlightedIndex]?.id
+              : undefined
+          }
         />
       </label>
 
@@ -195,60 +250,72 @@ export function CollectionNav() {
             <small>{matchingConcepts.length} resultado{matchingConcepts.length === 1 ? "" : "s"}</small>
           </header>
           <div className="collection-picker__concepts-grid">
-            {matchingConcepts.map((item) => (
-              <Link
-                key={`${item.collectionId}-${item.anchor}`}
-                href={item.href}
-                className="collection-picker__concept-link"
-                onClick={closeMobileMenu}
-                title={`Ir a ${item.title} en ${item.collectionLabel}`}
-              >
-                <div className="collection-picker__concept-main">
-                  <span className="collection-picker__concept-badge" data-theme={item.theme}>
-                    {item.collectionShort}
-                  </span>
-                  <div className="collection-picker__concept-info">
-                    <strong>{item.title}</strong>
-                    <small>{item.collectionLabel} · {item.section}</small>
+            {matchingConcepts.map((item, idx) => {
+              const isHighlighted = highlightedIndex === idx;
+              return (
+                <Link
+                  key={`${item.collectionId}-${item.anchor}`}
+                  id={`concept-${item.collectionId}-${item.anchor}`}
+                  href={item.href}
+                  className={`collection-picker__concept-link${isHighlighted ? " collection-picker__concept-link--highlighted" : ""}`}
+                  onClick={closeMobileMenu}
+                  title={`Ir a ${item.title} en ${item.collectionLabel}`}
+                  aria-selected={isHighlighted ? "true" : undefined}
+                >
+                  <div className="collection-picker__concept-main">
+                    <span className="collection-picker__concept-badge" data-theme={item.theme}>
+                      {item.collectionShort}
+                    </span>
+                    <div className="collection-picker__concept-info">
+                      <strong>{item.title}</strong>
+                      <small>{item.collectionLabel} · {item.section}</small>
+                    </div>
                   </div>
-                </div>
-                <em>↗</em>
-              </Link>
-            ))}
+                  <em>↗</em>
+                </Link>
+              );
+            })}
           </div>
         </section>
       ) : null}
 
       <div className="collection-picker__groups">
-        {visibleGroups.map((group) => (
-          <section key={group.name}>
-            <header>
-              <strong>{group.name}</strong>
-              <span>{group.description}</span>
-            </header>
-            <div>
-              {group.links.map((link) => {
-                const isActive = normalizedPathname === normalizePathname(link.href);
-                return (
-                  <Link
-                    className={isActive ? "collection-picker__link collection-picker__link--active" : "collection-picker__link"}
-                    href={link.href}
-                    key={link.href}
-                    aria-current={isActive ? "page" : undefined}
-                    onClick={closeMobileMenu}
-                  >
-                    <span>{link.short}</span>
-                    <div>
-                      <strong>{link.label}</strong>
-                      <small>{link.kind}{link.lifecycle !== "actual" ? ` · ${link.lifecycle}` : ""}</small>
-                    </div>
-                    <em>↗</em>
-                  </Link>
-                );
-              })}
-            </div>
-          </section>
-        ))}
+        {(() => {
+          let linkCounter = matchingConcepts.length;
+          return visibleGroups.map((group) => (
+            <section key={group.name}>
+              <header>
+                <strong>{group.name}</strong>
+                <span>{group.description}</span>
+              </header>
+              <div>
+                {group.links.map((link) => {
+                  const itemIndex = linkCounter++;
+                  const isHighlighted = highlightedIndex === itemIndex;
+                  const isActive = normalizedPathname === normalizePathname(link.href);
+                  return (
+                    <Link
+                      id={`collection-${link.href}`}
+                      className={`collection-picker__link${isActive ? " collection-picker__link--active" : ""}${isHighlighted ? " collection-picker__link--highlighted" : ""}`}
+                      href={link.href}
+                      key={link.href}
+                      aria-current={isActive ? "page" : undefined}
+                      aria-selected={isHighlighted ? "true" : undefined}
+                      onClick={closeMobileMenu}
+                    >
+                      <span>{link.short}</span>
+                      <div>
+                        <strong>{link.label}</strong>
+                        <small>{link.kind}{link.lifecycle !== "actual" ? ` · ${link.lifecycle}` : ""}</small>
+                      </div>
+                      <em>↗</em>
+                    </Link>
+                  );
+                })}
+              </div>
+            </section>
+          ));
+        })()}
       </div>
 
       {visibleGroups.length === 0 && matchingConcepts.length === 0 ? (
@@ -313,7 +380,10 @@ export function CollectionNav() {
         className="collection-picker collection-picker--desktop"
         ref={detailsRef}
         onToggle={(event) => {
-          if (!event.currentTarget.open) setQuery("");
+          if (!event.currentTarget.open) {
+            setQuery("");
+            setHighlightedIndex(-1);
+          }
         }}
       >
         <summary>
