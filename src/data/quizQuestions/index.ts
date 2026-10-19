@@ -8,6 +8,7 @@ import { dockerQuestions } from "./docker";
 import { reactQuestions } from "./react";
 import { cQuestions } from "./c";
 import { cppQuestions } from "./cpp";
+import { cSharpQuestions } from "./cSharp";
 
 // Registro extensible de bancos de preguntas explícitas
 const explicitQuestionBanks: Record<string, QuizQuestion[]> = {};
@@ -28,6 +29,7 @@ registerCollectionQuestions("docker", dockerQuestions);
 registerCollectionQuestions("react", reactQuestions);
 registerCollectionQuestions("c", cQuestions);
 registerCollectionQuestions("cpp", cppQuestions);
+registerCollectionQuestions("c-sharp", cSharpQuestions);
 
 /**
  * Obtiene el banco de preguntas completo para una colección.
