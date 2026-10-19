@@ -88,6 +88,7 @@ export function saveQuizBadge(badge: QuizBadge): void {
     if (!prev || badge.score >= prev.score) {
       badges[badge.collectionId] = badge;
       localStorage.setItem(QUIZ_STORAGE_KEY, JSON.stringify(badges));
+      window.dispatchEvent(new Event("storage"));
     }
   } catch {
     // Almacenamiento local bloqueado o cuota excedida
