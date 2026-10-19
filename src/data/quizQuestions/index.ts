@@ -31,6 +31,7 @@ import { awsQuestions } from "./aws";
 import { ciCdQuestions } from "./ciCd";
 import { deploymentQuestions } from "./deployment";
 import { nginxQuestions } from "./nginx";
+import { firebaseQuestions } from "./firebase";
 
 // Registro extensible de bancos de preguntas explícitas
 const explicitQuestionBanks: Record<string, QuizQuestion[]> = {};
@@ -74,6 +75,7 @@ registerCollectionQuestions("aws", awsQuestions);
 registerCollectionQuestions("ci-cd", ciCdQuestions);
 registerCollectionQuestions("deployment", deploymentQuestions);
 registerCollectionQuestions("nginx", nginxQuestions);
+registerCollectionQuestions("firebase", firebaseQuestions);
 
 /**
  * Obtiene el banco de preguntas completo para una colección.
