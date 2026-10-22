@@ -9,7 +9,6 @@ on:
 permissions:
   contents: read
   issues: write
-  projects: write
 
 jobs:
   audit-and-plan:
@@ -51,6 +50,7 @@ jobs:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         shell: bash
         run: |
+          gh label create mantenimiento --color 0E8A16 --description "Auditorías y mantenimiento" 2>/dev/null || true
           gh issue create \
             --title "Auditoría de mantenimiento y planificación: $(date +'%Y-%m-%d')" \
             --body-file .reports/audit.md \

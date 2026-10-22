@@ -1,9 +1,29 @@
 # Skill: Verificar
 
-- **Tarea:** define el plan de validación funcional y de interfaz.
-- **Alcance:**
-  1. Casos de prueba paso a paso para validación manual en navegador.
-  2. Especificación de pruebas de regresión visual o flujos de usuario, incluidos happy path y edge cases.
-  3. Comportamiento esperado en DevTools: inspección de red, errores de consola y payloads de API.
-- **Entregable:** checklist reproducible con resultado esperado y evidencia requerida para cada caso.
+## Propósito
 
+Definir y ejecutar la evidencia de que una tarea cumple sus contratos sin degradar UX, accesibilidad ni exportación estática.
+
+## Procedimiento
+
+1. Lee `README.md`, `docs/`, el plan aprobado y los scripts disponibles en `package.json`.
+2. Ejecuta la prueba mínima que cubra el cambio; usa `npm run check` cuando el alcance sea transversal.
+3. Define casos happy path, edge cases, regresión visual, responsive, teclado, tacto y movimiento reducido cuando correspondan.
+4. Inspecciona consola, red, rutas, payloads y errores visibles en DevTools.
+5. Registra comando exacto, resultado, evidencia y cualquier limitación.
+
+## Entregable
+
+Checklist reproducible con:
+
+- Caso y precondiciones.
+- Pasos.
+- Resultado esperado.
+- Resultado observado.
+- Evidencia.
+- Estado: `Pasó`, `Falló`, `Bloqueado` o `No aplica`.
+
+## Restricciones
+
+- No edites código fuente durante la verificación.
+- No declares aprobado un caso que no se haya ejecutado o cuya evidencia falte.
