@@ -194,6 +194,7 @@ Las 30 rutas especializadas originales se conservan. Los índices del cliente re
 Más contexto:
 
 - [Arquitectura](docs/ARCHITECTURE.md)
+- [Arquitectura del orquestador maestro](docs/ARQUITECTURA_ORQUESTADOR.md)
 - [Guía editorial](docs/CONTENT_GUIDE.md)
 - [Política de Librería profesional](docs/LIBRARY_POLICY.md)
 - [Sistema visual](docs/VISUAL_SYSTEM.md)
