@@ -2328,6 +2328,33 @@ html { scroll-padding-top: 112px; }
 .practical-deep-dive__intro h2 { margin: 7px 0 8px; color: var(--jinx-shell-text); font-size: clamp(1.4rem,3vw,2.2rem); letter-spacing: -.035em; }
 .practical-deep-dive__intro p { margin: 0; color: var(--jinx-shell-muted); font-size: .78rem; line-height: 1.65; }
 .practical-deep-dive__grid { display: grid; grid-template-columns: repeat(2, minmax(0,1fr)); gap: 11px; }
+
+.practical-module--audio-active {
+  border-color: rgba(59, 211, 255, 0.7) !important;
+  box-shadow: 0 0 24px rgba(59, 211, 255, 0.22), inset 0 0 16px rgba(59, 211, 255, 0.08) !important;
+  transform: translateY(-2px);
+}
+.practical-module__audio-live-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  margin-left: 8px;
+  padding: 1px 7px;
+  border-radius: 999px;
+  background: rgba(59, 211, 255, 0.16);
+  border: 1px solid rgba(59, 211, 255, 0.45);
+  color: var(--cyan);
+  font-family: var(--mono);
+  font-size: 0.45rem;
+  font-weight: 800;
+  vertical-align: middle;
+  animation: audio-pill-pulse 1.8s infinite ease-in-out;
+}
+@keyframes audio-pill-pulse {
+  0%, 100% { opacity: 0.8; transform: scale(1); }
+  50% { opacity: 1; transform: scale(1.05); }
+}
+
 .practical-module {
   position: relative;
   min-height: 350px;

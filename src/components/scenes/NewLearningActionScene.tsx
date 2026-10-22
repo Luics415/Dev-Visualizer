@@ -1304,67 +1304,253 @@ function LispBody({ shouldAnimate }: BodyProps) {
   );
 }
 
-/* 18. Algorithms: Búsqueda de caminos A* en grafo con cola de prioridad */
+/* 18. Algorithms: Búsqueda A* en grafo, live stepper, priority queue y complejidad */
 function AlgorithmsBody({ shouldAnimate }: BodyProps) {
+  const loopT = { duration: 8.0, repeat: shouldAnimate ? Infinity : 0, ease: "linear" as const };
+
   return (
     <div className={styles.algorithmsLayout}>
-      <div className={styles.algorithmsGraph}>
+      {/* Panel Izquierdo: Grafo de Búsqueda A* con Exploración de Nodos */}
+      <div className={styles.algorithmsGraphPane}>
         <div className={styles.algorithmsHeader}>
           <span>BÚSQUEDA A* (A-STAR PATHFINDING)</span>
           <code>f(n) = g(n) + h(n)</code>
         </div>
-        <svg viewBox="0 0 400 160" className={styles.algorithmsSvg}>
-          <line x1="50" y1="80" x2="140" y2="40" stroke="#243957" strokeWidth="2" />
-          <line x1="50" y1="80" x2="140" y2="120" stroke="#243957" strokeWidth="2" />
+
+        <svg viewBox="0 0 380 200" className={styles.algorithmsSvg}>
+          {/* Aristas secundarias/descartadas */}
+          <line x1="50" y1="100" x2="140" y2="160" stroke="#1d2d44" strokeWidth="2" strokeDasharray="4 3" />
+          <line x1="140" y1="160" x2="250" y2="160" stroke="#1d2d44" strokeWidth="2" strokeDasharray="4 3" />
+          <line x1="140" y1="50" x2="250" y2="160" stroke="#1d2d44" strokeWidth="2" strokeDasharray="4 3" />
+          <line x1="250" y1="160" x2="340" y2="100" stroke="#1d2d44" strokeWidth="2" strokeDasharray="4 3" />
+
+          {/* Pesos de aristas */}
+          <text x="85" y="140" fill="#4f6d8a" fontSize="8" fontFamily="monospace">w=6</text>
+          <text x="88" y="66" fill="#4f6d8a" fontSize="8" fontFamily="monospace">w=4</text>
+          <text x="195" y="42" fill="#4f6d8a" fontSize="8" fontFamily="monospace">w=5</text>
+          <text x="300" y="68" fill="#4f6d8a" fontSize="8" fontFamily="monospace">w=8</text>
+
+          {/* Camino Óptimo A -> C -> E -> F */}
+          <motion.line
+            x1="50"
+            y1="100"
+            x2="140"
+            y2="50"
+            stroke="#61e6a8"
+            strokeWidth="3"
+            animate={shouldAnimate ? { strokeOpacity: [0.35, 1, 1, 0.35] } : { strokeOpacity: 0.8 }}
+            transition={{ ...loopT, times: [0, 0.15, 0.85, 1] }}
+          />
           <motion.line
             x1="140"
-            y1="40"
-            x2="260"
-            y2="40"
+            y1="50"
+            x2="250"
+            y2="50"
             stroke="#61e6a8"
             strokeWidth="3"
-            animate={shouldAnimate ? { strokeOpacity: [0.5, 1, 0.5] } : {}}
-            transition={{ duration: 3, repeat: shouldAnimate ? Infinity : 0 }}
+            animate={shouldAnimate ? { strokeOpacity: [0.35, 0.35, 1, 1, 0.35] } : { strokeOpacity: 0.8 }}
+            transition={{ ...loopT, times: [0, 0.28, 0.55, 0.88, 1] }}
           />
-          <line x1="140" y1="120" x2="260" y2="120" stroke="#243957" strokeWidth="2" />
           <motion.line
-            x1="260"
-            y1="40"
-            x2="350"
-            y2="80"
+            x1="250"
+            y1="50"
+            x2="340"
+            y2="100"
             stroke="#61e6a8"
             strokeWidth="3"
-            animate={shouldAnimate ? { strokeOpacity: [0.5, 1, 0.5] } : {}}
-            transition={{ duration: 3, repeat: shouldAnimate ? Infinity : 0 }}
+            animate={shouldAnimate ? { strokeOpacity: [0.35, 0.35, 1, 1, 0.35] } : { strokeOpacity: 0.8 }}
+            transition={{ ...loopT, times: [0, 0.52, 0.78, 0.92, 1] }}
           />
-          <line x1="260" y1="120" x2="350" y2="80" stroke="#243957" strokeWidth="2" />
-          <circle cx="50" cy="80" r="14" fill="#49d7ff" />
-          <text x="50" y="84" textAnchor="middle" fill="#04111f" fontSize="10" fontWeight="bold">A</text>
-          <circle cx="140" cy="40" r="14" fill="#61e6a8" />
-          <text x="140" y="44" textAnchor="middle" fill="#04111f" fontSize="10" fontWeight="bold">C</text>
-          <circle cx="140" cy="120" r="14" fill="#243957" />
-          <text x="140" y="124" textAnchor="middle" fill="#eef8ff" fontSize="10" fontWeight="bold">B</text>
-          <circle cx="260" cy="40" r="14" fill="#61e6a8" />
-          <text x="260" y="44" textAnchor="middle" fill="#04111f" fontSize="10" fontWeight="bold">E</text>
-          <circle cx="260" cy="120" r="14" fill="#243957" />
-          <text x="260" y="124" textAnchor="middle" fill="#eef8ff" fontSize="10" fontWeight="bold">D</text>
-          <circle cx="350" cy="80" r="14" fill="#ffd05a" />
-          <text x="350" y="84" textAnchor="middle" fill="#04111f" fontSize="10" fontWeight="bold">F</text>
+
+          {/* Chispa de exploración activa */}
           <motion.circle
             r="6"
             fill="#ffffff"
-            animate={shouldAnimate ? { cx: [50, 50, 140, 260, 350, 350, 50], cy: [80, 80, 40, 40, 80, 80, 80], opacity: [0, 1, 1, 1, 1, 0, 0] } : { cx: 350, cy: 80, opacity: 1 }}
-            transition={{ duration: 6, repeat: shouldAnimate ? Infinity : 0, times: [0, 0.08, 0.32, 0.6, 0.85, 0.94, 1] }}
+            filter="drop-shadow(0 0 8px #61e6a8)"
+            animate={
+              shouldAnimate
+                ? {
+                    cx: [50, 50, 140, 250, 340, 340, 50],
+                    cy: [100, 100, 50, 50, 100, 100, 100],
+                    opacity: [0, 1, 1, 1, 1, 0, 0],
+                  }
+                : { cx: 340, cy: 100, opacity: 1 }
+            }
+            transition={{ ...loopT, times: [0, 0.06, 0.30, 0.58, 0.86, 0.94, 1] }}
           />
+
+          {/* Nodo A: Inicio */}
+          <circle cx="50" cy="100" r="16" fill="#041830" stroke="#49d7ff" strokeWidth="2.5" />
+          <text x="50" y="104" textAnchor="middle" fill="#49d7ff" fontSize="11" fontWeight="bold">A</text>
+          <text x="50" y="128" textAnchor="middle" fill="#8da4bd" fontSize="8" fontFamily="monospace">g=0</text>
+
+          {/* Nodo C: Menor f(n) en Open Set */}
+          <motion.circle
+            cx="140"
+            cy="50"
+            r="16"
+            fill="#05241b"
+            stroke="#61e6a8"
+            strokeWidth="2.5"
+            animate={shouldAnimate ? { scale: [1, 1, 1.12, 1, 1] } : { scale: 1 }}
+            transition={{ ...loopT, times: [0, 0.24, 0.34, 0.46, 1] }}
+          />
+          <text x="140" y="54" textAnchor="middle" fill="#61e6a8" fontSize="11" fontWeight="bold">C</text>
+          <text x="140" y="28" textAnchor="middle" fill="#61e6a8" fontSize="8" fontFamily="monospace">f=7 ✓</text>
+
+          {/* Nodo B: Poda / Subóptimo */}
+          <circle cx="140" cy="160" r="14" fill="#0a1626" stroke="#243957" strokeWidth="1.5" />
+          <text x="140" y="164" textAnchor="middle" fill="#627d98" fontSize="10" fontWeight="bold">B</text>
+          <text x="140" y="186" textAnchor="middle" fill="#486581" fontSize="8" fontFamily="monospace">f=11</text>
+
+          {/* Nodo E: Expansión óptima */}
+          <motion.circle
+            cx="250"
+            cy="50"
+            r="16"
+            fill="#05241b"
+            stroke="#61e6a8"
+            strokeWidth="2.5"
+            animate={shouldAnimate ? { scale: [1, 1, 1.12, 1, 1] } : { scale: 1 }}
+            transition={{ ...loopT, times: [0, 0.52, 0.62, 0.74, 1] }}
+          />
+          <text x="250" y="54" textAnchor="middle" fill="#61e6a8" fontSize="11" fontWeight="bold">E</text>
+          <text x="250" y="28" textAnchor="middle" fill="#61e6a8" fontSize="8" fontFamily="monospace">f=11 ✓</text>
+
+          {/* Nodo D: Subóptimo */}
+          <circle cx="250" cy="160" r="14" fill="#0a1626" stroke="#243957" strokeWidth="1.5" />
+          <text x="250" y="164" textAnchor="middle" fill="#627d98" fontSize="10" fontWeight="bold">D</text>
+          <text x="250" y="186" textAnchor="middle" fill="#486581" fontSize="8" fontFamily="monospace">f=18</text>
+
+          {/* Nodo F: Meta / Objetivo */}
+          <motion.circle
+            cx="340"
+            cy="100"
+            r="17"
+            fill="#261b05"
+            stroke="#ffd05a"
+            strokeWidth="2.5"
+            animate={shouldAnimate ? { scale: [1, 1, 1.15, 1, 1] } : { scale: 1 }}
+            transition={{ ...loopT, times: [0, 0.78, 0.88, 0.96, 1] }}
+          />
+          <text x="340" y="104" textAnchor="middle" fill="#ffd05a" fontSize="11" fontWeight="bold">F</text>
+          <text x="340" y="130" textAnchor="middle" fill="#ffd05a" fontSize="8" fontFamily="monospace">META 17 ✓</text>
         </svg>
+
+        <div className={styles.algorithmsLegend}>
+          <span><b style={{ color: "#49d7ff" }}>●</b> Inicio / Frontera</span>
+          <span><b style={{ color: "#61e6a8" }}>●</b> Min-Heap Pop (Costo Mínimo)</span>
+          <span><b style={{ color: "#ffd05a" }}>●</b> Meta Óptima</span>
+          <span><b style={{ color: "#486581" }}>●</b> Poda</span>
+        </div>
       </div>
-      <motion.div
-        className={styles.algorithmsQueue}
-        animate={shouldAnimate ? { opacity: [0.8, 1, 0.8] } : {}}
-        transition={{ duration: 3, repeat: shouldAnimate ? Infinity : 0 }}
-      >
-        <span>OPEN SET: [C (f=7), B (f=11)] ➔ RUTA ÓPTIMA: A➔C➔E➔F (Costo: 17)</span>
-      </motion.div>
+
+      {/* Panel Derecho: Live Stepper, Cola de Prioridad y Complejidad */}
+      <div className={styles.algorithmsEnginePane}>
+        {/* Stepper de Código en Vivo */}
+        <div className={styles.algorithmsCodeCard}>
+          <div className={styles.algorithmsCodeHeader}>
+            <span>PROGRAM COUNTER · STEPPER EN VIVO</span>
+            <code>a_star.py</code>
+          </div>
+          <div className={styles.algorithmsCodeLines}>
+            {[
+              { num: 1, code: "def a_star(grafo, inicio='A', meta='F'):", phase: [0, 0.05, 0.12] },
+              { num: 2, code: "    open_set = PriorityQueue()  # min-heap", phase: [0.12, 0.18, 0.25] },
+              { num: 3, code: "    open_set.push(inicio, f=h(inicio))", phase: [0.25, 0.32, 0.40] },
+              { num: 4, code: "    while not open_set.is_empty():", phase: [0.40, 0.46, 0.54] },
+              { num: 5, code: "        nodo = open_set.pop_min()  # extrae C (f=7)", phase: [0.54, 0.62, 0.72] },
+              { num: 6, code: "        if nodo == meta: return reconstruir_ruta()", phase: [0.72, 0.82, 0.90] },
+              { num: 7, code: "        for v, w in grafo.vecinos(nodo): expandir()", phase: [0.90, 0.96, 1.0] },
+            ].map((line) => (
+              <motion.div
+                key={line.num}
+                className={styles.algorithmsCodeLine}
+                animate={
+                  shouldAnimate
+                    ? {
+                        backgroundColor: [
+                          "transparent",
+                          "transparent",
+                          "rgba(97, 230, 168, 0.16)",
+                          "transparent",
+                          "transparent",
+                        ],
+                        color: ["#9cb2c9", "#9cb2c9", "#eef8ff", "#9cb2c9", "#9cb2c9"],
+                      }
+                    : { backgroundColor: "transparent", color: "#9cb2c9" }
+                }
+                transition={{
+                  ...loopT,
+                  times: [0, line.phase[0], line.phase[1], line.phase[2], 1],
+                }}
+              >
+                <span className={styles.algorithmsLineNum}>{line.num}</span>
+                <code>{line.code}</code>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Monitor de Cola de Prioridad / Min-Heap */}
+        <div className={styles.algorithmsHeapCard}>
+          <div className={styles.algorithmsHeapHeader}>
+            <span>OPEN SET (MIN-HEAP PRIORITY QUEUE)</span>
+            <small>Ordenado por f(n) = g + h</small>
+          </div>
+          <div className={styles.algorithmsHeapGrid}>
+            {[
+              { node: "Nodo A", score: "f = 14", status: "g=0 · h=14", t: [0.08, 0.22] },
+              { node: "Nodo C", score: "f = 7", status: "pop_min ✓", t: [0.26, 0.48] },
+              { node: "Nodo E", score: "f = 11", status: "g=9 · h=2", t: [0.52, 0.74] },
+              { node: "Nodo F", score: "f = 17", status: "meta óptima", t: [0.78, 0.96] },
+            ].map((slot, idx) => (
+              <motion.div
+                key={idx}
+                className={styles.algorithmsHeapSlot}
+                animate={
+                  shouldAnimate
+                    ? {
+                        borderColor: [
+                          "rgba(255,255,255,0.08)",
+                          "rgba(255,255,255,0.08)",
+                          "#61e6a8",
+                          "rgba(255,255,255,0.08)",
+                          "rgba(255,255,255,0.08)",
+                        ],
+                        backgroundColor: [
+                          "rgba(255,255,255,0.03)",
+                          "rgba(255,255,255,0.03)",
+                          "rgba(97, 230, 168, 0.12)",
+                          "rgba(255,255,255,0.03)",
+                          "rgba(255,255,255,0.03)",
+                        ],
+                      }
+                    : { borderColor: "rgba(255,255,255,0.08)" }
+                }
+                transition={{ ...loopT, times: [0, slot.t[0], (slot.t[0] + slot.t[1]) / 2, slot.t[1], 1] }}
+              >
+                <span className={styles.algorithmsSlotNode}>{slot.node}</span>
+                <b className={styles.algorithmsSlotScore}>{slot.score}</b>
+                <span className={styles.algorithmsSlotStatus}>{slot.status}</span>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Pilares de Complejidad Asintótica */}
+        <div className={styles.algorithmsComplexityBar}>
+          <div className={styles.algorithmsComplexityPill}>
+            <span>⚡ TIEMPO: O((V + E) log V)</span>
+          </div>
+          <div className={styles.algorithmsComplexityPill}>
+            <span>💾 ESPACIO: O(V) EN HEAP</span>
+          </div>
+          <div className={styles.algorithmsComplexityPill}>
+            <span>🎯 HEURÍSTICA ADMISIBLE</span>
+          </div>
+        </div>
+      </div>
     </div>
   );
 }
@@ -1467,38 +1653,180 @@ function RBody({ shouldAnimate }: BodyProps) {
   );
 }
 
-/* 21. Mathematics: Superficie de gradiente y trayectoria de descenso de valle */
+/* 21. Mathematics: Superficie de gradiente, descenso de valle, stepper y telemetría */
 function MathematicsBody({ shouldAnimate }: BodyProps) {
+  const loopT = { duration: 8.0, repeat: shouldAnimate ? Infinity : 0, ease: "linear" as const };
+
   return (
     <div className={styles.mathLayout}>
-      <div className={styles.mathContour}>
+      {/* Panel Izquierdo: Campo de Contorno Topográfico y Descenso */}
+      <div className={styles.mathContourPane}>
         <div className={styles.mathHeader}>
-          <span>SUPERFICIE DE GRADIENTE &amp; DESCENSO DE VALLE</span>
-          <code>θ(t+1) = θ(t) - α∇f(θ(t))</code>
+          <span>SUPERFICIE DE GRADIENTE & DESCENSO DE VALLE</span>
+          <code>θ(t+1) = θ(t) - α · ∇f(θ(t))</code>
         </div>
-        <div className={styles.mathGrid}>
-          {Array.from({ length: 36 }).map((_, i) => {
-            const t0 = (i * 0.02) % 0.6;
-            return (
-              <motion.div
-                key={i}
-                className={styles.mathCell}
-                animate={shouldAnimate ? { opacity: [.3 + (i % 5) * 0.1, .3 + (i % 5) * 0.1, .8, .8, .3 + (i % 5) * 0.1] } : { opacity: .5 }}
-                transition={{ duration: 4, repeat: shouldAnimate ? Infinity : 0, times: [0, t0, t0 + 0.15, Math.min(0.9, t0 + 0.35), 1] }}
-              />
-            );
-          })}
-          <motion.div
-            className={styles.mathBall}
-            animate={shouldAnimate ? { x: [10, 120, 220, 120, 10], y: [10, 50, 80, 50, 10] } : { x: 220, y: 80 }}
-            transition={{ duration: 6, repeat: shouldAnimate ? Infinity : 0, ease: "easeInOut" }}
+
+        <svg viewBox="0 0 380 200" className={styles.mathSvg}>
+          {/* Curvas de nivel elípticas (Curvas de equipotencial) */}
+          <ellipse cx="190" cy="100" rx="160" ry="85" fill="none" stroke="rgba(59, 211, 255, 0.2)" strokeWidth="1.5" strokeDasharray="6 4" />
+          <ellipse cx="190" cy="100" rx="115" ry="60" fill="none" stroke="rgba(59, 211, 255, 0.35)" strokeWidth="1.5" />
+          <ellipse cx="190" cy="100" rx="65" ry="34" fill="rgba(97, 230, 168, 0.05)" stroke="rgba(97, 230, 168, 0.55)" strokeWidth="1.8" />
+          <ellipse cx="190" cy="100" rx="22" ry="12" fill="rgba(97, 230, 168, 0.15)" stroke="#61e6a8" strokeWidth="2" />
+
+          {/* Trayectoria de descenso hacia el mínimo global */}
+          <path
+            d="M 50 45 Q 100 80 145 92 T 190 100"
+            fill="none"
+            stroke="rgba(255, 208, 90, 0.5)"
+            strokeWidth="2"
+            strokeDasharray="4 3"
+          />
+
+          {/* Marcador del Mínimo Óptimo en el centro */}
+          <circle cx="190" cy="100" r="4" fill="#ffd05a" />
+          <text x="190" y="122" textAnchor="middle" fill="#ffd05a" fontSize="9" fontFamily="monospace" fontWeight="bold">
+            θ* (MÍNIMO GLOBAL)
+          </text>
+
+          {/* Partícula rodante de descenso con vector de gradiente */}
+          <motion.g
+            animate={
+              shouldAnimate
+                ? {
+                    transform: [
+                      "translate(50px, 45px)",
+                      "translate(50px, 45px)",
+                      "translate(100px, 75px)",
+                      "translate(145px, 92px)",
+                      "translate(190px, 100px)",
+                      "translate(190px, 100px)",
+                      "translate(50px, 45px)",
+                    ],
+                  }
+                : { transform: "translate(190px, 100px)" }
+            }
+            transition={{ ...loopT, times: [0, 0.06, 0.32, 0.60, 0.86, 0.94, 1] }}
           >
-            ∇f
-          </motion.div>
+            <circle cx="0" cy="0" r="9" fill="#ffffff" filter="drop-shadow(0 0 10px #49d7ff)" />
+            <line x1="0" y1="0" x2="16" y2="8" stroke="#ff718e" strokeWidth="2.5" />
+            <polygon points="16,8 11,4 12,10" fill="#ff718e" />
+          </motion.g>
+
+          <text x="35" y="30" fill="#49d7ff" fontSize="9" fontFamily="monospace">θ₀ (Cresta inicial)</text>
+          <text x="280" y="175" fill="#8da4bd" fontSize="8" fontFamily="monospace">∇f = [∂f/∂θ₁, ∂f/∂θ₂]ᵀ</text>
+        </svg>
+
+        <div className={styles.mathContourFooter}>
+          <span>● Estado: θ(t) converge al mínimo</span>
+          <span>● Tolerancia: ||∇f|| &lt; 10⁻⁶ alcanzada en t=42</span>
         </div>
       </div>
-      <div className={styles.mathConvergence}>
-        <span>Tolerancia de convergencia alcanzada: |Δf| &lt; 10⁻⁶ en 42 iteraciones</span>
+
+      {/* Panel Derecho: Stepper, Telemetría Numérica y Principios */}
+      <div className={styles.mathEnginePane}>
+        {/* Stepper de Código Numérico */}
+        <div className={styles.mathCodeCard}>
+          <div className={styles.mathCodeHeader}>
+            <span>ALGORITMO NUMÉRICO · STEPPER EN VIVO</span>
+            <code>gradiente.py</code>
+          </div>
+          <div className={styles.mathCodeLines}>
+            {[
+              { num: 1, code: "def descenso_gradiente(x0, lr=0.01, tol=1e-6):", phase: [0, 0.05, 0.12] },
+              { num: 2, code: "    theta = x0  # punto inicial en la cresta", phase: [0.12, 0.18, 0.25] },
+              { num: 3, code: "    for paso in range(max_iter):", phase: [0.25, 0.32, 0.40] },
+              { num: 4, code: "        grad = calcular_gradiente(theta)", phase: [0.40, 0.48, 0.58] },
+              { num: 5, code: "        theta = theta - lr * grad  # paso adaptativo", phase: [0.58, 0.68, 0.78] },
+              { num: 6, code: "        if np.linalg.norm(grad) < tol: break", phase: [0.78, 0.86, 0.92] },
+              { num: 7, code: "    return theta  # mínimo local alcanzado ✓", phase: [0.92, 0.96, 1.0] },
+            ].map((line) => (
+              <motion.div
+                key={line.num}
+                className={styles.mathCodeLine}
+                animate={
+                  shouldAnimate
+                    ? {
+                        backgroundColor: [
+                          "transparent",
+                          "transparent",
+                          "rgba(59, 211, 255, 0.16)",
+                          "transparent",
+                          "transparent",
+                        ],
+                        color: ["#9cb2c9", "#9cb2c9", "#eef8ff", "#9cb2c9", "#9cb2c9"],
+                      }
+                    : { backgroundColor: "transparent", color: "#9cb2c9" }
+                }
+                transition={{
+                  ...loopT,
+                  times: [0, line.phase[0], line.phase[1], line.phase[2], 1],
+                }}
+              >
+                <span className={styles.mathLineNum}>{line.num}</span>
+                <code>{line.code}</code>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Telemetría de Optimización Numérica */}
+        <div className={styles.mathTelemetryCard}>
+          <div className={styles.mathTelemetryHeader}>
+            <span>TELEMETRÍA DE CONVERGENCIA NUMÉRICA</span>
+            <small>Snapshot reactivo</small>
+          </div>
+          <div className={styles.mathTelemetryGrid}>
+            {[
+              { label: "Iteración", val: "t = 42", unit: "convergencia", t: [0.08, 0.22] },
+              { label: "Norma ∇f", val: "3.2 × 10⁻⁷", unit: "||grad|| < tol", t: [0.26, 0.48] },
+              { label: "Tasa Paso α", val: "0.010", unit: "learning rate", t: [0.52, 0.74] },
+              { label: "Coste J(θ)", val: "0.00014", unit: "mínimo global", t: [0.78, 0.96] },
+            ].map((slot, idx) => (
+              <motion.div
+                key={idx}
+                className={styles.mathTelemetrySlot}
+                animate={
+                  shouldAnimate
+                    ? {
+                        borderColor: [
+                          "rgba(255,255,255,0.08)",
+                          "rgba(255,255,255,0.08)",
+                          "#49d7ff",
+                          "rgba(255,255,255,0.08)",
+                          "rgba(255,255,255,0.08)",
+                        ],
+                        backgroundColor: [
+                          "rgba(255,255,255,0.03)",
+                          "rgba(255,255,255,0.03)",
+                          "rgba(59, 211, 255, 0.12)",
+                          "rgba(255,255,255,0.03)",
+                          "rgba(255,255,255,0.03)",
+                        ],
+                      }
+                    : { borderColor: "rgba(255,255,255,0.08)" }
+                }
+                transition={{ ...loopT, times: [0, slot.t[0], (slot.t[0] + slot.t[1]) / 2, slot.t[1], 1] }}
+              >
+                <span className={styles.mathTelemetryLabel}>{slot.label}</span>
+                <b className={styles.mathTelemetryVal}>{slot.val}</b>
+                <span className={styles.mathTelemetryUnit}>{slot.unit}</span>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+
+        {/* Pilares de Fundamentos Matemáticos */}
+        <div className={styles.mathPillarsBar}>
+          <div className={styles.mathPillar}>
+            <span>📐 CONTINUIDAD LIPSCHITZ</span>
+          </div>
+          <div className={styles.mathPillar}>
+            <span>📉 CONVERGENCIA GLOBAL</span>
+          </div>
+          <div className={styles.mathPillar}>
+            <span>⚡ PASO ADAPTATIVO</span>
+          </div>
+        </div>
       </div>
     </div>
   );
