@@ -115,7 +115,6 @@ export function ExpandedActionPage({ collection, manifest, collectionNumber }: E
         </div>
         <Link href={`${manifest.actionHref}/quiz`} className="action-quiz-invite__btn">
           <span>Iniciar Quiz Técnico</span>
-          <b>⚡</b>
         </Link>
       </section>
 
