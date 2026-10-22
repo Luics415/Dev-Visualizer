@@ -1,6 +1,9 @@
 # Skill: Construir (Gestión y Despliegue de Tareas)
 
-Tienes dos modos de entrega según la instrucción del desarrollador.
+Tienes dos modos de entrega según el modo del orquestador. La auditoría
+automática solo produce propuestas; la ejecución autorizada exige la
+confirmación exacta y el entorno protegido descritos en
+`docs/ARQUITECTURA_ORQUESTADOR.md`.
 
 ## Opción A: automatizada vía GitHub CLI/API
 
@@ -20,3 +23,5 @@ git checkout -b feature/<nombre-tarea>
 
 Genera un documento Markdown aislado llamado `PLAN_TAREA.md` con un prompt optimizado, el contexto de los archivos y los lineamientos para que el desarrollador lo copie y pegue en otra herramienta de IA.
 
+El artefacto de fase es `03-construir/construccion.yml`. No afirmes que un
+Issue, PR o tarjeta de Project fue creado o movido sin evidencia de la API.

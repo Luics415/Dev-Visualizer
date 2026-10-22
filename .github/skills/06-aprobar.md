@@ -7,4 +7,6 @@
   - Resumen de planificación.
   - Enlaces a Issues generados o al archivo de especificación listo para ejecución.
 - **Criterio:** no emitas un dictamen aprobado si falta evidencia de verificación o existe un bloqueo sin resolver.
-
+- **Entrada:** `05-revisar/revision.yml`.
+- **Persistencia:** `06-aprobar/aprobacion.yml`, con el dictamen, autorizaciones pendientes y siguiente acción.
+- **Límite:** aprobar una propuesta no autoriza código, PRs, Projects, subtareas ni cambios de dependencias.

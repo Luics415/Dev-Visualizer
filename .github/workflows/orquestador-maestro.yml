@@ -1,0 +1,156 @@
+name: Orquestador maestro de seis fases
+
+on:
+  schedule:
+    - cron: "0 8 * * 1"
+  workflow_dispatch:
+    inputs:
+      modo:
+        description: "Modo de ejecución"
+        required: true
+        default: audit
+        type: choice
+        options:
+          - audit
+          - authorized
+      autorizacion:
+        description: "Solo para mutaciones: AUTORIZO EJECUCIÓN DIRECTA"
+        required: false
+        type: string
+      instruccion:
+        description: "Alcance exacto de la operación autorizada"
+        required: false
+        type: string
+
+permissions:
+  contents: read
+  issues: write
+
+jobs:
+  auditoria:
+    name: Auditoría automática read-only
+    if: ${{ github.event_name == 'schedule' || inputs.modo == 'audit' || inputs.modo == '' }}
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar el repositorio
+        uses: actions/checkout@v6
+        with:
+          fetch-depth: 10
+
+      - name: Preparar expediente fechado
+        shell: bash
+        run: |
+          set -euo pipefail
+          fecha="$(date -u +%F)"
+          run_id="${fecha//-/}-$GITHUB_RUN_ID"
+          mkdir -p "docs/FechaAgente/$fecha"
+          cat > "docs/FechaAgente/$fecha/00-contexto.yml" <<EOF
+          id_de_ejecucion: "$run_id"
+          fecha_utc: "$fecha"
+          modo: auditoria_automatica
+          fase: 01-definir
+          entrada:
+            instruccion: "Auditoría automática programada"
+            artefacto_anterior: null
+          decisiones:
+            adoptadas: []
+            pendientes: []
+          riesgos: []
+          evidencia: []
+          autorizaciones_requeridas: []
+          siguiente_fase: 01-definir
+          EOF
+
+      - name: Ejecutar comprobaciones sin mutar el repositorio
+        shell: bash
+        run: |
+          set -euo pipefail
+          fecha="$(date -u +%F)"
+          reporte="docs/FechaAgente/$fecha/auditoria.md"
+          {
+            echo "# Auditoría automática — $fecha"
+            echo
+            echo "Modo: \`auditoria_automatica\` (solo lectura)."
+            echo
+            echo "## Evidencia"
+            echo
+            echo '```text'
+            git status --short
+            npm audit --audit-level=high || true
+            echo '```'
+            echo
+            echo "## Operaciones que requieren autorización"
+            echo
+            echo "- Corregir vulnerabilidades."
+            echo "- Ejecutar \`npm audit fix --force\`."
+            echo "- Modificar código, crear PR o subtareas."
+            echo "- Cambiar estados del Project 10."
+          } > "$reporte"
+
+      - name: Publicar expediente
+        uses: actions/upload-artifact@v6
+        with:
+          name: expediente-orquestador-${{ github.run_id }}
+          path: docs/FechaAgente/
+          if-no-files-found: error
+
+      - name: Registrar Issue de auditoría
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          fecha="$(date -u +%F)"
+          titulo="Auditoría del orquestador — $fecha"
+          issue_number="$(gh issue list --state open --search "\"$titulo\" in:title" --json number,title --jq '.[] | select(.title == "'"$titulo"'") | .number' | head -n 1)"
+          if [ -n "$issue_number" ]; then
+            gh issue edit "$issue_number" --body-file "docs/FechaAgente/$fecha/auditoria.md"
+          else
+            gh issue create --title "$titulo" --body-file "docs/FechaAgente/$fecha/auditoria.md"
+          fi
+
+  autorizado:
+    name: Ejecución autorizada y protegida
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.modo == 'authorized' && inputs.autorizacion == 'AUTORIZO EJECUCIÓN DIRECTA' }}
+    runs-on: ubuntu-latest
+    environment: orchestrator-authorized
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+    steps:
+      - name: Validar alcance autorizado
+        env:
+          AUTHORIZED_INSTRUCTION: ${{ inputs.instruccion }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          echo "El entorno protegido debe aprobar explícitamente esta ejecución."
+          test -n "$AUTHORIZED_INSTRUCTION" || {
+            echo "::error::Falta la instrucción exacta y acotada de la operación."
+            exit 1
+          }
+          echo "Alcance autorizado: $AUTHORIZED_INSTRUCTION"
+          echo "No existe un ejecutor genérico: cada mutación debe implementarse en un paso revisado."
+
+      - name: Publicar registro de autorización
+        env:
+          AUTHORIZED_INSTRUCTION: ${{ inputs.instruccion }}
+        shell: bash
+        run: |
+          set -euo pipefail
+          mkdir -p authorized-record
+          printf '%s\n' \
+            "# Registro de autorización" \
+            "" \
+            "- Confirmación: \`AUTORIZO EJECUCIÓN DIRECTA\`" \
+            "- Alcance: $AUTHORIZED_INSTRUCTION" \
+            "- Entorno: \`orchestrator-authorized\`" \
+            "- Estado: listo para pasos revisados; no se ejecutó una mutación genérica." \
+            > authorized-record/README.md
+
+      - name: Publicar registro
+        uses: actions/upload-artifact@v6
+        with:
+          name: autorizacion-orquestador-${{ github.run_id }}
+          path: authorized-record/
