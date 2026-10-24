@@ -98,3 +98,13 @@ solo recomienda esas acciones.
   modificar lockfiles.
 - WhatsApp y correo quedan como puntos de extensión documentados, sin secretos,
   proveedores ni envíos configurados.
+
+
+## Matriz de logros y trazabilidad de coautoría
+
+Los Pull Requests generados bajo el modo autorizado deben registrar coautoría explícita
+para certificar la revisión de pares y mantener sincronizado el historial de contribuciones:
+
+1. **Paridad de autores:** Cada commit incluye la cabecera `Co-authored-by:` con nombre y correo válidos de los colaboradores.
+2. **Registro de hitos:** Se mantiene la trazabilidad de insignias oficiales (Pull Shark, Pair Extraordinaire, Galaxy Brain).
+3. **Validación continua:** Todo PR debe satisfacer el pipeline de verificación (`npm run check`) antes de la fusión a `main`.
