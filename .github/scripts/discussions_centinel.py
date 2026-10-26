@@ -332,24 +332,42 @@ def send_whatsapp_message(text: str) -> bool:
     4. Webhook Genérico (GreenAPI, Whapi, n8n, etc.).
        Variables: WHATSAPP_WEBHOOK_URL
     """
-    # 1. Probar CallMeBot
-    cmb_phone = os.environ.get("CALLMEBOT_PHONE")
-    cmb_key = os.environ.get("CALLMEBOT_API_KEY")
+    # 1. Probar CallMeBot con autointento dual de prefijo (52 y 521)
+    cmb_phone = os.environ.get("CALLMEBOT_PHONE", "").strip()
+    cmb_key = os.environ.get("CALLMEBOT_API_KEY", "").strip()
     if cmb_phone and cmb_key:
-        try:
-            encoded_text = urllib.parse.quote(text)
-            clean_phone = re.sub(r"\D", "", cmb_phone)
-            url = f"https://api.callmebot.com/whatsapp.php?phone={clean_phone}&text={encoded_text}&apikey={cmb_key}"
-            req = urllib.request.Request(url, headers={"User-Agent": "DevVisualizerCentinel/2.2"})
-            with urllib.request.urlopen(req, timeout=12) as resp:
-                resp_body = resp.read().decode("utf-8", errors="ignore")
-                if resp.status == 200 and "error" not in resp_body.lower():
-                    log(f"WhatsApp (CallMeBot): Notificación despachada con éxito a {clean_phone[:4]}****.")
-                    return True
-                else:
-                    log(f"Aviso de CallMeBot: HTTP {resp.status} - {resp_body[:200]}")
-        except Exception as e:
-            log(f"Aviso al enviar WhatsApp vía CallMeBot: {e}")
+        raw_digits = re.sub(r"\D", "", cmb_phone)
+        candidates = [raw_digits]
+        # En México (+52), WhatsApp puede requerir o descartar el 1 móvil
+        if raw_digits.startswith("52") and not raw_digits.startswith("521") and len(raw_digits) == 12:
+            candidates.append("521" + raw_digits[2:])
+        elif raw_digits.startswith("521") and len(raw_digits) == 13:
+            candidates.append("52" + raw_digits[3:])
+
+        compact_text = text.strip()
+        if len(compact_text) > 350:
+            compact_text = compact_text[:330] + "... [Ver en GitHub]"
+        encoded_text = urllib.parse.quote_plus(compact_text)
+
+        for phone_variant in candidates:
+            try:
+                url = f"https://api.callmebot.com/whatsapp.php?phone={phone_variant}&text={encoded_text}&apikey={cmb_key}"
+                req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0 (Windows NT 10.0; Win64; x64)"})
+                with urllib.request.urlopen(req, timeout=12) as resp:
+                    resp_body = resp.read().decode("utf-8", errors="ignore")
+                    clean_body = re.sub(r"<[^>]+>", " ", resp_body).strip()
+                    clean_body = " ".join(clean_body.split())
+                    
+                    is_success = resp.status in [200, 201, 202, 203] and ("queued" in clean_body.lower() or "sent" in clean_body.lower() or "success" in clean_body.lower() or "ok" in clean_body.lower())
+                    if is_success:
+                        log(f"WhatsApp (CallMeBot): Notificación despachada con éxito a {phone_variant[:4]}**** ({clean_body[-100:]}).")
+                        return True
+                    else:
+                        log(f"CallMeBot intento con {phone_variant[:4]}****: HTTP {resp.status} - {clean_body[-150:]}")
+            except Exception as e:
+                log(f"Aviso al intentar CallMeBot con {phone_variant[:4]}****: {e}")
+    else:
+        log(f"WhatsApp diagnóstico: CALLMEBOT_PHONE={'configurado' if cmb_phone else 'vacío'}, CALLMEBOT_API_KEY={'configurado' if cmb_key else 'vacío'}")
 
     # 2. Probar Twilio WhatsApp
     tw_sid = os.environ.get("TWILIO_ACCOUNT_SID")
@@ -424,23 +442,19 @@ def send_whatsapp_message(text: str) -> bool:
 
 def send_whatsapp_draft_notification(discussion_num: int, title: str, author: str, url: str, category: str, draft_text: str, wait_minutes_remaining: float, escalation: Optional[str] = None):
     preview = draft_text.strip()
-    if len(preview) > 650:
-        preview = preview[:620] + "... [continúa en GitHub]"
-    
-    alert_tag = "🚨 *¡ALERTA DE SEGURIDAD/FALLA!*" if escalation else "🛡️ *DEV VISUALIZER — AGENTE CENTINELA*"
-    
-    msg = f"""{alert_tag}
-📝 *[BORRADOR EN ESPERA] Ventana de {wait_minutes_remaining:.1f} min*
+    if len(preview) > 200:
+        preview = preview[:180] + "... [continúa en GitHub]"
 
-💬 *Discusión:* #{discussion_num} - {title}
-👤 *Autor:* @{author}
-🏷️ *Categoría:* {category}
-⏱️ *Acción:* Dispones de 10 min para responder tú mismo. Si no respondes, se publicará automáticamente.
+    alert_tag = "🚨 ALERTA CRÍTICA" if escalation else "🛡️ CENTINELA"
+    clean_title = title[:50] + ("..." if len(title) > 50 else "")
+    msg = f"""{alert_tag}: #{discussion_num} ({category})
+Autor: @{author} - {clean_title}
+Ventana: {wait_minutes_remaining:.0f} min para responder en GitHub antes de auto-publicar.
 
-📄 *Borrador generado:*
+Borrador:
 {preview}
 
-🔗 *Responder o revisar:* {url}"""
+Ver en GitHub: {url}"""
     send_whatsapp_message(msg)
 
 
