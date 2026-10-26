@@ -109,7 +109,7 @@ jobs:
           } > "$reporte"
 
       - name: Publicar expediente
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: expediente-orquestador-${{ github.run_id }}
           path: docs/FechaAgente/
@@ -171,7 +171,7 @@ jobs:
             > authorized-record/README.md
 
       - name: Publicar registro
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
           name: autorizacion-orquestador-${{ github.run_id }}
           path: authorized-record/

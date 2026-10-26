@@ -79,7 +79,7 @@ jobs:
           python .github/scripts/discussions_centinel.py "${FLAGS[@]}"
 
       - name: Subir expediente historico como artefacto
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         if: always()
         with:
           name: expediente-discusiones-${{ github.run_id }}
