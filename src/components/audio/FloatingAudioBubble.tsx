@@ -404,18 +404,18 @@ export function FloatingAudioBubble({ collectionName, collectionTitle, tracks }:
             </div>
 
             <div className="floating-audio-bubble__actions">
-              {availableVoices.length > 1 ? (
+              {availableVoices.length > 0 ? (
                 <div className="floating-audio-bubble__voice-wrapper">
                   <select
                     className="floating-audio-bubble__voice-select"
                     value={selectedVoiceURI ?? ""}
                     onChange={(e) => setVoice(e.target.value)}
-                    aria-label="Seleccionar acento regional y voz de narración"
-                    title="Cambiar voz / acento"
+                    aria-label="Configuración manual de idioma, dialecto regional y voz de locución"
+                    title="Configurar idioma y voz manualmente (clic para cambiar)"
                   >
                     {availableVoices.map((v) => (
                       <option key={v.voiceURI} value={v.voiceURI}>
-                        {v.region} · {v.name.slice(0, 15)} {v.isFemale ? "♀" : ""} {v.isNeural ? "✦" : ""}
+                        {v.region} · {v.name.slice(0, 16)} {v.isFemale ? "♀" : ""} {v.isNeural ? "✦" : ""}
                       </option>
                     ))}
                   </select>

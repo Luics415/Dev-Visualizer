@@ -238,18 +238,28 @@ class AudioNarrator {
       const otherFemale = otherSupportedVoices.filter((v) => isFemaleVoice(v));
       const otherRemaining = otherSupportedVoices.filter((v) => !isFemaleVoice(v));
 
-      // Construcción del catálogo ordenado:
+      // Construcción del catálogo ordenado completo para exploración manual:
       // A) Femeninas en español (LATAM y España)
-      // B) Femeninas en otros idiomas (Inglés, Portugués, etc.)
-      // C) Resto de voces (sin Raúl)
+      // B) Femeninas en otros idiomas internacionales (Inglés, Portugués, Francés, etc.)
+      // C) Resto de voces del sistema (excluyendo a Raúl)
       const catalog = [
         ...spanishFemale,
         ...spanishOther,
-        ...otherFemale.slice(0, 6),
-        ...otherRemaining.slice(0, 2),
+        ...otherFemale,
+        ...otherRemaining,
       ];
 
-      const finalList = catalog.length > 0 ? catalog : nonRaulVoices.slice(0, 10);
+      // Eliminar posibles duplicados por voiceURI
+      const seenURIs = new Set<string>();
+      const uniqueCatalog: SpeechSynthesisVoice[] = [];
+      for (const v of (catalog.length > 0 ? catalog : nonRaulVoices)) {
+        if (!seenURIs.has(v.voiceURI)) {
+          seenURIs.add(v.voiceURI);
+          uniqueCatalog.push(v);
+        }
+      }
+
+      const finalList = uniqueCatalog;
 
       this.availableVoices = finalList.map((v) => ({
         voiceURI: v.voiceURI,
