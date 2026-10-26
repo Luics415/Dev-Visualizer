@@ -833,44 +833,7 @@ We have reviewed your idea against our Next.js 16 (App Router), React 19, Motion
 
 This proposal has been registered for tracking on our **GitHub Projects** board and will be scheduled for implementation via an atomic `feat/` branch. Thank you for helping shape the future of Dev Visualizer!"""
 
-        # 4. Category: Q&A
-        if norm_cat in ["q&a", "q and a", "questions"]:
-            if any(k in q_lower for k in ["speech", "speechsynthesis", "audio", "narrat", "voice", "sound", "60fps animation", "audiovisual"]):
-                return f"""Hello @{author}! In Dev Visualizer, auditory narration and 60fps visual rendering are strictly decoupled to guarantee zero frame drops during playback across all 73 technical collections.
-
-Motion (Framer Motion 14) and Canvas/SVG renderers compute GPU-accelerated transformations (`transform`, `opacity`) via `requestAnimationFrame` on the main thread, while voice playback is delegated to the browser's Web Speech API (`SpeechSynthesis`) in an isolated audio thread managed by [`src/lib/audioNarrator.ts`](https://github.com/Luics415/Dev-Visualizer/blob/main/src/lib/audioNarrator.ts). To prevent mobile Chromium from prematurely freezing speech on utterances longer than 15 seconds, our `splitTextIntoNarrationChunks` utility splits narration into punctuation-bounded segments of 140 characters or fewer.
-
-State is exposed as an immutable `AudioNarratorSnapshot` consumed by UI components like [`src/components/audio/FloatingAudioBubble.tsx`](https://github.com/Luics415/Dev-Visualizer/blob/main/src/components/audio/FloatingAudioBubble.tsx) via React 19's `useSyncExternalStore`, preventing hydration mismatches during static Next.js 16 export (`output: "export"`). More details can be found in [`docs/AUDIO_ARCHITECTURE.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/docs/AUDIO_ARCHITECTURE.md)."""
-
-            if any(k in q_lower for k in ["search", "indexer", "index", "modal", "query"]):
-                return f"""Hello @{author}! The concept search engine in Dev Visualizer operates with zero runtime network requests by pre-compiling search indices during the build phase.
-
-In [`scripts/build-concept-search-index.ts`](https://github.com/Luics415/Dev-Visualizer/blob/main/scripts/build-concept-search-index.ts), our build step traverses all 73 collections and maps concepts into compact tuples in `src/data/conceptSearchIndex.ts`. At runtime, the modal performs in-memory token filtering with instant sub-millisecond responsiveness, integrated with our keyboard navigation shortcuts ([`docs/KEYBOARD_SHORTCUTS.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/docs/KEYBOARD_SHORTCUTS.md))."""
-
-            if any(k in q_lower for k in ["worker", "web worker", "simulation", "algorithm", "timeline"]):
-                return f"""Hello @{author}! We intentionally favor main-thread pre-computation over Web Workers for our pedagogical simulation engine.
-
-As documented in [`docs/SIMULATION_ENGINE.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/docs/SIMULATION_ENGINE.md), algorithms operate over input spaces of 1,000 elements or fewer, executing in microseconds. Computing the full series of immutable snapshots (`SimulationStep[]`) frozen with `Object.freeze` provides zero-latency random access scrubbing (Play, Pause, StepForward, StepBackward) and avoids the heavy serialization and garbage collection overhead of `postMessage` worker communication."""
-
-            if any(k in q_lower for k in ["secret", ".env", "gitleaks", "git-secrets", "vault", "token", "security"]):
-                return f"""Hello @{author}! Dev Visualizer is deployed strictly as a static web application on Next.js 16 and GitHub Pages, meaning no server-side secrets or runtime database credentials ever exist in client bundles.
-
-All automation credentials and API tokens reside exclusively in encrypted **GitHub Secrets**, injected only inside ephemeral GitHub Actions runners. Continuous integration workflows enforce strict automated scanning via `gitleaks` and `npm audit` ([`docs/SECURITY_GOVERNANCE.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/docs/SECURITY_GOVERNANCE.md))."""
-
-            # Default Q&A
-            return f"""Hello @{author}! Dev Visualizer is an educational software engineering atlas delivering 73 specialized collections across 146 routes, built on Next.js 16 (App Router), React 19, TypeScript, Motion (Framer Motion 14), and Tailwind CSS.
-
-The application compiles into a high-performance static distribution (`output: "export"`) containing over 350 pre-rendered pages hosted on GitHub Pages. Our development pipeline follows strict automated quality gates: static link verification (`npm run check:links`), library integrity (`npm run check:library`), and WCAG accessibility compliance (`npm run check:a11y`). Feel free to review [`README.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/README.md) and [`docs/INDICE_MAESTRO_ARQUITECTURA.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/docs/INDICE_MAESTRO_ARQUITECTURA.md)."""
-
-        # 5. Category: General
-        if norm_cat == "general":
-            return f"""Hello @{author}! Thank you for initiating this discussion in Dev Visualizer's community forum.
-
-Our platform was architected with a singular technical mission: to demystify complex software engineering algorithms and distributed systems paradigms through rigorous, accessible visual and auditory simulations. By adhering to Next.js 16 static site generation (`output: "export"`), we eliminate backend infrastructure vulnerabilities and hosting overhead while guaranteeing instant global delivery on GitHub Pages.
-
-We actively encourage architectural discussions around UI performance, accessibility, and modern frontend design. What specific engineering perspectives or trade-offs would you like to explore together?"""
-
-        # 6. Category: Announcements
+        # 4. Category: Announcements
         if norm_cat == "announcements":
             return f"""Hello @{author}! Thank you for following Dev Visualizer's official updates and milestones.
 
@@ -878,7 +841,7 @@ Every update in this repository is delivered through atomic pull requests and va
 
 You can inspect the detailed changelogs, architecture indices, and roadmap progress in [`README.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/README.md) and [`docs/ROADMAP.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/docs/ROADMAP.md)."""
 
-        # 7. Category: Polls
+        # 5. Category: Polls
         if norm_cat == "polls":
             return f"""Hello @{author}! Thank you for launching this community poll. Decision-making driven by informed community perspective is fundamental to our open-source evolution.
 
@@ -886,13 +849,49 @@ From an engineering standpoint, evaluating architectural choices requires balanc
 
 We encourage everyone to vote and share their technical rationale in the comments to help guide our project roadmap!"""
 
-        # 8. Category: Show and tell
+        # 6. Category: Show and tell
         if norm_cat in ["show and tell", "show & tell"]:
             return f"""Hello @{author}! Congratulations on sharing this project showcase with the Dev Visualizer community!
 
 It is inspiring to see how engineers leverage visual metaphors, interactive simulations, and accessible design to communicate complex technical concepts. Your implementation demonstrates strong attention to engineering detail and user experience.
 
 If you are interested in exploring further synergies or adapting complementary visual patterns, feel free to review our simulation engine design in [`docs/SIMULATION_ENGINE.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/docs/SIMULATION_ENGINE.md) and our audio architecture in [`docs/AUDIO_ARCHITECTURE.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/docs/AUDIO_ARCHITECTURE.md). Great work!"""
+
+        # 7. Specific Technical Inquiries (Audio/Speech, Search/Indexer, Simulation/Workers, Secrets/Security)
+        if any(k in q_lower for k in ["speech", "speechsynthesis", "audio", "narrat", "voice", "sound", "60fps animation", "audiovisual"]):
+            return f"""Hello @{author}! In Dev Visualizer, auditory narration and 60fps visual rendering are strictly decoupled to guarantee zero frame drops during playback across all 73 technical collections.
+
+Motion (Framer Motion 14) and Canvas/SVG renderers compute GPU-accelerated transformations (`transform`, `opacity`) via `requestAnimationFrame` on the main thread, while voice playback is delegated to the browser's Web Speech API (`SpeechSynthesis`) in an isolated audio thread managed by [`src/lib/audioNarrator.ts`](https://github.com/Luics415/Dev-Visualizer/blob/main/src/lib/audioNarrator.ts). To prevent mobile Chromium from prematurely freezing speech on utterances longer than 15 seconds, our `splitTextIntoNarrationChunks` utility splits narration into punctuation-bounded segments of 140 characters or fewer.
+
+State is exposed as an immutable `AudioNarratorSnapshot` consumed by UI components like [`src/components/audio/FloatingAudioBubble.tsx`](https://github.com/Luics415/Dev-Visualizer/blob/main/src/components/audio/FloatingAudioBubble.tsx) via React 19's `useSyncExternalStore`, preventing hydration mismatches during static Next.js 16 export (`output: "export"`). More details can be found in [`docs/AUDIO_ARCHITECTURE.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/docs/AUDIO_ARCHITECTURE.md)."""
+
+        if any(k in q_lower for k in ["search", "indexer", "index", "modal", "query"]):
+            return f"""Hello @{author}! The concept search engine in Dev Visualizer operates with zero runtime network requests by pre-compiling search indices during the build phase.
+
+In [`scripts/build-concept-search-index.ts`](https://github.com/Luics415/Dev-Visualizer/blob/main/scripts/build-concept-search-index.ts), our build step traverses all 73 collections and maps concepts into compact tuples in `src/data/conceptSearchIndex.ts`. At runtime, the modal performs in-memory token filtering with instant sub-millisecond responsiveness, integrated with our keyboard navigation shortcuts ([`docs/KEYBOARD_SHORTCUTS.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/docs/KEYBOARD_SHORTCUTS.md))."""
+
+        if any(k in q_lower for k in ["worker", "web worker", "simulation", "algorithm", "timeline"]):
+            return f"""Hello @{author}! We intentionally favor main-thread pre-computation over Web Workers for our pedagogical simulation engine.
+
+As documented in [`docs/SIMULATION_ENGINE.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/docs/SIMULATION_ENGINE.md), algorithms operate over input spaces of 1,000 elements or fewer, executing in microseconds. Computing the full series of immutable snapshots (`SimulationStep[]`) frozen with `Object.freeze` provides zero-latency random access scrubbing (Play, Pause, StepForward, StepBackward) and avoids the heavy serialization and garbage collection overhead of `postMessage` worker communication."""
+
+        if any(k in q_lower for k in ["secret", ".env", "gitleaks", "git-secrets", "vault", "token", "security"]):
+            return f"""Hello @{author}! Dev Visualizer is deployed strictly as a static web application on Next.js 16 and GitHub Pages, meaning no server-side secrets or runtime database credentials ever exist in client bundles.
+
+All automation credentials and API tokens reside exclusively in encrypted **GitHub Secrets**, injected only inside ephemeral GitHub Actions runners. Continuous integration workflows enforce strict automated scanning via `gitleaks` and `npm audit` ([`docs/SECURITY_GOVERNANCE.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/docs/SECURITY_GOVERNANCE.md))."""
+
+        # 8. General Open Discussion
+        if norm_cat == "general":
+            return f"""Hello @{author}! Thank you for initiating this discussion in Dev Visualizer's community forum.
+
+Our platform was architected with a singular technical mission: to demystify complex software engineering algorithms and distributed systems paradigms through rigorous, accessible visual and auditory simulations. By adhering to Next.js 16 static site generation (`output: "export"`), we eliminate backend infrastructure vulnerabilities and hosting overhead while guaranteeing instant global delivery on GitHub Pages.
+
+We actively encourage architectural discussions around UI performance, accessibility, and modern frontend design. What specific engineering perspectives or trade-offs would you like to explore together?"""
+
+        # Default Q&A English
+        return f"""Hello @{author}! Dev Visualizer is an educational software engineering atlas delivering 73 specialized collections across 146 routes, built on Next.js 16 (App Router), React 19, TypeScript, Motion (Framer Motion 14), and Tailwind CSS.
+
+The application compiles into a high-performance static distribution (`output: "export"`) containing over 350 pre-rendered pages hosted on GitHub Pages. Our development pipeline follows strict automated quality gates: static link verification (`npm run check:links`), library integrity (`npm run check:library`), and WCAG accessibility compliance (`npm run check:a11y`). Feel free to review [`README.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/README.md) and [`docs/INDICE_MAESTRO_ARQUITECTURA.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/docs/INDICE_MAESTRO_ARQUITECTURA.md)."""
 
         # Fallback English
         return f"""Hello @{author}! Thank you for participating in Dev Visualizer discussions.
@@ -984,44 +983,7 @@ Hemos evaluado el encaje técnico de tu idea frente a nuestra arquitectura en Ne
 
 Esta propuesta queda indexada en nuestro tablero de **GitHub Projects** para abordarse a través de una rama atómica `feat/` con su Pull Request formal correspondiente. ¡Gracias por participar activamente en la evolución del atlas!"""
 
-    # 4. Categoría: Q&A (Preguntas y Respuestas Técnicas)
-    if norm_cat in ["q&a", "q and a", "questions"]:
-        if any(k in q_lower for k in ["speech", "speechsynthesis", "audio", "narrac", "voz", "voces", "sonido", "audiovisual", "locucion"]):
-            return f"""¡Hola @{author}! En Dev Visualizer, la locución por voz y la animación a 60fps están estrictamente desacopladas para impedir que compitan por el hilo principal de renderizado en las 73 colecciones del proyecto.
-
-Motion (Framer Motion 14) y los renderizadores SVG/Canvas se apoyan exclusivamente en transformaciones de GPU (`transform`, `opacity`) sincronizadas con `requestAnimationFrame`. La voz se ejecuta en un hilo de audio independiente del sistema operativo a través de la Web Speech API nativa (`SpeechSynthesis`), orquestada por el singleton centralizado en [`src/lib/audioNarrator.ts`](https://github.com/Luics415/Dev-Visualizer/blob/main/src/lib/audioNarrator.ts). Para evitar que navegadores móviles (especialmente Chromium en Android) congelen la locución en frases mayores a 15 segundos, la utilidad `splitTextIntoNarrationChunks` divide el contenido en bloques breves delimitados por puntuación (máximo 140 caracteres).
-
-El estado se consume mediante el hook reactivo `useSyncExternalStore` de React 19 en [`src/components/audio/FloatingAudioBubble.tsx`](https://github.com/Luics415/Dev-Visualizer/blob/main/src/components/audio/FloatingAudioBubble.tsx), evitando discrepancias de hidratación durante la exportación estática de más de 350 páginas en Next.js 16 (`output: "export"`). Consulta la arquitectura completa en [`docs/AUDIO_ARCHITECTURE.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/docs/AUDIO_ARCHITECTURE.md)."""
-
-        if any(k in q_lower for k in ["busqueda", "buscar", "indexador", "indice", "modal"]):
-            return f"""¡Hola @{author}! El indexador de conceptos de Dev Visualizer opera sin peticiones de red en tiempo de ejecución gracias a una fase de pre-compilación durante el build.
-
-El script en [`scripts/build-concept-search-index.ts`](https://github.com/Luics415/Dev-Visualizer/blob/main/scripts/build-concept-search-index.ts) recorre las 73 colecciones y emite un índice estático ultra-liviano en `src/data/conceptSearchIndex.ts`. En el navegador, el modal ejecuta coincidencia de tokens en memoria en submilisegundos, enlazado directamente con el sistema de atajos de teclado ([`docs/KEYBOARD_SHORTCUTS.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/docs/KEYBOARD_SHORTCUTS.md))."""
-
-        if any(k in q_lower for k in ["simulacion", "algoritmo", "worker", "web worker", "timeline"]):
-            return f"""¡Hola @{author}! En Dev Visualizer optamos deliberadamente por pre-cálculo síncrono en memoria pura en el hilo principal antes que Web Workers para las simulaciones didácticas.
-
-Tal como documenta [`docs/SIMULATION_ENGINE.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/docs/SIMULATION_ENGINE.md), los algoritmos se calibran para espacios de entrada pedagógicos (<= 1,000 elementos), ejecutándose en microsegundos. Al generar una serie inmutable de instantáneas (`SimulationStep[]`) congeladas con `Object.freeze`, logramos navegación bidireccional inmediata (Play, Pausa, Retroceder, Avanzar) sin el costo de serialización y clonación estructurada que impondría `postMessage` en un worker."""
-
-        if any(k in q_lower for k in ["secreto", ".env", "gitleaks", "git-secrets", "vault", "token", "seguridad"]):
-            return f"""¡Hola @{author}! Dev Visualizer se distribuye como una aplicación web puramente estática generada con Next.js 16 y servida en GitHub Pages, por lo que ninguna clave privada ni credencial de base de datos forma parte jamás de los archivos enviados al cliente.
-
-Todas las credenciales de automatización residen cifradas en **GitHub Secrets** y se inyectan únicamente en runners efímeros de GitHub Actions. Los flujos de CI auditan cada cambio con `gitleaks` y `npm audit` ([`docs/SECURITY_GOVERNANCE.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/docs/SECURITY_GOVERNANCE.md))."""
-
-        # Q&A General
-        return f"""¡Hola @{author}! Dev Visualizer está estructurado como un atlas interactivo de ingeniería con 73 colecciones y 146 rutas didácticas, desarrollado sobre Next.js 16 (App Router), React 19, TypeScript, Motion y Tailwind CSS.
-
-La plataforma compila como una distribución estática de alto rendimiento (`output: "export"`) sobre más de 350 páginas en GitHub Pages. Nuestro ciclo de entrega ejecuta verificaciones automatizadas de enlaces (`npm run check:links`), integridad de librería (`npm run check:library`) y accesibilidad WCAG (`npm run check:a11y`). Puedes consultar más detalles en [`README.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/README.md) y [`docs/INDICE_MAESTRO_ARQUITECTURA.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/docs/INDICE_MAESTRO_ARQUITECTURA.md)."""
-
-    # 5. Categoría: General
-    if norm_cat == "general":
-        return f"""¡Hola @{author}! Bienvenido a las discusiones generales de Dev Visualizer.
-
-La misión del proyecto es ofrecer un atlas exhaustivo de ingeniería de software que haga tangibles los conceptos algorítmicos complejos mediante simulaciones interactivas, renderizado a 60fps y narración accesible. Elegir Next.js 16 con exportación estática nos permite eliminar vulnerabilidades de backend y costes de servidor, entregando una experiencia fluida e instantánea en GitHub Pages.
-
-Nos entusiasma mantener este canal abierto para reflexionar sobre diseño de software, patrones de UI y arquitectura web moderna. ¿Qué aspectos técnicos o decisiones de diseño te gustaría profundizar con la comunidad?"""
-
-    # 6. Categoría: Announcements
+    # 4. Categoría: Announcements
     if norm_cat == "announcements":
         return f"""¡Hola @{author}! Gracias por seguir los anuncios oficiales de Dev Visualizer.
 
@@ -1029,7 +991,7 @@ Cada actualización lanzada en el repositorio atraviesa nuestro pipeline de 7 ha
 
 Te invitamos a explorar los detalles de arquitectura y el progreso del roadmap en [`README.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/README.md) y [`docs/ROADMAP.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/docs/ROADMAP.md)."""
 
-    # 7. Categoría: Polls
+    # 5. Categoría: Polls
     if norm_cat == "polls":
         return f"""¡Hola @{author}! Gracias por convocar esta votación comunitaria en Dev Visualizer.
 
@@ -1037,7 +999,7 @@ Desde la perspectiva técnica, evaluar decisiones de arquitectura exige ponderar
 
 Invitamos a toda la comunidad a participar con su voto y justificar su perspectiva técnica en las respuestas del hilo para enriquecer las futuras decisiones del proyecto."""
 
-    # 8. Categoría: Show and tell
+    # 6. Categoría: Show and tell
     if norm_cat in ["show and tell", "show & tell"]:
         return f"""¡Hola @{author}! Muchas felicidades por compartir esta demostración con la comunidad de Dev Visualizer.
 
@@ -1045,12 +1007,41 @@ Resulta muy gratificante comprobar cómo se aplican las simulaciones interactiva
 
 Te animamos a contrastar patrones de diseño con nuestro motor en [`docs/SIMULATION_ENGINE.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/docs/SIMULATION_ENGINE.md) y nuestro sistema de voz en [`docs/AUDIO_ARCHITECTURE.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/docs/AUDIO_ARCHITECTURE.md). ¡Gran aportación!"""
 
-    # Fallback por defecto en Español
-    return f"""¡Hola @{author}! Gracias por participar en los foros de discusión de Dev Visualizer.
+    # 7. Consultas Técnicas Específicas (Audio/Locución, Búsqueda, Simulación, Secretos)
+    if any(k in q_lower for k in ["speech", "speechsynthesis", "audio", "narrac", "voz", "voces", "sonido", "audiovisual", "locucion"]):
+        return f"""¡Hola @{author}! En Dev Visualizer, la locución por voz y la animación a 60fps están estrictamente desacopladas para impedir que compitan por el hilo principal de renderizado en las 73 colecciones del proyecto.
 
-Dev Visualizer es un atlas de ingeniería de software con 73 colecciones y 146 rutas didácticas, desarrollado con Next.js 16, React 19, Motion y Tailwind CSS, compilado íntegramente de forma estática en GitHub Pages.
+Motion (Framer Motion 14) y los renderizadores SVG/Canvas se apoyan exclusivamente en transformaciones de GPU (`transform`, `opacity`) sincronizadas con `requestAnimationFrame`. La voz se ejecuta en un hilo de audio independiente del sistema operativo a través de la Web Speech API nativa (`SpeechSynthesis`), orquestada por el singleton centralizado en [`src/lib/audioNarrator.ts`](https://github.com/Luics415/Dev-Visualizer/blob/main/src/lib/audioNarrator.ts). Para evitar que navegadores móviles (especialmente Chromium en Android) congelen la locución en frases mayores a 15 segundos, la utilidad `splitTextIntoNarrationChunks` divide el contenido en bloques breves delimitados por puntuación (máximo 140 caracteres).
 
-Para explorar a fondo la arquitectura del sistema, te recomendamos revisar [`README.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/README.md) y [`docs/INDICE_MAESTRO_ARQUITECTURA.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/docs/INDICE_MAESTRO_ARQUITECTURA.md)."""
+El estado se consume mediante el hook reactivo `useSyncExternalStore` de React 19 en [`src/components/audio/FloatingAudioBubble.tsx`](https://github.com/Luics415/Dev-Visualizer/blob/main/src/components/audio/FloatingAudioBubble.tsx), evitando discrepancias de hidratación durante la exportación estática de más de 350 páginas en Next.js 16 (`output: "export"`). Consulta la arquitectura completa en [`docs/AUDIO_ARCHITECTURE.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/docs/AUDIO_ARCHITECTURE.md)."""
+
+    if any(k in q_lower for k in ["busqueda", "buscar", "indexador", "indice", "modal"]):
+        return f"""¡Hola @{author}! El indexador de conceptos de Dev Visualizer opera sin peticiones de red en tiempo de ejecución gracias a una fase de pre-compilación durante el build.
+
+El script en [`scripts/build-concept-search-index.ts`](https://github.com/Luics415/Dev-Visualizer/blob/main/scripts/build-concept-search-index.ts) recorre las 73 colecciones y emite un índice estático ultra-liviano en `src/data/conceptSearchIndex.ts`. En el navegador, el modal ejecuta coincidencia de tokens en memoria en submilisegundos, enlazado directamente con el sistema de atajos de teclado ([`docs/KEYBOARD_SHORTCUTS.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/docs/KEYBOARD_SHORTCUTS.md))."""
+
+    if any(k in q_lower for k in ["simulacion", "algoritmo", "worker", "web worker", "timeline"]):
+        return f"""¡Hola @{author}! En Dev Visualizer optamos deliberadamente por pre-cálculo síncrono en memoria pura en el hilo principal antes que Web Workers para las simulaciones didácticas.
+
+Tal como documenta [`docs/SIMULATION_ENGINE.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/docs/SIMULATION_ENGINE.md), los algoritmos se calibran para espacios de entrada pedagógicos (<= 1,000 elementos), ejecutándose en microsegundos. Al generar una serie inmutable de instantáneas (`SimulationStep[]`) congeladas con `Object.freeze`, logramos navegación bidireccional inmediata (Play, Pausa, Retroceder, Avanzar) sin el costo de serialización y clonación estructurada que impondría `postMessage` en un worker."""
+
+    if any(k in q_lower for k in ["secreto", ".env", "gitleaks", "git-secrets", "vault", "token", "seguridad"]):
+        return f"""¡Hola @{author}! Dev Visualizer se distribuye como una aplicación web puramente estática generada con Next.js 16 y servida en GitHub Pages, por lo que ninguna clave privada ni credencial de base de datos forma parte jamás de los archivos enviados al cliente.
+
+Todas las credenciales de automatización residen cifradas en **GitHub Secrets** y se inyectan únicamente en runners efímeros de GitHub Actions. Los flujos de CI auditan cada cambio con `gitleaks` y `npm audit` ([`docs/SECURITY_GOVERNANCE.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/docs/SECURITY_GOVERNANCE.md))."""
+
+    # 8. Conversación General
+    if norm_cat == "general":
+        return f"""¡Hola @{author}! Bienvenido a las discusiones generales de Dev Visualizer.
+
+La misión del proyecto es ofrecer un atlas exhaustivo de ingeniería de software que haga tangibles los conceptos algorítmicos complejos mediante simulaciones interactivas, renderizado a 60fps y narración accesible. Elegir Next.js 16 con exportación estática nos permite eliminar vulnerabilidades de backend y costes de servidor, entregando una experiencia fluida e instantánea en GitHub Pages.
+
+Nos entusiasma mantener este canal abierto para reflexionar sobre diseño de software, patrones de UI y arquitectura web moderna. ¿Qué aspectos técnicos o decisiones de diseño te gustaría profundizar con la comunidad?"""
+
+    # Fallback por defecto en Español (Q&A)
+    return f"""¡Hola @{author}! Dev Visualizer está estructurado como un atlas interactivo de ingeniería con 73 colecciones y 146 rutas didácticas, desarrollado sobre Next.js 16 (App Router), React 19, TypeScript, Motion y Tailwind CSS.
+
+La plataforma compila como una distribución estática de alto rendimiento (`output: "export"`) sobre más de 350 páginas en GitHub Pages. Nuestro ciclo de entrega ejecuta verificaciones automatizadas de enlaces (`npm run check:links`), integridad de librería (`npm run check:library`) y accesibilidad WCAG (`npm run check:a11y`). Puedes consultar más detalles en [`README.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/README.md) y [`docs/INDICE_MAESTRO_ARQUITECTURA.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/docs/INDICE_MAESTRO_ARQUITECTURA.md)."""
 
 
 def generate_response(discussion_title: str, query_text: str, author: str, context: Dict[str, Any], category: str = "General", escalation: Optional[str] = None) -> Tuple[str, str]:
