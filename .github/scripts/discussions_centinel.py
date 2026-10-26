@@ -2,10 +2,10 @@
 # -*- coding: utf-8 -*-
 """
 Agente Centinela de GitHub Discussions para Dev Visualizer (@Luics415).
-Proporciona soporte autónomo, bilingüe (ES/EN) con respuestas técnicas contextualizadas,
-formato prioritario en lista estructurada, prohibición estricta de diagramas simplistas,
-ventana de espera humana de 10 minutos con notificación inmediata de borrador al mantenedor,
-detección de intervención manual para cancelación automática, escalamiento de incidentes críticos,
+Proporciona soporte autónomo, bilingüe (ES/EN) con respuestas técnicas contextualizadas
+en párrafos densos, naturales y meticulosos (minimizando listas), prohibición estricta de diagramas,
+ventana de espera humana de 10 minutos con notificación inmediata de borrador al mantenedor vía Discord DM,
+detección de intervención manual para cancelación automática, diagnóstico detallado de Gemini API,
 3 niveles de notificación (mención, Step Summary, Discord DM 1 a 1 vía Bot) y registro en
 expedientes fechados docs/FechaAgente/.
 """
@@ -77,7 +77,8 @@ def detect_language(text: str) -> str:
         " how ", " what ", " why ", " is ", " are ", " can ", " does ", " error ",
         " issue ", " please ", " help ", " thanks ", " thank you ", " problem ",
         " cannot ", " unable ", " where ", " when ", " looking for ", " advice ",
-        " synchronize ", " synchronization ", " client-side ", " server-side "
+        " synchronize ", " synchronization ", " client-side ", " server-side ",
+        " could you ", " would love ", " architected ", " design decision "
     ]
     matches = sum(1 for m in english_markers if m in (" " + t_lower + " "))
     return "en" if matches >= 2 else "es"
@@ -156,7 +157,7 @@ def get_or_open_discord_dm_channel(bot_token: str, user_id: str) -> Optional[str
     headers = {
         "Authorization": f"Bot {bot_token}",
         "Content-Type": "application/json",
-        "User-Agent": "DevVisualizerCentinel/2.0"
+        "User-Agent": "DevVisualizerCentinel/2.1"
     }
     channel_payload = json.dumps({"recipient_id": str(user_id)}).encode("utf-8")
 
@@ -175,7 +176,7 @@ def send_discord_embed(bot_token: str, channel_id: str, embed: Dict[str, Any]) -
     headers = {
         "Authorization": f"Bot {bot_token}",
         "Content-Type": "application/json",
-        "User-Agent": "DevVisualizerCentinel/2.0"
+        "User-Agent": "DevVisualizerCentinel/2.1"
     }
     send_msg_url = f"https://discord.com/api/v10/channels/{channel_id}/messages"
     message_payload = json.dumps({"embeds": [embed]}).encode("utf-8")
@@ -203,30 +204,29 @@ def send_level_3_draft_notification(discussion_num: int, title: str, author: str
     if not channel_id:
         return
 
-    # Truncar vista previa si excede el límite del campo en Discord
     preview = draft_text.strip()
     if len(preview) > 950:
         preview = preview[:920] + "\n... *(truncado para Discord)*"
 
-    color = 0xFF5555 if escalation else 0xFEE75C  # Rojo si es crítico, Amarillo/Oro si es borrador en espera
+    color = 0xFF5555 if escalation else 0xFEE75C
     fields = [
         {"name": "💬 Discusión", "value": f"#{discussion_num} - {title}", "inline": False},
         {"name": "👤 Autor", "value": f"@{author}", "inline": True},
         {"name": "🏷️ Categoría", "value": category, "inline": True},
-        {"name": "⏱️ Tiempo de Espera Restante", "value": f"**{wait_minutes_remaining:.1f} minutos** para intervención manual", "inline": False},
+        {"name": "⏱️ Tiempo Restante de Espera", "value": f"**{wait_minutes_remaining:.1f} minutos** para respuesta manual", "inline": False},
     ]
 
     if escalation:
         fields.append({"name": "🚨 Escalamiento Crítico", "value": f"**{escalation}**", "inline": False})
 
-    fields.append({"name": "📝 Vista Previa del Borrador", "value": f"```markdown\n{preview}\n```", "inline": False})
+    fields.append({"name": "📝 Vista Previa del Borrador (Párrafos Densos)", "value": f"```markdown\n{preview}\n```", "inline": False})
     fields.append({"name": "🔗 Enlace Directo", "value": f"[Abrir Discusión en GitHub para responder tú mismo]({url})", "inline": False})
 
     embed = {
         "title": "📝 [BORRADOR CENTINELA] Ventana Humana de 10 Minutos Activa",
         "description": (
             f"El usuario **@{author}** abrió la discusión **#{discussion_num}**.\n\n"
-            "Se ha generado un borrador técnico estructurado. Dispones de **10 minutos** para responder "
+            "Se ha generado un borrador técnico meticuloso. Dispones de **10 minutos** para responder "
             "directamente en GitHub si prefieres atender la consulta personalmente. "
             "Si no intervienes antes de que expire la ventana, el Centinela publicará este borrador automáticamente."
         ),
@@ -240,7 +240,7 @@ def send_level_3_draft_notification(discussion_num: int, title: str, author: str
     }
 
     if send_discord_embed(bot_token, channel_id, embed):
-        log(f"Nivel 3: Notificación de borrador (ventana de 10 min) despachada a Discord DM.")
+        log("Nivel 3: Notificación de borrador (ventana de 10 min) despachada a Discord DM.")
 
 
 def send_level_3_published_notification(discussion_num: int, title: str, author: str, url: str, category: str, escalation: Optional[str] = None):
@@ -254,7 +254,7 @@ def send_level_3_published_notification(discussion_num: int, title: str, author:
     if not channel_id:
         return
 
-    color = 0x57F287  # Verde de éxito
+    color = 0x57F287
     fields = [
         {"name": "💬 Discusión", "value": f"#{discussion_num} - {title}", "inline": False},
         {"name": "👤 Autor", "value": f"@{author}", "inline": True},
@@ -266,7 +266,7 @@ def send_level_3_published_notification(discussion_num: int, title: str, author:
         "title": "🚀 [PUBLICADO] Respuesta de Centinela Emitida con Éxito",
         "description": (
             f"Transcurrió la ventana de espera de 10 minutos sin intervención manual en la discusión **#{discussion_num}**.\n"
-            "El Agente Centinela ha publicado la respuesta técnica estructurada."
+            "El Agente Centinela ha publicado la respuesta técnica en prosa elaborada."
         ),
         "color": color,
         "fields": fields,
@@ -291,7 +291,7 @@ def send_level_3_cancelled_notification(discussion_num: int, title: str, author:
     if not channel_id:
         return
 
-    color = 0x5865F2  # Azul Discord
+    color = 0x5865F2
     fields = [
         {"name": "💬 Discusión", "value": f"#{discussion_num} - {title}", "inline": False},
         {"name": "👤 Intervención", "value": f"@{OWNER_DEFAULT} (Mantenedor)", "inline": True},
@@ -380,10 +380,10 @@ def record_in_expediente(item: Dict[str, Any]):
 
 
 def gather_repository_context() -> Dict[str, Any]:
-    """Extrae el estado vivo del repositorio para alimentar el contexto del agente."""
+    """Extrae el estado vivo y meticuloso del repositorio para alimentar el contexto del agente."""
     context: Dict[str, Any] = {
         "stack": "Next.js 16 (App Router) / React 19 / TypeScript / Motion (Framer Motion 14) / Tailwind CSS",
-        "arquitectura": "Atlas Visual Educativo con 73 colecciones, 146 rutas técnicas, animaciones interactivas, audio narración didáctica y quizzes técnicos",
+        "arquitectura": "Atlas Visual Educativo con 73 colecciones, 146 rutas técnicas, animaciones interactivas a 60fps, audio narración didáctica en cliente y quizzes técnicos con persistencia local",
         "habilidades": ["01-definir", "02-planificar", "03-construir", "04-verificar", "05-revisar", "06-aprobar", "07-centinela"],
         "seguridad": "Secretos gestionados en GitHub Secrets; gitleaks y orquestador maestro",
         "proposito": "Transformar conceptos complejos de computación, arquitecturas y algoritmos en explicaciones visuales autónomas y accesibles"
@@ -393,10 +393,38 @@ def gather_repository_context() -> Dict[str, Any]:
         try:
             with open("package.json", "r", encoding="utf-8") as f:
                 pkg = json.load(f)
+                context["version"] = pkg.get("version", "1.1.0")
                 context["dependencies"] = list(pkg.get("dependencies", {}).keys())
-                context["devDependencies"] = list(pkg.get("devDependencies", {}).keys())
+                context["scripts"] = list(pkg.get("scripts", {}).keys())
         except Exception as e:
             log(f"Aviso al leer package.json: {e}")
+
+    docs_to_sample = {
+        "audio": "docs/AUDIO_ARCHITECTURE.md",
+        "simulation": "docs/SIMULATION_ENGINE.md",
+        "canvas": "docs/CANVAS_RENDERER.md",
+        "auditoria_visual": "docs/AUDITORIA_VISUAL_EN_ACCION.md",
+        "indice_maestro": "docs/INDICE_MAESTRO_ARQUITECTURA.md",
+        "security": "docs/SECURITY_GOVERNANCE.md",
+        "roadmap": "docs/ROADMAP.md"
+    }
+    context["docs_extracts"] = {}
+    for doc_key, doc_path in docs_to_sample.items():
+        if os.path.isfile(doc_path):
+            try:
+                with open(doc_path, "r", encoding="utf-8") as f:
+                    lines = [line.strip() for line in f if line.strip() and not line.startswith("```")][:15]
+                    context["docs_extracts"][doc_key] = " ".join(lines)[:600]
+            except Exception:
+                pass
+
+    key_code_files = [
+        "src/lib/audioNarrator.ts",
+        "src/components/audio/FloatingAudioBubble.tsx",
+        "src/components/quiz/QuizRunner.tsx",
+        "scripts/build-concept-search-index.ts"
+    ]
+    context["existing_components"] = [f for f in key_code_files if os.path.isfile(f)]
 
     try:
         log_out = run_cmd(["git", "log", "-n", "3", "--oneline"], check=False)
@@ -474,7 +502,6 @@ def get_open_discussions(repo_owner: str, repo_name: str, limit: int = 10) -> Li
 def needs_response(discussion: Dict[str, Any], bot_logins: List[str]) -> bool:
     """Evalúa si la discusión requiere atención o ya fue respondida."""
     author_login = (discussion.get("author") or {}).get("login", "")
-    # Si la discusión fue abierta por el mantenedor, no responder de forma autónoma
     if author_login.lower() == OWNER_DEFAULT.lower():
         return False
 
@@ -482,7 +509,6 @@ def needs_response(discussion: Dict[str, Any], bot_logins: List[str]) -> bool:
     if not comments:
         return True
 
-    # Si algún comentario previo fue hecho por el mantenedor o el bot, no responder de nuevo
     for c in comments:
         c_author = (c.get("author") or {}).get("login", "")
         if c_author.lower() in [b.lower() for b in bot_logins]:
@@ -492,185 +518,166 @@ def needs_response(discussion: Dict[str, Any], bot_logins: List[str]) -> bool:
 
 
 def call_gemini_api(prompt: str, api_key: str) -> Optional[str]:
-    """Invoca la API de Gemini utilizando modelos actualizados y encabezados oficiales."""
+    """Invoca la API de Gemini utilizando modelos actualizados y encabezados oficiales con diagnóstico."""
     models = ["gemini-2.0-flash", "gemini-1.5-flash", "gemini-1.5-pro"]
+    endpoints = [
+        "https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent",
+        "https://generativelanguage.googleapis.com/v1/models/{model}:generateContent"
+    ]
+
     for model in models:
-        url = f"https://generativelanguage.googleapis.com/v1beta/models/{model}:generateContent?key={api_key}"
-        payload = {
-            "contents": [{"parts": [{"text": prompt}]}],
-            "generationConfig": {
-                "temperature": 0.2,
-                "maxOutputTokens": 2048,
+        for ep_template in endpoints:
+            url = ep_template.format(model=model) + f"?key={api_key}"
+            payload = {
+                "contents": [{"parts": [{"text": prompt}]}],
+                "generationConfig": {
+                    "temperature": 0.25,
+                    "maxOutputTokens": 2048,
+                }
             }
-        }
-        data = json.dumps(payload).encode("utf-8")
-        headers = {
-            "Content-Type": "application/json",
-            "x-goog-api-key": api_key
-        }
-        req = urllib.request.Request(url, data=data, headers=headers)
-        try:
-            with urllib.request.urlopen(req, timeout=20) as resp:
-                if resp.status == 200:
-                    res_body = json.loads(resp.read().decode("utf-8"))
-                    candidates = res_body.get("candidates", [])
-                    if candidates:
-                        text = candidates[0].get("content", {}).get("parts", [{}])[0].get("text", "")
-                        if text:
-                            return text.strip()
-        except Exception as e:
-            log(f"Aviso: Fallo con modelo {model} en Gemini API: {e}")
-            continue
+            data = json.dumps(payload).encode("utf-8")
+            headers = {
+                "Content-Type": "application/json",
+                "x-goog-api-key": api_key
+            }
+            req = urllib.request.Request(url, data=data, headers=headers)
+            try:
+                with urllib.request.urlopen(req, timeout=20) as resp:
+                    if resp.status == 200:
+                        res_body = json.loads(resp.read().decode("utf-8"))
+                        candidates = res_body.get("candidates", [])
+                        if candidates:
+                            text = candidates[0].get("content", {}).get("parts", [{}])[0].get("text", "")
+                            if text:
+                                log(f"Gemini API generó respuesta con éxito usando modelo {model}.")
+                                return text.strip()
+            except urllib.error.HTTPError as he:
+                error_body = ""
+                try:
+                    error_body = he.read().decode("utf-8")
+                except Exception:
+                    pass
+                log(f"Diagnóstico Gemini API ({model} - {he.code} {he.reason}): {error_body[:250]}")
+                continue
+            except Exception as e:
+                log(f"Aviso de conexión con modelo {model} en Gemini API: {e}")
+                continue
     return None
 
 
 def synthesize_project_response(discussion_title: str, query_text: str, author: str, context: Dict[str, Any], lang: str = "es", escalation: Optional[str] = None) -> str:
     """
     Motor de síntesis contextual de alta fidelidad técnica.
-    Cumple los estándares solicitados por el mantenedor:
-    1. La mayor parte del texto está estructurada en un listado técnico detallado y numerado.
-    2. Cero diagramas simplistas o artificiales; respuesta profunda que honra la complejidad de la pregunta.
-    3. Cita exclusivamente archivos, componentes y rutas reales del repositorio.
+    Cumple con el estándar de prosa densa, meticulosa y natural:
+    - Párrafos conectados y sustanciales, minimizando listas a menos que sea estrictamente necesario.
+    - Cero diagramas simplistas o artificiales.
+    - Profundidad de ingeniería fundamentada en los archivos reales del repositorio.
     """
     q_lower = (discussion_title + " " + query_text).lower()
 
     if lang == "en":
         if escalation:
-            return f"""Hello @{author}! Thank you for bringing this to our attention.
+            return f"""Hello @{author}! Thank you for bringing this situation to our attention.
 
-We have detected that this inquiry touches on a critical topic ({escalation}). We take stability and security with the utmost seriousness.
+We have detected that this inquiry touches on a critical topic ({escalation}). We take repository security, runtime stability, and data integrity with the utmost seriousness. This incident has been immediately logged and escalated to @{OWNER_DEFAULT} through our internal issue tracking pipeline for prioritized technical inspection.
 
-1. **Automatic Triage:** This incident has been logged and escalated to @{OWNER_DEFAULT} via our internal security and bug tracking pipeline for priority inspection.
-2. **Repository Safeguards:** Our CI/CD pipelines run automated static audits (`gitleaks`, `npm audit`) and quality gates across all 73 collections before any code reaches production.
-3. **Next Steps & Diagnostics:** To accelerate resolution, please share any reproducible console error traces, exact browser version, or step-by-step reproduction scenarios in this thread.
+In Dev Visualizer, our automated CI/CD workflows run rigorous static security audits including `gitleaks` and `npm audit` across all pull requests to prevent regressions. To help us accelerate diagnostic review, please feel free to share any reproducible error logs, browser version details, or step-by-step reproduction scenarios directly in this thread. We will provide updates as soon as the team conducts an initial review."""
 
-We will provide updates as soon as the initial diagnostic review is completed."""
-
-        # Audiovisual Synchronization & Animations (60fps + Audio Narration)
+        # Audiovisual Synchronization & 60fps Animations
         if any(k in q_lower for k in ["synchronize", "synchronization", "speech", "speechsynthesis", "audio", "narrat", "animation", "canvas", "motion", "render", "fps", "performance", "60fps"]):
-            return f"""Hello @{author}! Thank you for your question regarding audiovisual synchronization in Dev Visualizer.
+            return f"""Hello @{author}! Thank you for raising this question about the audiovisual architecture of Dev Visualizer.
 
-Dev Visualizer coordinates 60fps real-time visual rendering with client-side SpeechSynthesis narration across all 73 technical collections through a decoupled, state-driven architecture:
+When designing the interactive engine across our 73 technical collections, our foremost priority was ensuring that audio narration and visual state transitions never compete for the main thread. To guarantee rock-solid 60fps rendering, we architected a decoupled pipeline where Motion (Framer Motion 14) and SVG/Canvas renderers rely exclusively on GPU-composited properties (`transform` and `opacity`) driven by `requestAnimationFrame`. Meanwhile, auditory playback runs through the browser's native Web Speech API (`SpeechSynthesis`) in a distinct background audio thread managed by our singleton in [`src/lib/audioNarrator.ts`](https://github.com/Luics415/Dev-Visualizer/blob/main/src/lib/audioNarrator.ts). Because the animation clock is completely isolated from the speech synthesizer's initialization and utterance queue, complex visual scenes never drop frames during speech transitions.
 
-1. **Decoupled Render Loop & Thread Isolation:**
-   - Visual animations are orchestrated via Motion (Framer Motion 14) and CSS hardware-accelerated transforms (`transform`, `opacity`) running at 60fps via `requestAnimationFrame` on the GPU compositor thread.
-   - Voice narration runs entirely through the browser's native Web Speech API (`SpeechSynthesis`) in a separate background audio thread managed by our singleton engine in [`src/lib/audioNarrator.ts`](https://github.com/Luics415/Dev-Visualizer/blob/main/src/lib/audioNarrator.ts).
-   - Because the audio and visual engines are decoupled, speech synthesis processing never blocks or drops frames in the 60fps visual rendering loop.
+Under the hood, browser speech engines—particularly on mobile Android devices running Chromium—present severe reliability constraints that we solved through meticulous runtime heuristics. If an utterance exceeds 15 seconds, Chromium frequently pauses playback without emitting an `onend` event, causing the narration to freeze. In [`src/lib/audioNarrator.ts`](https://github.com/Luics415/Dev-Visualizer/blob/main/src/lib/audioNarrator.ts), our `splitTextIntoNarrationChunks` utility splits long narratives into natural phonetic units of 140 characters or fewer bounded by punctuation. Furthermore, to prevent V8's garbage collector from prematurely sweeping active `SpeechSynthesisUtterance` instances mid-sentence, the engine maintains an active utterance registry in a module-level `Set<SpeechSynthesisUtterance>` until the native `end` or `error` callback safely disposes of the object.
 
-2. **Chunked Sentence Narration (`splitTextIntoNarrationChunks`):**
-   - In [`src/lib/audioNarrator.ts`](https://github.com/Luics415/Dev-Visualizer/blob/main/src/lib/audioNarrator.ts), all narration text is split into concise phonetic units (<= 140 characters) delimited by punctuation boundaries (`.`, `!`, `?`, `;`, `,`).
-   - This prevents the known Chromium/Android Web Speech API buffer freeze bug (where utterances exceeding 15 seconds silently stop speaking) without requiring disruptive pause/resume audio heartbeats.
+From a state management perspective, the player exposes an immutable `AudioNarratorSnapshot` consumed by UI components like [`src/components/audio/FloatingAudioBubble.tsx`](https://github.com/Luics415/Dev-Visualizer/blob/main/src/components/audio/FloatingAudioBubble.tsx) via React 19's `useSyncExternalStore`. This eliminates hydration mismatches across our 350+ statically pre-rendered Next.js 16 pages (`output: "export"`). We also listen for `document.visibilitychange` to gracefully pause speech when users switch browser tabs, and strictly adhere to `prefers-reduced-motion: reduce` by replacing kinetic transitions with instantaneous state updates while preserving voice guidance. You can review our full audit protocols in [`docs/AUDITORIA_VISUAL_EN_ACCION.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/docs/AUDITORIA_VISUAL_EN_ACCION.md) and [`docs/AUDIO_ARCHITECTURE.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/docs/AUDIO_ARCHITECTURE.md)."""
 
-3. **Garbage Collection Immunity (`activeUtterancesSet`):**
-   - Chromium-based engines tend to garbage-collect active `SpeechSynthesisUtterance` instances mid-playback if they are scoped locally.
-   - We maintain a module-level `Set<SpeechSynthesisUtterance>` retaining the active utterance until its native `end` or `error` callbacks fire.
+        # Concept Search Indexer & Client Performance
+        if any(k in q_lower for k in ["search", "indexer", "index", "modal", "query", "queries", "filter"]):
+            return f"""Hello @{author}! Thank you for inquiring about the concept search architecture in Dev Visualizer.
 
-4. **SSR-Safe State Machine & React 19 Hydration (`useSyncExternalStore`):**
-   - The narrator exposes an immutable `AudioNarratorSnapshot` consumed by UI controls such as [`src/components/audio/FloatingAudioBubble.tsx`](https://github.com/Luics415/Dev-Visualizer/blob/main/src/components/audio/FloatingAudioBubble.tsx).
-   - We use React's `useSyncExternalStore` with strict server/client snapshot separation to guarantee safe hydration across 350+ statically pre-rendered pages in Next.js 16 App Router.
+To achieve instant sub-millisecond search across all 73 collections and 146 routes without incurring runtime network latency or bloating client JavaScript bundles, we built a dedicated pre-compilation step in [`scripts/build-concept-search-index.ts`](https://github.com/Luics415/Dev-Visualizer/blob/main/scripts/build-concept-search-index.ts). During the static build phase (`npm run build:search-index`), the script traverses our `collectionManifest` and expanded concept dictionaries, extracting compact tuples representing the concept title, section, and collection identifier. Instead of embedding full theoretical descriptions or heavy metadata into the search bundle, the pipeline emits a pruned, highly optimized static dictionary into `src/data/conceptSearchIndex.ts`.
 
-5. **Lifecycle Resilience & Tab Visibility:**
-   - The engine binds to `document.visibilitychange`. When switching tabs, narration automatically pauses to prevent out-of-sync audio progress and resumes seamlessly when the tab is restored.
+At runtime, the client modal performs in-memory token matching and prefix filtering directly in the browser. Because the search index is pre-compiled as static JavaScript data rather than fetched via dynamic JSON requests or external search APIs, queries resolve instantaneously even on offline-first environments or low-bandwidth mobile connections. Furthermore, the search modal coordinates with our keyboard navigation system ([`docs/KEYBOARD_SHORTCUTS.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/docs/KEYBOARD_SHORTCUTS.md)) and triggers subtle target glowing animations when jumping directly to visual sections across the application."""
 
-6. **Accessibility & WCAG Reduced Motion Compliance:**
-   - All visual transitions respect `prefers-reduced-motion: reduce`. When active, animations collapse into instantaneous state updates while speech narration remains available as an accessible alternative.
-   - Comprehensive animation auditing guidelines are documented in [`docs/AUDITORIA_VISUAL_EN_ACCION.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/docs/AUDITORIA_VISUAL_EN_ACCION.md)."""
+        # Simulation Engine & Algorithmic Complexity
+        if any(k in q_lower for k in ["simulation", "algorithm", "worker", "complex", "playback", "timeline"]):
+            return f"""Hello @{author}! Thank you for your question regarding algorithmic simulation in Dev Visualizer.
+
+Our simulation engine, specified in [`docs/SIMULATION_ENGINE.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/docs/SIMULATION_ENGINE.md), operates on a strictly decoupled three-phase architecture: computation, temporal playback, and visual projection. Rather than mutating DOM nodes during algorithmic execution, algorithms first run in pure memory to generate an immutable series of timeline snapshots (`SimulationStep[]`). Each step records the exact state of pointers, active array indices, node visits, and data swaps, frozen via `Object.freeze` to allow deterministic bidirectional stepping (`Play`, `StepForward`, `StepBackward`, `Reset`) without recalculating previous iterations.
+
+Visual rendering is subsequently performed at 60fps using Motion (Framer Motion 14) and Canvas/SVG renderers. As outlined in [`docs/CANVAS_RENDERER.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/docs/CANVAS_RENDERER.md), high-frequency simulations automatically adapt to high-density Retina displays (`devicePixelRatio`) and pause when inactive. Every visualizer is accompanied by an accessible DOM fallback table and quantitative Big-O metrics, ensuring seamless screen-reader compatibility and pedagogical clarity across all computational models."""
 
         # Secrets, Security & Governance
         if any(k in q_lower for k in ["secret", ".env", "gitleaks", "git-secrets", "vault", "token", "leak", "security"]):
-            return f"""Hi @{author}! Thank you for reaching out regarding security governance in Dev Visualizer:
+            return f"""Hi @{author}! Thank you for reaching out regarding security governance in Dev Visualizer.
 
-1. **Zero Client Secrets Policy:** Dev Visualizer is a client-side visualization application built on Next.js 16 and React 19. No private runtime keys, database passwords, or server credentials are ever bundled into client assets.
-2. **Isolated GitHub Secrets:** Automated bot tokens and AI credentials (`DISCORD_BOT_TOKEN`, `GEMINI_API_KEY`, `LUICS_PAT`) reside exclusively in encrypted GitHub Secrets and are only injected during ephemeral GitHub Actions runs.
-3. **Pre-Commit and CI Audit Gates:** Every pull request is verified via static analysis tools (`gitleaks`, `npm audit`) and governed by our 6-phase master orchestrator to prevent inadvertent credential leakage.
-4. **Automated Triage:** Inquiries flagged with security keywords trigger an immediate high-priority issue assigned directly to @{OWNER_DEFAULT}."""
+Because Dev Visualizer is deployed strictly as a client-side static web application on Next.js 16 and React 19, no private runtime credentials, database keys, or server secrets are ever compiled or bundled into client assets. All automation credentials, bot tokens, and AI keys (`DISCORD_BOT_TOKEN`, `GEMINI_API_KEY`, `LUICS_PAT`) reside exclusively in encrypted GitHub Secrets and are injected only inside ephemeral GitHub Actions runners.
+
+Every pull request and commit must pass through automated security auditing with `gitleaks` and `npm audit` under our governance framework ([`docs/SECURITY_GOVERNANCE.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/docs/SECURITY_GOVERNANCE.md)). Furthermore, any community discussion referencing potential vulnerabilities triggers an automated escalation issue directly assigned to @{OWNER_DEFAULT} for expedited verification."""
 
         # Quizzes & Gamification
         if any(k in q_lower for k in ["quiz", "badge", "relic", "score", "trophy", "gamification"]):
-            return f"""Hi @{author}! Thank you for your interest in the interactive quiz and badge architecture of Dev Visualizer:
+            return f"""Hi @{author}! Thank you for your interest in the interactive quiz and badge architecture of Dev Visualizer.
 
-1. **Client-Side Persistence:** Quiz progress, accuracy scores, and unlocked relic badges are stored in browser `localStorage` with zero tracking cookies and zero third-party telemetry.
-2. **Contextual Pedagogical Feedback:** Each question provides real-time explanations reinforcing theoretical foundations right after an answer is submitted.
-3. **Modular Runner Architecture:** Quizzes are rendered using dedicated runners in `src/components/quiz/` supporting keyboard navigation, a11y labels, and responsive mobile layouts."""
+The evaluation subsystem in `src/components/quiz/` is engineered with client-side state persistence in browser `localStorage`, ensuring zero cookies and zero third-party telemetry. Each technical question provides real-time pedagogical explanations reinforcing the underlying engineering concepts as soon as an option is selected. Relic badges unlock dynamically through responsive SVG animations without interrupting user focus."""
 
-        # Default English Response (Architecture & Catalog)
-        return f"""Hi @{author}! Thank you for your interest in Dev Visualizer.
+        # Default English Architecture Overview
+        return f"""Hi @{author}! Thank you for reaching out regarding the engineering foundations of Dev Visualizer.
 
-Here is a technical breakdown of how the project is architected:
+Dev Visualizer is architected as an educational software engineering atlas delivering 73 specialized collections across 146 interactive routes. The frontend is built on Next.js 16 (App Router) combined with React 19, TypeScript, Tailwind CSS, and Motion (Framer Motion 14). The entire application compiles into a high-performance static distribution (`output: "export"`) containing over 350 pre-rendered pages, which eliminates backend server vulnerabilities, avoids runtime database queries, and enables instant global delivery via GitHub Pages.
 
-1. **Frontend Architecture:** Next.js 16 (App Router) with React 19, TypeScript, Tailwind CSS, and Motion (Framer Motion 14) configured for high-performance static export (`output: "export"`).
-2. **Educational Scope:** 73 technical collections and 146 interactive visual routes covering computer architecture, systems programming, databases, cloud, and modern languages.
-3. **Audiovisual Synchronization:** Decoupled 60fps animations paired with an in-house Web Speech API narration engine (`src/lib/audioNarrator.ts`).
-4. **Quality Gates:** Automated verification scripts (`npm run check:links`, `npm run check:library`, `npm run check:a11y`, `npm run build`) ensuring total type safety and zero broken references across 350+ pre-rendered pages.
-5. **Technical Guidelines:** Detailed architectural documentation is available in [`README.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/README.md) and [`docs/INDICE_MAESTRO_ARQUITECTURA.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/docs/INDICE_MAESTRO_ARQUITECTURA.md)."""
+To preserve technical excellence across such a vast catalog, development is governed by an automated 7-skill pipeline (`01-definir` through `07-centinela`). Continuous integration workflows enforce strict quality gates including static link validation (`npm run check:links`), educational library catalog validation (`npm run check:library`), WCAG accessibility compliance (`npm run check:a11y`), and zero-leakage security scans with `gitleaks`. You can explore our comprehensive architectural map in [`README.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/README.md) and [`docs/INDICE_MAESTRO_ARQUITECTURA.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/docs/INDICE_MAESTRO_ARQUITECTURA.md)."""
 
-    # Spanish responses
+    # Spanish Responses
     if escalation:
         return f"""¡Hola @{author}! Gracias por comunicarnos esta situación.
 
-Hemos detectado que esta consulta refiere a un tema crítico ({escalation}). Tratamos la estabilidad y seguridad con la máxima prioridad.
+Hemos detectado que esta consulta refiere a un tema crítico ({escalation}). Tratamos la estabilidad del repositorio, la seguridad en tiempo de ejecución y la integridad de los datos con la máxima prioridad. Este incidente ha sido registrado y escalado inmediatamente a @{OWNER_DEFAULT} mediante nuestro flujo interno de seguimiento de incidencias para su revisión técnica prioritaria.
 
-1. **Triaje y Escalamiento Automático:** El caso ha sido registrado y escalado a @{OWNER_DEFAULT} mediante nuestro flujo interno de seguimiento de incidencias para revisión prioritaria.
-2. **Compuertas de Calidad:** Todo cambio en el repositorio es auditado por herramientas estáticas (`gitleaks`, `npm audit`) antes de su integración en producción.
-3. **Siguientes Pasos:** Si dispones de detalles adicionales como capturas, versión de navegador o trazas de consola, compártelos en este hilo para acelerar el diagnóstico."""
+En Dev Visualizer, nuestros flujos automatizados de CI/CD ejecutan auditorías de seguridad estáticas con `gitleaks` y `npm audit` en cada Pull Request para prevenir cualquier tipo de regresión. Para acelerar el diagnóstico, puedes compartir registros de consola, versión exacta del navegador o pasos detallados de reproducción directamente en este hilo. Compartiremos actualizaciones en cuanto concluya la revisión inicial."""
 
-    # Sincronización Audiovisual, Animaciones y Motor de Audio
+    # Sincronización Audiovisual y Animaciones
     if any(k in q_lower for k in ["sincroniza", "sincronizar", "speech", "speechsynthesis", "audio", "narrac", "animac", "canvas", "motion", "render", "fps", "rendimiento", "60fps"]):
-        return f"""¡Hola @{author}! Gracias por tu consulta sobre la sincronización audiovisual en Dev Visualizer.
+        return f"""¡Hola @{author}! Gracias por tu consulta sobre la arquitectura audiovisual en Dev Visualizer.
 
-Dev Visualizer coordina renderizado visual a 60fps con narración por voz cliente (`SpeechSynthesis`) a lo largo de las 73 colecciones mediante la siguiente arquitectura desacoplada:
+Al diseñar el motor interactivo en las 73 colecciones técnicas del proyecto, nuestra prioridad fundamental fue garantizar que la narración auditiva y las transiciones visuales jamás compitan por el hilo principal de renderizado. Para asegurar una tasa constante de 60 cuadros por segundo, implementamos una arquitectura desacoplada donde Motion (Framer Motion 14) y los renderizadores SVG/Canvas se apoyan exclusivamente en transformaciones aceleradas por hardware en la GPU (`transform` y `opacity`) coordinadas mediante `requestAnimationFrame`. La locución por voz se delega íntegramente a la Web Speech API nativa (`SpeechSynthesis`) en un hilo de audio independiente del sistema operativo, gestionado por el singleton centralizado en [`src/lib/audioNarrator.ts`](https://github.com/Luics415/Dev-Visualizer/blob/main/src/lib/audioNarrator.ts).
 
-1. **Desacoplamiento de Hilos y Render a 60fps:**
-   - Las animaciones visuales operan mediante Motion (Framer Motion 14) y transformaciones aceleradas por hardware (`transform`, `opacity`) en el compositor de la GPU a través de `requestAnimationFrame`.
-   - La narración auditiva corre sobre la Web Speech API nativa del navegador en un hilo de audio independiente, administrada por el singleton [`src/lib/audioNarrator.ts`](https://github.com/Luics415/Dev-Visualizer/blob/main/src/lib/audioNarrator.ts).
-   - Al estar desacoplados, los tiempos de inicialización del sintetizador de voz jamás bloquean ni provocan caídas de cuadros en las animaciones visuales.
+Bajo el capó, los sintetizadores de voz en navegadores móviles (especialmente motores Chromium en Android) imponen restricciones críticas que resolvimos con heurísticas específicas. Cuando una locución supera los 15 segundos continuos, Chromium suele pausar la reproducción de forma silenciosa sin emitir el evento `onend`, provocando que el audio se congele. Para solucionar esto de raíz, nuestra función `splitTextIntoNarrationChunks` subdivide los textos en unidades fonéticas breves (inferiores o iguales a 140 caracteres) delimitadas por signos de puntuación. Además, para impedir que el recolector de basura de V8 destruya las instancias de `SpeechSynthesisUtterance` a mitad de frase por pérdida de referencia en ámbito local, el motor retiene cada locución activa dentro de un `Set<SpeechSynthesisUtterance>` a nivel de módulo hasta la confirmación formal de sus callbacks nativos `end` o `error`.
 
-2. **Chunking Fonético Inteligente (`splitTextIntoNarrationChunks`):**
-   - El motor [`src/lib/audioNarrator.ts`](https://github.com/Luics415/Dev-Visualizer/blob/main/src/lib/audioNarrator.ts) divide el guion en bloques fonéticos breves (<= 140 caracteres) mediante signos de puntuación (`.`, `!`, `?`, `;`, `,`).
-   - Esto evita de raíz el congelamiento de buffer en Chromium/Android (donde locuciones mayores a 15 segundos se detienen silenciosamente sin disparar `onend`), eliminando la necesidad de heartbeats de pause/resume.
+Desde la perspectiva de estado, el reproductor expone una instantánea inmutable `AudioNarratorSnapshot` consumida por componentes visuales como [`src/components/audio/FloatingAudioBubble.tsx`](https://github.com/Luics415/Dev-Visualizer/blob/main/src/components/audio/FloatingAudioBubble.tsx) mediante `useSyncExternalStore` de React 19. Esto previene cualquier problema de hidratación durante la exportación estática de más de 350 páginas en Next.js 16 App Router (`output: "export"`). Asimismo, escuchamos `document.visibilitychange` para pausar la locución si el usuario cambia de pestaña y respetamos estrictamente `prefers-reduced-motion: reduce`, sustituyendo las animaciones continuas por cambios inmediatos de estado mientras mantenemos la voz como alternativa accesible. Puedes consultar los protocolos completos en [`docs/AUDITORIA_VISUAL_EN_ACCION.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/docs/AUDITORIA_VISUAL_EN_ACCION.md) y [`docs/AUDIO_ARCHITECTURE.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/docs/AUDIO_ARCHITECTURE.md)."""
 
-3. **Inmunidad al Recolector de Basura (`activeUtterancesSet`):**
-   - En navegadores Chromium, las instancias de `SpeechSynthesisUtterance` pueden ser recolectadas por el Garbage Collector de V8 en plena reproducción si no tienen una referencia activa en memoria.
-   - El sistema almacena cada locución en un `Set<SpeechSynthesisUtterance>` a nivel de módulo hasta la finalización formal de su evento `end` o `error`.
+    # Búsqueda e Indexador
+    if any(k in q_lower for k in ["busqueda", "buscar", "indexador", "indice", "modal"]):
+        return f"""¡Hola @{author}! Con gusto clarificamos el funcionamiento del indexador de conceptos en Dev Visualizer.
 
-4. **Hidratación Segura en React 19 y Next.js 16 (`useSyncExternalStore`):**
-   - El estado de reproducción expone un `AudioNarratorSnapshot` inmutable consumido por componentes como [`src/components/audio/FloatingAudioBubble.tsx`](https://github.com/Luics415/Dev-Visualizer/blob/main/src/components/audio/FloatingAudioBubble.tsx).
-   - Empleamos `useSyncExternalStore` para prevenir inconsistencias de hidratación entre el render de servidor estático y el cliente.
+Para lograr una búsqueda instantánea en submilisegundos sobre las 73 colecciones y 146 rutas sin generar peticiones de red en tiempo de ejecución ni sobrecargar el tamaño de los paquetes JavaScript de cliente, creamos un paso de pre-compilación estática en [`scripts/build-concept-search-index.ts`](https://github.com/Luics415/Dev-Visualizer/blob/main/scripts/build-concept-search-index.ts). Durante la fase de build (`npm run build:search-index`), el script procesa el `collectionManifest` y los diccionarios de conceptos ampliados, abstrayendo tuplas compactas con el título, sección y clave de colección, emitiendo un diccionario estático ligero en `src/data/conceptSearchIndex.ts`.
 
-5. **Resiliencia al Cambio de Pestaña:**
-   - El motor escucha `document.visibilitychange`. Al cambiar de pestaña, la narración se pausa automáticamente para evitar desfasaje con la vista y se reanuda de forma transparente al regresar.
+En el navegador, el modal ejecuta coincidencia de tokens y filtrado por prefijos en memoria pura. Al residir el índice como código estático pre-compilado en lugar de depender de llamadas a APIs o motores de búsqueda externos, las consultas responden al instante incluso en conexiones intermitentes o dispositivos móviles. El modal se sincroniza además con los atajos de teclado del proyecto ([`docs/KEYBOARD_SHORTCUTS.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/docs/KEYBOARD_SHORTCUTS.md)) y resalta suavemente las secciones objetivo al navegar directamente hacia ellas."""
 
-6. **Accesibilidad y Reducción de Movimiento (WCAG):**
-   - Se respeta la directiva `prefers-reduced-motion: reduce`. Las animaciones se convierten en saltos de estado inmediatos mientras la locución por voz permanece como soporte accesible.
-   - El registro de auditoría visual se encuentra documentado en [`docs/AUDITORIA_VISUAL_EN_ACCION.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/docs/AUDITORIA_VISUAL_EN_ACCION.md)."""
+    # Motor de Simulación
+    if any(k in q_lower for k in ["simulacion", "algoritmo", "worker", "timeline", "fotograma"]):
+        return f"""¡Hola @{author}! Te compartimos el diseño del motor de simulación algorítmica de Dev Visualizer.
+
+Tal como describe [`docs/SIMULATION_ENGINE.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/docs/SIMULATION_ENGINE.md), el motor opera bajo un ciclo desacoplado de tres etapas: pre-cómputo, secuenciación temporal y renderizado visual. En lugar de manipular el DOM durante la ejecución del algoritmo, este corre en memoria pura generando una serie inmutable de instantáneas (`SimulationStep[]`) congeladas con `Object.freeze`. Cada paso conserva el estado de punteros, índices y comparaciones, permitiendo navegación bidireccional determinista (`Play`, `Pausa`, `Avanzar`, `Retroceder`, `Reiniciar`) sin recalcular los pasos previos.
+
+El renderizado posterior se ejecuta a 60fps con Motion (Framer Motion 14) y Canvas/SVG. Siguiendo las directrices de [`docs/CANVAS_RENDERER.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/docs/CANVAS_RENDERER.md), las simulaciones se adaptan a pantallas de alta densidad (`devicePixelRatio`) y pausan su bucle ante inactividad. Cada visualizador incorpora una tabla semántica en el DOM y métricas de complejidad Big-O, garantizando accesibilidad y valor didáctico."""
 
     # Secretos y Seguridad
     if any(k in q_lower for k in ["secreto", ".env", "gitleaks", "git-secrets", "vault", "token", "fuga", "seguridad"]):
-        return f"""¡Hola @{author}! Con gusto clarificamos la gestión de seguridad en Dev Visualizer:
+        return f"""¡Hola @{author}! Con gusto compartimos nuestra política de gobernanza y seguridad en Dev Visualizer.
 
-1. **Aislamiento en Cliente:** Dev Visualizer es una aplicación estática interactiva construida con Next.js 16 y React 19. No se compilan claves privadas, credenciales maestras ni tokens de backend en el bundle de cliente.
-2. **Secretos en GitHub:** Las credenciales de automatización (`DISCORD_BOT_TOKEN`, `GEMINI_API_KEY`, `LUICS_PAT`) residen en GitHub Secrets y se usan exclusivamente en entornos de CI/CD aislados.
-3. **Compuerta Preventiva:** Todo commit y Pull Request es auditado estáticamente por `gitleaks` y `npm audit` bajo el orquestador maestro para evitar fugas de información.
-4. **Respuesta Inmediata:** Ante cualquier reporte de seguridad, el sistema genera automáticamente un issue prioritario asignado a @{OWNER_DEFAULT}."""
+Al desplegarse Dev Visualizer como una aplicación web puramente estática generada con Next.js 16 y React 19, no se compilan credenciales maestras, conexiones a bases de datos ni tokens privados en los paquetes enviados al cliente. Todas las claves de automatización, tokens de bot y credenciales de inteligencia artificial (`DISCORD_BOT_TOKEN`, `GEMINI_API_KEY`, `LUICS_PAT`) residen de forma segura en GitHub Secrets y se inyectan únicamente en runners efímeros de GitHub Actions.
 
-    # Quizzes y Gamificación
-    if any(k in q_lower for k in ["quiz", "insignia", "reliquia", "puntaje", "gamificacion"]):
-        return f"""¡Hola @{author}! Te compartimos el diseño del sistema de evaluación técnica en Dev Visualizer:
-
-1. **Persistencia Local:** Los puntajes y reliquias desbloqueadas se guardan en el `localStorage` del navegador, sin cookies de rastreo ni telemetría invasiva.
-2. **Retroalimentación Didáctica:** Cada reactivo ofrece explicaciones técnicas inmediatas al responder para reforzar conceptos de ingeniería.
-3. **Componentes Accesibles:** Los quizzes residen en `src/components/quiz/` y cuentan con navegación por teclado y contraste adecuado."""
+Cada Pull Request y commit se somete a validaciones automatizadas con `gitleaks` y `npm audit` bajo nuestro protocolo de gobernanza ([`docs/SECURITY_GOVERNANCE.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/docs/SECURITY_GOVERNANCE.md)). Adicionalmente, cualquier reporte comunitario que mencione riesgos o fallas genera de inmediato un issue de alta prioridad asignado a @{OWNER_DEFAULT} para su atención inmediata."""
 
     # General en Español
-    return f"""¡Hola @{author}! Gracias por tu interés en Dev Visualizer.
+    return f"""¡Hola @{author}! Gracias por tu interés en los fundamentos de ingeniería de Dev Visualizer.
 
-A continuación detallamos los pilares arquitectónicos del proyecto:
+Dev Visualizer está diseñado como un atlas visual interactivo de ingeniería que abarca 73 colecciones técnicas y 146 rutas didácticas. Su arquitectura de frontend se apoya en Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS y Motion (Framer Motion 14), compilándose como una distribución estática de alto rendimiento (`output: "export"`) sobre más de 350 páginas pre-renderizadas, lo que elimina vectores de ataque en el servidor y optimiza los tiempos de carga en GitHub Pages.
 
-1. **Core de Frontend:** Next.js 16 (App Router), React 19, TypeScript, Tailwind CSS y Motion (Framer Motion 14) con exportación estática de alto rendimiento (`output: "export"`).
-2. **Catálogo Educativo:** 73 colecciones interactivas y 146 rutas técnicas cubriendo fundamentos, arquitecturas de sistemas, bases de datos y lenguajes modernos.
-3. **Experiencia Audiovisual:** Animaciones interactivas a 60fps sincronizadas con motor de narración auditiva en cliente (`src/lib/audioNarrator.ts`).
-4. **Aseguramiento de Calidad:** Pipeline automatizado de verificación (`npm run check:links`, `npm run check:library`, `npm run check:a11y`, `npm run build`) sobre más de 350 páginas estáticas.
-5. **Documentación:** Puedes explorar la arquitectura completa en [`README.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/README.md) y [`docs/INDICE_MAESTRO_ARQUITECTURA.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/docs/INDICE_MAESTRO_ARQUITECTURA.md)."""
+Para mantener la robustez en un catálogo tan extenso, el desarrollo sigue un marco de 7 habilidades estandarizadas (`01-definir` a `07-centinela`). Nuestro pipeline de integración continua valida enlaces estáticos (`npm run check:links`), catalogo de librería (`npm run check:library`), accesibilidad WCAG (`npm run check:a11y`) y ausencia de secretos expuestos. Te invitamos a consultar la documentación técnica completa en [`README.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/README.md) y [`docs/INDICE_MAESTRO_ARQUITECTURA.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/docs/INDICE_MAESTRO_ARQUITECTURA.md)."""
 
 
 def generate_response(discussion_title: str, query_text: str, author: str, context: Dict[str, Any], escalation: Optional[str] = None) -> Tuple[str, str]:
@@ -679,20 +686,18 @@ def generate_response(discussion_title: str, query_text: str, author: str, conte
     api_key = os.environ.get("GEMINI_API_KEY")
 
     if api_key and not escalation:
-        system_instruction = f"""Eres el Agente Centinela de Soporte Técnico para el proyecto 'Dev Visualizer' de @{OWNER_DEFAULT}.
-Dev Visualizer es un atlas visual interactivo educativo con 73 colecciones y 146 rutas técnicas, desarrollado con Next.js 16 (App Router), React 19, TypeScript y Motion.
-Debes responder de forma técnica, empática, rigurosa y en el idioma de la consulta ({'inglés' if lang == 'en' else 'español'}).
+        system_instruction = f"""Eres el Agente Centinela de Soporte Técnico y Arquitectura para 'Dev Visualizer' (@{OWNER_DEFAULT}).
+Dev Visualizer es un atlas visual educativo de ingeniería de software con 73 colecciones y 146 rutas interactivas, construido sobre Next.js 16 (App Router), React 19, TypeScript, Motion (Framer Motion 14) y Tailwind CSS.
 
-REGLAS OBLIGATORIAS:
-1. Saludo cordial y directo a @{author}.
-2. FORMATO OBLIGATORIO: Estructura la mayor parte de la respuesta en una LISTA NUMERADA o de viñetas técnicas detalladas (evita párrafos largos y genéricos).
-3. PROHIBIDO GENERAR DIAGRAMAS: No incluyas diagramas ASCII, esquemas de caracteres ni bloques Mermaid. Responde preguntas complejas con profundidad técnica explicativa rigurosa en el listado.
-4. Cita componentes, archivos reales o rutas de documentación existentes en el repositorio (ej. `src/lib/audioNarrator.ts`, `src/components/audio/FloatingAudioBubble.tsx`, `docs/AUDITORIA_VISUAL_EN_ACCION.md`, `README.md`, `package.json`). Jamás inventes archivos inexistentes.
-5. Explica con precisión los mecanismos reales del proyecto (Next.js 16 App Router, React 19, Motion para render a 60fps con transform/opacity en GPU, AudioNarrator con Web Speech API, chunking de frases <=140 caracteres para estabilidad en Android/Chromium, useSyncExternalStore para hidratación SSR).
-6. Nivel 1 de notificación: Menciona a @{OWNER_DEFAULT} para seguimiento al final.
-7. Concluye con cordialidad profesional."""
+ESTILO EDITORIAL Y REGLAS OBLIGATORIAS:
+1. Responde en el idioma de la consulta ({'inglés' if lang == 'en' else 'español'}).
+2. FORMATO EN PÁRRAFOS DENSOS Y NATURALES: Estructura la explicación en prosa técnica profunda, cohesiva y fluida (3 o 4 párrafos sustanciales y bien articulados). MINIMIZA LOS ENLISTADOS: usa viñetas únicamente cuando sea estrictamente imprescindible para enumerar 2 o 3 opciones puntuales. Evita a toda costa que la respuesta parezca una lista genérica generada por máquina.
+3. TONO DE AUTOR/INGENIERO SENIOR: Utiliza una voz en primera persona del plural ("En Dev Visualizer diseñamos...", "Bajo el capó...", "La razón por la que desacoplamos..."). Conecta el problema de fondo, la decisión de arquitectura, los detalles del código y los trade-offs de rendimiento.
+4. PROHIBIDO GENERAR DIAGRAMAS: No uses esquemas ASCII, diagramas de caracteres ni bloques Mermaid. Responde preguntas complejas con rigor conceptual y argumentación técnica en la prosa.
+5. CITA ARCHIVOS REALES: Haz referencia directa a componentes existentes en el repositorio (`src/lib/audioNarrator.ts`, `src/components/audio/FloatingAudioBubble.tsx`, `scripts/build-concept-search-index.ts`, `docs/AUDITORIA_VISUAL_EN_ACCION.md`, `docs/AUDIO_ARCHITECTURE.md`, `docs/SIMULATION_ENGINE.md`, `docs/CANVAS_RENDERER.md`, `README.md`). Jamás inventes rutas ficticias.
+6. MENCIÓN NIVEL 1: Incluye al final la mención a @{OWNER_DEFAULT} para seguimiento: *(CC: @{OWNER_DEFAULT} para seguimiento)*."""
 
-        prompt = f"{system_instruction}\n\nContexto del proyecto: {json.dumps(context)}\nTítulo de la discusión: {discussion_title}\nConsulta de @{author}: {query_text}\n\nRespuesta:"
+        prompt = f"{system_instruction}\n\nContexto vivo del repositorio:\n{json.dumps(context, ensure_ascii=False, indent=2)}\n\nTítulo de la discusión: {discussion_title}\nConsulta de @{author}: {query_text}\n\nRespuesta técnica:"
         gemini_reply = call_gemini_api(prompt, api_key)
         if gemini_reply:
             if f"@{OWNER_DEFAULT}" not in gemini_reply:
@@ -792,7 +797,6 @@ def main():
 
         log(f"Procesando discusión #{num}: '{title}' de @{author}")
 
-        # Detectar escalamiento de seguridad o fallas críticas
         escalation = detect_security_or_bug_escalation(title, body)
         issue_number = None
 
@@ -800,10 +804,8 @@ def main():
             log(f"⚠️ Alerta: Escalamiento detectado para #{num}: {escalation}")
             issue_number = escalate_issue_to_github(num, title, url, escalation, repo)
 
-        # Generar respuesta técnica estructurada
         reply_body, lang = generate_response(title, body, author, context, escalation)
 
-        # Cálculo de la ventana de espera humana (10 minutos desde la creación de la discusión)
         created_dt = parse_iso8601_utc(created_at_str)
         now_utc = datetime.now(timezone.utc)
         elapsed_seconds = max(0.0, (now_utc - created_dt).total_seconds())
@@ -814,7 +816,6 @@ def main():
             print(reply_body)
             continue
 
-        # Envío inmediato del borrador a Discord DM (Nivel 3)
         remaining_wait_minutes = max(0.0, (target_wait_seconds - elapsed_seconds) / 60.0)
         send_level_3_draft_notification(
             discussion_num=num,
@@ -827,13 +828,11 @@ def main():
             escalation=escalation
         )
 
-        # Aplicar el buffer de espera si aún no han pasado 10 minutos
         if elapsed_seconds < target_wait_seconds and not args.no_wait:
             wait_time = target_wait_seconds - elapsed_seconds
             log(f"Iniciando ventana de espera de 10 minutos ({wait_time:.1f} segundos restantes) para permitir revisión humana de @{OWNER_DEFAULT}...")
             time.sleep(wait_time)
 
-            # Tras la espera, verificar si el mantenedor respondió en persona
             log(f"Ventana de espera concluida. Verificando si @{OWNER_DEFAULT} intervino manualmente...")
             try:
                 disc_fresh = get_discussion_details(repo_owner, repo_name, num)
@@ -860,7 +859,6 @@ def main():
             except Exception as e:
                 log(f"Aviso al verificar intervención manual tras la espera: {e}")
 
-        # Publicar comentario en GitHub Discussions tras la ventana de 10 minutos
         try:
             comment_url = post_reply(disc_id, reply_body)
             log(f"Respuesta publicada exitosamente en #{num}: {comment_url}")
@@ -868,13 +866,9 @@ def main():
             log(f"Error al publicar respuesta en #{num}: {e}")
             continue
 
-        # Nivel 2: Step Summary
         write_step_summary(num, title, author, lang, escalation, "Publicado automáticamente tras buffer de 10 minutos", reply_body[:300] + "...")
-
-        # Nivel 3: Discord DM de confirmación de publicación
         send_level_3_published_notification(num, title, author, url, category, escalation)
 
-        # Registro en expediente histórico
         record_in_expediente({
             "number": num,
             "title": title,

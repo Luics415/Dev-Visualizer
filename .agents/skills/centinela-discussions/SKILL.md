@@ -1,12 +1,12 @@
 ---
 name: dev-visualizer-centinela
 description: >-
-  Habilidad del Agente Centinela de GitHub Discussions para Dev Visualizer. Gestiona respuestas automáticas contextualizadas en 3 niveles de notificación, soporte bilingüe, formato estructurado en listado, ventana humana de 10 minutos con borrador previo, escalamiento de incidentes y expediente histórico.
+  Habilidad del Agente Centinela de GitHub Discussions para Dev Visualizer. Gestiona respuestas automáticas contextualizadas en 3 niveles de notificación, soporte bilingüe, formato en prosa densa y natural (mínimas listas), ventana humana de 10 minutos con borrador previo, escalamiento de incidentes y expediente histórico.
 ---
 
 # Skill: Centinela de GitHub Discussions para Dev Visualizer (Soporte Autónomo y Escalamiento)
 
-Esta habilidad dota a **Dev Visualizer** de un **Agente Centinela Autónomo** para atender preguntas y debates en GitHub Discussions con contexto vivo del proyecto (Next.js 16, React 19, Motion, Atlas de 73 colecciones y 146 rutas técnicas), soporte bilingüe, excelencia textual y trazabilidad completa.
+Esta habilidad dota a **Dev Visualizer** de un **Agente Centinela Autónomo** para atender preguntas y debates en GitHub Discussions con contexto vivo del proyecto (Next.js 16, React 19, Motion, Atlas de 73 colecciones y 146 rutas técnicas), soporte bilingüe, excelencia textual en prosa elaborada y trazabilidad completa.
 
 ---
 
@@ -14,8 +14,8 @@ Esta habilidad dota a **Dev Visualizer** de un **Agente Centinela Autónomo** pa
 
 ### 1. Soporte Bilingüe y Calidad de Respuesta
 - Analiza el texto de la duda y detecta si está formulada en español o inglés.
-- **Estructura en Listado:** La mayor parte del contenido se entrega en una lista numerada o con viñetas técnicas detalladas, facilitando la asimilación conceptual.
-- **Sin Diagramas Simplistas:** No se generan diagramas ASCII ni bloques Mermaid artificiales. Las cuestiones complejas se responden con profundidad técnica y rigor fundamentado en componentes reales (`src/lib/audioNarrator.ts`, `src/components/audio/FloatingAudioBubble.tsx`, `docs/AUDITORIA_VISUAL_EN_ACCION.md`, etc.).
+- **Estructura en Párrafos Densos y Naturales:** La mayor parte del contenido se entrega en párrafos cohesivos de prosa técnica profunda (3 a 4 párrafos), minimizando las viñetas y listas para transmitir la voz auténtica de un autor o mantenedor principal.
+- **Sin Diagramas Simplistas:** No se generan diagramas ASCII ni bloques Mermaid artificiales. Las cuestiones complejas se responden con profundidad técnica y rigor fundamentado en componentes reales (`src/lib/audioNarrator.ts`, `src/components/audio/FloatingAudioBubble.tsx`, `scripts/build-concept-search-index.ts`, `docs/AUDITORIA_VISUAL_EN_ACCION.md`, etc.).
 
 ### 2. Ventana de Espera Humana de 10 Minutos y Borrador Inmediato
 - Al registrarse una consulta, el agente genera de inmediato la respuesta en formato de borrador.
