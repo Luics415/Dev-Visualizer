@@ -415,7 +415,7 @@ export function FloatingAudioBubble({ collectionName, collectionTitle, tracks }:
                   >
                     {availableVoices.map((v) => (
                       <option key={v.voiceURI} value={v.voiceURI}>
-                        {v.region} · {v.name.slice(0, 15)} {v.isFemale ? "♀" : ""} {v.isNeural ? "✦" : ""}
+                        {v.region} · {v.name}
                       </option>
                     ))}
                   </select>
