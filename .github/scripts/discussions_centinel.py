@@ -338,13 +338,16 @@ def send_whatsapp_message(text: str) -> bool:
     if cmb_phone and cmb_key:
         try:
             encoded_text = urllib.parse.quote(text)
-            clean_phone = cmb_phone.replace("+", "").replace(" ", "").replace("-", "")
-            url = f"https://api.callmebot.com/whatsapp.php?phone=+{clean_phone}&text={encoded_text}&apikey={cmb_key}"
+            clean_phone = re.sub(r"\D", "", cmb_phone)
+            url = f"https://api.callmebot.com/whatsapp.php?phone={clean_phone}&text={encoded_text}&apikey={cmb_key}"
             req = urllib.request.Request(url, headers={"User-Agent": "DevVisualizerCentinel/2.2"})
             with urllib.request.urlopen(req, timeout=12) as resp:
-                if resp.status == 200:
-                    log("WhatsApp (CallMeBot): Notificación despachada con éxito.")
+                resp_body = resp.read().decode("utf-8", errors="ignore")
+                if resp.status == 200 and "error" not in resp_body.lower():
+                    log(f"WhatsApp (CallMeBot): Notificación despachada con éxito a {clean_phone[:4]}****.")
                     return True
+                else:
+                    log(f"Aviso de CallMeBot: HTTP {resp.status} - {resp_body[:200]}")
         except Exception as e:
             log(f"Aviso al enviar WhatsApp vía CallMeBot: {e}")
 
@@ -414,6 +417,7 @@ def send_whatsapp_message(text: str) -> bool:
         except Exception as e:
             log(f"Aviso al enviar WhatsApp vía Webhook: {e}")
 
+    log(f"WhatsApp diagnóstico: CALLMEBOT_PHONE={'configurado' if cmb_phone else 'vacío'}, CALLMEBOT_API_KEY={'configurado' if cmb_key else 'vacío'}")
     log("WhatsApp: No se detectaron credenciales válidas configuradas. Omitiendo notificación por WhatsApp.")
     return False
 
