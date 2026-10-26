@@ -18,6 +18,8 @@ import time
 import argparse
 import urllib.request
 import urllib.error
+import urllib.parse
+import base64
 import subprocess
 from datetime import datetime, timezone
 from typing import Dict, Any, List, Optional, Tuple
@@ -315,6 +317,147 @@ def send_level_3_cancelled_notification(discussion_num: int, title: str, author:
     }
 
     send_discord_embed(bot_token, channel_id, embed)
+
+
+def send_whatsapp_message(text: str) -> bool:
+    """
+    Despacha un mensaje de texto formateado a WhatsApp de forma paralela a Discord.
+    Soporta múltiples proveedores populares:
+    1. CallMeBot (Gratuito, rápido, sin registro ni tarjeta).
+       Variables: CALLMEBOT_PHONE, CALLMEBOT_API_KEY
+    2. Twilio WhatsApp API (Sandbox o Producción).
+       Variables: TWILIO_ACCOUNT_SID, TWILIO_AUTH_TOKEN, TWILIO_WHATSAPP_FROM, TWILIO_WHATSAPP_TO
+    3. Meta WhatsApp Business Cloud API (Oficial).
+       Variables: WHATSAPP_CLOUD_TOKEN, WHATSAPP_PHONE_NUMBER_ID, WHATSAPP_TO_NUMBER
+    4. Webhook Genérico (GreenAPI, Whapi, n8n, etc.).
+       Variables: WHATSAPP_WEBHOOK_URL
+    """
+    # 1. Probar CallMeBot
+    cmb_phone = os.environ.get("CALLMEBOT_PHONE")
+    cmb_key = os.environ.get("CALLMEBOT_API_KEY")
+    if cmb_phone and cmb_key:
+        try:
+            encoded_text = urllib.parse.quote(text)
+            clean_phone = cmb_phone.replace("+", "").replace(" ", "").replace("-", "")
+            url = f"https://api.callmebot.com/whatsapp.php?phone=+{clean_phone}&text={encoded_text}&apikey={cmb_key}"
+            req = urllib.request.Request(url, headers={"User-Agent": "DevVisualizerCentinel/2.2"})
+            with urllib.request.urlopen(req, timeout=12) as resp:
+                if resp.status == 200:
+                    log("WhatsApp (CallMeBot): Notificación despachada con éxito.")
+                    return True
+        except Exception as e:
+            log(f"Aviso al enviar WhatsApp vía CallMeBot: {e}")
+
+    # 2. Probar Twilio WhatsApp
+    tw_sid = os.environ.get("TWILIO_ACCOUNT_SID")
+    tw_token = os.environ.get("TWILIO_AUTH_TOKEN")
+    tw_from = os.environ.get("TWILIO_WHATSAPP_FROM", "whatsapp:+14155238886")
+    tw_to = os.environ.get("TWILIO_WHATSAPP_TO")
+    if tw_sid and tw_token and tw_to:
+        try:
+            url = f"https://api.twilio.com/2010-04-01/Accounts/{tw_sid}/Messages.json"
+            to_val = tw_to if tw_to.startswith("whatsapp:") else f"whatsapp:{tw_to}"
+            from_val = tw_from if tw_from.startswith("whatsapp:") else f"whatsapp:{tw_from}"
+            payload = urllib.parse.urlencode({
+                "From": from_val,
+                "To": to_val,
+                "Body": text
+            }).encode("utf-8")
+            auth_str = f"{tw_sid}:{tw_token}"
+            auth_b64 = base64.b64encode(auth_str.encode("utf-8")).decode("utf-8")
+            req = urllib.request.Request(url, data=payload, headers={
+                "Authorization": f"Basic {auth_b64}",
+                "Content-Type": "application/x-www-form-urlencoded"
+            }, method="POST")
+            with urllib.request.urlopen(req, timeout=12) as resp:
+                if resp.status in [200, 201]:
+                    log("WhatsApp (Twilio): Notificación despachada con éxito.")
+                    return True
+        except Exception as e:
+            log(f"Aviso al enviar WhatsApp vía Twilio: {e}")
+
+    # 3. Probar Meta WhatsApp Cloud API
+    meta_token = os.environ.get("WHATSAPP_CLOUD_TOKEN")
+    meta_phone_id = os.environ.get("WHATSAPP_PHONE_NUMBER_ID")
+    meta_to = os.environ.get("WHATSAPP_TO_NUMBER")
+    if meta_token and meta_phone_id and meta_to:
+        try:
+            url = f"https://graph.facebook.com/v20.0/{meta_phone_id}/messages"
+            clean_to = meta_to.replace("+", "").replace(" ", "").replace("-", "")
+            payload = json.dumps({
+                "messaging_product": "whatsapp",
+                "to": clean_to,
+                "type": "text",
+                "text": {"body": text}
+            }).encode("utf-8")
+            req = urllib.request.Request(url, data=payload, headers={
+                "Authorization": f"Bearer {meta_token}",
+                "Content-Type": "application/json"
+            }, method="POST")
+            with urllib.request.urlopen(req, timeout=12) as resp:
+                if resp.status in [200, 201]:
+                    log("WhatsApp (Meta Cloud API): Notificación despachada con éxito.")
+                    return True
+        except Exception as e:
+            log(f"Aviso al enviar WhatsApp vía Meta Cloud API: {e}")
+
+    # 4. Probar Webhook Genérico
+    webhook_url = os.environ.get("WHATSAPP_WEBHOOK_URL")
+    if webhook_url:
+        try:
+            payload = json.dumps({"text": text, "source": "dev-visualizer-centinela"}).encode("utf-8")
+            req = urllib.request.Request(webhook_url, data=payload, headers={"Content-Type": "application/json"}, method="POST")
+            with urllib.request.urlopen(req, timeout=12) as resp:
+                if resp.status in [200, 201, 204]:
+                    log("WhatsApp (Webhook): Notificación despachada con éxito.")
+                    return True
+        except Exception as e:
+            log(f"Aviso al enviar WhatsApp vía Webhook: {e}")
+
+    log("WhatsApp: No se detectaron credenciales válidas configuradas. Omitiendo notificación por WhatsApp.")
+    return False
+
+
+def send_whatsapp_draft_notification(discussion_num: int, title: str, author: str, url: str, category: str, draft_text: str, wait_minutes_remaining: float, escalation: Optional[str] = None):
+    preview = draft_text.strip()
+    if len(preview) > 650:
+        preview = preview[:620] + "... [continúa en GitHub]"
+    
+    alert_tag = "🚨 *¡ALERTA DE SEGURIDAD/FALLA!*" if escalation else "🛡️ *DEV VISUALIZER — AGENTE CENTINELA*"
+    
+    msg = f"""{alert_tag}
+📝 *[BORRADOR EN ESPERA] Ventana de {wait_minutes_remaining:.1f} min*
+
+💬 *Discusión:* #{discussion_num} - {title}
+👤 *Autor:* @{author}
+🏷️ *Categoría:* {category}
+⏱️ *Acción:* Dispones de 10 min para responder tú mismo. Si no respondes, se publicará automáticamente.
+
+📄 *Borrador generado:*
+{preview}
+
+🔗 *Responder o revisar:* {url}"""
+    send_whatsapp_message(msg)
+
+
+def send_whatsapp_published_notification(discussion_num: int, title: str, author: str, url: str):
+    msg = f"""🚀 *DEV VISUALIZER — RESPUESTA PUBLICADA*
+
+Se completó la ventana de 10 min sin intervención manual en la discusión *#{discussion_num}*.
+La respuesta técnica autónoma fue publicada con éxito.
+
+🔗 *Ver respuesta:* {url}"""
+    send_whatsapp_message(msg)
+
+
+def send_whatsapp_cancelled_notification(discussion_num: int, title: str, author: str, url: str):
+    msg = f"""✅ *DEV VISUALIZER — INTERVENCIÓN MANUAL DETECTADA*
+
+El mantenedor @{OWNER_DEFAULT} respondió personalmente a la discusión *#{discussion_num}*.
+El borrador automático fue cancelado exitosamente.
+
+🔗 *Ver discusión:* {url}"""
+    send_whatsapp_message(msg)
 
 
 def write_step_summary(discussion_num: int, title: str, author: str, lang: str, escalation: Optional[str], status_msg: str, reply_preview: str):
@@ -829,6 +972,16 @@ def main():
             wait_minutes_remaining=remaining_wait_minutes,
             escalation=escalation
         )
+        send_whatsapp_draft_notification(
+            discussion_num=num,
+            title=title,
+            author=author,
+            url=url,
+            category=category,
+            draft_text=reply_body,
+            wait_minutes_remaining=remaining_wait_minutes,
+            escalation=escalation
+        )
 
         if elapsed_seconds < target_wait_seconds and not args.no_wait:
             wait_time = target_wait_seconds - elapsed_seconds
@@ -846,6 +999,7 @@ def main():
                 if maintainer_replied:
                     log(f"Intervención manual de @{OWNER_DEFAULT} detectada en #{num}. Cancelando publicación automática.")
                     send_level_3_cancelled_notification(num, title, author, url)
+                    send_whatsapp_cancelled_notification(num, title, author, url)
                     write_step_summary(num, title, author, lang, escalation, "Cancelado por intervención manual del mantenedor", reply_body[:300] + "...")
                     record_in_expediente({
                         "number": num,
@@ -870,6 +1024,7 @@ def main():
 
         write_step_summary(num, title, author, lang, escalation, "Publicado automáticamente tras buffer de 10 minutos", reply_body[:300] + "...")
         send_level_3_published_notification(num, title, author, url, category, escalation)
+        send_whatsapp_published_notification(num, title, author, url)
 
         record_in_expediente({
             "number": num,
