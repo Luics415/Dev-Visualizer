@@ -1,0 +1,87 @@
+name: Agente Centinela de GitHub Discussions
+
+on:
+  schedule:
+    # Ejecucion periodica cada 6 horas
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+    inputs:
+      discussion_number:
+        description: "Numero especifico de discusion a procesar (opcional)"
+        required: false
+        type: string
+      dry_run:
+        description: "Modo simulacion (sin publicar en GitHub)"
+        required: false
+        default: false
+        type: boolean
+      force:
+        description: "Forzar respuesta aunque ya este contestada"
+        required: false
+        default: false
+        type: boolean
+  discussion:
+    types: [created]
+  discussion_comment:
+    types: [created]
+
+permissions:
+  contents: write
+  discussions: write
+  issues: write
+  actions: read
+
+concurrency:
+  group: discussions-centinel
+  cancel-in-progress: false
+
+jobs:
+  atender-discusiones:
+    name: Centinela de Discussions y Soporte de Dev Visualizer
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 10
+
+      - name: Configurar Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Ejecutar Agente Centinela
+        env:
+          GH_TOKEN: ${{ secrets.LUICS_PAT || secrets.GITHUB_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+          DISCORD_USER_ID: ${{ secrets.DISCORD_USER_ID }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          FLAGS=()
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+            FLAGS+=(--dry-run)
+          fi
+          if [ "${{ github.event.inputs.force }}" = "true" ]; then
+            FLAGS+=(--force)
+          fi
+          if [ -n "${{ github.event.inputs.discussion_number }}" ]; then
+            FLAGS+=(--discussion-number "${{ github.event.inputs.discussion_number }}")
+          elif [ "${{ github.event_name }}" = "discussion" ]; then
+            FLAGS+=(--discussion-number "${{ github.event.discussion.number }}")
+          elif [ "${{ github.event_name }}" = "discussion_comment" ]; then
+            FLAGS+=(--discussion-number "${{ github.event.discussion.number }}")
+          fi
+
+          echo "Ejecutando Agente Centinela con flags: ${FLAGS[*]:-ninguna}"
+          python .github/scripts/discussions_centinel.py "${FLAGS[@]}"
+
+      - name: Subir expediente historico como artefacto
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: expediente-discusiones-${{ github.run_id }}
+          path: docs/FechaAgente/
+          if-no-files-found: ignore
