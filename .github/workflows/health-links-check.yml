@@ -1,0 +1,31 @@
+name: Monitor de Salud de Enlaces y Documentos (Zero 404)
+
+on:
+  schedule:
+    # Ejecucion semanal los lunes a las 9:00 AM UTC (despues de la auditoria de las 8:00 UTC)
+    - cron: "0 9 * * 1"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  verificar-enlaces:
+    name: Verificacion de Enlaces y Documentos
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Ejecutar verificacion Zero 404
+        env:
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+          DISCORD_USER_ID: ${{ secrets.DISCORD_USER_ID }}
+        shell: bash
+        run: |
+          python .github/scripts/check_broken_links.py
