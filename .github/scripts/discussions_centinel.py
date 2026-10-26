@@ -35,6 +35,52 @@ OWNER_DEFAULT = "Luics415"
 REPO_DEFAULT = "Luics415/Dev-Visualizer"
 MIN_WAIT_MINUTES = 10.0
 
+STANDARD_LABELS = {
+    "enhancement": {"color": "a2eeef", "desc": "Nuevas características o solicitudes de mejora"},
+    "idea": {"color": "FEF2C0", "desc": "Propuestas y nuevas ideas de la comunidad"},
+    "bug": {"color": "d73a4a", "desc": "Errores o mal funcionamiento reportado"},
+    "question": {"color": "d876e3", "desc": "Preguntas técnicas o consultas de arquitectura"},
+    "documentation": {"color": "0075ca", "desc": "Documentación, especificaciones y guías"},
+    "ui/ux": {"color": "7057ff", "desc": "Interfaz de usuario, diseño visual y experiencia"},
+    "audio": {"color": "D4C5F9", "desc": "Locución por voz, Web Speech API y accesibilidad auditiva"},
+    "performance": {"color": "0e8a16", "desc": "Rendimiento, optimización y tiempos de carga"},
+    "accessibility": {"color": "0052cc", "desc": "Accesibilidad web y cumplimiento WCAG"},
+    "security": {"color": "b60205", "desc": "Seguridad, secretos y hardening"},
+    "rfc": {"color": "fbca04", "desc": "Petición de comentarios o votación comunitaria"},
+    "showcase": {"color": "c2e0c6", "desc": "Proyectos, creaciones y aportaciones de la comunidad"},
+    "Data Structures": {"color": "aaaaaa", "desc": "Estructuras de datos y representaciones en memoria"},
+    "Educational": {"color": "aaaaaa", "desc": "Contenido didáctico y formativo"},
+    "escalado-centinela": {"color": "e99695", "desc": "Escalamiento autónomo gestionado por el Agente Centinela"}
+}
+
+PROJECTS_MAPPING = {
+    "Dev-Visualizer": {
+        "number": 10,
+        "name": "Dev-Visualizer Ecosystem",
+        "url": "https://github.com/users/Luics415/projects/10"
+    },
+    "Luics415.github.io": {
+        "number": 7,
+        "name": "Luics415 Portfolio & Personal Labs",
+        "url": "https://github.com/users/Luics415/projects/7"
+    },
+    "Portafolio": {
+        "number": 7,
+        "name": "Luics415 Portfolio & Personal Labs",
+        "url": "https://github.com/users/Luics415/projects/7"
+    },
+    "Bio-Gesture-Control-Pro-Eyes": {
+        "number": 11,
+        "name": "Bio-Gesture Control Pro Eyes",
+        "url": "https://github.com/users/Luics415/projects/11"
+    },
+    "MenuOrders": {
+        "number": 9,
+        "name": "MenuOrders Suite Roadmap",
+        "url": "https://github.com/users/Luics415/projects/9"
+    }
+}
+
 
 def log(msg: str):
     print(f"[CENTINELA-DEV-VISUALIZER] {msg}", flush=True)
@@ -159,6 +205,317 @@ Revisión prioritaria por el equipo de arquitectura y mantenimiento de Dev Visua
             return issue_num
     except Exception as e:
         log(f"Error al crear issue de escalamiento: {e}")
+    return None
+
+
+def is_proposal_or_feature_request(title: str, text: str) -> bool:
+    """Evalúa si la consulta representa una propuesta, idea, mejora o solicitud de cambio."""
+    combined = (title + " " + text).lower()
+    patterns = [
+        r"\b(propuesta|propongo|proponer|me gustar[ií]a|podr[ií]amos|agregar|a[ñn]adir|implementar|feature|nueva caracter[ií]stica|solicitud|solicito|cambio|incorporar|soporte para|nueva funci[oó]n|sugerencia|sugiero|suggestion|suggest|would like|could we|feature request)\b"
+    ]
+    return any(re.search(p, combined) for p in patterns)
+
+
+def should_create_planning_issue(category: str, title: str, text: str) -> bool:
+    """Determina si la consulta justifica crear formalmente un Issue de planificación y roadmap."""
+    norm_cat = category.strip().lower()
+    if norm_cat == "ideas":
+        return True
+    if is_proposal_or_feature_request(title, text):
+        return True
+    if is_bug_or_error_report(title, text):
+        return True
+    return False
+
+
+def determine_discussion_labels(category: str, title: str, text: str, context: Optional[Dict[str, Any]] = None) -> List[str]:
+    """Infiere etiquetas acordes y precisas basadas en la categoría de Discussions y el contenido semántico."""
+    labels = set()
+    combined = (category + " " + title + " " + text).lower()
+    norm_cat = category.strip().lower()
+
+    # 1. Categoría base
+    if norm_cat == "ideas":
+        labels.add("idea")
+        labels.add("enhancement")
+    elif norm_cat == "q&a":
+        labels.add("question")
+    elif norm_cat == "announcements":
+        labels.add("documentation")
+    elif norm_cat == "polls":
+        labels.add("rfc")
+    elif norm_cat == "show and tell":
+        labels.add("showcase")
+    elif norm_cat == "general":
+        labels.add("question")
+
+    # 2. Detección de Errores / Bugs
+    if is_bug_or_error_report(title, text):
+        labels.add("bug")
+
+    # 3. Propuesta o Solicitud en cualquier categoría
+    if is_proposal_or_feature_request(title, text):
+        labels.add("enhancement")
+        labels.add("idea")
+
+    # 4. Áreas Temáticas del Repositorio
+    if re.search(r"(audio|auditiv|voz|voces|speech|narrad|narrac|locuci[oó]n|sonido|sound|habla|idioma|idiomas|dialect|accent|es-mx|es-ar|es-co|es-cl|es-es)", combined):
+        labels.add("audio")
+    if re.search(r"\b(ui|ux|diseño|estilo|css|tailwind|interfaz|componente|visual|layout|canvas)\b", combined):
+        labels.add("ui/ux")
+    if re.search(r"\b(rendimiento|performance|lcp|speed|fps|lag|render|velocidad|optimiz|60fps)\b", combined):
+        labels.add("performance")
+    if re.search(r"\b(accesib|a11y|wcag|lector de pantalla|aria|contraste|screen reader)\b", combined):
+        labels.add("accessibility")
+    if re.search(r"\b(seguridad|token|secret|cve|vulnerab|leak|expuesto|privad|gitleaks)\b", combined):
+        labels.add("security")
+    if re.search(r"\b(doc|documentac|gu[ií]a|readme|tutorial|explicaci[oó]n)\b", combined):
+        labels.add("documentation")
+    if re.search(r"\b(algoritmo|estructura de datos|data structure|sorting|binary tree|grafo|hash)\b", combined):
+        labels.add("Data Structures")
+        labels.add("Educational")
+
+    return sorted(list(labels))
+
+
+def ensure_labels_exist(repo: str, labels: List[str]) -> None:
+    """Garantiza que las etiquetas existan en el repositorio de GitHub con colores estándar."""
+    for lab in labels:
+        meta = STANDARD_LABELS.get(lab, {"color": "0075ca", "desc": f"Etiqueta de {lab}"})
+        cmd = [
+            "gh", "label", "create", lab,
+            "--repo", repo,
+            "--color", meta["color"],
+            "--description", meta["desc"]
+        ]
+        try:
+            run_cmd(cmd, check=False)
+        except Exception:
+            pass
+
+
+def apply_labels_to_discussion(disc_id: str, labels: List[str], repo: str, dry_run: bool = False) -> bool:
+    """Aplica las etiquetas resueltas a la Discusión de GitHub mediante la mutación addLabelsToLabelable."""
+    if not disc_id or not labels:
+        return False
+    if dry_run:
+        log(f"[SIMULACIÓN] Se asignarían etiquetas a la Discusión: {labels}")
+        return True
+
+    ensure_labels_exist(repo, labels)
+
+    parts = repo.split("/")
+    owner = parts[0] if len(parts) > 0 else OWNER_DEFAULT
+    repo_name = parts[1] if len(parts) > 1 else repo
+
+    query = """query($owner: String!, $repo: String!) {
+      repository(owner: $owner, name: $repo) {
+        labels(first: 100) {
+          nodes {
+            id
+            name
+          }
+        }
+      }
+    }"""
+    try:
+        res = run_cmd(["gh", "api", "graphql", "-F", f"owner={owner}", "-F", f"repo={repo_name}", "-f", f"query={query}"])
+        data = json.loads(res)
+        all_labels = data.get("data", {}).get("repository", {}).get("labels", {}).get("nodes", [])
+        label_map = {node["name"].lower(): node["id"] for node in all_labels}
+
+        label_ids = []
+        for lab in labels:
+            lab_id = label_map.get(lab.lower())
+            if lab_id and lab_id not in label_ids:
+                label_ids.append(lab_id)
+
+        if not label_ids:
+            return False
+
+        mutation = """mutation($labelableId: ID!, $labelIds: [ID!]!) {
+          addLabelsToLabelable(input: {labelableId: $labelableId, labelIds: $labelIds}) {
+            labelable {
+              ... on Discussion {
+                id
+              }
+            }
+          }
+        }"""
+        args = ["gh", "api", "graphql", "-F", f"labelableId={disc_id}"]
+        for lid in label_ids:
+            args.extend(["-F", f"labelIds[]={lid}"])
+        args.extend(["-f", f"query={mutation}"])
+
+        run_cmd(args)
+        log(f"Etiquetas asignadas con éxito a la Discusión: {labels}")
+        return True
+    except Exception as e:
+        log(f"Aviso al asignar etiquetas a la discusión: {e}")
+        return False
+
+
+def add_issue_to_project(issue_url: str, project_number: int, owner: str) -> bool:
+    """Intenta incorporar el Issue al tablero de GitHub Projects V2 del propietario."""
+    try:
+        cmd = ["gh", "project", "item-add", str(project_number), "--owner", owner, "--url", issue_url]
+        out = run_cmd(cmd, check=False)
+        if "error" in out.lower() or "missing required scopes" in out.lower():
+            log(f"Aviso: Para incorporar directamente al tablero V2 (#{project_number}), el token requiere el scope 'project'. El Issue fue registrado con enlace directo al tablero.")
+            return False
+        log(f"Issue incorporado al tablero de GitHub Projects #{project_number}: {out}")
+        return True
+    except Exception as e:
+        log(f"Aviso de vinculación en GitHub Projects: {e}")
+        return False
+
+
+def create_planning_issue(
+    owner: str,
+    repo: str,
+    disc_number: int,
+    title: str,
+    author: str,
+    query_text: str,
+    category: str,
+    labels: List[str],
+    dry_run: bool = False
+) -> Optional[Dict[str, Any]]:
+    """Crea un Issue formal de planificación y roadmap asignado al mantenedor sin fusionar PRs a main."""
+    clean_repo = repo.split("/")[-1] if "/" in repo else repo
+    project_info = PROJECTS_MAPPING.get(clean_repo, {
+        "number": 10 if "Dev-Visualizer" in clean_repo else 7,
+        "name": "Dev-Visualizer Ecosystem" if "Dev-Visualizer" in clean_repo else "Luics415 Portfolio & Personal Labs",
+        "url": f"https://github.com/users/{owner}/projects/" + ("10" if "Dev-Visualizer" in clean_repo else "7")
+    })
+
+    search_query = f"Discusión #{disc_number}"
+    try:
+        search_res = run_cmd([
+            "gh", "issue", "list",
+            "--repo", f"{owner}/{clean_repo}",
+            "--search", search_query,
+            "--state", "all",
+            "--json", "number,title,url"
+        ], check=False)
+        if search_res:
+            issues = json.loads(search_res)
+            if issues:
+                log(f"Ya existe un Issue asociado a la Discusión #{disc_number}: #{issues[0]['number']}")
+                slug = re.sub(r"[^a-zA-Z0-9]+", "-", title.lower()).strip("-")[:35]
+                prefix_branch = "fix" if is_bug_or_error_report(title, query_text) else "feat"
+                return {
+                    "number": issues[0]["number"],
+                    "url": issues[0]["url"],
+                    "title": issues[0]["title"],
+                    "branch": f"{prefix_branch}/{slug}",
+                    "project_name": project_info["name"],
+                    "project_url": project_info["url"],
+                    "project_number": project_info["number"]
+                }
+    except Exception as e:
+        log(f"Aviso al verificar issues existentes: {e}")
+
+    is_bug = is_bug_or_error_report(title, query_text)
+    norm_cat = category.strip().lower()
+
+    if is_bug:
+        prefix = "[ERROR]"
+        prefix_branch = "fix"
+    elif norm_cat == "ideas":
+        prefix = "[PROPUESTA]"
+        prefix_branch = "feat"
+    else:
+        prefix = "[SOLICITUD]"
+        prefix_branch = "feat"
+
+    slug = re.sub(r"[^a-zA-Z0-9]+", "-", title.lower()).strip("-")[:35]
+    branch_name = f"{prefix_branch}/{slug}"
+    issue_title = f"{prefix} {title[:60]} (#{disc_number})"
+
+    if is_bug:
+        plan_section = """### 🛠️ Plan de Solución Técnica Paso a Paso
+1. **Reproducción y Aislamiento:** Validar el comportamiento reportado en entorno local (`npm run dev`) emulando resoluciones móviles (360px-430px) y capturando excepciones de consola.
+2. **Parche Defensivo de Código:** Aplicar guardas defensivas ante referencias nulas y desacoplamiento de listeners/estados en el ciclo de vida de componentes.
+3. **Compuertas de Calidad Automatizadas:**
+   - `npm run check:links` (cero enlaces rotos)
+   - `npm run check:library` (consistencia documental en atlas)
+   - `npm run check:a11y` (cumplimiento WCAG 2.1 AA)
+   - `npm run build` (compilación estática limpia)
+4. **Verificación de Cero Regresión:** Confirmar ausencia total de desbordamiento horizontal en pantallas móviles."""
+    else:
+        plan_section = """### 📋 Plan Atómico de Implementación por Fases
+- [ ] **Fase 1: Interfaz, Contratos y Especificación:** Definir contratos de datos fuertemente tipados, accesibilidad y componentes visuales en `src/`.
+- [ ] **Fase 2: Motor de Lógica y Cascada Defensiva:** Implementación modular con fallbacks seguros sin degradar el rendimiento a 60fps ni el bundle estático.
+- [ ] **Fase 3: Pruebas, Accesibilidad y Validación:** Ejecución de `npm run check:a11y`, `npm run build` y pruebas de navegación multiplataforma."""
+
+    body = f"""## 📌 Origen del Requerimiento
+- **Tipo:** {"Reporte de Error / Incidente Técnico" if is_bug else "Propuesta / Solicitud de la Comunidad"}
+- **Discusión de Origen:** [Discusión #{disc_number}](https://github.com/{owner}/{clean_repo}/discussions/{disc_number})
+- **Autor:** @{author}
+- **Tablero de Proyecto:** [{project_info['name']} (Project #{project_info['number']})]({project_info['url']})
+- **Rama Atómica Sugerida:** `{branch_name}`
+
+---
+
+## 🎯 Alcance y Especificación
+{query_text.strip()[:650]}
+
+---
+
+{plan_section}
+
+---
+
+## 🔒 Política de Integración y Gobernanza
+> [!IMPORTANT]
+> De conformidad con `AGENTS.md`, la rama `{branch_name}` y el Pull Request correspondiente se preparan de forma atómica y **permanecen estrictamente pendientes de revisión y autorización explícita de @{owner}** antes de su fusión a `main`. Queda prohibido el merge automático.
+"""
+
+    if dry_run:
+        log(f"[SIMULACIÓN] Crearía Issue '{issue_title}' con etiquetas {labels} asignado a @{owner}")
+        return {
+            "number": 999,
+            "url": f"https://github.com/{owner}/{clean_repo}/issues/simulation-{disc_number}",
+            "title": issue_title,
+            "branch": branch_name,
+            "project_name": project_info["name"],
+            "project_url": project_info["url"],
+            "project_number": project_info["number"]
+        }
+
+    ensure_labels_exist(f"{owner}/{clean_repo}", labels)
+    cmd = [
+        "gh", "issue", "create",
+        "--repo", f"{owner}/{clean_repo}",
+        "--title", issue_title,
+        "--body", body,
+        "--label", ",".join(labels),
+        "--assignee", owner
+    ]
+    try:
+        out = run_cmd(cmd)
+        m = re.search(r"/issues/(\d+)", out)
+        if m:
+            issue_num = int(m.group(1))
+            issue_url = out.strip()
+            log(f"Issue de planificación creado con éxito: #{issue_num} ({issue_url})")
+
+            add_issue_to_project(issue_url, project_info["number"], owner)
+
+            return {
+                "number": issue_num,
+                "url": issue_url,
+                "title": issue_title,
+                "branch": branch_name,
+                "project_name": project_info["name"],
+                "project_url": project_info["url"],
+                "project_number": project_info["number"]
+            }
+    except Exception as e:
+        log(f"Aviso al crear Issue de planificación: {e}")
+
     return None
 
 
@@ -739,7 +1096,7 @@ def call_gemini_api(prompt: str, api_key: str) -> Optional[str]:
     return None
 
 
-def synthesize_project_response(discussion_title: str, query_text: str, author: str, context: Dict[str, Any], category: str = "General", lang: str = "es", escalation: Optional[str] = None) -> str:
+def synthesize_project_response(discussion_title: str, query_text: str, author: str, context: Dict[str, Any], category: str = "General", lang: str = "es", escalation: Optional[str] = None, planning_issue: Optional[Dict[str, Any]] = None) -> str:
     """
     Motor de síntesis contextual de alta fidelidad técnica para Dev Visualizer.
     Estructurado específicamente por la categoría de GitHub Discussions y reportes de fallo:
@@ -1044,7 +1401,7 @@ Nos entusiasma mantener este canal abierto para reflexionar sobre diseño de sof
 La plataforma compila como una distribución estática de alto rendimiento (`output: "export"`) sobre más de 350 páginas en GitHub Pages. Nuestro ciclo de entrega ejecuta verificaciones automatizadas de enlaces (`npm run check:links`), integridad de librería (`npm run check:library`) y accesibilidad WCAG (`npm run check:a11y`). Puedes consultar más detalles en [`README.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/README.md) y [`docs/INDICE_MAESTRO_ARQUITECTURA.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/docs/INDICE_MAESTRO_ARQUITECTURA.md)."""
 
 
-def generate_response(discussion_title: str, query_text: str, author: str, context: Dict[str, Any], category: str = "General", escalation: Optional[str] = None) -> Tuple[str, str]:
+def generate_response(discussion_title: str, query_text: str, author: str, context: Dict[str, Any], category: str = "General", escalation: Optional[str] = None, planning_issue: Optional[Dict[str, Any]] = None) -> Tuple[str, str]:
     """Genera la respuesta contextualizada utilizando Gemini API si está disponible, o el motor de síntesis local."""
     lang = detect_language(discussion_title + " " + query_text)
     api_key = os.environ.get("GEMINI_API_KEY")
@@ -1092,6 +1449,17 @@ Si la consulta reporta un error, rotura, freeze, crash o bug, DEBES estructurar 
 
 MENCIÓN NIVEL 1: Incluye al final la mención a @{OWNER_DEFAULT} para seguimiento: *(CC: @{OWNER_DEFAULT} para seguimiento)*."""
 
+        if planning_issue:
+            system_instruction += f"""
+
+INFORMACIÓN DEL ISSUE Y TABLERO CREADO:
+Se ha registrado exitosamente el Issue de seguimiento y planificación #{planning_issue['number']}: {planning_issue['title']}.
+- URL del Issue: {planning_issue['url']}
+- Tablero en GitHub Projects: {planning_issue['project_name']} ({planning_issue['project_url']})
+- Rama atómica asignada: `{planning_issue['branch']}`
+- Asignado a: @{OWNER_DEFAULT}
+DEBES incorporar esta información oficial al cierre de tu respuesta en la sección de 'Integración en GitHub Projects y Roadmap', destacando que de conformidad con las políticas de gobernanza en AGENTS.md, el Pull Request requiere autorización explícita de @{OWNER_DEFAULT} antes de fusionarse a main."""
+
         prompt = f"{system_instruction}\n\nContexto vivo del repositorio:\n{json.dumps(context, ensure_ascii=False, indent=2)}\n\nCategoría de la discusión: {category}\nTítulo de la discusión: {discussion_title}\nConsulta de @{author}:\n{query_text}\n\nRespuesta técnica:"
         gemini_reply = call_gemini_api(prompt, api_key)
         if gemini_reply:
@@ -1099,7 +1467,25 @@ MENCIÓN NIVEL 1: Incluye al final la mención a @{OWNER_DEFAULT} para seguimien
                 gemini_reply += f"\n\n*(CC: @{OWNER_DEFAULT} para seguimiento)*"
             return gemini_reply, lang
 
-    reply = synthesize_project_response(discussion_title, query_text, author, context, category=category, lang=lang, escalation=escalation)
+    reply = synthesize_project_response(discussion_title, query_text, author, context, category=category, lang=lang, escalation=escalation, planning_issue=planning_issue)
+    if planning_issue:
+        p_num = planning_issue.get("number")
+        p_url = planning_issue.get("url")
+        p_proj_name = planning_issue.get("project_name", "Dev-Visualizer Ecosystem")
+        p_proj_url = planning_issue.get("project_url", "https://github.com/users/Luics415/projects/10")
+        p_proj_num = planning_issue.get("project_number", 10)
+        p_branch = planning_issue.get("branch", "feat/propuesta")
+
+        tracking_es = f"""\n\n### 🚀 Integración en GitHub Projects y Roadmap\nEsta iniciativa ha sido registrada formalmente en el tablero de proyectos **[{p_proj_name} (Project #{p_proj_num})]({p_proj_url})** a través del **[Issue #{p_num}: {discussion_title}]({p_url})** asignado a @{OWNER_DEFAULT}.\n\nSe canalizará técnicamente mediante la rama atómica `{p_branch}`. De acuerdo con nuestras políticas de gobernanza en `AGENTS.md`, el Pull Request asociado requerirá revisión y autorización explícita de @{OWNER_DEFAULT} antes de su fusión a `main`. ¡Muchísimas gracias por ayudarnos a enriquecer este ecosistema formativo!"""
+        tracking_en = f"""\n\n### 🚀 Official Roadmap & GitHub Projects Tracking\nThis initiative has been formally registered on the **[{p_proj_name} (Project #{p_proj_num})]({p_proj_url})** board via **[Issue #{p_num}: {discussion_title}]({p_url})** assigned to @{OWNER_DEFAULT}.\n\nIt will be developed under the atomic branch `{p_branch}`. In accordance with our governance policies in `AGENTS.md`, the corresponding Pull Request will remain strictly subject to explicit review and authorization from @{OWNER_DEFAULT} prior to merging into `main`."""
+
+        if "### 🚀 Integración en GitHub Projects y Roadmap" in reply:
+            reply = reply.split("### 🚀 Integración en GitHub Projects y Roadmap")[0].rstrip() + tracking_es
+        elif "### 🚀 Official Roadmap & GitHub Projects Tracking" in reply:
+            reply = reply.split("### 🚀 Official Roadmap & GitHub Projects Tracking")[0].rstrip() + tracking_en
+        elif str(p_num) not in reply:
+            reply += tracking_en if lang == "en" else tracking_es
+
     if f"@{OWNER_DEFAULT}" not in reply:
         reply += f"\n\n*(CC: @{OWNER_DEFAULT} para seguimiento)*"
     return reply, lang
@@ -1192,14 +1578,40 @@ def main():
 
         log(f"Procesando discusión #{num}: '{title}' de @{author}")
 
+        # 1. Determinar y aplicar etiquetas dinámicas acordes
+        labels = determine_discussion_labels(category, title, body, context)
+        log(f"Etiquetas inferidas para #{num}: {labels}")
+        if disc_id:
+            apply_labels_to_discussion(disc_id, labels, repo, dry_run=args.dry_run)
+
+        # 2. Detección de escalamiento de seguridad o falla crítica
         escalation = detect_security_or_bug_escalation(title, body)
-        issue_number = None
 
-        if escalation and not args.dry_run:
-            log(f"⚠️ Alerta: Escalamiento detectado para #{num}: {escalation}")
-            issue_number = escalate_issue_to_github(num, title, url, escalation, repo)
+        # 3. Planificación e incorporación REAL en GitHub Issues y Projects
+        planning_issue = None
+        if should_create_planning_issue(category, title, body) or escalation:
+            planning_issue = create_planning_issue(
+                owner=repo_owner,
+                repo=repo_name,
+                disc_number=num,
+                title=title,
+                author=author,
+                query_text=body,
+                category=category,
+                labels=labels,
+                dry_run=args.dry_run
+            )
 
-        reply_body, lang = generate_response(title, body, author, context, category=category, escalation=escalation)
+        # 4. Generar respuesta contextualizada con referencias al Issue y Proyecto real
+        reply_body, lang = generate_response(
+            discussion_title=title,
+            query_text=body,
+            author=author,
+            context=context,
+            category=category,
+            escalation=escalation,
+            planning_issue=planning_issue
+        )
 
         created_dt = parse_iso8601_utc(created_at_str)
         now_utc = datetime.now(timezone.utc)
