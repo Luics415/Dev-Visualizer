@@ -125,40 +125,38 @@ export function isFemaleVoice(voice: SpeechSynthesisVoice): boolean {
 }
 
 export function cleanVoiceDisplayName(name: string): string {
-  return name
+  const cleaned = name
     .replace(/(Microsoft|Google|Apple)\s*/gi, "")
     .replace(/\s*Online\s*\(Natural\)/gi, "")
     .replace(/\s*Desktop/gi, "")
-    .replace(/\s*-\s*Spanish\s*\([^)]+\)/gi, "")
-    .replace(/\s*-\s*English\s*\([^)]+\)/gi, "")
-    .replace(/\s*-\s*Portuguese\s*\([^)]+\)/gi, "")
-    .replace(/\s*-\s*French\s*\([^)]+\)/gi, "")
-    .replace(/\s*-\s*Italian\s*\([^)]+\)/gi, "")
-    .trim() || name;
+    .replace(/\s*-\s*(Spanish|Español)\s*\([^)]+\)/gi, "")
+    .replace(/\s*\(?(Español|Spanish)(\s+de\s+[a-záéíóú\s]+)?\)?/gi, "")
+    .trim();
+
+  const trimmed = cleaned.replace(/^[-–—\s]+|[-–—\s]+$/g, "");
+
+  if (!trimmed || /^(estados unidos|mexico|méxico|españa)$/i.test(trimmed)) {
+    if (/google/i.test(name)) return "Google Voz";
+    return "Voz Estándar";
+  }
+
+  return trimmed;
 }
 
 function getVoiceRegionLabel(lang: string, name: string): string {
   const norm = (lang || "").toLowerCase().replace(/_/g, "-");
-  if (norm.includes("mx")) return "🇲🇽 México";
-  if (norm.includes("ar")) return "🇦🇷 Argentina";
-  if (norm.includes("co")) return "🇨🇴 Colombia";
-  if (norm.includes("cl")) return "🇨🇱 Chile";
-  if (norm.includes("pe")) return "🇵🇪 Perú";
-  if (norm.includes("ve")) return "🇻🇪 Venezuela";
-  if (norm.includes("uy")) return "🇺🇾 Uruguay";
-  if (norm.includes("cr")) return "🇨🇷 Costa Rica";
-  if (norm.includes("pr")) return "🇵🇷 Puerto Rico";
-  if (norm.includes("419") || (norm.includes("us") && norm.startsWith("es"))) return "🌎 Latam";
-  if (norm.includes("es") && norm.startsWith("es")) return "🇪🇸 España";
-  if (norm.startsWith("en")) return norm.includes("gb") ? "🇬🇧 Inglés UK" : "🇺🇸 Inglés US";
-  if (norm.startsWith("pt")) return norm.includes("br") ? "🇧🇷 Portugués" : "🇵🇹 Portugués";
-  if (norm.startsWith("fr")) return "🇫🇷 Francés";
-  if (norm.startsWith("it")) return "🇮🇹 Italiano";
-  if (norm.startsWith("de")) return "🇩🇪 Alemán";
-  if (norm.startsWith("ja")) return "🇯🇵 Japonés";
-  if (/mexic|méxic/i.test(name)) return "🇲🇽 México";
-  if (/spain|españ/i.test(name)) return "🇪🇸 España";
-  return "🌐 " + (lang || "Global");
+  if (norm.includes("mx") || /mexic|méxic/i.test(name)) return "🇲🇽 México";
+  if (norm.includes("ar") || /argentin/i.test(name)) return "🇦🇷 Argentina";
+  if (norm.includes("co") || /colomb/i.test(name)) return "🇨🇴 Colombia";
+  if (norm.includes("cl") || /chile/i.test(name)) return "🇨🇱 Chile";
+  if (norm.includes("pe") || /peru|perú/i.test(name)) return "🇵🇪 Perú";
+  if (norm.includes("ve") || /venez/i.test(name)) return "🇻🇪 Venezuela";
+  if (norm.includes("uy") || /uruguay/i.test(name)) return "🇺🇾 Uruguay";
+  if (norm.includes("cr") || /costa rica/i.test(name)) return "🇨🇷 Costa Rica";
+  if (norm.includes("pr") || /puerto rico/i.test(name)) return "🇵🇷 Puerto Rico";
+  if (norm.includes("419") || (norm.includes("us") && norm.startsWith("es")) || /latam|latin/i.test(name)) return "🌎 Latam";
+  if (norm.includes("es") && (norm.startsWith("es") || /spain|españ/i.test(name))) return "🇪🇸 España";
+  return "🌐 Español";
 }
 
 class AudioNarrator {
@@ -217,41 +215,35 @@ class AudioNarrator {
       // 1. Filtrar y deshabilitar terminantemente a Raúl
       const nonRaulVoices = this.voices.filter((v) => !isRaulVoice(v));
 
-      // 2. Separar voces por familias lingüísticas
-      const spanishVoices = nonRaulVoices.filter((v) => v.lang.toLowerCase().startsWith("es"));
-      const otherSupportedVoices = nonRaulVoices.filter((v) => {
-        const l = v.lang.toLowerCase();
-        return (
-          l.startsWith("en") ||
-          l.startsWith("pt") ||
-          l.startsWith("fr") ||
-          l.startsWith("it") ||
-          l.startsWith("de") ||
-          l.startsWith("ja")
-        );
-      });
+      // 2. Filtrar ESTRICTAMENTE a español
+      // La colección didáctica está redactada en español. Las voces extranjeras no traducen
+      // el contenido y generan lecturas fonéticamente distorsionadas.
+      const spanishVoices = nonRaulVoices.filter(
+        (v) => v.lang.toLowerCase().startsWith("es") || /spanish|español/i.test(v.name)
+      );
 
-      // 3. Priorizar voces femeninas
+      // 3. Separar por voces femeninas y otras
       const spanishFemale = spanishVoices.filter((v) => isFemaleVoice(v));
       const spanishOther = spanishVoices.filter((v) => !isFemaleVoice(v));
 
-      const otherFemale = otherSupportedVoices.filter((v) => isFemaleVoice(v));
-      const otherRemaining = otherSupportedVoices.filter((v) => !isFemaleVoice(v));
-
-      // Construcción del catálogo ordenado:
-      // A) Femeninas en español (LATAM y España)
-      // B) Femeninas en otros idiomas (Inglés, Portugués, etc.)
-      // C) Resto de voces (sin Raúl)
+      // 4. Catálogo exclusivo en español: Femeninas primero, luego resto de opciones en español
       const catalog = [
         ...spanishFemale,
         ...spanishOther,
-        ...otherFemale.slice(0, 6),
-        ...otherRemaining.slice(0, 2),
       ];
 
-      const finalList = catalog.length > 0 ? catalog : nonRaulVoices.slice(0, 10);
+      // Eliminar posibles duplicados por voiceURI
+      const seenURIs = new Set<string>();
+      const uniqueCatalog: SpeechSynthesisVoice[] = [];
+      const sourceList = catalog.length > 0 ? catalog : nonRaulVoices.filter((v) => v.lang.toLowerCase().startsWith("es"));
+      for (const v of sourceList) {
+        if (!seenURIs.has(v.voiceURI)) {
+          seenURIs.add(v.voiceURI);
+          uniqueCatalog.push(v);
+        }
+      }
 
-      this.availableVoices = finalList.map((v) => ({
+      this.availableVoices = uniqueCatalog.map((v) => ({
         voiceURI: v.voiceURI,
         name: cleanVoiceDisplayName(v.name),
         lang: v.lang,
@@ -267,11 +259,15 @@ class AudioNarrator {
         // Entornos sin acceso a localStorage
       }
 
-      // Si la voz guardada era Raúl o ya no existe, ignorarla y re-seleccionar la mejor voz femenina
-      if (savedVoiceURI && !/raul/i.test(savedVoiceURI) && nonRaulVoices.some((v) => v.voiceURI === savedVoiceURI)) {
-        this.selectedVoice = nonRaulVoices.find((v) => v.voiceURI === savedVoiceURI) ?? null;
+      // Si la voz guardada era Raúl, ya no existe o no es de español, re-seleccionar la mejor voz femenina en español
+      if (
+        savedVoiceURI &&
+        !/raul/i.test(savedVoiceURI) &&
+        uniqueCatalog.some((v) => v.voiceURI === savedVoiceURI)
+      ) {
+        this.selectedVoice = uniqueCatalog.find((v) => v.voiceURI === savedVoiceURI) ?? null;
       } else {
-        this.selectedVoice = this.pickBestSpanishVoice(nonRaulVoices);
+        this.selectedVoice = this.pickBestSpanishVoice(uniqueCatalog.length > 0 ? uniqueCatalog : nonRaulVoices);
       }
 
       this.selectedVoiceURI = this.selectedVoice?.voiceURI ?? null;
