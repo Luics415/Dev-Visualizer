@@ -1,4 +1,4 @@
-name: Orquestador maestro de seis fases
+name: Orquestador Maestro de Seis Fases - Dev Visualizer
 
 on:
   schedule:
@@ -6,7 +6,7 @@ on:
   workflow_dispatch:
     inputs:
       modo:
-        description: "Modo de ejecución"
+        description: "Modo de ejecucion"
         required: true
         default: audit
         type: choice
@@ -14,11 +14,11 @@ on:
           - audit
           - authorized
       autorizacion:
-        description: "Solo para mutaciones: AUTORIZO EJECUCIÓN DIRECTA"
+        description: "Solo para mutaciones: AUTORIZO EJECUCION DIRECTA"
         required: false
         type: string
       instruccion:
-        description: "Alcance exacto de la operación autorizada"
+        description: "Alcance exacto de la operacion autorizada"
         required: false
         type: string
 
@@ -28,14 +28,25 @@ permissions:
 
 jobs:
   auditoria:
-    name: Auditoría automática read-only
+    name: Auditoria Automatica Read-Only
     if: ${{ github.event_name == 'schedule' || inputs.modo == 'audit' || inputs.modo == '' }}
     runs-on: ubuntu-latest
     steps:
       - name: Descargar el repositorio
-        uses: actions/checkout@v6
+        uses: actions/checkout@v4
         with:
           fetch-depth: 10
+
+      - name: Configurar Node.js
+        uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+
+      - name: Instalar dependencias para validaciones
+        shell: bash
+        run: |
+          npm ci --prefer-offline --no-audit || npm install --prefer-offline --no-audit
 
       - name: Preparar expediente fechado
         shell: bash
@@ -50,7 +61,7 @@ jobs:
           modo: auditoria_automatica
           fase: 01-definir
           entrada:
-            instruccion: "Auditoría automática programada"
+            instruccion: "Auditoria automatica programada de Dev Visualizer"
             artefacto_anterior: null
           decisiones:
             adoptadas: []
@@ -68,50 +79,60 @@ jobs:
           fecha="$(date -u +%F)"
           reporte="docs/FechaAgente/$fecha/auditoria.md"
           {
-            echo "# Auditoría automática — $fecha"
+            echo "# Auditoria Automatica Dev Visualizer — $fecha"
             echo
             echo "Modo: \`auditoria_automatica\` (solo lectura)."
             echo
-            echo "## Evidencia"
-            echo
+            echo "## Estado del Repositorio"
             echo '```text'
             git status --short
+            git log -5 --oneline
+            echo '```'
+            echo
+            echo "## Validaciones Tecnicas del Atlas y Libreria"
+            echo '```text'
+            npm run check:library || echo "check:library con advertencias"
+            npm run check:links || echo "check:links con advertencias"
+            npm run check:a11y || echo "check:a11y con advertencias"
+            echo '```'
+            echo
+            echo "## Auditoria de Dependencias"
+            echo '```text'
             npm audit --audit-level=high || true
             echo '```'
             echo
-            echo "## Operaciones que requieren autorización"
-            echo
-            echo "- Corregir vulnerabilidades."
+            echo "## Operaciones que requieren autorizacion"
+            echo "- Corregir vulnerabilidades de npm."
             echo "- Ejecutar \`npm audit fix --force\`."
-            echo "- Modificar código, crear PR o subtareas."
-            echo "- Cambiar estados del Project 10."
+            echo "- Modificar codigo fuente en \`src/\`, colecciones o rutas."
+            echo "- Creacion de ramas, Pull Requests y cambios de estado en proyectos."
           } > "$reporte"
 
       - name: Publicar expediente
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v4
         with:
           name: expediente-orquestador-${{ github.run_id }}
           path: docs/FechaAgente/
           if-no-files-found: error
 
-      - name: Registrar Issue de auditoría
+      - name: Registrar o Actualizar Issue de Auditoria
         env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GH_TOKEN: ${{ secrets.LUICS_PAT || secrets.GITHUB_TOKEN }}
         shell: bash
         run: |
           set -euo pipefail
           fecha="$(date -u +%F)"
-          titulo="Auditoría del orquestador — $fecha"
-          issue_number="$(gh issue list --state open --search "\"$titulo\" in:title" --json number,title --jq '.[] | select(.title == "'"$titulo"'") | .number' | head -n 1)"
+          titulo="Auditoria del orquestador — $fecha"
+          issue_number="$(gh issue list --state open --search "\"$titulo\" in:title" --json number,title --jq '.[] | select(.title == "'"$titulo"'") | .number' | head -n 1 || true)"
           if [ -n "$issue_number" ]; then
             gh issue edit "$issue_number" --body-file "docs/FechaAgente/$fecha/auditoria.md"
           else
-            gh issue create --title "$titulo" --body-file "docs/FechaAgente/$fecha/auditoria.md"
+            gh issue create --title "$titulo" --body-file "docs/FechaAgente/$fecha/auditoria.md" --label "documentation" || true
           fi
 
   autorizado:
-    name: Ejecución autorizada y protegida
-    if: ${{ github.event_name == 'workflow_dispatch' && inputs.modo == 'authorized' && inputs.autorizacion == 'AUTORIZO EJECUCIÓN DIRECTA' }}
+    name: Ejecucion autorizada y protegida
+    if: ${{ github.event_name == 'workflow_dispatch' && inputs.modo == 'authorized' && inputs.autorizacion == 'AUTORIZO EJECUCION DIRECTA' }}
     runs-on: ubuntu-latest
     environment: orchestrator-authorized
     permissions:
@@ -125,15 +146,15 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          echo "El entorno protegido debe aprobar explícitamente esta ejecución."
+          echo "El entorno protegido debe aprobar explicitamente esta ejecucion."
           test -n "$AUTHORIZED_INSTRUCTION" || {
-            echo "::error::Falta la instrucción exacta y acotada de la operación."
+            echo "::error::Falta la instruccion exacta y acotada de la operacion."
             exit 1
           }
           echo "Alcance autorizado: $AUTHORIZED_INSTRUCTION"
-          echo "No existe un ejecutor genérico: cada mutación debe implementarse en un paso revisado."
+          echo "No existe un ejecutor generico: cada mutacion debe implementarse en un paso revisado."
 
-      - name: Publicar registro de autorización
+      - name: Publicar registro de autorizacion
         env:
           AUTHORIZED_INSTRUCTION: ${{ inputs.instruccion }}
         shell: bash
@@ -141,16 +162,16 @@ jobs:
           set -euo pipefail
           mkdir -p authorized-record
           printf '%s\n' \
-            "# Registro de autorización" \
+            "# Registro de autorizacion" \
             "" \
-            "- Confirmación: \`AUTORIZO EJECUCIÓN DIRECTA\`" \
+            "- Confirmacion: \`AUTORIZO EJECUCION DIRECTA\`" \
             "- Alcance: $AUTHORIZED_INSTRUCTION" \
             "- Entorno: \`orchestrator-authorized\`" \
-            "- Estado: listo para pasos revisados; no se ejecutó una mutación genérica." \
+            "- Estado: listo para pasos revisados; no se ejecuto una mutacion generica." \
             > authorized-record/README.md
 
       - name: Publicar registro
-        uses: actions/upload-artifact@v6
+        uses: actions/upload-artifact@v4
         with:
           name: autorizacion-orquestador-${{ github.run_id }}
           path: authorized-record/
