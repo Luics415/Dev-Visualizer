@@ -404,7 +404,7 @@ export function FloatingAudioBubble({ collectionName, collectionTitle, tracks }:
             </div>
 
             <div className="floating-audio-bubble__actions">
-              {availableVoices.length > 1 ? (
+              {availableVoices.length > 0 ? (
                 <div className="floating-audio-bubble__voice-wrapper">
                   <select
                     className="floating-audio-bubble__voice-select"
