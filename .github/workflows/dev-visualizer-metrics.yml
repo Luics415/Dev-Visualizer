@@ -1,0 +1,30 @@
+name: Sincronizador de Metricas de Dev Visualizer
+
+on:
+  schedule:
+    # Ejecucion semanal los domingos a medianoche UTC
+    - cron: "0 0 * * 0"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  sincronizar-metricas:
+    name: Actualizacion de Metricas del Ecosistema
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Ejecutar sincronizacion de metricas
+        env:
+          GH_TOKEN: ${{ secrets.LUICS_PAT || secrets.GITHUB_TOKEN }}
+        shell: bash
+        run: |
+          python .github/scripts/sync_dev_visualizer_metrics.py

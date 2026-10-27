@@ -1,0 +1,31 @@
+name: Triage Automatico de Issues
+
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  issues: write
+  contents: read
+
+jobs:
+  triage-issue:
+    name: Clasificacion y Notificacion de Issues
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+
+      - name: Configurar Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Ejecutar Triage de Issue
+        env:
+          GH_TOKEN: ${{ secrets.LUICS_PAT || secrets.GITHUB_TOKEN }}
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+          DISCORD_USER_ID: ${{ secrets.DISCORD_USER_ID }}
+        shell: bash
+        run: |
+          python .github/scripts/issue_triage.py

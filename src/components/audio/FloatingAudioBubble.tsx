@@ -404,7 +404,7 @@ export function FloatingAudioBubble({ collectionName, collectionTitle, tracks }:
             </div>
 
             <div className="floating-audio-bubble__actions">
-              {availableVoices.length > 1 ? (
+              {availableVoices.length > 0 ? (
                 <div className="floating-audio-bubble__voice-wrapper">
                   <select
                     className="floating-audio-bubble__voice-select"
@@ -415,7 +415,7 @@ export function FloatingAudioBubble({ collectionName, collectionTitle, tracks }:
                   >
                     {availableVoices.map((v) => (
                       <option key={v.voiceURI} value={v.voiceURI}>
-                        {v.region} · {v.name.slice(0, 16)} {v.isNeural ? "✦" : ""}
+                        {v.region} · {v.name}
                       </option>
                     ))}
                   </select>

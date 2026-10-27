@@ -1,0 +1,103 @@
+name: Agente Centinela de GitHub Discussions
+
+on:
+  schedule:
+    # Ejecucion periodica cada 6 horas
+    - cron: "0 */6 * * *"
+  workflow_dispatch:
+    inputs:
+      discussion_number:
+        description: "Numero especifico de discusion a procesar (opcional)"
+        required: false
+        type: string
+      dry_run:
+        description: "Modo simulacion (sin publicar en GitHub)"
+        required: false
+        default: false
+        type: boolean
+      force:
+        description: "Forzar respuesta aunque ya este contestada"
+        required: false
+        default: false
+        type: boolean
+      no_wait:
+        description: "Omitir ventana de espera de 10 minutos (responder inmediatamente)"
+        required: false
+        default: false
+        type: boolean
+  discussion:
+    types: [created]
+
+permissions:
+  contents: write
+  discussions: write
+  issues: write
+  actions: read
+  repository-projects: write
+
+concurrency:
+  group: discussions-centinel-${{ github.event.discussion.number || github.event.inputs.discussion_number || github.run_id }}
+  cancel-in-progress: false
+
+jobs:
+  atender-discusiones:
+    name: Centinela de Discussions y Soporte de Dev Visualizer
+    runs-on: ubuntu-latest
+    timeout-minutes: 25
+    steps:
+      - name: Descargar repositorio
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 10
+
+      - name: Configurar Python 3.12
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Ejecutar Agente Centinela
+        env:
+          GH_TOKEN: ${{ secrets.LUICS_PAT || secrets.GITHUB_TOKEN }}
+          GEMINI_API_KEY: ${{ secrets.GEMINI_API_KEY }}
+          DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
+          DISCORD_USER_ID: ${{ secrets.DISCORD_USER_ID }}
+          CALLMEBOT_PHONE: ${{ secrets.CALLMEBOT_PHONE }}
+          CALLMEBOT_API_KEY: ${{ secrets.CALLMEBOT_API_KEY }}
+          TWILIO_ACCOUNT_SID: ${{ secrets.TWILIO_ACCOUNT_SID }}
+          TWILIO_AUTH_TOKEN: ${{ secrets.TWILIO_AUTH_TOKEN }}
+          TWILIO_WHATSAPP_FROM: ${{ secrets.TWILIO_WHATSAPP_FROM }}
+          TWILIO_WHATSAPP_TO: ${{ secrets.TWILIO_WHATSAPP_TO }}
+          WHATSAPP_CLOUD_TOKEN: ${{ secrets.WHATSAPP_CLOUD_TOKEN }}
+          WHATSAPP_PHONE_NUMBER_ID: ${{ secrets.WHATSAPP_PHONE_NUMBER_ID }}
+          WHATSAPP_TO_NUMBER: ${{ secrets.WHATSAPP_TO_NUMBER }}
+          WHATSAPP_WEBHOOK_URL: ${{ secrets.WHATSAPP_WEBHOOK_URL }}
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          FLAGS=()
+          if [ "${{ github.event.inputs.dry_run }}" = "true" ]; then
+            FLAGS+=(--dry-run)
+          fi
+          if [ "${{ github.event.inputs.force }}" = "true" ]; then
+            FLAGS+=(--force)
+          fi
+          if [ "${{ github.event.inputs.no_wait }}" = "true" ]; then
+            FLAGS+=(--no-wait)
+          fi
+          if [ -n "${{ github.event.inputs.discussion_number }}" ]; then
+            FLAGS+=(--discussion-number "${{ github.event.inputs.discussion_number }}")
+          elif [ "${{ github.event_name }}" = "discussion" ]; then
+            FLAGS+=(--discussion-number "${{ github.event.discussion.number }}")
+          fi
+
+          echo "Ejecutando Agente Centinela con flags: ${FLAGS[*]:-ninguna}"
+          python .github/scripts/discussions_centinel.py "${FLAGS[@]}"
+
+      - name: Subir expediente historico como artefacto
+        uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: expediente-discusiones-${{ github.run_id }}
+          path: docs/FechaAgente/
+          if-no-files-found: ignore

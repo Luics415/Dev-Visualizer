@@ -6332,7 +6332,7 @@ body {
 .floating-audio-bubble__voice-select {
   appearance: none;
   -webkit-appearance: none;
-  max-width: 110px;
+  max-width: 132px;
   height: 26px;
   padding: 2px 18px 2px 8px;
   border-radius: 6px;

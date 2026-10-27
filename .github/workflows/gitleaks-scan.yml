@@ -1,0 +1,27 @@
+name: Auditoria Preventiva de Secretos (Gitleaks)
+
+on:
+  push:
+    branches: [main, "feat/*", "fix/*"]
+  pull_request:
+    branches: [main]
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  escanear-secretos:
+    name: Escaneo SAST con Gitleaks
+    runs-on: ubuntu-latest
+    steps:
+      - name: Descargar repositorio completo
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Ejecutar escaner Gitleaks
+        uses: gitleaks/gitleaks-action@v2
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          GITLEAKS_LICENSE: "free"
