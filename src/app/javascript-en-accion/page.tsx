@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
+import { ActionQuizInvite } from "@/components/concepts/ActionQuizInvite";
 import { JavaScriptPracticalScene } from "@/components/scenes/javascript/JavaScriptPracticalScene";
 import { collectionNumber } from "@/data/collectionManifest";
 import { collectionNotices } from "@/data/collectionNotices";
@@ -77,6 +78,8 @@ export default function JavaScriptPracticalPage() {
       </section>
 
       <PracticalDeepDive modules={javascriptDeepDive} collectionId="javascript" />
+
+      <ActionQuizInvite actionHref="/javascript-en-accion" collectionTitle="JavaScript ES6+" />
 
       <footer className="project-note">
         El caso completo sigue al dato desde la entrada del usuario hasta la memoria, las colas, la red, el almacenamiento y la ruta de recuperación.

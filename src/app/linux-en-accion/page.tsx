@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
+import { ActionQuizInvite } from "@/components/concepts/ActionQuizInvite";
 import { LinuxPracticalScene } from "@/components/scenes/linux/LinuxPracticalScene";
 import { collectionNumber } from "@/data/collectionManifest";
 import { collectionNotices } from "@/data/collectionNotices";
@@ -62,6 +63,9 @@ export default function LinuxActionPage() {
       </section>
 
       <PracticalDeepDive modules={linuxDeepDive} collectionId="linux" />
+
+      <ActionQuizInvite actionHref="/linux-en-accion" collectionTitle="Linux" />
+
       <footer className="project-note">El caso conecta síntomas externos con sockets, units, procesos, permisos y recursos del kernel; cada comando reduce hipótesis antes de cambiar el sistema.</footer>
 
       <FloatingAudioBubble collectionName="Linux en acción" tracks={practicalTracks} />

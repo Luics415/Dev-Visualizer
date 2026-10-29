@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { CollectionNav } from "@/components/navigation/CollectionNav";
+import { ActionQuizInvite } from "@/components/concepts/ActionQuizInvite";
 import { HtmlCssPracticalScene } from "@/components/scenes/html-css/HtmlCssPracticalScene";
 import { collectionNumber } from "@/data/collectionManifest";
 import { collectionNotices } from "@/data/collectionNotices";
@@ -49,6 +50,8 @@ export default function HtmlCssPracticalPage() {
 
         <HtmlCssPracticalScene />
       </section>
+
+      <ActionQuizInvite actionHref="/html-css-en-accion" collectionTitle="HTML y CSS" />
 
       <footer className="project-note">La interfaz final es la consecuencia de múltiples modelos coordinados. Entenderlos permite diagnosticar semántica, cascade, layout, rendimiento y accesibilidad sin probar propiedades al azar.</footer>
 

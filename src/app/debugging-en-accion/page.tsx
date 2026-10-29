@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
+import { ActionQuizInvite } from "@/components/concepts/ActionQuizInvite";
 import { DebuggingPracticalScene } from "@/components/scenes/debugging/DebuggingPracticalScene";
 import { collectionNumber } from "@/data/collectionManifest";
 import { collectionNotices } from "@/data/collectionNotices";
@@ -62,6 +63,9 @@ export default function DebuggingActionPage() {
       </section>
 
       <PracticalDeepDive modules={debuggingDeepDive} collectionId="debugging" />
+
+      <ActionQuizInvite actionHref="/debugging-en-accion" collectionTitle="Debugging" />
+
       <footer className="project-note">El caso conserva el estilo de un expediente: cada dato debe apoyar o refutar una hipótesis. El fix del cliente elimina la causa conocida y la idempotencia del servidor evita que otras rutas de duplicación produzcan el mismo daño.</footer>
 
       <FloatingAudioBubble collectionName="Debugging en acción" tracks={practicalTracks} />

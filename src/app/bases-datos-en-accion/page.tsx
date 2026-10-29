@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
+import { ActionQuizInvite } from "@/components/concepts/ActionQuizInvite";
 import { DatabasePracticalScene } from "@/components/scenes/databases/DatabasePracticalScene";
 import { collectionNumber } from "@/data/collectionManifest";
 import { collectionNotices } from "@/data/collectionNotices";
@@ -62,6 +63,8 @@ export default function DatabasesActionPage() {
       </section>
 
       <PracticalDeepDive modules={databaseDeepDive} collectionId="databases" />
+
+      <ActionQuizInvite actionHref="/bases-datos-en-accion" collectionTitle="Bases de datos" />
 
       <footer className="project-note">El caso conecta modelo, constraints, planner, índices, transacciones, MVCC, replicación, migraciones, backups y gobierno del dato.</footer>
 

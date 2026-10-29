@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
+import { ActionQuizInvite } from "@/components/concepts/ActionQuizInvite";
 import { ReactNativePracticalScene } from "@/components/scenes/react-native/ReactNativePracticalScene";
 import { collectionNumber } from "@/data/collectionManifest";
 import { collectionNotices } from "@/data/collectionNotices";
@@ -67,6 +68,8 @@ export default function ReactNativePracticalPage() {
       </section>
 
       <PracticalDeepDive modules={reactNativeDeepDive} collectionId="react-native" />
+
+      <ActionQuizInvite actionHref="/react-native-en-accion" collectionTitle="React Native" />
 
       <footer className="project-note">
         Una experiencia móvil real sigue funcionando entre dispositivos, estados de red, ciclos del sistema y releases que llegan a usuarios.

@@ -5,8 +5,38 @@ export const QUIZ_PASS_PERCENTAGE = 70; // 70% de aciertos para superar el reto
 export const QUIZ_STORAGE_KEY = "dev-visualizer-quiz-badges";
 
 /**
+ * Baraja aleatoriamente las 4 opciones de una pregunta utilizando Fisher-Yates
+ * y reasigna `correctAnswerIndex` de manera estricta y matemáticamente uniforme,
+ * eliminando cualquier sesgo hacia una posición fija (como la segunda opción).
+ */
+export function shuffleQuestionOptions(question: QuizQuestion): QuizQuestion {
+  const items = question.options.map((text, idx) => ({
+    text,
+    isCorrect: idx === question.correctAnswerIndex,
+  }));
+
+  for (let i = items.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const temp = items[i]!;
+    items[i] = items[j]!;
+    items[j] = temp;
+  }
+
+  const shuffledOptions = items.map((item) => item.text) as unknown as [string, string, string, string];
+  const foundIndex = items.findIndex((item) => item.isCorrect);
+  const newCorrectIndex = (foundIndex >= 0 && foundIndex <= 3 ? foundIndex : 0) as 0 | 1 | 2 | 3;
+
+  return {
+    ...question,
+    options: shuffledOptions,
+    correctAnswerIndex: newCorrectIndex,
+  };
+}
+
+/**
  * Selecciona aleatoriamente N preguntas del banco general usando el algoritmo Fisher-Yates
- * para que cada intento ofrezca una combinación fresca de desafíos.
+ * y baraja independientemente las 4 opciones de cada una para que cada intento ofrezca
+ * una combinación fresca y una distribución equilibrada de respuestas (A, B, C, D).
  */
 export function sampleRandomQuizQuestions(
   pool: readonly QuizQuestion[],
@@ -20,7 +50,8 @@ export function sampleRandomQuizQuestions(
     copy[i] = copy[j]!;
     copy[j] = temp;
   }
-  return copy.slice(0, Math.min(count, copy.length));
+  const selected = copy.slice(0, Math.min(count, copy.length));
+  return selected.map(shuffleQuestionOptions);
 }
 
 /**

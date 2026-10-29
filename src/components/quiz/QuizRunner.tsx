@@ -26,7 +26,7 @@ export function QuizRunner({
   collectionHref,
   allQuestions,
 }: QuizRunnerProps) {
-  // Muestrear 15 preguntas aleatorias por intento
+  // Muestrear 15 preguntas aleatorias con opciones barajadas por intento
   const [questions, setQuestions] = useState<QuizQuestion[]>(() =>
     sampleRandomQuizQuestions(allQuestions, QUIZ_SAMPLE_SIZE)
   );
