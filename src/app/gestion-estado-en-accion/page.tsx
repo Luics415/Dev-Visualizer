@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
+import { ActionQuizInvite } from "@/components/concepts/ActionQuizInvite";
 import { StateManagementPracticalScene } from "@/components/scenes/state-management/StateManagementPracticalScene";
 import { collectionNumber } from "@/data/collectionManifest";
 import { collectionNotices } from "@/data/collectionNotices";
@@ -62,6 +63,8 @@ export default function StateManagementActionPage() {
       </section>
 
       <PracticalDeepDive modules={stateManagementDeepDive} collectionId="state-management" />
+
+      <ActionQuizInvite actionHref="/gestion-estado-en-accion" collectionTitle="Gestión de estado" />
 
       <footer className="project-note">El caso conecta lo visible con ownership, snapshots, selectores, query cache, optimismo, persistencia, offline y observabilidad.</footer>
 

@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
+import { ActionQuizInvite } from "@/components/concepts/ActionQuizInvite";
 import { DockerPracticalScene } from "@/components/scenes/docker/DockerPracticalScene";
 import { collectionNumber } from "@/data/collectionManifest";
 import { collectionNotices } from "@/data/collectionNotices";
@@ -62,6 +63,9 @@ export default function DockerActionPage() {
       </section>
 
       <PracticalDeepDive modules={dockerDeepDive} collectionId="docker" />
+
+      <ActionQuizInvite actionHref="/docker-en-accion" collectionTitle="Docker" />
+
       <footer className="project-note">El caso distingue el filesystem de build, las capas inmutables, el artefacto publicado y el estado runtime. También muestra por qué un contenedor saludable, no root y observable es una decisión de diseño, no una propiedad automática de Docker.</footer>
 
       <FloatingAudioBubble collectionName="Docker en acción" tracks={practicalTracks} />

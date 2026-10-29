@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
+import { ActionQuizInvite } from "@/components/concepts/ActionQuizInvite";
 import { AwsPracticalScene } from "@/components/scenes/aws/AwsPracticalScene";
 import { collectionNumber } from "@/data/collectionManifest";
 import { collectionNotices } from "@/data/collectionNotices";
@@ -62,6 +63,9 @@ export default function AwsActionPage() {
       </section>
 
       <PracticalDeepDive modules={awsDeepDive} collectionId="aws" />
+
+      <ActionQuizInvite actionHref="/aws-en-accion" collectionTitle="AWS" />
+
       <footer className="project-note">El ejemplo une identidad temporal, red por capas, servicios administrados, resiliencia por zona, eventos asíncronos, telemetría y control de costos.</footer>
 
       <FloatingAudioBubble collectionName="AWS en acción" tracks={practicalTracks} />

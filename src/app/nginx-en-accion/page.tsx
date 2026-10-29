@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
+import { ActionQuizInvite } from "@/components/concepts/ActionQuizInvite";
 import { HttpsTunnelScene } from "@/components/scenes/HttpsTunnelScene";
 import { collectionNumber } from "@/data/collectionManifest";
 import { collectionNotices } from "@/data/collectionNotices";
@@ -69,6 +70,9 @@ export default function NginxActionPage() {
       </section>
 
       <PracticalDeepDive modules={nginxDeepDive} collectionId="nginx" />
+
+      <ActionQuizInvite actionHref="/nginx-en-accion" collectionTitle="NGINX" />
+
       <footer className="project-note">El caso diferencia la conexión TCP, el handshake TLS, la identidad del servidor, las claves de tráfico y el HTTP que NGINX procesa después de terminar el cifrado. Un certificado inválido detiene el canal antes de exponer datos de aplicación.</footer>
 
       <FloatingAudioBubble collectionName="NGINX en acción" tracks={practicalTracks} />

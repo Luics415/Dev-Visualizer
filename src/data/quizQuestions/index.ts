@@ -1,5 +1,7 @@
 import type { QuizQuestion } from "@/data/quizTypes";
 import { expandedCollectionById } from "@/data/expandedCollections";
+import { collectionManifest } from "@/data/collectionManifest";
+import { canonicalConceptCollections } from "@/data/canonicalConceptCollections";
 import { javascriptQuestions } from "./javascript";
 import { typescriptQuestions } from "./typescript";
 import { pythonQuestions } from "./python";
@@ -32,6 +34,8 @@ import { ciCdQuestions } from "./ciCd";
 import { deploymentQuestions } from "./deployment";
 import { nginxQuestions } from "./nginx";
 import { firebaseQuestions } from "./firebase";
+import { stateManagementQuestions } from "./stateManagement";
+import { debuggingQuestions } from "./debugging";
 
 // Registro extensible de bancos de preguntas explícitas
 const explicitQuestionBanks: Record<string, QuizQuestion[]> = {};
@@ -76,23 +80,40 @@ registerCollectionQuestions("ci-cd", ciCdQuestions);
 registerCollectionQuestions("deployment", deploymentQuestions);
 registerCollectionQuestions("nginx", nginxQuestions);
 registerCollectionQuestions("firebase", firebaseQuestions);
+registerCollectionQuestions("state-management", stateManagementQuestions);
+registerCollectionQuestions("debugging", debuggingQuestions);
 
 /**
- * Obtiene el banco de preguntas completo para una colección.
+ * Obtiene el banco de preguntas completo para una colección o slug de acción.
  * Si la colección aún no tiene preguntas artesanales, sintetiza preguntas técnicas
  * deterministas a partir de sus conceptos pedagógicos, garantizando que todas
- * las colecciones cuenten con un banco de más de 20 preguntas desde el día 1.
+ * las 73 colecciones y rutas En Acción cuenten con un banco de más de 20 preguntas desde el día 1.
  */
-export function getQuestionsForCollection(collectionId: string): QuizQuestion[] {
-  if (explicitQuestionBanks[collectionId] && explicitQuestionBanks[collectionId]!.length >= 15) {
-    return explicitQuestionBanks[collectionId]!;
+export function getQuestionsForCollection(collectionIdOrSlug: string): QuizQuestion[] {
+  // Normalizar slug o ID a la entrada canónica del manifiesto
+  const manifest = collectionManifest.find(
+    (m) =>
+      m.id === collectionIdOrSlug ||
+      m.actionHref === `/${collectionIdOrSlug}` ||
+      m.href === `/${collectionIdOrSlug}` ||
+      (collectionIdOrSlug === "javascript" && m.id === "javascript") ||
+      (collectionIdOrSlug === "quiz" && m.id === "javascript") ||
+      m.legacyPaths?.includes(`/${collectionIdOrSlug}`)
+  );
+
+  const resolvedId = manifest?.id ?? collectionIdOrSlug;
+
+  if (explicitQuestionBanks[resolvedId] && explicitQuestionBanks[resolvedId]!.length >= 15) {
+    return explicitQuestionBanks[resolvedId]!;
   }
 
-  const collection = expandedCollectionById.get(collectionId);
-  if (!collection) return [];
+  const collection = expandedCollectionById.get(resolvedId);
+  const canonicalConcepts = canonicalConceptCollections.get(resolvedId);
+  const concepts = collection?.concepts ?? canonicalConcepts;
+  if (!concepts || concepts.length === 0) return [];
+  const collectionTitle = collection?.title ?? manifest?.label ?? resolvedId;
 
   const generatedQuestions: QuizQuestion[] = [];
-  const concepts = collection.concepts;
 
   concepts.forEach((concept, idx) => {
     // Generador de pregunta sobre definición y objetivo
@@ -115,9 +136,9 @@ export function getQuestionsForCollection(collectionId: string): QuizQuestion[] 
     options[correctPos] = temp;
 
     generatedQuestions.push({
-      id: `${collectionId}-q-def-${idx}`,
-      collectionId,
-      question: `¿Cuál es la función y mecanismo principal de "${concept.title}" en ${collection.title}?`,
+      id: `${resolvedId}-q-def-${idx}`,
+      collectionId: resolvedId,
+      question: `¿Cuál es la función y mecanismo principal de "${concept.title}" en ${collectionTitle}?`,
       options,
       correctAnswerIndex: correctPos,
       explanation: `${concept.title}: ${concept.description} Pertenece a la sección "${concept.section}" y la familia técnica "${concept.family}".`,
@@ -146,8 +167,8 @@ export function getQuestionsForCollection(collectionId: string): QuizQuestion[] 
       outcomeOptions[outCorrectPos] = oTemp;
 
       generatedQuestions.push({
-        id: `${collectionId}-q-out-${idx}`,
-        collectionId,
+        id: `${resolvedId}-q-out-${idx}`,
+        collectionId: resolvedId,
         question: `En el flujo de ejecución de "${concept.title}", ¿cuál es el resultado o estado final esperado?`,
         options: outcomeOptions,
         correctAnswerIndex: outCorrectPos,
@@ -158,8 +179,8 @@ export function getQuestionsForCollection(collectionId: string): QuizQuestion[] 
     }
   });
 
-  // Agregar preguntas de los pasos prácticos (caseStudy.steps)
-  if (collection.caseStudy?.steps) {
+  // Agregar preguntas de los pasos prácticos (caseStudy.steps) si existen
+  if (collection?.caseStudy?.steps) {
     collection.caseStudy.steps.forEach((step, sIdx) => {
       const wrongSteps = collection.caseStudy.steps.filter((s) => s.title !== step.title);
       const sDistractor1 = wrongSteps[sIdx % wrongSteps.length]?.note ?? "Establecer la infraestructura base del entorno.";
@@ -179,8 +200,8 @@ export function getQuestionsForCollection(collectionId: string): QuizQuestion[] 
       stepOptions[stepCorrectPos] = stTemp;
 
       generatedQuestions.push({
-        id: `${collectionId}-q-step-${sIdx}`,
-        collectionId,
+        id: `${resolvedId}-q-step-${sIdx}`,
+        collectionId: resolvedId,
         question: `En el caso práctico "${collection.caseStudy.title}", ¿cuál es el principio clave de la etapa "${step.title}" (${step.subtitle})?`,
         options: stepOptions,
         correctAnswerIndex: stepCorrectPos,
@@ -192,6 +213,6 @@ export function getQuestionsForCollection(collectionId: string): QuizQuestion[] 
   }
 
   // Combinar con cualquier pregunta explícita ya registrada
-  const explicit = explicitQuestionBanks[collectionId] ?? [];
+  const explicit = explicitQuestionBanks[resolvedId] ?? [];
   return [...explicit, ...generatedQuestions];
 }

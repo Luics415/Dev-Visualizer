@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
+import { ActionQuizInvite } from "@/components/concepts/ActionQuizInvite";
 import { BackendPracticalScene } from "@/components/scenes/backend/BackendPracticalScene";
 import { collectionNumber } from "@/data/collectionManifest";
 import { collectionNotices } from "@/data/collectionNotices";
@@ -62,6 +63,8 @@ export default function BackendActionPage() {
       </section>
 
       <PracticalDeepDive modules={backendDeepDive} collectionId="backend" />
+
+      <ActionQuizInvite actionHref="/backend-en-accion" collectionTitle="Backend" />
 
       <footer className="project-note">El ejemplo une contrato HTTP, identidad, reglas, persistencia, asincronía, resiliencia y operación observable.</footer>
 

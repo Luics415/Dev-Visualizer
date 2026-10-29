@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
+import { ActionQuizInvite } from "@/components/concepts/ActionQuizInvite";
 import { FirebasePracticalScene } from "@/components/scenes/firebase/FirebasePracticalScene";
 import { collectionNumber } from "@/data/collectionManifest";
 import { collectionNotices } from "@/data/collectionNotices";
@@ -62,6 +63,9 @@ export default function FirebaseActionPage() {
       </section>
 
       <PracticalDeepDive modules={firebaseDeepDive} collectionId="firebase" />
+
+      <ActionQuizInvite actionHref="/firebase-en-accion" collectionTitle="Firebase" />
+
       <footer className="project-note">La app no confía en el cliente por estar instalada: cada operación combina identidad, attestation, autorización declarativa y validación. La caché local mejora la experiencia, mientras el backend administrado conserva el estado confirmado y los side effects.</footer>
 
       <FloatingAudioBubble collectionName="Firebase en acción" tracks={practicalTracks} />

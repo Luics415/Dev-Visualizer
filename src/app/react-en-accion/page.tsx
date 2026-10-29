@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
+import { ActionQuizInvite } from "@/components/concepts/ActionQuizInvite";
 import { ReactPracticalScene } from "@/components/scenes/react/ReactPracticalScene";
 import { collectionNumber } from "@/data/collectionManifest";
 import { collectionNotices } from "@/data/collectionNotices";
@@ -67,6 +68,8 @@ export default function ReactPracticalPage() {
       </section>
 
       <PracticalDeepDive modules={reactDeepDive} collectionId="react" />
+
+      <ActionQuizInvite actionHref="/react-en-accion" collectionTitle="React" />
 
       <footer className="project-note">
         El ejemplo conecta lo que el usuario percibe con snapshots, prioridades, fronteras de render y trabajo del compilador.

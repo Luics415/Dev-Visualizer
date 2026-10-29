@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
+import { ActionQuizInvite } from "@/components/concepts/ActionQuizInvite";
 import { DistinctActionScene } from "@/components/scenes/DistinctActionScene";
 import { collectionNumber } from "@/data/collectionManifest";
 import { collectionNotices } from "@/data/collectionNotices";
@@ -59,6 +60,9 @@ export default function DeploymentActionPage() {
       </section>
 
       <PracticalDeepDive modules={practical.steps} startAt={1} collectionId="deployment" />
+
+      <ActionQuizInvite actionHref="/deployment-en-accion" collectionTitle="Deployment" />
+
       <footer className="project-note">{practical.footer}</footer>
 
       <FloatingAudioBubble collectionName="Deployment en acción" tracks={practicalTracks} />

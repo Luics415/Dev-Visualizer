@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
+import { ActionQuizInvite } from "@/components/concepts/ActionQuizInvite";
 import { TypeScriptPracticalScene } from "@/components/scenes/typescript/TypeScriptPracticalScene";
 import { collectionNumber } from "@/data/collectionManifest";
 import { collectionNotices } from "@/data/collectionNotices";
@@ -67,6 +68,8 @@ export default function TypeScriptPracticalPage() {
       </section>
 
       <PracticalDeepDive modules={typescriptDeepDive} collectionId="typescript" />
+
+      <ActionQuizInvite actionHref="/typescript-en-accion" collectionTitle="TypeScript" />
 
       <footer className="project-note">
         Los tipos protegen el desarrollo; los esquemas protegen la frontera de runtime y el build conserva una experiencia depurable para autores y consumidores.
