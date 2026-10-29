@@ -126,14 +126,14 @@ def main():
     # Dejar comentario de bienvenida estructurado
     welcome_comment = f"""¡Hola @{author}! 👋 Gracias por abrir este reporte en **Dev Visualizer**.
 
-Nuestro sistema de triage automático ha clasificado tu solicitud como: **`{category}`**.
-Un mantenedor (@Luics415) ha sido notificado para dar seguimiento a este issue.
+Tu solicitud ha sido clasificada en la categoría: **`{category}`**.
+@{OWNER} ha sido notificado para dar seguimiento a este reporte.
 
 - **Stack:** Next.js 16 (App Router), React 19, Motion, TypeScript.
 - **Atlas:** 73 colecciones interactivas y 146 rutas técnicas.
 - **Guía de Contribución:** Por favor revisa [`README.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/README.md) y [`AGENTS.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/AGENTS.md).
 
-*(Mensaje generado automáticamente por el Agente Centinela de Dev Visualizer)*"""
+*(Equipo de Mantenedores de Dev Visualizer · @Luics415)*"""
 
     run_cmd(["gh", "issue", "comment", str(issue_num), "--repo", repo, "--body", welcome_comment])
     log("Comentario de bienvenida publicado.")

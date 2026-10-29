@@ -7,7 +7,7 @@ import { GoogleAnalytics } from "@next/third-parties/google";
 import "@/data/catalogValidation";
 import "./globals.css";
 
-const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000";
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL ?? "https://luics415.github.io/Dev-Visualizer";
 const siteRoot = siteUrl.replace(/\/$/, "");
 const assetUrl = (pathname: string) => `${siteRoot}${pathname}`;
 const socialCardUrl = assetUrl("/social/luics415-dev-visualizer-github-1280x640.jpg");
@@ -28,6 +28,9 @@ export const metadata: Metadata = {
   creator: "Luics415",
   publisher: "Dev Visualizer",
   manifest: assetUrl("/site.webmanifest"),
+  alternates: {
+    canonical: `${siteRoot}/`,
+  },
   icons: {
     icon: [
       { url: assetUrl("/favicon.ico"), sizes: "any" },
@@ -40,7 +43,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "es_MX",
-    url: siteRoot,
+    url: `${siteRoot}/`,
     siteName: "Dev Visualizer",
     title: "Dev Visualizer",
     description: `${atlasSummary} para aprender mediante visualizaciones autónomas, casos técnicos y una Librería profesional.`,
@@ -87,8 +90,53 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   const gaId = process.env.NEXT_PUBLIC_GA_ID ?? "G-K3GRNYB3K6";
 
+  const jsonLd = {
+    "@context": "https://schema.org",
+    "@graph": [
+      {
+        "@type": "WebSite",
+        "@id": `${siteRoot}/#website`,
+        url: `${siteRoot}/`,
+        name: "Dev Visualizer",
+        alternateName: "DevVisualizer",
+        description: `Atlas visual educativo con ${atlasSummary} de desarrollo de software y una Librería profesional preservable.`,
+        inLanguage: "es-MX",
+        publisher: {
+          "@type": "Person",
+          name: "Luics415",
+          url: "https://github.com/Luics415",
+        },
+      },
+      {
+        "@type": "WebApplication",
+        "@id": `${siteRoot}/#app`,
+        name: "Dev Visualizer",
+        url: `${siteRoot}/`,
+        applicationCategory: "EducationalApplication",
+        operatingSystem: "All",
+        browserRequirements: "Requires JavaScript. Requires HTML5.",
+        offers: {
+          "@type": "Offer",
+          price: "0",
+          priceCurrency: "USD",
+        },
+        creator: {
+          "@type": "Person",
+          name: "Luics415",
+          url: "https://github.com/Luics415",
+        },
+      },
+    ],
+  };
+
   return (
     <html lang="es-MX">
+      <head>
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+        />
+      </head>
       <body>
         <MotionProvider>
           <a href="#main-content" className="skip-link">

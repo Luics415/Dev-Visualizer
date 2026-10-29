@@ -1,2 +1,4 @@
 User-agent: *
 Allow: /
+
+Sitemap: https://luics415.github.io/Dev-Visualizer/sitemap.xml

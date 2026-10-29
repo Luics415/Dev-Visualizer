@@ -4,7 +4,7 @@ import { collectionManifest } from "@/data/collectionManifest";
 export const dynamic = "force-static";
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "http://localhost:3000").replace(/\/$/, "");
+  const siteUrl = (process.env.NEXT_PUBLIC_SITE_URL ?? "https://luics415.github.io/Dev-Visualizer").replace(/\/$/, "");
   const paths = [
     "/colecciones",
     "/libreria",
