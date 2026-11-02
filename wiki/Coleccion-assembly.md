@@ -1,47 +1,47 @@
-# 📘 [ASM] Ensamblador
+# Ensamblador (ASM)
 
 > **ISA, registros, memoria, pila, llamadas, ABI, depuración y optimización.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `assembly` |
-| **Grupo Arquitectónico** | [Lenguajes](Grupo-Languages) |
+| **Grupo Arquitectonico** | [Lenguajes](Grupo-Languages) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `c` |
 | **Total de Conceptos** | **103 conceptos** |
-| **Capítulos / Secciones** | **18 secciones** |
+| **Capitulos / Secciones** | **18 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/ensamblador)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/ensamblador-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/ensamblador)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/ensamblador-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: Corregir una rutina de suma nativa
+## Estudio de Caso Practico: Corregir una rutina de suma nativa
 
 > **Caso integrado de Ensamblador:** Una función SIMD suma un buffer, rompe la alineación de pila al llamar otra rutina y recupera la ABI antes de validar el resultado contra C.  
 > La rutina final documenta ISA mínima, ABI, registros preservados, alineación, límites y benchmark.
 
-### Fases de Ejecución:
-1. **Fijar contrato ABI** (Corregir una rutina de suma nativa: etapa 1 de 5): `; rdi = ptr, rsi = len, rax = sum` → Interfaz binaria explícita. *La etapa conserva un contrato explícito para que el siguiente paso de Ensamblador no dependa de supuestos ocultos.*
+### Fases de Ejecucion:
+1. **Fijar contrato ABI** (Corregir una rutina de suma nativa: etapa 1 de 5): `; rdi = ptr, rsi = len, rax = sum` -> Interfaz binaria explícita. *La etapa conserva un contrato explícito para que el siguiente paso de Ensamblador no dependa de supuestos ocultos.*
 2. **Recorrer el buffer** (Corregir una rutina de suma nativa: etapa 2 de 5): `add rax, [rdi]
-add rdi, 8` → Suma parcial correcta. *La etapa conserva un contrato explícito para que el siguiente paso de Ensamblador no dependa de supuestos ocultos.*
+add rdi, 8` -> Suma parcial correcta. *La etapa conserva un contrato explícito para que el siguiente paso de Ensamblador no dependa de supuestos ocultos.*
 3. **Detectar pila desalineada** (Corregir una rutina de suma nativa: etapa 3 de 5): `push rbx
-call helper` → Ejecución detenida. *El caso hace visible el fallo de Ensamblador; no continúa como si la evidencia fuera válida.*
+call helper` -> Ejecución detenida. *El caso hace visible el fallo de Ensamblador; no continúa como si la evidencia fuera válida.*
 4. **Restaurar frame** (Corregir una rutina de suma nativa: etapa 4 de 5): `sub rsp, 8
 call helper
-add rsp, 8` → ABI recuperada. *La recuperación de Ensamblador corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
-5. **Contrastar implementación** (Corregir una rutina de suma nativa: etapa 5 de 5): `assert(sum_asm(p,n) == sum_c(p,n))` → Rutina verificable. *La etapa conserva un contrato explícito para que el siguiente paso de Ensamblador no dependa de supuestos ocultos.*
+add rsp, 8` -> ABI recuperada. *La recuperación de Ensamblador corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
+5. **Contrastar implementación** (Corregir una rutina de suma nativa: etapa 5 de 5): `assert(sum_asm(p,n) == sum_c(p,n))` -> Rutina verificable. *La etapa conserva un contrato explícito para que el siguiente paso de Ensamblador no dependa de supuestos ocultos.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (103)
+## Catalogo Sistematico de Conceptos (103)
 
-### 📑 Sección: Modelo de máquina (5 conceptos)
+### Seccion: Modelo de máquina (5 conceptos)
 
 - **ISA y microarquitectura**  
   *Familia:* `anatomía del concepto`  
@@ -64,7 +64,7 @@ add rsp, 8` → ABI recuperada. *La recuperación de Ensamblador corrige la caus
   La función de Ciclo fetch-decode-execute parte de datos identificables junto con esquema, restricciones y procedencia. Su ejecución valida, representa y recorre cada valor preservando relaciones y produce información consultable con integridad y significado estables.
 
 
-### 📑 Sección: Datos e instrucciones (5 conceptos)
+### Seccion: Datos e instrucciones (5 conceptos)
 
 - **Representación binaria**  
   *Familia:* `telar relacional`  
@@ -87,7 +87,7 @@ add rsp, 8` → ABI recuperada. *La recuperación de Ensamblador corrige la caus
   Para entender Endianness, se delimita datos identificables junto con esquema, restricciones y procedencia. La operación valida, representa y recorre cada valor preservando relaciones hasta producir información consultable con integridad y significado estables.
 
 
-### 📑 Sección: Control y ABI (5 conceptos)
+### Seccion: Control y ABI (5 conceptos)
 
 - **Saltos**  
   *Familia:* `mapa de memoria`  
@@ -110,7 +110,7 @@ add rsp, 8` → ABI recuperada. *La recuperación de Ensamblador corrige la caus
   Para entender Syscalls, se delimita valores con representación, dirección y tiempo de vida definidos. La operación reserva, enlaza y libera almacenamiento siguiendo el contrato del runtime hasta producir estado accesible sin referencias colgantes ni corrupción.
 
 
-### 📑 Sección: Toolchain y diagnóstico (5 conceptos)
+### Seccion: Toolchain y diagnóstico (5 conceptos)
 
 - **Assembler y linker**  
   *Familia:* `evidencia y latencia`  
@@ -133,7 +133,7 @@ add rsp, 8` → ABI recuperada. *La recuperación de Ensamblador corrige la caus
   Errores de alineación conecta un comportamiento esperado, una entrada mínima y un síntoma observable con su runtime interno: aísla variables y contrasta hipótesis con instrumentación repetible hasta exponer una causa demostrada y una regresión protegida.
 
 
-### 📑 Sección: Producción segura (5 conceptos)
+### Seccion: Producción segura (5 conceptos)
 
 - **Interoperabilidad con C**  
   *Familia:* `pasaporte del artefacto`  
@@ -156,7 +156,7 @@ add rsp, 8` → ABI recuperada. *La recuperación de Ensamblador corrige la caus
   La función de Portabilidad y pruebas parte de un comportamiento esperado, una entrada mínima y un síntoma observable. Su ejecución aísla variables y contrasta hipótesis con instrumentación repetible y produce una causa demostrada y una regresión protegida.
 
 
-### 📑 Sección: Familias de arquitectura (5 conceptos)
+### Seccion: Familias de arquitectura (5 conceptos)
 
 - **x86-64**  
   *Familia:* `mapa de memoria`  
@@ -179,7 +179,7 @@ add rsp, 8` → ABI recuperada. *La recuperación de Ensamblador corrige la caus
   Modos / ejecución estructura el flujo donde la CPU decodifica instrucciones y mueve estado entre unidades, memoria y frontera del sistema, logrando estado arquitectónico actualizado con flags, registros preservados y control en la dirección prevista.
 
 
-### 📑 Sección: Codificación y secciones (6 conceptos)
+### Seccion: Codificación y secciones (6 conceptos)
 
 - **Opcodes y operandos**  
   *Familia:* `anatomía del concepto`  
@@ -206,7 +206,7 @@ add rsp, 8` → ABI recuperada. *La recuperación de Ensamblador corrige la caus
   Para Symbol / visibility, la CPU decodifica instrucciones y mueve estado entre unidades, memoria y frontera del sistema, manteniendo estado arquitectónico actualizado con flags, registros preservados y control en la dirección prevista.
 
 
-### 📑 Sección: Modos de direccionamiento (7 conceptos)
+### Seccion: Modos de direccionamiento (7 conceptos)
 
 - **Inmediato**  
   *Familia:* `anatomía del concepto`  
@@ -237,7 +237,7 @@ add rsp, 8` → ABI recuperada. *La recuperación de Ensamblador corrige la caus
   Unaligned / access / behavior coordina la ejecución: la CPU decodifica instrucciones y mueve estado entre unidades, memoria y frontera del sistema hasta obtener estado arquitectónico actualizado con flags, registros preservados y control en la dirección prevista.
 
 
-### 📑 Sección: Aritmética de bajo nivel (5 conceptos)
+### Seccion: Aritmética de bajo nivel (5 conceptos)
 
 - **Carry y overflow**  
   *Familia:* `mapa de memoria`  
@@ -260,7 +260,7 @@ add rsp, 8` → ABI recuperada. *La recuperación de Ensamblador corrige la caus
   Branchless / operations estructura el flujo donde el proceso inicia, atiende, emite telemetría y responde a drenado o actualización coordinada, logrando servicio disponible con estado, versión y camino de rollback verificables.
 
 
-### 📑 Sección: Pila y marcos de llamada (8 conceptos)
+### Seccion: Pila y marcos de llamada (8 conceptos)
 
 - **Stack pointer**  
   *Familia:* `capas internas`  
@@ -295,7 +295,7 @@ add rsp, 8` → ABI recuperada. *La recuperación de Ensamblador corrige la caus
   Al operar con Stack / clash / probing, el runtime o compilador reserva, comparte, mueve y libera almacenamiento respetando aliasing y alineación, produciendo memoria válida durante toda la operación y recuperada al terminar su último uso.
 
 
-### 📑 Sección: Enlazado y carga (6 conceptos)
+### Seccion: Enlazado y carga (6 conceptos)
 
 - **Relocations**  
   *Familia:* `pasaporte del artefacto`  
@@ -322,7 +322,7 @@ add rsp, 8` → ABI recuperada. *La recuperación de Ensamblador corrige la caus
   Para Thread-local / relocation / models, el scheduler intercala trabajo mientras locks, mensajes o atomics establecen el orden observable, manteniendo progreso concurrente con ownership y terminación comprobables para cada tarea.
 
 
-### 📑 Sección: Interfaz con el sistema (7 conceptos)
+### Seccion: Interfaz con el sistema (7 conceptos)
 
 - **System call numbers**  
   *Familia:* `planificación de trabajo`  
@@ -353,7 +353,7 @@ add rsp, 8` → ABI recuperada. *La recuperación de Ensamblador corrige la caus
   Restartable / syscalls coordina la ejecución: la estructura indexa, agrupa o itera datos aplicando la operación solo a las posiciones válidas hasta obtener una colección cuya cardinalidad, orden y tipos corresponden a la transformación solicitada.
 
 
-### 📑 Sección: Cómputo vectorial (6 conceptos)
+### Seccion: Cómputo vectorial (6 conceptos)
 
 - **SIMD lanes**  
   *Familia:* `cuadrícula paralela`  
@@ -380,7 +380,7 @@ add rsp, 8` → ABI recuperada. *La recuperación de Ensamblador corrige la caus
   Para Masked / vector / operations, la estructura indexa, agrupa o itera datos aplicando la operación solo a las posiciones válidas, manteniendo una colección cuya cardinalidad, orden y tipos corresponden a la transformación solicitada.
 
 
-### 📑 Sección: Concurrencia y memoria (5 conceptos)
+### Seccion: Concurrencia y memoria (5 conceptos)
 
 - **Atomic read-modify-write**  
   *Familia:* `cola y consumidor`  
@@ -403,7 +403,7 @@ add rsp, 8` → ABI recuperada. *La recuperación de Ensamblador corrige la caus
   ABA / problem estructura el flujo donde el runtime o compilador reserva, comparte, mueve y libera almacenamiento respetando aliasing y alineación, logrando memoria válida durante toda la operación y recuperada al terminar su último uso.
 
 
-### 📑 Sección: Depuración binaria (7 conceptos)
+### Seccion: Depuración binaria (7 conceptos)
 
 - **Breakpoints de hardware**  
   *Familia:* `diagnóstico operativo`  
@@ -434,7 +434,7 @@ add rsp, 8` → ABI recuperada. *La recuperación de Ensamblador corrige la caus
   DWARF / call-frame / information coordina la ejecución: la estructura indexa, agrupa o itera datos aplicando la operación solo a las posiciones válidas hasta obtener una colección cuya cardinalidad, orden y tipos corresponden a la transformación solicitada.
 
 
-### 📑 Sección: Rendimiento microarquitectónico (5 conceptos)
+### Seccion: Rendimiento microarquitectónico (5 conceptos)
 
 - **Instruction pipelines**  
   *Familia:* `workflow y decisiones`  
@@ -457,7 +457,7 @@ add rsp, 8` → ABI recuperada. *La recuperación de Ensamblador corrige la caus
   Performance / counters estructura el flujo donde el adaptador prepara operaciones, adquiere recursos y aplica restricciones antes de confirmar, logrando estado persistido con integridad y visibilidad coherentes para lectores concurrentes.
 
 
-### 📑 Sección: Seguridad binaria (6 conceptos)
+### Seccion: Seguridad binaria (6 conceptos)
 
 - **Stack canaries**  
   *Familia:* `mapa de memoria`  
@@ -484,7 +484,7 @@ add rsp, 8` → ABI recuperada. *La recuperación de Ensamblador corrige la caus
   Para Pointer / authentication / codes, el runtime o compilador reserva, comparte, mueve y libera almacenamiento respetando aliasing y alineación, manteniendo memoria válida durante toda la operación y recuperada al terminar su último uso.
 
 
-### 📑 Sección: Firmware y arranque (5 conceptos)
+### Seccion: Firmware y arranque (5 conceptos)
 
 - **Reset vector**  
   *Familia:* `cuadrícula paralela`  
@@ -510,4 +510,4 @@ add rsp, 8` → ABI recuperada. *La recuperación de Ensamblador corrige la caus
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

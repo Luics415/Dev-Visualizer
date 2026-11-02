@@ -1,31 +1,31 @@
-# 📘 [Linux] Linux
+# Linux (Linux)
 
 > **Kernel, shell, procesos, redes, storage, hardening y contenedores.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `linux` |
-| **Grupo Arquitectónico** | [Infraestructura y entrega](Grupo-Delivery) |
+| **Grupo Arquitectonico** | [Infraestructura y entrega](Grupo-Delivery) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `linux` |
 | **Total de Conceptos** | **182 conceptos** |
-| **Capítulos / Secciones** | **10 secciones** |
+| **Capitulos / Secciones** | **10 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/linux)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/linux-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/linux)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/linux-en-accion)
 
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (182)
+## Catalogo Sistematico de Conceptos (182)
 
-### 📑 Sección: Fundamentos del sistema (12 conceptos)
+### Seccion: Fundamentos del sistema (12 conceptos)
 
 - **Linux: kernel y distribución**  
   *Familia:* `validación y decisión`  
@@ -76,7 +76,7 @@
   Agrupa estados operativos como multi-user, graphical, rescue y emergency mediante dependencias.
 
 
-### 📑 Sección: Shell, terminal y composición de comandos (24 conceptos)
+### Seccion: Shell, terminal y composición de comandos (24 conceptos)
 
 - **Terminal, TTY y PTY**  
   *Familia:* `análisis y emisión`  
@@ -175,7 +175,7 @@
   Consulta y transforma JSON desde la terminal manteniendo tipos y estructuras en lugar de cortar texto a ciegas.
 
 
-### 📑 Sección: Archivos, permisos e identidad (15 conceptos)
+### Seccion: Archivos, permisos e identidad (15 conceptos)
 
 - **Usuarios, UID y GID**  
   *Familia:* `ciclo de vida`  
@@ -238,7 +238,7 @@
   Conecta autenticación, entorno, límites, directorio personal y shell inicial del usuario.
 
 
-### 📑 Sección: Procesos, señales y servicios (23 conceptos)
+### Seccion: Procesos, señales y servicios (23 conceptos)
 
 - **Proceso, PID y PPID**  
   *Familia:* `cola y consumidor`  
@@ -333,7 +333,7 @@
   Deja de aceptar trabajo, termina solicitudes, persiste estado y sale antes del deadline.
 
 
-### 📑 Sección: Redes y acceso remoto (27 conceptos)
+### Seccion: Redes y acceso remoto (27 conceptos)
 
 - **Interfaces de red**  
   *Familia:* `ida y vuelta`  
@@ -444,7 +444,7 @@
   Mantiene reloj y zona correctos para TLS, logs, autenticación y sistemas distribuidos.
 
 
-### 📑 Sección: Almacenamiento y filesystems (19 conceptos)
+### Seccion: Almacenamiento y filesystems (19 conceptos)
 
 - **Block devices**  
   *Familia:* `máquina de estados`  
@@ -523,7 +523,7 @@
   Distingue copia, retención, verificación y prueba de restore con objetivos de recuperación.
 
 
-### 📑 Sección: Observabilidad y troubleshooting (18 conceptos)
+### Seccion: Observabilidad y troubleshooting (18 conceptos)
 
 - **Logs del sistema**  
   *Familia:* `evidencia y latencia`  
@@ -598,7 +598,7 @@
   Rota, comprime, retiene y reabre logs sin perder espacio ni dejar procesos escribiendo archivos borrados.
 
 
-### 📑 Sección: Seguridad y hardening (14 conceptos)
+### Seccion: Seguridad y hardening (14 conceptos)
 
 - **Principio de mínimo privilegio**  
   *Familia:* `consulta e índice`  
@@ -657,7 +657,7 @@
   Aísla credenciales, retención e inmutabilidad para que el mismo incidente no destruya producción y copias.
 
 
-### 📑 Sección: Paquetes, scripting y automatización (15 conceptos)
+### Seccion: Paquetes, scripting y automatización (15 conceptos)
 
 - **Package managers**  
   *Familia:* `ciclo de vida`  
@@ -720,7 +720,7 @@
   Incluyen lock, snapshot consistente, transferencia, retención, cifrado, métricas y prueba de restore.
 
 
-### 📑 Sección: Virtualización, contenedores y aislamiento (15 conceptos)
+### Seccion: Virtualización, contenedores y aislamiento (15 conceptos)
 
 - **Máquinas virtuales vs contenedores**  
   *Familia:* `aislamiento sobre host`  
@@ -786,4 +786,4 @@
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Infraestructura y entrega](Grupo-Delivery) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Infraestructura y entrega](Grupo-Delivery) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

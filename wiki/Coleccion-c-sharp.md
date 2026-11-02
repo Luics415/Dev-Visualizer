@@ -1,46 +1,46 @@
-# 📘 [C#] C#
+# C# (C#)
 
 > **Tipos, patrones, LINQ, asincronía, memoria y concurrencia.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `c-sharp` |
-| **Grupo Arquitectónico** | [Lenguajes](Grupo-Languages) |
+| **Grupo Arquitectonico** | [Lenguajes](Grupo-Languages) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `c-sharp` |
 | **Total de Conceptos** | **49 conceptos** |
-| **Capítulos / Secciones** | **7 secciones** |
+| **Capitulos / Secciones** | **7 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/c-sharp)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/c-sharp-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/c-sharp)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/c-sharp-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: C# en acción
+## Estudio de Caso Practico: C# en acción
 
 > **Caso integrado · Agregador asíncrono de telemetría:** Un stream de lecturas se valida con patterns, se agrupa con LINQ y atraviesa Channels con cancelación, ownership de buffers y errores tipados.  
 > El agregador sostiene backpressure, cancela limpiamente y demuestra que cada lectura fue aceptada, rechazada o publicada una sola vez.
 
-### Fases de Ejecución:
-1. **Modelar la lectura** (Record inmutable y unidades): `record Reading(DeviceId Id, Celsius Temp)` → dato expresivo. *El modelo impide que un número sin unidad llegue al pipeline.*
-2. **Analizar paquetes** (Span evita copia): `Parse(ReadOnlySpan<byte> frame)` → lectura decodificada. *Span conserva una vista temporal y no puede escapar a un lifetime inseguro.*
-3. **Validar con patterns** (Forma y rango juntos): `reading is { Temp.Value: >= -40 and <= 125 }` → entrada clasificada. *El pattern expresa la condición sin perder el valor tipado.*
-4. **Publicar al Channel** (Capacidad produce backpressure): `await writer.WriteAsync(reading, ct)` → flujo acotado. *La espera es parte del contrato y evita convertir una ráfaga en presión ilimitada.*
-5. **Agrupar con LINQ** (Ventana y clave): `batch.GroupBy(x => x.Id)` → resumen calculado. *LINQ se materializa en una frontera concreta para no repetir efectos.*
-6. **Propagar cancelación** (El shutdown atraviesa awaits): `await foreach (...WithCancellation(ct))` → cierre coordinado. *La cancelación es cooperativa y cada loop debe observarla.*
-7. **Resolver buffer retenido** (Ownership después de await): `IMemoryOwner<byte> in using` → lifetime corregido. *El owner permanece vivo hasta que termina el último acceso y luego vuelve al pool.*
-8. **Verificar el contrato** (Property tests y métricas): `accepted + rejected == received` → agregador demostrable. *La misma invariante valida el lenguaje, el flujo y la operación en producción.*
+### Fases de Ejecucion:
+1. **Modelar la lectura** (Record inmutable y unidades): `record Reading(DeviceId Id, Celsius Temp)` -> dato expresivo. *El modelo impide que un número sin unidad llegue al pipeline.*
+2. **Analizar paquetes** (Span evita copia): `Parse(ReadOnlySpan<byte> frame)` -> lectura decodificada. *Span conserva una vista temporal y no puede escapar a un lifetime inseguro.*
+3. **Validar con patterns** (Forma y rango juntos): `reading is { Temp.Value: >= -40 and <= 125 }` -> entrada clasificada. *El pattern expresa la condición sin perder el valor tipado.*
+4. **Publicar al Channel** (Capacidad produce backpressure): `await writer.WriteAsync(reading, ct)` -> flujo acotado. *La espera es parte del contrato y evita convertir una ráfaga en presión ilimitada.*
+5. **Agrupar con LINQ** (Ventana y clave): `batch.GroupBy(x => x.Id)` -> resumen calculado. *LINQ se materializa en una frontera concreta para no repetir efectos.*
+6. **Propagar cancelación** (El shutdown atraviesa awaits): `await foreach (...WithCancellation(ct))` -> cierre coordinado. *La cancelación es cooperativa y cada loop debe observarla.*
+7. **Resolver buffer retenido** (Ownership después de await): `IMemoryOwner<byte> in using` -> lifetime corregido. *El owner permanece vivo hasta que termina el último acceso y luego vuelve al pool.*
+8. **Verificar el contrato** (Property tests y métricas): `accepted + rejected == received` -> agregador demostrable. *La misma invariante valida el lenguaje, el flujo y la operación en producción.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (49)
+## Catalogo Sistematico de Conceptos (49)
 
-### 📑 Sección: Tipos y expresiones (7 conceptos)
+### Seccion: Tipos y expresiones (7 conceptos)
 
 - **Value y reference types**  
   *Familia:* `análisis y emisión`  
@@ -71,7 +71,7 @@
   Maneja cadenas multilínea y caracteres de escape sin secuencias frágiles.
 
 
-### 📑 Sección: Objetos, records y modelos inmutables (7 conceptos)
+### Seccion: Objetos, records y modelos inmutables (7 conceptos)
 
 - **Classes y encapsulación**  
   *Familia:* `validación y decisión`  
@@ -102,7 +102,7 @@
   Restringe la herencia para habilitar optimizaciones de desvirtualización.
 
 
-### 📑 Sección: Pattern Matching y control de flujo (7 conceptos)
+### Seccion: Pattern Matching y control de flujo (7 conceptos)
 
 - **Switch expressions exhaustivas**  
   *Familia:* `flujo de transformación`  
@@ -133,7 +133,7 @@
   Garantiza Dispose o DisposeAsync determinista al abandonar el scope.
 
 
-### 📑 Sección: Genéricos y LINQ avanzado (7 conceptos)
+### Seccion: Genéricos y LINQ avanzado (7 conceptos)
 
 - **Generic constraints (where)**  
   *Familia:* `telar relacional`  
@@ -164,7 +164,7 @@
   Agrega operaciones a tipos cerrados respetando visibilidad de namespaces.
 
 
-### 📑 Sección: Asincronía y concurrencia (7 conceptos)
+### Seccion: Asincronía y concurrencia (7 conceptos)
 
 - **Task y async/await**  
   *Familia:* `planificación de trabajo`  
@@ -195,7 +195,7 @@
   Comunica procesos asíncronos con backpressure y capacidad delimitada.
 
 
-### 📑 Sección: Memoria, punteros y alto rendimiento (7 conceptos)
+### Seccion: Memoria, punteros y alto rendimiento (7 conceptos)
 
 - **Span<T>, ReadOnlySpan<T> y memoria contigua**  
   *Familia:* `memoria intermedia`  
@@ -226,7 +226,7 @@
   Realiza operaciones de incremento y swap atómicos en variables compartidas.
 
 
-### 📑 Sección: Calidad, arquitectura y pruebas (7 conceptos)
+### Seccion: Calidad, arquitectura y pruebas (7 conceptos)
 
 - **Analizadores Roslyn y reglas de estilo**  
   *Familia:* `despacho de runtime`  
@@ -260,4 +260,4 @@
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

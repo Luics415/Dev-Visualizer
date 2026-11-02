@@ -1,43 +1,43 @@
-# 📘 [Sc] Scala
+# Scala (Sc)
 
 > **Objetos y funciones, tipos, colecciones, efectos, concurrencia y JVM.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `scala` |
-| **Grupo Arquitectónico** | [Lenguajes](Grupo-Languages) |
+| **Grupo Arquitectonico** | [Lenguajes](Grupo-Languages) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `c-sharp` |
 | **Total de Conceptos** | **109 conceptos** |
-| **Capítulos / Secciones** | **17 secciones** |
+| **Capitulos / Secciones** | **17 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/scala)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/scala-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/scala)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/scala-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: Procesar un flujo de eventos tipado
+## Estudio de Caso Practico: Procesar un flujo de eventos tipado
 
 > **Caso integrado de Scala:** Un pipeline Scala convierte eventos de dominio, detecta un match no exhaustivo al incorporar un caso y recupera el contrato antes de publicar métricas.  
 > El flujo final conserva tipos desde decodificación hasta agregado y demuestra compatibilidad del artefacto.
 
-### Fases de Ejecución:
-1. **Modelar eventos** (Procesar un flujo de eventos tipado: etapa 1 de 5): `enum Event { case Open(id: Id); case Close(id: Id) }` → Dominio representado. *La etapa conserva un contrato explícito para que el siguiente paso de Scala no dependa de supuestos ocultos.*
-2. **Transformar colección** (Procesar un flujo de eventos tipado: etapa 2 de 5): `events.groupMapReduce(_.id)(valueOf)(_ + _)` → Agregados calculados. *La etapa conserva un contrato explícito para que el siguiente paso de Scala no dependa de supuestos ocultos.*
-3. **Añadir caso sin manejar** (Procesar un flujo de eventos tipado: etapa 3 de 5): `case Retry(id) // falta en valueOf` → Build detenido. *El caso hace visible el fallo de Scala; no continúa como si la evidencia fuera válida.*
-4. **Recuperar semántica** (Procesar un flujo de eventos tipado: etapa 4 de 5): `case Retry(_) => 0` → Contrato actualizado. *La recuperación de Scala corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
-5. **Publicar evidencia** (Procesar un flujo de eventos tipado: etapa 5 de 5): `assertEquals(process(fixture), expected)` → Pipeline verificable. *La etapa conserva un contrato explícito para que el siguiente paso de Scala no dependa de supuestos ocultos.*
+### Fases de Ejecucion:
+1. **Modelar eventos** (Procesar un flujo de eventos tipado: etapa 1 de 5): `enum Event { case Open(id: Id); case Close(id: Id) }` -> Dominio representado. *La etapa conserva un contrato explícito para que el siguiente paso de Scala no dependa de supuestos ocultos.*
+2. **Transformar colección** (Procesar un flujo de eventos tipado: etapa 2 de 5): `events.groupMapReduce(_.id)(valueOf)(_ + _)` -> Agregados calculados. *La etapa conserva un contrato explícito para que el siguiente paso de Scala no dependa de supuestos ocultos.*
+3. **Añadir caso sin manejar** (Procesar un flujo de eventos tipado: etapa 3 de 5): `case Retry(id) // falta en valueOf` -> Build detenido. *El caso hace visible el fallo de Scala; no continúa como si la evidencia fuera válida.*
+4. **Recuperar semántica** (Procesar un flujo de eventos tipado: etapa 4 de 5): `case Retry(_) => 0` -> Contrato actualizado. *La recuperación de Scala corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
+5. **Publicar evidencia** (Procesar un flujo de eventos tipado: etapa 5 de 5): `assertEquals(process(fixture), expected)` -> Pipeline verificable. *La etapa conserva un contrato explícito para que el siguiente paso de Scala no dependa de supuestos ocultos.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (109)
+## Catalogo Sistematico de Conceptos (109)
 
-### 📑 Sección: Scala esencial (5 conceptos)
+### Seccion: Scala esencial (5 conceptos)
 
 - **Vals y vars**  
   *Familia:* `análisis y emisión`  
@@ -60,7 +60,7 @@
   El mecanismo de Pattern matching recibe un ejemplo mínimo, sus precondiciones y el estado inicial y aplica el mecanismo paso a paso haciendo visibles sus invariantes, asegurando un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Sistema de tipos (5 conceptos)
+### Seccion: Sistema de tipos (5 conceptos)
 
 - **Traits**  
   *Familia:* `validación y decisión`  
@@ -83,7 +83,7 @@
   En Contextual abstractions, texto fuente, contexto léxico y reglas del lenguaje ingresa al flujo donde reconoce estructura, comprueba contratos y produce una representación ejecutable para consolidar significado bien formado con errores localizados.
 
 
-### 📑 Sección: Composición (5 conceptos)
+### Seccion: Composición (5 conceptos)
 
 - **Collections**  
   *Familia:* `flujo de transformación`  
@@ -106,7 +106,7 @@
   El recorrido de Java interop toma un ejemplo mínimo, sus precondiciones y el estado inicial. Posteriormente aplica el mecanismo paso a paso haciendo visibles sus invariantes para validar un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Diagnóstico (5 conceptos)
+### Seccion: Diagnóstico (5 conceptos)
 
 - **Compiler errors**  
   *Familia:* `análisis y emisión`  
@@ -129,7 +129,7 @@
   El recorrido de Profiling JVM toma un comportamiento esperado, una entrada mínima y un síntoma observable. Posteriormente aísla variables y contrasta hipótesis con instrumentación repetible para validar una causa demostrada y una regresión protegida.
 
 
-### 📑 Sección: Producción (5 conceptos)
+### Seccion: Producción (5 conceptos)
 
 - **sbt**  
   *Familia:* `pasaporte del artefacto`  
@@ -152,7 +152,7 @@
   Observabilidad estructura un comportamiento esperado, una entrada mínima y un síntoma observable en el sistema: aísla variables y contrasta hipótesis con instrumentación repetible, garantizando una causa demostrada y una regresión protegida.
 
 
-### 📑 Sección: Fundamentos funcionales (6 conceptos)
+### Seccion: Fundamentos funcionales (6 conceptos)
 
 - **Funciones puras**  
   *Familia:* `flujo de transformación`  
@@ -179,7 +179,7 @@
   Referential transparency boundaries gestiona Fundamentos funcionales de modo que compone aplicaciones y propaga resultado o error sin mutar la entrada, produciendo valor reutilizable cuya evaluación puede sustituirse por su resultado.
 
 
-### 📑 Sección: Tipos avanzados de Scala 3 (7 conceptos)
+### Seccion: Tipos avanzados de Scala 3 (7 conceptos)
 
 - **Opaque types**  
   *Familia:* `despacho de runtime`  
@@ -210,7 +210,7 @@
   A través de Opaque type ABI boundaries en Tipos avanzados de Scala 3, el sistema serializa, negocia, transmite y traduce errores u ownership en la frontera manteniendo respuesta tipada o efecto confirmado con compatibilidad conocida.
 
 
-### 📑 Sección: Metaprogramación (8 conceptos)
+### Seccion: Metaprogramación (8 conceptos)
 
 - **Inline methods**  
   *Familia:* `despacho de runtime`  
@@ -245,7 +245,7 @@
   En el flujo operativo de Metaprogramación, Compile-time reflection boundaries propaga elementos, aplica ventana o transformación y regula producción con demanda para obtener salida ordenada con memoria y latencia acotadas.
 
 
-### 📑 Sección: Efectos y recursos (7 conceptos)
+### Seccion: Efectos y recursos (7 conceptos)
 
 - **IO como descripción**  
   *Familia:* `matriz de señales`  
@@ -276,7 +276,7 @@
   A través de Cancellation masks en Efectos y recursos, el sistema activa, usa y transfiere ownership solo bajo un protocolo explícito manteniendo recurso cerrado exactamente una vez y estado final observable.
 
 
-### 📑 Sección: Streams (6 conceptos)
+### Seccion: Streams (6 conceptos)
 
 - **Streams funcionales**  
   *Familia:* `cola y consumidor`  
@@ -303,7 +303,7 @@
   Demand signaling gestiona Streams de modo que propaga elementos, aplica ventana o transformación y regula producción con demanda, produciendo salida ordenada con memoria y latencia acotadas.
 
 
-### 📑 Sección: Concurrencia distribuida (7 conceptos)
+### Seccion: Concurrencia distribuida (7 conceptos)
 
 - **Actor model**  
   *Familia:* `tejido de eventos`  
@@ -334,7 +334,7 @@
   A través de Serializer schema evolution en Concurrencia distribuida, el sistema codifica campos en orden definido y reconstruye validando versión y rangos manteniendo representación interoperable que conserva significado al hacer round trip.
 
 
-### 📑 Sección: Testing (7 conceptos)
+### Seccion: Testing (7 conceptos)
 
 - **MUnit**  
   *Familia:* `espectro de verificación`  
@@ -365,7 +365,7 @@
   A través de Deterministic asynchronous tests en Testing, el sistema ejecuta camino normal, límite y fallo mientras captura todos los efectos observables manteniendo evidencia repetible que distingue comportamiento correcto de una regresión.
 
 
-### 📑 Sección: Build y dependencias (7 conceptos)
+### Seccion: Build y dependencias (7 conceptos)
 
 - **sbt task graph**  
   *Familia:* `pasaporte del artefacto`  
@@ -396,7 +396,7 @@
   A través de Dependency eviction analysis en Build y dependencias, el sistema consulta, calcula ausencias y publica el nuevo valor junto con su invalidador manteniendo reutilización medible sin cambiar el resultado funcional.
 
 
-### 📑 Sección: Rendimiento JVM (7 conceptos)
+### Seccion: Rendimiento JVM (7 conceptos)
 
 - **JIT warmup**  
   *Familia:* `despacho de runtime`  
@@ -427,7 +427,7 @@
   A través de JIT warmup methodology en Rendimiento JVM, el sistema consulta, calcula ausencias y publica el nuevo valor junto con su invalidador manteniendo reutilización medible sin cambiar el resultado funcional.
 
 
-### 📑 Sección: Interoperabilidad robusta (7 conceptos)
+### Seccion: Interoperabilidad robusta (7 conceptos)
 
 - **SAM conversion**  
   *Familia:* `análisis y emisión`  
@@ -458,7 +458,7 @@
   A través de Collection conversion ownership en Interoperabilidad robusta, el sistema reserva, mapea o mueve memoria y registra quién debe reclamarla manteniendo datos accesibles durante el lifetime exacto y capacidad devuelta al finalizar.
 
 
-### 📑 Sección: Seguridad y servicios (7 conceptos)
+### Seccion: Seguridad y servicios (7 conceptos)
 
 - **Validación de configuración**  
   *Familia:* `validación y decisión`  
@@ -489,7 +489,7 @@
   A través de TLS context lifecycle en Seguridad y servicios, el sistema serializa, negocia, transmite y traduce errores u ownership en la frontera manteniendo respuesta tipada o efecto confirmado con compatibilidad conocida.
 
 
-### 📑 Sección: Operación en producción (8 conceptos)
+### Seccion: Operación en producción (8 conceptos)
 
 - **Structured logging**  
   *Familia:* `topología y tráfico`  
@@ -527,4 +527,4 @@
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

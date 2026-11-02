@@ -1,46 +1,46 @@
-# 📘 [UX] UX/UI
+# UX/UI (UX)
 
 > **Investigación, flujos, accesibilidad, prototipos y validación.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `ux-ui` |
-| **Grupo Arquitectónico** | [Diseño e interfaces](Grupo-Interfaces) |
+| **Grupo Arquitectonico** | [Diseño e interfaces](Grupo-Interfaces) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `ux-ui` |
 | **Total de Conceptos** | **55 conceptos** |
-| **Capítulos / Secciones** | **11 secciones** |
+| **Capitulos / Secciones** | **11 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/ux-ui)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/ux-ui-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/ux-ui)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/ux-ui-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: UX/UI en acción
+## Estudio de Caso Practico: UX/UI en acción
 
 > **Caso integrado · Reparación accesible:** Un servicio de reparación pierde solicitudes porque su formulario oculta costos, exige precisión técnica y falla con teclado. El equipo investiga, rediseña y valida el recorrido completo.  
 > La nueva experiencia permite describir el problema sin jerga, conserva progreso, explica costos y demuestra con evidencia que más personas completan la solicitud.
 
-### Fases de Ejecución:
-1. **Definir el outcome** (Éxito antes que pantallas): `solicitud válida + expectativa clara` → criterio compartido. *El objetivo combina finalización, comprensión y calidad de la información.*
-2. **Observar el contexto** (Hablar y mirar la tarea): `8 entrevistas + 5 sesiones asistidas` → necesidades reales. *La investigación cambia el problema: identificar el daño importa más que nombrar la pieza.*
-3. **Trazar el flujo** (Una decisión por momento): `equipo → síntoma → evidencia → agenda` → arquitectura comprensible. *Cada bifurcación conserva contexto y una salida segura.*
-4. **Prototipar accesible** (Semántica desde el boceto): `label + fieldset + error summary` → prototipo operable. *El comportamiento accesible se define antes de elegir detalles visuales.*
-5. **Detectar el fallo** (Teclado revela una trampa): `Tab → modal → foco detrás` → causa reproducible. *La prueba muestra una barrera crítica que una revisión visual no detectó.*
-6. **Corregir y recuperar** (Foco con principio y retorno): `open → focus heading → close → trigger` → modal predecible. *La recuperación conserva ubicación, intención y control.*
-7. **Validar con personas** (Evidencia comparable): `misma tarea · 6 participantes` → riesgo reducido. *Los hallazgos se priorizan por severidad y no por preferencia del equipo.*
-8. **Entregar y medir** (La intención llega a producción): `tokens + states + analytics plan` → reparación verificable. *Diseño, implementación y operación comparten los mismos criterios de éxito.*
+### Fases de Ejecucion:
+1. **Definir el outcome** (Éxito antes que pantallas): `solicitud válida + expectativa clara` -> criterio compartido. *El objetivo combina finalización, comprensión y calidad de la información.*
+2. **Observar el contexto** (Hablar y mirar la tarea): `8 entrevistas + 5 sesiones asistidas` -> necesidades reales. *La investigación cambia el problema: identificar el daño importa más que nombrar la pieza.*
+3. **Trazar el flujo** (Una decisión por momento): `equipo → síntoma → evidencia → agenda` -> arquitectura comprensible. *Cada bifurcación conserva contexto y una salida segura.*
+4. **Prototipar accesible** (Semántica desde el boceto): `label + fieldset + error summary` -> prototipo operable. *El comportamiento accesible se define antes de elegir detalles visuales.*
+5. **Detectar el fallo** (Teclado revela una trampa): `Tab → modal → foco detrás` -> causa reproducible. *La prueba muestra una barrera crítica que una revisión visual no detectó.*
+6. **Corregir y recuperar** (Foco con principio y retorno): `open → focus heading → close → trigger` -> modal predecible. *La recuperación conserva ubicación, intención y control.*
+7. **Validar con personas** (Evidencia comparable): `misma tarea · 6 participantes` -> riesgo reducido. *Los hallazgos se priorizan por severidad y no por preferencia del equipo.*
+8. **Entregar y medir** (La intención llega a producción): `tokens + states + analytics plan` -> reparación verificable. *Diseño, implementación y operación comparten los mismos criterios de éxito.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (55)
+## Catalogo Sistematico de Conceptos (55)
 
-### 📑 Sección: Investigación y definición (5 conceptos)
+### Seccion: Investigación y definición (5 conceptos)
 
 - **Problema y outcome**  
   *Familia:* `flujo de interfaz`  
@@ -63,7 +63,7 @@
   Explicita qué debe ser cierto y qué evidencia cambiaría la decisión.
 
 
-### 📑 Sección: Arquitectura de información (5 conceptos)
+### Seccion: Arquitectura de información (5 conceptos)
 
 - **Modelo mental**  
   *Familia:* `contratos coordinados`  
@@ -86,7 +86,7 @@
   Escribe etiquetas, instrucciones y errores como parte del comportamiento del producto.
 
 
-### 📑 Sección: Interacción y flujos (5 conceptos)
+### Seccion: Interacción y flujos (5 conceptos)
 
 - **User flow**  
   *Familia:* `superficie de aplicación`  
@@ -109,7 +109,7 @@
   Reduce memoria necesaria, elecciones simultáneas y cambios de contexto.
 
 
-### 📑 Sección: Sistema visual y componentes (5 conceptos)
+### Seccion: Sistema visual y componentes (5 conceptos)
 
 - **Jerarquía visual**  
   *Familia:* `flujo de interfaz`  
@@ -132,7 +132,7 @@
   Encapsula estructura, estados, contenido permitido y comportamiento accesible.
 
 
-### 📑 Sección: Accesibilidad e inclusión (5 conceptos)
+### Seccion: Accesibilidad e inclusión (5 conceptos)
 
 - **POUR**  
   *Familia:* `contratos coordinados`  
@@ -155,7 +155,7 @@
   Considera capacidades permanentes, temporales y situacionales desde el inicio.
 
 
-### 📑 Sección: Prototipado y validación (5 conceptos)
+### Seccion: Prototipado y validación (5 conceptos)
 
 - **Fidelidad adecuada**  
   *Familia:* `superficie de aplicación`  
@@ -178,7 +178,7 @@
   Cambia la hipótesis mínima y vuelve a medir el flujo completo.
 
 
-### 📑 Sección: Entrega y operación (5 conceptos)
+### Seccion: Entrega y operación (5 conceptos)
 
 - **Especificación de estados**  
   *Familia:* `flujo de interfaz`  
@@ -201,7 +201,7 @@
   Contrasta la experiencia construida en dispositivos, zoom, teclado y lectores de pantalla.
 
 
-### 📑 Sección: Psicología cognitiva y heurísticas (5 conceptos)
+### Seccion: Psicología cognitiva y heurísticas (5 conceptos)
 
 - **Ley de Fitts y zonas de toque**  
   *Familia:* `topología y tráfico`  
@@ -224,7 +224,7 @@
   Aplica proximidad, semejanza y cierre para estructurar información sin ruido visual.
 
 
-### 📑 Sección: Diseño para dispositivos móviles y contextos extremos (5 conceptos)
+### Seccion: Diseño para dispositivos móviles y contextos extremos (5 conceptos)
 
 - **Responsive y adaptive design**  
   *Familia:* `flujo de interfaz`  
@@ -247,7 +247,7 @@
   Proporciona retroalimentación táctil y sutil que confirma transacciones sin saturar.
 
 
-### 📑 Sección: Métricas de producto y UX research continuo (5 conceptos)
+### Seccion: Métricas de producto y UX research continuo (5 conceptos)
 
 - **System Usability Scale (SUS)**  
   *Familia:* `evidencia y latencia`  
@@ -270,7 +270,7 @@
   Contrasta variantes cuantitativas controlando significancia y sesgos de muestra.
 
 
-### 📑 Sección: Sistemas de diseño escalables y gobernanza (5 conceptos)
+### Seccion: Sistemas de diseño escalables y gobernanza (5 conceptos)
 
 - **Taxonomía de componentes atómicos**  
   *Familia:* `constelación de mecanismos`  
@@ -294,11 +294,11 @@
 
 
 
-## 📖 Recursos de Estudio y Referencias Oficiales
+## Referencias Bibliograficas y Documentacion Oficial
 - **[GOV.UK Service Manual: User research](https://www.gov.uk/service-manual/user-research)** (`tutorial` | Nivel: `beginner`): 
 - **[U.S. Web Design System](https://designsystem.digital.gov/)** (`reference` | Nivel: `intermediate`): 
 - **[ARIA Authoring Practices Guide](https://www.w3.org/WAI/ARIA/apg/)** (`reference` | Nivel: `advanced`): 
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Diseño e interfaces](Grupo-Interfaces) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Diseño e interfaces](Grupo-Interfaces) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

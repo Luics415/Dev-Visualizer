@@ -1,46 +1,46 @@
-# 📘 [GH] GitHub
+# GitHub (GH)
 
 > **Colaboración, PRs, gobierno, seguridad, comunidad y releases.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `github` |
-| **Grupo Arquitectónico** | [Control de versiones y calidad](Grupo-Versioning) |
+| **Grupo Arquitectonico** | [Control de versiones y calidad](Grupo-Versioning) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `github` |
 | **Total de Conceptos** | **60 conceptos** |
-| **Capítulos / Secciones** | **10 secciones** |
+| **Capitulos / Secciones** | **10 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/github)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/github-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/github)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/github-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: GitHub en acción
+## Estudio de Caso Practico: GitHub en acción
 
 > **Caso integrado · Contribución gobernada:** Una colaboradora externa propone una mejora desde un issue hasta una release; la plataforma conecta conversación, permisos, checks y evidencia de seguridad.  
 > La contribución llega a usuarios con autoría, revisión y controles verificables sin conceder acceso innecesario al repositorio.
 
-### Fases de Ejecución:
-1. **Definir el problema** (Issue reproducible y acotado): `Issue #142 · filtro de anomalías` → trabajo trazable. *El issue conserva por qué existe el cambio antes de discutir cómo implementarlo.*
-2. **Preparar la contribución** (Fork y rama con contexto): `fork → feature/anomaly-filter` → propuesta aislada. *El fork permite contribuir sin acceso de escritura al repositorio original.*
-3. **Abrir un draft** (El diff puede conversar temprano): `Draft PR #188 · Fixes #142` → feedback temprano. *Un draft expone decisiones sin afirmar que la propuesta está lista.*
-4. **Ejecutar controles** (La evidencia aparece junto al diff): `tests + CodeQL + secret scanning` → riesgo localizado. *Los controles automatizados informan; CI/CD explica cómo se construye el pipeline.*
-5. **Corregir y revisar** (Conversación anclada al código): `review thread → commit fix` → cambio aprobado. *La aprobación llega después de demostrar el comportamiento corregido.*
-6. **Aplicar el ruleset** (La política decide si puede avanzar): `2 approvals + checks + signed commits` → rama protegida. *La regla se evalúa igual para la interfaz y la API.*
-7. **Integrar con autoría** (Squash conserva una unidad de cambio): `squash merge → main` → cambio integrado. *La estrategia de merge expresa cómo se desea leer la historia principal.*
-8. **Publicar la versión** (Tag, notas y attestation): `Release v2.5.0` → release verificable. *La versión conecta necesidad, código, revisión, evidencia y artefacto.*
+### Fases de Ejecucion:
+1. **Definir el problema** (Issue reproducible y acotado): `Issue #142 · filtro de anomalías` -> trabajo trazable. *El issue conserva por qué existe el cambio antes de discutir cómo implementarlo.*
+2. **Preparar la contribución** (Fork y rama con contexto): `fork → feature/anomaly-filter` -> propuesta aislada. *El fork permite contribuir sin acceso de escritura al repositorio original.*
+3. **Abrir un draft** (El diff puede conversar temprano): `Draft PR #188 · Fixes #142` -> feedback temprano. *Un draft expone decisiones sin afirmar que la propuesta está lista.*
+4. **Ejecutar controles** (La evidencia aparece junto al diff): `tests + CodeQL + secret scanning` -> riesgo localizado. *Los controles automatizados informan; CI/CD explica cómo se construye el pipeline.*
+5. **Corregir y revisar** (Conversación anclada al código): `review thread → commit fix` -> cambio aprobado. *La aprobación llega después de demostrar el comportamiento corregido.*
+6. **Aplicar el ruleset** (La política decide si puede avanzar): `2 approvals + checks + signed commits` -> rama protegida. *La regla se evalúa igual para la interfaz y la API.*
+7. **Integrar con autoría** (Squash conserva una unidad de cambio): `squash merge → main` -> cambio integrado. *La estrategia de merge expresa cómo se desea leer la historia principal.*
+8. **Publicar la versión** (Tag, notas y attestation): `Release v2.5.0` -> release verificable. *La versión conecta necesidad, código, revisión, evidencia y artefacto.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (60)
+## Catalogo Sistematico de Conceptos (60)
 
-### 📑 Sección: Repositorio en GitHub (6 conceptos)
+### Seccion: Repositorio en GitHub (6 conceptos)
 
 - **Repositorio, visibilidad y propietario**  
   *Familia:* `configuración declarativa`  
@@ -67,7 +67,7 @@
   Publica contenido estático desde Actions sin convertir el repositorio en un servidor de aplicaciones.
 
 
-### 📑 Sección: Planificación y conversación (6 conceptos)
+### Seccion: Planificación y conversación (6 conceptos)
 
 - **Issues**  
   *Familia:* `planificación de trabajo`  
@@ -94,7 +94,7 @@
   Dirige atención de forma explícita evitando convertir cada evento en ruido.
 
 
-### 📑 Sección: Pull requests y revisión (6 conceptos)
+### Seccion: Pull requests y revisión (6 conceptos)
 
 - **Pull request como propuesta**  
   *Familia:* `ida y vuelta`  
@@ -121,7 +121,7 @@
   Elige cómo la propuesta se incorpora al grafo y qué historia queda visible.
 
 
-### 📑 Sección: Permisos y gobierno (6 conceptos)
+### Seccion: Permisos y gobierno (6 conceptos)
 
 - **Roles de repositorio y organización**  
   *Familia:* `evidencia y latencia`  
@@ -148,7 +148,7 @@
   Conserva evidencia administrativa para investigar cambios de acceso y configuración.
 
 
-### 📑 Sección: Seguridad y supply chain (6 conceptos)
+### Seccion: Seguridad y supply chain (6 conceptos)
 
 - **Dependabot alerts y updates**  
   *Familia:* `espectro de verificación`  
@@ -175,7 +175,7 @@
   Elige credenciales de corta duración y permisos explícitos para integraciones.
 
 
-### 📑 Sección: Automatización y operación (6 conceptos)
+### Seccion: Automatización y operación (6 conceptos)
 
 - **GitHub Actions como capacidad**  
   *Familia:* `capas internas`  
@@ -202,7 +202,7 @@
   Observa actividad sin convertir volumen de commits en una medida automática de valor.
 
 
-### 📑 Sección: Colaboración avanzada y flujo de trabajo social (6 conceptos)
+### Seccion: Colaboración avanzada y flujo de trabajo social (6 conceptos)
 
 - **Forks de organizaciones y sincronización**  
   *Familia:* `planificación de trabajo`  
@@ -229,7 +229,7 @@
   Comprende cómo los commits en ramas predeterminadas alimentan el grafo de actividad.
 
 
-### 📑 Sección: GitHub Actions a escala empresarial (6 conceptos)
+### Seccion: GitHub Actions a escala empresarial (6 conceptos)
 
 - **Reusable Workflows y llamadas modulares**  
   *Familia:* `workflow y decisiones`  
@@ -256,7 +256,7 @@
   Almacena reportes de cobertura y compilaciones con límites de retención configurables.
 
 
-### 📑 Sección: Seguridad avanzada y gestión de secretos corporativos (6 conceptos)
+### Seccion: Seguridad avanzada y gestión de secretos corporativos (6 conceptos)
 
 - **GitHub Advanced Security (GHAS)**  
   *Familia:* `espectro de verificación`  
@@ -283,7 +283,7 @@
   Coordina divulgación responsable de vulnerabilidades y publica identificadores oficiales.
 
 
-### 📑 Sección: Gobierno organizacional, cumplimiento y auditoría (6 conceptos)
+### Seccion: Gobierno organizacional, cumplimiento y auditoría (6 conceptos)
 
 - **SAML SSO y aprovisionamiento SCIM**  
   *Familia:* `capas internas`  
@@ -311,11 +311,11 @@
 
 
 
-## 📖 Recursos de Estudio y Referencias Oficiales
+## Referencias Bibliograficas y Documentacion Oficial
 - **[GitHub Skills](https://skills.github.com/)** (`course` | Nivel: `beginner`): 
 - **[Pull requests documentation](https://docs.github.com/en/pull-requests)** (`official-docs` | Nivel: `intermediate`): 
 - **[Security and code quality documentation](https://docs.github.com/en/code-security)** (`official-docs` | Nivel: `advanced`): 
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Control de versiones y calidad](Grupo-Versioning) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Control de versiones y calidad](Grupo-Versioning) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

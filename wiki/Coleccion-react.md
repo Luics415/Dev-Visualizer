@@ -1,31 +1,31 @@
-# 📘 [React] React
+# React (React)
 
 > **Componentes, estado, reconciliación, efectos y concurrencia.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `react` |
-| **Grupo Arquitectónico** | [Diseño e interfaces](Grupo-Interfaces) |
+| **Grupo Arquitectonico** | [Diseño e interfaces](Grupo-Interfaces) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `react` |
 | **Total de Conceptos** | **62 conceptos** |
-| **Capítulos / Secciones** | **7 secciones** |
+| **Capitulos / Secciones** | **7 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/react)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/react-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/react)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/react-en-accion)
 
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (62)
+## Catalogo Sistematico de Conceptos (62)
 
-### 📑 Sección: Fundamentos declarativos (5 conceptos)
+### Seccion: Fundamentos declarativos (5 conceptos)
 
 - **Componentes**  
   *Familia:* `árbol de composición`  
@@ -48,7 +48,7 @@
   Exige que el componente calcule el mismo JSX para las mismas props, estado y contexto, sin efectos secundarios.
 
 
-### 📑 Sección: Estado y eventos (9 conceptos)
+### Seccion: Estado y eventos (9 conceptos)
 
 - **Estado**  
   *Familia:* `snapshot de estado`  
@@ -87,7 +87,7 @@
   Usa keys estables para conservar identidad cuando una colección agrega, elimina o reordena elementos.
 
 
-### 📑 Sección: Formularios y flujo de datos (8 conceptos)
+### Seccion: Formularios y flujo de datos (8 conceptos)
 
 - **Formularios controlados**  
   *Familia:* `flujo de ejecución`  
@@ -122,7 +122,7 @@
   Extraen lógica reutilizable conservando el estado independiente de cada llamada.
 
 
-### 📑 Sección: Render y reconciliación (6 conceptos)
+### Seccion: Render y reconciliación (6 conceptos)
 
 - **Ciclo de render**  
   *Familia:* `órbita de actualización`  
@@ -149,7 +149,7 @@
   Renderizan hijos en otro nodo del DOM sin sacarlos del árbol lógico de React.
 
 
-### 📑 Sección: Sincronización y efectos (11 conceptos)
+### Seccion: Sincronización y efectos (11 conceptos)
 
 - **Refs**  
   *Familia:* `contenedor mutable`  
@@ -196,7 +196,7 @@
   Muestra una etiqueta útil para un custom Hook dentro de React DevTools.
 
 
-### 📑 Sección: Rendimiento y concurrencia (10 conceptos)
+### Seccion: Rendimiento y concurrencia (10 conceptos)
 
 - **memo**  
   *Familia:* `memoria intermedia`  
@@ -239,7 +239,7 @@
   Genera identificadores estables y coordinados entre servidor y cliente para relaciones de accesibilidad.
 
 
-### 📑 Sección: Datos, Actions y arquitectura (13 conceptos)
+### Seccion: Datos, Actions y arquitectura (13 conceptos)
 
 - **Error Boundaries**  
   *Familia:* `diagnóstico operativo`  
@@ -297,4 +297,4 @@
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Diseño e interfaces](Grupo-Interfaces) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Diseño e interfaces](Grupo-Interfaces) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

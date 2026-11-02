@@ -1,31 +1,31 @@
-# 📘 [Back] Backend
+# Backend (Back)
 
 > **Arquitectura, seguridad, persistencia, mensajería y confiabilidad.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `backend` |
-| **Grupo Arquitectónico** | [Plataformas y servidor](Grupo-Platforms) |
+| **Grupo Arquitectonico** | [Plataformas y servidor](Grupo-Platforms) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `backend` |
 | **Total de Conceptos** | **96 conceptos** |
-| **Capítulos / Secciones** | **9 secciones** |
+| **Capitulos / Secciones** | **9 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/backend)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/backend-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/backend)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/backend-en-accion)
 
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (96)
+## Catalogo Sistematico de Conceptos (96)
 
-### 📑 Sección: Fundamentos del backend (10 conceptos)
+### Seccion: Fundamentos del backend (10 conceptos)
 
 - **Qué hace un backend**  
   *Familia:* `diagnóstico operativo`  
@@ -68,7 +68,7 @@
   Incluye arranque, readiness, tráfico, señales y apagado ordenado.
 
 
-### 📑 Sección: HTTP, rutas y middleware (11 conceptos)
+### Seccion: HTTP, rutas y middleware (11 conceptos)
 
 - **Servidor HTTP**  
   *Familia:* `ida y vuelta`  
@@ -115,7 +115,7 @@
   Controla qué orígenes de navegador pueden leer respuestas mediante headers.
 
 
-### 📑 Sección: Validación, errores y contratos (10 conceptos)
+### Seccion: Validación, errores y contratos (10 conceptos)
 
 - **DTOs y schemas**  
   *Familia:* `comparativa técnica`  
@@ -158,7 +158,7 @@
   Describe rutas, schemas, seguridad y respuestas en un contrato legible por herramientas.
 
 
-### 📑 Sección: Arquitectura y dominio (11 conceptos)
+### Seccion: Arquitectura y dominio (11 conceptos)
 
 - **Capas de aplicación**  
   *Familia:* `capas internas`  
@@ -205,7 +205,7 @@
   Adapta múltiples servicios a las necesidades de un cliente y centraliza políticas de borde.
 
 
-### 📑 Sección: Autenticación, autorización y seguridad (12 conceptos)
+### Seccion: Autenticación, autorización y seguridad (12 conceptos)
 
 - **Hash de contraseñas**  
   *Familia:* `validación y decisión`  
@@ -256,7 +256,7 @@
   Mantiene credenciales fuera del repositorio y rota accesos comprometidos.
 
 
-### 📑 Sección: Persistencia, caché y consistencia (10 conceptos)
+### Seccion: Persistencia, caché y consistencia (10 conceptos)
 
 - **Conexiones a base de datos**  
   *Familia:* `consulta e índice`  
@@ -299,7 +299,7 @@
   Hace seguro repetir comandos cuando la red no confirma el primer resultado.
 
 
-### 📑 Sección: Procesamiento asíncrono y eventos (10 conceptos)
+### Seccion: Procesamiento asíncrono y eventos (10 conceptos)
 
 - **Jobs en background**  
   *Familia:* `flujo de transformación`  
@@ -342,7 +342,7 @@
   Procesa datos por partes y regula productores cuando consumidores van más lento.
 
 
-### 📑 Sección: Confiabilidad, observabilidad y rendimiento (12 conceptos)
+### Seccion: Confiabilidad, observabilidad y rendimiento (12 conceptos)
 
 - **Timeouts**  
   *Familia:* `análisis y emisión`  
@@ -393,7 +393,7 @@
   Define un objetivo medible de confiabilidad y cuánto fallo tolera el producto.
 
 
-### 📑 Sección: Pruebas, despliegue y escalado (10 conceptos)
+### Seccion: Pruebas, despliegue y escalado (10 conceptos)
 
 - **Pruebas unitarias**  
   *Familia:* `análisis y emisión`  
@@ -437,11 +437,11 @@
 
 
 
-## 📖 Recursos de Estudio y Referencias Oficiales
+## Referencias Bibliograficas y Documentacion Oficial
 - **[Introduction to server-side programming](https://developer.mozilla.org/en-US/docs/Learn_web_development/Extensions/Server-side/First_steps/Introduction)** (`tutorial` | Nivel: `beginner`): 
 - **[OpenTelemetry Documentation](https://opentelemetry.io/docs/)** (`official-docs` | Nivel: `intermediate`): 
 - **[OWASP Application Security Verification Standard](https://owasp.org/projects/asvs)** (`specification` | Nivel: `advanced`): 
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Plataformas y servidor](Grupo-Platforms) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Plataformas y servidor](Grupo-Platforms) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

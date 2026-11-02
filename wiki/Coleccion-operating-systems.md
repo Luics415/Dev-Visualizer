@@ -1,43 +1,43 @@
-# 📘 [OS] Sistemas operativos
+# Sistemas operativos (OS)
 
 > **Procesos, scheduling, memoria virtual, archivos, E/S, concurrencia y seguridad.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `operating-systems` |
-| **Grupo Arquitectónico** | [Infraestructura y entrega](Grupo-Delivery) |
+| **Grupo Arquitectonico** | [Infraestructura y entrega](Grupo-Delivery) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `linux` |
 | **Total de Conceptos** | **130 conceptos** |
-| **Capítulos / Secciones** | **20 secciones** |
+| **Capitulos / Secciones** | **20 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/sistemas-operativos)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/sistemas-operativos-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/sistemas-operativos)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/sistemas-operativos-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: Diagnosticar un servicio detenido
+## Estudio de Caso Practico: Diagnosticar un servicio detenido
 
 > **Caso integrado de Sistemas operativos:** Un proceso deja de responder por un deadlock entre dos locks; la traza revela el ciclo y la recuperación impone orden y límites.  
 > El informe final conecta síntoma, scheduler, stacks, locks, corrección y una prueba de estrés reproducible.
 
-### Fases de Ejecución:
-1. **Observar el proceso** (Diagnosticar un servicio detenido: etapa 1 de 5): `ps / tasklist; inspect cpu, memory, state` → Síntoma delimitado. *La etapa conserva un contrato explícito para que el siguiente paso de Sistemas operativos no dependa de supuestos ocultos.*
-2. **Capturar stacks** (Diagnosticar un servicio detenido: etapa 2 de 5): `trace threads and wait objects` → Dependencias visibles. *La etapa conserva un contrato explícito para que el siguiente paso de Sistemas operativos no dependa de supuestos ocultos.*
-3. **Confirmar deadlock** (Diagnosticar un servicio detenido: etapa 3 de 5): `T1: lock(A)->lock(B); T2: lock(B)->lock(A)` → Causa demostrada. *El caso hace visible el fallo de Sistemas operativos; no continúa como si la evidencia fuera válida.*
-4. **Imponer orden** (Diagnosticar un servicio detenido: etapa 4 de 5): `lock(min(A,B)); lock(max(A,B));` → Ejecución recuperada. *La recuperación de Sistemas operativos corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
-5. **Probar bajo carga** (Diagnosticar un servicio detenido: etapa 5 de 5): `stress --workers N --timeout 60s` → Servicio estable. *La etapa conserva un contrato explícito para que el siguiente paso de Sistemas operativos no dependa de supuestos ocultos.*
+### Fases de Ejecucion:
+1. **Observar el proceso** (Diagnosticar un servicio detenido: etapa 1 de 5): `ps / tasklist; inspect cpu, memory, state` -> Síntoma delimitado. *La etapa conserva un contrato explícito para que el siguiente paso de Sistemas operativos no dependa de supuestos ocultos.*
+2. **Capturar stacks** (Diagnosticar un servicio detenido: etapa 2 de 5): `trace threads and wait objects` -> Dependencias visibles. *La etapa conserva un contrato explícito para que el siguiente paso de Sistemas operativos no dependa de supuestos ocultos.*
+3. **Confirmar deadlock** (Diagnosticar un servicio detenido: etapa 3 de 5): `T1: lock(A)->lock(B); T2: lock(B)->lock(A)` -> Causa demostrada. *El caso hace visible el fallo de Sistemas operativos; no continúa como si la evidencia fuera válida.*
+4. **Imponer orden** (Diagnosticar un servicio detenido: etapa 4 de 5): `lock(min(A,B)); lock(max(A,B));` -> Ejecución recuperada. *La recuperación de Sistemas operativos corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
+5. **Probar bajo carga** (Diagnosticar un servicio detenido: etapa 5 de 5): `stress --workers N --timeout 60s` -> Servicio estable. *La etapa conserva un contrato explícito para que el siguiente paso de Sistemas operativos no dependa de supuestos ocultos.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (130)
+## Catalogo Sistematico de Conceptos (130)
 
-### 📑 Sección: Arquitectura (5 conceptos)
+### Seccion: Arquitectura (5 conceptos)
 
 - **Kernel y user space**  
   *Familia:* `capas internas`  
@@ -60,7 +60,7 @@
   Boot procesa un ejemplo mínimo, sus precondiciones y el estado inicial: aplica el mecanismo paso a paso haciendo visibles sus invariantes para entregar un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Ejecución (5 conceptos)
+### Seccion: Ejecución (5 conceptos)
 
 - **Procesos**  
   *Familia:* `cola y consumidor`  
@@ -83,7 +83,7 @@
   La función de Sincronización parte de un ejemplo mínimo, sus precondiciones y el estado inicial. Su ejecución aplica el mecanismo paso a paso haciendo visibles sus invariantes y produce un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Memoria y almacenamiento (5 conceptos)
+### Seccion: Memoria y almacenamiento (5 conceptos)
 
 - **Memoria virtual**  
   *Familia:* `mapa de memoria`  
@@ -106,7 +106,7 @@
   En Page cache, valores con representación, dirección y tiempo de vida definidos ingresa al flujo donde reserva, enlaza y libera almacenamiento siguiendo el contrato del runtime para consolidar estado accesible sin referencias colgantes ni corrupción.
 
 
-### 📑 Sección: Diagnóstico (5 conceptos)
+### Seccion: Diagnóstico (5 conceptos)
 
 - **Deadlocks**  
   *Familia:* `planificación de trabajo`  
@@ -129,7 +129,7 @@
   El recorrido de Tracing toma un comportamiento esperado, una entrada mínima y un síntoma observable. Posteriormente aísla variables y contrasta hipótesis con instrumentación repetible para validar una causa demostrada y una regresión protegida.
 
 
-### 📑 Sección: Operación (5 conceptos)
+### Seccion: Operación (5 conceptos)
 
 - **Permisos**  
   *Familia:* `validación y decisión`  
@@ -152,7 +152,7 @@
   La función de Recuperación parte de un ejemplo mínimo, sus precondiciones y el estado inicial. Su ejecución aplica el mecanismo paso a paso haciendo visibles sus invariantes y produce un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Arranque y arquitectura de kernel (6 conceptos)
+### Seccion: Arranque y arquitectura de kernel (6 conceptos)
 
 - **Firmware y bootloader**  
   *Familia:* `planificación de trabajo`  
@@ -179,7 +179,7 @@
   initramfs root pivot gestiona Arranque y arquitectura de kernel de modo que kernel valida, planifica y actualiza tablas, colas o drivers bajo sincronización, produciendo recurso visible al proceso con límites y accounting correctos.
 
 
-### 📑 Sección: Planificación avanzada (7 conceptos)
+### Seccion: Planificación avanzada (7 conceptos)
 
 - **Scheduling classes**  
   *Familia:* `secuencia operativa`  
@@ -210,7 +210,7 @@
   A través de Deadline scheduling en Planificación avanzada, el sistema kernel valida, planifica y actualiza tablas, colas o drivers bajo sincronización manteniendo recurso visible al proceso con límites y accounting correctos.
 
 
-### 📑 Sección: Sincronización del kernel (8 conceptos)
+### Seccion: Sincronización del kernel (8 conceptos)
 
 - **Atomic operations**  
   *Familia:* `planificación de trabajo`  
@@ -245,7 +245,7 @@
   En el flujo operativo de Sincronización del kernel, Memory barrier placement adquiere o señaliza sincronización, publica cambios y libera en un orden definido para obtener estado visible sin carreras y progreso dentro del límite acordado.
 
 
-### 📑 Sección: Memoria virtual profunda (7 conceptos)
+### Seccion: Memoria virtual profunda (7 conceptos)
 
 - **Page tables**  
   *Familia:* `mapa de memoria`  
@@ -276,7 +276,7 @@
   A través de Huge-page fragmentation en Memoria virtual profunda, el sistema reserva, mapea o mueve memoria y registra quién debe reclamarla manteniendo datos accesibles durante el lifetime exacto y capacidad devuelta al finalizar.
 
 
-### 📑 Sección: Gestión de memoria física (7 conceptos)
+### Seccion: Gestión de memoria física (7 conceptos)
 
 - **Buddy allocator**  
   *Familia:* `mapa de memoria`  
@@ -307,7 +307,7 @@
   A través de Memory compaction en Gestión de memoria física, el sistema consulta, calcula ausencias y publica el nuevo valor junto con su invalidador manteniendo reutilización medible sin cambiar el resultado funcional.
 
 
-### 📑 Sección: Sistemas de archivos (7 conceptos)
+### Seccion: Sistemas de archivos (7 conceptos)
 
 - **VFS layer**  
   *Familia:* `capas internas`  
@@ -338,7 +338,7 @@
   A través de Copy-on-write snapshots en Sistemas de archivos, el sistema consulta, calcula ausencias y publica el nuevo valor junto con su invalidador manteniendo reutilización medible sin cambiar el resultado funcional.
 
 
-### 📑 Sección: Entrada y salida (7 conceptos)
+### Seccion: Entrada y salida (7 conceptos)
 
 - **Device drivers**  
   *Familia:* `planificación de trabajo`  
@@ -369,7 +369,7 @@
   A través de Interrupt affinity en Entrada y salida, el sistema kernel valida, planifica y actualiza tablas, colas o drivers bajo sincronización manteniendo recurso visible al proceso con límites y accounting correctos.
 
 
-### 📑 Sección: Red dentro del sistema (6 conceptos)
+### Seccion: Red dentro del sistema (6 conceptos)
 
 - **Socket buffers**  
   *Familia:* `topología y tráfico`  
@@ -396,7 +396,7 @@
   TCP receive offload gestiona Red dentro del sistema de modo que serializa, negocia, transmite y traduce errores u ownership en la frontera, produciendo respuesta tipada o efecto confirmado con compatibilidad conocida.
 
 
-### 📑 Sección: Aislamiento y virtualización (7 conceptos)
+### Seccion: Aislamiento y virtualización (7 conceptos)
 
 - **Namespaces**  
   *Familia:* `aislamiento sobre host`  
@@ -427,7 +427,7 @@
   A través de Virtual-machine escape threat model en Aislamiento y virtualización, el sistema autentica, normaliza y autoriza antes de ejecutar con la capacidad mínima manteniendo decisión explícita y auditable que no expone secretos ni amplía privilegios.
 
 
-### 📑 Sección: Seguridad del sistema (7 conceptos)
+### Seccion: Seguridad del sistema (7 conceptos)
 
 - **Discretionary access control**  
   *Familia:* `comparativa técnica`  
@@ -458,7 +458,7 @@
   A través de Measured boot en Seguridad del sistema, el sistema serializa, negocia, transmite y traduce errores u ownership en la frontera manteniendo respuesta tipada o efecto confirmado con compatibilidad conocida.
 
 
-### 📑 Sección: Comunicación entre procesos (7 conceptos)
+### Seccion: Comunicación entre procesos (7 conceptos)
 
 - **Pipes**  
   *Familia:* `matriz de señales`  
@@ -489,7 +489,7 @@
   A través de File-descriptor passing en Comunicación entre procesos, el sistema normaliza ruta, abre mediante handle, transfiere y fuerza durabilidad cuando corresponde manteniendo contenido persistido con identidad, metadatos y ownership verificables.
 
 
-### 📑 Sección: Tiempo y energía (7 conceptos)
+### Seccion: Tiempo y energía (7 conceptos)
 
 - **Monotonic clocks**  
   *Familia:* `planificación de trabajo`  
@@ -520,7 +520,7 @@
   A través de Timer slack en Tiempo y energía, el sistema kernel valida, planifica y actualiza tablas, colas o drivers bajo sincronización manteniendo recurso visible al proceso con límites y accounting correctos.
 
 
-### 📑 Sección: Testing de bajo nivel (7 conceptos)
+### Seccion: Testing de bajo nivel (7 conceptos)
 
 - **Kernel unit testing**  
   *Familia:* `espectro de verificación`  
@@ -551,7 +551,7 @@
   A través de System-call ABI conformance en Testing de bajo nivel, el sistema serializa, negocia, transmite y traduce errores u ownership en la frontera manteniendo respuesta tipada o efecto confirmado con compatibilidad conocida.
 
 
-### 📑 Sección: Observabilidad (7 conceptos)
+### Seccion: Observabilidad (7 conceptos)
 
 - **Performance counters**  
   *Familia:* `evidencia y latencia`  
@@ -582,7 +582,7 @@
   A través de Kernel trace correlation en Observabilidad, el sistema instrumenta, correlaciona y agrega sin romper el presupuesto de ejecución manteniendo señal que permite localizar componente, versión y duración del problema.
 
 
-### 📑 Sección: Operación y recuperación (8 conceptos)
+### Seccion: Operación y recuperación (8 conceptos)
 
 - **Patch management**  
   *Familia:* `ida y vuelta`  
@@ -620,4 +620,4 @@
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Infraestructura y entrega](Grupo-Delivery) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Infraestructura y entrega](Grupo-Delivery) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

@@ -1,43 +1,43 @@
-# 📘 [Qwik] Qwik
+# Qwik (Qwik)
 
 > **Resumibilidad, serialización, carga bajo demanda, routing y rendimiento.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `qwik` |
-| **Grupo Arquitectónico** | [Diseño e interfaces](Grupo-Interfaces) |
+| **Grupo Arquitectonico** | [Diseño e interfaces](Grupo-Interfaces) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `react` |
 | **Total de Conceptos** | **88 conceptos** |
-| **Capítulos / Secciones** | **14 secciones** |
+| **Capitulos / Secciones** | **14 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/qwik)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/qwik-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/qwik)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/qwik-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: Reanudar una ficha de producto
+## Estudio de Caso Practico: Reanudar una ficha de producto
 
 > **Caso integrado de Qwik:** Una página SSR activa un selector solo al interactuar; un valor no serializable rompe la frontera y se recupera transformándolo en estado estable.  
 > La medición final relaciona HTML inicial, chunks solicitados, interacción y estado recuperado.
 
-### Fases de Ejecución:
-1. **Renderizar servidor** (Reanudar una ficha de producto: etapa 1 de 5): `export default component$(() => <Product />)` → Contenido inicial listo. *La etapa conserva un contrato explícito para que el siguiente paso de Qwik no dependa de supuestos ocultos.*
-2. **Activar bajo demanda** (Reanudar una ficha de producto: etapa 2 de 5): `onClick$={() => selected.value++}` → Interacción reanudada. *La etapa conserva un contrato explícito para que el siguiente paso de Qwik no dependa de supuestos ocultos.*
-3. **Detectar estado opaco** (Reanudar una ficha de producto: etapa 3 de 5): `useStore({ socket: new WebSocket(url) })` → Build o render rechazado. *El caso hace visible el fallo de Qwik; no continúa como si la evidencia fuera válida.*
-4. **Separar descriptor** (Reanudar una ficha de producto: etapa 4 de 5): `useStore({ socketUrl: url })` → Frontera recuperada. *La recuperación de Qwik corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
-5. **Medir arranque** (Reanudar una ficha de producto: etapa 5 de 5): `performance.mark('product-interactive')` → Resumibilidad verificada. *La etapa conserva un contrato explícito para que el siguiente paso de Qwik no dependa de supuestos ocultos.*
+### Fases de Ejecucion:
+1. **Renderizar servidor** (Reanudar una ficha de producto: etapa 1 de 5): `export default component$(() => <Product />)` -> Contenido inicial listo. *La etapa conserva un contrato explícito para que el siguiente paso de Qwik no dependa de supuestos ocultos.*
+2. **Activar bajo demanda** (Reanudar una ficha de producto: etapa 2 de 5): `onClick$={() => selected.value++}` -> Interacción reanudada. *La etapa conserva un contrato explícito para que el siguiente paso de Qwik no dependa de supuestos ocultos.*
+3. **Detectar estado opaco** (Reanudar una ficha de producto: etapa 3 de 5): `useStore({ socket: new WebSocket(url) })` -> Build o render rechazado. *El caso hace visible el fallo de Qwik; no continúa como si la evidencia fuera válida.*
+4. **Separar descriptor** (Reanudar una ficha de producto: etapa 4 de 5): `useStore({ socketUrl: url })` -> Frontera recuperada. *La recuperación de Qwik corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
+5. **Medir arranque** (Reanudar una ficha de producto: etapa 5 de 5): `performance.mark('product-interactive')` -> Resumibilidad verificada. *La etapa conserva un contrato explícito para que el siguiente paso de Qwik no dependa de supuestos ocultos.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (88)
+## Catalogo Sistematico de Conceptos (88)
 
-### 📑 Sección: Primer contacto (5 conceptos)
+### Seccion: Primer contacto (5 conceptos)
 
 - **Component$**  
   *Familia:* `flujo de interfaz`  
@@ -60,7 +60,7 @@
   Eventos con $ conecta un evento, el estado previo y una intención observable con su runtime interno: aplica una transición y deriva la representación sin perder contexto hasta exponer estado e interfaz sincronizados con respuesta comprensible.
 
 
-### 📑 Sección: Resumibilidad (5 conceptos)
+### Seccion: Resumibilidad (5 conceptos)
 
 - **QRL**  
   *Familia:* `despacho de runtime`  
@@ -83,7 +83,7 @@
   Para entender Contenedores, se delimita un ejemplo mínimo, sus precondiciones y el estado inicial. La operación aplica el mecanismo paso a paso haciendo visibles sus invariantes hasta producir un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Aplicación (5 conceptos)
+### Seccion: Aplicación (5 conceptos)
 
 - **Qwik City**  
   *Familia:* `análisis y emisión`  
@@ -106,7 +106,7 @@
   Forms estructura un ejemplo mínimo, sus precondiciones y el estado inicial en el sistema: aplica el mecanismo paso a paso haciendo visibles sus invariantes, garantizando un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Diagnóstico (5 conceptos)
+### Seccion: Diagnóstico (5 conceptos)
 
 - **Serialización inválida**  
   *Familia:* `mapa de memoria`  
@@ -129,7 +129,7 @@
   El recorrido de Errores SSR toma un comportamiento esperado, una entrada mínima y un síntoma observable. Posteriormente aísla variables y contrasta hipótesis con instrumentación repetible para validar una causa demostrada y una regresión protegida.
 
 
-### 📑 Sección: Producción (5 conceptos)
+### Seccion: Producción (5 conceptos)
 
 - **Adapters**  
   *Familia:* `pasaporte del artefacto`  
@@ -152,7 +152,7 @@
   Core Web Vitals estructura un ejemplo mínimo, sus precondiciones y el estado inicial en el sistema: aplica el mecanismo paso a paso haciendo visibles sus invariantes, garantizando un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Modelo de ejecución (6 conceptos)
+### Seccion: Modelo de ejecución (6 conceptos)
 
 - **Lexical scope extraction**  
   *Familia:* `workflow y decisiones`  
@@ -179,7 +179,7 @@
   Lexical-scope serialization gestiona Modelo de ejecución de modo que codifica campos en orden definido y reconstruye validando versión y rangos, produciendo representación interoperable que conserva significado al hacer round trip.
 
 
-### 📑 Sección: Tareas y ciclo reactivo (8 conceptos)
+### Seccion: Tareas y ciclo reactivo (8 conceptos)
 
 - **useTask$**  
   *Familia:* `planificación de trabajo`  
@@ -214,7 +214,7 @@
   En el flujo operativo de Tareas y ciclo reactivo, Visibility-triggered task scheduling serializa, negocia, transmite y traduce errores u ownership en la frontera para obtener respuesta tipada o efecto confirmado con compatibilidad conocida.
 
 
-### 📑 Sección: Composición de interfaz (6 conceptos)
+### Seccion: Composición de interfaz (6 conceptos)
 
 - **Slots**  
   *Familia:* `flujo de transformación`  
@@ -241,7 +241,7 @@
   Slot projection ownership gestiona Composición de interfaz de modo que reserva, mapea o mueve memoria y registra quién debe reclamarla, produciendo datos accesibles durante el lifetime exacto y capacidad devuelta al finalizar.
 
 
-### 📑 Sección: Qwik City avanzado (7 conceptos)
+### Seccion: Qwik City avanzado (7 conceptos)
 
 - **Nested layouts**  
   *Familia:* `capas internas`  
@@ -272,7 +272,7 @@
   A través de Middleware ordering en Qwik City avanzado, el sistema el optimizer separa símbolos y el navegador reanuda únicamente la frontera activada manteniendo interacción disponible con chunks y listeners cargados bajo demanda.
 
 
-### 📑 Sección: Datos y mutaciones (7 conceptos)
+### Seccion: Datos y mutaciones (7 conceptos)
 
 - **Optimistic forms**  
   *Familia:* `consulta e índice`  
@@ -303,7 +303,7 @@
   A través de Optimistic update reconciliation en Datos y mutaciones, el sistema el optimizer separa símbolos y el navegador reanuda únicamente la frontera activada manteniendo interacción disponible con chunks y listeners cargados bajo demanda.
 
 
-### 📑 Sección: Testing (7 conceptos)
+### Seccion: Testing (7 conceptos)
 
 - **Unit testing de componentes**  
   *Familia:* `espectro de verificación`  
@@ -334,7 +334,7 @@
   A través de Chunk loading assertions en Testing, el sistema ejecuta camino normal, límite y fallo mientras captura todos los efectos observables manteniendo evidencia repetible que distingue comportamiento correcto de una regresión.
 
 
-### 📑 Sección: Seguridad web (7 conceptos)
+### Seccion: Seguridad web (7 conceptos)
 
 - **Escapado SSR**  
   *Familia:* `comparativa técnica`  
@@ -365,7 +365,7 @@
   A través de CSP nonce propagation en Seguridad web, el sistema autentica, normaliza y autoriza antes de ejecutar con la capacidad mínima manteniendo decisión explícita y auditable que no expone secretos ni amplía privilegios.
 
 
-### 📑 Sección: Optimización (7 conceptos)
+### Seccion: Optimización (7 conceptos)
 
 - **Bundle graph**  
   *Familia:* `evidencia y latencia`  
@@ -396,7 +396,7 @@
   A través de Measured prefetch heuristics en Optimización, el sistema consulta, calcula ausencias y publica el nuevo valor junto con su invalidador manteniendo reutilización medible sin cambiar el resultado funcional.
 
 
-### 📑 Sección: Operación multiplataforma (8 conceptos)
+### Seccion: Operación multiplataforma (8 conceptos)
 
 - **Node adapter**  
   *Familia:* `workflow y decisiones`  
@@ -434,4 +434,4 @@
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Diseño e interfaces](Grupo-Interfaces) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Diseño e interfaces](Grupo-Interfaces) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

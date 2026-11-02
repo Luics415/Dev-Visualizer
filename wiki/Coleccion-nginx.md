@@ -1,31 +1,31 @@
-# 📘 [NGINX] NGINX
+# NGINX (NGINX)
 
 > **Servidor web, reverse proxy, balanceo, TLS, caché y operación.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `nginx` |
-| **Grupo Arquitectónico** | [Infraestructura y entrega](Grupo-Delivery) |
+| **Grupo Arquitectonico** | [Infraestructura y entrega](Grupo-Delivery) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `nginx` |
 | **Total de Conceptos** | **313 conceptos** |
-| **Capítulos / Secciones** | **12 secciones** |
+| **Capitulos / Secciones** | **12 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/nginx)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/nginx-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/nginx)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/nginx-en-accion)
 
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (313)
+## Catalogo Sistematico de Conceptos (313)
 
-### 📑 Sección: Arquitectura y modelo de ejecución (18 conceptos)
+### Seccion: Arquitectura y modelo de ejecución (18 conceptos)
 
 - **Qué es NGINX**  
   *Familia:* `anatomía del concepto`  
@@ -100,7 +100,7 @@
   Se cargan con load_module cuando fueron construidos como módulos compatibles con ese binario.
 
 
-### 📑 Sección: Instalación, procesos y configuración (20 conceptos)
+### Seccion: Instalación, procesos y configuración (20 conceptos)
 
 - **Paquetes oficiales y de la distribución**  
   *Familia:* `superficie de aplicación`  
@@ -183,7 +183,7 @@
   El master puede iniciar un binario nuevo conservando sockets heredados y permitir rollback al proceso anterior.
 
 
-### 📑 Sección: Selección de servidor, location y URI (28 conceptos)
+### Seccion: Selección de servidor, location y URI (28 conceptos)
 
 - **Bloques server**  
   *Familia:* `contratos coordinados`  
@@ -298,7 +298,7 @@
   Crea una variable derivada de otra mediante coincidencias exactas, masks, regex y un valor default en contexto http.
 
 
-### 📑 Sección: Servidor web y contenido estático (22 conceptos)
+### Seccion: Servidor web y contenido estático (22 conceptos)
 
 - **Document root**  
   *Familia:* `acumulación de recursos`  
@@ -389,7 +389,7 @@
   gzip_static puede elegir archivos .gz generados en build cuando el cliente anuncia soporte compatible.
 
 
-### 📑 Sección: Reverse proxy y aplicaciones upstream (35 conceptos)
+### Seccion: Reverse proxy y aplicaciones upstream (35 conceptos)
 
 - **Reverse proxy**  
   *Familia:* `ida y vuelta`  
@@ -532,7 +532,7 @@
   Duplica peticiones en background para shadow traffic o validación, descartando la respuesta del destino espejo.
 
 
-### 📑 Sección: Balanceo, salud y resiliencia (24 conceptos)
+### Seccion: Balanceo, salud y resiliencia (24 conceptos)
 
 - **Round robin**  
   *Familia:* `ecosistema coordinado`  
@@ -631,7 +631,7 @@
   Un pool útil distribuye instancias entre hosts o zonas y evita que todos los miembros compartan el mismo punto de fallo.
 
 
-### 📑 Sección: TLS, HTTP/2, HTTP/3 y seguridad (30 conceptos)
+### Seccion: TLS, HTTP/2, HTTP/3 y seguridad (30 conceptos)
 
 - **Terminación TLS**  
   *Familia:* `secuencia operativa`  
@@ -754,7 +754,7 @@
   Actualizar archivos y ejecutar un reload graceful permite que conexiones nuevas usen el material renovado.
 
 
-### 📑 Sección: Caché, compresión y rendimiento (30 conceptos)
+### Seccion: Caché, compresión y rendimiento (30 conceptos)
 
 - **Proxy cache**  
   *Familia:* `ida y vuelta`  
@@ -877,7 +877,7 @@
   Relaciona conexiones, RPS, ancho de banda, CPU, memoria, disco, TLS y margen de fallo por instancia.
 
 
-### 📑 Sección: Routing, acceso y límites de tráfico (24 conceptos)
+### Seccion: Routing, acceso y límites de tráfico (24 conceptos)
 
 - **return antes que rewrite**  
   *Familia:* `ciclo de vida`  
@@ -976,7 +976,7 @@
   Rate limits, timeouts, WAF, quotas de negocio y protección upstream controlan tipos de abuso diferentes.
 
 
-### 📑 Sección: Protocolos, stream y gateways (22 conceptos)
+### Seccion: Protocolos, stream y gateways (22 conceptos)
 
 - **Contexto stream**  
   *Familia:* `cola y consumidor`  
@@ -1067,7 +1067,7 @@
   stream decide con datos de transporte; http comprende método, host, URI, headers y códigos para políticas más ricas.
 
 
-### 📑 Sección: Logs, observabilidad y troubleshooting (30 conceptos)
+### Seccion: Logs, observabilidad y troubleshooting (30 conceptos)
 
 - **access_log**  
   *Familia:* `evidencia y latencia`  
@@ -1190,7 +1190,7 @@
   Disponibilidad, p95/p99, errores upstream, saturation y cache hit ratio explican salud mejor que CPU aislada.
 
 
-### 📑 Sección: Contenedores, Kubernetes, HA y extensibilidad (30 conceptos)
+### Seccion: Contenedores, Kubernetes, HA y extensibilidad (30 conceptos)
 
 - **NGINX en foreground**  
   *Familia:* `superficie de aplicación`  
@@ -1314,11 +1314,11 @@
 
 
 
-## 📖 Recursos de Estudio y Referencias Oficiales
+## Referencias Bibliograficas y Documentacion Oficial
 - **[NGINX Beginner's Guide](https://nginx.org/en/docs/beginners_guide.html)** (`tutorial` | Nivel: `beginner`): 
 - **[NGINX Admin Guide](https://docs.nginx.com/nginx/admin-guide/)** (`official-docs` | Nivel: `intermediate`): 
 - **[NGINX Development Guide](https://nginx.org/en/docs/dev/development_guide.html)** (`reference` | Nivel: `advanced`): 
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Infraestructura y entrega](Grupo-Delivery) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Infraestructura y entrega](Grupo-Delivery) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

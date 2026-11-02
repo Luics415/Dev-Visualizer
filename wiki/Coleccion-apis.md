@@ -1,46 +1,46 @@
-# 📘 [API] APIs
+# APIs (API)
 
 > **REST, GraphQL, gRPC, eventos, tiempo real, contratos y seguridad.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `apis` |
-| **Grupo Arquitectónico** | [Plataformas y servidor](Grupo-Platforms) |
+| **Grupo Arquitectonico** | [Plataformas y servidor](Grupo-Platforms) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `apis` |
 | **Total de Conceptos** | **48 conceptos** |
-| **Capítulos / Secciones** | **8 secciones** |
+| **Capitulos / Secciones** | **8 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/apis)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/apis-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/apis)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/apis-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: APIs en acción
+## Estudio de Caso Practico: APIs en acción
 
 > **Caso integrado · Orden multiprotocolo:** Una reparación nace en una app, atraviesa fronteras síncronas y asíncronas y termina en una notificación externa sin perder identidad ni compatibilidad.  
 > Cada protocolo hace el trabajo para el que fue elegido: contrato explícito, deadlines, idempotencia y una traza común mantienen una sola historia.
 
-### Fases de Ejecución:
-1. **Crear la intención** (REST público e idempotente): `POST /v1/orders · Idempotency-Key` → orden aceptada. *REST ofrece una frontera ampliamente interoperable para crear la intención.*
-2. **Consultar la vista** (GraphQL compone datos de pantalla): `query OrderWorkbench($id)` → vista compuesta. *GraphQL resuelve una necesidad de lectura sin convertir el modelo interno en un contrato accidental.*
-3. **Asignar internamente** (gRPC conserva tipos y deadline): `AssignOrder(deadline=300ms)` → técnico asignado. *La llamada interna no asume que una red se comporta como memoria local.*
-4. **Publicar el hecho** (El evento desacopla consumidores): `order.assigned.v2` → evento durable. *El evento describe algo que ya ocurrió y puede ser consumido varias veces.*
-5. **Transmitir progreso** (WebSocket entrega cambios vivos): `order:421 → status_changed` → progreso en tiempo real. *El estado canónico sigue en el servidor; el socket acelera la percepción.*
-6. **Notificar al socio** (Webhook firmado y reintentable): `POST partner.example/hooks` → integración confirmada. *El consumidor verifica firma y trata cada delivery como potencialmente repetido.*
-7. **Evolucionar el contrato** (Campos aditivos antes de retirar): `v1 + optional priority` → versiones compatibles. *La evolución se demuestra con consumidores reales, no solo con compilación.*
-8. **Cerrar la traza** (Una identidad cruza protocolos): `trace_id=repair_421` → operación explicable. *La observabilidad conecta tecnologías distintas con la intención del usuario.*
+### Fases de Ejecucion:
+1. **Crear la intención** (REST público e idempotente): `POST /v1/orders · Idempotency-Key` -> orden aceptada. *REST ofrece una frontera ampliamente interoperable para crear la intención.*
+2. **Consultar la vista** (GraphQL compone datos de pantalla): `query OrderWorkbench($id)` -> vista compuesta. *GraphQL resuelve una necesidad de lectura sin convertir el modelo interno en un contrato accidental.*
+3. **Asignar internamente** (gRPC conserva tipos y deadline): `AssignOrder(deadline=300ms)` -> técnico asignado. *La llamada interna no asume que una red se comporta como memoria local.*
+4. **Publicar el hecho** (El evento desacopla consumidores): `order.assigned.v2` -> evento durable. *El evento describe algo que ya ocurrió y puede ser consumido varias veces.*
+5. **Transmitir progreso** (WebSocket entrega cambios vivos): `order:421 → status_changed` -> progreso en tiempo real. *El estado canónico sigue en el servidor; el socket acelera la percepción.*
+6. **Notificar al socio** (Webhook firmado y reintentable): `POST partner.example/hooks` -> integración confirmada. *El consumidor verifica firma y trata cada delivery como potencialmente repetido.*
+7. **Evolucionar el contrato** (Campos aditivos antes de retirar): `v1 + optional priority` -> versiones compatibles. *La evolución se demuestra con consumidores reales, no solo con compilación.*
+8. **Cerrar la traza** (Una identidad cruza protocolos): `trace_id=repair_421` -> operación explicable. *La observabilidad conecta tecnologías distintas con la intención del usuario.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (48)
+## Catalogo Sistematico de Conceptos (48)
 
-### 📑 Sección: Fundamentos de contrato (6 conceptos)
+### Seccion: Fundamentos de contrato (6 conceptos)
 
 - **Proveedor, consumidor y contrato**  
   *Familia:* `cola y consumidor`  
@@ -67,7 +67,7 @@
   Define qué versiones de productores y consumidores pueden convivir durante una evolución.
 
 
-### 📑 Sección: HTTP y REST (6 conceptos)
+### Seccion: HTTP y REST (6 conceptos)
 
 - **Recursos y representaciones**  
   *Familia:* `acumulación de recursos`  
@@ -94,7 +94,7 @@
   Combina Cache-Control, ETag y validación para reutilizar respuestas sin servir estado incorrecto.
 
 
-### 📑 Sección: GraphQL (6 conceptos)
+### Seccion: GraphQL (6 conceptos)
 
 - **Schema GraphQL**  
   *Familia:* `validación y decisión`  
@@ -121,7 +121,7 @@
   Reduce superficie y costo imponiendo operaciones conocidas, profundidad y complejidad.
 
 
-### 📑 Sección: RPC y gRPC (6 conceptos)
+### Seccion: RPC y gRPC (6 conceptos)
 
 - **Servicio y métodos RPC**  
   *Familia:* `flujo de interfaz`  
@@ -148,7 +148,7 @@
   Expone una frontera HTTP/JSON sin duplicar el servicio interno.
 
 
-### 📑 Sección: Tiempo real y eventos (6 conceptos)
+### Seccion: Tiempo real y eventos (6 conceptos)
 
 - **WebSocket**  
   *Familia:* `topología y tráfico`  
@@ -175,7 +175,7 @@
   Diseña para at-least-once, reordenamiento y efectos idempotentes.
 
 
-### 📑 Sección: Identidad y seguridad (6 conceptos)
+### Seccion: Identidad y seguridad (6 conceptos)
 
 - **API keys**  
   *Familia:* `workflow y decisiones`  
@@ -202,7 +202,7 @@
   Rechaza forma, tamaño y frecuencia peligrosos antes de consumir recursos internos.
 
 
-### 📑 Sección: Resiliencia y evolución (6 conceptos)
+### Seccion: Resiliencia y evolución (6 conceptos)
 
 - **Timeouts y presupuestos de latencia**  
   *Familia:* `evidencia y latencia`  
@@ -229,7 +229,7 @@
   Mide uso, comunica fechas y ofrece migración antes de retirar una versión.
 
 
-### 📑 Sección: Experiencia y operación (6 conceptos)
+### Seccion: Experiencia y operación (6 conceptos)
 
 - **OpenAPI, AsyncAPI y reflexión**  
   *Familia:* `pasaporte del artefacto`  
@@ -257,11 +257,11 @@
 
 
 
-## 📖 Recursos de Estudio y Referencias Oficiales
+## Referencias Bibliograficas y Documentacion Oficial
 - **[Overview of HTTP](https://developer.mozilla.org/en-US/docs/Web/HTTP/Guides/Overview)** (`tutorial` | Nivel: `beginner`): 
 - **[Learn GraphQL](https://graphql.org/learn/)** (`tutorial` | Nivel: `intermediate`): 
 - **[OpenAPI Specification](https://spec.openapis.org/oas/latest.html)** (`specification` | Nivel: `advanced`): 
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Plataformas y servidor](Grupo-Platforms) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Plataformas y servidor](Grupo-Platforms) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

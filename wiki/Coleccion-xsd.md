@@ -1,48 +1,48 @@
-# 📘 [XSD] XSD
+# XSD (XSD)
 
 > **Schemas XML, tipos, facets, identidad, composición, evolución y validación.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `xsd` |
-| **Grupo Arquitectónico** | [Datos](Grupo-Data) |
+| **Grupo Arquitectonico** | [Datos](Grupo-Data) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `xsd` |
 | **Total de Conceptos** | **100 conceptos** |
-| **Capítulos / Secciones** | **20 secciones** |
+| **Capitulos / Secciones** | **20 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/xsd)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/xsd-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/xsd)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/xsd-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: XSD en acción
+## Estudio de Caso Practico: XSD en acción
 
 > **Caso integrado · Certificado de calibración verificable:** Un certificado XML bien formado atraviesa un schema set local. XSD comprueba namespace, tipos, facets, secuencia y relaciones; una key duplicada y una assertion de tolerancia fallan antes de producir información tipada.  
 > El caso muestra exactamente qué demuestra XSD, qué error entrega, cómo se corrige y cómo se prueba compatibilidad entre procesadores 1.0 y 1.1.
 
-### Fases de Ejecución:
-1. **Recibir la instancia** (XML ya bien formado): `certificate-421.xml` → instancia lista. *XSD comienza después de la sintaxis XML.*
-2. **Cargar schema set** (Recursos locales por digest): `catalog → certificate-v3.xsd` → contrato preparado. *schemaLocation de la instancia es una pista, no autoridad.*
-3. **Resolver declaración global** (Namespace y raíz): `{urn:calibration:v3}certificate` → vocabulario correcto. *El prefijo visible no decide la identidad.*
-4. **Validar datatypes y facets** (Valores léxicos a tipados): `decimal · dateTime · pattern` → valores conformes. *El texto válido se interpreta dentro del espacio de valores XSD.*
-5. **Comprobar estructura** (Sequence y cardinalidad): `measurement{1..64}` → estructura conforme. *Cardinalidad no sustituye reglas de negocio.*
-6. **Detectar identidad duplicada** (xs:key): `M-17 · M-17` → assessment inválido. *La relación se evalúa sobre la instancia completa.*
-7. **Corregir key/keyref** (Identidad coherente): `M-17 · M-18` → relaciones válidas. *Se revalida todo el alcance, no solo el campo editado.*
-8. **Evaluar assertion** (Regla XSD 1.1): `abs(measured-reference) <= tolerance` → lote en revisión. *Un procesador 1.0 no ofrece esta garantía y debe declararlo.*
-9. **Recuperar y producir PSVI** (Resultado tipado): `correct tolerance → reassess` → certificado válido. *La aplicación decide si depende o no de defaults añadidos por validación.*
-10. **Probar compatibilidad** (Matriz 1.0/1.1): `corpus + contract diff` → contrato operable. *La matriz final inicia el siguiente certificado y cierra el loop.*
+### Fases de Ejecucion:
+1. **Recibir la instancia** (XML ya bien formado): `certificate-421.xml` -> instancia lista. *XSD comienza después de la sintaxis XML.*
+2. **Cargar schema set** (Recursos locales por digest): `catalog → certificate-v3.xsd` -> contrato preparado. *schemaLocation de la instancia es una pista, no autoridad.*
+3. **Resolver declaración global** (Namespace y raíz): `{urn:calibration:v3}certificate` -> vocabulario correcto. *El prefijo visible no decide la identidad.*
+4. **Validar datatypes y facets** (Valores léxicos a tipados): `decimal · dateTime · pattern` -> valores conformes. *El texto válido se interpreta dentro del espacio de valores XSD.*
+5. **Comprobar estructura** (Sequence y cardinalidad): `measurement{1..64}` -> estructura conforme. *Cardinalidad no sustituye reglas de negocio.*
+6. **Detectar identidad duplicada** (xs:key): `M-17 · M-17` -> assessment inválido. *La relación se evalúa sobre la instancia completa.*
+7. **Corregir key/keyref** (Identidad coherente): `M-17 · M-18` -> relaciones válidas. *Se revalida todo el alcance, no solo el campo editado.*
+8. **Evaluar assertion** (Regla XSD 1.1): `abs(measured-reference) <= tolerance` -> lote en revisión. *Un procesador 1.0 no ofrece esta garantía y debe declararlo.*
+9. **Recuperar y producir PSVI** (Resultado tipado): `correct tolerance → reassess` -> certificado válido. *La aplicación decide si depende o no de defaults añadidos por validación.*
+10. **Probar compatibilidad** (Matriz 1.0/1.1): `corpus + contract diff` -> contrato operable. *La matriz final inicia el siguiente certificado y cierra el loop.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (100)
+## Catalogo Sistematico de Conceptos (100)
 
-### 📑 Sección: Instancia, schema y assessment (5 conceptos)
+### Seccion: Instancia, schema y assessment (5 conceptos)
 
 - **Documento instancia**  
   *Familia:* `configuración declarativa`  
@@ -65,7 +65,7 @@
   Separa resultado XSD de autorización, reglas de negocio, persistencia y efectos externos.
 
 
-### 📑 Sección: Propósito y anatomía de XSD (5 conceptos)
+### Seccion: Propósito y anatomía de XSD (5 conceptos)
 
 - **Instancia, schema y assessment**  
   *Familia:* `espectro de verificación`  
@@ -88,7 +88,7 @@
   Trata schemaLocation como una pista y conserva la selección autorizada del schema en la aplicación.
 
 
-### 📑 Sección: Tipos simples de XSD (5 conceptos)
+### Seccion: Tipos simples de XSD (5 conceptos)
 
 - **string, normalizedString y token**  
   *Familia:* `validación y decisión`  
@@ -111,7 +111,7 @@
   Relaciona nombres expandidos e identidades entendiendo el contexto de namespaces y del documento.
 
 
-### 📑 Sección: Restricciones y facets XSD (5 conceptos)
+### Seccion: Restricciones y facets XSD (5 conceptos)
 
 - **restriction y base type**  
   *Familia:* `tabla de estados`  
@@ -134,7 +134,7 @@
   Combina límites inclusivos o exclusivos con totalDigits y fractionDigits cuando el dominio decimal lo exige.
 
 
-### 📑 Sección: Tipos complejos y modelos de contenido (5 conceptos)
+### Seccion: Tipos complejos y modelos de contenido (5 conceptos)
 
 - **complexType**  
   *Familia:* `espectro de verificación`  
@@ -157,7 +157,7 @@
   Añade atributos a un valor textual o permite texto intercalado con elementos.
 
 
-### 📑 Sección: Cardinalidad, ausencia y nil (5 conceptos)
+### Seccion: Cardinalidad, ausencia y nil (5 conceptos)
 
 - **minOccurs y maxOccurs**  
   *Familia:* `validación y decisión`  
@@ -180,7 +180,7 @@
   Evita colapsar cuatro estados que pueden tener reglas de negocio diferentes.
 
 
-### 📑 Sección: Reutilización y composición XSD (5 conceptos)
+### Seccion: Reutilización y composición XSD (5 conceptos)
 
 - **Tipos nombrados y anónimos**  
   *Familia:* `tabla de estados`  
@@ -203,7 +203,7 @@
   Comprende mecanismos de reemplazo y sus diferencias entre versiones antes de usarlos para evolución.
 
 
-### 📑 Sección: Namespaces y conjuntos de schemas XSD (5 conceptos)
+### Seccion: Namespaces y conjuntos de schemas XSD (5 conceptos)
 
 - **targetNamespace**  
   *Familia:* `espectro de verificación`  
@@ -226,7 +226,7 @@
   Construye el conjunto de documentos importados mediante catalogs o resolvers deterministas.
 
 
-### 📑 Sección: Derivación y polimorfismo XSD (5 conceptos)
+### Seccion: Derivación y polimorfismo XSD (5 conceptos)
 
 - **extension de complexType**  
   *Familia:* `telar relacional`  
@@ -249,7 +249,7 @@
   Permite sustituir un elemento global por miembros declarados de su grupo.
 
 
-### 📑 Sección: Identidad y relaciones XSD (5 conceptos)
+### Seccion: Identidad y relaciones XSD (5 conceptos)
 
 - **xs:unique**  
   *Familia:* `validación y decisión`  
@@ -272,7 +272,7 @@
   Reconoce que restricciones de identidad ordinarias se evalúan sobre el documento validado, no una base global.
 
 
-### 📑 Sección: Capacidades de XSD 1.1 (5 conceptos)
+### Seccion: Capacidades de XSD 1.1 (5 conceptos)
 
 - **xs:assert**  
   *Familia:* `jerarquía y dependencias`  
@@ -295,7 +295,7 @@
   Detecta si la implementación soporta XSD 1.1 antes de depender de assertions o alternativas.
 
 
-### 📑 Sección: PSVI y semántica de validación (5 conceptos)
+### Seccion: PSVI y semántica de validación (5 conceptos)
 
 - **Bien formado frente a válido**  
   *Familia:* `telar relacional`  
@@ -318,7 +318,7 @@
   Decide si la aplicación depende de información que no estaba explícita en el documento original.
 
 
-### 📑 Sección: Evolución de schemas XSD (5 conceptos)
+### Seccion: Evolución de schemas XSD (5 conceptos)
 
 - **Cambio aditivo compatible**  
   *Familia:* `validación y decisión`  
@@ -341,7 +341,7 @@
   Mide documentos reales, publica ventanas de migración y valida productores y consumidores antiguos.
 
 
-### 📑 Sección: Patrones de diseño XSD (5 conceptos)
+### Seccion: Patrones de diseño XSD (5 conceptos)
 
 - **Russian Doll**  
   *Familia:* `jerarquía y dependencias`  
@@ -364,7 +364,7 @@
   Evita confundir clases generadas con el contrato normativo o perder construcciones XML que el lenguaje no representa.
 
 
-### 📑 Sección: Validación y operación XSD (5 conceptos)
+### Seccion: Validación y operación XSD (5 conceptos)
 
 - **XSD en integraciones**  
   *Familia:* `cola y consumidor`  
@@ -387,7 +387,7 @@
   Clasifica cambios aditivos, restrictivos e incompatibles antes de rollout o rollback.
 
 
-### 📑 Sección: Listas, uniones y datatypes propios (5 conceptos)
+### Seccion: Listas, uniones y datatypes propios (5 conceptos)
 
 - **xs:list**  
   *Familia:* `análisis y emisión`  
@@ -410,7 +410,7 @@
   Separa texto aceptado, espacio de valores y forma canónica del datatype.
 
 
-### 📑 Sección: Wildcards y modelos abiertos (5 conceptos)
+### Seccion: Wildcards y modelos abiertos (5 conceptos)
 
 - **xs:any**  
   *Familia:* `validación y decisión`  
@@ -433,7 +433,7 @@
   Diseña extensión compatible en XSD 1.1 sin perder el modelo conocido.
 
 
-### 📑 Sección: Anotaciones y documentación (5 conceptos)
+### Seccion: Anotaciones y documentación (5 conceptos)
 
 - **xs:annotation**  
   *Familia:* `consulta e índice`  
@@ -456,7 +456,7 @@
   Produce documentación navegable conservando el schema como autoridad normativa.
 
 
-### 📑 Sección: Integración del validador (5 conceptos)
+### Seccion: Integración del validador (5 conceptos)
 
 - **Compilar el schema set**  
   *Familia:* `flujo de transformación`  
@@ -479,7 +479,7 @@
   Reutiliza schemas compilados solo bajo garantías comprobadas del procesador.
 
 
-### 📑 Sección: Seguridad, rendimiento y conformidad (5 conceptos)
+### Seccion: Seguridad, rendimiento y conformidad (5 conceptos)
 
 - **Patterns costosos**  
   *Familia:* `espectro de verificación`  
@@ -503,11 +503,11 @@
 
 
 
-## 📖 Recursos de Estudio y Referencias Oficiales
+## Referencias Bibliograficas y Documentacion Oficial
 - **[XML Schema Part 0: Primer](https://www.w3.org/TR/xmlschema-0/)** (`tutorial` | Nivel: `beginner`): 
 - **[XML Schema (XSD) validation with XmlSchemaSet](https://learn.microsoft.com/en-us/dotnet/standard/data/xml/xml-schema-xsd-validation-with-xmlschemaset)** (`tutorial` | Nivel: `intermediate`): 
 - **[W3C XML Schema versioning guide](https://www.w3.org/TR/xmlschema-guide2versioning/)** (`reference` | Nivel: `advanced`): 
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Datos](Grupo-Data) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Datos](Grupo-Data) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

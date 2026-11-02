@@ -1,44 +1,44 @@
-# 📘 [TeX] LaTeX
+# LaTeX (TeX)
 
 > **Composición, estructura, referencias, matemáticas, paquetes, builds y publicación.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `latex` |
-| **Grupo Arquitectónico** | [Infraestructura y entrega](Grupo-Delivery) |
+| **Grupo Arquitectonico** | [Infraestructura y entrega](Grupo-Delivery) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `cweb` |
 | **Total de Conceptos** | **95 conceptos** |
-| **Capítulos / Secciones** | **15 secciones** |
+| **Capitulos / Secciones** | **15 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/latex)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/latex-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/latex)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/latex-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: Compilar un informe técnico trazable
+## Estudio de Caso Practico: Compilar un informe técnico trazable
 
 > **Caso integrado de LaTeX:** Un informe integra ecuaciones, figuras y bibliografía; una referencia rota detiene la publicación y el pipeline recupera auxiliares y dependencias.  
 > El PDF final conserva fuente, versión del motor, licencias de figuras, referencias resueltas y log sin errores críticos.
 
-### Fases de Ejecución:
+### Fases de Ejecucion:
 1. **Estructurar fuente** (Compilar un informe técnico trazable: etapa 1 de 5): `\documentclass{article}
-\begin{document}...` → Documento válido. *La etapa conserva un contrato explícito para que el siguiente paso de LaTeX no dependa de supuestos ocultos.*
-2. **Resolver referencias** (Compilar un informe técnico trazable: etapa 2 de 5): `\label{fig:atlas} ... \ref{fig:atlas}` → Navegación coherente. *La etapa conserva un contrato explícito para que el siguiente paso de LaTeX no dependa de supuestos ocultos.*
-3. **Detectar cita ausente** (Compilar un informe técnico trazable: etapa 3 de 5): `\cite{knuth1984} // undefined` → Publicación bloqueada. *El caso hace visible el fallo de LaTeX; no continúa como si la evidencia fuera válida.*
-4. **Restaurar bibliografía** (Compilar un informe técnico trazable: etapa 4 de 5): `latexmk -pdf informe.tex` → Grafo recuperado. *La recuperación de LaTeX corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
-5. **Auditar artefacto** (Compilar un informe técnico trazable: etapa 5 de 5): `latexmk -C && latexmk -pdf -halt-on-error` → Informe reproducible. *La etapa conserva un contrato explícito para que el siguiente paso de LaTeX no dependa de supuestos ocultos.*
+\begin{document}...` -> Documento válido. *La etapa conserva un contrato explícito para que el siguiente paso de LaTeX no dependa de supuestos ocultos.*
+2. **Resolver referencias** (Compilar un informe técnico trazable: etapa 2 de 5): `\label{fig:atlas} ... \ref{fig:atlas}` -> Navegación coherente. *La etapa conserva un contrato explícito para que el siguiente paso de LaTeX no dependa de supuestos ocultos.*
+3. **Detectar cita ausente** (Compilar un informe técnico trazable: etapa 3 de 5): `\cite{knuth1984} // undefined` -> Publicación bloqueada. *El caso hace visible el fallo de LaTeX; no continúa como si la evidencia fuera válida.*
+4. **Restaurar bibliografía** (Compilar un informe técnico trazable: etapa 4 de 5): `latexmk -pdf informe.tex` -> Grafo recuperado. *La recuperación de LaTeX corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
+5. **Auditar artefacto** (Compilar un informe técnico trazable: etapa 5 de 5): `latexmk -C && latexmk -pdf -halt-on-error` -> Informe reproducible. *La etapa conserva un contrato explícito para que el siguiente paso de LaTeX no dependa de supuestos ocultos.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (95)
+## Catalogo Sistematico de Conceptos (95)
 
-### 📑 Sección: Documento mínimo (5 conceptos)
+### Seccion: Documento mínimo (5 conceptos)
 
 - **Clase**  
   *Familia:* `tejido literario`  
@@ -61,7 +61,7 @@
   En Compilación, texto fuente, contexto léxico y reglas del lenguaje ingresa al flujo donde reconoce estructura, comprueba contratos y produce una representación ejecutable para consolidar significado bien formado con errores localizados.
 
 
-### 📑 Sección: Motor de composición (5 conceptos)
+### Seccion: Motor de composición (5 conceptos)
 
 - **Macros**  
   *Familia:* `análisis y emisión`  
@@ -84,7 +84,7 @@
   Archivos auxiliares procesa datos identificables junto con esquema, restricciones y procedencia: valida, representa y recorre cada valor preservando relaciones para entregar información consultable con integridad y significado estables.
 
 
-### 📑 Sección: Trabajo técnico (5 conceptos)
+### Seccion: Trabajo técnico (5 conceptos)
 
 - **Matemáticas**  
   *Familia:* `configuración declarativa`  
@@ -107,7 +107,7 @@
   Índices conecta datos identificables junto con esquema, restricciones y procedencia con su runtime interno: valida, representa y recorre cada valor preservando relaciones hasta exponer información consultable con integridad y significado estables.
 
 
-### 📑 Sección: Diagnóstico (5 conceptos)
+### Seccion: Diagnóstico (5 conceptos)
 
 - **Errores y warnings**  
   *Familia:* `evidencia y latencia`  
@@ -130,7 +130,7 @@
   El recorrido de Ejemplo mínimo toma un comportamiento esperado, una entrada mínima y un síntoma observable. Posteriormente aísla variables y contrasta hipótesis con instrumentación repetible para validar una causa demostrada y una regresión protegida.
 
 
-### 📑 Sección: Producción (5 conceptos)
+### Seccion: Producción (5 conceptos)
 
 - **pdfLaTeX XeLaTeX LuaLaTeX**  
   *Familia:* `tejido literario`  
@@ -153,7 +153,7 @@
   Reproducibilidad estructura un ejemplo mínimo, sus precondiciones y el estado inicial en el sistema: aplica el mecanismo paso a paso haciendo visibles sus invariantes, garantizando un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: TeX y expansión profunda (6 conceptos)
+### Seccion: TeX y expansión profunda (6 conceptos)
 
 - **Tokens y category codes**  
   *Familia:* `consulta e índice`  
@@ -180,7 +180,7 @@
   Expansion tracing gestiona TeX y expansión profunda de modo que expande tokens, actualiza índices o referencias y compone cajas en páginas, produciendo un PDF estable cuya estructura y procedencia pueden inspeccionarse.
 
 
-### 📑 Sección: Diseño de clases y paquetes (7 conceptos)
+### Seccion: Diseño de clases y paquetes (7 conceptos)
 
 - **Document class options**  
   *Familia:* `análisis y emisión`  
@@ -211,7 +211,7 @@
   A través de Public macro compatibility en Diseño de clases y paquetes, el sistema expande tokens, construye nodos, resuelve referencias y compone páginas manteniendo un PDF tipográficamente estable, navegable y reproducible.
 
 
-### 📑 Sección: Tipografía (8 conceptos)
+### Seccion: Tipografía (8 conceptos)
 
 - **Microtypography**  
   *Familia:* `análisis y emisión`  
@@ -246,7 +246,7 @@
   En el flujo operativo de Tipografía, Optical sizing validation expande tokens, actualiza índices o referencias y compone cajas en páginas para obtener un PDF estable cuya estructura y procedencia pueden inspeccionarse.
 
 
-### 📑 Sección: Matemáticas avanzadas (6 conceptos)
+### Seccion: Matemáticas avanzadas (6 conceptos)
 
 - **Equation alignment**  
   *Familia:* `consulta e índice`  
@@ -273,7 +273,7 @@
   MathML tagging maps gestiona Matemáticas avanzadas de modo que expande tokens, construye nodos, resuelve referencias y compone páginas, produciendo un PDF tipográficamente estable, navegable y reproducible.
 
 
-### 📑 Sección: Gráficos y datos (7 conceptos)
+### Seccion: Gráficos y datos (7 conceptos)
 
 - **TikZ paths**  
   *Familia:* `árbol de recursos`  
@@ -304,7 +304,7 @@
   A través de Color-space management en Gráficos y datos, el sistema expande tokens, actualiza índices o referencias y compone cajas en páginas manteniendo un PDF estable cuya estructura y procedencia pueden inspeccionarse.
 
 
-### 📑 Sección: Bibliografías complejas (7 conceptos)
+### Seccion: Bibliografías complejas (7 conceptos)
 
 - **BibLaTeX data model**  
   *Familia:* `tejido literario`  
@@ -335,7 +335,7 @@
   A través de Citation disambiguation en Bibliografías complejas, el sistema expande tokens, construye nodos, resuelve referencias y compone páginas manteniendo un PDF tipográficamente estable, navegable y reproducible.
 
 
-### 📑 Sección: Documentos extensos (7 conceptos)
+### Seccion: Documentos extensos (7 conceptos)
 
 - **Multi-file projects**  
   *Familia:* `telar relacional`  
@@ -366,7 +366,7 @@
   A través de Cross-document version alignment en Documentos extensos, el sistema expande tokens, construye nodos, resuelve referencias y compone páginas manteniendo un PDF tipográficamente estable, navegable y reproducible.
 
 
-### 📑 Sección: Accesibilidad y estándares (7 conceptos)
+### Seccion: Accesibilidad y estándares (7 conceptos)
 
 - **Tagged PDF**  
   *Familia:* `validación y decisión`  
@@ -397,7 +397,7 @@
   A través de Alternative-text ownership en Accesibilidad y estándares, el sistema expande tokens, construye nodos, resuelve referencias y compone páginas manteniendo un PDF tipográficamente estable, navegable y reproducible.
 
 
-### 📑 Sección: Testing y automatización (7 conceptos)
+### Seccion: Testing y automatización (7 conceptos)
 
 - **l3build**  
   *Familia:* `análisis y emisión`  
@@ -428,7 +428,7 @@
   A través de Golden baseline thresholds en Testing y automatización, el sistema expande tokens, actualiza índices o referencias y compone cajas en páginas manteniendo un PDF estable cuya estructura y procedencia pueden inspeccionarse.
 
 
-### 📑 Sección: Seguridad y publicación (8 conceptos)
+### Seccion: Seguridad y publicación (8 conceptos)
 
 - **Shell escape boundaries**  
   *Familia:* `evidencia y latencia`  
@@ -466,4 +466,4 @@
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Infraestructura y entrega](Grupo-Delivery) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Infraestructura y entrega](Grupo-Delivery) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

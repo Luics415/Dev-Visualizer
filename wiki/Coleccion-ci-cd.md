@@ -1,46 +1,46 @@
-# 📘 [CI] CI/CD
+# CI/CD (CI)
 
 > **Integración, evidencia, artefactos, supply chain y promoción.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `ci-cd` |
-| **Grupo Arquitectónico** | [Infraestructura y entrega](Grupo-Delivery) |
+| **Grupo Arquitectonico** | [Infraestructura y entrega](Grupo-Delivery) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `ci-cd` |
 | **Total de Conceptos** | **42 conceptos** |
-| **Capítulos / Secciones** | **7 secciones** |
+| **Capitulos / Secciones** | **7 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/ci-cd)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/ci-cd-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/ci-cd)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/ci-cd-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: CI/CD en acción
+## Estudio de Caso Practico: CI/CD en acción
 
 > **Caso integrado · Artefacto promocionable:** Un cambio pequeño atraviesa feedback rápido, pruebas profundas y controles de supply chain hasta producir un digest firmado listo para Deployment.  
 > El pipeline entrega un artefacto único con evidencia; ninguna fase posterior necesita reconstruir ni recuperar secretos permanentes.
 
-### Fases de Ejecución:
-1. **Detectar el cambio** (El alcance evita trabajo inútil): `pull_request · paths: src/**` → ejecución relevante. *El trigger incluye solo eventos y rutas que pueden cambiar el producto.*
-2. **Feedback temprano** (Checks baratos primero): `lint → typecheck → unit` → cambio básico verificado. *La velocidad importa porque un hallazgo tardío multiplica el costo de contexto.*
-3. **Probar fronteras** (Servicios efímeros y contratos): `integration + contract + e2e` → comportamiento demostrado. *Las pruebas profundas se ejecutan sobre dependencias controladas, no sobre residuos de otro job.*
-4. **Construir una vez** (El lockfile fija entradas): `npm ci && npm run build` → artefacto inmutable. *La promoción mueve identidad y evidencia, nunca recompila desde una rama cambiante.*
-5. **Examinar supply chain** (Componentes y código se inspeccionan): `SBOM + CodeQL + dependency review` → riesgo evaluado. *Una política fallida detiene la promoción y conserva evidencia para corregir.*
-6. **Autenticar sin secreto largo** (OIDC concede acceso temporal): `id-token: write → cloud role` → identidad de job. *La nube confía en condiciones concretas de la ejecución, no en una clave compartida.*
-7. **Firmar y atestiguar** (El artefacto conserva procedencia): `sign digest + provenance` → artefacto verificable. *Firma y provenance permiten rechazar binarios que no nacieron del flujo autorizado.*
-8. **Entregar a Deployment** (La frontera queda explícita): `promote sha256:24b9…` → versión promocionable. *Deployment decide configuración, rollout, tráfico y rollback a partir de este artefacto.*
+### Fases de Ejecucion:
+1. **Detectar el cambio** (El alcance evita trabajo inútil): `pull_request · paths: src/**` -> ejecución relevante. *El trigger incluye solo eventos y rutas que pueden cambiar el producto.*
+2. **Feedback temprano** (Checks baratos primero): `lint → typecheck → unit` -> cambio básico verificado. *La velocidad importa porque un hallazgo tardío multiplica el costo de contexto.*
+3. **Probar fronteras** (Servicios efímeros y contratos): `integration + contract + e2e` -> comportamiento demostrado. *Las pruebas profundas se ejecutan sobre dependencias controladas, no sobre residuos de otro job.*
+4. **Construir una vez** (El lockfile fija entradas): `npm ci && npm run build` -> artefacto inmutable. *La promoción mueve identidad y evidencia, nunca recompila desde una rama cambiante.*
+5. **Examinar supply chain** (Componentes y código se inspeccionan): `SBOM + CodeQL + dependency review` -> riesgo evaluado. *Una política fallida detiene la promoción y conserva evidencia para corregir.*
+6. **Autenticar sin secreto largo** (OIDC concede acceso temporal): `id-token: write → cloud role` -> identidad de job. *La nube confía en condiciones concretas de la ejecución, no en una clave compartida.*
+7. **Firmar y atestiguar** (El artefacto conserva procedencia): `sign digest + provenance` -> artefacto verificable. *Firma y provenance permiten rechazar binarios que no nacieron del flujo autorizado.*
+8. **Entregar a Deployment** (La frontera queda explícita): `promote sha256:24b9…` -> versión promocionable. *Deployment decide configuración, rollout, tráfico y rollback a partir de este artefacto.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (42)
+## Catalogo Sistematico de Conceptos (42)
 
-### 📑 Sección: Principios de flujo (6 conceptos)
+### Seccion: Principios de flujo (6 conceptos)
 
 - **Integración continua**  
   *Familia:* `capas internas`  
@@ -67,7 +67,7 @@
   Ordena checks baratos primero y conserva pruebas amplias antes de promover.
 
 
-### 📑 Sección: Runners y entornos (6 conceptos)
+### Seccion: Runners y entornos (6 conceptos)
 
 - **Runner hospedado o propio**  
   *Familia:* `topología y tráfico`  
@@ -94,7 +94,7 @@
   Detiene jobs colgados y hace visible su presupuesto operativo.
 
 
-### 📑 Sección: Pruebas y calidad (6 conceptos)
+### Seccion: Pruebas y calidad (6 conceptos)
 
 - **Lint y análisis estático**  
   *Familia:* `análisis y emisión`  
@@ -121,7 +121,7 @@
   Clasifica inestabilidad como defecto del sistema de evidencia, no como ruido aceptable.
 
 
-### 📑 Sección: Builds y artefactos (6 conceptos)
+### Seccion: Builds y artefactos (6 conceptos)
 
 - **Build reproducible**  
   *Familia:* `análisis y emisión`  
@@ -148,7 +148,7 @@
   Conserva binario, evidencia y origen durante el periodo necesario para auditar o revertir.
 
 
-### 📑 Sección: Seguridad de supply chain (6 conceptos)
+### Seccion: Seguridad de supply chain (6 conceptos)
 
 - **Permisos mínimos del workflow**  
   *Familia:* `workflow y decisiones`  
@@ -175,7 +175,7 @@
   Estructura controles de provenance y resistencia a manipulación según el riesgo.
 
 
-### 📑 Sección: Promoción y políticas (6 conceptos)
+### Seccion: Promoción y políticas (6 conceptos)
 
 - **Checks requeridos**  
   *Familia:* `capas internas`  
@@ -202,7 +202,7 @@
   Entrega digest, configuración compatible y evidencia sin decidir por sí solo cómo recibe tráfico.
 
 
-### 📑 Sección: Operación del pipeline (6 conceptos)
+### Seccion: Operación del pipeline (6 conceptos)
 
 - **Logs estructurados y anotaciones**  
   *Familia:* `evidencia y latencia`  
@@ -230,11 +230,11 @@
 
 
 
-## 📖 Recursos de Estudio y Referencias Oficiales
+## Referencias Bibliograficas y Documentacion Oficial
 - **[Quickstart for GitHub Actions](https://docs.github.com/en/actions/get-started/quickstart)** (`tutorial` | Nivel: `beginner`): 
 - **[OpenSSF Scorecard](https://scorecard.dev/)** (`reference` | Nivel: `intermediate`): 
 - **[GitHub artifact attestations](https://docs.github.com/en/actions/how-tos/secure-your-work/use-artifact-attestations/use-artifact-attestations)** (`reference` | Nivel: `advanced`): 
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Infraestructura y entrega](Grupo-Delivery) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Infraestructura y entrega](Grupo-Delivery) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

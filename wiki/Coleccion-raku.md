@@ -1,43 +1,43 @@
-# 📘 [Rk] Raku
+# Raku (Rk)
 
 > **Gramáticas, tipos, junctions, concurrencia, metaprogramación y herramientas.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `raku` |
-| **Grupo Arquitectónico** | [Lenguajes](Grupo-Languages) |
+| **Grupo Arquitectonico** | [Lenguajes](Grupo-Languages) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `ux-ui` |
 | **Total de Conceptos** | **88 conceptos** |
-| **Capítulos / Secciones** | **14 secciones** |
+| **Capitulos / Secciones** | **14 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/raku)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/raku-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/raku)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/raku-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: Parsear una configuración con Grammar
+## Estudio de Caso Practico: Parsear una configuración con Grammar
 
 > **Caso integrado de Raku:** Una gramática convierte configuración en AST, detecta una clave ambigua y recupera precedencia y mensajes de error antes de aplicar cambios.  
 > El parser final distingue sintaxis, semántica y ejecución, y conserva Match para explicar cada diagnóstico.
 
-### Fases de Ejecución:
-1. **Definir grammar** (Parsear una configuración con Grammar: etapa 1 de 5): `grammar Config { token TOP { <pair>* } }` → Sintaxis reconocible. *La etapa conserva un contrato explícito para que el siguiente paso de Raku no dependa de supuestos ocultos.*
-2. **Construir AST** (Parsear una configuración con Grammar: etapa 2 de 5): `class Actions { method pair($/) { make Pair.new(...) } }` → AST tipado. *La etapa conserva un contrato explícito para que el siguiente paso de Raku no dependa de supuestos ocultos.*
-3. **Detectar ambigüedad** (Parsear una configuración con Grammar: etapa 3 de 5): `mode = fast = unsafe` → Configuración rechazada. *El caso hace visible el fallo de Raku; no continúa como si la evidencia fuera válida.*
-4. **Ajustar regla y mensaje** (Parsear una configuración con Grammar: etapa 4 de 5): `rule pair { <key> '=' <value> $ }` → Parser recuperado. *La recuperación de Raku corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
-5. **Aplicar con pruebas** (Parsear una configuración con Grammar: etapa 5 de 5): `ok Config.parse($text, :actions($a));` → Configuración segura. *La etapa conserva un contrato explícito para que el siguiente paso de Raku no dependa de supuestos ocultos.*
+### Fases de Ejecucion:
+1. **Definir grammar** (Parsear una configuración con Grammar: etapa 1 de 5): `grammar Config { token TOP { <pair>* } }` -> Sintaxis reconocible. *La etapa conserva un contrato explícito para que el siguiente paso de Raku no dependa de supuestos ocultos.*
+2. **Construir AST** (Parsear una configuración con Grammar: etapa 2 de 5): `class Actions { method pair($/) { make Pair.new(...) } }` -> AST tipado. *La etapa conserva un contrato explícito para que el siguiente paso de Raku no dependa de supuestos ocultos.*
+3. **Detectar ambigüedad** (Parsear una configuración con Grammar: etapa 3 de 5): `mode = fast = unsafe` -> Configuración rechazada. *El caso hace visible el fallo de Raku; no continúa como si la evidencia fuera válida.*
+4. **Ajustar regla y mensaje** (Parsear una configuración con Grammar: etapa 4 de 5): `rule pair { <key> '=' <value> $ }` -> Parser recuperado. *La recuperación de Raku corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
+5. **Aplicar con pruebas** (Parsear una configuración con Grammar: etapa 5 de 5): `ok Config.parse($text, :actions($a));` -> Configuración segura. *La etapa conserva un contrato explícito para que el siguiente paso de Raku no dependa de supuestos ocultos.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (88)
+## Catalogo Sistematico de Conceptos (88)
 
-### 📑 Sección: Lenguaje (5 conceptos)
+### Seccion: Lenguaje (5 conceptos)
 
 - **Sigils y containers**  
   *Familia:* `análisis y emisión`  
@@ -60,7 +60,7 @@
   En Control de flujo, un ejemplo mínimo, sus precondiciones y el estado inicial ingresa al flujo donde aplica el mecanismo paso a paso haciendo visibles sus invariantes para consolidar un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Despacho y objetos (5 conceptos)
+### Seccion: Despacho y objetos (5 conceptos)
 
 - **Multi dispatch**  
   *Familia:* `jerarquía y dependencias`  
@@ -83,7 +83,7 @@
   Introspection estructura un ejemplo mínimo, sus precondiciones y el estado inicial en el sistema: aplica el mecanismo paso a paso haciendo visibles sus invariantes, garantizando un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Parsing (5 conceptos)
+### Seccion: Parsing (5 conceptos)
 
 - **Regex de Raku**  
   *Familia:* `despacho de runtime`  
@@ -106,7 +106,7 @@
   Actions y AST conecta un ejemplo mínimo, sus precondiciones y el estado inicial con su runtime interno: aplica el mecanismo paso a paso haciendo visibles sus invariantes hasta exponer un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Errores y diagnóstico (5 conceptos)
+### Seccion: Errores y diagnóstico (5 conceptos)
 
 - **Failures**  
   *Familia:* `evidencia y latencia`  
@@ -129,7 +129,7 @@
   Para entender Pruebas, se delimita un comportamiento esperado, una entrada mínima y un síntoma observable. La operación aísla variables y contrasta hipótesis con instrumentación repetible hasta producir una causa demostrada y una regresión protegida.
 
 
-### 📑 Sección: Producción (5 conceptos)
+### Seccion: Producción (5 conceptos)
 
 - **Promise**  
   *Familia:* `máquina de estados`  
@@ -152,7 +152,7 @@
   Precompilation estructura texto fuente, contexto léxico y reglas del lenguaje en el sistema: reconoce estructura, comprueba contratos y produce una representación ejecutable, garantizando significado bien formado con errores localizados.
 
 
-### 📑 Sección: Modelo de objetos y metamodelo (7 conceptos)
+### Seccion: Modelo de objetos y metamodelo (7 conceptos)
 
 - **HOW y WHAT**  
   *Familia:* `flujo de transformación`  
@@ -183,7 +183,7 @@
   A través de BUILD and TWEAK lifecycle en Modelo de objetos y metamodelo, el sistema resuelve el grafo, verifica procedencia, compila y empaqueta con entorno fijado manteniendo artefacto versionado cuya composición puede reproducirse.
 
 
-### 📑 Sección: Sistema de tipos expresivo (6 conceptos)
+### Seccion: Sistema de tipos expresivo (6 conceptos)
 
 - **Subset types**  
   *Familia:* `validación y decisión`  
@@ -210,7 +210,7 @@
   Native numeric types gestiona Sistema de tipos expresivo de modo que resuelve composición, restricciones y representación antes de aceptar la instancia, produciendo estructura válida cuyas operaciones permitidas están explícitas.
 
 
-### 📑 Sección: Despacho avanzado (7 conceptos)
+### Seccion: Despacho avanzado (7 conceptos)
 
 - **Proto candidates**  
   *Familia:* `despacho de runtime`  
@@ -241,7 +241,7 @@
   A través de callsame candidate traversal en Despacho avanzado, el sistema filtra aplicabilidad, ordena especificidad y selecciona o combina implementaciones manteniendo un candidato trazable cuya precedencia explica el comportamiento.
 
 
-### 📑 Sección: Gramáticas de producción (7 conceptos)
+### Seccion: Gramáticas de producción (7 conceptos)
 
 - **Proto regex y alternación longest-token**  
   *Familia:* `evidencia y latencia`  
@@ -272,7 +272,7 @@
   A través de Backtracking control in protoregexes en Gramáticas de producción, el sistema tokeniza, reconoce alternativas y construye una representación estructurada sin perder ubicación manteniendo árbol, match o diagnóstico consumible por la siguiente etapa.
 
 
-### 📑 Sección: Concurrencia reactiva (7 conceptos)
+### Seccion: Concurrencia reactiva (7 conceptos)
 
 - **Supply live y on-demand**  
   *Familia:* `planificación de trabajo`  
@@ -303,7 +303,7 @@
   A través de Scheduler selection en Concurrencia reactiva, el sistema encola, planifica y reanuda unidades conservando causalidad y propagación de error manteniendo resultado, cancelación o reinicio visibles para el supervisor correcto.
 
 
-### 📑 Sección: Testing y diagnóstico (7 conceptos)
+### Seccion: Testing y diagnóstico (7 conceptos)
 
 - **Test plans**  
   *Familia:* `espectro de verificación`  
@@ -334,7 +334,7 @@
   A través de Concurrent failure reproducibility en Testing y diagnóstico, el sistema ejecuta camino normal, límite y fallo mientras captura todos los efectos observables manteniendo evidencia repetible que distingue comportamiento correcto de una regresión.
 
 
-### 📑 Sección: NativeCall e interoperabilidad (7 conceptos)
+### Seccion: NativeCall e interoperabilidad (7 conceptos)
 
 - **Firmas NativeCall**  
   *Familia:* `despacho de runtime`  
@@ -365,7 +365,7 @@
   A través de Foreign memory ownership en NativeCall e interoperabilidad, el sistema consulta, calcula ausencias y publica el nuevo valor junto con su invalidador manteniendo reutilización medible sin cambiar el resultado funcional.
 
 
-### 📑 Sección: Módulos y distribución (7 conceptos)
+### Seccion: Módulos y distribución (7 conceptos)
 
 - **META6.json**  
   *Familia:* `configuración declarativa`  
@@ -396,7 +396,7 @@
   A través de Version auth and api resolution en Módulos y distribución, el sistema autentica, normaliza y autoriza antes de ejecutar con la capacidad mínima manteniendo decisión explícita y auditable que no expone secretos ni amplía privilegios.
 
 
-### 📑 Sección: Operación sobre MoarVM (8 conceptos)
+### Seccion: Operación sobre MoarVM (8 conceptos)
 
 - **Specialization de MoarVM**  
   *Familia:* `aislamiento sobre host`  
@@ -434,4 +434,4 @@
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

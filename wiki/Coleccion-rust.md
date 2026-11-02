@@ -1,44 +1,44 @@
-# 📘 [Rs] Rust
+# Rust (Rs)
 
 > **Ownership, borrowing, tipos, traits, concurrencia segura, tooling y rendimiento.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `rust` |
-| **Grupo Arquitectónico** | [Lenguajes](Grupo-Languages) |
+| **Grupo Arquitectonico** | [Lenguajes](Grupo-Languages) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `embedded-c` |
 | **Total de Conceptos** | **113 conceptos** |
-| **Capítulos / Secciones** | **19 secciones** |
+| **Capitulos / Secciones** | **19 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/rust)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/rust-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/rust)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/rust-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: Ingerir telemetría sin carreras
+## Estudio de Caso Practico: Ingerir telemetría sin carreras
 
 > **Caso integrado de Rust:** Un servicio concurrente distribuye paquetes entre workers, descubre un préstamo que sobreviviría al buffer y recupera ownership antes de confirmar el lote.  
 > El binario final demuestra límites de cola, cancelación, errores tipados y ausencia de datos compartidos sin protección.
 
-### Fases de Ejecución:
-1. **Modelar paquetes** (Ingerir telemetría sin carreras: etapa 1 de 5): `struct Packet { id: u64, payload: Vec<u8> }` → Contrato de datos explícito. *La etapa conserva un contrato explícito para que el siguiente paso de Rust no dependa de supuestos ocultos.*
-2. **Distribuir trabajo** (Ingerir telemetría sin carreras: etapa 2 de 5): `tx.send(packet)?;` → Trabajo sin copia accidental. *La etapa conserva un contrato explícito para que el siguiente paso de Rust no dependa de supuestos ocultos.*
-3. **Rechazar préstamo fugitivo** (Ingerir telemetría sin carreras: etapa 3 de 5): `let view = &buffer[..]; spawn(move || use(view));` → Build detenido con causa. *El caso hace visible el fallo de Rust; no continúa como si la evidencia fuera válida.*
+### Fases de Ejecucion:
+1. **Modelar paquetes** (Ingerir telemetría sin carreras: etapa 1 de 5): `struct Packet { id: u64, payload: Vec<u8> }` -> Contrato de datos explícito. *La etapa conserva un contrato explícito para que el siguiente paso de Rust no dependa de supuestos ocultos.*
+2. **Distribuir trabajo** (Ingerir telemetría sin carreras: etapa 2 de 5): `tx.send(packet)?;` -> Trabajo sin copia accidental. *La etapa conserva un contrato explícito para que el siguiente paso de Rust no dependa de supuestos ocultos.*
+3. **Rechazar préstamo fugitivo** (Ingerir telemetría sin carreras: etapa 3 de 5): `let view = &buffer[..]; spawn(move || use(view));` -> Build detenido con causa. *El caso hace visible el fallo de Rust; no continúa como si la evidencia fuera válida.*
 4. **Mover datos seguros** (Ingerir telemetría sin carreras: etapa 4 de 5): `let owned = buffer.to_vec();
-spawn(move || use(owned));` → Concurrencia recuperada. *La recuperación de Rust corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
-5. **Cerrar con evidencia** (Ingerir telemetría sin carreras: etapa 5 de 5): `drop(tx); for worker in workers { worker.join()?; }` → Lote completo y trazable. *La etapa conserva un contrato explícito para que el siguiente paso de Rust no dependa de supuestos ocultos.*
+spawn(move || use(owned));` -> Concurrencia recuperada. *La recuperación de Rust corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
+5. **Cerrar con evidencia** (Ingerir telemetría sin carreras: etapa 5 de 5): `drop(tx); for worker in workers { worker.join()?; }` -> Lote completo y trazable. *La etapa conserva un contrato explícito para que el siguiente paso de Rust no dependa de supuestos ocultos.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (113)
+## Catalogo Sistematico de Conceptos (113)
 
-### 📑 Sección: Fundamentos (5 conceptos)
+### Seccion: Fundamentos (5 conceptos)
 
 - **Cargo y crates**  
   *Familia:* `análisis y emisión`  
@@ -61,7 +61,7 @@ spawn(move || use(owned));` → Concurrencia recuperada. *La recuperación de Ru
   El recorrido de Funciones y módulos toma fuentes versionadas, dependencias fijadas y configuración declarativa. Posteriormente resuelve, construye y empaqueta el artefacto de forma repetible para validar una unidad identificable que puede verificarse antes de promoverse.
 
 
-### 📑 Sección: Memoria (5 conceptos)
+### Seccion: Memoria (5 conceptos)
 
 - **Ownership**  
   *Familia:* `mapa de memoria`  
@@ -84,7 +84,7 @@ spawn(move || use(owned));` → Concurrencia recuperada. *La recuperación de Ru
   Drop y RAII conecta valores con representación, dirección y tiempo de vida definidos con su runtime interno: reserva, enlaza y libera almacenamiento siguiendo el contrato del runtime hasta exponer estado accesible sin referencias colgantes ni corrupción.
 
 
-### 📑 Sección: Abstracciones (5 conceptos)
+### Seccion: Abstracciones (5 conceptos)
 
 - **Structs y enums**  
   *Familia:* `análisis y emisión`  
@@ -107,7 +107,7 @@ spawn(move || use(owned));` → Concurrencia recuperada. *La recuperación de Ru
   Para entender Closures, se delimita un ejemplo mínimo, sus precondiciones y el estado inicial. La operación aplica el mecanismo paso a paso haciendo visibles sus invariantes hasta producir un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Errores y diagnóstico (5 conceptos)
+### Seccion: Errores y diagnóstico (5 conceptos)
 
 - **Option y Result**  
   *Familia:* `evidencia y latencia`  
@@ -130,7 +130,7 @@ spawn(move || use(owned));` → Concurrencia recuperada. *La recuperación de Ru
   Para entender Miri y sanitizers, se delimita un comportamiento esperado, una entrada mínima y un síntoma observable. La operación aísla variables y contrasta hipótesis con instrumentación repetible hasta producir una causa demostrada y una regresión protegida.
 
 
-### 📑 Sección: Producción (5 conceptos)
+### Seccion: Producción (5 conceptos)
 
 - **Send y Sync**  
   *Familia:* `pasaporte del artefacto`  
@@ -153,7 +153,7 @@ spawn(move || use(owned));` → Concurrencia recuperada. *La recuperación de Ru
   Perfiles de release estructura un ejemplo mínimo, sus precondiciones y el estado inicial en el sistema: aplica el mecanismo paso a paso haciendo visibles sus invariantes, garantizando un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Sistema de tipos expresivo (5 conceptos)
+### Seccion: Sistema de tipos expresivo (5 conceptos)
 
 - **Newtype pattern**  
   *Familia:* `análisis y emisión`  
@@ -176,7 +176,7 @@ spawn(move || use(owned));` → Concurrencia recuperada. *La recuperación de Ru
   Comunica al compilador ownership, varianza o lifetime que no aparecen como campos almacenados.
 
 
-### 📑 Sección: Ownership avanzado (7 conceptos)
+### Seccion: Ownership avanzado (7 conceptos)
 
 - **Movimientos parciales**  
   *Familia:* `mapa de memoria`  
@@ -207,7 +207,7 @@ spawn(move || use(owned));` → Concurrencia recuperada. *La recuperación de Ru
   Cycle / prevention / arenas coordina la ejecución: el runtime o compilador reserva, comparte, mueve y libera almacenamiento respetando aliasing y alineación hasta obtener memoria válida durante toda la operación y recuperada al terminar su último uso.
 
 
-### 📑 Sección: Préstamos en diseños reales (6 conceptos)
+### Seccion: Préstamos en diseños reales (6 conceptos)
 
 - **Reborrowing**  
   *Familia:* `ciclo de vida`  
@@ -234,7 +234,7 @@ spawn(move || use(owned));` → Concurrencia recuperada. *La recuperación de Ru
   Para Two-phase / borrows, el runtime o compilador reserva, comparte, mueve y libera almacenamiento respetando aliasing y alineación, manteniendo memoria válida durante toda la operación y recuperada al terminar su último uso.
 
 
-### 📑 Sección: Traits y coherencia (8 conceptos)
+### Seccion: Traits y coherencia (8 conceptos)
 
 - **Associated types**  
   *Familia:* `análisis y emisión`  
@@ -269,7 +269,7 @@ spawn(move || use(owned));` → Concurrencia recuperada. *La recuperación de Ru
   Al operar con Specialization / sus / límites, el checker resuelve compatibilidad, inferencia, bounds y alternativas permitidas antes de emitir código, produciendo una operación tipada cuyo contrato puede consumirse sin repetir validaciones.
 
 
-### 📑 Sección: Abstracciones de costo cero (5 conceptos)
+### Seccion: Abstracciones de costo cero (5 conceptos)
 
 - **Monomorphization**  
   *Familia:* `validación y decisión`  
@@ -292,7 +292,7 @@ spawn(move || use(owned));` → Concurrencia recuperada. *La recuperación de Ru
   Codifica fases válidas como tipos para que operaciones fuera de orden no compilen.
 
 
-### 📑 Sección: Macros y generación (7 conceptos)
+### Seccion: Macros y generación (7 conceptos)
 
 - **macro_rules**  
   *Familia:* `tejido literario`  
@@ -323,7 +323,7 @@ spawn(move || use(owned));` → Concurrencia recuperada. *La recuperación de Ru
   Span-aware / diagnostics coordina la ejecución: la herramienta ejecuta, perturba o inspecciona el mecanismo y conserva el contraejemplo mínimo hasta obtener evidencia reproducible que distingue regresión, ruido y limitación conocida.
 
 
-### 📑 Sección: Colecciones e iteración (5 conceptos)
+### Seccion: Colecciones e iteración (5 conceptos)
 
 - **Vec y capacidad**  
   *Familia:* `capas internas`  
@@ -346,7 +346,7 @@ spawn(move || use(owned));` → Concurrencia recuperada. *La recuperación de Ru
   Define iteración por valor, referencia o referencia mutable y determina qué puede usarse después.
 
 
-### 📑 Sección: Concurrencia sin carreras (8 conceptos)
+### Seccion: Concurrencia sin carreras (8 conceptos)
 
 - **Mutex y RwLock**  
   *Familia:* `máquina de estados`  
@@ -381,7 +381,7 @@ spawn(move || use(owned));` → Concurrencia recuperada. *La recuperación de Ru
   Al operar con Loom / model / checking, el modelo estima parámetros o predicciones bajo supuestos que se comprueban con datos separados, produciendo una estimación acompañada de incertidumbre, diagnóstico y alcance de generalización.
 
 
-### 📑 Sección: Asincronía en profundidad (6 conceptos)
+### Seccion: Asincronía en profundidad (6 conceptos)
 
 - **State machines de Future**  
   *Familia:* `planificación de trabajo`  
@@ -408,7 +408,7 @@ spawn(move || use(owned));` → Concurrencia recuperada. *La recuperación de Ru
   Para Backpressure / bounded / channels, el scheduler intercala trabajo mientras locks, mensajes o atomics establecen el orden observable, manteniendo progreso concurrente con ownership y terminación comprobables para cada tarea.
 
 
-### 📑 Sección: Unsafe con invariantes (7 conceptos)
+### Seccion: Unsafe con invariantes (7 conceptos)
 
 - **Raw pointers**  
   *Familia:* `mapa de memoria`  
@@ -439,7 +439,7 @@ spawn(move || use(owned));` → Concurrencia recuperada. *La recuperación de Ru
   Stacked / Borrows / model coordina la ejecución: el runtime o compilador reserva, comparte, mueve y libera almacenamiento respetando aliasing y alineación hasta obtener memoria válida durante toda la operación y recuperada al terminar su último uso.
 
 
-### 📑 Sección: Interoperabilidad (5 conceptos)
+### Seccion: Interoperabilidad (5 conceptos)
 
 - **ABI C**  
   *Familia:* `despacho de runtime`  
@@ -462,7 +462,7 @@ spawn(move || use(owned));` → Concurrencia recuperada. *La recuperación de Ru
   Ordena campos según reglas C para compartir estructuras sin asumir el layout Rust por defecto.
 
 
-### 📑 Sección: Pruebas y calidad (8 conceptos)
+### Seccion: Pruebas y calidad (8 conceptos)
 
 - **Unit e integration tests**  
   *Familia:* `espectro de verificación`  
@@ -497,7 +497,7 @@ spawn(move || use(owned));` → Concurrencia recuperada. *La recuperación de Ru
   Al operar con Semver / compatibility / checks, la herramienta ejecuta, perturba o inspecciona el mecanismo y conserva el contraejemplo mínimo, produciendo evidencia reproducible que distingue regresión, ruido y limitación conocida.
 
 
-### 📑 Sección: Rendimiento y diagnóstico (5 conceptos)
+### Seccion: Rendimiento y diagnóstico (5 conceptos)
 
 - **Criterion benchmarks**  
   *Familia:* `comparativa técnica`  
@@ -520,7 +520,7 @@ spawn(move || use(owned));` → Concurrencia recuperada. *La recuperación de Ru
   Relaciona símbolos, monomorfizaciones y features con bytes finales del ejecutable.
 
 
-### 📑 Sección: Cadena de suministro y entrega (6 conceptos)
+### Seccion: Cadena de suministro y entrega (6 conceptos)
 
 - **Cargo workspaces**  
   *Familia:* `planificación de trabajo`  
@@ -550,4 +550,4 @@ spawn(move || use(owned));` → Concurrencia recuperada. *La recuperación de Ru
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

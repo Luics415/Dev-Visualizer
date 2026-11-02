@@ -1,43 +1,43 @@
-# 📘 [Ng] Angular
+# Angular (Ng)
 
 > **Componentes, señales, DI, router, formularios, SSR, pruebas y producción.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `angular` |
-| **Grupo Arquitectónico** | [Diseño e interfaces](Grupo-Interfaces) |
+| **Grupo Arquitectonico** | [Diseño e interfaces](Grupo-Interfaces) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `angularjs` |
 | **Total de Conceptos** | **130 conceptos** |
-| **Capítulos / Secciones** | **20 secciones** |
+| **Capitulos / Secciones** | **20 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/angular)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/angular-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/angular)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/angular-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: Completar un flujo de reparación
+## Estudio de Caso Practico: Completar un flujo de reparación
 
 > **Caso integrado de Angular:** Un formulario reactivo guía una solicitud, detecta un effect que escribe en círculo y recupera estado derivado antes de enviar y navegar.  
 > El flujo final conserva accesibilidad, validación, carga, error, retry y navegación sin duplicar fuentes de verdad.
 
-### Fases de Ejecución:
-1. **Componer formulario** (Completar un flujo de reparación: etapa 1 de 5): `form = new FormGroup({ device: new FormControl('', required) })` → Contrato de entrada. *La etapa conserva un contrato explícito para que el siguiente paso de Angular no dependa de supuestos ocultos.*
-2. **Derivar resumen** (Completar un flujo de reparación: etapa 2 de 5): `total = computed(() => estimate(this.form.value))` → Resumen reactivo. *La etapa conserva un contrato explícito para que el siguiente paso de Angular no dependa de supuestos ocultos.*
-3. **Detectar ciclo** (Completar un flujo de reparación: etapa 3 de 5): `effect(() => this.quantity.set(this.quantity() + 1))` → Render bloqueado. *El caso hace visible el fallo de Angular; no continúa como si la evidencia fuera válida.*
-4. **Eliminar escritura derivada** (Completar un flujo de reparación: etapa 4 de 5): `nextQuantity = computed(() => this.quantity() + 1)` → Grafo recuperado. *La recuperación de Angular corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
-5. **Enviar y navegar** (Completar un flujo de reparación: etapa 5 de 5): `this.http.post('/repairs', payload).subscribe(() => router.navigate(['/done']))` → Solicitud confirmada. *La etapa conserva un contrato explícito para que el siguiente paso de Angular no dependa de supuestos ocultos.*
+### Fases de Ejecucion:
+1. **Componer formulario** (Completar un flujo de reparación: etapa 1 de 5): `form = new FormGroup({ device: new FormControl('', required) })` -> Contrato de entrada. *La etapa conserva un contrato explícito para que el siguiente paso de Angular no dependa de supuestos ocultos.*
+2. **Derivar resumen** (Completar un flujo de reparación: etapa 2 de 5): `total = computed(() => estimate(this.form.value))` -> Resumen reactivo. *La etapa conserva un contrato explícito para que el siguiente paso de Angular no dependa de supuestos ocultos.*
+3. **Detectar ciclo** (Completar un flujo de reparación: etapa 3 de 5): `effect(() => this.quantity.set(this.quantity() + 1))` -> Render bloqueado. *El caso hace visible el fallo de Angular; no continúa como si la evidencia fuera válida.*
+4. **Eliminar escritura derivada** (Completar un flujo de reparación: etapa 4 de 5): `nextQuantity = computed(() => this.quantity() + 1)` -> Grafo recuperado. *La recuperación de Angular corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
+5. **Enviar y navegar** (Completar un flujo de reparación: etapa 5 de 5): `this.http.post('/repairs', payload).subscribe(() => router.navigate(['/done']))` -> Solicitud confirmada. *La etapa conserva un contrato explícito para que el siguiente paso de Angular no dependa de supuestos ocultos.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (130)
+## Catalogo Sistematico de Conceptos (130)
 
-### 📑 Sección: Componentes (5 conceptos)
+### Seccion: Componentes (5 conceptos)
 
 - **Standalone components**  
   *Familia:* `mapa de memoria`  
@@ -60,7 +60,7 @@
   El recorrido de Content projection toma un ejemplo mínimo, sus precondiciones y el estado inicial. Posteriormente aplica el mecanismo paso a paso haciendo visibles sus invariantes para validar un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Reactividad e internals (5 conceptos)
+### Seccion: Reactividad e internals (5 conceptos)
 
 - **Signals**  
   *Familia:* `mapa de memoria`  
@@ -83,7 +83,7 @@
   Zone y zoneless conecta un ejemplo mínimo, sus precondiciones y el estado inicial con su runtime interno: aplica el mecanismo paso a paso haciendo visibles sus invariantes hasta exponer un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Aplicación (5 conceptos)
+### Seccion: Aplicación (5 conceptos)
 
 - **Dependency injection**  
   *Familia:* `análisis y emisión`  
@@ -106,7 +106,7 @@
   RxJS interop estructura un ejemplo mínimo, sus precondiciones y el estado inicial en el sistema: aplica el mecanismo paso a paso haciendo visibles sus invariantes, garantizando un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Diagnóstico (5 conceptos)
+### Seccion: Diagnóstico (5 conceptos)
 
 - **Errores de template**  
   *Familia:* `evidencia y latencia`  
@@ -129,7 +129,7 @@
   El recorrido de Profiling toma un comportamiento esperado, una entrada mínima y un síntoma observable. Posteriormente aísla variables y contrasta hipótesis con instrumentación repetible para validar una causa demostrada y una regresión protegida.
 
 
-### 📑 Sección: Producción (5 conceptos)
+### Seccion: Producción (5 conceptos)
 
 - **SSR e hydration**  
   *Familia:* `despacho de runtime`  
@@ -152,7 +152,7 @@
   Actualizaciones estructura un ejemplo mínimo, sus precondiciones y el estado inicial en el sistema: aplica el mecanismo paso a paso haciendo visibles sus invariantes, garantizando un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Templates avanzados (6 conceptos)
+### Seccion: Templates avanzados (6 conceptos)
 
 - **Template type checking**  
   *Familia:* `flujo de transformación`  
@@ -179,7 +179,7 @@
   DOM sanitization contexts gestiona Templates avanzados de modo que mide, compone, renderiza y actualiza solo las dependencias invalidadas, produciendo interfaz navegable cuyo estado visual y semántico coinciden.
 
 
-### 📑 Sección: Arquitectura reactiva (8 conceptos)
+### Seccion: Arquitectura reactiva (8 conceptos)
 
 - **Signal stores**  
   *Familia:* `mapa de memoria`  
@@ -214,7 +214,7 @@
   En el flujo operativo de Arquitectura reactiva, Untracked dependency reads resuelve el grafo, verifica procedencia, compila y empaqueta con entorno fijado para obtener artefacto versionado cuya composición puede reproducirse.
 
 
-### 📑 Sección: Inyección de dependencias profunda (6 conceptos)
+### Seccion: Inyección de dependencias profunda (6 conceptos)
 
 - **Hierarchical injectors**  
   *Familia:* `despacho de runtime`  
@@ -241,7 +241,7 @@
   EnvironmentInjector lifecycle gestiona Inyección de dependencias profunda de modo que activa, usa y transfiere ownership solo bajo un protocolo explícito, produciendo recurso cerrado exactamente una vez y estado final observable.
 
 
-### 📑 Sección: Router avanzado (7 conceptos)
+### Seccion: Router avanzado (7 conceptos)
 
 - **Functional guards**  
   *Familia:* `validación y decisión`  
@@ -272,7 +272,7 @@
   A través de Navigation cancellation en Router avanzado, el sistema filtra aplicabilidad, ordena especificidad y selecciona o combina implementaciones manteniendo un candidato trazable cuya precedencia explica el comportamiento.
 
 
-### 📑 Sección: Formularios tipados (7 conceptos)
+### Seccion: Formularios tipados (7 conceptos)
 
 - **Typed controls**  
   *Familia:* `flujo de transformación`  
@@ -303,7 +303,7 @@
   A través de ControlValueAccessor disabled propagation en Formularios tipados, el sistema compiler y runtime resuelven dependencias, detectan cambios y actualizan la vista afectada manteniendo DOM, árbol de inyección y estado reactivo coherentes.
 
 
-### 📑 Sección: HTTP y datos (7 conceptos)
+### Seccion: HTTP y datos (7 conceptos)
 
 - **Functional interceptors**  
   *Familia:* `flujo de transformación`  
@@ -334,7 +334,7 @@
   A través de Request cancellation en HTTP y datos, el sistema serializa, negocia, transmite y traduce errores u ownership en la frontera manteniendo respuesta tipada o efecto confirmado con compatibilidad conocida.
 
 
-### 📑 Sección: Renderizado (7 conceptos)
+### Seccion: Renderizado (7 conceptos)
 
 - **Incremental hydration**  
   *Familia:* `despacho de runtime`  
@@ -365,7 +365,7 @@
   A través de TransferState leakage boundaries en Renderizado, el sistema mide, compone, renderiza y actualiza solo las dependencias invalidadas manteniendo interfaz navegable cuyo estado visual y semántico coinciden.
 
 
-### 📑 Sección: Testing unitario (7 conceptos)
+### Seccion: Testing unitario (7 conceptos)
 
 - **TestBed**  
   *Familia:* `espectro de verificación`  
@@ -396,7 +396,7 @@
   A través de Fake timer boundaries en Testing unitario, el sistema ejecuta camino normal, límite y fallo mientras captura todos los efectos observables manteniendo evidencia repetible que distingue comportamiento correcto de una regresión.
 
 
-### 📑 Sección: Testing integral (7 conceptos)
+### Seccion: Testing integral (7 conceptos)
 
 - **Contract tests**  
   *Familia:* `espectro de verificación`  
@@ -427,7 +427,7 @@
   A través de Network contract fixtures en Testing integral, el sistema ejecuta camino normal, límite y fallo mientras captura todos los efectos observables manteniendo evidencia repetible que distingue comportamiento correcto de una regresión.
 
 
-### 📑 Sección: Seguridad de aplicación (7 conceptos)
+### Seccion: Seguridad de aplicación (7 conceptos)
 
 - **Sanitization contexts**  
   *Familia:* `tejido literario`  
@@ -458,7 +458,7 @@
   A través de CSP nonce handling en Seguridad de aplicación, el sistema autentica, normaliza y autoriza antes de ejecutar con la capacidad mínima manteniendo decisión explícita y auditable que no expone secretos ni amplía privilegios.
 
 
-### 📑 Sección: Rendimiento (7 conceptos)
+### Seccion: Rendimiento (7 conceptos)
 
 - **OnPush strategy**  
   *Familia:* `evidencia y latencia`  
@@ -489,7 +489,7 @@
   A través de Deferrable view budgets en Rendimiento, el sistema mide, compone, renderiza y actualiza solo las dependencias invalidadas manteniendo interfaz navegable cuyo estado visual y semántico coinciden.
 
 
-### 📑 Sección: Design systems (7 conceptos)
+### Seccion: Design systems (7 conceptos)
 
 - **Angular CDK**  
   *Familia:* `mapa de memoria`  
@@ -520,7 +520,7 @@
   A través de Overlay accessibility en Design systems, el sistema mide, compone, renderiza y actualiza solo las dependencias invalidadas manteniendo interfaz navegable cuyo estado visual y semántico coinciden.
 
 
-### 📑 Sección: Tooling y monorepos (7 conceptos)
+### Seccion: Tooling y monorepos (7 conceptos)
 
 - **Angular CLI builders**  
   *Familia:* `análisis y emisión`  
@@ -551,7 +551,7 @@
   A través de Builder cache keys en Tooling y monorepos, el sistema consulta, calcula ausencias y publica el nuevo valor junto con su invalidador manteniendo reutilización medible sin cambiar el resultado funcional.
 
 
-### 📑 Sección: Interoperabilidad (7 conceptos)
+### Seccion: Interoperabilidad (7 conceptos)
 
 - **Custom elements**  
   *Familia:* `despacho de runtime`  
@@ -582,7 +582,7 @@
   A través de Zone boundary adapters en Interoperabilidad, el sistema compiler y runtime resuelven dependencias, detectan cambios y actualizan la vista afectada manteniendo DOM, árbol de inyección y estado reactivo coherentes.
 
 
-### 📑 Sección: Operación y evolución (8 conceptos)
+### Seccion: Operación y evolución (8 conceptos)
 
 - **ErrorHandler global**  
   *Familia:* `ciclo de vida`  
@@ -620,4 +620,4 @@
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Diseño e interfaces](Grupo-Interfaces) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Diseño e interfaces](Grupo-Interfaces) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

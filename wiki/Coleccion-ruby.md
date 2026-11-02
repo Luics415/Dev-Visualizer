@@ -1,43 +1,43 @@
-# 📘 [Rb] Ruby
+# Ruby (Rb)
 
 > **Objetos, bloques, enumerables, metaprogramación, concurrencia, tooling y producción.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `ruby` |
-| **Grupo Arquitectónico** | [Lenguajes](Grupo-Languages) |
+| **Grupo Arquitectonico** | [Lenguajes](Grupo-Languages) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `laravel` |
 | **Total de Conceptos** | **93 conceptos** |
-| **Capítulos / Secciones** | **16 secciones** |
+| **Capitulos / Secciones** | **16 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/ruby)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/ruby-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/ruby)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/ruby-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: Analizar registros con una tubería expresiva
+## Estudio de Caso Practico: Analizar registros con una tubería expresiva
 
 > **Caso integrado de Ruby:** Un CLI Ruby lee eventos, los transforma con Enumerable, detecta una codificación corrupta y recupera el lote sin perder los registros válidos.  
 > El reporte final enlaza cada agregado con las líneas aceptadas, rechazadas y su motivo.
 
-### Fases de Ejecución:
-1. **Abrir el stream** (Analizar registros con una tubería expresiva: etapa 1 de 5): `File.foreach(path, encoding: 'UTF-8')` → Entrada acotada. *La etapa conserva un contrato explícito para que el siguiente paso de Ruby no dependa de supuestos ocultos.*
-2. **Transformar eventos** (Analizar registros con una tubería expresiva: etapa 2 de 5): `eventos.filter_map { |linea| parsear(linea) }` → Eventos normalizados. *La etapa conserva un contrato explícito para que el siguiente paso de Ruby no dependa de supuestos ocultos.*
-3. **Detectar encoding inválido** (Analizar registros con una tubería expresiva: etapa 3 de 5): `invalid byte sequence in UTF-8` → Lote pausado con ubicación. *El caso hace visible el fallo de Ruby; no continúa como si la evidencia fuera válida.*
-4. **Aislar y continuar** (Analizar registros con una tubería expresiva: etapa 4 de 5): `linea.scrub.then { |s| parsear_seguro(s) }` → Flujo recuperado. *La recuperación de Ruby corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
-5. **Emitir resumen** (Analizar registros con una tubería expresiva: etapa 5 de 5): `eventos.tally.sort_by { |_k, v| -v }` → Reporte reproducible. *La etapa conserva un contrato explícito para que el siguiente paso de Ruby no dependa de supuestos ocultos.*
+### Fases de Ejecucion:
+1. **Abrir el stream** (Analizar registros con una tubería expresiva: etapa 1 de 5): `File.foreach(path, encoding: 'UTF-8')` -> Entrada acotada. *La etapa conserva un contrato explícito para que el siguiente paso de Ruby no dependa de supuestos ocultos.*
+2. **Transformar eventos** (Analizar registros con una tubería expresiva: etapa 2 de 5): `eventos.filter_map { |linea| parsear(linea) }` -> Eventos normalizados. *La etapa conserva un contrato explícito para que el siguiente paso de Ruby no dependa de supuestos ocultos.*
+3. **Detectar encoding inválido** (Analizar registros con una tubería expresiva: etapa 3 de 5): `invalid byte sequence in UTF-8` -> Lote pausado con ubicación. *El caso hace visible el fallo de Ruby; no continúa como si la evidencia fuera válida.*
+4. **Aislar y continuar** (Analizar registros con una tubería expresiva: etapa 4 de 5): `linea.scrub.then { |s| parsear_seguro(s) }` -> Flujo recuperado. *La recuperación de Ruby corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
+5. **Emitir resumen** (Analizar registros con una tubería expresiva: etapa 5 de 5): `eventos.tally.sort_by { |_k, v| -v }` -> Reporte reproducible. *La etapa conserva un contrato explícito para que el siguiente paso de Ruby no dependa de supuestos ocultos.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (93)
+## Catalogo Sistematico de Conceptos (93)
 
-### 📑 Sección: Ruby esencial (5 conceptos)
+### Seccion: Ruby esencial (5 conceptos)
 
 - **Objetos y mensajes**  
   *Familia:* `despacho de runtime`  
@@ -60,7 +60,7 @@
   Para entender Control de flujo, se delimita un ejemplo mínimo, sus precondiciones y el estado inicial. La operación aplica el mecanismo paso a paso haciendo visibles sus invariantes hasta producir un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Modelo de objetos (5 conceptos)
+### Seccion: Modelo de objetos (5 conceptos)
 
 - **Clases e instancias**  
   *Familia:* `análisis y emisión`  
@@ -83,7 +83,7 @@
   La función de Visibilidad parte de datos identificables junto con esquema, restricciones y procedencia. Su ejecución valida, representa y recorre cada valor preservando relaciones y produce información consultable con integridad y significado estables.
 
 
-### 📑 Sección: Composición idiomática (5 conceptos)
+### Seccion: Composición idiomática (5 conceptos)
 
 - **Bloques, Proc y lambda**  
   *Familia:* `flujo de transformación`  
@@ -106,7 +106,7 @@
   El mecanismo de Gemas y Bundler recibe un ejemplo mínimo, sus precondiciones y el estado inicial y aplica el mecanismo paso a paso haciendo visibles sus invariantes, asegurando un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Diagnóstico (5 conceptos)
+### Seccion: Diagnóstico (5 conceptos)
 
 - **Stack traces**  
   *Familia:* `evidencia y latencia`  
@@ -129,7 +129,7 @@
   El recorrido de Pruebas con Minitest toma un comportamiento esperado, una entrada mínima y un síntoma observable. Posteriormente aísla variables y contrasta hipótesis con instrumentación repetible para validar una causa demostrada y una regresión protegida.
 
 
-### 📑 Sección: Producción (5 conceptos)
+### Seccion: Producción (5 conceptos)
 
 - **Ractors, threads y GVL**  
   *Familia:* `tejido de eventos`  
@@ -152,7 +152,7 @@
   Versiones y despliegue estructura un ejemplo mínimo, sus precondiciones y el estado inicial en el sistema: aplica el mecanismo paso a paso haciendo visibles sus invariantes, garantizando un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Semántica del lenguaje (5 conceptos)
+### Seccion: Semántica del lenguaje (5 conceptos)
 
 - **Todo valor es un objeto**  
   *Familia:* `despacho de runtime`  
@@ -175,7 +175,7 @@
   Activan cambios léxicos sobre métodos sin contaminar globalmente todas las instancias de una clase.
 
 
-### 📑 Sección: Despacho dinámico (6 conceptos)
+### Seccion: Despacho dinámico (6 conceptos)
 
 - **Method tables**  
   *Familia:* `análisis y emisión`  
@@ -202,7 +202,7 @@
   Para Prepend / en / cadena / ancestros, el runtime recorre tablas, ancestros o adaptadores hasta seleccionar una implementación compatible, manteniendo el método correcto ejecutado con estado encapsulado y una respuesta asociada al contrato.
 
 
-### 📑 Sección: Metaprogramación (7 conceptos)
+### Seccion: Metaprogramación (7 conceptos)
 
 - **define_method**  
   *Familia:* `análisis y emisión`  
@@ -233,7 +233,7 @@
   Source / locations / trazabilidad coordina la ejecución: la CPU decodifica instrucciones y mueve estado entre unidades, memoria y frontera del sistema hasta obtener estado arquitectónico actualizado con flags, registros preservados y control en la dirección prevista.
 
 
-### 📑 Sección: Datos y enumeración (5 conceptos)
+### Seccion: Datos y enumeración (5 conceptos)
 
 - **Enumeradores externos**  
   *Familia:* `flujo de transformación`  
@@ -256,7 +256,7 @@
   Componen map, filter y reduce sin mutar la colección original y mantienen intención visible.
 
 
-### 📑 Sección: Memoria y runtime (8 conceptos)
+### Seccion: Memoria y runtime (8 conceptos)
 
 - **Object space**  
   *Familia:* `análisis y emisión`  
@@ -291,7 +291,7 @@
   Al operar con GC.stat, el runtime o compilador reserva, comparte, mueve y libera almacenamiento respetando aliasing y alineación, produciendo memoria válida durante toda la operación y recuperada al terminar su último uso.
 
 
-### 📑 Sección: Concurrencia y asincronía (6 conceptos)
+### Seccion: Concurrencia y asincronía (6 conceptos)
 
 - **Fibers**  
   *Familia:* `planificación de trabajo`  
@@ -318,7 +318,7 @@
   Para Thread / exception / reporting, el scheduler intercala trabajo mientras locks, mensajes o atomics establecen el orden observable, manteniendo progreso concurrente con ownership y terminación comprobables para cada tarea.
 
 
-### 📑 Sección: Web y red (7 conceptos)
+### Seccion: Web y red (7 conceptos)
 
 - **Contrato Rack**  
   *Familia:* `ida y vuelta`  
@@ -349,7 +349,7 @@
   DNS / timeouts / por / fase coordina la ejecución: la capa de transporte encuadra, valida y convierte la carga mientras administra conexiones parciales hasta obtener una respuesta o estructura interna completa que conserva correlación y estado del intercambio.
 
 
-### 📑 Sección: Persistencia y formatos (5 conceptos)
+### Seccion: Persistencia y formatos (5 conceptos)
 
 - **JSON y YAML**  
   *Familia:* `configuración declarativa`  
@@ -372,7 +372,7 @@
   Agrupan escrituras atómicas y coordinan competidores sin extender la sección crítica innecesariamente.
 
 
-### 📑 Sección: Pruebas y diseño (5 conceptos)
+### Seccion: Pruebas y diseño (5 conceptos)
 
 - **RSpec**  
   *Familia:* `espectro de verificación`  
@@ -395,7 +395,7 @@
   Aísla dominio de frameworks mediante puertos explícitos y adaptadores reemplazables.
 
 
-### 📑 Sección: Seguridad del ecosistema (8 conceptos)
+### Seccion: Seguridad del ecosistema (8 conceptos)
 
 - **Bundler audit**  
   *Familia:* `validación y decisión`  
@@ -430,7 +430,7 @@
   Al operar con Template / injection, el control autentica, autoriza, normaliza y registra evidencia sin revelar secretos, produciendo solo la capacidad permitida ejecutada con una decisión que puede auditarse.
 
 
-### 📑 Sección: Empaquetado y operación (6 conceptos)
+### Seccion: Empaquetado y operación (6 conceptos)
 
 - **Gemspec**  
   *Familia:* `pasaporte del artefacto`  
@@ -460,4 +460,4 @@
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

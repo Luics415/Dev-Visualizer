@@ -1,111 +1,126 @@
-# 🌌 Enciclopedia Técnica Dev Visualizer (73 Colecciones • 7,410 Conceptos)
+# Enciclopedia Tecnica Dev Visualizer (73 Colecciones • 7,410 Conceptos)
 
-> **Documento Maestro Integrado del Atlas Pedagógico Dev Visualizer**  
-> Fecha de generación: 2026-11-02 • Autor: [@Luics415](https://github.com/Luics415) • Coautora: [@Azlynn17](https://github.com/Azlynn17)
+> **Documento Maestro Integrado del Atlas Pedagogico Dev Visualizer**  
+> Fecha de generacion: 2026-11-02 • Autor: [@Luics415](https://github.com/Luics415) • Coautoria Tecnica: [@Azlynn17](https://github.com/Azlynn17)
 
 ---
 
-## 📊 Métricas Consolidadas
+## Metricas Consolidadas
 - **Colecciones Oficiales:** 73
-- **Conceptos Técnicos Indexados:** 7,410
-- **Rutas Técnicas:** 146
-- **Páginas SSG Generadas:** 394
+- **Conceptos Tecnicos Indexados:** 7,410
+- **Rutas Tecnicas:** 146
+- **Paginas SSG Generadas:** 394
 - **Recursos Verificados:** 272
 
 ---
 
-## 🏛️ Catálogo de Grupos y Colecciones
+## Diagrama de Arquitectura de Colecciones
+
+```mermaid
+flowchart LR
+    Fund["01 Fundamentos"] --> Lang["02 Lenguajes"]
+    Lang --> Plat["04 Plataformas"]
+    Lang --> Inter["03 Interfaces"]
+    Plat --> DataG["05 Datos"]
+    Plat --> Infra["07 Infraestructura"]
+    Inter --> Version["06 Versionado"]
+    Version --> Infra
+```
+
+---
+
+## Catalogo de Grupos y Colecciones
 ### Grupo: Fundamentos (Pensamiento computacional, algoritmos y práctica profesional)
-- **[101] Fundamentos de programación** (91 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/fundamentos-programacion) | [En acción](https://luics415.github.io/Dev-Visualizer/fundamentos-programacion-en-accion): Problemas, datos, control, funciones, diseño, pruebas y pensamiento computacional.
-- **[A&D] Algoritmos y estructuras de datos** (120 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/algoritmos) | [En acción](https://luics415.github.io/Dev-Visualizer/algoritmos-en-accion): Complejidad, secuencias, árboles, grafos, búsqueda, ordenación y optimización.
-- **[Math] Matemáticas para programación** (105 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/matematicas-programacion) | [En acción](https://luics415.github.io/Dev-Visualizer/matematicas-programacion-en-accion): Lógica, conjuntos, álgebra, probabilidad, cálculo y matemática discreta.
-- **[Flow] Metodologías de desarrollo** (88 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/metodologias-desarrollo) | [En acción](https://luics415.github.io/Dev-Visualizer/metodologias-desarrollo-en-accion): Descubrimiento, entrega iterativa, Scrum, Kanban, XP, evidencia y mejora continua.
-- **[Cat] Scratch** (76 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/scratch) | [En acción](https://luics415.github.io/Dev-Visualizer/scratch-en-accion): Programación visual, eventos, mensajes, clones, juegos y pensamiento computacional.
+- **[101] Fundamentos de programación** (91 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/fundamentos-programacion) | [En accion](https://luics415.github.io/Dev-Visualizer/fundamentos-programacion-en-accion): Problemas, datos, control, funciones, diseño, pruebas y pensamiento computacional.
+- **[A&D] Algoritmos y estructuras de datos** (120 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/algoritmos) | [En accion](https://luics415.github.io/Dev-Visualizer/algoritmos-en-accion): Complejidad, secuencias, árboles, grafos, búsqueda, ordenación y optimización.
+- **[Math] Matemáticas para programación** (105 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/matematicas-programacion) | [En accion](https://luics415.github.io/Dev-Visualizer/matematicas-programacion-en-accion): Lógica, conjuntos, álgebra, probabilidad, cálculo y matemática discreta.
+- **[Flow] Metodologías de desarrollo** (88 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/metodologias-desarrollo) | [En accion](https://luics415.github.io/Dev-Visualizer/metodologias-desarrollo-en-accion): Descubrimiento, entrega iterativa, Scrum, Kanban, XP, evidencia y mejora continua.
+- **[Cat] Scratch** (76 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/scratch) | [En accion](https://luics415.github.io/Dev-Visualizer/scratch-en-accion): Programación visual, eventos, mensajes, clones, juegos y pensamiento computacional.
 
 ### Grupo: Lenguajes (Sintaxis, tipos, memoria y ejecución)
-- **[JS] JavaScript ES6+** (55 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/) | [En acción](https://luics415.github.io/Dev-Visualizer/javascript-en-accion): Lenguaje, objetos, asincronía, módulos, protocolos y memoria.
-- **[TS] TypeScript** (64 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/typescript) | [En acción](https://luics415.github.io/Dev-Visualizer/typescript-en-accion): Modelado, narrowing, genéricos, compilador y producción.
-- **[Py] Python** (240 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/python) | [En acción](https://luics415.github.io/Dev-Visualizer/python-en-accion): Desde cero: lenguaje, biblioteca estándar, automatización, web, datos, IA y producción.
-- **[PL] Prolog** (120 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/prolog) | [En acción](https://luics415.github.io/Dev-Visualizer/prolog-en-accion): Términos, unificación, resolución, backtracking, restricciones, tabling, gramáticas y producción.
-- **[C] C** (60 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/c) | [En acción](https://luics415.github.io/Dev-Visualizer/c-en-accion): Compilación, memoria, punteros, ABI, herramientas y seguridad.
-- **[C++] C++** (66 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/cpp) | [En acción](https://luics415.github.io/Dev-Visualizer/cpp-en-accion): RAII, tipos, STL, templates, concurrencia y rendimiento.
-- **[C#] C#** (49 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/c-sharp) | [En acción](https://luics415.github.io/Dev-Visualizer/c-sharp-en-accion): Tipos, patrones, LINQ, asincronía, memoria y concurrencia.
-- **[Obj-C] Objective-C** (48 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/objective-c) | [En acción](https://luics415.github.io/Dev-Visualizer/objective-c-en-accion): Mensajería, runtime, ARC, Foundation e interoperabilidad con Swift.
-- **[C*] C*** (42 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/c-star) | [En acción](https://luics415.github.io/Dev-Visualizer/c-star-en-accion): Programación data-parallel para sistemas Connection Machine.
-- **[CWEB] CWEB** (42 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/cweb) | [En acción](https://luics415.github.io/Dev-Visualizer/cweb-en-accion): Programación literaria con CTANGLE, CWEAVE, C y TeX.
-- **[EC] Embedded C** (55 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/embedded-c) | [En acción](https://luics415.github.io/Dev-Visualizer/embedded-c-en-accion): Microcontroladores, registros, interrupciones, timing y seguridad.
-- **[VB] Visual Basic .NET** (48 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/visual-basic) | [En acción](https://luics415.github.io/Dev-Visualizer/visual-basic-en-accion): Lenguaje .NET, eventos, LINQ, WinForms e interoperabilidad.
-- **[Rb] Ruby** (93 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/ruby) | [En acción](https://luics415.github.io/Dev-Visualizer/ruby-en-accion): Objetos, bloques, enumerables, metaprogramación, concurrencia, tooling y producción.
-- **[Rs] Rust** (113 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/rust) | [En acción](https://luics415.github.io/Dev-Visualizer/rust-en-accion): Ownership, borrowing, tipos, traits, concurrencia segura, tooling y rendimiento.
-- **[PHP] PHP** (99 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/php) | [En acción](https://luics415.github.io/Dev-Visualizer/php-en-accion): Lenguaje, runtime web, tipos, objetos, Composer, seguridad y operación.
-- **[Hs] Haskell** (112 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/haskell) | [En acción](https://luics415.github.io/Dev-Visualizer/haskell-en-accion): Funciones puras, tipos algebraicos, evaluación perezosa, efectos y concurrencia.
-- **[Go] Go** (103 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/go) | [En acción](https://luics415.github.io/Dev-Visualizer/go-en-accion): Tipos, interfaces, goroutines, canales, contexto, módulos y servicios.
-- **[Kt] Kotlin** (105 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/kotlin) | [En acción](https://luics415.github.io/Dev-Visualizer/kotlin-en-accion): Null safety, objetos, funciones, coroutines, multiplataforma e interoperabilidad JVM.
-- **[Java] Java** (115 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/java) | [En acción](https://luics415.github.io/Dev-Visualizer/java-en-accion): JVM, tipos, objetos, colecciones, concurrencia, GC, tooling y producción.
-- **[R] R** (117 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/r) | [En acción](https://luics415.github.io/Dev-Visualizer/r-en-accion): Vectores, data frames, estadística, visualización, modelado e informes reproducibles.
-- **[ASM] Ensamblador** (103 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/ensamblador) | [En acción](https://luics415.github.io/Dev-Visualizer/ensamblador-en-accion): ISA, registros, memoria, pila, llamadas, ABI, depuración y optimización.
-- **[Erl] Erlang** (94 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/erlang) | [En acción](https://luics415.github.io/Dev-Visualizer/erlang-en-accion): BEAM, procesos, mensajes, supervisión, distribución y tolerancia a fallos.
-- **[λ] Lisp** (98 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/lisp) | [En acción](https://luics415.github.io/Dev-Visualizer/lisp-en-accion): S-expressions, evaluación, funciones, macros, metaprogramación y REPL.
-- **[Pl] Perl** (86 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/perl) | [En acción](https://luics415.github.io/Dev-Visualizer/perl-en-accion): Texto, expresiones regulares, referencias, módulos, automatización y operación.
-- **[Rk] Raku** (88 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/raku) | [En acción](https://luics415.github.io/Dev-Visualizer/raku-en-accion): Gramáticas, tipos, junctions, concurrencia, metaprogramación y herramientas.
-- **[Sc] Scala** (109 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/scala) | [En acción](https://luics415.github.io/Dev-Visualizer/scala-en-accion): Objetos y funciones, tipos, colecciones, efectos, concurrencia y JVM.
-- **[Dart] Dart** (60 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/dart) | [En acción](https://luics415.github.io/Dev-Visualizer/dart-en-accion): Lenguaje orientado a objetos, Sound Null Safety, records, isolates, event loop y compilación dual JIT/AOT.
+- **[JS] JavaScript ES6+** (55 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/) | [En accion](https://luics415.github.io/Dev-Visualizer/javascript-en-accion): Lenguaje, objetos, asincronía, módulos, protocolos y memoria.
+- **[TS] TypeScript** (64 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/typescript) | [En accion](https://luics415.github.io/Dev-Visualizer/typescript-en-accion): Modelado, narrowing, genéricos, compilador y producción.
+- **[Py] Python** (240 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/python) | [En accion](https://luics415.github.io/Dev-Visualizer/python-en-accion): Desde cero: lenguaje, biblioteca estándar, automatización, web, datos, IA y producción.
+- **[PL] Prolog** (120 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/prolog) | [En accion](https://luics415.github.io/Dev-Visualizer/prolog-en-accion): Términos, unificación, resolución, backtracking, restricciones, tabling, gramáticas y producción.
+- **[C] C** (60 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/c) | [En accion](https://luics415.github.io/Dev-Visualizer/c-en-accion): Compilación, memoria, punteros, ABI, herramientas y seguridad.
+- **[C++] C++** (66 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/cpp) | [En accion](https://luics415.github.io/Dev-Visualizer/cpp-en-accion): RAII, tipos, STL, templates, concurrencia y rendimiento.
+- **[C#] C#** (49 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/c-sharp) | [En accion](https://luics415.github.io/Dev-Visualizer/c-sharp-en-accion): Tipos, patrones, LINQ, asincronía, memoria y concurrencia.
+- **[Obj-C] Objective-C** (48 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/objective-c) | [En accion](https://luics415.github.io/Dev-Visualizer/objective-c-en-accion): Mensajería, runtime, ARC, Foundation e interoperabilidad con Swift.
+- **[C*] C*** (42 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/c-star) | [En accion](https://luics415.github.io/Dev-Visualizer/c-star-en-accion): Programación data-parallel para sistemas Connection Machine.
+- **[CWEB] CWEB** (42 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/cweb) | [En accion](https://luics415.github.io/Dev-Visualizer/cweb-en-accion): Programación literaria con CTANGLE, CWEAVE, C y TeX.
+- **[EC] Embedded C** (55 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/embedded-c) | [En accion](https://luics415.github.io/Dev-Visualizer/embedded-c-en-accion): Microcontroladores, registros, interrupciones, timing y seguridad.
+- **[VB] Visual Basic .NET** (48 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/visual-basic) | [En accion](https://luics415.github.io/Dev-Visualizer/visual-basic-en-accion): Lenguaje .NET, eventos, LINQ, WinForms e interoperabilidad.
+- **[Rb] Ruby** (93 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/ruby) | [En accion](https://luics415.github.io/Dev-Visualizer/ruby-en-accion): Objetos, bloques, enumerables, metaprogramación, concurrencia, tooling y producción.
+- **[Rs] Rust** (113 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/rust) | [En accion](https://luics415.github.io/Dev-Visualizer/rust-en-accion): Ownership, borrowing, tipos, traits, concurrencia segura, tooling y rendimiento.
+- **[PHP] PHP** (99 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/php) | [En accion](https://luics415.github.io/Dev-Visualizer/php-en-accion): Lenguaje, runtime web, tipos, objetos, Composer, seguridad y operación.
+- **[Hs] Haskell** (112 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/haskell) | [En accion](https://luics415.github.io/Dev-Visualizer/haskell-en-accion): Funciones puras, tipos algebraicos, evaluación perezosa, efectos y concurrencia.
+- **[Go] Go** (103 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/go) | [En accion](https://luics415.github.io/Dev-Visualizer/go-en-accion): Tipos, interfaces, goroutines, canales, contexto, módulos y servicios.
+- **[Kt] Kotlin** (105 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/kotlin) | [En accion](https://luics415.github.io/Dev-Visualizer/kotlin-en-accion): Null safety, objetos, funciones, coroutines, multiplataforma e interoperabilidad JVM.
+- **[Java] Java** (115 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/java) | [En accion](https://luics415.github.io/Dev-Visualizer/java-en-accion): JVM, tipos, objetos, colecciones, concurrencia, GC, tooling y producción.
+- **[R] R** (117 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/r) | [En accion](https://luics415.github.io/Dev-Visualizer/r-en-accion): Vectores, data frames, estadística, visualización, modelado e informes reproducibles.
+- **[ASM] Ensamblador** (103 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/ensamblador) | [En accion](https://luics415.github.io/Dev-Visualizer/ensamblador-en-accion): ISA, registros, memoria, pila, llamadas, ABI, depuración y optimización.
+- **[Erl] Erlang** (94 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/erlang) | [En accion](https://luics415.github.io/Dev-Visualizer/erlang-en-accion): BEAM, procesos, mensajes, supervisión, distribución y tolerancia a fallos.
+- **[λ] Lisp** (98 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/lisp) | [En accion](https://luics415.github.io/Dev-Visualizer/lisp-en-accion): S-expressions, evaluación, funciones, macros, metaprogramación y REPL.
+- **[Pl] Perl** (86 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/perl) | [En accion](https://luics415.github.io/Dev-Visualizer/perl-en-accion): Texto, expresiones regulares, referencias, módulos, automatización y operación.
+- **[Rk] Raku** (88 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/raku) | [En accion](https://luics415.github.io/Dev-Visualizer/raku-en-accion): Gramáticas, tipos, junctions, concurrencia, metaprogramación y herramientas.
+- **[Sc] Scala** (109 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/scala) | [En accion](https://luics415.github.io/Dev-Visualizer/scala-en-accion): Objetos y funciones, tipos, colecciones, efectos, concurrencia y JVM.
+- **[Dart] Dart** (60 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/dart) | [En accion](https://luics415.github.io/Dev-Visualizer/dart-en-accion): Lenguaje orientado a objetos, Sound Null Safety, records, isolates, event loop y compilación dual JIT/AOT.
 
 ### Grupo: Diseño e interfaces (Experiencia, web y aplicaciones móviles)
-- **[UX] UX/UI** (55 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/ux-ui) | [En acción](https://luics415.github.io/Dev-Visualizer/ux-ui-en-accion): Investigación, flujos, accesibilidad, prototipos y validación.
-- **[HTML] HTML y CSS** (42 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/html-css) | [En acción](https://luics415.github.io/Dev-Visualizer/html-css-en-accion): Semántica, cascade, layout, responsive y render del navegador.
-- **[BS] Bootstrap** (55 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/bootstrap) | [En acción](https://luics415.github.io/Dev-Visualizer/bootstrap-en-accion): Grid, utilidades, componentes, Sass, accesibilidad y personalización.
-- **[AJS] AngularJS** (52 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/angularjs) | [En acción](https://luics415.github.io/Dev-Visualizer/angularjs-en-accion): Mantenimiento de aplicaciones 1.x, digest cycle y migración gradual.
-- **[React] React** (62 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/react) | [En acción](https://luics415.github.io/Dev-Visualizer/react-en-accion): Componentes, estado, reconciliación, efectos y concurrencia.
-- **[RN] React Native** (80 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/react-native) | [En acción](https://luics415.github.io/Dev-Visualizer/react-native-en-accion): Nueva Arquitectura, dispositivo, offline, performance y releases.
-- **[Qwik] Qwik** (88 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/qwik) | [En acción](https://luics415.github.io/Dev-Visualizer/qwik-en-accion): Resumibilidad, serialización, carga bajo demanda, routing y rendimiento.
-- **[Ng] Angular** (130 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/angular) | [En acción](https://luics415.github.io/Dev-Visualizer/angular-en-accion): Componentes, señales, DI, router, formularios, SSR, pruebas y producción.
-- **[Flutter] Flutter** (60 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/flutter) | [En acción](https://luics415.github.io/Dev-Visualizer/flutter-en-accion): Framework UI declarativo multiplataforma, árbol tripartito, motor Impeller y renderizado autónomo por GPU.
+- **[UX] UX/UI** (55 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/ux-ui) | [En accion](https://luics415.github.io/Dev-Visualizer/ux-ui-en-accion): Investigación, flujos, accesibilidad, prototipos y validación.
+- **[HTML] HTML y CSS** (42 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/html-css) | [En accion](https://luics415.github.io/Dev-Visualizer/html-css-en-accion): Semántica, cascade, layout, responsive y render del navegador.
+- **[BS] Bootstrap** (55 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/bootstrap) | [En accion](https://luics415.github.io/Dev-Visualizer/bootstrap-en-accion): Grid, utilidades, componentes, Sass, accesibilidad y personalización.
+- **[AJS] AngularJS** (52 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/angularjs) | [En accion](https://luics415.github.io/Dev-Visualizer/angularjs-en-accion): Mantenimiento de aplicaciones 1.x, digest cycle y migración gradual.
+- **[React] React** (62 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/react) | [En accion](https://luics415.github.io/Dev-Visualizer/react-en-accion): Componentes, estado, reconciliación, efectos y concurrencia.
+- **[RN] React Native** (80 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/react-native) | [En accion](https://luics415.github.io/Dev-Visualizer/react-native-en-accion): Nueva Arquitectura, dispositivo, offline, performance y releases.
+- **[Qwik] Qwik** (88 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/qwik) | [En accion](https://luics415.github.io/Dev-Visualizer/qwik-en-accion): Resumibilidad, serialización, carga bajo demanda, routing y rendimiento.
+- **[Ng] Angular** (130 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/angular) | [En accion](https://luics415.github.io/Dev-Visualizer/angular-en-accion): Componentes, señales, DI, router, formularios, SSR, pruebas y producción.
+- **[Flutter] Flutter** (60 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/flutter) | [En accion](https://luics415.github.io/Dev-Visualizer/flutter-en-accion): Framework UI declarativo multiplataforma, árbol tripartito, motor Impeller y renderizado autónomo por GPU.
 
 ### Grupo: Plataformas y servidor (Runtimes, frameworks, contratos y automatización)
-- **[API] APIs** (48 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/apis) | [En acción](https://luics415.github.io/Dev-Visualizer/apis-en-accion): REST, GraphQL, gRPC, eventos, tiempo real, contratos y seguridad.
-- **[Back] Backend** (96 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/backend) | [En acción](https://luics415.github.io/Dev-Visualizer/backend-en-accion): Arquitectura, seguridad, persistencia, mensajería y confiabilidad.
-- **[Node] Node.js** (65 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/nodejs) | [En acción](https://luics415.github.io/Dev-Visualizer/nodejs-en-accion): Runtime, event loop, streams, workers, módulos y operación.
-- **[Lv] Laravel** (65 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/laravel) | [En acción](https://luics415.github.io/Dev-Visualizer/laravel-en-accion): Contenedor, HTTP, Eloquent, políticas, colas, eventos y pruebas.
-- **[n8n] n8n** (55 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/n8n) | [En acción](https://luics415.github.io/Dev-Visualizer/n8n-en-accion): Workflows, credenciales, datos, reintentos, subflujos y operación.
-- **[.NET] .NET** (52 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/dotnet) | [En acción](https://luics415.github.io/Dev-Visualizer/dotnet-en-accion): SDK, CLR, IL, JIT/AOT, GC, bibliotecas, hosting y diagnóstico.
-- **[MP] MediaPipe** (120 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/mediapipe) | [En acción](https://luics415.github.io/Dev-Visualizer/mediapipe-en-accion): Tasks, modelos, grafos, visión, audio, texto, tiempo real, edge y operación responsable.
-- **[FB] Firebase** (250 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/firebase) | [En acción](https://luics415.github.io/Dev-Visualizer/firebase-en-accion): Auth, datos, Storage, Functions, Hosting, FCM y Rules.
-- **[And] Android** (130 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/android) | [En acción](https://luics415.github.io/Dev-Visualizer/android-en-accion): Componentes, lifecycle, Compose, almacenamiento, permisos, trabajo y publicación.
-- **[Dj] Django** (123 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/django) | [En acción](https://luics415.github.io/Dev-Visualizer/django-en-accion): Proyecto, HTTP, ORM, formularios, seguridad, tareas, pruebas y despliegue.
+- **[API] APIs** (48 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/apis) | [En accion](https://luics415.github.io/Dev-Visualizer/apis-en-accion): REST, GraphQL, gRPC, eventos, tiempo real, contratos y seguridad.
+- **[Back] Backend** (96 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/backend) | [En accion](https://luics415.github.io/Dev-Visualizer/backend-en-accion): Arquitectura, seguridad, persistencia, mensajería y confiabilidad.
+- **[Node] Node.js** (65 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/nodejs) | [En accion](https://luics415.github.io/Dev-Visualizer/nodejs-en-accion): Runtime, event loop, streams, workers, módulos y operación.
+- **[Lv] Laravel** (65 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/laravel) | [En accion](https://luics415.github.io/Dev-Visualizer/laravel-en-accion): Contenedor, HTTP, Eloquent, políticas, colas, eventos y pruebas.
+- **[n8n] n8n** (55 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/n8n) | [En accion](https://luics415.github.io/Dev-Visualizer/n8n-en-accion): Workflows, credenciales, datos, reintentos, subflujos y operación.
+- **[.NET] .NET** (52 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/dotnet) | [En accion](https://luics415.github.io/Dev-Visualizer/dotnet-en-accion): SDK, CLR, IL, JIT/AOT, GC, bibliotecas, hosting y diagnóstico.
+- **[MP] MediaPipe** (120 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/mediapipe) | [En accion](https://luics415.github.io/Dev-Visualizer/mediapipe-en-accion): Tasks, modelos, grafos, visión, audio, texto, tiempo real, edge y operación responsable.
+- **[FB] Firebase** (250 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/firebase) | [En accion](https://luics415.github.io/Dev-Visualizer/firebase-en-accion): Auth, datos, Storage, Functions, Hosting, FCM y Rules.
+- **[And] Android** (130 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/android) | [En accion](https://luics415.github.io/Dev-Visualizer/android-en-accion): Componentes, lifecycle, Compose, almacenamiento, permisos, trabajo y publicación.
+- **[Dj] Django** (123 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/django) | [En accion](https://luics415.github.io/Dev-Visualizer/django-en-accion): Proyecto, HTTP, ORM, formularios, seguridad, tareas, pruebas y despliegue.
 
 ### Grupo: Datos (Estado, modelado, consultas y persistencia)
-- **[XML] XML** (110 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/xml) | [En acción](https://luics415.github.io/Dev-Visualizer/xml-en-accion): Documentos, namespaces, parsing, XPath, XSLT, seguridad e interoperabilidad.
-- **[XSD] XSD** (100 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/xsd) | [En acción](https://luics415.github.io/Dev-Visualizer/xsd-en-accion): Schemas XML, tipos, facets, identidad, composición, evolución y validación.
-- **[JSON] JSON** (110 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/json) | [En acción](https://luics415.github.io/Dev-Visualizer/json-en-accion): Sintaxis, JSON Schema, Pointer, Patch, seguridad, contratos y producción.
-- **[State] Gestión de estado** (75 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/gestion-estado) | [En acción](https://luics415.github.io/Dev-Visualizer/gestion-estado-en-accion): Ownership, stores, caché remota, persistencia y offline.
-- **[DB] Bases de datos** (113 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/bases-datos) | [En acción](https://luics415.github.io/Dev-Visualizer/bases-datos-en-accion): Modelado, SQL, índices, concurrencia, distribución y backups.
-- **[SQL] Microsoft SQL Server** (120 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/sql-server) | [En acción](https://luics415.github.io/Dev-Visualizer/sql-server-en-accion): T-SQL, almacenamiento, optimizador, concurrencia, seguridad, operación y alta disponibilidad.
-- **[SQL] SQL** (130 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/sql) | [En acción](https://luics415.github.io/Dev-Visualizer/sql-en-accion): Modelo relacional, DDL, consultas, joins, transacciones, optimización y portabilidad.
-- **[NoSQL] NoSQL** (123 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/nosql) | [En acción](https://luics415.github.io/Dev-Visualizer/nosql-en-accion): Documentos, clave-valor, columnas, grafos, partición, replicación y consistencia.
-- **[Chain] Blockchain** (109 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/blockchain) | [En acción](https://luics415.github.io/Dev-Visualizer/blockchain-en-accion): Criptografía, bloques, consenso, transacciones, contratos y operación.
-- **[IA] Inteligencia Artificial** (130 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/inteligencia-artificial) | [En acción](https://luics415.github.io/Dev-Visualizer/inteligencia-artificial-en-accion): Datos, modelos, entrenamiento, evaluación, inferencia, seguridad y monitoreo.
+- **[XML] XML** (110 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/xml) | [En accion](https://luics415.github.io/Dev-Visualizer/xml-en-accion): Documentos, namespaces, parsing, XPath, XSLT, seguridad e interoperabilidad.
+- **[XSD] XSD** (100 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/xsd) | [En accion](https://luics415.github.io/Dev-Visualizer/xsd-en-accion): Schemas XML, tipos, facets, identidad, composición, evolución y validación.
+- **[JSON] JSON** (110 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/json) | [En accion](https://luics415.github.io/Dev-Visualizer/json-en-accion): Sintaxis, JSON Schema, Pointer, Patch, seguridad, contratos y producción.
+- **[State] Gestión de estado** (75 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/gestion-estado) | [En accion](https://luics415.github.io/Dev-Visualizer/gestion-estado-en-accion): Ownership, stores, caché remota, persistencia y offline.
+- **[DB] Bases de datos** (113 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/bases-datos) | [En accion](https://luics415.github.io/Dev-Visualizer/bases-datos-en-accion): Modelado, SQL, índices, concurrencia, distribución y backups.
+- **[SQL] Microsoft SQL Server** (120 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/sql-server) | [En accion](https://luics415.github.io/Dev-Visualizer/sql-server-en-accion): T-SQL, almacenamiento, optimizador, concurrencia, seguridad, operación y alta disponibilidad.
+- **[SQL] SQL** (130 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/sql) | [En accion](https://luics415.github.io/Dev-Visualizer/sql-en-accion): Modelo relacional, DDL, consultas, joins, transacciones, optimización y portabilidad.
+- **[NoSQL] NoSQL** (123 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/nosql) | [En accion](https://luics415.github.io/Dev-Visualizer/nosql-en-accion): Documentos, clave-valor, columnas, grafos, partición, replicación y consistencia.
+- **[Chain] Blockchain** (109 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/blockchain) | [En accion](https://luics415.github.io/Dev-Visualizer/blockchain-en-accion): Criptografía, bloques, consenso, transacciones, contratos y operación.
+- **[IA] Inteligencia Artificial** (130 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/inteligencia-artificial) | [En accion](https://luics415.github.io/Dev-Visualizer/inteligencia-artificial-en-accion): Datos, modelos, entrenamiento, evaluación, inferencia, seguridad y monitoreo.
 
 ### Grupo: Control de versiones y calidad (Historia, colaboración, diagnóstico y recuperación)
-- **[Git] Git** (60 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/git) | [En acción](https://luics415.github.io/Dev-Visualizer/git-en-accion): Objetos, referencias, staging, historia, sincronización y rescate.
-- **[GH] GitHub** (60 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/github) | [En acción](https://luics415.github.io/Dev-Visualizer/github-en-accion): Colaboración, PRs, gobierno, seguridad, comunidad y releases.
-- **[Debug] Debugging** (238 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/debugging) | [En acción](https://luics415.github.io/Dev-Visualizer/debugging-en-accion): Reproducción, evidencia, hipótesis, rendimiento e incidentes.
-- **[SVN] Subversion** (81 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/subversion) | [En acción](https://luics415.github.io/Dev-Visualizer/subversion-en-accion): Control centralizado, working copies, revisiones, ramas, merges y administración.
+- **[Git] Git** (60 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/git) | [En accion](https://luics415.github.io/Dev-Visualizer/git-en-accion): Objetos, referencias, staging, historia, sincronización y rescate.
+- **[GH] GitHub** (60 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/github) | [En accion](https://luics415.github.io/Dev-Visualizer/github-en-accion): Colaboración, PRs, gobierno, seguridad, comunidad y releases.
+- **[Debug] Debugging** (238 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/debugging) | [En accion](https://luics415.github.io/Dev-Visualizer/debugging-en-accion): Reproducción, evidencia, hipótesis, rendimiento e incidentes.
+- **[SVN] Subversion** (81 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/subversion) | [En accion](https://luics415.github.io/Dev-Visualizer/subversion-en-accion): Control centralizado, working copies, revisiones, ramas, merges y administración.
 
 ### Grupo: Infraestructura y entrega (Hosts, nube, pipelines y releases operables)
-- **[Linux] Linux** (182 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/linux) | [En acción](https://luics415.github.io/Dev-Visualizer/linux-en-accion): Kernel, shell, procesos, redes, storage, hardening y contenedores.
-- **[AWS] AWS** (228 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/aws) | [En acción](https://luics415.github.io/Dev-Visualizer/aws-en-accion): Identidad, VPC, compute, datos, eventos, gobierno y costo.
-- **[CI] CI/CD** (42 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/ci-cd) | [En acción](https://luics415.github.io/Dev-Visualizer/ci-cd-en-accion): Integración, evidencia, artefactos, supply chain y promoción.
-- **[Ship] Deployment** (133 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/deployment) | [En acción](https://luics415.github.io/Dev-Visualizer/deployment-en-accion): Entornos, configuración, rollouts, tráfico, migraciones y rollback.
-- **[NGINX] NGINX** (313 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/nginx) | [En acción](https://luics415.github.io/Dev-Visualizer/nginx-en-accion): Servidor web, reverse proxy, balanceo, TLS, caché y operación.
-- **[Docker] Docker** (236 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/docker) | [En acción](https://luics415.github.io/Dev-Visualizer/docker-en-accion): Imágenes, BuildKit, storage, networking, Compose y runtime.
-- **[OS] Sistemas operativos** (130 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/sistemas-operativos) | [En acción](https://luics415.github.io/Dev-Visualizer/sistemas-operativos-en-accion): Procesos, scheduling, memoria virtual, archivos, E/S, concurrencia y seguridad.
-- **[TeX] LaTeX** (95 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/latex) | [En acción](https://luics415.github.io/Dev-Visualizer/latex-en-accion): Composición, estructura, referencias, matemáticas, paquetes, builds y publicación.
+- **[Linux] Linux** (182 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/linux) | [En accion](https://luics415.github.io/Dev-Visualizer/linux-en-accion): Kernel, shell, procesos, redes, storage, hardening y contenedores.
+- **[AWS] AWS** (228 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/aws) | [En accion](https://luics415.github.io/Dev-Visualizer/aws-en-accion): Identidad, VPC, compute, datos, eventos, gobierno y costo.
+- **[CI] CI/CD** (42 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/ci-cd) | [En accion](https://luics415.github.io/Dev-Visualizer/ci-cd-en-accion): Integración, evidencia, artefactos, supply chain y promoción.
+- **[Ship] Deployment** (133 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/deployment) | [En accion](https://luics415.github.io/Dev-Visualizer/deployment-en-accion): Entornos, configuración, rollouts, tráfico, migraciones y rollback.
+- **[NGINX] NGINX** (313 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/nginx) | [En accion](https://luics415.github.io/Dev-Visualizer/nginx-en-accion): Servidor web, reverse proxy, balanceo, TLS, caché y operación.
+- **[Docker] Docker** (236 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/docker) | [En accion](https://luics415.github.io/Dev-Visualizer/docker-en-accion): Imágenes, BuildKit, storage, networking, Compose y runtime.
+- **[OS] Sistemas operativos** (130 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/sistemas-operativos) | [En accion](https://luics415.github.io/Dev-Visualizer/sistemas-operativos-en-accion): Procesos, scheduling, memoria virtual, archivos, E/S, concurrencia y seguridad.
+- **[TeX] LaTeX** (95 conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer/latex) | [En accion](https://luics415.github.io/Dev-Visualizer/latex-en-accion): Composición, estructura, referencias, matemáticas, paquetes, builds y publicación.
 
 
 ---
 
-## 📚 Índice Temático de los 7,410 Conceptos
+## Indice Tematico de los 7,410 Conceptos
 *(Para consultar el desglose interactivo individual de cada concepto y sus escenas animadas, visita la Wiki de GitHub en `/wiki` o el Atlas interactivo en [https://luics415.github.io/Dev-Visualizer/](https://luics415.github.io/Dev-Visualizer/)).*
 
 ### JavaScript ES6+ (`JS`) — 55 conceptos

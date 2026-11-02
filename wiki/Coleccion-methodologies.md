@@ -1,44 +1,44 @@
-# 📘 [Flow] Metodologías de desarrollo
+# Metodologías de desarrollo (Flow)
 
 > **Descubrimiento, entrega iterativa, Scrum, Kanban, XP, evidencia y mejora continua.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `methodologies` |
-| **Grupo Arquitectónico** | [Fundamentos](Grupo-Fundamentals) |
+| **Grupo Arquitectonico** | [Fundamentos](Grupo-Fundamentals) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `ux-ui` |
 | **Total de Conceptos** | **88 conceptos** |
-| **Capítulos / Secciones** | **15 secciones** |
+| **Capitulos / Secciones** | **15 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/metodologias-desarrollo)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/metodologias-desarrollo-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/metodologias-desarrollo)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/metodologias-desarrollo-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: Recuperar un flujo de entrega bloqueado
+## Estudio de Caso Practico: Recuperar un flujo de entrega bloqueado
 
 > **Caso integrado de Metodologías de desarrollo:** Un equipo convierte una solicitud urgente en incremento, detecta saturación de trabajo, recupera capacidad y valida el cambio con usuarios.  
 > La retrospectiva deja una política observable y una métrica vinculada al objetivo, no a vigilar personas.
 
-### Fases de Ejecución:
-1. **Alinear el objetivo** (Recuperar un flujo de entrega bloqueado: etapa 1 de 5): `objetivo = reducir_abandono(reparación)` → Objetivo compartido. *La etapa conserva un contrato explícito para que el siguiente paso de Metodologías de desarrollo no dependa de supuestos ocultos.*
-2. **Dividir el incremento** (Recuperar un flujo de entrega bloqueado: etapa 2 de 5): `items = cortar_verticalmente(objetivo)` → Trabajo listo para fluir. *La etapa conserva un contrato explícito para que el siguiente paso de Metodologías de desarrollo no dependa de supuestos ocultos.*
-3. **Detectar saturación** (Recuperar un flujo de entrega bloqueado: etapa 3 de 5): `WIP = 11; limite = 4` → Inicio de trabajo detenido. *El caso hace visible el fallo de Metodologías de desarrollo; no continúa como si la evidencia fuera válida.*
+### Fases de Ejecucion:
+1. **Alinear el objetivo** (Recuperar un flujo de entrega bloqueado: etapa 1 de 5): `objetivo = reducir_abandono(reparación)` -> Objetivo compartido. *La etapa conserva un contrato explícito para que el siguiente paso de Metodologías de desarrollo no dependa de supuestos ocultos.*
+2. **Dividir el incremento** (Recuperar un flujo de entrega bloqueado: etapa 2 de 5): `items = cortar_verticalmente(objetivo)` -> Trabajo listo para fluir. *La etapa conserva un contrato explícito para que el siguiente paso de Metodologías de desarrollo no dependa de supuestos ocultos.*
+3. **Detectar saturación** (Recuperar un flujo de entrega bloqueado: etapa 3 de 5): `WIP = 11; limite = 4` -> Inicio de trabajo detenido. *El caso hace visible el fallo de Metodologías de desarrollo; no continúa como si la evidencia fuera válida.*
 4. **Desbloquear y terminar** (Recuperar un flujo de entrega bloqueado: etapa 4 de 5): `swarm(bloqueo)
-WIP <= limite` → Flujo recuperado. *La recuperación de Metodologías de desarrollo corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
-5. **Revisar y aprender** (Recuperar un flujo de entrega bloqueado: etapa 5 de 5): `medir(resultado, cycle_time)` → Política mejorada. *La etapa conserva un contrato explícito para que el siguiente paso de Metodologías de desarrollo no dependa de supuestos ocultos.*
+WIP <= limite` -> Flujo recuperado. *La recuperación de Metodologías de desarrollo corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
+5. **Revisar y aprender** (Recuperar un flujo de entrega bloqueado: etapa 5 de 5): `medir(resultado, cycle_time)` -> Política mejorada. *La etapa conserva un contrato explícito para que el siguiente paso de Metodologías de desarrollo no dependa de supuestos ocultos.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (88)
+## Catalogo Sistematico de Conceptos (88)
 
-### 📑 Sección: Principios y contexto (5 conceptos)
+### Seccion: Principios y contexto (5 conceptos)
 
 - **Valores ágiles**  
   *Familia:* `contratos coordinados`  
@@ -61,7 +61,7 @@ WIP <= limite` → Flujo recuperado. *La recuperación de Metodologías de desar
   Para entender Elegir un marco, se delimita un ejemplo mínimo, sus precondiciones y el estado inicial. La operación aplica el mecanismo paso a paso haciendo visibles sus invariantes hasta producir un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Sistema de trabajo (5 conceptos)
+### Seccion: Sistema de trabajo (5 conceptos)
 
 - **Backlog y objetivos**  
   *Familia:* `cola y consumidor`  
@@ -84,7 +84,7 @@ WIP <= limite` → Flujo recuperado. *La recuperación de Metodologías de desar
   Roles y responsabilidades estructura un ejemplo mínimo, sus precondiciones y el estado inicial en el sistema: aplica el mecanismo paso a paso haciendo visibles sus invariantes, garantizando un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Cadencias y colaboración (5 conceptos)
+### Seccion: Cadencias y colaboración (5 conceptos)
 
 - **Planificación**  
   *Familia:* `ecosistema coordinado`  
@@ -107,7 +107,7 @@ WIP <= limite` → Flujo recuperado. *La recuperación de Metodologías de desar
   En Refinamiento continuo, un ejemplo mínimo, sus precondiciones y el estado inicial ingresa al flujo donde aplica el mecanismo paso a paso haciendo visibles sus invariantes para consolidar un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Diagnóstico del flujo (5 conceptos)
+### Seccion: Diagnóstico del flujo (5 conceptos)
 
 - **Lead time y cycle time**  
   *Familia:* `evidencia y latencia`  
@@ -130,7 +130,7 @@ WIP <= limite` → Flujo recuperado. *La recuperación de Metodologías de desar
   Para entender Antipatrones de métricas, se delimita un comportamiento esperado, una entrada mínima y un síntoma observable. La operación aísla variables y contrasta hipótesis con instrumentación repetible hasta producir una causa demostrada y una regresión protegida.
 
 
-### 📑 Sección: Gobierno y mejora (5 conceptos)
+### Seccion: Gobierno y mejora (5 conceptos)
 
 - **Políticas explícitas**  
   *Familia:* `validación y decisión`  
@@ -153,7 +153,7 @@ WIP <= limite` → Flujo recuperado. *La recuperación de Metodologías de desar
   La función de Memoria de decisiones parte de valores con representación, dirección y tiempo de vida definidos. Su ejecución reserva, enlaza y libera almacenamiento siguiendo el contrato del runtime y produce estado accesible sin referencias colgantes ni corrupción.
 
 
-### 📑 Sección: Scrum aplicado (7 conceptos)
+### Seccion: Scrum aplicado (7 conceptos)
 
 - **Product Goal**  
   *Familia:* `contratos coordinados`  
@@ -184,7 +184,7 @@ WIP <= limite` → Flujo recuperado. *La recuperación de Metodologías de desar
   Cancelación / un / Sprint coordina la ejecución: la ejecución se suspende en puntos seguros y el runtime la reanuda cuando I/O o demanda permiten avanzar hasta obtener un valor, evento o cierre propagado sin bloquear el thread que coordina el flujo.
 
 
-### 📑 Sección: Kanban aplicado (5 conceptos)
+### Seccion: Kanban aplicado (5 conceptos)
 
 - **Puntos de compromiso y entrega**  
   *Familia:* `cola y consumidor`  
@@ -207,7 +207,7 @@ WIP <= limite` → Flujo recuperado. *La recuperación de Metodologías de desar
   Separa seleccionar nuevo trabajo de revisar entregas para proteger capacidad y aprendizaje.
 
 
-### 📑 Sección: Extreme Programming (8 conceptos)
+### Seccion: Extreme Programming (8 conceptos)
 
 - **Programación en pareja**  
   *Familia:* `flujo de transformación`  
@@ -242,7 +242,7 @@ WIP <= limite` → Flujo recuperado. *La recuperación de Metodologías de desar
   Al operar con Ritmo / sostenible, el sistema limita opciones, recoge evidencia y adapta prioridad sin ocultar colas ni dependencias, produciendo un incremento terminado y una señal de resultado que alimenta la siguiente decisión.
 
 
-### 📑 Sección: Lean y teoría de colas (5 conceptos)
+### Seccion: Lean y teoría de colas (5 conceptos)
 
 - **Valor y desperdicio**  
   *Familia:* `cola y consumidor`  
@@ -265,7 +265,7 @@ WIP <= limite` → Flujo recuperado. *La recuperación de Metodologías de desar
   Evita acelerar una etapa si solo desplaza el cuello y empeora el resultado total.
 
 
-### 📑 Sección: Descubrimiento de producto (7 conceptos)
+### Seccion: Descubrimiento de producto (7 conceptos)
 
 - **Hipótesis de problema**  
   *Familia:* `flujo de interfaz`  
@@ -296,7 +296,7 @@ WIP <= limite` → Flujo recuperado. *La recuperación de Metodologías de desar
   Pruebas / desirability coordina la ejecución: la herramienta ejecuta, perturba o inspecciona el mecanismo y conserva el contraejemplo mínimo hasta obtener evidencia reproducible que distingue regresión, ruido y limitación conocida.
 
 
-### 📑 Sección: Requisitos y alcance (6 conceptos)
+### Seccion: Requisitos y alcance (6 conceptos)
 
 - **Mapeo de historias**  
   *Familia:* `superficie de aplicación`  
@@ -323,7 +323,7 @@ WIP <= limite` → Flujo recuperado. *La recuperación de Metodologías de desar
   Para Impact / mapping, el lenguaje resuelve expresiones y elige una ruta manteniendo alcance y manejo de fallo explícitos, manteniendo un valor, transición o error que el siguiente paso puede distinguir sin inspeccionar estado oculto.
 
 
-### 📑 Sección: Entrega y operaciones (7 conceptos)
+### Seccion: Entrega y operaciones (7 conceptos)
 
 - **Trunk-based development**  
   *Familia:* `flujo de transformación`  
@@ -354,7 +354,7 @@ WIP <= limite` → Flujo recuperado. *La recuperación de Metodologías de desar
   Error / budgets coordina la ejecución: el adaptador prepara operaciones, adquiere recursos y aplica restricciones antes de confirmar hasta obtener estado persistido con integridad y visibilidad coherentes para lectores concurrentes.
 
 
-### 📑 Sección: Riesgo y gobernanza (7 conceptos)
+### Seccion: Riesgo y gobernanza (7 conceptos)
 
 - **Registro de riesgos**  
   *Familia:* `espectro de verificación`  
@@ -385,7 +385,7 @@ WIP <= limite` → Flujo recuperado. *La recuperación de Metodologías de desar
   Controles / compensatorios coordina la ejecución: el lenguaje resuelve expresiones y elige una ruta manteniendo alcance y manejo de fallo explícitos hasta obtener un valor, transición o error que el siguiente paso puede distinguir sin inspeccionar estado oculto.
 
 
-### 📑 Sección: Equipos y organizaciones (5 conceptos)
+### Seccion: Equipos y organizaciones (5 conceptos)
 
 - **Topologías de equipo**  
   *Familia:* `ecosistema coordinado`  
@@ -408,7 +408,7 @@ WIP <= limite` → Flujo recuperado. *La recuperación de Metodologías de desar
   Permite exponer errores y dudas sin castigo, condición necesaria para aprender antes de incidentes.
 
 
-### 📑 Sección: Métricas orientadas a resultados (6 conceptos)
+### Seccion: Métricas orientadas a resultados (6 conceptos)
 
 - **Outcome frente a output**  
   *Familia:* `evidencia y latencia`  
@@ -438,4 +438,4 @@ WIP <= limite` → Flujo recuperado. *La recuperación de Metodologías de desar
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Fundamentos](Grupo-Fundamentals) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Fundamentos](Grupo-Fundamentals) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

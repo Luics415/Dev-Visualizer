@@ -1,43 +1,43 @@
-# 📘 [Pl] Perl
+# Perl (Pl)
 
 > **Texto, expresiones regulares, referencias, módulos, automatización y operación.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `perl` |
-| **Grupo Arquitectónico** | [Lenguajes](Grupo-Languages) |
+| **Grupo Arquitectonico** | [Lenguajes](Grupo-Languages) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `laravel` |
 | **Total de Conceptos** | **86 conceptos** |
-| **Capítulos / Secciones** | **14 secciones** |
+| **Capitulos / Secciones** | **14 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/perl)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/perl-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/perl)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/perl-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: Transformar un log como stream
+## Estudio de Caso Practico: Transformar un log como stream
 
 > **Caso integrado de Perl:** Un filtro Perl extrae eventos de un log grande, descubre bytes incompatibles y recupera Unicode y cuarentena sin cargar el archivo completo.  
 > La salida conserva línea de origen, encoding, errores descartados y conteos comprobables con TAP.
 
-### Fases de Ejecución:
-1. **Abrir de forma segura** (Transformar un log como stream: etapa 1 de 5): `open my $fh, '<:encoding(UTF-8)', $path or die $!;` → Entrada preparada. *La etapa conserva un contrato explícito para que el siguiente paso de Perl no dependa de supuestos ocultos.*
-2. **Extraer campos** (Transformar un log como stream: etapa 2 de 5): `while (<$fh>) { /id=(\d+) status=(\w+)/ and emit($1,$2) }` → Eventos extraídos. *La etapa conserva un contrato explícito para que el siguiente paso de Perl no dependa de supuestos ocultos.*
-3. **Detectar byte inválido** (Transformar un log como stream: etapa 3 de 5): `utf8 '\xFF' does not map to Unicode` → Transformación pausada. *El caso hace visible el fallo de Perl; no continúa como si la evidencia fuera válida.*
-4. **Separar cuarentena** (Transformar un log como stream: etapa 4 de 5): `use Encode qw(decode FB_CROAK); eval { decode('UTF-8',$raw,FB_CROAK) }` → Stream recuperado. *La recuperación de Perl corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
-5. **Comprobar resumen** (Transformar un log como stream: etapa 5 de 5): `is_deeply(\%counts, $expected, 'conteos');` → Reporte reproducible. *La etapa conserva un contrato explícito para que el siguiente paso de Perl no dependa de supuestos ocultos.*
+### Fases de Ejecucion:
+1. **Abrir de forma segura** (Transformar un log como stream: etapa 1 de 5): `open my $fh, '<:encoding(UTF-8)', $path or die $!;` -> Entrada preparada. *La etapa conserva un contrato explícito para que el siguiente paso de Perl no dependa de supuestos ocultos.*
+2. **Extraer campos** (Transformar un log como stream: etapa 2 de 5): `while (<$fh>) { /id=(\d+) status=(\w+)/ and emit($1,$2) }` -> Eventos extraídos. *La etapa conserva un contrato explícito para que el siguiente paso de Perl no dependa de supuestos ocultos.*
+3. **Detectar byte inválido** (Transformar un log como stream: etapa 3 de 5): `utf8 '\xFF' does not map to Unicode` -> Transformación pausada. *El caso hace visible el fallo de Perl; no continúa como si la evidencia fuera válida.*
+4. **Separar cuarentena** (Transformar un log como stream: etapa 4 de 5): `use Encode qw(decode FB_CROAK); eval { decode('UTF-8',$raw,FB_CROAK) }` -> Stream recuperado. *La recuperación de Perl corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
+5. **Comprobar resumen** (Transformar un log como stream: etapa 5 de 5): `is_deeply(\%counts, $expected, 'conteos');` -> Reporte reproducible. *La etapa conserva un contrato explícito para que el siguiente paso de Perl no dependa de supuestos ocultos.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (86)
+## Catalogo Sistematico de Conceptos (86)
 
-### 📑 Sección: Perl esencial (5 conceptos)
+### Seccion: Perl esencial (5 conceptos)
 
 - **Scalars**  
   *Familia:* `despacho de runtime`  
@@ -60,7 +60,7 @@
   Para entender Control de flujo, se delimita un ejemplo mínimo, sus precondiciones y el estado inicial. La operación aplica el mecanismo paso a paso haciendo visibles sus invariantes hasta producir un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Motor del lenguaje (5 conceptos)
+### Seccion: Motor del lenguaje (5 conceptos)
 
 - **Regex**  
   *Familia:* `flujo de transformación`  
@@ -83,7 +83,7 @@
   Symbol tables estructura un ejemplo mínimo, sus precondiciones y el estado inicial en el sistema: aplica el mecanismo paso a paso haciendo visibles sus invariantes, garantizando un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Trabajo cotidiano (5 conceptos)
+### Seccion: Trabajo cotidiano (5 conceptos)
 
 - **Módulos**  
   *Familia:* `análisis y emisión`  
@@ -106,7 +106,7 @@
   La función de Objetos parte de un ejemplo mínimo, sus precondiciones y el estado inicial. Su ejecución aplica el mecanismo paso a paso haciendo visibles sus invariantes y produce un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Diagnóstico (5 conceptos)
+### Seccion: Diagnóstico (5 conceptos)
 
 - **strict y warnings**  
   *Familia:* `mapa de memoria`  
@@ -129,7 +129,7 @@
   El recorrido de Profiling toma un comportamiento esperado, una entrada mínima y un síntoma observable. Posteriormente aísla variables y contrasta hipótesis con instrumentación repetible para validar una causa demostrada y una regresión protegida.
 
 
-### 📑 Sección: Producción (5 conceptos)
+### Seccion: Producción (5 conceptos)
 
 - **Taint mode**  
   *Familia:* `pasaporte del artefacto`  
@@ -152,7 +152,7 @@
   Compatibilidad de versiones estructura un ejemplo mínimo, sus precondiciones y el estado inicial en el sistema: aplica el mecanismo paso a paso haciendo visibles sus invariantes, garantizando un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Semántica de datos (7 conceptos)
+### Seccion: Semántica de datos (7 conceptos)
 
 - **Autovivification**  
   *Familia:* `planificación de trabajo`  
@@ -183,7 +183,7 @@
   A través de Weak references en Semántica de datos, el sistema parsea al OP tree, propaga contexto y ejecuta magia, regex o módulo solicitado manteniendo valor y efecto del proceso visibles bajo warnings estrictos.
 
 
-### 📑 Sección: Expresiones regulares avanzadas (7 conceptos)
+### Seccion: Expresiones regulares avanzadas (7 conceptos)
 
 - **Lookaround**  
   *Familia:* `evidencia y latencia`  
@@ -214,7 +214,7 @@
   A través de Backtracking control verbs en Expresiones regulares avanzadas, el sistema tokeniza, reconoce alternativas y construye una representación estructurada sin perder ubicación manteniendo árbol, match o diagnóstico consumible por la siguiente etapa.
 
 
-### 📑 Sección: Orientación a objetos moderna (6 conceptos)
+### Seccion: Orientación a objetos moderna (6 conceptos)
 
 - **Moo**  
   *Familia:* `despacho de runtime`  
@@ -241,7 +241,7 @@
   Method modifiers gestiona Orientación a objetos moderna de modo que resuelve composición, restricciones y representación antes de aceptar la instancia, produciendo estructura válida cuyas operaciones permitidas están explícitas.
 
 
-### 📑 Sección: Distribución con CPAN (7 conceptos)
+### Seccion: Distribución con CPAN (7 conceptos)
 
 - **Distribución con Dist-Zilla**  
   *Familia:* `matriz de señales`  
@@ -272,7 +272,7 @@
   A través de Reproducible distribution archives en Distribución con CPAN, el sistema resuelve el grafo, verifica procedencia, compila y empaqueta con entorno fijado manteniendo artefacto versionado cuya composición puede reproducirse.
 
 
-### 📑 Sección: Testing profundo (7 conceptos)
+### Seccion: Testing profundo (7 conceptos)
 
 - **Test2**  
   *Familia:* `espectro de verificación`  
@@ -303,7 +303,7 @@
   A través de prove harness orchestration en Testing profundo, el sistema ejecuta camino normal, límite y fallo mientras captura todos los efectos observables manteniendo evidencia repetible que distingue comportamiento correcto de una regresión.
 
 
-### 📑 Sección: Seguridad (7 conceptos)
+### Seccion: Seguridad (7 conceptos)
 
 - **Untainting explícito**  
   *Familia:* `validación y decisión`  
@@ -334,7 +334,7 @@
   A través de Unicode canonicalization attacks en Seguridad, el sistema autentica, normaliza y autoriza antes de ejecutar con la capacidad mínima manteniendo decisión explícita y auditable que no expone secretos ni amplía privilegios.
 
 
-### 📑 Sección: Rendimiento y memoria (6 conceptos)
+### Seccion: Rendimiento y memoria (6 conceptos)
 
 - **Benchmark**  
   *Familia:* `evidencia y latencia`  
@@ -361,7 +361,7 @@
   OP tree inspection gestiona Rendimiento y memoria de modo que analiza, expande, especializa y baja a una representación ejecutable, produciendo código cuyo origen y decisiones de optimización pueden inspeccionarse.
 
 
-### 📑 Sección: Interoperabilidad y servicios (7 conceptos)
+### Seccion: Interoperabilidad y servicios (7 conceptos)
 
 - **DBI**  
   *Familia:* `planificación de trabajo`  
@@ -392,7 +392,7 @@
   A través de PSGI streaming lifecycle en Interoperabilidad y servicios, el sistema propaga elementos, aplica ventana o transformación y regula producción con demanda manteniendo salida ordenada con memoria y latencia acotadas.
 
 
-### 📑 Sección: Operación de sistemas Perl (7 conceptos)
+### Seccion: Operación de sistemas Perl (7 conceptos)
 
 - **Señales robustas**  
   *Familia:* `despacho de runtime`  
@@ -426,4 +426,4 @@
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

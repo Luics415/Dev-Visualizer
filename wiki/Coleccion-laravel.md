@@ -1,46 +1,46 @@
-# 📘 [Lv] Laravel
+# Laravel (Lv)
 
 > **Contenedor, HTTP, Eloquent, políticas, colas, eventos y pruebas.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `laravel` |
-| **Grupo Arquitectónico** | [Plataformas y servidor](Grupo-Platforms) |
+| **Grupo Arquitectonico** | [Plataformas y servidor](Grupo-Platforms) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `laravel` |
 | **Total de Conceptos** | **65 conceptos** |
-| **Capítulos / Secciones** | **11 secciones** |
+| **Capitulos / Secciones** | **11 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/laravel)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/laravel-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/laravel)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/laravel-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: Laravel en acción
+## Estudio de Caso Practico: Laravel en acción
 
 > **Caso integrado · Orden transaccional y asíncrona:** Una solicitud de reparación debe validarse, autorizarse y persistirse con inventario consistente; notificaciones y facturación continúan en cola sin duplicarse.  
 > La orden confirma únicamente estado durable, los efectos secundarios se recuperan por idempotencia y cada frontera conserva trazabilidad.
 
-### Fases de Ejecución:
-1. **Recibir la solicitud** (Contrato y normalización): `StoreRepairOrderRequest` → entrada válida. *La validación ocurre antes de construir o consultar el agregado.*
-2. **Autorizar la acción** (Identidad sobre recurso): `$this->authorize('create', RepairOrder::class)` → acceso permitido. *La policy centraliza la regla y se aplica también fuera de la pantalla.*
-3. **Abrir transacción** (Orden e inventario juntos): `DB::transaction(fn () => ...)` → estado atómico. *La transacción termina antes de publicar efectos externos.*
-4. **Detectar inconsistencia** (El correo sale antes del commit): `Mail::send() dentro de transaction` → doble verdad. *Un servicio externo no participa en la transacción de base de datos.*
-5. **Publicar después del commit** (Evento durable): `OrderCreated::dispatchAfterCommit($order)` → frontera recuperada. *El evento nace únicamente cuando la verdad de datos ya es durable.*
-6. **Procesar el job** (Idempotencia por folio): `ShouldQueue + uniqueId()` → efecto confirmado. *El proveedor recibe una clave estable y el job registra su resultado.*
-7. **Manejar el fallo** (Failed jobs son estado): `failed(Throwable $e)` → recuperación disponible. *El fallo no se oculta ni revierte una orden ya aceptada.*
-8. **Verificar el caso** (Prueba del flujo completo): `postJson → assertDatabaseHas → Queue::assertPushed` → orden operable. *La prueba demuestra respuesta, persistencia y transición asíncrona sin ejecutar terceros.*
+### Fases de Ejecucion:
+1. **Recibir la solicitud** (Contrato y normalización): `StoreRepairOrderRequest` -> entrada válida. *La validación ocurre antes de construir o consultar el agregado.*
+2. **Autorizar la acción** (Identidad sobre recurso): `$this->authorize('create', RepairOrder::class)` -> acceso permitido. *La policy centraliza la regla y se aplica también fuera de la pantalla.*
+3. **Abrir transacción** (Orden e inventario juntos): `DB::transaction(fn () => ...)` -> estado atómico. *La transacción termina antes de publicar efectos externos.*
+4. **Detectar inconsistencia** (El correo sale antes del commit): `Mail::send() dentro de transaction` -> doble verdad. *Un servicio externo no participa en la transacción de base de datos.*
+5. **Publicar después del commit** (Evento durable): `OrderCreated::dispatchAfterCommit($order)` -> frontera recuperada. *El evento nace únicamente cuando la verdad de datos ya es durable.*
+6. **Procesar el job** (Idempotencia por folio): `ShouldQueue + uniqueId()` -> efecto confirmado. *El proveedor recibe una clave estable y el job registra su resultado.*
+7. **Manejar el fallo** (Failed jobs son estado): `failed(Throwable $e)` -> recuperación disponible. *El fallo no se oculta ni revierte una orden ya aceptada.*
+8. **Verificar el caso** (Prueba del flujo completo): `postJson → assertDatabaseHas → Queue::assertPushed` -> orden operable. *La prueba demuestra respuesta, persistencia y transición asíncrona sin ejecutar terceros.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (65)
+## Catalogo Sistematico de Conceptos (65)
 
-### 📑 Sección: Ciclo y contenedor (6 conceptos)
+### Seccion: Ciclo y contenedor (6 conceptos)
 
 - **Request lifecycle**  
   *Familia:* `workflow y decisiones`  
@@ -67,7 +67,7 @@
   Inyecta implementaciones distintas según la clase que solicita la dependencia.
 
 
-### 📑 Sección: HTTP y entrada (6 conceptos)
+### Seccion: HTTP y entrada (6 conceptos)
 
 - **Routing y model binding**  
   *Familia:* `workflow y decisiones`  
@@ -94,7 +94,7 @@
   Aplica limitadores throttle con claves por IP, usuario autenticado o tenant.
 
 
-### 📑 Sección: Datos y consistencia (6 conceptos)
+### Seccion: Datos y consistencia (6 conceptos)
 
 - **Eloquent models**  
   *Familia:* `workflow y decisiones`  
@@ -121,7 +121,7 @@
   Genera estados reproducibles y datos deterministas para pruebas y desarrollo.
 
 
-### 📑 Sección: Identidad y seguridad (6 conceptos)
+### Seccion: Identidad y seguridad (6 conceptos)
 
 - **Authentication**  
   *Familia:* `workflow y decisiones`  
@@ -148,7 +148,7 @@
   Gestiona códigos TOTP, claves de recuperación y renovación de sesión.
 
 
-### 📑 Sección: Trabajo asíncrono (6 conceptos)
+### Seccion: Trabajo asíncrono (6 conceptos)
 
 - **Events y listeners**  
   *Familia:* `workflow y decisiones`  
@@ -175,7 +175,7 @@
   Encadena trabajos secuenciales o coordina lotes paralelos con callbacks de finalización.
 
 
-### 📑 Sección: Calidad y producción (6 conceptos)
+### Seccion: Calidad y producción (6 conceptos)
 
 - **Feature y unit tests**  
   *Familia:* `workflow y decisiones`  
@@ -202,7 +202,7 @@
   Escribe suites de tests concisas con sintaxis declarativa y datasets dinámicos.
 
 
-### 📑 Sección: Eloquent avanzado y patrones de persistencia (6 conceptos)
+### Seccion: Eloquent avanzado y patrones de persistencia (6 conceptos)
 
 - **Polymorphic relations y morph maps**  
   *Familia:* `análisis y emisión`  
@@ -229,7 +229,7 @@
   Procesa millones de registros con bajo consumo de memoria mediante generadores PHP.
 
 
-### 📑 Sección: Arquitectura de API y contratos REST/GraphQL (6 conceptos)
+### Seccion: Arquitectura de API y contratos REST/GraphQL (6 conceptos)
 
 - **API Resources y Resource Collections**  
   *Familia:* `pasaporte del artefacto`  
@@ -256,7 +256,7 @@
   Genera especificaciones OpenAPI interactivas a partir de FormRequests y rutas.
 
 
-### 📑 Sección: Sistemas de eventos y tiempo real (6 conceptos)
+### Seccion: Sistemas de eventos y tiempo real (6 conceptos)
 
 - **Event Broadcasting con WebSockets (Reverb)**  
   *Familia:* `análisis y emisión`  
@@ -283,7 +283,7 @@
   Publica webhooks a clientes externos verificando integridad con firmas criptográficas HMAC.
 
 
-### 📑 Sección: Almacenamiento de archivos y medios (6 conceptos)
+### Seccion: Almacenamiento de archivos y medios (6 conceptos)
 
 - **Filesystem Abstraction (Flysystem)**  
   *Familia:* `árbol de recursos`  
@@ -310,7 +310,7 @@
   Purga archivos no reclamados o temporales mediante tareas programadas en el scheduler.
 
 
-### 📑 Sección: Observabilidad, telemetría y diagnósticos (5 conceptos)
+### Seccion: Observabilidad, telemetría y diagnósticos (5 conceptos)
 
 - **Laravel Pulse**  
   *Familia:* `evidencia y latencia`  
@@ -334,11 +334,11 @@
 
 
 
-## 📖 Recursos de Estudio y Referencias Oficiales
+## Referencias Bibliograficas y Documentacion Oficial
 - **[Learn Laravel](https://laravel.com/learn)** (`course` | Nivel: `beginner`): 
 - **[Laravel 13 Installation](https://laravel.com/framework/docs/13.x/installation)** (`official-docs` | Nivel: `intermediate`): 
 - **[Laravel Horizon](https://laravel.com/framework/docs/13.x/horizon)** (`official-docs` | Nivel: `advanced`): 
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Plataformas y servidor](Grupo-Platforms) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Plataformas y servidor](Grupo-Platforms) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

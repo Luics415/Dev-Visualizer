@@ -1,54 +1,54 @@
-# 📘 [PL] Prolog
+# Prolog (PL)
 
 > **Términos, unificación, resolución, backtracking, restricciones, tabling, gramáticas y producción.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `prolog` |
-| **Grupo Arquitectónico** | [Lenguajes](Grupo-Languages) |
+| **Grupo Arquitectonico** | [Lenguajes](Grupo-Languages) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `prolog` |
 | **Total de Conceptos** | **120 conceptos** |
-| **Capítulos / Secciones** | **24 secciones** |
+| **Capitulos / Secciones** | **24 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/prolog)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/prolog-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/prolog)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/prolog-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: Prolog en acción
+## Estudio de Caso Practico: Prolog en acción
 
 > **Caso integrado · Planificador explicable de respuesta a incidentes:** Una consulta asigna personas distintas a roles médicos, técnicos y logísticos, respeta turnos, habilidades, rutas y SLA, explica por qué una rama falla y entrega el mejor plan con su árbol de prueba.  
 > La respuesta final demuestra que cada rol fue cubierto una vez, ningún integrante se duplicó, el tiempo total cumple el SLA y cada decisión puede rastrearse hasta hechos y reglas concretos.
 
-### Fases de Ejecución:
-1. **Definir el contrato** (El módulo expone solo el caso de uso): `:- module(rescue_plan, [best_plan/2, explain/2]).` → frontera reusable. *Una interfaz pequeña permite cambiar la estrategia de búsqueda sin romper consumidores.*
-2. **Cargar hechos versionados** (Equipo, habilidades y turnos entran como relaciones): `responder(4, [medical, logistics], day).` → base reproducible. *Los hechos describen el mundo conocido; no ejecutan una decisión por sí solos.*
-3. **Analizar la solicitud** (Una DCG convierte tokens en dominio): `phrase(request(Incident), Tokens).` → petición estructurada. *Separar parsing de inferencia mantiene comprobable cada frontera.*
-4. **Validar la frontera** (Solo entra un término cerrado y permitido): `must_be(ground, Incident).` → goal seguro. *Los datos del cliente nunca se convierten directamente en código ejecutable.*
-5. **Derivar requisitos** (Las reglas traducen el incidente a roles): `required(i17, [medical, hazmat, logistics]).` → requisitos demostrados. *La salida es una consecuencia de hechos y reglas, no una lista hardcodeada en la UI.*
-6. **Generar candidatos** (Cada rol abre alternativas elegibles): `eligible(Role, Id) :- responder(Id, Skills, day), memberchk(Role, Skills).` → alternativas justificadas. *El predicado genera y verifica según el modo con que se consulte.*
-7. **Construir el plan** (La recursión asigna sin perder contexto): `assign([Role|Rs], Used, [Id-Role|Plan]) :- eligible(Role, Id), ...` → plan parcial. *El acumulador hace explícita la invariante de personas ya utilizadas.*
-8. **Propagar restricciones** (CLP(FD) reduce el espacio antes de enumerar): `Ids ins 1..12, all_distinct(Ids), sum(ETAs, #=<, 45).` → búsqueda acotada. *Modelar y buscar son fases distintas: primero se publica conocimiento, luego se etiqueta.*
-9. **Resolver rutas** (Tabling atraviesa una red con ciclos): `:- table reachable/3.` → rutas terminantes. *El identificador nexo_sur es solo un guiño textual; la escena no usa marcas ni recursos ajenos.*
-10. **Detectar contradicción** (La primera rama duplica una persona): `all_distinct([4, 4, _]).` → rama descartada. *El fallo es un resultado lógico esperado, no una excepción del runtime.*
-11. **Retroceder** (El trail restaura bindings y activa otra opción): `eligible(Role, NextId).` → búsqueda recuperada. *Backtracking deshace bindings lógicos; no revierte automáticamente archivos u otros efectos externos.*
-12. **Completar soluciones** (Labeling materializa planes factibles): `feasible_plan(Incident, Plan, Cost).` → planes completos. *La enumeración ocurre después de que la propagación redujo los dominios.*
-13. **Elegir el menor costo** (setof ordena todas las demostraciones): `setof(Cost-Plan, feasible_plan(I, Plan, Cost), [BestCost-Best|_]).` → plan óptimo. *Con los mismos hechos y reglas, el criterio explícito produce el mismo ganador.*
-14. **Construir la explicación** (La prueba también se convierte en dato): `explain(Best, proof(RuleIds)).` → decisión auditable. *Una respuesta explicable conserva tanto el qué como el porqué.*
-15. **Verificar y acotar** (Tests e inference limit protegen la operación): `call_with_inference_limit(best_plan(I, P), 100000, Status).` → evidencia verde. *La ausencia de un límite convierte una consulta válida pero no terminante en un riesgo operativo.*
-16. **Publicar el resultado** (HTTP entrega datos y prueba sin ejecutar goals externos): `reply_json_dict(_{plan:Best, eta:BestCost, proof:Rules}).` → respuesta verificable. *assigned_roles coincide con required_roles, cada persona es única, ETA no supera 45 y la prueba no está vacía.*
+### Fases de Ejecucion:
+1. **Definir el contrato** (El módulo expone solo el caso de uso): `:- module(rescue_plan, [best_plan/2, explain/2]).` -> frontera reusable. *Una interfaz pequeña permite cambiar la estrategia de búsqueda sin romper consumidores.*
+2. **Cargar hechos versionados** (Equipo, habilidades y turnos entran como relaciones): `responder(4, [medical, logistics], day).` -> base reproducible. *Los hechos describen el mundo conocido; no ejecutan una decisión por sí solos.*
+3. **Analizar la solicitud** (Una DCG convierte tokens en dominio): `phrase(request(Incident), Tokens).` -> petición estructurada. *Separar parsing de inferencia mantiene comprobable cada frontera.*
+4. **Validar la frontera** (Solo entra un término cerrado y permitido): `must_be(ground, Incident).` -> goal seguro. *Los datos del cliente nunca se convierten directamente en código ejecutable.*
+5. **Derivar requisitos** (Las reglas traducen el incidente a roles): `required(i17, [medical, hazmat, logistics]).` -> requisitos demostrados. *La salida es una consecuencia de hechos y reglas, no una lista hardcodeada en la UI.*
+6. **Generar candidatos** (Cada rol abre alternativas elegibles): `eligible(Role, Id) :- responder(Id, Skills, day), memberchk(Role, Skills).` -> alternativas justificadas. *El predicado genera y verifica según el modo con que se consulte.*
+7. **Construir el plan** (La recursión asigna sin perder contexto): `assign([Role|Rs], Used, [Id-Role|Plan]) :- eligible(Role, Id), ...` -> plan parcial. *El acumulador hace explícita la invariante de personas ya utilizadas.*
+8. **Propagar restricciones** (CLP(FD) reduce el espacio antes de enumerar): `Ids ins 1..12, all_distinct(Ids), sum(ETAs, #=<, 45).` -> búsqueda acotada. *Modelar y buscar son fases distintas: primero se publica conocimiento, luego se etiqueta.*
+9. **Resolver rutas** (Tabling atraviesa una red con ciclos): `:- table reachable/3.` -> rutas terminantes. *El identificador nexo_sur es solo un guiño textual; la escena no usa marcas ni recursos ajenos.*
+10. **Detectar contradicción** (La primera rama duplica una persona): `all_distinct([4, 4, _]).` -> rama descartada. *El fallo es un resultado lógico esperado, no una excepción del runtime.*
+11. **Retroceder** (El trail restaura bindings y activa otra opción): `eligible(Role, NextId).` -> búsqueda recuperada. *Backtracking deshace bindings lógicos; no revierte automáticamente archivos u otros efectos externos.*
+12. **Completar soluciones** (Labeling materializa planes factibles): `feasible_plan(Incident, Plan, Cost).` -> planes completos. *La enumeración ocurre después de que la propagación redujo los dominios.*
+13. **Elegir el menor costo** (setof ordena todas las demostraciones): `setof(Cost-Plan, feasible_plan(I, Plan, Cost), [BestCost-Best|_]).` -> plan óptimo. *Con los mismos hechos y reglas, el criterio explícito produce el mismo ganador.*
+14. **Construir la explicación** (La prueba también se convierte en dato): `explain(Best, proof(RuleIds)).` -> decisión auditable. *Una respuesta explicable conserva tanto el qué como el porqué.*
+15. **Verificar y acotar** (Tests e inference limit protegen la operación): `call_with_inference_limit(best_plan(I, P), 100000, Status).` -> evidencia verde. *La ausencia de un límite convierte una consulta válida pero no terminante en un riesgo operativo.*
+16. **Publicar el resultado** (HTTP entrega datos y prueba sin ejecutar goals externos): `reply_json_dict(_{plan:Best, eta:BestCost, proof:Rules}).` -> respuesta verificable. *assigned_roles coincide con required_roles, cada persona es única, ETA no supera 45 y la prueba no está vacía.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (120)
+## Catalogo Sistematico de Conceptos (120)
 
-### 📑 Sección: Primer contacto y ciclo de trabajo (5 conceptos)
+### Seccion: Primer contacto y ciclo de trabajo (5 conceptos)
 
 - **SWI-Prolog estable**  
   *Familia:* `evidencia y latencia`  
@@ -71,7 +71,7 @@
   Encuentra predicados y contratos mediante help/1, apropos/1 y PlDoc.
 
 
-### 📑 Sección: Términos y sintaxis (5 conceptos)
+### Seccion: Términos y sintaxis (5 conceptos)
 
 - **Átomos y números**  
   *Familia:* `capas internas`  
@@ -94,7 +94,7 @@
   Entiende que los operadores cambian el parseo, no crean por sí mismos nueva semántica.
 
 
-### 📑 Sección: Hechos, reglas y consultas (5 conceptos)
+### Seccion: Hechos, reglas y consultas (5 conceptos)
 
 - **Hechos**  
   *Familia:* `consulta e índice`  
@@ -117,7 +117,7 @@
   Separa qué relación describe una regla de cómo el motor la recorre.
 
 
-### 📑 Sección: Unificación e identidad (5 conceptos)
+### Seccion: Unificación e identidad (5 conceptos)
 
 - **Unificación implícita**  
   *Familia:* `jerarquía y dependencias`  
@@ -140,7 +140,7 @@
   Comprende árboles racionales, portabilidad y unify_with_occurs_check/2.
 
 
-### 📑 Sección: Resolución y árbol de prueba (5 conceptos)
+### Seccion: Resolución y árbol de prueba (5 conceptos)
 
 - **Demostración dirigida por objetivos**  
   *Familia:* `espectro de verificación`  
@@ -163,7 +163,7 @@
   Explica por qué una respuesta existente puede quedar oculta tras una rama infinita.
 
 
-### 📑 Sección: Nondeterminismo y modos (5 conceptos)
+### Seccion: Nondeterminismo y modos (5 conceptos)
 
 - **Múltiples respuestas**  
   *Familia:* `ida y vuelta`  
@@ -186,7 +186,7 @@
   Evalúa cuándo un predicado funciona en varias direcciones y cuándo exige instanciación.
 
 
-### 📑 Sección: Recursión y terminación (5 conceptos)
+### Seccion: Recursión y terminación (5 conceptos)
 
 - **Caso base**  
   *Familia:* `consulta e índice`  
@@ -209,7 +209,7 @@
   Demuestra terminación según modos, orden de objetivos y tamaño de entrada.
 
 
-### 📑 Sección: Listas, árboles y estructuras simbólicas (5 conceptos)
+### Seccion: Listas, árboles y estructuras simbólicas (5 conceptos)
 
 - **member/2 y append/3**  
   *Familia:* `consulta e índice`  
@@ -232,7 +232,7 @@
   Usa copy_term/2, term_variables/2 y variantes sin romper identidad lógica.
 
 
-### 📑 Sección: Control declarativo e impuro (5 conceptos)
+### Seccion: Control declarativo e impuro (5 conceptos)
 
 - **Conjunción y disyunción**  
   *Familia:* `capas internas`  
@@ -255,7 +255,7 @@
   Diferencia una poda que conserva respuestas de otra que cambia el significado lógico.
 
 
-### 📑 Sección: Aritmética y orden (5 conceptos)
+### Seccion: Aritmética y orden (5 conceptos)
 
 - **Evaluación con is/2**  
   *Familia:* `flujo de transformación`  
@@ -278,7 +278,7 @@
   Identifica cuándo is/2 rompe reversibilidad y conviene usar restricciones.
 
 
-### 📑 Sección: Soluciones y programación de orden superior (5 conceptos)
+### Seccion: Soluciones y programación de orden superior (5 conceptos)
 
 - **findall/3**  
   *Familia:* `secuencia operativa`  
@@ -301,7 +301,7 @@
   Eleva patrones habituales de recorrido preservando nondeterminismo y contexto.
 
 
-### 📑 Sección: Texto, términos e I/O (5 conceptos)
+### Seccion: Texto, términos e I/O (5 conceptos)
 
 - **Átomos, strings y listas de códigos**  
   *Familia:* `capas internas`  
@@ -324,7 +324,7 @@
   Separa salida de dominio, logging y diagnósticos mediante format/2 y el sistema de mensajes.
 
 
-### 📑 Sección: Gramáticas de cláusulas definidas (5 conceptos)
+### Seccion: Gramáticas de cláusulas definidas (5 conceptos)
 
 - **Reglas -->**  
   *Familia:* `evidencia y latencia`  
@@ -347,7 +347,7 @@
   Aprovecha la misma relación para reconocer o producir secuencias cuando sea seguro.
 
 
-### 📑 Sección: CLP(FD) (5 conceptos)
+### Seccion: CLP(FD) (5 conceptos)
 
 - **Variables de dominio finito**  
   *Familia:* `validación y decisión`  
@@ -370,7 +370,7 @@
   Separa el modelo de la estrategia que enumera o minimiza soluciones.
 
 
-### 📑 Sección: Otras restricciones y coroutining (5 conceptos)
+### Seccion: Otras restricciones y coroutining (5 conceptos)
 
 - **CLP(Q)**  
   *Familia:* `ida y vuelta`  
@@ -393,7 +393,7 @@
   Usa when/2 o mecanismos equivalentes sin ocultar condiciones de activación y terminación.
 
 
-### 📑 Sección: Tabling y terminación avanzada (5 conceptos)
+### Seccion: Tabling y terminación avanzada (5 conceptos)
 
 - **Ejecución tabulada**  
   *Familia:* `telar relacional`  
@@ -416,7 +416,7 @@
   Trata ciclos negativos y dependencias que cambian, marcándolos como extensiones de implementación.
 
 
-### 📑 Sección: Base dinámica y estado (5 conceptos)
+### Seccion: Base dinámica y estado (5 conceptos)
 
 - **Predicados dynamic**  
   *Familia:* `topología y tráfico`  
@@ -439,7 +439,7 @@
   Prefiere argumentos y estructuras puras cuando el estado no necesita ser global.
 
 
-### 📑 Sección: Módulos, librerías y portabilidad (5 conceptos)
+### Seccion: Módulos, librerías y portabilidad (5 conceptos)
 
 - **Interfaz de módulo**  
   *Familia:* `flujo de interfaz`  
@@ -462,7 +462,7 @@
   Contrasta ISO, SWI-Prolog, GNU Prolog y SICStus antes de prometer portabilidad.
 
 
-### 📑 Sección: Excepciones, límites y seguridad (5 conceptos)
+### Seccion: Excepciones, límites y seguridad (5 conceptos)
 
 - **Términos de error ISO**  
   *Familia:* `evidencia y latencia`  
@@ -485,7 +485,7 @@
   Lee términos con opciones seguras y nunca ejecuta un goal recibido del cliente.
 
 
-### 📑 Sección: Pruebas y contratos (5 conceptos)
+### Seccion: Pruebas y contratos (5 conceptos)
 
 - **Unidades PlUnit**  
   *Familia:* `validación y decisión`  
@@ -508,7 +508,7 @@
   Ejecuta la suite con código de salida útil para CI.
 
 
-### 📑 Sección: Debugging y diagnóstico (5 conceptos)
+### Seccion: Debugging y diagnóstico (5 conceptos)
 
 - **Modelo Byrd de cuatro puertos**  
   *Familia:* `topología y tráfico`  
@@ -531,7 +531,7 @@
   Detecta dependencias, imports faltantes y código no alcanzable.
 
 
-### 📑 Sección: Rendimiento e internals (5 conceptos)
+### Seccion: Rendimiento e internals (5 conceptos)
 
 - **Warren Abstract Machine**  
   *Familia:* `despacho de runtime`  
@@ -554,7 +554,7 @@
   Observa memoria global, local, trail, atom GC y crecimiento de tabling.
 
 
-### 📑 Sección: Concurrencia (5 conceptos)
+### Seccion: Concurrencia (5 conceptos)
 
 - **Threads y engines**  
   *Familia:* `planificación de trabajo`  
@@ -577,7 +577,7 @@
   Interrumpe trabajo y libera recursos conservando resultados ya confirmados.
 
 
-### 📑 Sección: Integración y producción (5 conceptos)
+### Seccion: Integración y producción (5 conceptos)
 
 - **HTTP y dispatch**  
   *Familia:* `ida y vuelta`  
@@ -601,11 +601,11 @@
 
 
 
-## 📖 Recursos de Estudio y Referencias Oficiales
+## Referencias Bibliograficas y Documentacion Oficial
 - **[SWI-Prolog: Getting started quickly](https://www.swi-prolog.org/pldoc/man?section=quickstart)** (`tutorial` | Nivel: `beginner`): 
 - **[Learn Prolog Now!](https://lpn.swi-prolog.org/lpnpage.php?pageid=online)** (`book` | Nivel: `intermediate`): 
 - **[The Power of Prolog](https://www.metalevel.at/prolog)** (`book` | Nivel: `advanced`): 
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

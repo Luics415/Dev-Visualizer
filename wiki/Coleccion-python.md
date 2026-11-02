@@ -1,52 +1,52 @@
-# 📘 [Py] Python
+# Python (Py)
 
 > **Desde cero: lenguaje, biblioteca estándar, automatización, web, datos, IA y producción.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `python` |
-| **Grupo Arquitectónico** | [Lenguajes](Grupo-Languages) |
+| **Grupo Arquitectonico** | [Lenguajes](Grupo-Languages) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `python` |
 | **Total de Conceptos** | **240 conceptos** |
-| **Capítulos / Secciones** | **48 secciones** |
+| **Capitulos / Secciones** | **48 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/python)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/python-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/python)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/python-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: Python en acción
+## Estudio de Caso Practico: Python en acción
 
 > **Caso integrado · Observatorio de telemetría reproducible:** Un servicio de Python recibe mediciones heterogéneas, las analiza sin bloquear el proceso, rechaza datos ambiguos, normaliza unidades, calcula indicadores y publica un informe trazable. Un lote corrupto activa aislamiento y reanudación sin duplicar resultados.  
 > El caso conecta lenguaje, objetos, iteradores, context managers, tipado, asyncio, procesos, pruebas, empaquetado, seguridad y observabilidad en un flujo que puede repetirse y auditarse.
 
-### Fases de Ejecución:
-1. **Definir el contrato** (Entradas y resultado verificable): `bytes → Measurement | ValidationError` → frontera comprensible. *Antes de optimizar se decide qué significa una medición válida.*
-2. **Crear el entorno** (Runtime reproducible): `python -m venv .venv` → ejecución aislada. *El entorno forma parte del artefacto reproducible.*
-3. **Leer como stream** (Demanda acotada): `async for chunk in source` → ingesta estable. *El productor solo avanza al ritmo aceptado por el consumidor.*
-4. **Decodificar y parsear** (Bytes no son objetos): `decode('utf-8') → csv rows` → filas estructuradas. *Cada frontera conserva suficiente contexto para diagnosticar sin registrar secretos.*
-5. **Validar modelos** (Parsear hacia el dominio): `Measurement.from_row(row)` → objetos válidos. *Una fila inválida no se disfraza con defaults silenciosos.*
-6. **Normalizar unidades** (Funciones puras): `fahrenheit → celsius` → mediciones comparables. *La transformación puede probarse sin red, archivos ni reloj global.*
-7. **Calcular en paralelo** (CPU fuera del event loop): `await to_process_pool(aggregate)` → indicadores calculados. *El trabajo de CPU no congela las operaciones de entrada y salida.*
-8. **Detectar el lote corrupto** (Fallo explícito): `checksum mismatch · batch 042` → lote en cuarentena. *La excepción contiene causa y posición; no se captura como un error genérico.*
-9. **Reanudar idempotentemente** (Checkpoint y recuperación): `resume(offset) + idempotency_key` → flujo recuperado. *Repetir el trabajo produce el mismo resultado observable.*
-10. **Persistir de forma atómica** (Temporal y reemplazo): `write temp → fsync → replace` → artefacto íntegro. *La ruta de error también cierra archivos y elimina temporales propios.*
-11. **Probar propiedades** (Ejemplos y casos generados): `pytest + round-trip invariants` → comportamiento demostrado. *Las pruebas cubren resultado y recuperación, no solo líneas ejecutadas.*
-12. **Observar el runtime** (Trazas, logs y métricas): `trace_id · queue_depth · p95` → salud interpretable. *La telemetría evita payloads sensibles y conserva correlación.*
-13. **Empaquetar y comprobar** (Un artefacto instalable): `python -m build → wheel → clean env` → entrega reproducible. *Se prueba exactamente lo que se distribuirá.*
-14. **Cerrar ordenadamente** (Cancelación cooperativa): `stop intake → drain → close` → observatorio operable. *El resultado coloreado permanece legible y alimenta el siguiente lote del loop.*
+### Fases de Ejecucion:
+1. **Definir el contrato** (Entradas y resultado verificable): `bytes → Measurement | ValidationError` -> frontera comprensible. *Antes de optimizar se decide qué significa una medición válida.*
+2. **Crear el entorno** (Runtime reproducible): `python -m venv .venv` -> ejecución aislada. *El entorno forma parte del artefacto reproducible.*
+3. **Leer como stream** (Demanda acotada): `async for chunk in source` -> ingesta estable. *El productor solo avanza al ritmo aceptado por el consumidor.*
+4. **Decodificar y parsear** (Bytes no son objetos): `decode('utf-8') → csv rows` -> filas estructuradas. *Cada frontera conserva suficiente contexto para diagnosticar sin registrar secretos.*
+5. **Validar modelos** (Parsear hacia el dominio): `Measurement.from_row(row)` -> objetos válidos. *Una fila inválida no se disfraza con defaults silenciosos.*
+6. **Normalizar unidades** (Funciones puras): `fahrenheit → celsius` -> mediciones comparables. *La transformación puede probarse sin red, archivos ni reloj global.*
+7. **Calcular en paralelo** (CPU fuera del event loop): `await to_process_pool(aggregate)` -> indicadores calculados. *El trabajo de CPU no congela las operaciones de entrada y salida.*
+8. **Detectar el lote corrupto** (Fallo explícito): `checksum mismatch · batch 042` -> lote en cuarentena. *La excepción contiene causa y posición; no se captura como un error genérico.*
+9. **Reanudar idempotentemente** (Checkpoint y recuperación): `resume(offset) + idempotency_key` -> flujo recuperado. *Repetir el trabajo produce el mismo resultado observable.*
+10. **Persistir de forma atómica** (Temporal y reemplazo): `write temp → fsync → replace` -> artefacto íntegro. *La ruta de error también cierra archivos y elimina temporales propios.*
+11. **Probar propiedades** (Ejemplos y casos generados): `pytest + round-trip invariants` -> comportamiento demostrado. *Las pruebas cubren resultado y recuperación, no solo líneas ejecutadas.*
+12. **Observar el runtime** (Trazas, logs y métricas): `trace_id · queue_depth · p95` -> salud interpretable. *La telemetría evita payloads sensibles y conserva correlación.*
+13. **Empaquetar y comprobar** (Un artefacto instalable): `python -m build → wheel → clean env` -> entrega reproducible. *Se prueba exactamente lo que se distribuirá.*
+14. **Cerrar ordenadamente** (Cancelación cooperativa): `stop intake → drain → close` -> observatorio operable. *El resultado coloreado permanece legible y alimenta el siguiente lote del loop.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (240)
+## Catalogo Sistematico de Conceptos (240)
 
-### 📑 Sección: Antes de escribir código (5 conceptos)
+### Seccion: Antes de escribir código (5 conceptos)
 
 - **Problema, entrada y salida**  
   *Familia:* `capas internas`  
@@ -69,7 +69,7 @@
   Observa un síntoma, formula una hipótesis, cambia una sola variable y conserva evidencia de la causa.
 
 
-### 📑 Sección: Preparar el entorno (5 conceptos)
+### Seccion: Preparar el entorno (5 conceptos)
 
 - **Instalación oficial**  
   *Familia:* `pasaporte del artefacto`  
@@ -92,7 +92,7 @@
   Usa resaltado, autocompletado, terminal, help, dir y documentación sin depender de copiar código desconocido.
 
 
-### 📑 Sección: Primer programa y sintaxis (5 conceptos)
+### Seccion: Primer programa y sintaxis (5 conceptos)
 
 - **Indentación significativa**  
   *Familia:* `evidencia y latencia`  
@@ -115,7 +115,7 @@
   Muestra resultados, recibe texto del usuario y convierte explícitamente cuando necesita otro tipo.
 
 
-### 📑 Sección: Números, verdad y ausencia (5 conceptos)
+### Seccion: Números, verdad y ausencia (5 conceptos)
 
 - **int**  
   *Familia:* `pasaporte del artefacto`  
@@ -138,7 +138,7 @@
   Elige aritmética decimal, racional o compleja cuando el dominio no encaja en int o float.
 
 
-### 📑 Sección: Texto, Unicode y bytes (5 conceptos)
+### Seccion: Texto, Unicode y bytes (5 conceptos)
 
 - **str y puntos de código**  
   *Familia:* `capas internas`  
@@ -161,7 +161,7 @@
   Distingue datos binarios inmutables, buffers mutables y vistas sin copia para protocolos y rendimiento.
 
 
-### 📑 Sección: Decisiones y coincidencia de patrones (5 conceptos)
+### Seccion: Decisiones y coincidencia de patrones (5 conceptos)
 
 - **Comparaciones**  
   *Familia:* `comparativa técnica`  
@@ -184,7 +184,7 @@
   Define qué debe seguir siendo cierto antes y después de cualquier rama para detectar estados imposibles.
 
 
-### 📑 Sección: Repetición y recorridos (5 conceptos)
+### Seccion: Repetición y recorridos (5 conceptos)
 
 - **while**  
   *Familia:* `validación y decisión`  
@@ -207,7 +207,7 @@
   Construye listas, conjuntos o diccionarios mediante transformación y filtro cuando el flujo cabe en una lectura.
 
 
-### 📑 Sección: Colecciones y mutabilidad (5 conceptos)
+### Seccion: Colecciones y mutabilidad (5 conceptos)
 
 - **list**  
   *Familia:* `evidencia y latencia`  
@@ -230,7 +230,7 @@
   Visualiza referencias compartidas y decide cuándo copiar contenedores o también sus objetos anidados.
 
 
-### 📑 Sección: Funciones fundamentales (5 conceptos)
+### Seccion: Funciones fundamentales (5 conceptos)
 
 - **def, llamada y return**  
   *Familia:* `consulta e índice`  
@@ -253,7 +253,7 @@
   Expande secuencias y mappings solo después de validar que coinciden con la firma esperada.
 
 
-### 📑 Sección: Contratos y composición funcional (5 conceptos)
+### Seccion: Contratos y composición funcional (5 conceptos)
 
 - **Alcance LEGB**  
   *Familia:* `flujo de transformación`  
@@ -276,7 +276,7 @@
   Separa cálculo de entrada/salida y usa recursión solo cuando el modelo y los límites de profundidad la justifican.
 
 
-### 📑 Sección: Errores y recuperación (5 conceptos)
+### Seccion: Errores y recuperación (5 conceptos)
 
 - **Errores sintácticos, de runtime y lógicos**  
   *Familia:* `evidencia y latencia`  
@@ -299,7 +299,7 @@
   Gestiona varios fallos concurrentes sin perder causas individuales ni agrupar errores incompatibles.
 
 
-### 📑 Sección: Archivos y serialización (5 conceptos)
+### Seccion: Archivos y serialización (5 conceptos)
 
 - **pathlib**  
   *Familia:* `árbol de recursos`  
@@ -322,7 +322,7 @@
   Usa tempfile, gzip, zipfile o tarfile y valida nombres antes de extraer contenido no confiable.
 
 
-### 📑 Sección: Módulos, paquetes e imports (5 conceptos)
+### Seccion: Módulos, paquetes e imports (5 conceptos)
 
 - **Módulo y namespace**  
   *Familia:* `aislamiento sobre host`  
@@ -345,7 +345,7 @@
   Reconoce sys.modules, efectos de importación y por qué reload no reconstruye de forma segura todo un proceso.
 
 
-### 📑 Sección: Iteradores, generadores y flujo perezoso (5 conceptos)
+### Seccion: Iteradores, generadores y flujo perezoso (5 conceptos)
 
 - **Iterable e iterator**  
   *Familia:* `análisis y emisión`  
@@ -368,7 +368,7 @@
   Limita el trabajo pendiente haciendo que el productor avance al ritmo que el consumidor puede aceptar.
 
 
-### 📑 Sección: Objetos y clases (5 conceptos)
+### Seccion: Objetos y clases (5 conceptos)
 
 - **Identidad, tipo y valor**  
   *Familia:* `matriz de señales`  
@@ -391,7 +391,7 @@
   Prefiere colaboración explícita y usa herencia cuando la sustitución y el orden de resolución son correctos.
 
 
-### 📑 Sección: Modelo de datos de Python (5 conceptos)
+### Seccion: Modelo de datos de Python (5 conceptos)
 
 - **Métodos especiales**  
   *Familia:* `análisis y emisión`  
@@ -414,7 +414,7 @@
   Observa cómo se construyen clases y reserva metaprogramación para frameworks con un beneficio verificable.
 
 
-### 📑 Sección: Modelado moderno de datos (5 conceptos)
+### Seccion: Modelado moderno de datos (5 conceptos)
 
 - **dataclasses**  
   *Familia:* `análisis y emisión`  
@@ -437,7 +437,7 @@
   Desestructura dataclasses, secuencias y mappings sin acoplar el flujo a índices crípticos.
 
 
-### 📑 Sección: Tipado gradual (5 conceptos)
+### Seccion: Tipado gradual (5 conceptos)
 
 - **Tipos estáticos opcionales**  
   *Familia:* `matriz de señales`  
@@ -460,7 +460,7 @@
   Describe datos estructurados y capacidades compartidas en fronteras que no necesitan una clase concreta.
 
 
-### 📑 Sección: Biblioteca estándar: datos, matemáticas y tiempo (5 conceptos)
+### Seccion: Biblioteca estándar: datos, matemáticas y tiempo (5 conceptos)
 
 - **collections**  
   *Familia:* `consulta e índice`  
@@ -483,7 +483,7 @@
   Usa expresiones regulares para patrones acotados, compila cuando conviene y evita tratarlas como parser universal.
 
 
-### 📑 Sección: Biblioteca estándar: sistema y automatización (5 conceptos)
+### Seccion: Biblioteca estándar: sistema y automatización (5 conceptos)
 
 - **os, pathlib y shutil**  
   *Familia:* `árbol de recursos`  
@@ -506,7 +506,7 @@
   Coordina interrupciones y trabajo temporal sin prometer que toda salida del proceso ejecutará cleanup.
 
 
-### 📑 Sección: Red, protocolos y criptografía disponible (5 conceptos)
+### Seccion: Red, protocolos y criptografía disponible (5 conceptos)
 
 - **urllib y HTTP clients**  
   *Familia:* `ida y vuelta`  
@@ -529,7 +529,7 @@
   Procesa formatos con límites, valida contenido y evita entidades o expansiones peligrosas en datos no confiables.
 
 
-### 📑 Sección: Entornos y dependencias (5 conceptos)
+### Seccion: Entornos y dependencias (5 conceptos)
 
 - **Gestor de instalación de Python**  
   *Familia:* `consulta e índice`  
@@ -552,7 +552,7 @@
   Registra dependencias directas, fija o bloquea despliegues y reconstruye el ambiente desde metadatos revisados.
 
 
-### 📑 Sección: Empaquetado y distribución (5 conceptos)
+### Seccion: Empaquetado y distribución (5 conceptos)
 
 - **pyproject.toml**  
   *Familia:* `pasaporte del artefacto`  
@@ -575,7 +575,7 @@
   Construye en entorno limpio, inspecciona metadatos, prueba el artefacto y publica con credenciales acotadas.
 
 
-### 📑 Sección: Estilo, análisis y documentación (5 conceptos)
+### Seccion: Estilo, análisis y documentación (5 conceptos)
 
 - **PEP 8 y consistencia**  
   *Familia:* `configuración declarativa`  
@@ -598,7 +598,7 @@
   Evalúa corrección, claridad, pruebas, seguridad y operación, y registra compromisos que no se resuelven ahora.
 
 
-### 📑 Sección: Pruebas automatizadas (5 conceptos)
+### Seccion: Pruebas automatizadas (5 conceptos)
 
 - **unittest y pytest**  
   *Familia:* `espectro de verificación`  
@@ -621,7 +621,7 @@
   Distribuye casos por costo y riesgo, incluyendo límites generados y recorridos críticos completos.
 
 
-### 📑 Sección: Depuración y observabilidad (5 conceptos)
+### Seccion: Depuración y observabilidad (5 conceptos)
 
 - **Tracebacks y pdb**  
   *Familia:* `evidencia y latencia`  
@@ -644,7 +644,7 @@
   Conserva reproducción, impacto, línea temporal, causa, corrección y prevención sin culpar a una persona.
 
 
-### 📑 Sección: CPython e internals (5 conceptos)
+### Seccion: CPython e internals (5 conceptos)
 
 - **Tokenización, AST y compilación**  
   *Familia:* `análisis y emisión`  
@@ -667,7 +667,7 @@
   Separa semántica del lenguaje de detalles de CPython, stable ABI y extensiones dependientes de versión.
 
 
-### 📑 Sección: Rendimiento y memoria (5 conceptos)
+### Seccion: Rendimiento y memoria (5 conceptos)
 
 - **Complejidad y estructura de datos**  
   *Familia:* `comparativa técnica`  
@@ -690,7 +690,7 @@
   Reduce cruces del intérprete mediante operaciones en bloque y mide costo de copia e interoperabilidad.
 
 
-### 📑 Sección: Concurrencia paralela (5 conceptos)
+### Seccion: Concurrencia paralela (5 conceptos)
 
 - **threading y sincronización**  
   *Familia:* `planificación de trabajo`  
@@ -713,7 +713,7 @@
   Comprende builds sin GIL, seguridad de extensiones y la diferencia entre ausencia de GIL y ausencia de carreras.
 
 
-### 📑 Sección: Programación asíncrona (5 conceptos)
+### Seccion: Programación asíncrona (5 conceptos)
 
 - **Event loop, coroutine y Task**  
   *Familia:* `tejido de eventos`  
@@ -736,7 +736,7 @@
   Usa async with, streams y executors, y evita detener el loop con I/O o CPU síncronos.
 
 
-### 📑 Sección: Arquitectura, seguridad y producción (5 conceptos)
+### Seccion: Arquitectura, seguridad y producción (5 conceptos)
 
 - **Configuración y secretos**  
   *Familia:* `configuración declarativa`  
@@ -759,7 +759,7 @@
   Coordina startup, health, readiness, señales, drenado, migraciones, rollback y evidencia operativa.
 
 
-### 📑 Sección: Web y servidores Python (5 conceptos)
+### Seccion: Web y servidores Python (5 conceptos)
 
 - **Semántica HTTP y HTTPS**  
   *Familia:* `ida y vuelta`  
@@ -782,7 +782,7 @@
   Declara endpoints async o sync, dependencias y esquemas que alimentan validación y OpenAPI.
 
 
-### 📑 Sección: APIs, persistencia y fronteras web (5 conceptos)
+### Seccion: APIs, persistencia y fronteras web (5 conceptos)
 
 - **Diseño de contratos**  
   *Familia:* `validación y decisión`  
@@ -805,7 +805,7 @@
   Coordina cambios de esquema, trabajo diferido y canales persistentes con despliegues compatibles.
 
 
-### 📑 Sección: Automatización e integración (5 conceptos)
+### Seccion: Automatización e integración (5 conceptos)
 
 - **CLI y procesos por lotes**  
   *Familia:* `planificación de trabajo`  
@@ -828,7 +828,7 @@
   Integra sistemas con firma, cursor, rate limit, deduplicación y reconciliación periódica.
 
 
-### 📑 Sección: Notebooks y análisis de datos (5 conceptos)
+### Seccion: Notebooks y análisis de datos (5 conceptos)
 
 - **Jupyter y orden de ejecución**  
   *Familia:* `consulta e índice`  
@@ -851,7 +851,7 @@
   Separa exploración de conclusión y acompaña cada visual con pregunta, escala, incertidumbre y limitación.
 
 
-### 📑 Sección: Cómputo numérico y científico (5 conceptos)
+### Seccion: Cómputo numérico y científico (5 conceptos)
 
 - **NumPy ndarray**  
   *Familia:* `tabla de estados`  
@@ -874,7 +874,7 @@
   Construye Figure y Axes, elige escalas y etiquetas accesibles y exporta resultados reproducibles.
 
 
-### 📑 Sección: Aprendizaje automático clásico (5 conceptos)
+### Seccion: Aprendizaje automático clásico (5 conceptos)
 
 - **Problema, objetivo y baseline**  
   *Familia:* `evidencia y latencia`  
@@ -897,7 +897,7 @@
   Evalúa errores por segmento, incertidumbre y cambio de datos después del despliegue.
 
 
-### 📑 Sección: Deep learning e IA (5 conceptos)
+### Seccion: Deep learning e IA (5 conceptos)
 
 - **Tensores y dispositivos**  
   *Familia:* `cuadrícula paralela`  
@@ -920,7 +920,7 @@
   Elige ecosistema por operación y comprueba licencia, procedencia, límites, sesgos y formato del artefacto.
 
 
-### 📑 Sección: Escritorio, interoperabilidad e IoT (5 conceptos)
+### Seccion: Escritorio, interoperabilidad e IoT (5 conceptos)
 
 - **Tkinter**  
   *Familia:* `capas internas`  
@@ -943,7 +943,7 @@
   Prueba arquitectura, cámara, permisos, aceleradores, consumo, actualización y recuperación en el dispositivo real.
 
 
-### 📑 Sección: Algoritmos y estructuras de datos aplicadas (5 conceptos)
+### Seccion: Algoritmos y estructuras de datos aplicadas (5 conceptos)
 
 - **Invariantes y contratos**  
   *Familia:* `jerarquía y dependencias`  
@@ -966,7 +966,7 @@
   Modela estados, aristas y subproblemas repetidos, registra decisiones y reconstruye una solución verificable.
 
 
-### 📑 Sección: Aplicaciones de línea de comandos y TUI (5 conceptos)
+### Seccion: Aplicaciones de línea de comandos y TUI (5 conceptos)
 
 - **Contrato de una CLI**  
   *Familia:* `espectro de verificación`  
@@ -989,7 +989,7 @@
   Publica entry points, completa shell cuando corresponde y prueba la CLI en Windows, macOS y Linux.
 
 
-### 📑 Sección: Validación y modelos en fronteras (5 conceptos)
+### Seccion: Validación y modelos en fronteras (5 conceptos)
 
 - **Datos confiables y no confiables**  
   *Familia:* `consulta e índice`  
@@ -1012,7 +1012,7 @@
   Evalúa Pydantic u otras herramientas por semántica, costo, versión y compatibilidad, sin confundir sus modelos con el lenguaje.
 
 
-### 📑 Sección: Ingeniería de datos y pipelines (5 conceptos)
+### Seccion: Ingeniería de datos y pipelines (5 conceptos)
 
 - **Ingesta por lotes e incremental**  
   *Familia:* `consulta e índice`  
@@ -1035,7 +1035,7 @@
   Declara dependencias, parámetros, artefactos, métricas y procedencia para reconstruir cómo nació cada salida.
 
 
-### 📑 Sección: Cómputo distribuido y grandes volúmenes (5 conceptos)
+### Seccion: Cómputo distribuido y grandes volúmenes (5 conceptos)
 
 - **Partir el problema**  
   *Familia:* `planificación de trabajo`  
@@ -1058,7 +1058,7 @@
   Empieza con iteradores, vectorización y un solo host; distribuye únicamente el cuello de botella demostrado.
 
 
-### 📑 Sección: Lenguaje natural, embeddings y RAG (5 conceptos)
+### Seccion: Lenguaje natural, embeddings y RAG (5 conceptos)
 
 - **Texto como datos**  
   *Familia:* `tejido literario`  
@@ -1081,7 +1081,7 @@
   Limita herramientas y datos, valida salida, registra procedencia y diseña recuperación ante alucinación o prompt injection.
 
 
-### 📑 Sección: Simulación, juegos y medios (5 conceptos)
+### Seccion: Simulación, juegos y medios (5 conceptos)
 
 - **Loop de simulación**  
   *Familia:* `flujo de interfaz`  
@@ -1104,7 +1104,7 @@
   Conserva semilla, entradas y versión del motor para reproducir una partida o comparar una regresión.
 
 
-### 📑 Sección: Cloud, serverless y automatización operativa (5 conceptos)
+### Seccion: Cloud, serverless y automatización operativa (5 conceptos)
 
 - **Proceso efímero**  
   *Familia:* `planificación de trabajo`  
@@ -1127,7 +1127,7 @@
   Correlaciona invocación, cola y servicio, y mide duración, memoria, transferencia, errores y gasto por operación útil.
 
 
-### 📑 Sección: Gobierno, mantenimiento y cadena de suministro (5 conceptos)
+### Seccion: Gobierno, mantenimiento y cadena de suministro (5 conceptos)
 
 - **Política de versiones**  
   *Familia:* `validación y decisión`  
@@ -1153,4 +1153,4 @@
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

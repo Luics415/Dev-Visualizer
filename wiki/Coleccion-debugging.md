@@ -1,31 +1,31 @@
-# 📘 [Debug] Debugging
+# Debugging (Debug)
 
 > **Reproducción, evidencia, hipótesis, rendimiento e incidentes.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `debugging` |
-| **Grupo Arquitectónico** | [Control de versiones y calidad](Grupo-Versioning) |
+| **Grupo Arquitectonico** | [Control de versiones y calidad](Grupo-Versioning) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `debugging` |
 | **Total de Conceptos** | **238 conceptos** |
-| **Capítulos / Secciones** | **12 secciones** |
+| **Capitulos / Secciones** | **12 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/debugging)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/debugging-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/debugging)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/debugging-en-accion)
 
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (238)
+## Catalogo Sistematico de Conceptos (238)
 
-### 📑 Sección: Mentalidad y formulación del problema (18 conceptos)
+### Seccion: Mentalidad y formulación del problema (18 conceptos)
 
 - **Qué es debugging**  
   *Familia:* `anatomía del concepto`  
@@ -100,7 +100,7 @@
   Incluye corrección, prueba de regresión, observabilidad y explicación de por qué no reaparecerá.
 
 
-### 📑 Sección: Reproducción y aislamiento (18 conceptos)
+### Seccion: Reproducción y aislamiento (18 conceptos)
 
 - **Caso mínimo reproducible**  
   *Familia:* `pasaporte del artefacto`  
@@ -175,7 +175,7 @@
   Convierte el síntoma en una prueba automática que falla antes de tocar la implementación.
 
 
-### 📑 Sección: Evidencia, logs y observabilidad (19 conceptos)
+### Seccion: Evidencia, logs y observabilidad (19 conceptos)
 
 - **Logging estructurado**  
   *Familia:* `evidencia y latencia`  
@@ -254,7 +254,7 @@
   Una búsqueda precisa combina tiempo, versión, request ID y dimensión afectada.
 
 
-### 📑 Sección: Breakpoints y ejecución paso a paso (21 conceptos)
+### Seccion: Breakpoints y ejecución paso a paso (21 conceptos)
 
 - **Breakpoint de línea**  
   *Familia:* `capas internas`  
@@ -341,7 +341,7 @@
   Conecta DevTools o IDE a navegador móvil, Node, contenedor o proceso remoto de manera segura.
 
 
-### 📑 Sección: JavaScript, estado y asincronía (20 conceptos)
+### Seccion: JavaScript, estado y asincronía (20 conceptos)
 
 - **Valor inesperado**  
   *Familia:* `capas internas`  
@@ -424,7 +424,7 @@
   Ejecuciones adicionales en desarrollo revelan side effects no idempotentes, no significan doble commit en producción.
 
 
-### 📑 Sección: DOM, CSS y rendering del navegador (18 conceptos)
+### Seccion: DOM, CSS y rendering del navegador (18 conceptos)
 
 - **Elements panel**  
   *Familia:* `flujo de interfaz`  
@@ -499,7 +499,7 @@
   Relacionan estilos procesados con Sass, modules u otras fuentes originales.
 
 
-### 📑 Sección: Red y APIs (20 conceptos)
+### Seccion: Red y APIs (20 conceptos)
 
 - **Network panel**  
   *Familia:* `topología y tráfico`  
@@ -582,7 +582,7 @@
   Schema, versión, nullabilidad y nombres distintos producen errores aunque ambos lados compilen.
 
 
-### 📑 Sección: Backend y sistemas distribuidos (22 conceptos)
+### Seccion: Backend y sistemas distribuidos (22 conceptos)
 
 - **Stack trace de servidor**  
   *Familia:* `evidencia y latencia`  
@@ -673,7 +673,7 @@
   Observa syscalls, red y latencia del kernel con menor modificación de la aplicación.
 
 
-### 📑 Sección: Rendimiento (21 conceptos)
+### Seccion: Rendimiento (21 conceptos)
 
 - **Performance profile**  
   *Familia:* `diagnóstico operativo`  
@@ -760,7 +760,7 @@
   Una prueba compara contra baseline y falla cuando una métrica supera tolerancia.
 
 
-### 📑 Sección: Memoria y recursos (19 conceptos)
+### Seccion: Memoria y recursos (19 conceptos)
 
 - **Memory leak**  
   *Familia:* `memoria intermedia`  
@@ -839,7 +839,7 @@
   Comparar después de ciclos completos y GC evita confundir warm-up con leak.
 
 
-### 📑 Sección: Mobile y React Native (18 conceptos)
+### Seccion: Mobile y React Native (18 conceptos)
 
 - **Logs de dispositivo**  
   *Familia:* `evidencia y latencia`  
@@ -914,7 +914,7 @@
   Crashlytics o equivalentes agrupan stacks y breadcrumbs, pero necesitan símbolos correctos.
 
 
-### 📑 Sección: Pruebas, regresiones e incidentes (24 conceptos)
+### Seccion: Pruebas, regresiones e incidentes (24 conceptos)
 
 - **Unit test de regresión**  
   *Familia:* `cuadrícula paralela`  
@@ -1014,11 +1014,11 @@
 
 
 
-## 📖 Recursos de Estudio y Referencias Oficiales
+## Referencias Bibliograficas y Documentacion Oficial
 - **[Chrome DevTools](https://developer.chrome.com/docs/devtools/)** (`tutorial` | Nivel: `beginner`): 
 - **[The Firefox JavaScript Debugger](https://firefox-source-docs.mozilla.org/devtools-user/debugger/)** (`official-docs` | Nivel: `intermediate`): 
 - **[LLDB Tutorial](https://lldb.llvm.org/use/tutorial.html)** (`tutorial` | Nivel: `advanced`): 
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Control de versiones y calidad](Grupo-Versioning) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Control de versiones y calidad](Grupo-Versioning) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

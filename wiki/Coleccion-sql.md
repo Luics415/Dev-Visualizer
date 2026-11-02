@@ -1,43 +1,43 @@
-# 📘 [SQL] SQL
+# SQL (SQL)
 
 > **Modelo relacional, DDL, consultas, joins, transacciones, optimización y portabilidad.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `sql` |
-| **Grupo Arquitectónico** | [Datos](Grupo-Data) |
+| **Grupo Arquitectonico** | [Datos](Grupo-Data) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `databases` |
 | **Total de Conceptos** | **130 conceptos** |
-| **Capítulos / Secciones** | **20 secciones** |
+| **Capitulos / Secciones** | **20 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/sql)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/sql-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/sql)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/sql-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: Optimizar una consulta de pedidos
+## Estudio de Caso Practico: Optimizar una consulta de pedidos
 
 > **Caso integrado de SQL:** Una consulta une pedidos y eventos, el planner elige un scan costoso por una expresión no indexable y se recupera el acceso sin cambiar resultados.  
 > La entrega conserva query, parámetros, plan real, índices, cardinalidad y prueba de equivalencia.
 
-### Fases de Ejecución:
-1. **Expresar resultado** (Optimizar una consulta de pedidos: etapa 1 de 5): `SELECT customer_id, count(*) FROM orders GROUP BY customer_id` → Resultado lógico. *La etapa conserva un contrato explícito para que el siguiente paso de SQL no dependa de supuestos ocultos.*
-2. **Inspeccionar plan** (Optimizar una consulta de pedidos: etapa 2 de 5): `EXPLAIN (ANALYZE, BUFFERS) SELECT ...` → Cuello localizado. *La etapa conserva un contrato explícito para que el siguiente paso de SQL no dependa de supuestos ocultos.*
-3. **Detectar filtro no sargable** (Optimizar una consulta de pedidos: etapa 3 de 5): `WHERE lower(email) = lower($1)` → Latencia fuera de objetivo. *El caso hace visible el fallo de SQL; no continúa como si la evidencia fuera válida.*
-4. **Crear acceso adecuado** (Optimizar una consulta de pedidos: etapa 4 de 5): `CREATE INDEX ON customers (lower(email));` → Acceso recuperado. *La recuperación de SQL corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
-5. **Verificar transacción** (Optimizar una consulta de pedidos: etapa 5 de 5): `BEGIN; run_equivalence_tests(); COMMIT;` → Consulta promovible. *La etapa conserva un contrato explícito para que el siguiente paso de SQL no dependa de supuestos ocultos.*
+### Fases de Ejecucion:
+1. **Expresar resultado** (Optimizar una consulta de pedidos: etapa 1 de 5): `SELECT customer_id, count(*) FROM orders GROUP BY customer_id` -> Resultado lógico. *La etapa conserva un contrato explícito para que el siguiente paso de SQL no dependa de supuestos ocultos.*
+2. **Inspeccionar plan** (Optimizar una consulta de pedidos: etapa 2 de 5): `EXPLAIN (ANALYZE, BUFFERS) SELECT ...` -> Cuello localizado. *La etapa conserva un contrato explícito para que el siguiente paso de SQL no dependa de supuestos ocultos.*
+3. **Detectar filtro no sargable** (Optimizar una consulta de pedidos: etapa 3 de 5): `WHERE lower(email) = lower($1)` -> Latencia fuera de objetivo. *El caso hace visible el fallo de SQL; no continúa como si la evidencia fuera válida.*
+4. **Crear acceso adecuado** (Optimizar una consulta de pedidos: etapa 4 de 5): `CREATE INDEX ON customers (lower(email));` -> Acceso recuperado. *La recuperación de SQL corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
+5. **Verificar transacción** (Optimizar una consulta de pedidos: etapa 5 de 5): `BEGIN; run_equivalence_tests(); COMMIT;` -> Consulta promovible. *La etapa conserva un contrato explícito para que el siguiente paso de SQL no dependa de supuestos ocultos.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (130)
+## Catalogo Sistematico de Conceptos (130)
 
-### 📑 Sección: Modelo relacional (5 conceptos)
+### Seccion: Modelo relacional (5 conceptos)
 
 - **Relaciones y tuplas**  
   *Familia:* `telar relacional`  
@@ -60,7 +60,7 @@
   La función de Normalización parte de datos identificables junto con esquema, restricciones y procedencia. Su ejecución valida, representa y recorre cada valor preservando relaciones y produce información consultable con integridad y significado estables.
 
 
-### 📑 Sección: Consultas (5 conceptos)
+### Seccion: Consultas (5 conceptos)
 
 - **SELECT**  
   *Familia:* `flujo de transformación`  
@@ -83,7 +83,7 @@
   La función de Window functions parte de datos identificables junto con esquema, restricciones y procedencia. Su ejecución valida, representa y recorre cada valor preservando relaciones y produce información consultable con integridad y significado estables.
 
 
-### 📑 Sección: Cambios y concurrencia (5 conceptos)
+### Seccion: Cambios y concurrencia (5 conceptos)
 
 - **INSERT UPDATE DELETE**  
   *Familia:* `planificación de trabajo`  
@@ -106,7 +106,7 @@
   El mecanismo de MVCC recibe tareas con dependencias, recursos compartidos y una señal de cancelación y ordena trabajo y sincronización sin ocultar intercalados posibles, asegurando progreso concurrente con ownership y terminación observables.
 
 
-### 📑 Sección: Diagnóstico (5 conceptos)
+### Seccion: Diagnóstico (5 conceptos)
 
 - **Execution plans**  
   *Familia:* `consulta e índice`  
@@ -129,7 +129,7 @@
   El recorrido de Bloqueos y deadlocks toma un comportamiento esperado, una entrada mínima y un síntoma observable. Posteriormente aísla variables y contrasta hipótesis con instrumentación repetible para validar una causa demostrada y una regresión protegida.
 
 
-### 📑 Sección: Producción (5 conceptos)
+### Seccion: Producción (5 conceptos)
 
 - **Schemas y migrations**  
   *Familia:* `validación y decisión`  
@@ -152,7 +152,7 @@
   Auditoría estructura un ejemplo mínimo, sus precondiciones y el estado inicial en el sistema: aplica el mecanismo paso a paso haciendo visibles sus invariantes, garantizando un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Álgebra y cálculo relacional (6 conceptos)
+### Seccion: Álgebra y cálculo relacional (6 conceptos)
 
 - **Selección y proyección**  
   *Familia:* `telar relacional`  
@@ -179,7 +179,7 @@
   Relational division gestiona Álgebra y cálculo relacional de modo que reescribe la expresión, estima cardinalidades, elige accesos y ejecuta operadores, produciendo conjunto de filas correcto acompañado por costo y orden conocidos.
 
 
-### 📑 Sección: Diseño lógico avanzado (7 conceptos)
+### Seccion: Diseño lógico avanzado (7 conceptos)
 
 - **Dependencias funcionales**  
   *Familia:* `telar relacional`  
@@ -210,7 +210,7 @@
   A través de Temporal normalization en Diseño lógico avanzado, el sistema parser, rewriter, optimizer y executor convierten la intención en operadores sobre páginas e índices manteniendo filas correctas y cambios durables bajo el aislamiento solicitado.
 
 
-### 📑 Sección: Expresiones de consulta (7 conceptos)
+### Seccion: Expresiones de consulta (7 conceptos)
 
 - **Common table expressions**  
   *Familia:* `jerarquía y dependencias`  
@@ -241,7 +241,7 @@
   A través de Recursive cycle detection en Expresiones de consulta, el sistema reescribe la expresión, estima cardinalidades, elige accesos y ejecuta operadores manteniendo conjunto de filas correcto acompañado por costo y orden conocidos.
 
 
-### 📑 Sección: Semántica de ventanas (8 conceptos)
+### Seccion: Semántica de ventanas (8 conceptos)
 
 - **Window partitions**  
   *Familia:* `telar relacional`  
@@ -276,7 +276,7 @@
   En el flujo operativo de Semántica de ventanas, Null ordering contracts evalúa precondiciones y combina restricciones antes de comprometer estado para obtener valor aceptado con garantía explícita o error localizado.
 
 
-### 📑 Sección: Tipos y dominios (6 conceptos)
+### Seccion: Tipos y dominios (6 conceptos)
 
 - **Tipos exactos y aproximados**  
   *Familia:* `matriz de señales`  
@@ -303,7 +303,7 @@
   Collation semantics gestiona Tipos y dominios de modo que reescribe la expresión, estima cardinalidades, elige accesos y ejecuta operadores, produciendo conjunto de filas correcto acompañado por costo y orden conocidos.
 
 
-### 📑 Sección: Procedimientos y automatización (7 conceptos)
+### Seccion: Procedimientos y automatización (7 conceptos)
 
 - **Stored routines**  
   *Familia:* `telar relacional`  
@@ -334,7 +334,7 @@
   A través de Idempotent scheduled routines en Procedimientos y automatización, el sistema parser, rewriter, optimizer y executor convierten la intención en operadores sobre páginas e índices manteniendo filas correctas y cambios durables bajo el aislamiento solicitado.
 
 
-### 📑 Sección: Internals de almacenamiento (7 conceptos)
+### Seccion: Internals de almacenamiento (7 conceptos)
 
 - **Heap pages**  
   *Familia:* `tabla de estados`  
@@ -365,7 +365,7 @@
   A través de Write-ahead log record lifecycle en Internals de almacenamiento, el sistema registra intención, valida conflictos y confirma o compensa la unidad completa manteniendo un estado durable que satisface aislamiento e invariantes declarados.
 
 
-### 📑 Sección: Optimización de consultas (7 conceptos)
+### Seccion: Optimización de consultas (7 conceptos)
 
 - **Cardinality estimation**  
   *Familia:* `tabla de estados`  
@@ -396,7 +396,7 @@
   A través de Extended statistics en Optimización de consultas, el sistema reescribe la expresión, estima cardinalidades, elige accesos y ejecuta operadores manteniendo conjunto de filas correcto acompañado por costo y orden conocidos.
 
 
-### 📑 Sección: Índices especializados (7 conceptos)
+### Seccion: Índices especializados (7 conceptos)
 
 - **Covering indexes**  
   *Familia:* `consulta e índice`  
@@ -427,7 +427,7 @@
   A través de Index-only visibility en Índices especializados, el sistema reescribe la expresión, estima cardinalidades, elige accesos y ejecuta operadores manteniendo conjunto de filas correcto acompañado por costo y orden conocidos.
 
 
-### 📑 Sección: Concurrencia avanzada (7 conceptos)
+### Seccion: Concurrencia avanzada (7 conceptos)
 
 - **Snapshot isolation**  
   *Familia:* `aislamiento sobre host`  
@@ -458,7 +458,7 @@
   A través de Deadlock victim selection en Concurrencia avanzada, el sistema adquiere o señaliza sincronización, publica cambios y libera en un orden definido manteniendo estado visible sin carreras y progreso dentro del límite acordado.
 
 
-### 📑 Sección: Particionado y distribución (7 conceptos)
+### Seccion: Particionado y distribución (7 conceptos)
 
 - **Range partitioning**  
   *Familia:* `tejido de eventos`  
@@ -489,7 +489,7 @@
   A través de Partition pruning proofs en Particionado y distribución, el sistema elige responsables, propaga versión y reconcilia respuestas según quorum o reloj manteniendo una lectura o escritura cuyo alcance y frescura están cuantificados.
 
 
-### 📑 Sección: Testing de datos (7 conceptos)
+### Seccion: Testing de datos (7 conceptos)
 
 - **Constraint tests**  
   *Familia:* `espectro de verificación`  
@@ -520,7 +520,7 @@
   A través de Transaction anomaly tests en Testing de datos, el sistema ejecuta camino normal, límite y fallo mientras captura todos los efectos observables manteniendo evidencia repetible que distingue comportamiento correcto de una regresión.
 
 
-### 📑 Sección: Seguridad (7 conceptos)
+### Seccion: Seguridad (7 conceptos)
 
 - **Least-privilege grants**  
   *Familia:* `análisis y emisión`  
@@ -551,7 +551,7 @@
   A través de Dynamic SQL escaping en Seguridad, el sistema reescribe la expresión, estima cardinalidades, elige accesos y ejecuta operadores manteniendo conjunto de filas correcto acompañado por costo y orden conocidos.
 
 
-### 📑 Sección: Recuperación y continuidad (7 conceptos)
+### Seccion: Recuperación y continuidad (7 conceptos)
 
 - **Point-in-time recovery**  
   *Familia:* `telar relacional`  
@@ -582,7 +582,7 @@
   A través de Backup checksum verification en Recuperación y continuidad, el sistema aísla el fallo, restaura o promueve y reproduce cambios hasta el punto seguro manteniendo servicio recuperado con pérdida y tiempo medidos.
 
 
-### 📑 Sección: Observabilidad y operación (8 conceptos)
+### Seccion: Observabilidad y operación (8 conceptos)
 
 - **Wait events**  
   *Familia:* `propagación de eventos`  
@@ -620,4 +620,4 @@
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Datos](Grupo-Data) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Datos](Grupo-Data) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

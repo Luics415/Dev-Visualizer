@@ -1,43 +1,43 @@
-# 📘 [PHP] PHP
+# PHP (PHP)
 
 > **Lenguaje, runtime web, tipos, objetos, Composer, seguridad y operación.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `php` |
-| **Grupo Arquitectónico** | [Lenguajes](Grupo-Languages) |
+| **Grupo Arquitectonico** | [Lenguajes](Grupo-Languages) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `laravel` |
 | **Total de Conceptos** | **99 conceptos** |
-| **Capítulos / Secciones** | **17 secciones** |
+| **Capitulos / Secciones** | **17 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/php)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/php-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/php)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/php-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: Procesar una solicitud web segura
+## Estudio de Caso Practico: Procesar una solicitud web segura
 
 > **Caso integrado de PHP:** Un endpoint recibe un pedido, valida tipos y persiste una transacción; una concatenación SQL insegura dispara el diagnóstico y se reemplaza antes de responder.  
 > La respuesta final separa validación, dominio, persistencia y presentación con logs correlacionados.
 
-### Fases de Ejecución:
-1. **Recibir petición** (Procesar una solicitud web segura: etapa 1 de 5): `$input = json_decode(file_get_contents('php://input'), true);` → Entrada disponible. *La etapa conserva un contrato explícito para que el siguiente paso de PHP no dependa de supuestos ocultos.*
-2. **Validar contrato** (Procesar una solicitud web segura: etapa 2 de 5): `$order = OrderInput::fromArray($input);` → Orden tipada. *La etapa conserva un contrato explícito para que el siguiente paso de PHP no dependa de supuestos ocultos.*
-3. **Detectar SQL inseguro** (Procesar una solicitud web segura: etapa 3 de 5): `$pdo->query("SELECT * FROM items WHERE id=$id");` → Persistencia bloqueada. *El caso hace visible el fallo de PHP; no continúa como si la evidencia fuera válida.*
-4. **Preparar la consulta** (Procesar una solicitud web segura: etapa 4 de 5): `$stmt = $pdo->prepare('SELECT * FROM items WHERE id = ?');` → Frontera recuperada. *La recuperación de PHP corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
-5. **Confirmar respuesta** (Procesar una solicitud web segura: etapa 5 de 5): `$pdo->commit(); respond(201, $order->id);` → Pedido confirmado. *La etapa conserva un contrato explícito para que el siguiente paso de PHP no dependa de supuestos ocultos.*
+### Fases de Ejecucion:
+1. **Recibir petición** (Procesar una solicitud web segura: etapa 1 de 5): `$input = json_decode(file_get_contents('php://input'), true);` -> Entrada disponible. *La etapa conserva un contrato explícito para que el siguiente paso de PHP no dependa de supuestos ocultos.*
+2. **Validar contrato** (Procesar una solicitud web segura: etapa 2 de 5): `$order = OrderInput::fromArray($input);` -> Orden tipada. *La etapa conserva un contrato explícito para que el siguiente paso de PHP no dependa de supuestos ocultos.*
+3. **Detectar SQL inseguro** (Procesar una solicitud web segura: etapa 3 de 5): `$pdo->query("SELECT * FROM items WHERE id=$id");` -> Persistencia bloqueada. *El caso hace visible el fallo de PHP; no continúa como si la evidencia fuera válida.*
+4. **Preparar la consulta** (Procesar una solicitud web segura: etapa 4 de 5): `$stmt = $pdo->prepare('SELECT * FROM items WHERE id = ?');` -> Frontera recuperada. *La recuperación de PHP corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
+5. **Confirmar respuesta** (Procesar una solicitud web segura: etapa 5 de 5): `$pdo->commit(); respond(201, $order->id);` -> Pedido confirmado. *La etapa conserva un contrato explícito para que el siguiente paso de PHP no dependa de supuestos ocultos.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (99)
+## Catalogo Sistematico de Conceptos (99)
 
-### 📑 Sección: Lenguaje moderno (5 conceptos)
+### Seccion: Lenguaje moderno (5 conceptos)
 
 - **Tipos escalares**  
   *Familia:* `despacho de runtime`  
@@ -60,7 +60,7 @@
   En Namespaces, un ejemplo mínimo, sus precondiciones y el estado inicial ingresa al flujo donde aplica el mecanismo paso a paso haciendo visibles sus invariantes para consolidar un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Modelo de ejecución (5 conceptos)
+### Seccion: Modelo de ejecución (5 conceptos)
 
 - **Ciclo request-response**  
   *Familia:* `workflow y decisiones`  
@@ -83,7 +83,7 @@
   El recorrido de Autoloading PSR-4 toma datos identificables junto con esquema, restricciones y procedencia. Posteriormente valida, representa y recorre cada valor preservando relaciones para validar información consultable con integridad y significado estables.
 
 
-### 📑 Sección: Aplicación web (5 conceptos)
+### Seccion: Aplicación web (5 conceptos)
 
 - **Superglobals y entrada**  
   *Familia:* `ida y vuelta`  
@@ -106,7 +106,7 @@
   El mecanismo de Composer recibe un ejemplo mínimo, sus precondiciones y el estado inicial y aplica el mecanismo paso a paso haciendo visibles sus invariantes, asegurando un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Errores y calidad (5 conceptos)
+### Seccion: Errores y calidad (5 conceptos)
 
 - **Throwable**  
   *Familia:* `espectro de verificación`  
@@ -129,7 +129,7 @@
   La función de Análisis estático parte de un comportamiento esperado, una entrada mínima y un síntoma observable. Su ejecución aísla variables y contrasta hipótesis con instrumentación repetible y produce una causa demostrada y una regresión protegida.
 
 
-### 📑 Sección: Producción segura (5 conceptos)
+### Seccion: Producción segura (5 conceptos)
 
 - **PHP-FPM**  
   *Familia:* `pasaporte del artefacto`  
@@ -152,7 +152,7 @@
   La función de Observabilidad parte de un comportamiento esperado, una entrada mínima y un síntoma observable. Su ejecución aísla variables y contrasta hipótesis con instrumentación repetible y produce una causa demostrada y una regresión protegida.
 
 
-### 📑 Sección: Tipos y semántica moderna (5 conceptos)
+### Seccion: Tipos y semántica moderna (5 conceptos)
 
 - **Strict types**  
   *Familia:* `análisis y emisión`  
@@ -175,7 +175,7 @@
   Adjuntan metadatos estructurados que Reflection interpreta sin depender de comentarios no tipados.
 
 
-### 📑 Sección: Orientación a objetos (6 conceptos)
+### Seccion: Orientación a objetos (6 conceptos)
 
 - **Interfaces y clases abstractas**  
   *Familia:* `despacho de runtime`  
@@ -202,7 +202,7 @@
   Para Propiedades / dinámicas / obsoletas, la herramienta ejecuta, perturba o inspecciona el mecanismo y conserva el contraejemplo mínimo, manteniendo evidencia reproducible que distingue regresión, ruido y limitación conocida.
 
 
-### 📑 Sección: Internals de Zend (7 conceptos)
+### Seccion: Internals de Zend (7 conceptos)
 
 - **zval**  
   *Familia:* `validación y decisión`  
@@ -233,7 +233,7 @@
   Garbage / collector / ciclos coordina la ejecución: la estructura indexa, agrupa o itera datos aplicando la operación solo a las posiciones válidas hasta obtener una colección cuya cardinalidad, orden y tipos corresponden a la transformación solicitada.
 
 
-### 📑 Sección: Estándares e interoperabilidad (5 conceptos)
+### Seccion: Estándares e interoperabilidad (5 conceptos)
 
 - **PHP-FIG y PSR**  
   *Familia:* `flujo de interfaz`  
@@ -256,7 +256,7 @@
   Exponen capacidades compiladas y obligan a fijar ABI, versión y disponibilidad del entorno.
 
 
-### 📑 Sección: HTTP y APIs (7 conceptos)
+### Seccion: HTTP y APIs (7 conceptos)
 
 - **Routing**  
   *Familia:* `topología y tráfico`  
@@ -287,7 +287,7 @@
   Problem / Details / HTTP / APIs coordina la ejecución: la capa de transporte encuadra, valida y convierte la carga mientras administra conexiones parciales hasta obtener una respuesta o estructura interna completa que conserva correlación y estado del intercambio.
 
 
-### 📑 Sección: Persistencia segura (6 conceptos)
+### Seccion: Persistencia segura (6 conceptos)
 
 - **Transacciones PDO**  
   *Familia:* `consulta e índice`  
@@ -314,7 +314,7 @@
   Para Bloqueo / optimista, el adaptador prepara operaciones, adquiere recursos y aplica restricciones antes de confirmar, manteniendo estado persistido con integridad y visibilidad coherentes para lectores concurrentes.
 
 
-### 📑 Sección: Seguridad web (8 conceptos)
+### Seccion: Seguridad web (8 conceptos)
 
 - **CSRF tokens**  
   *Familia:* `validación y decisión`  
@@ -349,7 +349,7 @@
   Al operar con Prevención / SSRF, el control autentica, autoriza, normaliza y registra evidencia sin revelar secretos, produciendo solo la capacidad permitida ejecutada con una decisión que puede auditarse.
 
 
-### 📑 Sección: Trabajo asíncrono (5 conceptos)
+### Seccion: Trabajo asíncrono (5 conceptos)
 
 - **Colas de trabajos**  
   *Familia:* `workflow y decisiones`  
@@ -372,7 +372,7 @@
   Registra una clave de operación para que reentregas no dupliquen efectos irreversibles.
 
 
-### 📑 Sección: Verificación automatizada (7 conceptos)
+### Seccion: Verificación automatizada (7 conceptos)
 
 - **Pruebas de integración HTTP**  
   *Familia:* `topología y tráfico`  
@@ -403,7 +403,7 @@
   Static-analysis / baselines coordina la ejecución: la herramienta ejecuta, perturba o inspecciona el mecanismo y conserva el contraejemplo mínimo hasta obtener evidencia reproducible que distingue regresión, ruido y limitación conocida.
 
 
-### 📑 Sección: Rendimiento (5 conceptos)
+### Seccion: Rendimiento (5 conceptos)
 
 - **Preloading**  
   *Familia:* `memoria intermedia`  
@@ -426,7 +426,7 @@
   Ajustan procesos y solicitudes por worker según memoria, concurrencia y latencia del entorno.
 
 
-### 📑 Sección: Despliegue (5 conceptos)
+### Seccion: Despliegue (5 conceptos)
 
 - **Configuración inmutable**  
   *Familia:* `ciclo de vida`  
@@ -449,7 +449,7 @@
   Mantienen código anterior operable con cambios de esquema durante toda la ventana de reversión.
 
 
-### 📑 Sección: Operación y evolución (8 conceptos)
+### Seccion: Operación y evolución (8 conceptos)
 
 - **Logs estructurados**  
   *Familia:* `workflow y decisiones`  
@@ -487,4 +487,4 @@
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

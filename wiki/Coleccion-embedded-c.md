@@ -1,46 +1,46 @@
-# 📘 [EC] Embedded C
+# Embedded C (EC)
 
 > **Microcontroladores, registros, interrupciones, timing y seguridad.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `embedded-c` |
-| **Grupo Arquitectónico** | [Lenguajes](Grupo-Languages) |
+| **Grupo Arquitectonico** | [Lenguajes](Grupo-Languages) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `embedded-c` |
 | **Total de Conceptos** | **55 conceptos** |
-| **Capítulos / Secciones** | **10 secciones** |
+| **Capitulos / Secciones** | **10 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/embedded-c)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/embedded-c-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/embedded-c)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/embedded-c-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: Embedded C en acción
+## Estudio de Caso Practico: Embedded C en acción
 
 > **Caso integrado · Controlador de sensor resiliente:** Un microcontrolador muestrea vibración mediante timer, ADC y DMA; un ring buffer, watchdog y modos de energía mantienen timing y recuperación.  
 > El firmware cumple su deadline, no pierde muestras, entra en modo seguro ante fallos y puede explicar la causa del último reset.
 
-### Fases de Ejecución:
-1. **Arrancar con seguridad** (Antes de main): `reset → startup → vector table` → plataforma inicializada. *El estado seguro existe antes de habilitar periféricos.*
-2. **Configurar el muestreo** (Timer gobierna el periodo): `TIM trigger → ADC @ 10 kHz` → reloj de adquisición. *El periodo se deriva de clocks reales y se comprueba con una señal medible.*
-3. **Transferir con DMA** (Bloques sin interrumpir por muestra): `DMA circular half/full IRQ` → bloque disponible. *Double buffering separa la región que DMA escribe de la que CPU procesa.*
-4. **Cruzar la ISR** (Publicar, no procesar): `ISR → queue block_ready` → trabajo diferido. *La ISR conserva latencia acotada y transfiere ownership mediante un descriptor.*
-5. **Detectar overflow** (Consumidor quedó atrás): `next_head == tail` → presión visible. *El buffer lleno es un estado que debe resolverse, no una oportunidad para destruir datos sin aviso.*
-6. **Reducir la carga** (Procesamiento incremental): `fixed-point RMS + decimation` → deadline recuperado. *El algoritmo se adapta al presupuesto medido y el ring vuelve a tener margen.*
-7. **Vigilar salud** (Watchdog alimentado por evidencia): `health_bits == ALL_OK → feed` → recuperación automática. *Una sola tarea no puede ocultar que otra dejó de cumplir su contrato.*
-8. **Dormir y reanudar** (Energía sin perder estado): `STOP mode → timer wake` → controlador eficiente y trazable. *El wake path forma parte del caso normal y se prueba como cualquier otra transición.*
+### Fases de Ejecucion:
+1. **Arrancar con seguridad** (Antes de main): `reset → startup → vector table` -> plataforma inicializada. *El estado seguro existe antes de habilitar periféricos.*
+2. **Configurar el muestreo** (Timer gobierna el periodo): `TIM trigger → ADC @ 10 kHz` -> reloj de adquisición. *El periodo se deriva de clocks reales y se comprueba con una señal medible.*
+3. **Transferir con DMA** (Bloques sin interrumpir por muestra): `DMA circular half/full IRQ` -> bloque disponible. *Double buffering separa la región que DMA escribe de la que CPU procesa.*
+4. **Cruzar la ISR** (Publicar, no procesar): `ISR → queue block_ready` -> trabajo diferido. *La ISR conserva latencia acotada y transfiere ownership mediante un descriptor.*
+5. **Detectar overflow** (Consumidor quedó atrás): `next_head == tail` -> presión visible. *El buffer lleno es un estado que debe resolverse, no una oportunidad para destruir datos sin aviso.*
+6. **Reducir la carga** (Procesamiento incremental): `fixed-point RMS + decimation` -> deadline recuperado. *El algoritmo se adapta al presupuesto medido y el ring vuelve a tener margen.*
+7. **Vigilar salud** (Watchdog alimentado por evidencia): `health_bits == ALL_OK → feed` -> recuperación automática. *Una sola tarea no puede ocultar que otra dejó de cumplir su contrato.*
+8. **Dormir y reanudar** (Energía sin perder estado): `STOP mode → timer wake` -> controlador eficiente y trazable. *El wake path forma parte del caso normal y se prueba como cualquier otra transición.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (55)
+## Catalogo Sistematico de Conceptos (55)
 
-### 📑 Sección: Arquitectura de microcontroladores y mapa de memoria (6 conceptos)
+### Seccion: Arquitectura de microcontroladores y mapa de memoria (6 conceptos)
 
 - **CPU, buses y periféricos**  
   *Familia:* `planificación de trabajo`  
@@ -67,7 +67,7 @@
   Multiplica frecuencias de cristal para alimentar núcleos y buses periféricos.
 
 
-### 📑 Sección: Registros mapeados en memoria, MMIO y volatile (6 conceptos)
+### Seccion: Registros mapeados en memoria, MMIO y volatile (6 conceptos)
 
 - **Memory-mapped I/O (MMIO)**  
   *Familia:* `memoria intermedia`  
@@ -94,7 +94,7 @@
   Mapea bloques de registros mediante punteros a estructuras empaquetadas.
 
 
-### 📑 Sección: Interrupciones, vector table y controlador NVIC (6 conceptos)
+### Seccion: Interrupciones, vector table y controlador NVIC (6 conceptos)
 
 - **Rutinas de servicio de interrupción (ISR)**  
   *Familia:* `planificación de trabajo`  
@@ -121,7 +121,7 @@
   Usa variables atómicas o colas circulares para transferir información a main.
 
 
-### 📑 Sección: Transferencias DMA y arquitectura double buffering (6 conceptos)
+### Seccion: Transferencias DMA y arquitectura double buffering (6 conceptos)
 
 - **Controlador DMA (Direct Memory Access)**  
   *Familia:* `memoria intermedia`  
@@ -148,7 +148,7 @@
   Detecta desalineación o colisiones en transferencias de alta velocidad.
 
 
-### 📑 Sección: Buses de comunicación periférica: UART, SPI e I2C (5 conceptos)
+### Seccion: Buses de comunicación periférica: UART, SPI e I2C (5 conceptos)
 
 - **Protocolo UART y framing de bytes**  
   *Familia:* `análisis y emisión`  
@@ -171,7 +171,7 @@
   Evita pérdidas de datos pausando la transmisión mediante señales eléctricas.
 
 
-### 📑 Sección: Sistemas de tiempo real cooperativos y RTOS (6 conceptos)
+### Seccion: Sistemas de tiempo real cooperativos y RTOS (6 conceptos)
 
 - **Superloop y máquinas de estado**  
   *Familia:* `máquina de estados`  
@@ -198,7 +198,7 @@
   Mide el camino de ejecución más largo para garantizar el cumplimiento de deadlines.
 
 
-### 📑 Sección: Gestión de energía y transiciones a modos Sleep (5 conceptos)
+### Seccion: Gestión de energía y transiciones a modos Sleep (5 conceptos)
 
 - **Modos de bajo consumo (Sleep, Stop, Standby)**  
   *Familia:* `diagnóstico operativo`  
@@ -221,7 +221,7 @@
   Reconfigura osciladores y PLLs antes de reanudar operaciones críticas.
 
 
-### 📑 Sección: Watchdogs independientes, brownout y reset causes (5 conceptos)
+### Seccion: Watchdogs independientes, brownout y reset causes (5 conceptos)
 
 - **Watchdog independiente (IWDG)**  
   *Familia:* `diagnóstico operativo`  
@@ -244,7 +244,7 @@
   Coloca salidas y actuadores en posición pasiva segura antes de cualquier reset.
 
 
-### 📑 Sección: Firmware seguro, bootloaders y partición A/B (5 conceptos)
+### Seccion: Firmware seguro, bootloaders y partición A/B (5 conceptos)
 
 - **Bootloaders primarios y secundarios**  
   *Familia:* `capas internas`  
@@ -267,7 +267,7 @@
   Aplica estándares estrictos que eliminan construcciones ambiguas y peligrosas de C.
 
 
-### 📑 Sección: Diagnóstico hardware-in-the-loop, SWD/JTAG y fallos (5 conceptos)
+### Seccion: Diagnóstico hardware-in-the-loop, SWD/JTAG y fallos (5 conceptos)
 
 - **Protocolos de depuración SWD y JTAG**  
   *Familia:* `análisis y emisión`  
@@ -291,11 +291,11 @@
 
 
 
-## 📖 Recursos de Estudio y Referencias Oficiales
+## Referencias Bibliograficas y Documentacion Oficial
 - **[A Beginner's Guide to Designing Embedded System Applications on Arm Cortex-M](https://www.arm.com/resources/education/books/designing-embedded-systems)** (`book` | Nivel: `beginner`): 
 - **[Raspberry Pi Pico C/C++ SDK guide](https://www.raspberrypi.com/documentation/microcontrollers/c_sdk.html)** (`official-docs` | Nivel: `intermediate`): 
 - **[FreeRTOS kernel documentation](https://www.freertos.org/Documentation/02-Kernel/01-About-the-FreeRTOS-kernel/01-FreeRTOS-kernel)** (`reference` | Nivel: `advanced`): 
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

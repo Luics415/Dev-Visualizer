@@ -1,31 +1,31 @@
-# 📘 [HTML] HTML y CSS
+# HTML y CSS (HTML)
 
 > **Semántica, cascade, layout, responsive y render del navegador.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `html-css` |
-| **Grupo Arquitectónico** | [Diseño e interfaces](Grupo-Interfaces) |
+| **Grupo Arquitectonico** | [Diseño e interfaces](Grupo-Interfaces) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `html-css` |
 | **Total de Conceptos** | **42 conceptos** |
-| **Capítulos / Secciones** | **1 secciones** |
+| **Capitulos / Secciones** | **1 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/html-css)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/html-css-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/html-css)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/html-css-en-accion)
 
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (42)
+## Catalogo Sistematico de Conceptos (42)
 
-### 📑 Sección: General (42 conceptos)
+### Seccion: General (42 conceptos)
 
 - **Anatomía del documento**  
   *Familia:* `anatomía del concepto`  
@@ -199,4 +199,4 @@
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Diseño e interfaces](Grupo-Interfaces) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Diseño e interfaces](Grupo-Interfaces) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

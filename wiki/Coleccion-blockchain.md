@@ -1,43 +1,43 @@
-# 📘 [Chain] Blockchain
+# Blockchain (Chain)
 
 > **Criptografía, bloques, consenso, transacciones, contratos y operación.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `blockchain` |
-| **Grupo Arquitectónico** | [Datos](Grupo-Data) |
+| **Grupo Arquitectonico** | [Datos](Grupo-Data) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `git` |
 | **Total de Conceptos** | **109 conceptos** |
-| **Capítulos / Secciones** | **17 secciones** |
+| **Capitulos / Secciones** | **17 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/blockchain)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/blockchain-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/blockchain)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/blockchain-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: Seguir una transferencia hasta finalidad
+## Estudio de Caso Practico: Seguir una transferencia hasta finalidad
 
 > **Caso integrado de Blockchain:** Una transferencia firmada cruza mempool, bloque y confirmaciones; un reorg retira su bloque y el sistema recupera estado antes de declararla final.  
 > La interfaz distingue enviada, incluida, reorganizada y finalizada sin prometer irreversibilidad prematura.
 
-### Fases de Ejecución:
-1. **Firmar transacción** (Seguir una transferencia hasta finalidad: etapa 1 de 5): `tx.sign(privateKey)` → Transacción identificada. *La etapa conserva un contrato explícito para que el siguiente paso de Blockchain no dependa de supuestos ocultos.*
-2. **Validar e incluir** (Seguir una transferencia hasta finalidad: etapa 2 de 5): `validate(tx); block.add(tx)` → Estado tentativo. *La etapa conserva un contrato explícito para que el siguiente paso de Blockchain no dependa de supuestos ocultos.*
-3. **Observar reorg** (Seguir una transferencia hasta finalidad: etapa 3 de 5): `head = competingChain.tip` → Transferencia vuelve a pendiente. *El caso hace visible el fallo de Blockchain; no continúa como si la evidencia fuera válida.*
-4. **Reaplicar estado** (Seguir una transferencia hasta finalidad: etapa 4 de 5): `rollback(orphaned); replay(canonical)` → Consistencia recuperada. *La recuperación de Blockchain corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
-5. **Esperar finalidad** (Seguir una transferencia hasta finalidad: etapa 5 de 5): `await finalizedCheckpoint` → Resultado verificable. *La etapa conserva un contrato explícito para que el siguiente paso de Blockchain no dependa de supuestos ocultos.*
+### Fases de Ejecucion:
+1. **Firmar transacción** (Seguir una transferencia hasta finalidad: etapa 1 de 5): `tx.sign(privateKey)` -> Transacción identificada. *La etapa conserva un contrato explícito para que el siguiente paso de Blockchain no dependa de supuestos ocultos.*
+2. **Validar e incluir** (Seguir una transferencia hasta finalidad: etapa 2 de 5): `validate(tx); block.add(tx)` -> Estado tentativo. *La etapa conserva un contrato explícito para que el siguiente paso de Blockchain no dependa de supuestos ocultos.*
+3. **Observar reorg** (Seguir una transferencia hasta finalidad: etapa 3 de 5): `head = competingChain.tip` -> Transferencia vuelve a pendiente. *El caso hace visible el fallo de Blockchain; no continúa como si la evidencia fuera válida.*
+4. **Reaplicar estado** (Seguir una transferencia hasta finalidad: etapa 4 de 5): `rollback(orphaned); replay(canonical)` -> Consistencia recuperada. *La recuperación de Blockchain corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
+5. **Esperar finalidad** (Seguir una transferencia hasta finalidad: etapa 5 de 5): `await finalizedCheckpoint` -> Resultado verificable. *La etapa conserva un contrato explícito para que el siguiente paso de Blockchain no dependa de supuestos ocultos.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (109)
+## Catalogo Sistematico de Conceptos (109)
 
-### 📑 Sección: Fundamentos criptográficos (5 conceptos)
+### Seccion: Fundamentos criptográficos (5 conceptos)
 
 - **Hash**  
   *Familia:* `espectro de verificación`  
@@ -60,7 +60,7 @@
   Claves y custody estructura un ejemplo mínimo, sus precondiciones y el estado inicial en el sistema: aplica el mecanismo paso a paso haciendo visibles sus invariantes, garantizando un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Registro distribuido (5 conceptos)
+### Seccion: Registro distribuido (5 conceptos)
 
 - **Transacciones**  
   *Familia:* `mapa de memoria`  
@@ -83,7 +83,7 @@
   Estado procesa valores con representación, dirección y tiempo de vida definidos: reserva, enlaza y libera almacenamiento siguiendo el contrato del runtime para entregar estado accesible sin referencias colgantes ni corrupción.
 
 
-### 📑 Sección: Consenso y ejecución (5 conceptos)
+### Seccion: Consenso y ejecución (5 conceptos)
 
 - **Proof of Work**  
   *Familia:* `topología y tráfico`  
@@ -106,7 +106,7 @@
   Gas y recursos procesa un mensaje versionado, un destino y límites de tiempo: serializa, transporta y valida el intercambio a través de una frontera remota para entregar una respuesta correlacionada o un estado convergente verificable.
 
 
-### 📑 Sección: Fallo y seguridad (5 conceptos)
+### Seccion: Fallo y seguridad (5 conceptos)
 
 - **Forks**  
   *Familia:* `validación y decisión`  
@@ -129,7 +129,7 @@
   La función de Auditoría de contratos parte de una identidad, un recurso protegido y una política explícita. Su ejecución evalúa confianza, privilegios y datos antes de autorizar cada efecto y produce una decisión mínima y trazable que no revela secretos.
 
 
-### 📑 Sección: Producción (5 conceptos)
+### Seccion: Producción (5 conceptos)
 
 - **Wallets**  
   *Familia:* `secuencia operativa`  
@@ -152,7 +152,7 @@
   Observabilidad de red estructura un comportamiento esperado, una entrada mínima y un síntoma observable en el sistema: aísla variables y contrasta hipótesis con instrumentación repetible, garantizando una causa demostrada y una regresión protegida.
 
 
-### 📑 Sección: Criptografía aplicada (6 conceptos)
+### Seccion: Criptografía aplicada (6 conceptos)
 
 - **Curvas elípticas**  
   *Familia:* `espectro de verificación`  
@@ -179,7 +179,7 @@
   Domain separation tags gestiona Criptografía aplicada de modo que resuelve composición, restricciones y representación antes de aceptar la instancia, produciendo estructura válida cuyas operaciones permitidas están explícitas.
 
 
-### 📑 Sección: Modelo de transacción (7 conceptos)
+### Seccion: Modelo de transacción (7 conceptos)
 
 - **UTXO**  
   *Familia:* `evidencia y latencia`  
@@ -210,7 +210,7 @@
   A través de Transaction malleability controls en Modelo de transacción, el sistema registra intención, valida conflictos y confirma o compensa la unidad completa manteniendo un estado durable que satisface aislamiento e invariantes declarados.
 
 
-### 📑 Sección: Protocolos de consenso (8 conceptos)
+### Seccion: Protocolos de consenso (8 conceptos)
 
 - **Nakamoto consensus**  
   *Familia:* `análisis y emisión`  
@@ -245,7 +245,7 @@
   En el flujo operativo de Protocolos de consenso, Finality checkpoint transitions propaga propuestas, valida reglas y acumula votos o trabajo antes de escoger historia para obtener un estado aceptado con nivel de finalidad y participantes responsables.
 
 
-### 📑 Sección: Red peer-to-peer (7 conceptos)
+### Seccion: Red peer-to-peer (7 conceptos)
 
 - **Peer discovery**  
   *Familia:* `topología y tráfico`  
@@ -276,7 +276,7 @@
   A través de Peer scoring en Red peer-to-peer, el sistema propaga propuestas, valida reglas y acumula votos o trabajo antes de escoger historia manteniendo un estado aceptado con nivel de finalidad y participantes responsables.
 
 
-### 📑 Sección: Máquinas virtuales y contratos (7 conceptos)
+### Seccion: Máquinas virtuales y contratos (7 conceptos)
 
 - **Bytecode de contratos**  
   *Familia:* `despacho de runtime`  
@@ -307,7 +307,7 @@
   A través de Upgradeable storage layouts en Máquinas virtuales y contratos, el sistema resuelve composición, restricciones y representación antes de aceptar la instancia manteniendo estructura válida cuyas operaciones permitidas están explícitas.
 
 
-### 📑 Sección: Seguridad de contratos inteligentes (7 conceptos)
+### Seccion: Seguridad de contratos inteligentes (7 conceptos)
 
 - **Reentrancy**  
   *Familia:* `validación y decisión`  
@@ -338,7 +338,7 @@
   A través de Integer precision boundaries en Seguridad de contratos inteligentes, el sistema autentica, normaliza y autoriza antes de ejecutar con la capacidad mínima manteniendo decisión explícita y auditable que no expone secretos ni amplía privilegios.
 
 
-### 📑 Sección: Privacidad (6 conceptos)
+### Seccion: Privacidad (6 conceptos)
 
 - **Pseudonimato**  
   *Familia:* `comparativa técnica`  
@@ -365,7 +365,7 @@
   Metadata leakage gestiona Privacidad de modo que autentica, normaliza y autoriza antes de ejecutar con la capacidad mínima, produciendo decisión explícita y auditable que no expone secretos ni amplía privilegios.
 
 
-### 📑 Sección: Escalamiento (7 conceptos)
+### Seccion: Escalamiento (7 conceptos)
 
 - **Payment channels**  
   *Familia:* `tejido de eventos`  
@@ -396,7 +396,7 @@
   A través de Sequencer fault proofs en Escalamiento, el sistema valida, propaga, ejecuta y ordena el cambio hasta alcanzar el grado de finalidad requerido manteniendo recibo y nuevo root de estado verificables por participantes independientes.
 
 
-### 📑 Sección: Economía del protocolo (7 conceptos)
+### Seccion: Economía del protocolo (7 conceptos)
 
 - **Token issuance**  
   *Familia:* `análisis y emisión`  
@@ -427,7 +427,7 @@
   A través de Governance capture resistance en Economía del protocolo, el sistema tokeniza, reconoce alternativas y construye una representación estructurada sin perder ubicación manteniendo árbol, match o diagnóstico consumible por la siguiente etapa.
 
 
-### 📑 Sección: Testing y desarrollo (7 conceptos)
+### Seccion: Testing y desarrollo (7 conceptos)
 
 - **Red local determinista**  
   *Familia:* `topología y tráfico`  
@@ -458,7 +458,7 @@
   A través de Stateful invariant fuzzing en Testing y desarrollo, el sistema ejecuta camino normal, límite y fallo mientras captura todos los efectos observables manteniendo evidencia repetible que distingue comportamiento correcto de una regresión.
 
 
-### 📑 Sección: Datos e interoperabilidad (7 conceptos)
+### Seccion: Datos e interoperabilidad (7 conceptos)
 
 - **RPC de nodo**  
   *Familia:* `workflow y decisiones`  
@@ -489,7 +489,7 @@
   A través de Bridge light-client validation en Datos e interoperabilidad, el sistema evalúa precondiciones y combina restricciones antes de comprometer estado manteniendo valor aceptado con garantía explícita o error localizado.
 
 
-### 📑 Sección: Operación y gobierno (8 conceptos)
+### Seccion: Operación y gobierno (8 conceptos)
 
 - **Node synchronization**  
   *Familia:* `workflow y decisiones`  
@@ -527,4 +527,4 @@
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Datos](Grupo-Data) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Datos](Grupo-Data) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

@@ -1,46 +1,46 @@
-# 📘 [C] C
+# C (C)
 
 > **Compilación, memoria, punteros, ABI, herramientas y seguridad.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `c` |
-| **Grupo Arquitectónico** | [Lenguajes](Grupo-Languages) |
+| **Grupo Arquitectonico** | [Lenguajes](Grupo-Languages) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `c` |
 | **Total de Conceptos** | **60 conceptos** |
-| **Capítulos / Secciones** | **10 secciones** |
+| **Capitulos / Secciones** | **10 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/c)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/c-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/c)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/c-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: C en acción
+## Estudio de Caso Practico: C en acción
 
 > **Caso integrado · Parser binario seguro:** Un paquete de telemetría no confiable cruza bytes, validación, ownership y representación hasta producir una lectura utilizable sin acceder fuera del buffer.  
 > El parser acepta únicamente paquetes completos, libera toda memoria y conserva un error preciso para cada frontera.
 
-### Fases de Ejecución:
-1. **Recibir bytes** (Longitud antes que contenido): `read(fd, buffer, capacity)` → entrada acotada. *La lectura puede ser parcial y nunca garantiza un paquete completo.*
-2. **Validar cabecera** (Magic, versión y tamaño): `if (len < HEADER_SIZE) reject` → cabecera confiable. *Ningún cast se ejecuta antes de demostrar que los bytes existen.*
-3. **Calcular capacidad** (Overflow antes de reservar): `checked_add(header, payload)` → tamaño representable. *Un overflow de size_t podría convertir una entrada enorme en un buffer insuficiente.*
-4. **Reservar ownership** (Una salida libera todo): `packet = calloc(1, sizeof *packet)` → objeto adquirido. *El ownership queda claro desde la asignación hasta un único bloque de limpieza.*
-5. **Decodificar campos** (memcpy evita aliasing y alineación): `memcpy(&raw, cursor, sizeof raw)` → datos interpretados. *Copiar a un objeto del tipo correcto evita accesos inválidos por alineación.*
-6. **Validar semántica** (Forma válida no basta): `temp >= -40 && temp <= 125` → telemetría aceptable. *La validación semántica protege al resto del sistema de valores representables pero imposibles.*
-7. **Probar entradas hostiles** (Fuzzer y sanitizer cooperan): `clang -fsanitize=address,undefined` → parser endurecido. *La instrumentación convierte una desviación de memoria en una traza localizada.*
-8. **Liberar y observar** (Resultado o error, nunca fuga): `packet_free(packet)` → lectura segura y explicable. *Cada camino termina con recursos liberados y evidencia suficiente para operar el parser.*
+### Fases de Ejecucion:
+1. **Recibir bytes** (Longitud antes que contenido): `read(fd, buffer, capacity)` -> entrada acotada. *La lectura puede ser parcial y nunca garantiza un paquete completo.*
+2. **Validar cabecera** (Magic, versión y tamaño): `if (len < HEADER_SIZE) reject` -> cabecera confiable. *Ningún cast se ejecuta antes de demostrar que los bytes existen.*
+3. **Calcular capacidad** (Overflow antes de reservar): `checked_add(header, payload)` -> tamaño representable. *Un overflow de size_t podría convertir una entrada enorme en un buffer insuficiente.*
+4. **Reservar ownership** (Una salida libera todo): `packet = calloc(1, sizeof *packet)` -> objeto adquirido. *El ownership queda claro desde la asignación hasta un único bloque de limpieza.*
+5. **Decodificar campos** (memcpy evita aliasing y alineación): `memcpy(&raw, cursor, sizeof raw)` -> datos interpretados. *Copiar a un objeto del tipo correcto evita accesos inválidos por alineación.*
+6. **Validar semántica** (Forma válida no basta): `temp >= -40 && temp <= 125` -> telemetría aceptable. *La validación semántica protege al resto del sistema de valores representables pero imposibles.*
+7. **Probar entradas hostiles** (Fuzzer y sanitizer cooperan): `clang -fsanitize=address,undefined` -> parser endurecido. *La instrumentación convierte una desviación de memoria en una traza localizada.*
+8. **Liberar y observar** (Resultado o error, nunca fuga): `packet_free(packet)` -> lectura segura y explicable. *Cada camino termina con recursos liberados y evidencia suficiente para operar el parser.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (60)
+## Catalogo Sistematico de Conceptos (60)
 
-### 📑 Sección: Traducción y programa (6 conceptos)
+### Seccion: Traducción y programa (6 conceptos)
 
 - **Fases de traducción**  
   *Familia:* `capas internas`  
@@ -67,7 +67,7 @@
   Aplica atributos de optimización y empaquetado sin romper portabilidad.
 
 
-### 📑 Sección: Tipos, enteros y representación binaria (6 conceptos)
+### Seccion: Tipos, enteros y representación binaria (6 conceptos)
 
 - **Tipos enteros y promociones**  
   *Familia:* `matriz de señales`  
@@ -94,7 +94,7 @@
   Garantiza tamaños de 8, 16, 32 y 64 bits para protocolos y formatos binarios.
 
 
-### 📑 Sección: Punteros y aritmética estricta (6 conceptos)
+### Seccion: Punteros y aritmética estricta (6 conceptos)
 
 - **Direcciones y aritmética de punteros**  
   *Familia:* `mapa de memoria`  
@@ -121,7 +121,7 @@
   Distingue punteros a datos inmutables de punteros con dirección fija y sin solapamiento.
 
 
-### 📑 Sección: Memoria dinámica, lifetime y ownership (6 conceptos)
+### Seccion: Memoria dinámica, lifetime y ownership (6 conceptos)
 
 - **Stack, static storage y heap**  
   *Familia:* `tabla de estados`  
@@ -148,7 +148,7 @@
   Agrupa asignaciones con el mismo ciclo de vida para liberarlas en bloque a costo cero.
 
 
-### 📑 Sección: Aliasing, effective type y restrict (6 conceptos)
+### Seccion: Aliasing, effective type y restrict (6 conceptos)
 
 - **Aliasing y effective type**  
   *Familia:* `análisis y emisión`  
@@ -175,7 +175,7 @@
   Fuerza lecturas y escrituras en memoria mapeada sin convertirlas en sincronización de hilos.
 
 
-### 📑 Sección: Control de flujo y secuencia temporal (6 conceptos)
+### Seccion: Control de flujo y secuencia temporal (6 conceptos)
 
 - **Expresiones y sequence rules**  
   *Familia:* `validación y decisión`  
@@ -202,7 +202,7 @@
   Maneja excepciones de bajo nivel sin corromper el stack ni omitir cierres críticos.
 
 
-### 📑 Sección: Funciones, calling conventions y ABI (6 conceptos)
+### Seccion: Funciones, calling conventions y ABI (6 conceptos)
 
 - **Funciones y calling convention**  
   *Familia:* `mapa de memoria`  
@@ -229,7 +229,7 @@
   Diseña nombres y layouts durables para interoperar con runtimes como Python y Rust.
 
 
-### 📑 Sección: I/O, streams y manejo de archivos (6 conceptos)
+### Seccion: I/O, streams y manejo de archivos (6 conceptos)
 
 - **stdio y buffering**  
   *Familia:* `evidencia y latencia`  
@@ -256,7 +256,7 @@
   Conserva causa antes de que otra operación modifique el contexto.
 
 
-### 📑 Sección: Concurrencia, atomicidad y memoria C11/C23 (6 conceptos)
+### Seccion: Concurrencia, atomicidad y memoria C11/C23 (6 conceptos)
 
 - **Atomics y memory order**  
   *Familia:* `memoria intermedia`  
@@ -283,7 +283,7 @@
   Demuestra por qué una carrera de lectura/escritura destruye la validez del programa.
 
 
-### 📑 Sección: Seguridad de sistemas, sanitizers y hardening (6 conceptos)
+### Seccion: Seguridad de sistemas, sanitizers y hardening (6 conceptos)
 
 - **Warnings como contrato estricto**  
   *Familia:* `espectro de verificación`  
@@ -313,4 +313,4 @@
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

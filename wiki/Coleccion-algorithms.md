@@ -1,44 +1,44 @@
-# 📘 [A&D] Algoritmos y estructuras de datos
+# Algoritmos y estructuras de datos (A&D)
 
 > **Complejidad, secuencias, árboles, grafos, búsqueda, ordenación y optimización.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `algorithms` |
-| **Grupo Arquitectónico** | [Fundamentos](Grupo-Fundamentals) |
+| **Grupo Arquitectonico** | [Fundamentos](Grupo-Fundamentals) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `prolog` |
 | **Total de Conceptos** | **120 conceptos** |
-| **Capítulos / Secciones** | **20 secciones** |
+| **Capitulos / Secciones** | **20 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/algoritmos)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/algoritmos-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/algoritmos)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/algoritmos-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: Optimizar las rutas de una brigada
+## Estudio de Caso Practico: Optimizar las rutas de una brigada
 
 > **Caso integrado de Algoritmos y estructuras de datos:** Un grafo urbano pasa de una búsqueda costosa a una ruta justificable, detectando pesos inválidos y recuperando el modelo antes de comparar soluciones.  
 > La ruta elegida conserva distancia, predecesores, complejidad y evidencia del benchmark.
 
-### Fases de Ejecución:
-1. **Modelar el grafo** (Optimizar las rutas de una brigada: etapa 1 de 5): `G.agregar(arista, minutos)` → Workload representado. *La etapa conserva un contrato explícito para que el siguiente paso de Algoritmos y estructuras de datos no dependa de supuestos ocultos.*
-2. **Calcular candidatos** (Optimizar las rutas de una brigada: etapa 2 de 5): `ruta = dijkstra(G, origen)` → Rutas y predecesores calculados. *La etapa conserva un contrato explícito para que el siguiente paso de Algoritmos y estructuras de datos no dependa de supuestos ocultos.*
-3. **Encontrar peso negativo** (Optimizar las rutas de una brigada: etapa 3 de 5): `assert minutos >= 0` → Resultado rechazado. *El caso hace visible el fallo de Algoritmos y estructuras de datos; no continúa como si la evidencia fuera válida.*
+### Fases de Ejecucion:
+1. **Modelar el grafo** (Optimizar las rutas de una brigada: etapa 1 de 5): `G.agregar(arista, minutos)` -> Workload representado. *La etapa conserva un contrato explícito para que el siguiente paso de Algoritmos y estructuras de datos no dependa de supuestos ocultos.*
+2. **Calcular candidatos** (Optimizar las rutas de una brigada: etapa 2 de 5): `ruta = dijkstra(G, origen)` -> Rutas y predecesores calculados. *La etapa conserva un contrato explícito para que el siguiente paso de Algoritmos y estructuras de datos no dependa de supuestos ocultos.*
+3. **Encontrar peso negativo** (Optimizar las rutas de una brigada: etapa 3 de 5): `assert minutos >= 0` -> Resultado rechazado. *El caso hace visible el fallo de Algoritmos y estructuras de datos; no continúa como si la evidencia fuera válida.*
 4. **Sanear y recalcular** (Optimizar las rutas de una brigada: etapa 4 de 5): `G = validar_pesos(G)
-ruta = dijkstra(G, origen)` → Invariante restaurado. *La recuperación de Algoritmos y estructuras de datos corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
-5. **Comparar y publicar** (Optimizar las rutas de una brigada: etapa 5 de 5): `benchmark(dijkstra, dataset_real)` → Elección defendible. *La etapa conserva un contrato explícito para que el siguiente paso de Algoritmos y estructuras de datos no dependa de supuestos ocultos.*
+ruta = dijkstra(G, origen)` -> Invariante restaurado. *La recuperación de Algoritmos y estructuras de datos corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
+5. **Comparar y publicar** (Optimizar las rutas de una brigada: etapa 5 de 5): `benchmark(dijkstra, dataset_real)` -> Elección defendible. *La etapa conserva un contrato explícito para que el siguiente paso de Algoritmos y estructuras de datos no dependa de supuestos ocultos.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (120)
+## Catalogo Sistematico de Conceptos (120)
 
-### 📑 Sección: Modelos de costo (5 conceptos)
+### Seccion: Modelos de costo (5 conceptos)
 
 - **Corrección y terminación**  
   *Familia:* `pasaporte del artefacto`  
@@ -61,7 +61,7 @@ ruta = dijkstra(G, origen)` → Invariante restaurado. *La recuperación de Algo
   En Análisis amortizado, datos identificables junto con esquema, restricciones y procedencia ingresa al flujo donde valida, representa y recorre cada valor preservando relaciones para consolidar información consultable con integridad y significado estables.
 
 
-### 📑 Sección: Estructuras esenciales (5 conceptos)
+### Seccion: Estructuras esenciales (5 conceptos)
 
 - **Arrays y listas enlazadas**  
   *Familia:* `tabla de estados`  
@@ -84,7 +84,7 @@ ruta = dijkstra(G, origen)` → Invariante restaurado. *La recuperación de Algo
   El mecanismo de Heaps y colas de prioridad recibe valores con representación, dirección y tiempo de vida definidos y reserva, enlaza y libera almacenamiento siguiendo el contrato del runtime, asegurando estado accesible sin referencias colgantes ni corrupción.
 
 
-### 📑 Sección: Técnicas algorítmicas (5 conceptos)
+### Seccion: Técnicas algorítmicas (5 conceptos)
 
 - **Divide y vencerás**  
   *Familia:* `acumulación de recursos`  
@@ -107,7 +107,7 @@ ruta = dijkstra(G, origen)` → Invariante restaurado. *La recuperación de Algo
   Para entender Aleatorización, se delimita un ejemplo mínimo, sus precondiciones y el estado inicial. La operación aplica el mecanismo paso a paso haciendo visibles sus invariantes hasta producir un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Grafos y diagnóstico (5 conceptos)
+### Seccion: Grafos y diagnóstico (5 conceptos)
 
 - **BFS y DFS**  
   *Familia:* `topología y tráfico`  
@@ -130,7 +130,7 @@ ruta = dijkstra(G, origen)` → Invariante restaurado. *La recuperación de Algo
   Trazas, invariantes y contraejemplos procesa un comportamiento esperado, una entrada mínima y un síntoma observable: aísla variables y contrasta hipótesis con instrumentación repetible para entregar una causa demostrada y una regresión protegida.
 
 
-### 📑 Sección: Algoritmos en producción (5 conceptos)
+### Seccion: Algoritmos en producción (5 conceptos)
 
 - **Ordenamiento estable**  
   *Familia:* `pasaporte del artefacto`  
@@ -153,7 +153,7 @@ ruta = dijkstra(G, origen)` → Invariante restaurado. *La recuperación de Algo
   En Elección basada en workload, una instancia acotada, sus invariantes y una medida de costo ingresa al flujo donde explora estados manteniendo la propiedad que garantiza corrección para consolidar una solución acompañada de complejidad y límites conocidos.
 
 
-### 📑 Sección: Secuencias y almacenamiento (8 conceptos)
+### Seccion: Secuencias y almacenamiento (8 conceptos)
 
 - **Vectores dinámicos**  
   *Familia:* `cuadrícula paralela`  
@@ -188,7 +188,7 @@ ruta = dijkstra(G, origen)` → Invariante restaurado. *La recuperación de Algo
   Al operar con Succinct / data / structures, el algoritmo mantiene su invariante mientras reduce candidatos, reorganiza datos o propaga costos, produciendo una solución cuya corrección y complejidad pueden justificarse con la traza.
 
 
-### 📑 Sección: Árboles avanzados (5 conceptos)
+### Seccion: Árboles avanzados (5 conceptos)
 
 - **Árboles AVL**  
   *Familia:* `jerarquía y dependencias`  
@@ -211,7 +211,7 @@ ruta = dijkstra(G, origen)` → Invariante restaurado. *La recuperación de Algo
   Anotan máximos de subárbol para localizar solapamientos sin revisar todos los rangos.
 
 
-### 📑 Sección: Hashing en profundidad (7 conceptos)
+### Seccion: Hashing en profundidad (7 conceptos)
 
 - **Funciones hash y distribución**  
   *Familia:* `mapa de memoria`  
@@ -242,7 +242,7 @@ ruta = dijkstra(G, origen)` → Invariante restaurado. *La recuperación de Algo
   Hash / flooding / defensivo coordina la ejecución: la estructura indexa, agrupa o itera datos aplicando la operación solo a las posiciones válidas hasta obtener una colección cuya cardinalidad, orden y tipos corresponden a la transformación solicitada.
 
 
-### 📑 Sección: Conjuntos y particiones (5 conceptos)
+### Seccion: Conjuntos y particiones (5 conceptos)
 
 - **Disjoint-set union**  
   *Familia:* `tabla de estados`  
@@ -265,7 +265,7 @@ ruta = dijkstra(G, origen)` → Invariante restaurado. *La recuperación de Algo
   Conservan versiones anteriores compartiendo nodos inmutables en lugar de copiar la estructura completa.
 
 
-### 📑 Sección: Ordenamiento y selección (7 conceptos)
+### Seccion: Ordenamiento y selección (7 conceptos)
 
 - **Quicksort y particionado**  
   *Familia:* `mapa de memoria`  
@@ -296,7 +296,7 @@ ruta = dijkstra(G, origen)` → Invariante restaurado. *La recuperación de Algo
   Ordenamiento / adaptativo coordina la ejecución: el algoritmo mantiene su invariante mientras reduce candidatos, reorganiza datos o propaga costos hasta obtener una solución cuya corrección y complejidad pueden justificarse con la traza.
 
 
-### 📑 Sección: Grafos ponderados y redes (8 conceptos)
+### Seccion: Grafos ponderados y redes (8 conceptos)
 
 - **Bellman-Ford**  
   *Familia:* `topología y tráfico`  
@@ -331,7 +331,7 @@ ruta = dijkstra(G, origen)` → Invariante restaurado. *La recuperación de Algo
   Al operar con Dominators / en / grafos / flujo, el algoritmo mantiene su invariante mientras reduce candidatos, reorganiza datos o propaga costos, produciendo una solución cuya corrección y complejidad pueden justificarse con la traza.
 
 
-### 📑 Sección: Procesamiento de texto (6 conceptos)
+### Seccion: Procesamiento de texto (6 conceptos)
 
 - **Búsqueda Knuth-Morris-Pratt**  
   *Familia:* `análisis y emisión`  
@@ -358,7 +358,7 @@ ruta = dijkstra(G, origen)` → Invariante restaurado. *La recuperación de Algo
   Para Aho-Corasick, el algoritmo mantiene su invariante mientras reduce candidatos, reorganiza datos o propaga costos, manteniendo una solución cuya corrección y complejidad pueden justificarse con la traza.
 
 
-### 📑 Sección: Geometría computacional (7 conceptos)
+### Seccion: Geometría computacional (7 conceptos)
 
 - **Orientación y producto cruz**  
   *Familia:* `cuadrícula paralela`  
@@ -389,7 +389,7 @@ ruta = dijkstra(G, origen)` → Invariante restaurado. *La recuperación de Algo
   Diagramas / Voronoi coordina la ejecución: el algoritmo mantiene su invariante mientras reduce candidatos, reorganiza datos o propaga costos hasta obtener una solución cuya corrección y complejidad pueden justificarse con la traza.
 
 
-### 📑 Sección: Programación dinámica avanzada (6 conceptos)
+### Seccion: Programación dinámica avanzada (6 conceptos)
 
 - **Diseño de estados**  
   *Familia:* `tabla de estados`  
@@ -416,7 +416,7 @@ ruta = dijkstra(G, origen)` → Invariante restaurado. *La recuperación de Algo
   Para Optimización / por / divide / and, el perfil localiza el recurso dominante y la optimización reduce ese costo sin cambiar semántica, manteniendo una mejora medible con distribución, entorno y comparación documentados.
 
 
-### 📑 Sección: Algoritmos probabilísticos (5 conceptos)
+### Seccion: Algoritmos probabilísticos (5 conceptos)
 
 - **Monte Carlo frente a Las Vegas**  
   *Familia:* `matriz de señales`  
@@ -439,7 +439,7 @@ ruta = dijkstra(G, origen)` → Invariante restaurado. *La recuperación de Algo
   Reduce memoria usando estimadores probabilísticos cuyo error puede cuantificarse.
 
 
-### 📑 Sección: Datos masivos y streaming (7 conceptos)
+### Seccion: Datos masivos y streaming (7 conceptos)
 
 - **Algoritmos de memoria externa**  
   *Familia:* `memoria intermedia`  
@@ -470,7 +470,7 @@ ruta = dijkstra(G, origen)` → Invariante restaurado. *La recuperación de Algo
   Count-min / sketch / conservative / update coordina la ejecución: la ejecución se suspende en puntos seguros y el runtime la reanuda cuando I/O o demanda permiten avanzar hasta obtener un valor, evento o cierre propagado sin bloquear el thread que coordina el flujo.
 
 
-### 📑 Sección: Concurrencia algorítmica (5 conceptos)
+### Seccion: Concurrencia algorítmica (5 conceptos)
 
 - **Trabajo y profundidad**  
   *Familia:* `cola y consumidor`  
@@ -493,7 +493,7 @@ ruta = dijkstra(G, origen)` → Invariante restaurado. *La recuperación de Algo
   Controla orden de reducción, semillas y efectos para obtener resultados repetibles.
 
 
-### 📑 Sección: Algoritmos distribuidos (6 conceptos)
+### Seccion: Algoritmos distribuidos (6 conceptos)
 
 - **Relojes lógicos**  
   *Familia:* `flujo de interfaz`  
@@ -520,7 +520,7 @@ ruta = dijkstra(G, origen)` → Invariante restaurado. *La recuperación de Algo
   Para Vector / clocks, el scheduler intercala trabajo mientras locks, mensajes o atomics establecen el orden observable, manteniendo progreso concurrente con ownership y terminación comprobables para cada tarea.
 
 
-### 📑 Sección: Complejidad computacional (5 conceptos)
+### Seccion: Complejidad computacional (5 conceptos)
 
 - **Clases P y NP**  
   *Familia:* `espectro de verificación`  
@@ -543,7 +543,7 @@ ruta = dijkstra(G, origen)` → Invariante restaurado. *La recuperación de Algo
   Aísla una dimensión pequeña para buscar algoritmos eficientes respecto a ese parámetro.
 
 
-### 📑 Sección: Ingeniería y verificación (8 conceptos)
+### Seccion: Ingeniería y verificación (8 conceptos)
 
 - **Propiedades metamórficas**  
   *Familia:* `validación y decisión`  
@@ -581,4 +581,4 @@ ruta = dijkstra(G, origen)` → Invariante restaurado. *La recuperación de Algo
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Fundamentos](Grupo-Fundamentals) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Fundamentos](Grupo-Fundamentals) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

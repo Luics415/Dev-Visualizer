@@ -1,53 +1,53 @@
-# 📘 [SQL] Microsoft SQL Server
+# Microsoft SQL Server (SQL)
 
 > **T-SQL, almacenamiento, optimizador, concurrencia, seguridad, operación y alta disponibilidad.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `sql-server` |
-| **Grupo Arquitectónico** | [Datos](Grupo-Data) |
+| **Grupo Arquitectonico** | [Datos](Grupo-Data) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `sql-server` |
 | **Total de Conceptos** | **120 conceptos** |
-| **Capítulos / Secciones** | **24 secciones** |
+| **Capitulos / Secciones** | **24 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/sql-server)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/sql-server-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/sql-server)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/sql-server-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: Microsoft SQL Server en acción
+## Estudio de Caso Practico: Microsoft SQL Server en acción
 
 > **Caso integrado · Reserva de inventario sin ventas duplicadas:** Una API confirma una orden contra inventario compartido. SQL Server valida identidad y esquema, reserva unidades de forma atómica, registra el movimiento y publica una respuesta durable. La concurrencia provoca un deadlock y una regresión de plan; el sistema diagnostica ambos con evidencia y se recupera sin duplicar la operación.  
 > El mismo flujo conecta modelado, constraints, T-SQL parametrizado, transacciones, locks, row versioning, transaction log, índices, Query Store, seguridad, backup y failover. Cada repetición termina comprobando que reservado, vendido y disponible conservan una sola verdad.
 
-### Fases de Ejecución:
-1. **Definir la invariante** (La corrección antes que el código): `available >= 0 AND reserved = SUM(open_lines)` → contrato verificable. *La transacción se diseña alrededor de una invariante observable, no alrededor de una secuencia casual de pantallas.*
-2. **Construir el esquema** (Relaciones y constraints protegen el dominio): `Stock(Sku PK, Available CHECK >= 0) · Orders · Ledger` → estado representable. *El motor impide duplicados e inventario negativo incluso cuando otro cliente omite una validación.*
-3. **Autenticar el workload** (Identidad mínima y canal cifrado): `TLS + login → user → role checkout_writer` → frontera autorizada. *La aplicación no recibe db_owner ni credenciales personales; su permiso expresa exactamente la operación permitida.*
-4. **Enlazar parámetros** (Los valores no se convierten en código): `EXEC ReserveStock @request_id, @sku, @quantity` → solicitud segura. *Parametrizar reduce inyección y conversiones inesperadas, pero los constraints aún son la autoridad final.*
-5. **Abrir la unidad de trabajo** (Todo o nada, durante poco tiempo): `SET XACT_ABORT ON; BEGIN TRAN` → transacción delimitada. *La unidad incluye solo lecturas y escrituras necesarias para conservar la invariante.*
-6. **Reservar atómicamente** (Una escritura condicional decide): `UPDATE Stock SET Available -= @q WHERE Sku=@sku AND Available>=@q` → stock adjudicado una vez. *Leer y después escribir abriría una carrera; el predicado y la modificación forman una sola operación protegida.*
-7. **Registrar la evidencia** (Orden y ledger nacen juntos): `INSERT Orders ...; INSERT Ledger ... OUTPUT inserted.Id` → historial trazable. *El ledger conserva por qué cambió el inventario y la clave idempotente vincula cualquier reintento con el mismo efecto.*
-8. **Confirmar y endurecer** (El log antecede a las páginas): `COMMIT TRAN` → orden durable. *Write-ahead logging permite confirmar sin exigir que cada página de datos ya haya llegado a disco.*
-9. **Servir lecturas consistentes** (Snapshot evita bloquear el seguimiento): `READ_COMMITTED_SNAPSHOT + SELECT order status` → estado legible sin espera innecesaria. *Row versioning cambia el modo de leer; no elimina conflictos entre dos escrituras sobre el mismo inventario.*
-10. **Detectar el deadlock** (Dos órdenes toman recursos en orden inverso): `T1: Stock A → B · T2: Stock B → A` → ciclo roto con una solicitud fallida. *SQL Server resuelve el ciclo, pero la aplicación todavía debe reconocer el error y conservar la intención del usuario.*
-11. **Reordenar y reintentar** (Orden estable e idempotencia): `ORDER BY Sku; retry error 1205 with request_id` → concurrencia recuperada. *Un orden global reduce el ciclo y la clave idempotente hace seguro repetir después del rollback.*
-12. **Encontrar la regresión** (La distribución cambia y el plan deja de servir): `query_id 418 · estimate 12 · actual 240000` → causa de rendimiento demostrada. *El síntoma se explica con filas, waits y plan real; no se agrega un índice hasta saber qué cambió.*
-13. **Estabilizar el plan** (Mitigación medida y corrección durable): `UPDATE STATISTICS; compare; Query Store hint if needed` → consulta recuperada. *Query Store permite contener la regresión mientras estadísticas, consulta e índice reciben una corrección revisable.*
-14. **Probar recuperación y failover** (Durabilidad también se ensaya): `restore chain → CHECKDB → AG planned failover` → continuidad demostrada. *Un backup no cuenta como estrategia hasta restaurarlo y comparar el resultado con los objetivos acordados.*
-15. **Cerrar el ciclo operativo** (Métricas, auditoría e invariante final): `accepted + rejected + retried = requests` → servicio comprobable y repetible. *El loop termina con una verdad contable y evidencia de operación; la siguiente animación comienza desde un estado válido, no desde elementos opacos.*
+### Fases de Ejecucion:
+1. **Definir la invariante** (La corrección antes que el código): `available >= 0 AND reserved = SUM(open_lines)` -> contrato verificable. *La transacción se diseña alrededor de una invariante observable, no alrededor de una secuencia casual de pantallas.*
+2. **Construir el esquema** (Relaciones y constraints protegen el dominio): `Stock(Sku PK, Available CHECK >= 0) · Orders · Ledger` -> estado representable. *El motor impide duplicados e inventario negativo incluso cuando otro cliente omite una validación.*
+3. **Autenticar el workload** (Identidad mínima y canal cifrado): `TLS + login → user → role checkout_writer` -> frontera autorizada. *La aplicación no recibe db_owner ni credenciales personales; su permiso expresa exactamente la operación permitida.*
+4. **Enlazar parámetros** (Los valores no se convierten en código): `EXEC ReserveStock @request_id, @sku, @quantity` -> solicitud segura. *Parametrizar reduce inyección y conversiones inesperadas, pero los constraints aún son la autoridad final.*
+5. **Abrir la unidad de trabajo** (Todo o nada, durante poco tiempo): `SET XACT_ABORT ON; BEGIN TRAN` -> transacción delimitada. *La unidad incluye solo lecturas y escrituras necesarias para conservar la invariante.*
+6. **Reservar atómicamente** (Una escritura condicional decide): `UPDATE Stock SET Available -= @q WHERE Sku=@sku AND Available>=@q` -> stock adjudicado una vez. *Leer y después escribir abriría una carrera; el predicado y la modificación forman una sola operación protegida.*
+7. **Registrar la evidencia** (Orden y ledger nacen juntos): `INSERT Orders ...; INSERT Ledger ... OUTPUT inserted.Id` -> historial trazable. *El ledger conserva por qué cambió el inventario y la clave idempotente vincula cualquier reintento con el mismo efecto.*
+8. **Confirmar y endurecer** (El log antecede a las páginas): `COMMIT TRAN` -> orden durable. *Write-ahead logging permite confirmar sin exigir que cada página de datos ya haya llegado a disco.*
+9. **Servir lecturas consistentes** (Snapshot evita bloquear el seguimiento): `READ_COMMITTED_SNAPSHOT + SELECT order status` -> estado legible sin espera innecesaria. *Row versioning cambia el modo de leer; no elimina conflictos entre dos escrituras sobre el mismo inventario.*
+10. **Detectar el deadlock** (Dos órdenes toman recursos en orden inverso): `T1: Stock A → B · T2: Stock B → A` -> ciclo roto con una solicitud fallida. *SQL Server resuelve el ciclo, pero la aplicación todavía debe reconocer el error y conservar la intención del usuario.*
+11. **Reordenar y reintentar** (Orden estable e idempotencia): `ORDER BY Sku; retry error 1205 with request_id` -> concurrencia recuperada. *Un orden global reduce el ciclo y la clave idempotente hace seguro repetir después del rollback.*
+12. **Encontrar la regresión** (La distribución cambia y el plan deja de servir): `query_id 418 · estimate 12 · actual 240000` -> causa de rendimiento demostrada. *El síntoma se explica con filas, waits y plan real; no se agrega un índice hasta saber qué cambió.*
+13. **Estabilizar el plan** (Mitigación medida y corrección durable): `UPDATE STATISTICS; compare; Query Store hint if needed` -> consulta recuperada. *Query Store permite contener la regresión mientras estadísticas, consulta e índice reciben una corrección revisable.*
+14. **Probar recuperación y failover** (Durabilidad también se ensaya): `restore chain → CHECKDB → AG planned failover` -> continuidad demostrada. *Un backup no cuenta como estrategia hasta restaurarlo y comparar el resultado con los objetivos acordados.*
+15. **Cerrar el ciclo operativo** (Métricas, auditoría e invariante final): `accepted + rejected + retried = requests` -> servicio comprobable y repetible. *El loop termina con una verdad contable y evidencia de operación; la siguiente animación comienza desde un estado válido, no desde elementos opacos.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (120)
+## Catalogo Sistematico de Conceptos (120)
 
-### 📑 Sección: Producto, edición y ecosistema (5 conceptos)
+### Seccion: Producto, edición y ecosistema (5 conceptos)
 
 - **Database Engine**  
   *Familia:* `consulta e índice`  
@@ -70,7 +70,7 @@
   Distingue producto instalable, servicios administrados y superficies analíticas para no prometer portabilidad perfecta entre destinos.
 
 
-### 📑 Sección: Instalación, instancia y configuración (5 conceptos)
+### Seccion: Instalación, instancia y configuración (5 conceptos)
 
 - **Instancia predeterminada y con nombre**  
   *Familia:* `topología y tráfico`  
@@ -93,7 +93,7 @@
   Decide comparación, orden, sensibilidad y nivel de compatibilidad sabiendo que afectan semántica, optimizador y migraciones.
 
 
-### 📑 Sección: Fundamentos de T-SQL (5 conceptos)
+### Seccion: Fundamentos de T-SQL (5 conceptos)
 
 - **Batches y GO**  
   *Familia:* `pasaporte del artefacto`  
@@ -116,7 +116,7 @@
   Combina THROW, TRY/CATCH y XACT_STATE para conservar causa, severidad y estado real de una transacción.
 
 
-### 📑 Sección: Tipos, NULL y conversiones (5 conceptos)
+### Seccion: Tipos, NULL y conversiones (5 conceptos)
 
 - **Tipos numéricos**  
   *Familia:* `matriz de señales`  
@@ -139,7 +139,7 @@
   Usa CAST, CONVERT o TRY_CONVERT de forma explícita para evitar errores, pérdida de precisión y predicados no sargables.
 
 
-### 📑 Sección: Modelado relacional (5 conceptos)
+### Seccion: Modelado relacional (5 conceptos)
 
 - **Entidades y relaciones**  
   *Familia:* `configuración declarativa`  
@@ -162,7 +162,7 @@
   Agrupa objetos por límite funcional y administra autorización mediante propietarios y roles, no solo como prefijo de nombres.
 
 
-### 📑 Sección: Integridad declarativa (5 conceptos)
+### Seccion: Integridad declarativa (5 conceptos)
 
 - **PRIMARY KEY y UNIQUE**  
   *Familia:* `capas internas`  
@@ -185,7 +185,7 @@
   Verifica datos existentes al habilitar reglas para que el optimizador pueda usar su verdad y no queden filas históricas fuera del contrato.
 
 
-### 📑 Sección: Consultas relacionales (5 conceptos)
+### Seccion: Consultas relacionales (5 conceptos)
 
 - **Filtrado sargable**  
   *Familia:* `flujo de transformación`  
@@ -208,7 +208,7 @@
   Define orden total estable y usa OFFSET/FETCH o búsqueda por clave según volumen, consistencia y patrón de navegación.
 
 
-### 📑 Sección: Agregación, ventanas y composición (5 conceptos)
+### Seccion: Agregación, ventanas y composición (5 conceptos)
 
 - **GROUP BY y HAVING**  
   *Familia:* `telar relacional`  
@@ -231,7 +231,7 @@
   Encapsula un resultado intermedio comprendiendo que su forma lógica no obliga al optimizador a materializarlo.
 
 
-### 📑 Sección: Programabilidad en el motor (5 conceptos)
+### Seccion: Programabilidad en el motor (5 conceptos)
 
 - **Stored procedures**  
   *Familia:* `topología y tráfico`  
@@ -254,7 +254,7 @@
   Construye solo la estructura variable indispensable y enlaza valores con sp_executesql para reducir inyección y reutilizar planes.
 
 
-### 📑 Sección: Páginas, archivos y almacenamiento (5 conceptos)
+### Seccion: Páginas, archivos y almacenamiento (5 conceptos)
 
 - **Páginas y extents**  
   *Familia:* `telar relacional`  
@@ -277,7 +277,7 @@
   Registra cambios antes de páginas de datos para permitir rollback, recuperación y continuidad del historial.
 
 
-### 📑 Sección: Índices y estadísticas (5 conceptos)
+### Seccion: Índices y estadísticas (5 conceptos)
 
 - **Clustered index y heap**  
   *Familia:* `tabla de estados`  
@@ -300,7 +300,7 @@
   Representa distribución mediante histogramas y densidad para que el optimizador estime filas y elija recursos.
 
 
-### 📑 Sección: Optimizador y planes de ejecución (5 conceptos)
+### Seccion: Optimizador y planes de ejecución (5 conceptos)
 
 - **Compilación y algebrizer**  
   *Familia:* `análisis y emisión`  
@@ -323,7 +323,7 @@
   Compara expectativas con filas, tiempos, spills y warnings observados sin usar el porcentaje de costo como verdad absoluta.
 
 
-### 📑 Sección: Transacciones y durabilidad (5 conceptos)
+### Seccion: Transacciones y durabilidad (5 conceptos)
 
 - **ACID**  
   *Familia:* `planificación de trabajo`  
@@ -346,7 +346,7 @@
   Conecta simple, full y bulk-logged con cadena de log, backups disponibles y objetivos reales de recuperación.
 
 
-### 📑 Sección: Concurrencia, locks y versiones (5 conceptos)
+### Seccion: Concurrencia, locks y versiones (5 conceptos)
 
 - **Niveles de aislamiento**  
   *Familia:* `aislamiento sobre host`  
@@ -369,7 +369,7 @@
   Lee el grafo, identifica orden de recursos y diseña transacciones consistentes, breves e idempotentes para recuperarse.
 
 
-### 📑 Sección: Memoria, tempdb y recursos (5 conceptos)
+### Seccion: Memoria, tempdb y recursos (5 conceptos)
 
 - **Memory grants**  
   *Familia:* `memoria intermedia`  
@@ -392,7 +392,7 @@
   Interpreta dónde esperan workers como síntoma contextual y correlaciona la espera con consultas, recursos y tiempo.
 
 
-### 📑 Sección: Identidad, autorización y protección (5 conceptos)
+### Seccion: Identidad, autorización y protección (5 conceptos)
 
 - **Logins, users y contained users**  
   *Familia:* `evidencia y latencia`  
@@ -415,7 +415,7 @@
   Limita filas, reduce exposición y registra actividad sin confundir enmascaramiento con autorización o cifrado.
 
 
-### 📑 Sección: Backup, restore y recuperación (5 conceptos)
+### Seccion: Backup, restore y recuperación (5 conceptos)
 
 - **Full, differential y log backup**  
   *Familia:* `secuencia operativa`  
@@ -438,7 +438,7 @@
   Detecta corrupción lógica o física y prioriza restaurar una copia sana sobre reparar con pérdida de datos.
 
 
-### 📑 Sección: Alta disponibilidad y continuidad (5 conceptos)
+### Seccion: Alta disponibilidad y continuidad (5 conceptos)
 
 - **RPO, RTO y failure domains**  
   *Familia:* `cuadrícula paralela`  
@@ -461,7 +461,7 @@
   Transporta backups de log como opción simple y comprobable para standby y desastre distante.
 
 
-### 📑 Sección: Observabilidad y diagnóstico (5 conceptos)
+### Seccion: Observabilidad y diagnóstico (5 conceptos)
 
 - **Dynamic Management Views**  
   *Familia:* `evidencia y latencia`  
@@ -484,7 +484,7 @@
   Registra throughput, latencia percentil, errores, bloqueos y capacidad normal para reconocer degradación útil al usuario.
 
 
-### 📑 Sección: Metodología de rendimiento (5 conceptos)
+### Seccion: Metodología de rendimiento (5 conceptos)
 
 - **Medir antes de cambiar**  
   *Familia:* `tabla de estados`  
@@ -507,7 +507,7 @@
   Estabiliza temporalmente un plan con evidencia, monitorea efectos y conserva una solución de código o datos sostenible.
 
 
-### 📑 Sección: Automatización y mantenimiento (5 conceptos)
+### Seccion: Automatización y mantenimiento (5 conceptos)
 
 - **SQL Server Agent**  
   *Familia:* `consulta e índice`  
@@ -530,7 +530,7 @@
   Automatiza inventario y operación con parámetros, credenciales seguras, dry runs y resultados auditables.
 
 
-### 📑 Sección: Integración, formatos y capacidades modernas (5 conceptos)
+### Seccion: Integración, formatos y capacidades modernas (5 conceptos)
 
 - **JSON en T-SQL**  
   *Familia:* `jerarquía y dependencias`  
@@ -553,7 +553,7 @@
   Evalúa tipos vectoriales, índices DiskANN, regex y mejoras JSON por compatibilidad, edición y caso medido, no por novedad.
 
 
-### 📑 Sección: Desarrollo, pruebas y entrega de esquema (5 conceptos)
+### Seccion: Desarrollo, pruebas y entrega de esquema (5 conceptos)
 
 - **Database projects y estado deseado**  
   *Familia:* `máquina de estados`  
@@ -576,7 +576,7 @@
   Compila, analiza y prueba cada cambio, bloqueando diferencias no autorizadas entre repositorio y destino.
 
 
-### 📑 Sección: Despliegue, nube y ciclo de vida (5 conceptos)
+### Seccion: Despliegue, nube y ciclo de vida (5 conceptos)
 
 - **Windows, Linux y contenedores**  
   *Familia:* `aislamiento sobre host`  
@@ -600,11 +600,11 @@
 
 
 
-## 📖 Recursos de Estudio y Referencias Oficiales
+## Referencias Bibliograficas y Documentacion Oficial
 - **[Get Started with SQL Server](https://learn.microsoft.com/en-us/training/modules/introduction-to-sql-server/)** (`course` | Nivel: `beginner`): 
 - **[SQL Server query processing architecture guide](https://learn.microsoft.com/en-us/sql/relational-databases/query-processing-architecture-guide?view=sql-server-ver17)** (`official-docs` | Nivel: `intermediate`): 
 - **[Monitor and tune SQL Server performance](https://learn.microsoft.com/en-us/sql/relational-databases/performance/monitor-and-tune-for-performance?view=sql-server-ver17)** (`reference` | Nivel: `advanced`): 
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Datos](Grupo-Data) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Datos](Grupo-Data) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

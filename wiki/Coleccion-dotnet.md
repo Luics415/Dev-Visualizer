@@ -1,46 +1,46 @@
-# 📘 [.NET] .NET
+# .NET (.NET)
 
 > **SDK, CLR, IL, JIT/AOT, GC, bibliotecas, hosting y diagnóstico.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `dotnet` |
-| **Grupo Arquitectónico** | [Plataformas y servidor](Grupo-Platforms) |
+| **Grupo Arquitectonico** | [Plataformas y servidor](Grupo-Platforms) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `dotnet` |
 | **Total de Conceptos** | **52 conceptos** |
-| **Capítulos / Secciones** | **8 secciones** |
+| **Capitulos / Secciones** | **8 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/dotnet)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/dotnet-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/dotnet)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/dotnet-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: .NET en acción
+## Estudio de Caso Practico: .NET en acción
 
 > **Caso integrado · Vida completa de un servicio:** Un servicio de diagnóstico pasa del proyecto al CLR, recibe trabajo asíncrono, administra memoria y se publica como artefacto observable para Linux.  
 > El mismo assembly conserva identidad desde build hasta runtime y cada capa entrega evidencia para explicar latencia, memoria y cierre.
 
-### Fases de Ejecución:
-1. **Evaluar el proyecto** (MSBuild construye el grafo): `dotnet build -c Release` → grafo compilable. *El SDK convierte convenciones en targets explícitos que pueden inspeccionarse.*
-2. **Producir assembly** (Lenguaje a IL y metadata): `Service.dll + Service.deps.json` → unidad de carga. *El assembly aún no contiene necesariamente código nativo para la CPU final.*
-3. **Crear el host** (Servicios y configuración validada): `Host.CreateApplicationBuilder(args)` → runtime configurado. *El host ordena responsabilidades comunes antes de aceptar trabajo.*
-4. **Cargar y ejecutar** (CLR resuelve y JIT compila): `AssemblyLoadContext → JIT` → método ejecutable. *JIT traduce métodos cuando se necesitan y puede optimizarlos con información del runtime.*
-5. **Procesar asíncrono** (Tasks liberan threads durante I/O): `await diagnostics.ReadAsync(ct)` → trabajo coordinado. *Async reduce threads bloqueados; no vuelve paralelo el cómputo por sí solo.*
-6. **Observar presión de GC** (Asignaciones elevan pausa): `dotnet-counters monitor System.Runtime` → presión localizada. *Los contadores distinguen fuga real de alta tasa de asignación recuperable.*
-7. **Reducir y confirmar** (Buffers reutilizados): `ArrayPool<byte>.Shared` → runtime saludable. *La mejora se demuestra con el mismo workload y señales antes/después.*
-8. **Publicar y cerrar** (Artefacto Linux con shutdown): `dotnet publish -r linux-x64` → servicio operable. *Publicación y lifetime garantizan que el proceso puede arrancar, observarse y terminar sin perder trabajo.*
+### Fases de Ejecucion:
+1. **Evaluar el proyecto** (MSBuild construye el grafo): `dotnet build -c Release` -> grafo compilable. *El SDK convierte convenciones en targets explícitos que pueden inspeccionarse.*
+2. **Producir assembly** (Lenguaje a IL y metadata): `Service.dll + Service.deps.json` -> unidad de carga. *El assembly aún no contiene necesariamente código nativo para la CPU final.*
+3. **Crear el host** (Servicios y configuración validada): `Host.CreateApplicationBuilder(args)` -> runtime configurado. *El host ordena responsabilidades comunes antes de aceptar trabajo.*
+4. **Cargar y ejecutar** (CLR resuelve y JIT compila): `AssemblyLoadContext → JIT` -> método ejecutable. *JIT traduce métodos cuando se necesitan y puede optimizarlos con información del runtime.*
+5. **Procesar asíncrono** (Tasks liberan threads durante I/O): `await diagnostics.ReadAsync(ct)` -> trabajo coordinado. *Async reduce threads bloqueados; no vuelve paralelo el cómputo por sí solo.*
+6. **Observar presión de GC** (Asignaciones elevan pausa): `dotnet-counters monitor System.Runtime` -> presión localizada. *Los contadores distinguen fuga real de alta tasa de asignación recuperable.*
+7. **Reducir y confirmar** (Buffers reutilizados): `ArrayPool<byte>.Shared` -> runtime saludable. *La mejora se demuestra con el mismo workload y señales antes/después.*
+8. **Publicar y cerrar** (Artefacto Linux con shutdown): `dotnet publish -r linux-x64` -> servicio operable. *Publicación y lifetime garantizan que el proceso puede arrancar, observarse y terminar sin perder trabajo.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (52)
+## Catalogo Sistematico de Conceptos (52)
 
-### 📑 Sección: Plataforma y SDK (7 conceptos)
+### Seccion: Plataforma y SDK (7 conceptos)
 
 - **Runtime, libraries y app stacks**  
   *Familia:* `mapa de memoria`  
@@ -71,7 +71,7 @@
   Distribuye utilidades ejecutables multiplataforma empaquetadas en NuGet.
 
 
-### 📑 Sección: Assemblies, metadata y tipos (7 conceptos)
+### Seccion: Assemblies, metadata y tipos (7 conceptos)
 
 - **IL y metadata**  
   *Familia:* `análisis y emisión`  
@@ -102,7 +102,7 @@
   Comprende cómo el runtime indexa definiciones de métodos y tipos en memoria.
 
 
-### 📑 Sección: CLR y ejecución de código (7 conceptos)
+### Seccion: CLR y ejecución de código (7 conceptos)
 
 - **JIT y compilación por niveles (Tiered Compilation)**  
   *Familia:* `despacho de runtime`  
@@ -133,7 +133,7 @@
   Resuelve invocaciones polimórficas de interfaces y métodos virtuales.
 
 
-### 📑 Sección: Memoria administrada y Garbage Collector (7 conceptos)
+### Seccion: Memoria administrada y Garbage Collector (7 conceptos)
 
 - **Managed heap y regiones de asignación**  
   *Familia:* `tabla de estados`  
@@ -164,7 +164,7 @@
   Libera recursos externos determinísticamente sin depender de la recolección.
 
 
-### 📑 Sección: Bibliotecas base y colecciones (6 conceptos)
+### Seccion: Bibliotecas base y colecciones (6 conceptos)
 
 - **Base Class Library (BCL)**  
   *Familia:* `análisis y emisión`  
@@ -191,7 +191,7 @@
   Usa ConcurrentQueue, ConcurrentDictionary y Channel sin cerrojos globales.
 
 
-### 📑 Sección: Inyección de dependencias y configuración (6 conceptos)
+### Seccion: Inyección de dependencias y configuración (6 conceptos)
 
 - **ServiceCollection y Dependency Injection**  
   *Familia:* `jerarquía y dependencias`  
@@ -218,7 +218,7 @@
   Resuelve dependencias registradas bajo claves específicas dentro del mismo contenedor.
 
 
-### 📑 Sección: Hosting y observabilidad (6 conceptos)
+### Seccion: Hosting y observabilidad (6 conceptos)
 
 - **Generic Host (IHost)**  
   *Familia:* `validación y decisión`  
@@ -245,7 +245,7 @@
   Publica indicadores de rendimiento consumibles por herramientas externas.
 
 
-### 📑 Sección: Publicación, empaquetado e interoperabilidad (6 conceptos)
+### Seccion: Publicación, empaquetado e interoperabilidad (6 conceptos)
 
 - **Framework-dependent vs Self-contained**  
   *Familia:* `comparativa técnica`  
@@ -273,11 +273,11 @@
 
 
 
-## 📖 Recursos de Estudio y Referencias Oficiales
+## Referencias Bibliograficas y Documentacion Oficial
 - **[Get started with .NET](https://learn.microsoft.com/en-us/dotnet/core/get-started)** (`tutorial` | Nivel: `beginner`): 
 - **[.NET fundamentals](https://learn.microsoft.com/en-us/dotnet/fundamentals/)** (`official-docs` | Nivel: `intermediate`): 
 - **[Architect modern web applications with ASP.NET Core and Azure](https://learn.microsoft.com/en-us/dotnet/architecture/modern-web-apps-azure/)** (`book` | Nivel: `advanced`): 
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Plataformas y servidor](Grupo-Platforms) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Plataformas y servidor](Grupo-Platforms) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

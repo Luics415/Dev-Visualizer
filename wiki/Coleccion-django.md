@@ -1,43 +1,43 @@
-# 📘 [Dj] Django
+# Django (Dj)
 
 > **Proyecto, HTTP, ORM, formularios, seguridad, tareas, pruebas y despliegue.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `django` |
-| **Grupo Arquitectónico** | [Plataformas y servidor](Grupo-Platforms) |
+| **Grupo Arquitectonico** | [Plataformas y servidor](Grupo-Platforms) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `python` |
 | **Total de Conceptos** | **123 conceptos** |
-| **Capítulos / Secciones** | **19 secciones** |
+| **Capitulos / Secciones** | **19 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/django)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/django-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/django)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/django-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: Reservar una cita de forma transaccional
+## Estudio de Caso Practico: Reservar una cita de forma transaccional
 
 > **Caso integrado de Django:** Una view valida y reserva un horario; dos peticiones compiten por el mismo cupo y el sistema recupera consistencia con constraint y transacción.  
 > La reserva final une validación, autorización, base de datos, mensaje y pruebas concurrentes.
 
-### Fases de Ejecución:
-1. **Validar formulario** (Reservar una cita de forma transaccional: etapa 1 de 5): `form = BookingForm(request.POST); form.is_valid()` → Entrada válida. *La etapa conserva un contrato explícito para que el siguiente paso de Django no dependa de supuestos ocultos.*
-2. **Consultar disponibilidad** (Reservar una cita de forma transaccional: etapa 2 de 5): `slot = Slot.objects.get(pk=form.cleaned_data['slot'])` → Candidato localizado. *La etapa conserva un contrato explícito para que el siguiente paso de Django no dependa de supuestos ocultos.*
-3. **Reproducir carrera** (Reservar una cita de forma transaccional: etapa 3 de 5): `if slot.available: Booking.objects.create(slot=slot)` → Doble reserva detectada. *El caso hace visible el fallo de Django; no continúa como si la evidencia fuera válida.*
-4. **Bloquear y restringir** (Reservar una cita de forma transaccional: etapa 4 de 5): `with transaction.atomic(): Slot.objects.select_for_update().get(pk=id)` → Consistencia recuperada. *La recuperación de Django corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
-5. **Responder y auditar** (Reservar una cita de forma transaccional: etapa 5 de 5): `messages.success(request, 'Reserva confirmada')` → Reserva verificable. *La etapa conserva un contrato explícito para que el siguiente paso de Django no dependa de supuestos ocultos.*
+### Fases de Ejecucion:
+1. **Validar formulario** (Reservar una cita de forma transaccional: etapa 1 de 5): `form = BookingForm(request.POST); form.is_valid()` -> Entrada válida. *La etapa conserva un contrato explícito para que el siguiente paso de Django no dependa de supuestos ocultos.*
+2. **Consultar disponibilidad** (Reservar una cita de forma transaccional: etapa 2 de 5): `slot = Slot.objects.get(pk=form.cleaned_data['slot'])` -> Candidato localizado. *La etapa conserva un contrato explícito para que el siguiente paso de Django no dependa de supuestos ocultos.*
+3. **Reproducir carrera** (Reservar una cita de forma transaccional: etapa 3 de 5): `if slot.available: Booking.objects.create(slot=slot)` -> Doble reserva detectada. *El caso hace visible el fallo de Django; no continúa como si la evidencia fuera válida.*
+4. **Bloquear y restringir** (Reservar una cita de forma transaccional: etapa 4 de 5): `with transaction.atomic(): Slot.objects.select_for_update().get(pk=id)` -> Consistencia recuperada. *La recuperación de Django corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
+5. **Responder y auditar** (Reservar una cita de forma transaccional: etapa 5 de 5): `messages.success(request, 'Reserva confirmada')` -> Reserva verificable. *La etapa conserva un contrato explícito para que el siguiente paso de Django no dependa de supuestos ocultos.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (123)
+## Catalogo Sistematico de Conceptos (123)
 
-### 📑 Sección: Proyecto Django (5 conceptos)
+### Seccion: Proyecto Django (5 conceptos)
 
 - **Settings**  
   *Familia:* `capas internas`  
@@ -60,7 +60,7 @@
   Templates conecta un ejemplo mínimo, sus precondiciones y el estado inicial con su runtime interno: aplica el mecanismo paso a paso haciendo visibles sus invariantes hasta exponer un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Datos e internals (5 conceptos)
+### Seccion: Datos e internals (5 conceptos)
 
 - **Models**  
   *Familia:* `mapa de memoria`  
@@ -83,7 +83,7 @@
   La función de Request middleware parte de datos identificables junto con esquema, restricciones y procedencia. Su ejecución valida, representa y recorre cada valor preservando relaciones y produce información consultable con integridad y significado estables.
 
 
-### 📑 Sección: Trabajo cotidiano (5 conceptos)
+### Seccion: Trabajo cotidiano (5 conceptos)
 
 - **Forms**  
   *Familia:* `despacho de runtime`  
@@ -106,7 +106,7 @@
   La función de Management commands parte de un ejemplo mínimo, sus precondiciones y el estado inicial. Su ejecución aplica el mecanismo paso a paso haciendo visibles sus invariantes y produce un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Diagnóstico (5 conceptos)
+### Seccion: Diagnóstico (5 conceptos)
 
 - **Error pages**  
   *Familia:* `evidencia y latencia`  
@@ -129,7 +129,7 @@
   El recorrido de System checks toma un comportamiento esperado, una entrada mínima y un síntoma observable. Posteriormente aísla variables y contrasta hipótesis con instrumentación repetible para validar una causa demostrada y una regresión protegida.
 
 
-### 📑 Sección: Producción (5 conceptos)
+### Seccion: Producción (5 conceptos)
 
 - **Security checklist**  
   *Familia:* `espectro de verificación`  
@@ -152,7 +152,7 @@
   Version upgrades estructura un ejemplo mínimo, sus precondiciones y el estado inicial en el sistema: aplica el mecanismo paso a paso haciendo visibles sus invariantes, garantizando un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: ORM avanzado (6 conceptos)
+### Seccion: ORM avanzado (6 conceptos)
 
 - **Expressions F y Q**  
   *Familia:* `validación y decisión`  
@@ -179,7 +179,7 @@
   select_for_update semantics gestiona ORM avanzado de modo que middleware, resolver, vista y ORM aplican política, consulta y render o serialización, produciendo response y cambios de base de datos correlacionados y autorizados.
 
 
-### 📑 Sección: Diseño de modelos (7 conceptos)
+### Seccion: Diseño de modelos (7 conceptos)
 
 - **Constraints declarativas**  
   *Familia:* `configuración declarativa`  
@@ -210,7 +210,7 @@
   A través de Natural-key migrations en Diseño de modelos, el sistema promueve por etapas, observa señales y conserva una ruta de reversión manteniendo versión activa con tráfico y datos dentro del contrato.
 
 
-### 📑 Sección: Ciclo HTTP profundo (8 conceptos)
+### Seccion: Ciclo HTTP profundo (8 conceptos)
 
 - **ASGI request scope**  
   *Familia:* `topología y tráfico`  
@@ -245,7 +245,7 @@
   En el flujo operativo de Ciclo HTTP profundo, Request body stream ownership propaga elementos, aplica ventana o transformación y regula producción con demanda para obtener salida ordenada con memoria y latencia acotadas.
 
 
-### 📑 Sección: Plantillas y presentación (6 conceptos)
+### Seccion: Plantillas y presentación (6 conceptos)
 
 - **Template inheritance**  
   *Familia:* `flujo de interfaz`  
@@ -272,7 +272,7 @@
   Autoescape contexts gestiona Plantillas y presentación de modo que autentica, normaliza y autoriza antes de ejecutar con la capacidad mínima, produciendo decisión explícita y auditable que no expone secretos ni amplía privilegios.
 
 
-### 📑 Sección: Autenticación y autorización (7 conceptos)
+### Seccion: Autenticación y autorización (7 conceptos)
 
 - **Custom user model**  
   *Familia:* `validación y decisión`  
@@ -303,7 +303,7 @@
   A través de Permission cache invalidation en Autenticación y autorización, el sistema autentica, normaliza y autoriza antes de ejecutar con la capacidad mínima manteniendo decisión explícita y auditable que no expone secretos ni amplía privilegios.
 
 
-### 📑 Sección: Seguridad web (7 conceptos)
+### Seccion: Seguridad web (7 conceptos)
 
 - **CSRF internals**  
   *Familia:* `validación y decisión`  
@@ -334,7 +334,7 @@
   A través de Content Security Policy middleware en Seguridad web, el sistema autentica, normaliza y autoriza antes de ejecutar con la capacidad mínima manteniendo decisión explícita y auditable que no expone secretos ni amplía privilegios.
 
 
-### 📑 Sección: APIs con Django (7 conceptos)
+### Seccion: APIs con Django (7 conceptos)
 
 - **Serialización explícita**  
   *Familia:* `ida y vuelta`  
@@ -365,7 +365,7 @@
   A través de Stable pagination contracts en APIs con Django, el sistema reserva, mapea o mueve memoria y registra quién debe reclamarla manteniendo datos accesibles durante el lifetime exacto y capacidad devuelta al finalizar.
 
 
-### 📑 Sección: Procesamiento asíncrono (7 conceptos)
+### Seccion: Procesamiento asíncrono (7 conceptos)
 
 - **Async views**  
   *Familia:* `flujo de interfaz`  
@@ -396,7 +396,7 @@
   A través de Durable outbox relay en Procesamiento asíncrono, el sistema registra intención, valida conflictos y confirma o compensa la unidad completa manteniendo un estado durable que satisface aislamiento e invariantes declarados.
 
 
-### 📑 Sección: Testing (7 conceptos)
+### Seccion: Testing (7 conceptos)
 
 - **TestCase y TransactionTestCase**  
   *Familia:* `consulta e índice`  
@@ -427,7 +427,7 @@
   A través de Deterministic timezone fixtures en Testing, el sistema ejecuta camino normal, límite y fallo mientras captura todos los efectos observables manteniendo evidencia repetible que distingue comportamiento correcto de una regresión.
 
 
-### 📑 Sección: Rendimiento (7 conceptos)
+### Seccion: Rendimiento (7 conceptos)
 
 - **N+1 detection**  
   *Familia:* `evidencia y latencia`  
@@ -458,7 +458,7 @@
   A través de Cache stampede controls en Rendimiento, el sistema consulta, calcula ausencias y publica el nuevo valor junto con su invalidador manteniendo reutilización medible sin cambiar el resultado funcional.
 
 
-### 📑 Sección: Archivos y contenido (7 conceptos)
+### Seccion: Archivos y contenido (7 conceptos)
 
 - **Storage backends**  
   *Familia:* `telar relacional`  
@@ -489,7 +489,7 @@
   A través de Content-type sniffing defenses en Archivos y contenido, el sistema resuelve composición, restricciones y representación antes de aceptar la instancia manteniendo estructura válida cuyas operaciones permitidas están explícitas.
 
 
-### 📑 Sección: Internacionalización y accesibilidad (7 conceptos)
+### Seccion: Internacionalización y accesibilidad (7 conceptos)
 
 - **Translation catalogs**  
   *Familia:* `evidencia y latencia`  
@@ -520,7 +520,7 @@
   A través de Form error announcement en Internacionalización y accesibilidad, el sistema mide, compone, renderiza y actualiza solo las dependencias invalidadas manteniendo interfaz navegable cuyo estado visual y semántico coinciden.
 
 
-### 📑 Sección: Observabilidad (7 conceptos)
+### Seccion: Observabilidad (7 conceptos)
 
 - **Request correlation**  
   *Familia:* `ida y vuelta`  
@@ -551,7 +551,7 @@
   A través de Slow-query sampling en Observabilidad, el sistema middleware, resolver, vista y ORM aplican política, consulta y render o serialización manteniendo response y cambios de base de datos correlacionados y autorizados.
 
 
-### 📑 Sección: Entrega y evolución (8 conceptos)
+### Seccion: Entrega y evolución (8 conceptos)
 
 - **Zero-downtime migrations**  
   *Familia:* `pasaporte del artefacto`  
@@ -589,4 +589,4 @@
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Plataformas y servidor](Grupo-Platforms) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Plataformas y servidor](Grupo-Platforms) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

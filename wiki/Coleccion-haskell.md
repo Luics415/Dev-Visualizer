@@ -1,43 +1,43 @@
-# 📘 [Hs] Haskell
+# Haskell (Hs)
 
 > **Funciones puras, tipos algebraicos, evaluación perezosa, efectos y concurrencia.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `haskell` |
-| **Grupo Arquitectónico** | [Lenguajes](Grupo-Languages) |
+| **Grupo Arquitectonico** | [Lenguajes](Grupo-Languages) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `prolog` |
 | **Total de Conceptos** | **112 conceptos** |
-| **Capítulos / Secciones** | **19 secciones** |
+| **Capitulos / Secciones** | **19 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/haskell)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/haskell-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/haskell)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/haskell-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: Interpretar expresiones con tipos
+## Estudio de Caso Practico: Interpretar expresiones con tipos
 
 > **Caso integrado de Haskell:** Un intérprete transforma tokens en AST y evalúa expresiones; una división por cero emerge como efecto explícito y se recupera sin valor centinela.  
 > Parser, evaluator y salida conservan tipos separados y pruebas de propiedades para entradas generadas.
 
-### Fases de Ejecución:
-1. **Definir el AST** (Interpretar expresiones con tipos: etapa 1 de 5): `data Expr = Lit Int | Add Expr Expr | Div Expr Expr` → Dominio representado. *La etapa conserva un contrato explícito para que el siguiente paso de Haskell no dependa de supuestos ocultos.*
-2. **Evaluar composición** (Interpretar expresiones con tipos: etapa 2 de 5): `eval (Add a b) = (+) <$> eval a <*> eval b` → Suma evaluada. *La etapa conserva un contrato explícito para que el siguiente paso de Haskell no dependa de supuestos ocultos.*
-3. **Encontrar división por cero** (Interpretar expresiones con tipos: etapa 3 de 5): `eval (Div _ (Lit 0)) = Left DivisionByZero` → Evaluación detenida. *El caso hace visible el fallo de Haskell; no continúa como si la evidencia fuera válida.*
-4. **Recuperar en frontera** (Interpretar expresiones con tipos: etapa 4 de 5): `render (Left e) = mensaje e` → Sesión continúa segura. *La recuperación de Haskell corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
-5. **Probar propiedades** (Interpretar expresiones con tipos: etapa 5 de 5): `property $ \x y -> eval (Add (Lit x) (Lit y)) == Right (x+y)` → Contrato demostrado. *La etapa conserva un contrato explícito para que el siguiente paso de Haskell no dependa de supuestos ocultos.*
+### Fases de Ejecucion:
+1. **Definir el AST** (Interpretar expresiones con tipos: etapa 1 de 5): `data Expr = Lit Int | Add Expr Expr | Div Expr Expr` -> Dominio representado. *La etapa conserva un contrato explícito para que el siguiente paso de Haskell no dependa de supuestos ocultos.*
+2. **Evaluar composición** (Interpretar expresiones con tipos: etapa 2 de 5): `eval (Add a b) = (+) <$> eval a <*> eval b` -> Suma evaluada. *La etapa conserva un contrato explícito para que el siguiente paso de Haskell no dependa de supuestos ocultos.*
+3. **Encontrar división por cero** (Interpretar expresiones con tipos: etapa 3 de 5): `eval (Div _ (Lit 0)) = Left DivisionByZero` -> Evaluación detenida. *El caso hace visible el fallo de Haskell; no continúa como si la evidencia fuera válida.*
+4. **Recuperar en frontera** (Interpretar expresiones con tipos: etapa 4 de 5): `render (Left e) = mensaje e` -> Sesión continúa segura. *La recuperación de Haskell corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
+5. **Probar propiedades** (Interpretar expresiones con tipos: etapa 5 de 5): `property $ \x y -> eval (Add (Lit x) (Lit y)) == Right (x+y)` -> Contrato demostrado. *La etapa conserva un contrato explícito para que el siguiente paso de Haskell no dependa de supuestos ocultos.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (112)
+## Catalogo Sistematico de Conceptos (112)
 
-### 📑 Sección: Expresiones y tipos (5 conceptos)
+### Seccion: Expresiones y tipos (5 conceptos)
 
 - **Funciones puras**  
   *Familia:* `flujo de transformación`  
@@ -60,7 +60,7 @@
   El recorrido de Pattern matching toma texto fuente, contexto léxico y reglas del lenguaje. Posteriormente reconoce estructura, comprueba contratos y produce una representación ejecutable para validar significado bien formado con errores localizados.
 
 
-### 📑 Sección: Evaluación (5 conceptos)
+### Seccion: Evaluación (5 conceptos)
 
 - **No estricta y perezosa**  
   *Familia:* `flujo de transformación`  
@@ -83,7 +83,7 @@
   Compartición estructura un ejemplo mínimo, sus precondiciones y el estado inicial en el sistema: aplica el mecanismo paso a paso haciendo visibles sus invariantes, garantizando un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Composición (5 conceptos)
+### Seccion: Composición (5 conceptos)
 
 - **Typeclasses**  
   *Familia:* `jerarquía y dependencias`  
@@ -106,7 +106,7 @@
   El recorrido de Foldable y Traversable toma un ejemplo mínimo, sus precondiciones y el estado inicial. Posteriormente aplica el mecanismo paso a paso haciendo visibles sus invariantes para validar un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Errores y diagnóstico (5 conceptos)
+### Seccion: Errores y diagnóstico (5 conceptos)
 
 - **Maybe y Either**  
   *Familia:* `evidencia y latencia`  
@@ -129,7 +129,7 @@
   Para entender Profiling de heap, se delimita valores con representación, dirección y tiempo de vida definidos. La operación reserva, enlaza y libera almacenamiento siguiendo el contrato del runtime hasta producir estado accesible sin referencias colgantes ni corrupción.
 
 
-### 📑 Sección: Producción (5 conceptos)
+### Seccion: Producción (5 conceptos)
 
 - **IO**  
   *Familia:* `pasaporte del artefacto`  
@@ -152,7 +152,7 @@
   Optimización con criterio estructura un workload representativo, un presupuesto y una línea base en el sistema: mide la ruta crítica y cambia una variable por vez, garantizando una mejora cuantificada sin intercambiar corrección por velocidad.
 
 
-### 📑 Sección: Cálculo funcional (5 conceptos)
+### Seccion: Cálculo funcional (5 conceptos)
 
 - **Cálculo lambda**  
   *Familia:* `flujo de transformación`  
@@ -175,7 +175,7 @@
   Eta / beta / equivalencia estructura el flujo donde la evaluación aplica, compone o reduce expresiones propagando contexto sin mutar entradas compartidas, logrando un nuevo valor que mantiene las leyes de composición y puede razonarse localmente.
 
 
-### 📑 Sección: Diseño con tipos algebraicos (7 conceptos)
+### Seccion: Diseño con tipos algebraicos (7 conceptos)
 
 - **Product y sum types**  
   *Familia:* `análisis y emisión`  
@@ -206,7 +206,7 @@
   Pattern / synonyms coordina la ejecución: scanner y parser consumen tokens, construyen estructura y conservan posición para explicar cada decisión hasta obtener un árbol o coincidencia estructurada que las siguientes fases pueden recorrer de forma segura.
 
 
-### 📑 Sección: Typeclasses avanzadas (5 conceptos)
+### Seccion: Typeclasses avanzadas (5 conceptos)
 
 - **Leyes de typeclasses**  
   *Familia:* `flujo de transformación`  
@@ -229,7 +229,7 @@
   Coerciones / newtype estructura el flujo donde el checker resuelve compatibilidad, inferencia, bounds y alternativas permitidas antes de emitir código, logrando una operación tipada cuyo contrato puede consumirse sin repetir validaciones.
 
 
-### 📑 Sección: Tipos de orden superior (8 conceptos)
+### Seccion: Tipos de orden superior (8 conceptos)
 
 - **Kinds**  
   *Familia:* `análisis y emisión`  
@@ -264,7 +264,7 @@
   Al operar con Linear / types, el checker resuelve compatibilidad, inferencia, bounds y alternativas permitidas antes de emitir código, produciendo una operación tipada cuyo contrato puede consumirse sin repetir validaciones.
 
 
-### 📑 Sección: Efectos componibles (6 conceptos)
+### Seccion: Efectos componibles (6 conceptos)
 
 - **Reader**  
   *Familia:* `flujo de transformación`  
@@ -291,7 +291,7 @@
   Para Resource / T / liberación / determinista, la evaluación aplica, compone o reduce expresiones propagando contexto sin mutar entradas compartidas, manteniendo un nuevo valor que mantiene las leyes de composición y puede razonarse localmente.
 
 
-### 📑 Sección: Evaluación interna (7 conceptos)
+### Seccion: Evaluación interna (7 conceptos)
 
 - **Graph reduction**  
   *Familia:* `topología y tráfico`  
@@ -322,7 +322,7 @@
   Selector / thunks coordina la ejecución: la evaluación aplica, compone o reduce expresiones propagando contexto sin mutar entradas compartidas hasta obtener un nuevo valor que mantiene las leyes de composición y puede razonarse localmente.
 
 
-### 📑 Sección: Optimización con GHC (6 conceptos)
+### Seccion: Optimización con GHC (6 conceptos)
 
 - **Core language**  
   *Familia:* `mapa de memoria`  
@@ -349,7 +349,7 @@
   Para Worker-wrapper / transformation, el scheduler intercala trabajo mientras locks, mensajes o atomics establecen el orden observable, manteniendo progreso concurrente con ownership y terminación comprobables para cada tarea.
 
 
-### 📑 Sección: Concurrencia robusta (7 conceptos)
+### Seccion: Concurrencia robusta (7 conceptos)
 
 - **Green threads**  
   *Familia:* `planificación de trabajo`  
@@ -380,7 +380,7 @@
   Masking / states coordina la ejecución: la evaluación aplica, compone o reduce expresiones propagando contexto sin mutar entradas compartidas hasta obtener un nuevo valor que mantiene las leyes de composición y puede razonarse localmente.
 
 
-### 📑 Sección: Paralelismo (5 conceptos)
+### Seccion: Paralelismo (5 conceptos)
 
 - **Sparks**  
   *Familia:* `cola y consumidor`  
@@ -403,7 +403,7 @@
   Eventlog / analysis estructura el flujo donde el runtime despacha handlers, actualiza modelo y compone el siguiente fotograma o respuesta perceptible, logrando interfaz sincronizada que comunica cambio, foco y acción disponible.
 
 
-### 📑 Sección: Parsing y lenguajes (7 conceptos)
+### Seccion: Parsing y lenguajes (7 conceptos)
 
 - **Parser combinators**  
   *Familia:* `flujo de transformación`  
@@ -434,7 +434,7 @@
   Error / recovery / combinators coordina la ejecución: scanner y parser consumen tokens, construyen estructura y conservan posición para explicar cada decisión hasta obtener un árbol o coincidencia estructurada que las siguientes fases pueden recorrer de forma segura.
 
 
-### 📑 Sección: Pruebas y verificación (6 conceptos)
+### Seccion: Pruebas y verificación (6 conceptos)
 
 - **Generators y shrinkers**  
   *Familia:* `espectro de verificación`  
@@ -461,7 +461,7 @@
   Para Coverage-guided / property / generation, la herramienta ejecuta, perturba o inspecciona el mecanismo y conserva el contraejemplo mínimo, manteniendo evidencia reproducible que distingue regresión, ruido y limitación conocida.
 
 
-### 📑 Sección: Construcción y distribución (5 conceptos)
+### Seccion: Construcción y distribución (5 conceptos)
 
 - **Componentes Cabal**  
   *Familia:* `constelación de mecanismos`  
@@ -484,7 +484,7 @@
   Versionado / paquetes estructura el flujo donde el grafo resuelve dependencias, compila, enlaza y adjunta procedencia a cada salida, logrando un artefacto reproducible, verificable y promovible entre entornos.
 
 
-### 📑 Sección: Interoperabilidad (5 conceptos)
+### Seccion: Interoperabilidad (5 conceptos)
 
 - **Foreign function interface**  
   *Familia:* `despacho de runtime`  
@@ -507,7 +507,7 @@
   Web / Assembly / backends estructura el flujo donde la CPU decodifica instrucciones y mueve estado entre unidades, memoria y frontera del sistema, logrando estado arquitectónico actualizado con flags, registros preservados y control en la dirección prevista.
 
 
-### 📑 Sección: Producción observable (8 conceptos)
+### Seccion: Producción observable (8 conceptos)
 
 - **Heap residency**  
   *Familia:* `tabla de estados`  
@@ -545,4 +545,4 @@
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

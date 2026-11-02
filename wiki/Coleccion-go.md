@@ -1,43 +1,43 @@
-# 📘 [Go] Go
+# Go (Go)
 
 > **Tipos, interfaces, goroutines, canales, contexto, módulos y servicios.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `go` |
-| **Grupo Arquitectónico** | [Lenguajes](Grupo-Languages) |
+| **Grupo Arquitectonico** | [Lenguajes](Grupo-Languages) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `nodejs` |
 | **Total de Conceptos** | **103 conceptos** |
-| **Capítulos / Secciones** | **18 secciones** |
+| **Capitulos / Secciones** | **18 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/go)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/go-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/go)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/go-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: Rastrear sitios con concurrencia acotada
+## Estudio de Caso Practico: Rastrear sitios con concurrencia acotada
 
 > **Caso integrado de Go:** Un crawler distribuye URLs entre workers, detecta una goroutine bloqueada al cancelar y recupera el cierre mediante context y ownership explícito del canal.  
 > La ejecución final respeta robots, concurrencia, timeouts, deduplicación y cierre sin goroutines fugitivas.
 
-### Fases de Ejecución:
-1. **Preparar frontera** (Rastrear sitios con concurrencia acotada: etapa 1 de 5): `ctx, cancel := context.WithTimeout(ctx, 10*time.Second)` → Trabajo acotado. *La etapa conserva un contrato explícito para que el siguiente paso de Go no dependa de supuestos ocultos.*
-2. **Lanzar workers** (Rastrear sitios con concurrencia acotada: etapa 2 de 5): `for i := 0; i < n; i++ { go worker(ctx, jobs, out) }` → Concurrencia limitada. *La etapa conserva un contrato explícito para que el siguiente paso de Go no dependa de supuestos ocultos.*
-3. **Detectar bloqueo** (Rastrear sitios con concurrencia acotada: etapa 3 de 5): `out <- result // nadie recibe tras cancelación` → Cierre incompleto. *El caso hace visible el fallo de Go; no continúa como si la evidencia fuera válida.*
-4. **Hacer envío cancelable** (Rastrear sitios con concurrencia acotada: etapa 4 de 5): `select { case out <- result: case <-ctx.Done(): return }` → Goroutine recuperada. *La recuperación de Go corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
-5. **Drenar y verificar** (Rastrear sitios con concurrencia acotada: etapa 5 de 5): `wg.Wait(); close(out)` → Crawler finaliza limpio. *La etapa conserva un contrato explícito para que el siguiente paso de Go no dependa de supuestos ocultos.*
+### Fases de Ejecucion:
+1. **Preparar frontera** (Rastrear sitios con concurrencia acotada: etapa 1 de 5): `ctx, cancel := context.WithTimeout(ctx, 10*time.Second)` -> Trabajo acotado. *La etapa conserva un contrato explícito para que el siguiente paso de Go no dependa de supuestos ocultos.*
+2. **Lanzar workers** (Rastrear sitios con concurrencia acotada: etapa 2 de 5): `for i := 0; i < n; i++ { go worker(ctx, jobs, out) }` -> Concurrencia limitada. *La etapa conserva un contrato explícito para que el siguiente paso de Go no dependa de supuestos ocultos.*
+3. **Detectar bloqueo** (Rastrear sitios con concurrencia acotada: etapa 3 de 5): `out <- result // nadie recibe tras cancelación` -> Cierre incompleto. *El caso hace visible el fallo de Go; no continúa como si la evidencia fuera válida.*
+4. **Hacer envío cancelable** (Rastrear sitios con concurrencia acotada: etapa 4 de 5): `select { case out <- result: case <-ctx.Done(): return }` -> Goroutine recuperada. *La recuperación de Go corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
+5. **Drenar y verificar** (Rastrear sitios con concurrencia acotada: etapa 5 de 5): `wg.Wait(); close(out)` -> Crawler finaliza limpio. *La etapa conserva un contrato explícito para que el siguiente paso de Go no dependa de supuestos ocultos.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (103)
+## Catalogo Sistematico de Conceptos (103)
 
-### 📑 Sección: Go esencial (5 conceptos)
+### Seccion: Go esencial (5 conceptos)
 
 - **Paquetes**  
   *Familia:* `análisis y emisión`  
@@ -60,7 +60,7 @@
   El recorrido de Métodos e interfaces toma un ejemplo mínimo, sus precondiciones y el estado inicial. Posteriormente aplica el mecanismo paso a paso haciendo visibles sus invariantes para validar un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Runtime (5 conceptos)
+### Seccion: Runtime (5 conceptos)
 
 - **Goroutines**  
   *Familia:* `tejido de eventos`  
@@ -83,7 +83,7 @@
   Garbage collector conecta valores con representación, dirección y tiempo de vida definidos con su runtime interno: reserva, enlaza y libera almacenamiento siguiendo el contrato del runtime hasta exponer estado accesible sin referencias colgantes ni corrupción.
 
 
-### 📑 Sección: Trabajo cotidiano (5 conceptos)
+### Seccion: Trabajo cotidiano (5 conceptos)
 
 - **Errores explícitos**  
   *Familia:* `análisis y emisión`  
@@ -106,7 +106,7 @@
   La función de Testing parte de un comportamiento esperado, una entrada mínima y un síntoma observable. Su ejecución aísla variables y contrasta hipótesis con instrumentación repetible y produce una causa demostrada y una regresión protegida.
 
 
-### 📑 Sección: Diagnóstico (5 conceptos)
+### Seccion: Diagnóstico (5 conceptos)
 
 - **Race detector**  
   *Familia:* `mapa de memoria`  
@@ -129,7 +129,7 @@
   El recorrido de Benchmarks toma un comportamiento esperado, una entrada mínima y un síntoma observable. Posteriormente aísla variables y contrasta hipótesis con instrumentación repetible para validar una causa demostrada y una regresión protegida.
 
 
-### 📑 Sección: Producción (5 conceptos)
+### Seccion: Producción (5 conceptos)
 
 - **Backpressure**  
   *Familia:* `pasaporte del artefacto`  
@@ -152,7 +152,7 @@
   Observabilidad estructura un comportamiento esperado, una entrada mínima y un síntoma observable en el sistema: aísla variables y contrasta hipótesis con instrumentación repetible, garantizando una causa demostrada y una regresión protegida.
 
 
-### 📑 Sección: Tipos e interfaces (5 conceptos)
+### Seccion: Tipos e interfaces (5 conceptos)
 
 - **Type identity**  
   *Familia:* `anatomía del concepto`  
@@ -175,7 +175,7 @@
   Type / sets estructura el flujo donde el checker resuelve compatibilidad, inferencia, bounds y alternativas permitidas antes de emitir código, logrando una operación tipada cuyo contrato puede consumirse sin repetir validaciones.
 
 
-### 📑 Sección: Memoria (6 conceptos)
+### Seccion: Memoria (6 conceptos)
 
 - **Escape analysis**  
   *Familia:* `validación y decisión`  
@@ -202,7 +202,7 @@
   Para Write / barrier / collector, el scheduler intercala trabajo mientras locks, mensajes o atomics establecen el orden observable, manteniendo progreso concurrente con ownership y terminación comprobables para cada tarea.
 
 
-### 📑 Sección: Runtime en profundidad (7 conceptos)
+### Seccion: Runtime en profundidad (7 conceptos)
 
 - **Work stealing**  
   *Familia:* `despacho de runtime`  
@@ -233,7 +233,7 @@
   Pacer / garbage / collector coordina la ejecución: la estructura indexa, agrupa o itera datos aplicando la operación solo a las posiciones válidas hasta obtener una colección cuya cardinalidad, orden y tipos corresponden a la transformación solicitada.
 
 
-### 📑 Sección: Patrones concurrentes (6 conceptos)
+### Seccion: Patrones concurrentes (6 conceptos)
 
 - **Fan-out y fan-in**  
   *Familia:* `planificación de trabajo`  
@@ -260,7 +260,7 @@
   Para Singleflight / suppression, el scheduler intercala trabajo mientras locks, mensajes o atomics establecen el orden observable, manteniendo progreso concurrente con ownership y terminación comprobables para cada tarea.
 
 
-### 📑 Sección: Cancelación y límites (8 conceptos)
+### Seccion: Cancelación y límites (8 conceptos)
 
 - **Context propagation**  
   *Familia:* `planificación de trabajo`  
@@ -295,7 +295,7 @@
   Al operar con Semaphore-weighted / concurrency, el scheduler intercala trabajo mientras locks, mensajes o atomics establecen el orden observable, produciendo progreso concurrente con ownership y terminación comprobables para cada tarea.
 
 
-### 📑 Sección: I/O y formatos (5 conceptos)
+### Seccion: I/O y formatos (5 conceptos)
 
 - **Reader y Writer**  
   *Familia:* `flujo de transformación`  
@@ -318,7 +318,7 @@
   Embed / filesystem estructura el flujo donde el adaptador prepara operaciones, adquiere recursos y aplica restricciones antes de confirmar, logrando estado persistido con integridad y visibilidad coherentes para lectores concurrentes.
 
 
-### 📑 Sección: Servicios de red (7 conceptos)
+### Seccion: Servicios de red (7 conceptos)
 
 - **HTTP transports**  
   *Familia:* `ida y vuelta`  
@@ -349,7 +349,7 @@
   DNS / resolver / behavior coordina la ejecución: la capa de transporte encuadra, valida y convierte la carga mientras administra conexiones parciales hasta obtener una respuesta o estructura interna completa que conserva correlación y estado del intercambio.
 
 
-### 📑 Sección: Datos y consistencia (6 conceptos)
+### Seccion: Datos y consistencia (6 conceptos)
 
 - **database/sql**  
   *Familia:* `workflow y decisiones`  
@@ -376,7 +376,7 @@
   Para Optimistic / concurrency / tokens, el scheduler intercala trabajo mientras locks, mensajes o atomics establecen el orden observable, manteniendo progreso concurrente con ownership y terminación comprobables para cada tarea.
 
 
-### 📑 Sección: Pruebas avanzadas (5 conceptos)
+### Seccion: Pruebas avanzadas (5 conceptos)
 
 - **Table-driven tests**  
   *Familia:* `espectro de verificación`  
@@ -399,7 +399,7 @@
   Golden / files estructura el flujo donde la herramienta ejecuta, perturba o inspecciona el mecanismo y conserva el contraejemplo mínimo, logrando evidencia reproducible que distingue regresión, ruido y limitación conocida.
 
 
-### 📑 Sección: Toolchain (5 conceptos)
+### Seccion: Toolchain (5 conceptos)
 
 - **go generate**  
   *Familia:* `análisis y emisión`  
@@ -422,7 +422,7 @@
   Workspaces estructura el flujo donde el grafo resuelve dependencias, compila, enlaza y adjunta procedencia a cada salida, logrando un artefacto reproducible, verificable y promovible entre entornos.
 
 
-### 📑 Sección: Seguridad (7 conceptos)
+### Seccion: Seguridad (7 conceptos)
 
 - **govulncheck**  
   *Familia:* `validación y decisión`  
@@ -453,7 +453,7 @@
   Filesystem / sandbox / boundaries coordina la ejecución: el control autentica, autoriza, normaliza y registra evidencia sin revelar secretos hasta obtener solo la capacidad permitida ejecutada con una decisión que puede auditarse.
 
 
-### 📑 Sección: Rendimiento (5 conceptos)
+### Seccion: Rendimiento (5 conceptos)
 
 - **CPU profiles**  
   *Familia:* `planificación de trabajo`  
@@ -476,7 +476,7 @@
   Profile-guided / optimization estructura el flujo donde la herramienta ejecuta, perturba o inspecciona el mecanismo y conserva el contraejemplo mínimo, logrando evidencia reproducible que distingue regresión, ruido y limitación conocida.
 
 
-### 📑 Sección: Operación de servicios (6 conceptos)
+### Seccion: Operación de servicios (6 conceptos)
 
 - **Health y readiness**  
   *Familia:* `ciclo de vida`  
@@ -506,4 +506,4 @@
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

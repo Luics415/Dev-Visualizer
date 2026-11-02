@@ -1,31 +1,31 @@
-# 📘 [TS] TypeScript
+# TypeScript (TS)
 
 > **Modelado, narrowing, genéricos, compilador y producción.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `typescript` |
-| **Grupo Arquitectónico** | [Lenguajes](Grupo-Languages) |
+| **Grupo Arquitectonico** | [Lenguajes](Grupo-Languages) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `typescript` |
 | **Total de Conceptos** | **64 conceptos** |
-| **Capítulos / Secciones** | **7 secciones** |
+| **Capitulos / Secciones** | **7 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/typescript)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/typescript-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/typescript)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/typescript-en-accion)
 
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (64)
+## Catalogo Sistematico de Conceptos (64)
 
-### 📑 Sección: Fundamentos del sistema de tipos (6 conceptos)
+### Seccion: Fundamentos del sistema de tipos (6 conceptos)
 
 - **Inferencia de tipos**  
   *Familia:* `escáner de tipos`  
@@ -52,7 +52,7 @@
   Distinguen funciones que no producen un valor útil de rutas que nunca completan normalmente.
 
 
-### 📑 Sección: Modelado de datos (11 conceptos)
+### Seccion: Modelado de datos (11 conceptos)
 
 - **Uniones**  
   *Familia:* `rutas válidas`  
@@ -99,7 +99,7 @@
   Usan una propiedad literal común para representar estados mutuamente excluyentes de forma segura.
 
 
-### 📑 Sección: Funciones tipadas (5 conceptos)
+### Seccion: Funciones tipadas (5 conceptos)
 
 - **Tipos de funciones**  
   *Familia:* `puertos tipados`  
@@ -122,7 +122,7 @@
   Declara el tipo del receptor esperado sin convertirse en un argumento real de JavaScript.
 
 
-### 📑 Sección: Narrowing y seguridad (8 conceptos)
+### Seccion: Narrowing y seguridad (8 conceptos)
 
 - **Narrowing**  
   *Familia:* `árbol de decisión`  
@@ -157,7 +157,7 @@
   Convierte propiedades y elementos inferidos en readonly y conserva valores literales exactos.
 
 
-### 📑 Sección: Genéricos y tipos derivados (14 conceptos)
+### Seccion: Genéricos y tipos derivados (14 conceptos)
 
 - **Genéricos**  
   *Familia:* `túnel que preserva tipo`  
@@ -216,7 +216,7 @@
   Añaden una marca estática para evitar mezclar valores estructuralmente idénticos con significados diferentes.
 
 
-### 📑 Sección: Clases y módulos (9 conceptos)
+### Seccion: Clases y módulos (9 conceptos)
 
 - **Clases y modificadores**  
   *Familia:* `ecosistema coordinado`  
@@ -255,7 +255,7 @@
   Extienden contratos existentes de forma controlada cuando una librería soporta plugins.
 
 
-### 📑 Sección: Compilador y producción (11 conceptos)
+### Seccion: Compilador y producción (11 conceptos)
 
 - **tsconfig**  
   *Familia:* `contratos coordinados`  
@@ -305,4 +305,4 @@
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

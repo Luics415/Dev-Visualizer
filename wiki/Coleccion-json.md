@@ -1,48 +1,48 @@
-# 📘 [JSON] JSON
+# JSON (JSON)
 
 > **Sintaxis, JSON Schema, Pointer, Patch, seguridad, contratos y producción.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `json` |
-| **Grupo Arquitectónico** | [Datos](Grupo-Data) |
+| **Grupo Arquitectonico** | [Datos](Grupo-Data) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `json` |
 | **Total de Conceptos** | **110 conceptos** |
-| **Capítulos / Secciones** | **22 secciones** |
+| **Capitulos / Secciones** | **22 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/json)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/json-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/json)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/json-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: JSON en acción
+## Estudio de Caso Practico: JSON en acción
 
 > **Caso integrado · Orden offline con actualización concurrente:** Una orden creada sin conexión llega como JSON. La frontera detecta nombres duplicados, valida JSON Schema, recupera un importe fuera del rango interoperable y aplica un JSON Patch solo si la revisión todavía coincide.  
 > El caso termina con bytes canónicos, digest y una secuencia observable; sintaxis, schema, concurrencia y negocio permanecen como capas distintas.
 
-### Fases de Ejecución:
-1. **Recibir el payload** (Media type y tamaño real): `application/json · max decoded=1 MiB` → entrada admitida. *Se limita después de descomprimir para evitar payloads expansivos.*
-2. **Decodificar y tokenizar** (Bytes a tokens): `UTF-8 → lexer` → tokens seguros. *Un error conserva ubicación sin devolver todo el payload.*
-3. **Detectar duplicados** (Antes del objeto nativo): `orderId aparece dos veces` → payload rechazado. *Los parsers difieren; el contrato elige rechazar ambigüedad.*
-4. **Corregir y validar schema** (Draft 2020-12): `$schema + required + unevaluatedProperties` → estructura válida. *JSON Schema no autoriza ni ejecuta la orden.*
-5. **Detectar número riesgoso** (Interoperabilidad): `total=9007199254740993` → contrato incompatible. *JSON permite el número, pero no todos los runtimes lo conservan.*
-6. **Recuperar con decimal string** (Convención explícita): `total='9007199254740993.00'` → valor interoperable. *La representación acordada se valida antes de calcular.*
-7. **Intentar patch** (Compare-and-set): `test /revision 7` → patch rechazado. *test protege contra una edición basada en estado antiguo.*
-8. **Recargar y aplicar** (Actualización atómica): `test /revision 8 → replace status` → orden actualizada. *Toda la lista de operaciones se aplica o no se aplica.*
-9. **Canonicalizar y sellar** (Bytes deterministas): `JCS → SHA-256` → artefacto identificable. *El digest cubre bytes canonicalizados, no un objeto abstracto ambiguo.*
-10. **Publicar la secuencia** (Framing observable): `RS + JSON + LF` → orden trazable. *El último evento permanece coloreado y origina la siguiente entrada.*
+### Fases de Ejecucion:
+1. **Recibir el payload** (Media type y tamaño real): `application/json · max decoded=1 MiB` -> entrada admitida. *Se limita después de descomprimir para evitar payloads expansivos.*
+2. **Decodificar y tokenizar** (Bytes a tokens): `UTF-8 → lexer` -> tokens seguros. *Un error conserva ubicación sin devolver todo el payload.*
+3. **Detectar duplicados** (Antes del objeto nativo): `orderId aparece dos veces` -> payload rechazado. *Los parsers difieren; el contrato elige rechazar ambigüedad.*
+4. **Corregir y validar schema** (Draft 2020-12): `$schema + required + unevaluatedProperties` -> estructura válida. *JSON Schema no autoriza ni ejecuta la orden.*
+5. **Detectar número riesgoso** (Interoperabilidad): `total=9007199254740993` -> contrato incompatible. *JSON permite el número, pero no todos los runtimes lo conservan.*
+6. **Recuperar con decimal string** (Convención explícita): `total='9007199254740993.00'` -> valor interoperable. *La representación acordada se valida antes de calcular.*
+7. **Intentar patch** (Compare-and-set): `test /revision 7` -> patch rechazado. *test protege contra una edición basada en estado antiguo.*
+8. **Recargar y aplicar** (Actualización atómica): `test /revision 8 → replace status` -> orden actualizada. *Toda la lista de operaciones se aplica o no se aplica.*
+9. **Canonicalizar y sellar** (Bytes deterministas): `JCS → SHA-256` -> artefacto identificable. *El digest cubre bytes canonicalizados, no un objeto abstracto ambiguo.*
+10. **Publicar la secuencia** (Framing observable): `RS + JSON + LF` -> orden trazable. *El último evento permanece coloreado y origina la siguiente entrada.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (110)
+## Catalogo Sistematico de Conceptos (110)
 
-### 📑 Sección: Valores JSON, estructura y contrato (5 conceptos)
+### Seccion: Valores JSON, estructura y contrato (5 conceptos)
 
 - **JSON text y value**  
   *Familia:* `tejido literario`  
@@ -65,7 +65,7 @@
   Separa framing, sintaxis, schema, semántica, autorización y persistencia segura.
 
 
-### 📑 Sección: Sintaxis JSON desde cero (5 conceptos)
+### Seccion: Sintaxis JSON desde cero (5 conceptos)
 
 - **JSON text y JSON value**  
   *Familia:* `configuración declarativa`  
@@ -88,7 +88,7 @@
   Usa solamente la gramática permitida: JSON estándar no admite comentarios ni trailing commas.
 
 
-### 📑 Sección: Strings, Unicode y escapes JSON (5 conceptos)
+### Seccion: Strings, Unicode y escapes JSON (5 conceptos)
 
 - **UTF-8 para intercambio abierto**  
   *Familia:* `tabla de estados`  
@@ -111,7 +111,7 @@
   No asume que strings visualmente iguales tienen la misma secuencia de puntos de código.
 
 
-### 📑 Sección: Números JSON (5 conceptos)
+### Seccion: Números JSON (5 conceptos)
 
 - **Gramática numérica**  
   *Familia:* `contratos coordinados`  
@@ -134,7 +134,7 @@
   Establece límites y conversión antes de mapear a tipos nativos de tamaño fijo.
 
 
-### 📑 Sección: Objetos, arrays y estados JSON (5 conceptos)
+### Seccion: Objetos, arrays y estados JSON (5 conceptos)
 
 - **Nombres de miembro únicos**  
   *Familia:* `configuración declarativa`  
@@ -157,7 +157,7 @@
   Documenta formatos porque JSON básico no define tipos nativos para ellos.
 
 
-### 📑 Sección: Parsing y serialización JSON (5 conceptos)
+### Seccion: Parsing y serialización JSON (5 conceptos)
 
 - **Lexer, parser y modelo nativo**  
   *Familia:* `tabla de estados`  
@@ -180,7 +180,7 @@
   Alinea encabezado, bytes y expectativas en vez de inferir el formato por extensión.
 
 
-### 📑 Sección: Fundamentos de JSON Schema 2020-12 (5 conceptos)
+### Seccion: Fundamentos de JSON Schema 2020-12 (5 conceptos)
 
 - **Instancia, schema y subschema**  
   *Familia:* `validación y decisión`  
@@ -203,7 +203,7 @@
   Distingue restricciones de información como title, description, default o examples.
 
 
-### 📑 Sección: Tipos y restricciones JSON Schema (5 conceptos)
+### Seccion: Tipos y restricciones JSON Schema (5 conceptos)
 
 - **type**  
   *Familia:* `constelación de mecanismos`  
@@ -226,7 +226,7 @@
   Reconoce que puede ser anotación o assertion según vocabulario, configuración y soporte del validador.
 
 
-### 📑 Sección: Objetos en JSON Schema (5 conceptos)
+### Seccion: Objetos en JSON Schema (5 conceptos)
 
 - **properties y required**  
   *Familia:* `espectro de verificación`  
@@ -249,7 +249,7 @@
   Activa presencia adicional o validación cuando aparece una propiedad.
 
 
-### 📑 Sección: Arrays y composición JSON Schema (5 conceptos)
+### Seccion: Arrays y composición JSON Schema (5 conceptos)
 
 - **prefixItems e items**  
   *Familia:* `validación y decisión`  
@@ -272,7 +272,7 @@
   Aplica restricciones condicionales sin modificar la instancia.
 
 
-### 📑 Sección: Referencias y vocabularios JSON Schema (5 conceptos)
+### Seccion: Referencias y vocabularios JSON Schema (5 conceptos)
 
 - **$defs y $ref**  
   *Familia:* `constelación de mecanismos`  
@@ -295,7 +295,7 @@
   Declara qué conjuntos de palabras clave necesita comprender una implementación.
 
 
-### 📑 Sección: Resultado y evolución JSON Schema (5 conceptos)
+### Seccion: Resultado y evolución JSON Schema (5 conceptos)
 
 - **Output formats**  
   *Familia:* `espectro de verificación`  
@@ -318,7 +318,7 @@
   Conserva $schema, $id, artefactos y corpus de compatibilidad por versión.
 
 
-### 📑 Sección: JSON Pointer, Patch y Merge Patch (5 conceptos)
+### Seccion: JSON Pointer, Patch y Merge Patch (5 conceptos)
 
 - **JSON Pointer**  
   *Familia:* `secuencia operativa`  
@@ -341,7 +341,7 @@
   Detiene el patch al fallar una operación y evita guardar un documento parcialmente actualizado.
 
 
-### 📑 Sección: Consultas, perfiles y secuencias JSON (5 conceptos)
+### Seccion: Consultas, perfiles y secuencias JSON (5 conceptos)
 
 - **JSONPath RFC 9535**  
   *Familia:* `evidencia y latencia`  
@@ -364,7 +364,7 @@
   Produce una representación determinista bajo las restricciones de JCS.
 
 
-### 📑 Sección: JSON-LD y semántica enlazada (5 conceptos)
+### Seccion: JSON-LD y semántica enlazada (5 conceptos)
 
 - **Contexto JSON-LD**  
   *Familia:* `máquina de estados`  
@@ -387,7 +387,7 @@
   No interpreta cualquier objeto JSON como datos enlazados sin un contexto y procesamiento JSON-LD.
 
 
-### 📑 Sección: Seguridad JSON (5 conceptos)
+### Seccion: Seguridad JSON (5 conceptos)
 
 - **Duplicados y parser differentials**  
   *Familia:* `secuencia operativa`  
@@ -410,7 +410,7 @@
   Mantiene datos separados de consultas, templates y código, y neutraliza caracteres de control al registrar.
 
 
-### 📑 Sección: JSON en producción (5 conceptos)
+### Seccion: JSON en producción (5 conceptos)
 
 - **Content negotiation y perfiles**  
   *Familia:* `evidencia y latencia`  
@@ -433,7 +433,7 @@
   Versiona contratos, propietarios, compatibilidad, deprecación y evidencia de despliegue.
 
 
-### 📑 Sección: JSON en APIs, configuración y eventos (5 conceptos)
+### Seccion: JSON en APIs, configuración y eventos (5 conceptos)
 
 - **JSON Schema en contratos**  
   *Familia:* `cola y consumidor`  
@@ -456,7 +456,7 @@
   Convierte únicamente mediante un mapping que trate atributos, namespaces, orden, texto mixto y precisión.
 
 
-### 📑 Sección: Validación, pruebas y rollout JSON (5 conceptos)
+### Seccion: Validación, pruebas y rollout JSON (5 conceptos)
 
 - **Pipeline de validación**  
   *Familia:* `workflow y decisiones`  
@@ -479,7 +479,7 @@
   Clasifica cambios, mide consumidores y conserva schemas y productores anteriores recuperables.
 
 
-### 📑 Sección: Modelado de contratos JSON (5 conceptos)
+### Seccion: Modelado de contratos JSON (5 conceptos)
 
 - **Naming conventions**  
   *Familia:* `mapa de memoria`  
@@ -502,7 +502,7 @@
   Indica qué sistema puede escribir cada valor y evita dos fuentes de verdad.
 
 
-### 📑 Sección: Mapeo a runtimes (5 conceptos)
+### Seccion: Mapeo a runtimes (5 conceptos)
 
 - **Objeto JSON frente a objeto del lenguaje**  
   *Familia:* `configuración declarativa`  
@@ -525,7 +525,7 @@
   Conserva tres estados separados y define quién puede materializar un valor predeterminado.
 
 
-### 📑 Sección: Formatos vecinos y límites (5 conceptos)
+### Seccion: Formatos vecinos y límites (5 conceptos)
 
 - **JSON frente a object literal**  
   *Familia:* `comparativa técnica`  
@@ -549,11 +549,11 @@
 
 
 
-## 📖 Recursos de Estudio y Referencias Oficiales
+## Referencias Bibliograficas y Documentacion Oficial
 - **[Working with JSON](https://developer.mozilla.org/en-US/docs/Learn_web_development/Core/Scripting/JSON)** (`tutorial` | Nivel: `beginner`): 
 - **[Creating your first JSON Schema](https://json-schema.org/learn/getting-started-step-by-step)** (`tutorial` | Nivel: `intermediate`): 
 - **[RFC 8259: The JavaScript Object Notation Data Interchange Format](https://www.rfc-editor.org/info/rfc8259/)** (`specification` | Nivel: `advanced`): 
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Datos](Grupo-Data) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Datos](Grupo-Data) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

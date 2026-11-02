@@ -1,46 +1,46 @@
-# 📘 [CWEB] CWEB
+# CWEB (CWEB)
 
 > **Programación literaria con CTANGLE, CWEAVE, C y TeX.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `cweb` |
-| **Grupo Arquitectónico** | [Lenguajes](Grupo-Languages) |
+| **Grupo Arquitectonico** | [Lenguajes](Grupo-Languages) |
 | **Ciclo de Vida** | `histórico` |
 | **Tema Visual** | `cweb` |
 | **Total de Conceptos** | **42 conceptos** |
-| **Capítulos / Secciones** | **7 secciones** |
+| **Capitulos / Secciones** | **7 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/cweb)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/cweb-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/cweb)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/cweb-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: CWEB en acción
+## Estudio de Caso Practico: CWEB en acción
 
 > **Caso integrado · Parser explicado y compilado:** Un pequeño parser de comandos se diseña como narrativa: invariantes, fragmentos y ejemplos producen código C y un PDF indexado desde la misma fuente.  
 > La salida ejecutable y la explicación comparten origen; un change file adapta la plataforma sin bifurcar el documento principal.
 
-### Fases de Ejecución:
-1. **Plantear el contrato** (La prosa define intención): `@* Command parser.` → problema explicado. *La narrativa establece qué debe demostrar el código antes de presentar detalles.*
-2. **Nombrar fragmentos** (La estructura sigue ideas): `@<Read one command@>=` → programa compuesto. *Los nombres sustituyen comentarios vagos por unidades conectadas.*
-3. **Implementar scanner** (Código dentro de una sección): `while ((c=getchar()) != EOF)` → entrada tokenizada. *El código queda junto a la explicación de su invariante.*
-4. **Tangle a C** (El compilador recibe orden técnico): `ctangle parser.w parser.c` → fuente compilable. *CTANGLE reorganiza sin cambiar la fuente literaria.*
-5. **Encontrar una divergencia** (El change file ya no coincide): `Change file entry did not match` → cambio rechazado. *Un fallo explícito evita aplicar una adaptación en el lugar equivocado.*
-6. **Actualizar la variante** (Más contexto, cambio mínimo): `@x old @y new @z` → portabilidad restaurada. *El change file expresa diferencia sin copiar todo el programa.*
-7. **Weave a TeX** (La segunda salida explica): `cweave parser.w parser.tex` → documento navegable. *CWEAVE usa la misma estructura para producir una lectura técnica.*
-8. **Verificar ambas salidas** (Build y ejemplos cierran el ciclo): `cc parser.c && ./parser < cases` → programa literario reproducible. *La explicación es parte del artefacto y se valida junto al ejecutable.*
+### Fases de Ejecucion:
+1. **Plantear el contrato** (La prosa define intención): `@* Command parser.` -> problema explicado. *La narrativa establece qué debe demostrar el código antes de presentar detalles.*
+2. **Nombrar fragmentos** (La estructura sigue ideas): `@<Read one command@>=` -> programa compuesto. *Los nombres sustituyen comentarios vagos por unidades conectadas.*
+3. **Implementar scanner** (Código dentro de una sección): `while ((c=getchar()) != EOF)` -> entrada tokenizada. *El código queda junto a la explicación de su invariante.*
+4. **Tangle a C** (El compilador recibe orden técnico): `ctangle parser.w parser.c` -> fuente compilable. *CTANGLE reorganiza sin cambiar la fuente literaria.*
+5. **Encontrar una divergencia** (El change file ya no coincide): `Change file entry did not match` -> cambio rechazado. *Un fallo explícito evita aplicar una adaptación en el lugar equivocado.*
+6. **Actualizar la variante** (Más contexto, cambio mínimo): `@x old @y new @z` -> portabilidad restaurada. *El change file expresa diferencia sin copiar todo el programa.*
+7. **Weave a TeX** (La segunda salida explica): `cweave parser.w parser.tex` -> documento navegable. *CWEAVE usa la misma estructura para producir una lectura técnica.*
+8. **Verificar ambas salidas** (Build y ejemplos cierran el ciclo): `cc parser.c && ./parser < cases` -> programa literario reproducible. *La explicación es parte del artefacto y se valida junto al ejecutable.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (42)
+## Catalogo Sistematico de Conceptos (42)
 
-### 📑 Sección: El programa como obra literaria humana (6 conceptos)
+### Seccion: El programa como obra literaria humana (6 conceptos)
 
 - **Filosofía de la programación literaria**  
   *Familia:* `secuencia operativa`  
@@ -67,7 +67,7 @@
   Genera un índice exhaustivo de variables y funciones sin esfuerzo manual.
 
 
-### 📑 Sección: Estructura de secciones y fragmentos nombrados (6 conceptos)
+### Seccion: Estructura de secciones y fragmentos nombrados (6 conceptos)
 
 - **Secciones numeradas automáticamente**  
   *Familia:* `evidencia y latencia`  
@@ -94,7 +94,7 @@
   Incrusta caracteres especiales sin que el formateador los interprete como órdenes.
 
 
-### 📑 Sección: CTANGLE y reorganización para el compilador (6 conceptos)
+### Seccion: CTANGLE y reorganización para el compilador (6 conceptos)
 
 - **Proceso de Tangling**  
   *Familia:* `planificación de trabajo`  
@@ -121,7 +121,7 @@
   Coordina CTANGLE como paso previo en la cadena de compilación ordinaria.
 
 
-### 📑 Sección: CWEAVE y composición tipográfica con TeX (6 conceptos)
+### Seccion: CWEAVE y composición tipográfica con TeX (6 conceptos)
 
 - **Proceso de Weaving**  
   *Familia:* `planificación de trabajo`  
@@ -148,7 +148,7 @@
   Produce hipervínculos navegables entre índices, definiciones y usos con pdfTeX.
 
 
-### 📑 Sección: Change files y mantenimiento sin bifurcación (6 conceptos)
+### Seccion: Change files y mantenimiento sin bifurcación (6 conceptos)
 
 - **El concepto de change file (.ch)**  
   *Familia:* `tejido literario`  
@@ -175,7 +175,7 @@
   Hace visible qué cambios específicos se requirieron para adaptar el programa.
 
 
-### 📑 Sección: Control de macros, índices y referencias cruzadas (6 conceptos)
+### Seccion: Control de macros, índices y referencias cruzadas (6 conceptos)
 
 - **Directiva de definición @d**  
   *Familia:* `análisis y emisión`  
@@ -202,7 +202,7 @@
   Demuestra que ningún identificador escapa a la trazabilidad del documento final.
 
 
-### 📑 Sección: Depuración literaria y legado en documentación (6 conceptos)
+### Seccion: Depuración literaria y legado en documentación (6 conceptos)
 
 - **Depuración con LLDB y GDB sobre .w**  
   *Familia:* `configuración declarativa`  
@@ -230,11 +230,11 @@
 
 
 
-## 📖 Recursos de Estudio y Referencias Oficiales
+## Referencias Bibliograficas y Documentacion Oficial
 - **[Literate Programming: fundamentos y programas de ejemplo](https://www-cs-faculty.stanford.edu/~knuth/lp.html)** (`book` | Nivel: `beginner`): Introducción al enfoque literario que fundamenta CWEB, acompañada por los programas de ejemplo del libro.
 - **[CTAN package: CWEB](https://ctan.org/pkg/cweb)** (`reference` | Nivel: `intermediate`): 
 - **[CWEAVE documentado desde su propio programa literario](https://mirrors.ctan.org/web/c_cpp/cweb/cweave.w)** (`reference` | Nivel: `advanced`): Fuente primaria en formato .w para estudiar secciones, change files y la generación de documentación mediante CWEAVE.
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

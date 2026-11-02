@@ -1,44 +1,44 @@
-# 📘 [R] R
+# R (R)
 
 > **Vectores, data frames, estadística, visualización, modelado e informes reproducibles.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `r` |
-| **Grupo Arquitectónico** | [Lenguajes](Grupo-Languages) |
+| **Grupo Arquitectonico** | [Lenguajes](Grupo-Languages) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `python` |
 | **Total de Conceptos** | **117 conceptos** |
-| **Capítulos / Secciones** | **20 secciones** |
+| **Capitulos / Secciones** | **20 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/r)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/r-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/r)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/r-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: Publicar un análisis reproducible
+## Estudio de Caso Practico: Publicar un análisis reproducible
 
 > **Caso integrado de R:** Un estudio limpia mediciones y ajusta un modelo; valores faltantes sesgan el conjunto y se recupera la procedencia antes de renderizar el informe.  
 > El informe conserva datos de entrada, código, sessionInfo, semilla, supuestos y resultados con incertidumbre.
 
-### Fases de Ejecución:
-1. **Importar con esquema** (Publicar un análisis reproducible: etapa 1 de 5): `datos <- read.csv('mediciones.csv', na.strings = c('', 'NA'))` → Dataset identificado. *La etapa conserva un contrato explícito para que el siguiente paso de R no dependa de supuestos ocultos.*
-2. **Explorar distribución** (Publicar un análisis reproducible: etapa 2 de 5): `summary(datos); plot(datos$valor)` → Patrones visibles. *La etapa conserva un contrato explícito para que el siguiente paso de R no dependa de supuestos ocultos.*
-3. **Detectar sesgo** (Publicar un análisis reproducible: etapa 3 de 5): `modelo <- lm(y ~ x, data = na.omit(datos))` → Resultado marcado no concluyente. *El caso hace visible el fallo de R; no continúa como si la evidencia fuera válida.*
+### Fases de Ejecucion:
+1. **Importar con esquema** (Publicar un análisis reproducible: etapa 1 de 5): `datos <- read.csv('mediciones.csv', na.strings = c('', 'NA'))` -> Dataset identificado. *La etapa conserva un contrato explícito para que el siguiente paso de R no dependa de supuestos ocultos.*
+2. **Explorar distribución** (Publicar un análisis reproducible: etapa 2 de 5): `summary(datos); plot(datos$valor)` -> Patrones visibles. *La etapa conserva un contrato explícito para que el siguiente paso de R no dependa de supuestos ocultos.*
+3. **Detectar sesgo** (Publicar un análisis reproducible: etapa 3 de 5): `modelo <- lm(y ~ x, data = na.omit(datos))` -> Resultado marcado no concluyente. *El caso hace visible el fallo de R; no continúa como si la evidencia fuera válida.*
 4. **Explicar y recuperar** (Publicar un análisis reproducible: etapa 4 de 5): `datos$completo <- complete.cases(datos)
-comparar_grupos(datos)` → Población documentada. *La recuperación de R corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
-5. **Renderizar evidencia** (Publicar un análisis reproducible: etapa 5 de 5): `quarto::quarto_render('informe.qmd')` → Informe reproducible. *La etapa conserva un contrato explícito para que el siguiente paso de R no dependa de supuestos ocultos.*
+comparar_grupos(datos)` -> Población documentada. *La recuperación de R corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
+5. **Renderizar evidencia** (Publicar un análisis reproducible: etapa 5 de 5): `quarto::quarto_render('informe.qmd')` -> Informe reproducible. *La etapa conserva un contrato explícito para que el siguiente paso de R no dependa de supuestos ocultos.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (117)
+## Catalogo Sistematico de Conceptos (117)
 
-### 📑 Sección: R esencial (5 conceptos)
+### Seccion: R esencial (5 conceptos)
 
 - **Vectores**  
   *Familia:* `tabla de estados`  
@@ -61,7 +61,7 @@ comparar_grupos(datos)` → Población documentada. *La recuperación de R corri
   Data frames estructura un ejemplo mínimo, sus precondiciones y el estado inicial en el sistema: aplica el mecanismo paso a paso haciendo visibles sus invariantes, garantizando un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Semántica (5 conceptos)
+### Seccion: Semántica (5 conceptos)
 
 - **Recycling**  
   *Familia:* `mapa de memoria`  
@@ -84,7 +84,7 @@ comparar_grupos(datos)` → Población documentada. *La recuperación de R corri
   La función de Copy-on-modify parte de un ejemplo mínimo, sus precondiciones y el estado inicial. Su ejecución aplica el mecanismo paso a paso haciendo visibles sus invariantes y produce un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Análisis (5 conceptos)
+### Seccion: Análisis (5 conceptos)
 
 - **Funciones**  
   *Familia:* `cuadrícula paralela`  
@@ -107,7 +107,7 @@ comparar_grupos(datos)` → Población documentada. *La recuperación de R corri
   En Transformación de datos, datos identificables junto con esquema, restricciones y procedencia ingresa al flujo donde valida, representa y recorre cada valor preservando relaciones para consolidar información consultable con integridad y significado estables.
 
 
-### 📑 Sección: Diagnóstico (5 conceptos)
+### Seccion: Diagnóstico (5 conceptos)
 
 - **Warnings y errors**  
   *Familia:* `evidencia y latencia`  
@@ -130,7 +130,7 @@ comparar_grupos(datos)` → Población documentada. *La recuperación de R corri
   El recorrido de Validación estadística toma un comportamiento esperado, una entrada mínima y un síntoma observable. Posteriormente aísla variables y contrasta hipótesis con instrumentación repetible para validar una causa demostrada y una regresión protegida.
 
 
-### 📑 Sección: Reproducibilidad (5 conceptos)
+### Seccion: Reproducibilidad (5 conceptos)
 
 - **Paquetes**  
   *Familia:* `pasaporte del artefacto`  
@@ -153,7 +153,7 @@ comparar_grupos(datos)` → Población documentada. *La recuperación de R corri
   En Datos y procedencia, datos identificables junto con esquema, restricciones y procedencia ingresa al flujo donde valida, representa y recorre cada valor preservando relaciones para consolidar información consultable con integridad y significado estables.
 
 
-### 📑 Sección: Objetos y atributos (5 conceptos)
+### Seccion: Objetos y atributos (5 conceptos)
 
 - **Atomic vectors**  
   *Familia:* `cuadrícula paralela`  
@@ -176,7 +176,7 @@ comparar_grupos(datos)` → Población documentada. *La recuperación de R corri
   S4 / classes estructura el flujo donde el runtime recorre tablas, ancestros o adaptadores hasta seleccionar una implementación compatible, logrando el método correcto ejecutado con estado encapsulado y una respuesta asociada al contrato.
 
 
-### 📑 Sección: Evaluación del lenguaje (7 conceptos)
+### Seccion: Evaluación del lenguaje (7 conceptos)
 
 - **Promises**  
   *Familia:* `tabla de estados`  
@@ -207,7 +207,7 @@ comparar_grupos(datos)` → Población documentada. *La recuperación de R corri
   Call / stack / introspection coordina la ejecución: el runtime o compilador reserva, comparte, mueve y libera almacenamiento respetando aliasing y alineación hasta obtener memoria válida durante toda la operación y recuperada al terminar su último uso.
 
 
-### 📑 Sección: Manipulación tabular (5 conceptos)
+### Seccion: Manipulación tabular (5 conceptos)
 
 - **Indexación vectorial**  
   *Familia:* `cuadrícula paralela`  
@@ -230,7 +230,7 @@ comparar_grupos(datos)` → Población documentada. *La recuperación de R corri
   Pivoting estructura el flujo donde la estructura indexa, agrupa o itera datos aplicando la operación solo a las posiciones válidas, logrando una colección cuya cardinalidad, orden y tipos corresponden a la transformación solicitada.
 
 
-### 📑 Sección: Modelado estadístico (8 conceptos)
+### Seccion: Modelado estadístico (8 conceptos)
 
 - **Diseño de matrices**  
   *Familia:* `tabla de estados`  
@@ -265,7 +265,7 @@ comparar_grupos(datos)` → Población documentada. *La recuperación de R corri
   Al operar con Robust / standard / errors, el modelo estima parámetros o predicciones bajo supuestos que se comprueban con datos separados, produciendo una estimación acompañada de incertidumbre, diagnóstico y alcance de generalización.
 
 
-### 📑 Sección: Visualización (5 conceptos)
+### Seccion: Visualización (5 conceptos)
 
 - **Grammar of graphics**  
   *Familia:* `consulta e índice`  
@@ -288,7 +288,7 @@ comparar_grupos(datos)` → Población documentada. *La recuperación de R corri
   Gráficos / accesibles estructura el flujo donde el runtime despacha handlers, actualiza modelo y compone el siguiente fotograma o respuesta perceptible, logrando interfaz sincronizada que comunica cambio, foco y acción disponible.
 
 
-### 📑 Sección: Datos faltantes y calidad (7 conceptos)
+### Seccion: Datos faltantes y calidad (7 conceptos)
 
 - **MCAR MAR y MNAR**  
   *Familia:* `espectro de verificación`  
@@ -319,7 +319,7 @@ comparar_grupos(datos)` → Población documentada. *La recuperación de R corri
   Multiple / imputation / pooling coordina la ejecución: el adaptador prepara operaciones, adquiere recursos y aplica restricciones antes de confirmar hasta obtener estado persistido con integridad y visibilidad coherentes para lectores concurrentes.
 
 
-### 📑 Sección: Series temporales (6 conceptos)
+### Seccion: Series temporales (6 conceptos)
 
 - **Índices temporales**  
   *Familia:* `secuencia operativa`  
@@ -346,7 +346,7 @@ comparar_grupos(datos)` → Población documentada. *La recuperación de R corri
   Para Rolling-origin / evaluation, el proceso inicia, atiende, emite telemetría y responde a drenado o actualización coordinada, manteniendo servicio disponible con estado, versión y camino de rollback verificables.
 
 
-### 📑 Sección: Datos espaciales (7 conceptos)
+### Seccion: Datos espaciales (7 conceptos)
 
 - **Sistemas de coordenadas**  
   *Familia:* `mapa de memoria`  
@@ -377,7 +377,7 @@ comparar_grupos(datos)` → Población documentada. *La recuperación de R corri
   Topology / repair coordina la ejecución: frontend, representación intermedia y runtime validan símbolos, optimizan rutas y enlazan dependencias hasta obtener un artefacto ejecutable con símbolos y comportamiento rastreables hasta la fuente.
 
 
-### 📑 Sección: Aprendizaje automático (6 conceptos)
+### Seccion: Aprendizaje automático (6 conceptos)
 
 - **Preprocessing recipes**  
   *Familia:* `flujo de transformación`  
@@ -404,7 +404,7 @@ comparar_grupos(datos)` → Población documentada. *La recuperación de R corri
   Para Nested / resampling, el modelo estima parámetros o predicciones bajo supuestos que se comprueban con datos separados, manteniendo una estimación acompañada de incertidumbre, diagnóstico y alcance de generalización.
 
 
-### 📑 Sección: Simulación e inferencia bayesiana (5 conceptos)
+### Seccion: Simulación e inferencia bayesiana (5 conceptos)
 
 - **Random number generators**  
   *Familia:* `matriz de señales`  
@@ -427,7 +427,7 @@ comparar_grupos(datos)` → Población documentada. *La recuperación de R corri
   Diagnóstico / convergencia estructura el flujo donde la herramienta ejecuta, perturba o inspecciona el mecanismo y conserva el contraejemplo mínimo, logrando evidencia reproducible que distingue regresión, ruido y limitación conocida.
 
 
-### 📑 Sección: Paquetes profesionales (7 conceptos)
+### Seccion: Paquetes profesionales (7 conceptos)
 
 - **Estructura DESCRIPTION**  
   *Familia:* `matriz de señales`  
@@ -458,7 +458,7 @@ comparar_grupos(datos)` → Población documentada. *La recuperación de R corri
   Reverse / dependency / checks coordina la ejecución: el grafo resuelve dependencias, compila, enlaza y adjunta procedencia a cada salida hasta obtener un artefacto reproducible, verificable y promovible entre entornos.
 
 
-### 📑 Sección: Pruebas y contratos (5 conceptos)
+### Seccion: Pruebas y contratos (5 conceptos)
 
 - **testthat**  
   *Familia:* `espectro de verificación`  
@@ -481,7 +481,7 @@ comparar_grupos(datos)` → Población documentada. *La recuperación de R corri
   Regression / datasets estructura el flujo donde el adaptador prepara operaciones, adquiere recursos y aplica restricciones antes de confirmar, logrando estado persistido con integridad y visibilidad coherentes para lectores concurrentes.
 
 
-### 📑 Sección: Rendimiento (6 conceptos)
+### Seccion: Rendimiento (6 conceptos)
 
 - **Benchmarking**  
   *Familia:* `comparativa técnica`  
@@ -508,7 +508,7 @@ comparar_grupos(datos)` → Población documentada. *La recuperación de R corri
   Para Copy / detection / with / tracemem, la herramienta ejecuta, perturba o inspecciona el mecanismo y conserva el contraejemplo mínimo, manteniendo evidencia reproducible que distingue regresión, ruido y limitación conocida.
 
 
-### 📑 Sección: Productos de datos (5 conceptos)
+### Seccion: Productos de datos (5 conceptos)
 
 - **Shiny reactivity**  
   *Familia:* `ciclo de vida`  
@@ -531,7 +531,7 @@ comparar_grupos(datos)` → Población documentada. *La recuperación de R corri
   Deployment / bundles estructura el flujo donde el grafo resuelve dependencias, compila, enlaza y adjunta procedencia a cada salida, logrando un artefacto reproducible, verificable y promovible entre entornos.
 
 
-### 📑 Sección: Gobierno y producción (8 conceptos)
+### Seccion: Gobierno y producción (8 conceptos)
 
 - **Dependency lockfiles**  
   *Familia:* `jerarquía y dependencias`  
@@ -569,4 +569,4 @@ comparar_grupos(datos)` → Población documentada. *La recuperación de R corri
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

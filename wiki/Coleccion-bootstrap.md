@@ -1,46 +1,46 @@
-# 📘 [BS] Bootstrap
+# Bootstrap (BS)
 
 > **Grid, utilidades, componentes, Sass, accesibilidad y personalización.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `bootstrap` |
-| **Grupo Arquitectónico** | [Diseño e interfaces](Grupo-Interfaces) |
+| **Grupo Arquitectonico** | [Diseño e interfaces](Grupo-Interfaces) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `bootstrap` |
 | **Total de Conceptos** | **55 conceptos** |
-| **Capítulos / Secciones** | **11 secciones** |
+| **Capitulos / Secciones** | **11 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/bootstrap)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/bootstrap-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/bootstrap)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/bootstrap-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: Bootstrap en acción
+## Estudio de Caso Practico: Bootstrap en acción
 
 > **Caso integrado · Consola responsive y accesible:** Una consola operativa debe funcionar desde móvil hasta escritorio, aceptar un tema propio y conservar navegación, tabla y diálogo accesibles sin cargar todo el framework.  
 > El resultado usa el grid y los plugins como infraestructura, mientras semántica, tokens, estados y pruebas responden al producto real.
 
-### Fases de Ejecución:
-1. **Inventariar la pantalla** (Contenido antes que columnas): `nav · summary · filters · table` → jerarquía acordada. *El grid se decide después de comprender contenido y orden.*
-2. **Configurar tokens** (Marca sobre variables): `$primary + $spacers + $border-radius` → tema coherente. *Personalizar en la fuente evita una larga capa de overrides.*
-3. **Construir mobile-first** (Una columna como base): `container-fluid → row → col-lg` → layout adaptable. *Cada breakpoint responde a un conflicto de contenido observable.*
-4. **Componer filtros** (Labels y grupos reales): `form-label + input-group` → formulario comprensible. *La clase visual acompaña un contrato semántico válido.*
-5. **Encontrar overflow** (La tabla empuja la página): `min-width: 58rem` → fallo localizado. *La tabla necesita su propio contexto de scroll, no ensanchar el documento.*
-6. **Encapsular la tabla** (Scroll donde corresponde): `.table-responsive + caption` → móvil recuperado. *La recuperación mantiene acceso a todas las columnas sin romper el resto del layout.*
-7. **Cablear componentes** (Un plugin, un estado): `Modal.getOrCreateInstance(node)` → interacción estable. *La API de instancia evita inicializaciones y listeners duplicados.*
-8. **Medir el paquete** (Solo lo utilizado): `sass partials + ESM plugins` → consola lista. *El build final conserva accesibilidad y diseño mientras elimina trabajo innecesario.*
+### Fases de Ejecucion:
+1. **Inventariar la pantalla** (Contenido antes que columnas): `nav · summary · filters · table` -> jerarquía acordada. *El grid se decide después de comprender contenido y orden.*
+2. **Configurar tokens** (Marca sobre variables): `$primary + $spacers + $border-radius` -> tema coherente. *Personalizar en la fuente evita una larga capa de overrides.*
+3. **Construir mobile-first** (Una columna como base): `container-fluid → row → col-lg` -> layout adaptable. *Cada breakpoint responde a un conflicto de contenido observable.*
+4. **Componer filtros** (Labels y grupos reales): `form-label + input-group` -> formulario comprensible. *La clase visual acompaña un contrato semántico válido.*
+5. **Encontrar overflow** (La tabla empuja la página): `min-width: 58rem` -> fallo localizado. *La tabla necesita su propio contexto de scroll, no ensanchar el documento.*
+6. **Encapsular la tabla** (Scroll donde corresponde): `.table-responsive + caption` -> móvil recuperado. *La recuperación mantiene acceso a todas las columnas sin romper el resto del layout.*
+7. **Cablear componentes** (Un plugin, un estado): `Modal.getOrCreateInstance(node)` -> interacción estable. *La API de instancia evita inicializaciones y listeners duplicados.*
+8. **Medir el paquete** (Solo lo utilizado): `sass partials + ESM plugins` -> consola lista. *El build final conserva accesibilidad y diseño mientras elimina trabajo innecesario.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (55)
+## Catalogo Sistematico de Conceptos (55)
 
-### 📑 Sección: Base y configuración (5 conceptos)
+### Seccion: Base y configuración (5 conceptos)
 
 - **Instalación modular**  
   *Familia:* `flujo de interfaz`  
@@ -63,7 +63,7 @@
   Centra y limita contenido mientras responde al ancho disponible.
 
 
-### 📑 Sección: Grid y layout (5 conceptos)
+### Seccion: Grid y layout (5 conceptos)
 
 - **Rows y columns**  
   *Familia:* `contratos coordinados`  
@@ -86,7 +86,7 @@
   Alinea, ordena y espacia elementos con utilidades coherentes.
 
 
-### 📑 Sección: Utilidades y tokens (5 conceptos)
+### Seccion: Utilidades y tokens (5 conceptos)
 
 - **Spacing utilities**  
   *Familia:* `superficie de aplicación`  
@@ -109,7 +109,7 @@
   Modifica tokens globales o locales en runtime y por color mode.
 
 
-### 📑 Sección: Componentes y formularios (5 conceptos)
+### Seccion: Componentes y formularios (5 conceptos)
 
 - **Buttons y estados**  
   *Familia:* `flujo de interfaz`  
@@ -132,7 +132,7 @@
   Permite desplazamiento local sin romper el ancho de toda la página.
 
 
-### 📑 Sección: Plugins y conducta (5 conceptos)
+### Seccion: Plugins y conducta (5 conceptos)
 
 - **Data attributes**  
   *Familia:* `contratos coordinados`  
@@ -155,7 +155,7 @@
   Sincroniza lógica de aplicación en puntos antes y después de cada transición.
 
 
-### 📑 Sección: Personalización y producción (5 conceptos)
+### Seccion: Personalización y producción (5 conceptos)
 
 - **Sass maps**  
   *Familia:* `superficie de aplicación`  
@@ -178,7 +178,7 @@
   Mide cobertura, purga con cuidado y evita borrar clases construidas dinámicamente.
 
 
-### 📑 Sección: Componentes complejos y navegación (5 conceptos)
+### Seccion: Componentes complejos y navegación (5 conceptos)
 
 - **List groups y action items**  
   *Familia:* `flujo de interfaz`  
@@ -201,7 +201,7 @@
   Destaca estados y notificaciones numéricas respetando escala tipográfica y contraste.
 
 
-### 📑 Sección: Tipografía, tablas y utilidades visuales (5 conceptos)
+### Seccion: Tipografía, tablas y utilidades visuales (5 conceptos)
 
 - **Lead text y display headings**  
   *Familia:* `tejido literario`  
@@ -224,7 +224,7 @@
   Corta texto con elipsis en una línea y mantiene proporciones 16:9 o 4:3 en videos embebidos.
 
 
-### 📑 Sección: Formularios avanzados y controles flotantes (5 conceptos)
+### Seccion: Formularios avanzados y controles flotantes (5 conceptos)
 
 - **Floating labels**  
   *Familia:* `consulta e índice`  
@@ -247,7 +247,7 @@
   Muestra mensajes de éxito y advertencia con iconos SVG dinámicos y transiciones suaves.
 
 
-### 📑 Sección: Arquitectura Sass y compilación moderna (5 conceptos)
+### Seccion: Arquitectura Sass y compilación moderna (5 conceptos)
 
 - **Variables SCSS y mapas de color**  
   *Familia:* `mapa de memoria`  
@@ -270,7 +270,7 @@
   Elimina selectores CSS no utilizados en plantillas HTML durante el empaquetado de producción.
 
 
-### 📑 Sección: Accesibilidad y patrones interactivos (5 conceptos)
+### Seccion: Accesibilidad y patrones interactivos (5 conceptos)
 
 - **Focus visible y focus-ring**  
   *Familia:* `evidencia y latencia`  
@@ -294,11 +294,11 @@
 
 
 
-## 📖 Recursos de Estudio y Referencias Oficiales
+## Referencias Bibliograficas y Documentacion Oficial
 - **[Bootstrap con Vite: guía inicial](https://getbootstrap.com/docs/5.3/getting-started/vite/)** (`tutorial` | Nivel: `beginner`): 
 - **[Bootstrap Grid system](https://getbootstrap.com/docs/5.3/layout/grid/)** (`official-docs` | Nivel: `intermediate`): 
 - **[Customize Bootstrap with Sass](https://getbootstrap.com/docs/5.3/customize/sass/)** (`official-docs` | Nivel: `advanced`): 
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Diseño e interfaces](Grupo-Interfaces) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Diseño e interfaces](Grupo-Interfaces) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

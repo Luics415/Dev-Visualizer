@@ -1,31 +1,31 @@
-# 📘 [JS] JavaScript ES6+
+# JavaScript ES6+ (JS)
 
 > **Lenguaje, objetos, asincronía, módulos, protocolos y memoria.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `javascript` |
-| **Grupo Arquitectónico** | [Lenguajes](Grupo-Languages) |
+| **Grupo Arquitectonico** | [Lenguajes](Grupo-Languages) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `javascript` |
 | **Total de Conceptos** | **55 conceptos** |
-| **Capítulos / Secciones** | **12 secciones** |
+| **Capitulos / Secciones** | **12 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/javascript-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/javascript-en-accion)
 
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (55)
+## Catalogo Sistematico de Conceptos (55)
 
-### 📑 Sección: Fundamentos del lenguaje (9 conceptos)
+### Seccion: Fundamentos del lenguaje (9 conceptos)
 
 - **Variables**  
   *Familia:* `mapa de memoria`  
@@ -64,7 +64,7 @@
   Repite trabajo con for, while, for...of y for...in, diferenciando valores, índices y propiedades.
 
 
-### 📑 Sección: Funciones y contexto (8 conceptos)
+### Seccion: Funciones y contexto (8 conceptos)
 
 - **Funciones**  
   *Familia:* `puertos de entrada y salida`  
@@ -99,7 +99,7 @@
   Muestra cómo this depende de la forma de invocación y cómo puede fijarse o reenviarse explícitamente.
 
 
-### 📑 Sección: Estructuras de datos (7 conceptos)
+### Seccion: Estructuras de datos (7 conceptos)
 
 - **Objetos**  
   *Familia:* `red de propiedades`  
@@ -130,7 +130,7 @@
   Concatena iterables y crea una colección nueva sin modificar el array original.
 
 
-### 📑 Sección: Transformaciones de colecciones (5 conceptos)
+### Seccion: Transformaciones de colecciones (5 conceptos)
 
 - **map**  
   *Familia:* `carriles de transformación`  
@@ -153,7 +153,7 @@
   Distingue métodos mutables como sort de alternativas que conservan el original como toSorted.
 
 
-### 📑 Sección: Colecciones especializadas (4 conceptos)
+### Seccion: Colecciones especializadas (4 conceptos)
 
 - **Set**  
   *Familia:* `acumulación de recursos`  
@@ -172,7 +172,7 @@
   Crean identificadores únicos y permiten protocolos internos como Symbol.iterator.
 
 
-### 📑 Sección: Datos y representación (2 conceptos)
+### Seccion: Datos y representación (2 conceptos)
 
 - **JSON**  
   *Familia:* `contratos coordinados`  
@@ -183,7 +183,7 @@
   Realiza una copia profunda de muchos tipos incorporados y puede transferir buffers sin copiar.
 
 
-### 📑 Sección: Objetos, clases y metaprogramación (4 conceptos)
+### Seccion: Objetos, clases y metaprogramación (4 conceptos)
 
 - **Prototipos**  
   *Familia:* `análisis y emisión`  
@@ -202,7 +202,7 @@
   Interceptan operaciones fundamentales como lectura, escritura, enumeración e invocación.
 
 
-### 📑 Sección: Asincronía y runtime (6 conceptos)
+### Seccion: Asincronía y runtime (6 conceptos)
 
 - **Event Loop**  
   *Familia:* `scheduler`  
@@ -229,7 +229,7 @@
   Envía una señal cooperativa para detener fetch u otras APIs compatibles y liberar trabajo innecesario.
 
 
-### 📑 Sección: Módulos y carga (2 conceptos)
+### Seccion: Módulos y carga (2 conceptos)
 
 - **Módulos ES**  
   *Familia:* `grafo de dependencias`  
@@ -240,7 +240,7 @@
   Carga un módulo bajo demanda y devuelve una promesa con su namespace.
 
 
-### 📑 Sección: Protocolos avanzados (3 conceptos)
+### Seccion: Protocolos avanzados (3 conceptos)
 
 - **Iteradores y protocolos iterable**  
   *Familia:* `ciclo de vida`  
@@ -255,7 +255,7 @@
   Manipulan memoria binaria con vistas tipadas para audio, gráficos, archivos y protocolos.
 
 
-### 📑 Sección: Texto, tiempo e internacionalización (3 conceptos)
+### Seccion: Texto, tiempo e internacionalización (3 conceptos)
 
 - **Expresiones regulares**  
   *Familia:* `anatomía del concepto`  
@@ -270,7 +270,7 @@
   Distingue instantes, representación local y cálculos de calendario para evitar errores de zona.
 
 
-### 📑 Sección: Memoria y recursos (2 conceptos)
+### Seccion: Memoria y recursos (2 conceptos)
 
 - **Gestión explícita de recursos**  
   *Familia:* `jerarquía y dependencias`  
@@ -284,4 +284,4 @@
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)
