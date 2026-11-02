@@ -17,7 +17,9 @@
     "audit:library": "node scripts/audit-library-links.mjs",
     "typecheck": "tsc --noEmit",
     "lint": "eslint .",
-    "check": "npm run lint && npm run typecheck && npm run check:library && npm run build && npm run check:links && npm run check:a11y"
+    "check": "npm run lint && npm run typecheck && npm run check:library && npm run build && npm run check:links && npm run check:a11y",
+    "wiki:build": "tsx scripts/generate-wiki.ts",
+    "wiki:push": "node scripts/push-wiki.mjs"
   },
   "dependencies": {
     "@next/third-parties": "16.4.3",
@@ -32,6 +34,7 @@
     "@types/react-dom": "19.2.3",
     "eslint": "9.39.5",
     "eslint-config-next": "16.4.3",
+    "tsx": "4.23.15",
     "typescript": "6.0.3"
   }
 }
