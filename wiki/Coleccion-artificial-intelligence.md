@@ -1,43 +1,43 @@
-# 📘 [IA] Inteligencia Artificial
+# Inteligencia Artificial (IA)
 
 > **Datos, modelos, entrenamiento, evaluación, inferencia, seguridad y monitoreo.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `artificial-intelligence` |
-| **Grupo Arquitectónico** | [Datos](Grupo-Data) |
+| **Grupo Arquitectonico** | [Datos](Grupo-Data) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `mediapipe` |
 | **Total de Conceptos** | **130 conceptos** |
-| **Capítulos / Secciones** | **20 secciones** |
+| **Capitulos / Secciones** | **20 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/inteligencia-artificial)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/inteligencia-artificial-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/inteligencia-artificial)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/inteligencia-artificial-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: Entrenar un clasificador con límites
+## Estudio de Caso Practico: Entrenar un clasificador con límites
 
 > **Caso integrado de Inteligencia artificial:** Un modelo clasifica solicitudes, una variable posterior al resultado filtra la respuesta y se recupera el dataset antes de evaluar y desplegar.  
 > La tarjeta del modelo registra población, datos, métricas por grupo, umbral, límites y responsable de revisión.
 
-### Fases de Ejecución:
-1. **Definir tarea** (Entrenar un clasificador con límites: etapa 1 de 5): `y = repair_is_urgent` → Problema delimitado. *La etapa conserva un contrato explícito para que el siguiente paso de Inteligencia artificial no dependa de supuestos ocultos.*
-2. **Entrenar baseline** (Entrenar un clasificador con límites: etapa 2 de 5): `model.fit(X_train, y_train)` → Referencia medible. *La etapa conserva un contrato explícito para que el siguiente paso de Inteligencia artificial no dependa de supuestos ocultos.*
-3. **Detectar leakage** (Entrenar un clasificador con límites: etapa 3 de 5): `features += ['resolution_code']` → Modelo invalidado. *El caso hace visible el fallo de Inteligencia artificial; no continúa como si la evidencia fuera válida.*
-4. **Reconstruir dataset** (Entrenar un clasificador con límites: etapa 4 de 5): `features = available_at_request_time` → Evaluación recuperada. *La recuperación de Inteligencia artificial corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
-5. **Desplegar con control** (Entrenar un clasificador con límites: etapa 5 de 5): `if confidence < threshold: route_to_human()` → Asistencia gobernada. *La etapa conserva un contrato explícito para que el siguiente paso de Inteligencia artificial no dependa de supuestos ocultos.*
+### Fases de Ejecucion:
+1. **Definir tarea** (Entrenar un clasificador con límites: etapa 1 de 5): `y = repair_is_urgent` -> Problema delimitado. *La etapa conserva un contrato explícito para que el siguiente paso de Inteligencia artificial no dependa de supuestos ocultos.*
+2. **Entrenar baseline** (Entrenar un clasificador con límites: etapa 2 de 5): `model.fit(X_train, y_train)` -> Referencia medible. *La etapa conserva un contrato explícito para que el siguiente paso de Inteligencia artificial no dependa de supuestos ocultos.*
+3. **Detectar leakage** (Entrenar un clasificador con límites: etapa 3 de 5): `features += ['resolution_code']` -> Modelo invalidado. *El caso hace visible el fallo de Inteligencia artificial; no continúa como si la evidencia fuera válida.*
+4. **Reconstruir dataset** (Entrenar un clasificador con límites: etapa 4 de 5): `features = available_at_request_time` -> Evaluación recuperada. *La recuperación de Inteligencia artificial corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
+5. **Desplegar con control** (Entrenar un clasificador con límites: etapa 5 de 5): `if confidence < threshold: route_to_human()` -> Asistencia gobernada. *La etapa conserva un contrato explícito para que el siguiente paso de Inteligencia artificial no dependa de supuestos ocultos.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (130)
+## Catalogo Sistematico de Conceptos (130)
 
-### 📑 Sección: Mapa de la IA (5 conceptos)
+### Seccion: Mapa de la IA (5 conceptos)
 
 - **IA simbólica**  
   *Familia:* `constelación de mecanismos`  
@@ -60,7 +60,7 @@
   Para entender IA generativa, se delimita un ejemplo mínimo, sus precondiciones y el estado inicial. La operación aplica el mecanismo paso a paso haciendo visibles sus invariantes hasta producir un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Datos y aprendizaje (5 conceptos)
+### Seccion: Datos y aprendizaje (5 conceptos)
 
 - **Features**  
   *Familia:* `mapa de memoria`  
@@ -83,7 +83,7 @@
   El recorrido de Optimización toma datos identificables junto con esquema, restricciones y procedencia. Posteriormente valida, representa y recorre cada valor preservando relaciones para validar información consultable con integridad y significado estables.
 
 
-### 📑 Sección: Modelos (5 conceptos)
+### Seccion: Modelos (5 conceptos)
 
 - **Regresión**  
   *Familia:* `cuadrícula paralela`  
@@ -106,7 +106,7 @@
   Transformers conecta datos identificables junto con esquema, restricciones y procedencia con su runtime interno: valida, representa y recorre cada valor preservando relaciones hasta exponer información consultable con integridad y significado estables.
 
 
-### 📑 Sección: Evaluación y diagnóstico (5 conceptos)
+### Seccion: Evaluación y diagnóstico (5 conceptos)
 
 - **Métricas**  
   *Familia:* `evidencia y latencia`  
@@ -129,7 +129,7 @@
   En Explicabilidad, un comportamiento esperado, una entrada mínima y un síntoma observable ingresa al flujo donde aísla variables y contrasta hipótesis con instrumentación repetible para consolidar una causa demostrada y una regresión protegida.
 
 
-### 📑 Sección: Producción responsable (5 conceptos)
+### Seccion: Producción responsable (5 conceptos)
 
 - **Inferencia**  
   *Familia:* `flujo de transformación`  
@@ -152,7 +152,7 @@
   El mecanismo de Gobierno humano recibe un ejemplo mínimo, sus precondiciones y el estado inicial y aplica el mecanismo paso a paso haciendo visibles sus invariantes, asegurando un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Búsqueda y planificación (6 conceptos)
+### Seccion: Búsqueda y planificación (6 conceptos)
 
 - **Búsqueda heurística**  
   *Familia:* `planificación de trabajo`  
@@ -179,7 +179,7 @@
   Heuristic admissibility proofs gestiona Búsqueda y planificación de modo que expande candidatos, puntúa la frontera y descarta estados dominados o inviables, produciendo una ruta o plan con costo y condiciones de terminación explícitos.
 
 
-### 📑 Sección: Representación del conocimiento (7 conceptos)
+### Seccion: Representación del conocimiento (7 conceptos)
 
 - **Lógica proposicional**  
   *Familia:* `espectro de verificación`  
@@ -210,7 +210,7 @@
   A través de Rule provenance en Representación del conocimiento, el sistema normaliza identidades y deriva consecuencias mediante el régimen lógico declarado manteniendo conclusiones consultables junto con la cadena que las justifica.
 
 
-### 📑 Sección: Preparación de datos (8 conceptos)
+### Seccion: Preparación de datos (8 conceptos)
 
 - **Data provenance**  
   *Familia:* `flujo de transformación`  
@@ -245,7 +245,7 @@
   En el flujo operativo de Preparación de datos, Annotation agreement measurement valida, divide, transforma y registra linaje antes de entrenar o inferir para obtener datos reproducibles cuya población y transformaciones pueden auditarse.
 
 
-### 📑 Sección: Aprendizaje supervisado (7 conceptos)
+### Seccion: Aprendizaje supervisado (7 conceptos)
 
 - **Regularización**  
   *Familia:* `evidencia y latencia`  
@@ -276,7 +276,7 @@
   A través de Cost-sensitive learning en Aprendizaje supervisado, el sistema encola, planifica y reanuda unidades conservando causalidad y propagación de error manteniendo resultado, cancelación o reinicio visibles para el supervisor correcto.
 
 
-### 📑 Sección: Aprendizaje no supervisado (7 conceptos)
+### Seccion: Aprendizaje no supervisado (7 conceptos)
 
 - **Clustering**  
   *Familia:* `cuadrícula paralela`  
@@ -307,7 +307,7 @@
   A través de Representation collapse en Aprendizaje no supervisado, el sistema encola, planifica y reanuda unidades conservando causalidad y propagación de error manteniendo resultado, cancelación o reinicio visibles para el supervisor correcto.
 
 
-### 📑 Sección: Aprendizaje por refuerzo (6 conceptos)
+### Seccion: Aprendizaje por refuerzo (6 conceptos)
 
 - **Markov decision processes**  
   *Familia:* `flujo de transformación`  
@@ -334,7 +334,7 @@
   Off-policy evaluation gestiona Aprendizaje por refuerzo de modo que prepara, entrena o infiere registrando parámetros, linaje y decisión, produciendo predicción o política acompañada por incertidumbre y evaluación por segmento.
 
 
-### 📑 Sección: Deep learning internals (7 conceptos)
+### Seccion: Deep learning internals (7 conceptos)
 
 - **Backpropagation**  
   *Familia:* `mapa de memoria`  
@@ -365,7 +365,7 @@
   A través de Mixed-precision loss scaling en Deep learning internals, el sistema calcula predicciones y gradientes, actualiza parámetros y repite bajo una política de parada manteniendo un artefacto de modelo acompañado por métricas fuera de muestra.
 
 
-### 📑 Sección: Visión, audio y lenguaje (7 conceptos)
+### Seccion: Visión, audio y lenguaje (7 conceptos)
 
 - **Convolutional models**  
   *Familia:* `flujo de transformación`  
@@ -396,7 +396,7 @@
   A través de Dataset modality alignment en Visión, audio y lenguaje, el sistema valida, divide, transforma y registra linaje antes de entrenar o inferir manteniendo datos reproducibles cuya población y transformaciones pueden auditarse.
 
 
-### 📑 Sección: Modelos generativos (7 conceptos)
+### Seccion: Modelos generativos (7 conceptos)
 
 - **Autoregressive generation**  
   *Familia:* `flujo de transformación`  
@@ -427,7 +427,7 @@
   A través de Retrieval freshness en Modelos generativos, el sistema resuelve composición, restricciones y representación antes de aceptar la instancia manteniendo estructura válida cuyas operaciones permitidas están explícitas.
 
 
-### 📑 Sección: Evaluación rigurosa (7 conceptos)
+### Seccion: Evaluación rigurosa (7 conceptos)
 
 - **Cross-validation**  
   *Familia:* `validación y decisión`  
@@ -458,7 +458,7 @@
   A través de Benchmark contamination en Evaluación rigurosa, el sistema valida, divide, transforma y registra linaje antes de entrenar o inferir manteniendo datos reproducibles cuya población y transformaciones pueden auditarse.
 
 
-### 📑 Sección: Testing de sistemas de IA (7 conceptos)
+### Seccion: Testing de sistemas de IA (7 conceptos)
 
 - **Data validation tests**  
   *Familia:* `espectro de verificación`  
@@ -489,7 +489,7 @@
   A través de Invariant oracle design en Testing de sistemas de IA, el sistema evalúa precondiciones y combina restricciones antes de comprometer estado manteniendo valor aceptado con garantía explícita o error localizado.
 
 
-### 📑 Sección: Seguridad y privacidad (7 conceptos)
+### Seccion: Seguridad y privacidad (7 conceptos)
 
 - **Adversarial examples**  
   *Familia:* `validación y decisión`  
@@ -520,7 +520,7 @@
   A través de Prompt data exfiltration en Seguridad y privacidad, el sistema autentica, normaliza y autoriza antes de ejecutar con la capacidad mínima manteniendo decisión explícita y auditable que no expone secretos ni amplía privilegios.
 
 
-### 📑 Sección: MLOps (7 conceptos)
+### Seccion: MLOps (7 conceptos)
 
 - **Experiment tracking**  
   *Familia:* `ida y vuelta`  
@@ -551,7 +551,7 @@
   A través de Model reproducibility signatures en MLOps, el sistema resuelve composición, restricciones y representación antes de aceptar la instancia manteniendo estructura válida cuyas operaciones permitidas están explícitas.
 
 
-### 📑 Sección: Inferencia eficiente (7 conceptos)
+### Seccion: Inferencia eficiente (7 conceptos)
 
 - **Batching**  
   *Familia:* `planificación de trabajo`  
@@ -582,7 +582,7 @@
   A través de KV-cache memory budgets en Inferencia eficiente, el sistema agrupa, aproxima, poda o reutiliza estado manteniendo el contrato de salida manteniendo predicciones con costo medido y degradación dentro del umbral aceptado.
 
 
-### 📑 Sección: Gobernanza e impacto (8 conceptos)
+### Seccion: Gobernanza e impacto (8 conceptos)
 
 - **Model cards**  
   *Familia:* `consulta e índice`  
@@ -620,4 +620,4 @@
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Datos](Grupo-Data) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Datos](Grupo-Data) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

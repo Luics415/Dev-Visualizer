@@ -1,55 +1,55 @@
-# 📘 [MP] MediaPipe
+# MediaPipe (MP)
 
 > **Tasks, modelos, grafos, visión, audio, texto, tiempo real, edge y operación responsable.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `mediapipe` |
-| **Grupo Arquitectónico** | [Plataformas y servidor](Grupo-Platforms) |
+| **Grupo Arquitectonico** | [Plataformas y servidor](Grupo-Platforms) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `mediapipe` |
 | **Total de Conceptos** | **120 conceptos** |
-| **Capítulos / Secciones** | **24 secciones** |
+| **Capitulos / Secciones** | **24 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/mediapipe)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/mediapipe-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/mediapipe)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/mediapipe-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: MediaPipe en acción
+## Estudio de Caso Practico: MediaPipe en acción
 
 > **Caso integrado · Entrenador postural local y accesible:** Una aplicación de escritorio usa una cámara, OpenCV como frontera de captura y MediaPipe Pose Landmarker para orientar una rutina sin enviar video fuera del dispositivo. Controla demanda, explica la señal y recupera el tracking después de una oclusión.  
 > La aplicación mantiene Python, OpenCV, MediaPipe, modelo y producto como piezas separadas: cada frontera documenta formato, tiempo, ownership y responsabilidad; el resultado nunca se presenta como diagnóstico.
 
-### Fases de Ejecución:
-1. **Definir el límite humano** (Orientación, no diagnóstico): `consent + alternatives + stop` → sesión consentida. *La cámara no se abre antes de explicar propósito y alternativas.*
-2. **Abrir captura** (Dispositivo como frontera): `VideoCapture → BGR frame` → frames disponibles. *OpenCV captura; MediaPipe todavía no ha recibido nada.*
-3. **Cargar Task y modelo** (Configuración reproducible): `BaseOptions(model) + LIVE_STREAM` → inferencia preparada. *Paquete, API y modelo se verifican como dependencias distintas.*
-4. **Acotar demanda** (Latest frame): `queue(maxsize=1)` → latencia estable. *Una cola infinita convierte throughput en feedback viejo.*
-5. **Cruzar color y memoria** (BGR no es RGB): `BGR → RGB → mp.Image` → imagen tipada. *Formato y ownership se comprueban antes de llamar a la Task.*
-6. **Recibir landmarks** (Callback breve): `result_callback(result, image, ts)` → pose estructurada. *El callback entrega evidencia; no toma decisiones de interfaz extensas.*
-7. **Transformar coordenadas** (Espacios explícitos): `normalized → unmirror → pixel` → geometría trazable. *La vista espejada no altera el marco usado para calcular.*
-8. **Filtrar incertidumbre** (Unknown es un estado): `presence + visibility + age gate` → muestra utilizable. *Falta de evidencia no se convierte en postura incorrecta.*
-9. **Calcular movimiento** (Geometría y máquina de estados): `angle → READY/DOWN/HOLD/UP` → repetición verificable. *El contador exige una secuencia completa, no un solo frame.*
-10. **Detectar oclusión** (Tracking perdido): `confidence < threshold` → sesión pausada. *No se conserva feedback activo con una muestra incierta.*
-11. **Readquirir** (Evidencia continua): `LOST → N stable frames → READY` → tracking recuperado. *La recuperación evita contar una transición fantasma.*
-12. **Entregar feedback accesible** (Varios canales): `text + overlay + optional tone` → orientación perceptible. *Cada canal puede apagarse sin perder la tarea.*
-13. **Probar sin cámara** (Datos sintéticos): `pytest(points, timestamps, states)` → regresión demostrada. *La lógica de producto no depende de un dispositivo para ser comprobable.*
-14. **Reproducir el pipeline** (Landmarks consentidos y minimizados): `recorded landmarks → virtual clock → state machine` → flujo regresionable. *La suite guarda landmarks anonimizados, no rostros ni video; cualquier clip requiere consentimiento separado.*
-15. **Proteger la privacidad** (Local y efímero por defecto): `frame → inference → discard` → datos minimizados. *El frame vive solo durante inferencia y render; telemetría, historial y exportación permanecen apagados hasta una elección informada.*
-16. **Ofrecer HTTPS opcional** (Control remoto como frontera separada): `TLS 1.3 + authenticated pairing` → canal remoto protegido. *HTTPS protege el tránsito, pero no justifica enviar video: el endpoint comparte únicamente eventos mínimos.*
-17. **Cerrar y observar** (Recursos y salud): `stop → drain → task.close → release` → aplicación operable. *El cierre completo prepara la siguiente sesión y conecta el último frame con el inicio del loop.*
+### Fases de Ejecucion:
+1. **Definir el límite humano** (Orientación, no diagnóstico): `consent + alternatives + stop` -> sesión consentida. *La cámara no se abre antes de explicar propósito y alternativas.*
+2. **Abrir captura** (Dispositivo como frontera): `VideoCapture → BGR frame` -> frames disponibles. *OpenCV captura; MediaPipe todavía no ha recibido nada.*
+3. **Cargar Task y modelo** (Configuración reproducible): `BaseOptions(model) + LIVE_STREAM` -> inferencia preparada. *Paquete, API y modelo se verifican como dependencias distintas.*
+4. **Acotar demanda** (Latest frame): `queue(maxsize=1)` -> latencia estable. *Una cola infinita convierte throughput en feedback viejo.*
+5. **Cruzar color y memoria** (BGR no es RGB): `BGR → RGB → mp.Image` -> imagen tipada. *Formato y ownership se comprueban antes de llamar a la Task.*
+6. **Recibir landmarks** (Callback breve): `result_callback(result, image, ts)` -> pose estructurada. *El callback entrega evidencia; no toma decisiones de interfaz extensas.*
+7. **Transformar coordenadas** (Espacios explícitos): `normalized → unmirror → pixel` -> geometría trazable. *La vista espejada no altera el marco usado para calcular.*
+8. **Filtrar incertidumbre** (Unknown es un estado): `presence + visibility + age gate` -> muestra utilizable. *Falta de evidencia no se convierte en postura incorrecta.*
+9. **Calcular movimiento** (Geometría y máquina de estados): `angle → READY/DOWN/HOLD/UP` -> repetición verificable. *El contador exige una secuencia completa, no un solo frame.*
+10. **Detectar oclusión** (Tracking perdido): `confidence < threshold` -> sesión pausada. *No se conserva feedback activo con una muestra incierta.*
+11. **Readquirir** (Evidencia continua): `LOST → N stable frames → READY` -> tracking recuperado. *La recuperación evita contar una transición fantasma.*
+12. **Entregar feedback accesible** (Varios canales): `text + overlay + optional tone` -> orientación perceptible. *Cada canal puede apagarse sin perder la tarea.*
+13. **Probar sin cámara** (Datos sintéticos): `pytest(points, timestamps, states)` -> regresión demostrada. *La lógica de producto no depende de un dispositivo para ser comprobable.*
+14. **Reproducir el pipeline** (Landmarks consentidos y minimizados): `recorded landmarks → virtual clock → state machine` -> flujo regresionable. *La suite guarda landmarks anonimizados, no rostros ni video; cualquier clip requiere consentimiento separado.*
+15. **Proteger la privacidad** (Local y efímero por defecto): `frame → inference → discard` -> datos minimizados. *El frame vive solo durante inferencia y render; telemetría, historial y exportación permanecen apagados hasta una elección informada.*
+16. **Ofrecer HTTPS opcional** (Control remoto como frontera separada): `TLS 1.3 + authenticated pairing` -> canal remoto protegido. *HTTPS protege el tránsito, pero no justifica enviar video: el endpoint comparte únicamente eventos mínimos.*
+17. **Cerrar y observar** (Recursos y salud): `stop → drain → task.close → release` -> aplicación operable. *El cierre completo prepara la siguiente sesión y conecta el último frame con el inicio del loop.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (120)
+## Catalogo Sistematico de Conceptos (120)
 
-### 📑 Sección: Fronteras y vocabulario inicial (5 conceptos)
+### Seccion: Fronteras y vocabulario inicial (5 conceptos)
 
 - **MediaPipe como plataforma**  
   *Familia:* `matriz de señales`  
@@ -72,7 +72,7 @@
   Define usuario, entorno, latencia, precisión, privacidad y alternativa antes de seleccionar una tarea.
 
 
-### 📑 Sección: Preparar Python y la instalación (5 conceptos)
+### Seccion: Preparar Python y la instalación (5 conceptos)
 
 - **Entorno aislado**  
   *Familia:* `flujo de interfaz`  
@@ -95,7 +95,7 @@
   Carga y cierra una Task con una muestra pequeña antes de integrar cámara, interfaz o concurrencia.
 
 
-### 📑 Sección: Pipeline mental de una Task (5 conceptos)
+### Seccion: Pipeline mental de una Task (5 conceptos)
 
 - **Entrada tipada**  
   *Familia:* `matriz de señales`  
@@ -118,7 +118,7 @@
   Conserva timestamp, configuración, latencia y calidad necesarias para explicar el resultado.
 
 
-### 📑 Sección: Imágenes y memoria (5 conceptos)
+### Seccion: Imágenes y memoria (5 conceptos)
 
 - **mp.Image**  
   *Familia:* `mapa de memoria`  
@@ -141,7 +141,7 @@
   Decide si rota o refleja para mostrar, inferir o comparar sin perder lateralidad ni coordenadas.
 
 
-### 📑 Sección: Modos IMAGE, VIDEO y LIVE_STREAM (5 conceptos)
+### Seccion: Modos IMAGE, VIDEO y LIVE_STREAM (5 conceptos)
 
 - **IMAGE**  
   *Familia:* `flujo de interfaz`  
@@ -164,7 +164,7 @@
   Trata running mode como parte de la configuración estable de la instancia.
 
 
-### 📑 Sección: Tiempo, orden y sincronización (5 conceptos)
+### Seccion: Tiempo, orden y sincronización (5 conceptos)
 
 - **Timestamp monotónico**  
   *Familia:* `planificación de trabajo`  
@@ -187,7 +187,7 @@
   Mide captura, cola, inferencia y render para no presentar como actual una estimación antigua.
 
 
-### 📑 Sección: BaseOptions, modelos y delegates (5 conceptos)
+### Seccion: BaseOptions, modelos y delegates (5 conceptos)
 
 - **Model asset path o buffer**  
   *Familia:* `árbol de recursos`  
@@ -210,7 +210,7 @@
   Separa costo de inicialización de latencia sostenida y decide cuándo conservar una instancia.
 
 
-### 📑 Sección: Categorías y clasificación (5 conceptos)
+### Seccion: Categorías y clasificación (5 conceptos)
 
 - **Category**  
   *Familia:* `consulta e índice`  
@@ -233,7 +233,7 @@
   Mide comportamiento por segmento y permite responder desconocido cuando la evidencia no alcanza.
 
 
-### 📑 Sección: Detección y regiones (5 conceptos)
+### Seccion: Detección y regiones (5 conceptos)
 
 - **Detection y BoundingBox**  
   *Familia:* `evidencia y latencia`  
@@ -256,7 +256,7 @@
   Añade tracking e identidad temporal en la aplicación cuando la Task solo devuelve detecciones por frame.
 
 
-### 📑 Sección: Pose Landmarker (5 conceptos)
+### Seccion: Pose Landmarker (5 conceptos)
 
 - **Landmarks corporales**  
   *Familia:* `mapa de memoria`  
@@ -279,7 +279,7 @@
   Configura umbrales separados y reinicia estado de la aplicación cuando se pierde continuidad.
 
 
-### 📑 Sección: Hand Landmarker y Gesture Recognizer (5 conceptos)
+### Seccion: Hand Landmarker y Gesture Recognizer (5 conceptos)
 
 - **Landmarks de mano**  
   *Familia:* `mapa de memoria`  
@@ -302,7 +302,7 @@
   Añade dwell, histéresis, cancelación y alternativa de teclado, voz o control físico.
 
 
-### 📑 Sección: Face Landmarker (5 conceptos)
+### Seccion: Face Landmarker (5 conceptos)
 
 - **Malla facial**  
   *Familia:* `evidencia y latencia`  
@@ -325,7 +325,7 @@
   Minimiza retención y evita usar la malla como sustituto de consentimiento o autenticación robusta.
 
 
-### 📑 Sección: Segmentación y composición visual (5 conceptos)
+### Seccion: Segmentación y composición visual (5 conceptos)
 
 - **Máscara de categoría o confianza**  
   *Familia:* `flujo de transformación`  
@@ -348,7 +348,7 @@
   Sincroniza rostro, cuerpo y manos atendiendo costo, oclusiones y distintas confianzas.
 
 
-### 📑 Sección: Object, Image y Interactive Segmenter (5 conceptos)
+### Seccion: Object, Image y Interactive Segmenter (5 conceptos)
 
 - **Object Detector**  
   *Familia:* `análisis y emisión`  
@@ -371,7 +371,7 @@
   Evita duplicar resize, color conversion y copias cuando varias Tasks comparten entrada.
 
 
-### 📑 Sección: Audio Tasks (5 conceptos)
+### Seccion: Audio Tasks (5 conceptos)
 
 - **AudioData y formato**  
   *Familia:* `jerarquía y dependencias`  
@@ -394,7 +394,7 @@
   Procesa localmente cuando sea posible y no conserva voz o ambiente sin una finalidad consentida.
 
 
-### 📑 Sección: Text Tasks (5 conceptos)
+### Seccion: Text Tasks (5 conceptos)
 
 - **TextClassifier**  
   *Familia:* `tejido literario`  
@@ -417,7 +417,7 @@
   Normaliza solo cuando corresponde y evita registrar texto sensible como telemetría de depuración.
 
 
-### 📑 Sección: GenAI Tasks y modelos generativos (5 conceptos)
+### Seccion: GenAI Tasks y modelos generativos (5 conceptos)
 
 - **Superficie GenAI**  
   *Familia:* `ida y vuelta`  
@@ -440,7 +440,7 @@
   Prueba prompt injection, datos sensibles, toxicidad, factualidad, latencia y consumo en el dispositivo objetivo.
 
 
-### 📑 Sección: Framework, grafos y packets (5 conceptos)
+### Seccion: Framework, grafos y packets (5 conceptos)
 
 - **GraphConfig**  
   *Familia:* `configuración declarativa`  
@@ -463,7 +463,7 @@
   Comprende cómo disponibilidad y timestamps habilitan un nodo sin asumir un orden puramente visual.
 
 
-### 📑 Sección: Callbacks, colas y backpressure (5 conceptos)
+### Seccion: Callbacks, colas y backpressure (5 conceptos)
 
 - **Callback breve**  
   *Familia:* `propagación de eventos`  
@@ -486,7 +486,7 @@
   Detiene ingesta, espera callbacks conocidos y cierra Task, cámara y workers en orden.
 
 
-### 📑 Sección: Coordenadas y geometría (5 conceptos)
+### Seccion: Coordenadas y geometría (5 conceptos)
 
 - **Espacios de coordenadas**  
   *Familia:* `consulta e índice`  
@@ -509,7 +509,7 @@
   No infiere distancia física o precisión métrica sin cámara, escala y protocolo de validación adecuados.
 
 
-### 📑 Sección: Rendimiento y aceleración (5 conceptos)
+### Seccion: Rendimiento y aceleración (5 conceptos)
 
 - **Presupuesto extremo a extremo**  
   *Familia:* `secuencia operativa`  
@@ -532,7 +532,7 @@
   Prueba sesiones prolongadas en el dispositivo y adapta carga antes de perder estabilidad.
 
 
-### 📑 Sección: Pruebas y diagnóstico (5 conceptos)
+### Seccion: Pruebas y diagnóstico (5 conceptos)
 
 - **Muestras doradas**  
   *Familia:* `espectro de verificación`  
@@ -555,7 +555,7 @@
   Registra configuración, tiempos, tamaños y causas, no frames, voz o texto bruto por defecto.
 
 
-### 📑 Sección: Privacidad, accesibilidad y uso responsable (5 conceptos)
+### Seccion: Privacidad, accesibilidad y uso responsable (5 conceptos)
 
 - **Procesamiento local por defecto**  
   *Familia:* `planificación de trabajo`  
@@ -578,7 +578,7 @@
   Evalúa por iluminación, tono de piel, cuerpo, voz, idioma, dispositivo y contexto, y documenta dónde no funciona.
 
 
-### 📑 Sección: Producción, operación y mantenimiento (5 conceptos)
+### Seccion: Producción, operación y mantenimiento (5 conceptos)
 
 - **Artefacto completo**  
   *Familia:* `pasaporte del artefacto`  
@@ -602,11 +602,11 @@
 
 
 
-## 📖 Recursos de Estudio y Referencias Oficiales
+## Referencias Bibliograficas y Documentacion Oficial
 - **[MediaPipe Solutions guide](https://developers.google.com/edge/mediapipe/solutions/guide)** (`tutorial` | Nivel: `beginner`): 
 - **[Object detection guide for Python](https://developers.google.com/edge/mediapipe/solutions/vision/object_detector/python)** (`tutorial` | Nivel: `intermediate`): 
 - **[MediaPipe Framework concepts](https://developers.google.com/edge/mediapipe/framework/framework_concepts/overview)** (`reference` | Nivel: `advanced`): 
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Plataformas y servidor](Grupo-Platforms) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Plataformas y servidor](Grupo-Platforms) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

@@ -1,46 +1,46 @@
-# 📘 [Node] Node.js
+# Node.js (Node)
 
 > **Runtime, event loop, streams, workers, módulos y operación.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `nodejs` |
-| **Grupo Arquitectónico** | [Plataformas y servidor](Grupo-Platforms) |
+| **Grupo Arquitectonico** | [Plataformas y servidor](Grupo-Platforms) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `nodejs` |
 | **Total de Conceptos** | **65 conceptos** |
-| **Capítulos / Secciones** | **11 secciones** |
+| **Capitulos / Secciones** | **11 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/nodejs)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/nodejs-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/nodejs)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/nodejs-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: Node.js en acción
+## Estudio de Caso Practico: Node.js en acción
 
 > **Caso integrado · Ingesta de telemetría con backpressure:** Un servicio recibe archivos comprimidos, valida eventos, calcula una señal costosa y publica lotes sin desbordar memoria ni perder trabajo durante un despliegue.  
 > El pipeline mantiene memoria acotada, separa CPU del event loop, propaga cancelación y termina con un cierre observable y ordenado.
 
-### Fases de Ejecución:
-1. **Aceptar la entrada** (Streaming desde el primer byte): `request → gunzip → parser` → flujo iniciado. *Los límites se validan antes de confiar en el cuerpo.*
-2. **Construir pipeline** (Error y cierre conectados): `await pipeline(req, gunzip, parse, batch)` → lifecycle unido. *Pipeline evita que un extremo siga vivo después de fallar otro.*
-3. **Aplicar backpressure** (El consumidor marca el ritmo): `if (!sink.write(batch)) await drain` → presión controlada. *Ignorar el booleano de write convierte una cola limitada en acumulación de memoria.*
-4. **Validar eventos** (Contrato antes del dominio): `schema.safeParse(event)` → datos confiables. *La política decide si un error rechaza fila, lote o solicitud completa.*
-5. **Mover CPU** (Workers para la señal): `pool.run(features, { signal })` → loop disponible. *El pool limita concurrencia y evita crear un worker por evento.*
-6. **Publicar lotes** (Idempotencia en la frontera): `publish(key, batch)` → entrega verificable. *La confirmación ocurre solo después de que el destino acepta el lote.*
-7. **Recibir SIGTERM** (Dejar de aceptar, luego drenar): `server.close(); controller.abort()` → apagado coordinado. *La señal inicia una transición; no termina el proceso inmediatamente.*
-8. **Cerrar y observar** (Cero trabajo huérfano): `await allSettled → process.exitCode` → ingesta operable. *El proceso sale naturalmente después de liberar sockets, workers y buffers.*
+### Fases de Ejecucion:
+1. **Aceptar la entrada** (Streaming desde el primer byte): `request → gunzip → parser` -> flujo iniciado. *Los límites se validan antes de confiar en el cuerpo.*
+2. **Construir pipeline** (Error y cierre conectados): `await pipeline(req, gunzip, parse, batch)` -> lifecycle unido. *Pipeline evita que un extremo siga vivo después de fallar otro.*
+3. **Aplicar backpressure** (El consumidor marca el ritmo): `if (!sink.write(batch)) await drain` -> presión controlada. *Ignorar el booleano de write convierte una cola limitada en acumulación de memoria.*
+4. **Validar eventos** (Contrato antes del dominio): `schema.safeParse(event)` -> datos confiables. *La política decide si un error rechaza fila, lote o solicitud completa.*
+5. **Mover CPU** (Workers para la señal): `pool.run(features, { signal })` -> loop disponible. *El pool limita concurrencia y evita crear un worker por evento.*
+6. **Publicar lotes** (Idempotencia en la frontera): `publish(key, batch)` -> entrega verificable. *La confirmación ocurre solo después de que el destino acepta el lote.*
+7. **Recibir SIGTERM** (Dejar de aceptar, luego drenar): `server.close(); controller.abort()` -> apagado coordinado. *La señal inicia una transición; no termina el proceso inmediatamente.*
+8. **Cerrar y observar** (Cero trabajo huérfano): `await allSettled → process.exitCode` -> ingesta operable. *El proceso sale naturalmente después de liberar sockets, workers y buffers.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (65)
+## Catalogo Sistematico de Conceptos (65)
 
-### 📑 Sección: Runtime y event loop (6 conceptos)
+### Seccion: Runtime y event loop (6 conceptos)
 
 - **V8 y ejecución**  
   *Familia:* `despacho de runtime`  
@@ -67,7 +67,7 @@
   Distingue la fase de check del event loop de la cola de microtareas inmediatas.
 
 
-### 📑 Sección: Módulos y paquetes (6 conceptos)
+### Seccion: Módulos y paquetes (6 conceptos)
 
 - **ES modules**  
   *Familia:* `despacho de runtime`  
@@ -94,7 +94,7 @@
   Encapsula módulos privados internos mediante alias definidos en package.json.
 
 
-### 📑 Sección: Asincronía y errores (6 conceptos)
+### Seccion: Asincronía y errores (6 conceptos)
 
 - **Callbacks**  
   *Familia:* `despacho de runtime`  
@@ -121,7 +121,7 @@
   Coordina eventos asíncronos desacoplados con contratos de listeners y desuscripción limpia.
 
 
-### 📑 Sección: Buffers, streams y red (6 conceptos)
+### Seccion: Buffers, streams y red (6 conceptos)
 
 - **Buffer**  
   *Familia:* `despacho de runtime`  
@@ -148,7 +148,7 @@
   Modifica flujos de datos al vuelo intercalando compresión gzip o transformaciones de formato.
 
 
-### 📑 Sección: Paralelismo y procesos (6 conceptos)
+### Seccion: Paralelismo y procesos (6 conceptos)
 
 - **Worker threads**  
   *Familia:* `despacho de runtime`  
@@ -175,7 +175,7 @@
   Establece canales directos bidireccionales de transferencia de memoria entre workers.
 
 
-### 📑 Sección: Operación y seguridad (6 conceptos)
+### Seccion: Operación y seguridad (6 conceptos)
 
 - **Configuración y secretos**  
   *Familia:* `despacho de runtime`  
@@ -202,7 +202,7 @@
   Ejecuta operaciones criptográficas, hash HMAC y generación de claves seguras.
 
 
-### 📑 Sección: Arquitectura de red y protocolos avanzados (6 conceptos)
+### Seccion: Arquitectura de red y protocolos avanzados (6 conceptos)
 
 - **HTTP/2 y multiplexación binaria**  
   *Familia:* `ida y vuelta`  
@@ -229,7 +229,7 @@
   Comunica procesos en la misma máquina a velocidades de memoria sin sobrecarga IP.
 
 
-### 📑 Sección: Diagnóstico profundo y observabilidad (6 conceptos)
+### Seccion: Diagnóstico profundo y observabilidad (6 conceptos)
 
 - **V8 Heap Snapshots y Allocation Timelines**  
   *Familia:* `tabla de estados`  
@@ -256,7 +256,7 @@
   Supervisa pausas de GC y tiempos de detención del runtime.
 
 
-### 📑 Sección: Manipulación avanzada del sistema de archivos y E/S (6 conceptos)
+### Seccion: Manipulación avanzada del sistema de archivos y E/S (6 conceptos)
 
 - **fs.promises y APIs síncronas**  
   *Familia:* `máquina de estados`  
@@ -283,7 +283,7 @@
   Valida y asigna permisos de lectura, escritura y ejecución al crear archivos críticos.
 
 
-### 📑 Sección: Compilación nativa y addons (Node-API / N-API) (6 conceptos)
+### Seccion: Compilación nativa y addons (Node-API / N-API) (6 conceptos)
 
 - **Node-API (N-API) ABI stability**  
   *Familia:* `workflow y decisiones`  
@@ -310,7 +310,7 @@
   Carga módulos binarios Wasm para ejecutar algoritmos criptográficos a velocidad nativa.
 
 
-### 📑 Sección: Operación en contenedores y producción (5 conceptos)
+### Seccion: Operación en contenedores y producción (5 conceptos)
 
 - **Docker multi-stage builds**  
   *Familia:* `análisis y emisión`  
@@ -336,4 +336,4 @@
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Plataformas y servidor](Grupo-Platforms) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Plataformas y servidor](Grupo-Platforms) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

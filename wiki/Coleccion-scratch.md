@@ -1,46 +1,46 @@
-# 📘 [Cat] Scratch
+# Scratch (Cat)
 
 > **Programación visual, eventos, mensajes, clones, juegos y pensamiento computacional.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `scratch` |
-| **Grupo Arquitectónico** | [Fundamentos](Grupo-Fundamentals) |
+| **Grupo Arquitectonico** | [Fundamentos](Grupo-Fundamentals) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `javascript` |
 | **Total de Conceptos** | **76 conceptos** |
-| **Capítulos / Secciones** | **13 secciones** |
+| **Capitulos / Secciones** | **13 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/scratch)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/scratch-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/scratch)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/scratch-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: Construir un juego de recolección
+## Estudio de Caso Practico: Construir un juego de recolección
 
 > **Caso integrado de Scratch:** Un sprite recibe eventos, crea objetos y actualiza puntuación; una tormenta de clones revela el fallo y el juego recupera un ciclo estable.  
 > El proyecto final puede explicarse desde el evento de bandera hasta el fin de partida y reiniciarse sin estado residual.
 
-### Fases de Ejecución:
+### Fases de Ejecucion:
 1. **Preparar el mundo** (Construir un juego de recolección: etapa 1 de 5): `al presionar bandera
-fijar puntos a 0` → Partida limpia. *La etapa conserva un contrato explícito para que el siguiente paso de Scratch no dependa de supuestos ocultos.*
-2. **Coordinar eventos** (Construir un juego de recolección: etapa 2 de 5): `enviar [crear objeto]` → Flujo interactivo. *La etapa conserva un contrato explícito para que el siguiente paso de Scratch no dependa de supuestos ocultos.*
+fijar puntos a 0` -> Partida limpia. *La etapa conserva un contrato explícito para que el siguiente paso de Scratch no dependa de supuestos ocultos.*
+2. **Coordinar eventos** (Construir un juego de recolección: etapa 2 de 5): `enviar [crear objeto]` -> Flujo interactivo. *La etapa conserva un contrato explícito para que el siguiente paso de Scratch no dependa de supuestos ocultos.*
 3. **Descubrir fuga de clones** (Construir un juego de recolección: etapa 3 de 5): `por siempre
-  crear clon de mí` → Rendimiento degradado. *El caso hace visible el fallo de Scratch; no continúa como si la evidencia fuera válida.*
+  crear clon de mí` -> Rendimiento degradado. *El caso hace visible el fallo de Scratch; no continúa como si la evidencia fuera válida.*
 4. **Cerrar el ciclo** (Construir un juego de recolección: etapa 4 de 5): `si toca borde entonces
-  borrar este clon` → Cantidad de clones estable. *La recuperación de Scratch corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
-5. **Verificar la partida** (Construir un juego de recolección: etapa 5 de 5): `si puntos = 10 entonces enviar [ganar]` → Juego reiniciable y comprobado. *La etapa conserva un contrato explícito para que el siguiente paso de Scratch no dependa de supuestos ocultos.*
+  borrar este clon` -> Cantidad de clones estable. *La recuperación de Scratch corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
+5. **Verificar la partida** (Construir un juego de recolección: etapa 5 de 5): `si puntos = 10 entonces enviar [ganar]` -> Juego reiniciable y comprobado. *La etapa conserva un contrato explícito para que el siguiente paso de Scratch no dependa de supuestos ocultos.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (76)
+## Catalogo Sistematico de Conceptos (76)
 
-### 📑 Sección: Escenario y bloques (5 conceptos)
+### Seccion: Escenario y bloques (5 conceptos)
 
 - **Proyecto, escenario y sprites**  
   *Familia:* `flujo de interfaz`  
@@ -63,7 +63,7 @@ fijar puntos a 0` → Partida limpia. *La etapa conserva un contrato explícito 
   El recorrido de Apariencia y sonido toma un ejemplo mínimo, sus precondiciones y el estado inicial. Posteriormente aplica el mecanismo paso a paso haciendo visibles sus invariantes para validar un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Estado y control (5 conceptos)
+### Seccion: Estado y control (5 conceptos)
 
 - **Variables**  
   *Familia:* `máquina de estados`  
@@ -86,7 +86,7 @@ fijar puntos a 0` → Partida limpia. *La etapa conserva un contrato explícito 
   En Operadores, texto fuente, contexto léxico y reglas del lenguaje ingresa al flujo donde reconoce estructura, comprueba contratos y produce una representación ejecutable para consolidar significado bien formado con errores localizados.
 
 
-### 📑 Sección: Interacción (5 conceptos)
+### Seccion: Interacción (5 conceptos)
 
 - **Sensores**  
   *Familia:* `flujo de interfaz`  
@@ -109,7 +109,7 @@ fijar puntos a 0` → Partida limpia. *La etapa conserva un contrato explícito 
   El recorrido de Colisiones toma un ejemplo mínimo, sus precondiciones y el estado inicial. Posteriormente aplica el mecanismo paso a paso haciendo visibles sus invariantes para validar un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Abstracción y diagnóstico (5 conceptos)
+### Seccion: Abstracción y diagnóstico (5 conceptos)
 
 - **Mis bloques**  
   *Familia:* `pasaporte del artefacto`  
@@ -132,7 +132,7 @@ fijar puntos a 0` → Partida limpia. *La etapa conserva un contrato explícito 
   La función de Depuración por observación parte de un comportamiento esperado, una entrada mínima y un síntoma observable. Su ejecución aísla variables y contrasta hipótesis con instrumentación repetible y produce una causa demostrada y una regresión protegida.
 
 
-### 📑 Sección: Proyecto completo (5 conceptos)
+### Seccion: Proyecto completo (5 conceptos)
 
 - **Máquina de estados del juego**  
   *Familia:* `flujo de interfaz`  
@@ -155,7 +155,7 @@ fijar puntos a 0` → Partida limpia. *La etapa conserva un contrato explícito 
   La función de Compartir y remixar parte de un ejemplo mínimo, sus precondiciones y el estado inicial. Su ejecución aplica el mecanismo paso a paso haciendo visibles sus invariantes y produce un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Geometría con sprites (5 conceptos)
+### Seccion: Geometría con sprites (5 conceptos)
 
 - **Dirección y rotación**  
   *Familia:* `flujo de interfaz`  
@@ -178,7 +178,7 @@ fijar puntos a 0` → Partida limpia. *La etapa conserva un contrato explícito 
   Traslada, refleja y escala puntos respecto a un origen para reutilizar geometrías.
 
 
-### 📑 Sección: Modelo de eventos (7 conceptos)
+### Seccion: Modelo de eventos (7 conceptos)
 
 - **Sombreros de evento**  
   *Familia:* `máquina de estados`  
@@ -209,7 +209,7 @@ fijar puntos a 0` → Partida limpia. *La etapa conserva un contrato explícito 
   Barreras / por / mensajes coordina la ejecución: el modelo estima parámetros o predicciones bajo supuestos que se comprueban con datos separados hasta obtener una estimación acompañada de incertidumbre, diagnóstico y alcance de generalización.
 
 
-### 📑 Sección: Datos persistentes y compartidos (8 conceptos)
+### Seccion: Datos persistentes y compartidos (8 conceptos)
 
 - **Variables locales del sprite**  
   *Familia:* `consulta e índice`  
@@ -244,7 +244,7 @@ fijar puntos a 0` → Partida limpia. *La etapa conserva un contrato explícito 
   Al operar con Migración / formato / guardado, el adaptador prepara operaciones, adquiere recursos y aplica restricciones antes de confirmar, produciendo estado persistido con integridad y visibilidad coherentes para lectores concurrentes.
 
 
-### 📑 Sección: Patrones con clones (6 conceptos)
+### Seccion: Patrones con clones (6 conceptos)
 
 - **Fábricas de clones**  
   *Familia:* `ciclo de vida`  
@@ -271,7 +271,7 @@ fijar puntos a 0` → Partida limpia. *La etapa conserva un contrato explícito 
   Para Límite / global / clones, el runtime o compilador reserva, comparte, mueve y libera almacenamiento respetando aliasing y alineación, manteniendo memoria válida durante toda la operación y recuperada al terminar su último uso.
 
 
-### 📑 Sección: Animación y audio (7 conceptos)
+### Seccion: Animación y audio (7 conceptos)
 
 - **Fotogramas y disfraces**  
   *Familia:* `ciclo de vida`  
@@ -302,7 +302,7 @@ fijar puntos a 0` → Partida limpia. *La etapa conserva un contrato explícito 
   Latencia / perceptual / sonido coordina la ejecución: el perfil localiza el recurso dominante y la optimización reduce ese costo sin cambiar semántica hasta obtener una mejora medible con distribución, entorno y comparación documentados.
 
 
-### 📑 Sección: Física para juegos (5 conceptos)
+### Seccion: Física para juegos (5 conceptos)
 
 - **Velocidad y aceleración**  
   *Familia:* `planificación de trabajo`  
@@ -325,7 +325,7 @@ fijar puntos a 0` → Partida limpia. *La etapa conserva un contrato explícito 
   Mueve el mundo respecto al jugador y transforma coordenadas globales en posiciones de pantalla.
 
 
-### 📑 Sección: Extensiones y mundo físico (5 conceptos)
+### Seccion: Extensiones y mundo físico (5 conceptos)
 
 - **Texto a voz**  
   *Familia:* `matriz de señales`  
@@ -348,7 +348,7 @@ fijar puntos a 0` → Partida limpia. *La etapa conserva un contrato explícito 
   Transforman texto mediante una extensión remota cuya disponibilidad y resultado deben validarse.
 
 
-### 📑 Sección: Calidad y publicación (8 conceptos)
+### Seccion: Calidad y publicación (8 conceptos)
 
 - **Pruebas por escenarios**  
   *Familia:* `espectro de verificación`  
@@ -386,4 +386,4 @@ fijar puntos a 0` → Partida limpia. *La etapa conserva un contrato explícito 
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Fundamentos](Grupo-Fundamentals) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Fundamentos](Grupo-Fundamentals) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

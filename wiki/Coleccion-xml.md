@@ -1,48 +1,48 @@
-# 📘 [XML] XML
+# XML (XML)
 
 > **Documentos, namespaces, parsing, XPath, XSLT, seguridad e interoperabilidad.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `xml` |
-| **Grupo Arquitectónico** | [Datos](Grupo-Data) |
+| **Grupo Arquitectonico** | [Datos](Grupo-Data) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `xml` |
 | **Total de Conceptos** | **110 conceptos** |
-| **Capítulos / Secciones** | **22 secciones** |
+| **Capitulos / Secciones** | **22 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/xml)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/xml-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/xml)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/xml-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: XML en acción
+## Estudio de Caso Practico: XML en acción
 
 > **Caso integrado · Manual técnico multilingüe y firmado:** Un manual modular llega como XML con contenido mixto, idiomas, namespaces e inclusiones. El publicador bloquea resolución externa, recupera un módulo mediante un catalog local, transforma a HTML accesible y verifica la firma del documento exacto que publica.  
 > El caso conserva la naturaleza documental de XML: orden, texto, identidad de vocabularios y recursos se hacen visibles antes de transformar o firmar.
 
-### Fases de Ejecución:
-1. **Recibir el documento** (Media type y límites): `application/xml · UTF-8 · 4 MiB` → entrada admitida. *La extensión del archivo no sustituye el contrato de transporte.*
-2. **Parsear sin red** (Resolución controlada): `DOCTYPE=deny · network=off` → Infoset seguro. *El documento no decide qué puede leer el servidor.*
-3. **Resolver namespaces** (Nombres expandidos): `{urn:manual:v3}chapter` → vocabulario identificado. *Los prefijos son alias; la identidad usa el nombre expandido.*
-4. **Aplicar contexto XML** (Idioma y base): `xml:lang + xml:base` → contexto calculado. *Mover un subárbol puede cambiar la base y debe probarse.*
-5. **Seleccionar secciones** (XPath con namespaces): `//m:chapter[@audience='operator']` → contenido elegido. *La expresión declara su propio mapa de namespaces.*
-6. **Detectar inclusión hostil** (XInclude fuera de allowlist): `href=https://unknown.example/part.xml` → recurso bloqueado. *XInclude es otra frontera de resolución y requiere política.*
-7. **Recuperar con catalog** (Recurso local versionado): `catalog → manuals/parts/v3.xml` → documento completo. *La misma identidad se resuelve de forma reproducible y offline.*
-8. **Transformar** (XSLT a HTML accesible): `templates → landmarks + headings` → publicación accesible. *La transformación conserva contenido mixto y no inyecta markup sin revisar.*
-9. **Verificar firma** (Canonicalizar el nodo correcto): `C14N → digest → signature` → integridad demostrada. *Una firma válida no sirve si la aplicación procesa otro nodo.*
-10. **Publicar y observar** (Round-trip y evidencia): `serialize → store → trace` → manual verificable. *El documento publicado alimenta la siguiente revisión sin terminar en gris.*
+### Fases de Ejecucion:
+1. **Recibir el documento** (Media type y límites): `application/xml · UTF-8 · 4 MiB` -> entrada admitida. *La extensión del archivo no sustituye el contrato de transporte.*
+2. **Parsear sin red** (Resolución controlada): `DOCTYPE=deny · network=off` -> Infoset seguro. *El documento no decide qué puede leer el servidor.*
+3. **Resolver namespaces** (Nombres expandidos): `{urn:manual:v3}chapter` -> vocabulario identificado. *Los prefijos son alias; la identidad usa el nombre expandido.*
+4. **Aplicar contexto XML** (Idioma y base): `xml:lang + xml:base` -> contexto calculado. *Mover un subárbol puede cambiar la base y debe probarse.*
+5. **Seleccionar secciones** (XPath con namespaces): `//m:chapter[@audience='operator']` -> contenido elegido. *La expresión declara su propio mapa de namespaces.*
+6. **Detectar inclusión hostil** (XInclude fuera de allowlist): `href=https://unknown.example/part.xml` -> recurso bloqueado. *XInclude es otra frontera de resolución y requiere política.*
+7. **Recuperar con catalog** (Recurso local versionado): `catalog → manuals/parts/v3.xml` -> documento completo. *La misma identidad se resuelve de forma reproducible y offline.*
+8. **Transformar** (XSLT a HTML accesible): `templates → landmarks + headings` -> publicación accesible. *La transformación conserva contenido mixto y no inyecta markup sin revisar.*
+9. **Verificar firma** (Canonicalizar el nodo correcto): `C14N → digest → signature` -> integridad demostrada. *Una firma válida no sirve si la aplicación procesa otro nodo.*
+10. **Publicar y observar** (Round-trip y evidencia): `serialize → store → trace` -> manual verificable. *El documento publicado alimenta la siguiente revisión sin terminar en gris.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (110)
+## Catalogo Sistematico de Conceptos (110)
 
-### 📑 Sección: Documento, estructura y significado (5 conceptos)
+### Seccion: Documento, estructura y significado (5 conceptos)
 
 - **Documento XML**  
   *Familia:* `configuración declarativa`  
@@ -65,7 +65,7 @@
   Separa decodificación, well-formedness, validación externa, reglas de negocio y autorización.
 
 
-### 📑 Sección: Anatomía de un documento XML (5 conceptos)
+### Seccion: Anatomía de un documento XML (5 conceptos)
 
 - **Declaración XML**  
   *Familia:* `configuración declarativa`  
@@ -88,7 +88,7 @@
   Decide qué información forma parte de la jerarquía, cuál califica un elemento y cuál aparece como texto.
 
 
-### 📑 Sección: XML bien formado (5 conceptos)
+### Seccion: XML bien formado (5 conceptos)
 
 - **Anidamiento correcto**  
   *Familia:* `anatomía del concepto`  
@@ -111,7 +111,7 @@
   Respeta la gramática de nombres y reconoce que Pedido y pedido son identificadores distintos.
 
 
-### 📑 Sección: Modelo de información XML (5 conceptos)
+### Seccion: Modelo de información XML (5 conceptos)
 
 - **Infoset y árbol lógico**  
   *Familia:* `jerarquía y dependencias`  
@@ -134,7 +134,7 @@
   Comprende qué normaliza el parser y qué espacios siguen siendo datos visibles para la aplicación.
 
 
-### 📑 Sección: Namespaces XML (5 conceptos)
+### Seccion: Namespaces XML (5 conceptos)
 
 - **URI de namespace**  
   *Familia:* `configuración declarativa`  
@@ -157,7 +157,7 @@
   Sigue declaraciones heredadas o reemplazadas y compara por nombre expandido, no por el prefijo visible.
 
 
-### 📑 Sección: Entidades, DTD y estructura física (5 conceptos)
+### Seccion: Entidades, DTD y estructura física (5 conceptos)
 
 - **Entidades predefinidas y referencias numéricas**  
   *Familia:* `anatomía del concepto`  
@@ -180,7 +180,7 @@
   Expresa si declaraciones externas pueden modificar información que llega a la aplicación.
 
 
-### 📑 Sección: Modelos de parsing XML (5 conceptos)
+### Seccion: Modelos de parsing XML (5 conceptos)
 
 - **DOM y árbol en memoria**  
   *Familia:* `análisis y emisión`  
@@ -203,7 +203,7 @@
   Conserva línea, columna, byte y contexto seguro para diagnosticar sin registrar todo el documento sensible.
 
 
-### 📑 Sección: XPath 3.1 (5 conceptos)
+### Seccion: XPath 3.1 (5 conceptos)
 
 - **Context item y secuencia**  
   *Familia:* `jerarquía y dependencias`  
@@ -226,7 +226,7 @@
   Asocia prefijos de la expresión con URIs porque el namespace del documento no se hereda automáticamente al evaluador.
 
 
-### 📑 Sección: Transformación con XSLT (5 conceptos)
+### Seccion: Transformación con XSLT (5 conceptos)
 
 - **Templates y match patterns**  
   *Familia:* `flujo de transformación`  
@@ -249,7 +249,7 @@
   Produce XML, HTML, texto u otros resultados respetando capacidades y restricciones del procesador.
 
 
-### 📑 Sección: Serialización y canonicalización XML (5 conceptos)
+### Seccion: Serialización y canonicalización XML (5 conceptos)
 
 - **Codificación y declaración de salida**  
   *Familia:* `análisis y emisión`  
@@ -272,7 +272,7 @@
   Normaliza diferencias permitidas cuando una firma, digest o comparación necesita una secuencia de octetos determinista.
 
 
-### 📑 Sección: Vocabularios y protocolos XML (5 conceptos)
+### Seccion: Vocabularios y protocolos XML (5 conceptos)
 
 - **SVG como vocabulario XML**  
   *Familia:* `jerarquía y dependencias`  
@@ -295,7 +295,7 @@
   Evalúa cuándo la expresividad, comentarios y namespaces de XML justifican su uso en herramientas.
 
 
-### 📑 Sección: Seguridad XML (5 conceptos)
+### Seccion: Seguridad XML (5 conceptos)
 
 - **DOCTYPE deshabilitado por defecto**  
   *Familia:* `flujo de transformación`  
@@ -318,7 +318,7 @@
   Mantiene datos separados de expresiones y deshabilita funciones, extensiones o acceso al sistema que no sean necesarios.
 
 
-### 📑 Sección: XML en producción (5 conceptos)
+### Seccion: XML en producción (5 conceptos)
 
 - **Presupuestos de tamaño y profundidad**  
   *Familia:* `análisis y emisión`  
@@ -341,7 +341,7 @@
   Prueba entradas válidas, inválidas y adversariales en todos los procesadores utilizados.
 
 
-### 📑 Sección: Mapeo entre XML y JSON (5 conceptos)
+### Seccion: Mapeo entre XML y JSON (5 conceptos)
 
 - **Jerarquía y orden**  
   *Familia:* `secuencia operativa`  
@@ -364,7 +364,7 @@
   Reconoce casos donde un mapeo genérico no puede hacer round-trip fiel.
 
 
-### 📑 Sección: Diseño de vocabularios XML (5 conceptos)
+### Seccion: Diseño de vocabularios XML (5 conceptos)
 
 - **Nombres orientados al dominio**  
   *Familia:* `análisis y emisión`  
@@ -387,7 +387,7 @@
   Registra casing, fechas, identificadores, unidades, whitespace y política de desconocidos.
 
 
-### 📑 Sección: Atributos XML reservados (5 conceptos)
+### Seccion: Atributos XML reservados (5 conceptos)
 
 - **xml:lang**  
   *Familia:* `jerarquía y dependencias`  
@@ -410,7 +410,7 @@
   Calcula el valor efectivo después de anidamiento, override y movimiento de subárboles.
 
 
-### 📑 Sección: DOM y mutación documental (5 conceptos)
+### Seccion: DOM y mutación documental (5 conceptos)
 
 - **Document, Element y Node**  
   *Familia:* `workflow y decisiones`  
@@ -433,7 +433,7 @@
   Comprueba encoding, prefixes y whitespace antes de comparar o firmar la salida.
 
 
-### 📑 Sección: XInclude y XML Catalogs (5 conceptos)
+### Seccion: XInclude y XML Catalogs (5 conceptos)
 
 - **xi:include**  
   *Familia:* `evidencia y latencia`  
@@ -456,7 +456,7 @@
   Reproduce builds y validación sin depender de cambios o disponibilidad de la red.
 
 
-### 📑 Sección: Lenguajes de validación alrededor de XML (5 conceptos)
+### Seccion: Lenguajes de validación alrededor de XML (5 conceptos)
 
 - **DTD**  
   *Familia:* `consulta e índice`  
@@ -479,7 +479,7 @@
   Combina gramática, relaciones y negocio con mensajes y responsabilidades distintas.
 
 
-### 📑 Sección: Firma y cifrado XML (5 conceptos)
+### Seccion: Firma y cifrado XML (5 conceptos)
 
 - **Canonical XML**  
   *Familia:* `configuración declarativa`  
@@ -502,7 +502,7 @@
   Impide que un atacante añada un nodo válido no firmado que la lógica termine procesando.
 
 
-### 📑 Sección: Evolución de vocabularios XML (5 conceptos)
+### Seccion: Evolución de vocabularios XML (5 conceptos)
 
 - **Cambios aditivos**  
   *Familia:* `cola y consumidor`  
@@ -525,7 +525,7 @@
   Comprueba que leer y volver a escribir no elimine extensiones que otro sistema necesita.
 
 
-### 📑 Sección: Conformidad y pruebas XML (5 conceptos)
+### Seccion: Conformidad y pruebas XML (5 conceptos)
 
 - **W3C XML Test Suite**  
   *Familia:* `espectro de verificación`  
@@ -549,11 +549,11 @@
 
 
 
-## 📖 Recursos de Estudio y Referencias Oficiales
+## Referencias Bibliograficas y Documentacion Oficial
 - **[XML introduction](https://developer.mozilla.org/en-US/docs/Web/XML/Guides/XML_introduction)** (`tutorial` | Nivel: `beginner`): 
 - **[Parsing and serializing XML](https://developer.mozilla.org/en-US/docs/Web/XML/Guides/Parsing_and_serializing_XML)** (`tutorial` | Nivel: `intermediate`): 
 - **[Using XPath in JavaScript](https://developer.mozilla.org/en-US/docs/Web/XML/XPath/Guides/Introduction_to_using_XPath_in_JavaScript)** (`reference` | Nivel: `advanced`): 
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Datos](Grupo-Data) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Datos](Grupo-Data) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

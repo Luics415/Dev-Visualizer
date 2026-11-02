@@ -336,7 +336,7 @@ export function CollectionNav() {
         aria-label="Abrir biblioteca de colecciones"
         onClick={closeMobileMenu}
       >
-        <Image src={`${basePath}/brand/anchor-nav.png`} alt="" width={128} height={128} />
+        <Image src={`${basePath}/brand/dev-visualizer-icon.png`} alt="" width={128} height={128} />
       </Link>
 
       <div className="collection-nav__current" aria-live="polite">

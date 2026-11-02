@@ -1,46 +1,46 @@
-# 📘 [C++] C++
+# C++ (C++)
 
 > **RAII, tipos, STL, templates, concurrencia y rendimiento.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `cpp` |
-| **Grupo Arquitectónico** | [Lenguajes](Grupo-Languages) |
+| **Grupo Arquitectonico** | [Lenguajes](Grupo-Languages) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `cpp` |
 | **Total de Conceptos** | **66 conceptos** |
-| **Capítulos / Secciones** | **10 secciones** |
+| **Capitulos / Secciones** | **10 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/cpp)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/cpp-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/cpp)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/cpp-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: C++ en acción
+## Estudio de Caso Practico: C++ en acción
 
 > **Caso integrado · Simulador concurrente con RAII:** Un simulador de rutas procesa escenarios en paralelo y conserva ownership claro, cancelación, resultados deterministas y evidencia de rendimiento.  
 > Cada recurso tiene dueño, cada thread termina y la optimización se apoya en perfiles, no en intuición.
 
-### Fases de Ejecución:
-1. **Modelar el dominio** (Tipos expresan unidades e invariantes): `struct Route { Nodes nodes; Cost cost; }` → modelo válido. *El tipo impide mezclar costo, distancia y tiempo por accidente.*
-2. **Adquirir recursos** (RAII ata vida a scope): `MappedGraph graph{path};` → grafo disponible. *La adquisición completa o lanza antes de publicar un objeto parcialmente válido.*
-3. **Preparar trabajo** (Ranges transforman escenarios): `views::filter | views::transform` → cola calculada. *Una view no posee datos; el origen debe seguir vivo durante la iteración.*
-4. **Ejecutar en paralelo** (Tasks con ownership explícito): `jthread + stop_token` → cómputo coordinado. *jthread evita olvidar join y el token hace cooperativa la cancelación.*
-5. **Detectar carrera** (TSan encuentra estado compartido): `-fsanitize=thread` → causa demostrada. *La carrera no se corrige añadiendo sleeps; se elimina el acceso compartido no coordinado.*
-6. **Reducir sin compartir** (Cada task devuelve un valor): `future<Result> → reduce` → concurrencia segura. *Cambiar el diseño reduce contención y elimina la raíz de la carrera.*
-7. **Perfilar locality** (Datos contiguos vencen a microajustes): `perf record · heaptrack` → rendimiento probado. *El perfil revela que el layout de datos importa más que una expresión aislada.*
-8. **Empaquetar y probar** (Target reproducible): `cmake --build && ctest` → simulador operable. *Build, tests y límites de ABI convierten el prototipo en software mantenible.*
+### Fases de Ejecucion:
+1. **Modelar el dominio** (Tipos expresan unidades e invariantes): `struct Route { Nodes nodes; Cost cost; }` -> modelo válido. *El tipo impide mezclar costo, distancia y tiempo por accidente.*
+2. **Adquirir recursos** (RAII ata vida a scope): `MappedGraph graph{path};` -> grafo disponible. *La adquisición completa o lanza antes de publicar un objeto parcialmente válido.*
+3. **Preparar trabajo** (Ranges transforman escenarios): `views::filter | views::transform` -> cola calculada. *Una view no posee datos; el origen debe seguir vivo durante la iteración.*
+4. **Ejecutar en paralelo** (Tasks con ownership explícito): `jthread + stop_token` -> cómputo coordinado. *jthread evita olvidar join y el token hace cooperativa la cancelación.*
+5. **Detectar carrera** (TSan encuentra estado compartido): `-fsanitize=thread` -> causa demostrada. *La carrera no se corrige añadiendo sleeps; se elimina el acceso compartido no coordinado.*
+6. **Reducir sin compartir** (Cada task devuelve un valor): `future<Result> → reduce` -> concurrencia segura. *Cambiar el diseño reduce contención y elimina la raíz de la carrera.*
+7. **Perfilar locality** (Datos contiguos vencen a microajustes): `perf record · heaptrack` -> rendimiento probado. *El perfil revela que el layout de datos importa más que una expresión aislada.*
+8. **Empaquetar y probar** (Target reproducible): `cmake --build && ctest` -> simulador operable. *Build, tests y límites de ABI convierten el prototipo en software mantenible.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (66)
+## Catalogo Sistematico de Conceptos (66)
 
-### 📑 Sección: Modelo del lenguaje y compilación ODR (6 conceptos)
+### Seccion: Modelo del lenguaje y compilación ODR (6 conceptos)
 
 - **Compilación y One Definition Rule**  
   *Familia:* `análisis y emisión`  
@@ -67,7 +67,7 @@
   Controla qué declaraciones son visibles entre bibliotecas compartidas.
 
 
-### 📑 Sección: Objetos, lifetime y RAII determinista (6 conceptos)
+### Seccion: Objetos, lifetime y RAII determinista (6 conceptos)
 
 - **Storage y object lifetime**  
   *Familia:* `validación y decisión`  
@@ -94,7 +94,7 @@
   Garantiza que ningún constructor exponga un objeto a medio inicializar.
 
 
-### 📑 Sección: Move semantics, rvalues y value categories (7 conceptos)
+### Seccion: Move semantics, rvalues y value categories (7 conceptos)
 
 - **Lvalues, prvalues y xvalues**  
   *Familia:* `evidencia y latencia`  
@@ -125,7 +125,7 @@
   Permite al compilador omitir copias y movimientos al retornar objetos locales.
 
 
-### 📑 Sección: Tipos, herencia y polimorfismo dinámico (6 conceptos)
+### Seccion: Tipos, herencia y polimorfismo dinámico (6 conceptos)
 
 - **Clases e invariantes**  
   *Familia:* `espectro de verificación`  
@@ -152,7 +152,7 @@
   variant y polimorfismo cerrado::Representa alternativas conocidas con visita exhaustiva sin despacho virtual.
 
 
-### 📑 Sección: Templates, especialización y variadic packs (7 conceptos)
+### Seccion: Templates, especialización y variadic packs (7 conceptos)
 
 - **Function y class templates**  
   *Familia:* `análisis y emisión`  
@@ -183,7 +183,7 @@
   Acepta plantillas como argumentos de otras plantillas para componer contenedores.
 
 
-### 📑 Sección: Concepts, constraints y type traits de C++20 (6 conceptos)
+### Seccion: Concepts, constraints y type traits de C++20 (6 conceptos)
 
 - **Concepts como contratos de tipos**  
   *Familia:* `espectro de verificación`  
@@ -210,7 +210,7 @@
   Aprovecha mensajes de error precisos generados cuando un tipo no satisface un concepto.
 
 
-### 📑 Sección: STL moderna, ranges y allocators PMR (7 conceptos)
+### Seccion: STL moderna, ranges y allocators PMR (7 conceptos)
 
 - **Contenedores y localidad de memoria**  
   *Familia:* `memoria intermedia`  
@@ -241,7 +241,7 @@
   Mejora rendimiento almacenando llaves y valores en vectores contiguos ordenados.
 
 
-### 📑 Sección: Concurrencia, atomics y coroutines C++20 (7 conceptos)
+### Seccion: Concurrencia, atomics y coroutines C++20 (7 conceptos)
 
 - **Hilos nativos con std**  
   *Familia:* `matriz de señales`  
@@ -272,7 +272,7 @@
   future y std::promise::Transfiere resultados o excepciones entre hilos desacoplados de forma segura.
 
 
-### 📑 Sección: Programación en compilación, constexpr y consteval (7 conceptos)
+### Seccion: Programación en compilación, constexpr y consteval (7 conceptos)
 
 - **Funciones constexpr**  
   *Familia:* `tejido literario`  
@@ -303,7 +303,7 @@
   Reemplaza trucos de tipos basados en templates por expresiones imperativas constexpr.
 
 
-### 📑 Sección: Toolchains, CMake, sanitizers y hardening de producción (7 conceptos)
+### Seccion: Toolchains, CMake, sanitizers y hardening de producción (7 conceptos)
 
 - **CMake y targets modernos**  
   *Familia:* `pasaporte del artefacto`  
@@ -337,4 +337,4 @@
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

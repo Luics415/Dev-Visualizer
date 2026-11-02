@@ -1,31 +1,31 @@
-# 📘 [Ship] Deployment
+# Deployment (Ship)
 
 > **Entornos, configuración, rollouts, tráfico, migraciones y rollback.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `deployment` |
-| **Grupo Arquitectónico** | [Infraestructura y entrega](Grupo-Delivery) |
+| **Grupo Arquitectonico** | [Infraestructura y entrega](Grupo-Delivery) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `deployment` |
 | **Total de Conceptos** | **133 conceptos** |
-| **Capítulos / Secciones** | **8 secciones** |
+| **Capitulos / Secciones** | **8 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/deployment)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/deployment-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/deployment)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/deployment-en-accion)
 
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (133)
+## Catalogo Sistematico de Conceptos (133)
 
-### 📑 Sección: Fundamentos de entrega de software (12 conceptos)
+### Seccion: Fundamentos de entrega de software (12 conceptos)
 
 - **Qué es un deployment**  
   *Familia:* `anatomía del concepto`  
@@ -76,7 +76,7 @@
   Mide velocidad para recuperar servicio tras un cambio fallido.
 
 
-### 📑 Sección: Configuración, secretos y entornos (13 conceptos)
+### Seccion: Configuración, secretos y entornos (13 conceptos)
 
 - **Config externa**  
   *Familia:* `configuración declarativa`  
@@ -131,7 +131,7 @@
   Versiona y revisa configuración crítica igual que el código.
 
 
-### 📑 Sección: Estrategias de deployment y release (18 conceptos)
+### Seccion: Estrategias de deployment y release (18 conceptos)
 
 - **Recreate deployment**  
   *Familia:* `ciclo de vida`  
@@ -206,7 +206,7 @@
   Suspende cambios en periodos de alto riesgo con excepciones y ownership claros.
 
 
-### 📑 Sección: Kubernetes y reconciliación (28 conceptos)
+### Seccion: Kubernetes y reconciliación (28 conceptos)
 
 - **Kubernetes control plane**  
   *Familia:* `superficie de aplicación`  
@@ -321,7 +321,7 @@
   Extienden la API y automatizan reconciliación específica de un dominio.
 
 
-### 📑 Sección: Tráfico, DNS y edge (14 conceptos)
+### Seccion: Tráfico, DNS y edge (14 conceptos)
 
 - **DNS durante deployments**  
   *Familia:* `topología y tráfico`  
@@ -380,7 +380,7 @@
   Exigen draining, afinidad o re-conexión consciente durante reemplazos.
 
 
-### 📑 Sección: Datos, migraciones y compatibilidad (15 conceptos)
+### Seccion: Datos, migraciones y compatibilidad (15 conceptos)
 
 - **Migraciones de esquema**  
   *Familia:* `contratos coordinados`  
@@ -443,7 +443,7 @@
   Crea un punto de recuperación coherente cuando el riesgo lo justifica.
 
 
-### 📑 Sección: Observabilidad, confiabilidad y rollback (17 conceptos)
+### Seccion: Observabilidad, confiabilidad y rollback (17 conceptos)
 
 - **Health checks**  
   *Familia:* `contratos coordinados`  
@@ -514,7 +514,7 @@
   Analiza sistema y controles sin culpar, convirtiendo hallazgos en mejoras verificables.
 
 
-### 📑 Sección: Seguridad, supply chain y operación (16 conceptos)
+### Seccion: Seguridad, supply chain y operación (16 conceptos)
 
 - **Least privilege de CI/CD**  
   *Familia:* `análisis y emisión`  
@@ -582,11 +582,11 @@
 
 
 
-## 📖 Recursos de Estudio y Referencias Oficiales
+## Referencias Bibliograficas y Documentacion Oficial
 - **[Kubernetes Basics: perform a rolling update](https://kubernetes.io/docs/tutorials/kubernetes-basics/update/update-intro/)** (`tutorial` | Nivel: `beginner`): 
 - **[Google SRE Book: Release Engineering](https://sre.google/sre-book/release-engineering/)** (`book` | Nivel: `intermediate`): 
 - **[Argo Rollouts Documentation](https://argo-rollouts.readthedocs.io/en/stable/)** (`official-docs` | Nivel: `advanced`): 
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Infraestructura y entrega](Grupo-Delivery) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Infraestructura y entrega](Grupo-Delivery) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

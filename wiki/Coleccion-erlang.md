@@ -1,43 +1,43 @@
-# 📘 [Erl] Erlang
+# Erlang (Erl)
 
 > **BEAM, procesos, mensajes, supervisión, distribución y tolerancia a fallos.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `erlang` |
-| **Grupo Arquitectónico** | [Lenguajes](Grupo-Languages) |
+| **Grupo Arquitectonico** | [Lenguajes](Grupo-Languages) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `prolog` |
 | **Total de Conceptos** | **94 conceptos** |
-| **Capítulos / Secciones** | **16 secciones** |
+| **Capitulos / Secciones** | **16 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/erlang)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/erlang-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/erlang)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/erlang-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: Supervisar un procesador de mensajes
+## Estudio de Caso Practico: Supervisar un procesador de mensajes
 
 > **Caso integrado de Erlang:** Un worker OTP consume eventos, falla ante un payload corrupto y es restaurado por su supervisor sin derribar la aplicación ni duplicar confirmaciones.  
 > El árbol final muestra estrategia, intensidad de reinicios, estado recuperable y semántica de entrega.
 
-### Fases de Ejecución:
-1. **Iniciar aplicación** (Supervisar un procesador de mensajes: etapa 1 de 5): `application:start(event_hub).` → Árbol activo. *La etapa conserva un contrato explícito para que el siguiente paso de Erlang no dependa de supuestos ocultos.*
-2. **Procesar mensaje** (Supervisar un procesador de mensajes: etapa 2 de 5): `gen_server:cast(worker, {event, Payload}).` → Evento aplicado. *La etapa conserva un contrato explícito para que el siguiente paso de Erlang no dependa de supuestos ocultos.*
-3. **Provocar crash aislado** (Supervisar un procesador de mensajes: etapa 3 de 5): `erlang:error({invalid_payload, Id}).` → Fallo contenido. *El caso hace visible el fallo de Erlang; no continúa como si la evidencia fuera válida.*
-4. **Reiniciar desde checkpoint** (Supervisar un procesador de mensajes: etapa 4 de 5): `{ok, State} = load_checkpoint().` → Servicio recuperado. *La recuperación de Erlang corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
-5. **Verificar entrega** (Supervisar un procesador de mensajes: etapa 5 de 5): `assert_no_duplicate(Id), supervisor:count_children(Sup).` → Sistema disponible. *La etapa conserva un contrato explícito para que el siguiente paso de Erlang no dependa de supuestos ocultos.*
+### Fases de Ejecucion:
+1. **Iniciar aplicación** (Supervisar un procesador de mensajes: etapa 1 de 5): `application:start(event_hub).` -> Árbol activo. *La etapa conserva un contrato explícito para que el siguiente paso de Erlang no dependa de supuestos ocultos.*
+2. **Procesar mensaje** (Supervisar un procesador de mensajes: etapa 2 de 5): `gen_server:cast(worker, {event, Payload}).` -> Evento aplicado. *La etapa conserva un contrato explícito para que el siguiente paso de Erlang no dependa de supuestos ocultos.*
+3. **Provocar crash aislado** (Supervisar un procesador de mensajes: etapa 3 de 5): `erlang:error({invalid_payload, Id}).` -> Fallo contenido. *El caso hace visible el fallo de Erlang; no continúa como si la evidencia fuera válida.*
+4. **Reiniciar desde checkpoint** (Supervisar un procesador de mensajes: etapa 4 de 5): `{ok, State} = load_checkpoint().` -> Servicio recuperado. *La recuperación de Erlang corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
+5. **Verificar entrega** (Supervisar un procesador de mensajes: etapa 5 de 5): `assert_no_duplicate(Id), supervisor:count_children(Sup).` -> Sistema disponible. *La etapa conserva un contrato explícito para que el siguiente paso de Erlang no dependa de supuestos ocultos.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (94)
+## Catalogo Sistematico de Conceptos (94)
 
-### 📑 Sección: Erlang esencial (5 conceptos)
+### Seccion: Erlang esencial (5 conceptos)
 
 - **Términos**  
   *Familia:* `despacho de runtime`  
@@ -60,7 +60,7 @@
   Funciones de orden superior conecta una instancia acotada, sus invariantes y una medida de costo con su runtime interno: explora estados manteniendo la propiedad que garantiza corrección hasta exponer una solución acompañada de complejidad y límites conocidos.
 
 
-### 📑 Sección: BEAM y procesos (5 conceptos)
+### Seccion: BEAM y procesos (5 conceptos)
 
 - **Procesos ligeros**  
   *Familia:* `planificación de trabajo`  
@@ -83,7 +83,7 @@
   Garbage collection por proceso conecta tareas con dependencias, recursos compartidos y una señal de cancelación con su runtime interno: ordena trabajo y sincronización sin ocultar intercalados posibles hasta exponer progreso concurrente con ownership y terminación observables.
 
 
-### 📑 Sección: OTP (5 conceptos)
+### Seccion: OTP (5 conceptos)
 
 - **GenServer**  
   *Familia:* `jerarquía y dependencias`  
@@ -106,7 +106,7 @@
   El recorrido de Behaviours toma un ejemplo mínimo, sus precondiciones y el estado inicial. Posteriormente aplica el mecanismo paso a paso haciendo visibles sus invariantes para validar un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Fallo y diagnóstico (5 conceptos)
+### Seccion: Fallo y diagnóstico (5 conceptos)
 
 - **Links y monitors**  
   *Familia:* `mapa de memoria`  
@@ -129,7 +129,7 @@
   El recorrido de Common Test toma un comportamiento esperado, una entrada mínima y un síntoma observable. Posteriormente aísla variables y contrasta hipótesis con instrumentación repetible para validar una causa demostrada y una regresión protegida.
 
 
-### 📑 Sección: Distribución (5 conceptos)
+### Seccion: Distribución (5 conceptos)
 
 - **Nodos**  
   *Familia:* `workflow y decisiones`  
@@ -152,7 +152,7 @@
   Backpressure procesa un mensaje versionado, un destino y límites de tiempo: serializa, transporta y valida el intercambio a través de una frontera remota para entregar una respuesta correlacionada o un estado convergente verificable.
 
 
-### 📑 Sección: Semántica funcional (5 conceptos)
+### Seccion: Semántica funcional (5 conceptos)
 
 - **Single assignment**  
   *Familia:* `despacho de runtime`  
@@ -175,7 +175,7 @@
   Binary / pattern / matching estructura el flujo donde scanner y parser consumen tokens, construyen estructura y conservan posición para explicar cada decisión, logrando un árbol o coincidencia estructurada que las siguientes fases pueden recorrer de forma segura.
 
 
-### 📑 Sección: Internals de BEAM (6 conceptos)
+### Seccion: Internals de BEAM (6 conceptos)
 
 - **BEAM bytecode**  
   *Familia:* `mapa de memoria`  
@@ -202,7 +202,7 @@
   Para Literal / and / constant / pools, el adaptador prepara operaciones, adquiere recursos y aplica restricciones antes de confirmar, manteniendo estado persistido con integridad y visibilidad coherentes para lectores concurrentes.
 
 
-### 📑 Sección: Protocolos entre procesos (7 conceptos)
+### Seccion: Protocolos entre procesos (7 conceptos)
 
 - **Process identifiers**  
   *Familia:* `tejido de eventos`  
@@ -233,7 +233,7 @@
   Protocol / versioning coordina la ejecución: la capa de transporte encuadra, valida y convierte la carga mientras administra conexiones parciales hasta obtener una respuesta o estructura interna completa que conserva correlación y estado del intercambio.
 
 
-### 📑 Sección: Servidores OTP avanzados (5 conceptos)
+### Seccion: Servidores OTP avanzados (5 conceptos)
 
 - **GenServer callbacks**  
   *Familia:* `propagación de eventos`  
@@ -256,7 +256,7 @@
   Process / hibernation estructura el flujo donde el scheduler intercala trabajo mientras locks, mensajes o atomics establecen el orden observable, logrando progreso concurrente con ownership y terminación comprobables para cada tarea.
 
 
-### 📑 Sección: Árboles de supervisión (7 conceptos)
+### Seccion: Árboles de supervisión (7 conceptos)
 
 - **One-for-one strategy**  
   *Familia:* `jerarquía y dependencias`  
@@ -287,7 +287,7 @@
   Automatic / shutdown coordina la ejecución: el proceso inicia, atiende, emite telemetría y responde a drenado o actualización coordinada hasta obtener servicio disponible con estado, versión y camino de rollback verificables.
 
 
-### 📑 Sección: Aplicaciones y releases (6 conceptos)
+### Seccion: Aplicaciones y releases (6 conceptos)
 
 - **Application resource files**  
   *Familia:* `mapa de memoria`  
@@ -314,7 +314,7 @@
   Para Release / handling / instructions, el grafo resuelve dependencias, compila, enlaza y adjunta procedencia a cada salida, manteniendo un artefacto reproducible, verificable y promovible entre entornos.
 
 
-### 📑 Sección: Sistemas distribuidos (8 conceptos)
+### Seccion: Sistemas distribuidos (8 conceptos)
 
 - **Node discovery**  
   *Familia:* `workflow y decisiones`  
@@ -349,7 +349,7 @@
   Al operar con Global / groups, la capa de transporte encuadra, valida y convierte la carga mientras administra conexiones parciales, produciendo una respuesta o estructura interna completa que conserva correlación y estado del intercambio.
 
 
-### 📑 Sección: Datos y persistencia (5 conceptos)
+### Seccion: Datos y persistencia (5 conceptos)
 
 - **ETS tables**  
   *Familia:* `análisis y emisión`  
@@ -372,7 +372,7 @@
   Event / sourcing / procesos estructura el flujo donde el runtime despacha handlers, actualiza modelo y compone el siguiente fotograma o respuesta perceptible, logrando interfaz sincronizada que comunica cambio, foco y acción disponible.
 
 
-### 📑 Sección: Pruebas de sistemas concurrentes (8 conceptos)
+### Seccion: Pruebas de sistemas concurrentes (8 conceptos)
 
 - **EUnit**  
   *Familia:* `espectro de verificación`  
@@ -407,7 +407,7 @@
   Al operar con Mailbox / invariant / properties, el scheduler intercala trabajo mientras locks, mensajes o atomics establecen el orden observable, produciendo progreso concurrente con ownership y terminación comprobables para cada tarea.
 
 
-### 📑 Sección: Observabilidad (5 conceptos)
+### Seccion: Observabilidad (5 conceptos)
 
 - **Logger metadata**  
   *Familia:* `evidencia y latencia`  
@@ -430,7 +430,7 @@
   Flame / graphs / BEAM estructura el flujo donde frontend, representación intermedia y runtime validan símbolos, optimizan rutas y enlazan dependencias, logrando un artefacto ejecutable con símbolos y comportamiento rastreables hasta la fuente.
 
 
-### 📑 Sección: Seguridad y operación (7 conceptos)
+### Seccion: Seguridad y operación (7 conceptos)
 
 - **Distribution cookies**  
   *Familia:* `espectro de verificación`  
@@ -464,4 +464,4 @@
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

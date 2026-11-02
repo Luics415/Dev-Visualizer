@@ -1,46 +1,46 @@
-# 📘 [AJS] AngularJS
+# AngularJS (AJS)
 
 > **Mantenimiento de aplicaciones 1.x, digest cycle y migración gradual.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `angularjs` |
-| **Grupo Arquitectónico** | [Diseño e interfaces](Grupo-Interfaces) |
+| **Grupo Arquitectonico** | [Diseño e interfaces](Grupo-Interfaces) |
 | **Ciclo de Vida** | `legado` |
 | **Tema Visual** | `angularjs` |
 | **Total de Conceptos** | **52 conceptos** |
-| **Capítulos / Secciones** | **9 secciones** |
+| **Capitulos / Secciones** | **9 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/angularjs)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/angularjs-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/angularjs)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/angularjs-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: AngularJS en acción
+## Estudio de Caso Practico: AngularJS en acción
 
 > **Caso integrado · Diagnóstico y frontera de migración:** Un panel heredado duplica peticiones y se congela con listas grandes. La investigación conecta lifecycle, watchers y listeners; después crea una frontera que una interfaz moderna puede reemplazar.  
 > El módulo deja de duplicar trabajo, reduce el digest, conserva pruebas y puede sustituirse ruta por ruta sin detener el producto.
 
-### Fases de Ejecución:
-1. **Reproducir el síntoma** (Navegar tres veces): `dashboard → detail → dashboard` → secuencia mínima. *Una ruta repetible permite contar trabajo y comparar la corrección.*
-2. **Perfilar el digest** (Tiempo y cantidad): `$rootScope.$$watchersCount` → costo localizado. *El perfil distingue render caro de red duplicada.*
-3. **Encontrar el listener** (Registro sin retirada): `$rootScope.$on('refresh', load)` → fuga explicada. *El listener global sobrevive al controller si no se llama a su función de retirada.*
-4. **Cerrar el lifecycle** (Destruir libera recursos): `$scope.$on('$destroy', deregister)` → duplicación eliminada. *Cada adquisición tiene una liberación ligada al lifecycle real.*
-5. **Reducir watchers** (Datos estables una vez): `::row.id + pagination` → digest acotado. *La mejora reduce observadores sin ocultar cambios que sí importan.*
-6. **Encapsular componente** (Bindings explícitos): `<legacy-orders items=... on-open=...>` → frontera creada. *La frontera elimina conocimiento del parent y prepara el reemplazo.*
-7. **Proteger con contrato** (Tests antes del cambio): `given orders → render → open(id)` → conducta congelada. *Los tests describen el comportamiento que el módulo nuevo debe conservar.*
-8. **Migrar una ruta** (Strangler verificable): `/orders/new → modern shell` → retiro gradual. *El sistema migra en unidades observables en vez de apostar a una reescritura total.*
+### Fases de Ejecucion:
+1. **Reproducir el síntoma** (Navegar tres veces): `dashboard → detail → dashboard` -> secuencia mínima. *Una ruta repetible permite contar trabajo y comparar la corrección.*
+2. **Perfilar el digest** (Tiempo y cantidad): `$rootScope.$$watchersCount` -> costo localizado. *El perfil distingue render caro de red duplicada.*
+3. **Encontrar el listener** (Registro sin retirada): `$rootScope.$on('refresh', load)` -> fuga explicada. *El listener global sobrevive al controller si no se llama a su función de retirada.*
+4. **Cerrar el lifecycle** (Destruir libera recursos): `$scope.$on('$destroy', deregister)` -> duplicación eliminada. *Cada adquisición tiene una liberación ligada al lifecycle real.*
+5. **Reducir watchers** (Datos estables una vez): `::row.id + pagination` -> digest acotado. *La mejora reduce observadores sin ocultar cambios que sí importan.*
+6. **Encapsular componente** (Bindings explícitos): `<legacy-orders items=... on-open=...>` -> frontera creada. *La frontera elimina conocimiento del parent y prepara el reemplazo.*
+7. **Proteger con contrato** (Tests antes del cambio): `given orders → render → open(id)` -> conducta congelada. *Los tests describen el comportamiento que el módulo nuevo debe conservar.*
+8. **Migrar una ruta** (Strangler verificable): `/orders/new → modern shell` -> retiro gradual. *El sistema migra en unidades observables en vez de apostar a una reescritura total.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (52)
+## Catalogo Sistematico de Conceptos (52)
 
-### 📑 Sección: Arquitectura 1.x (6 conceptos)
+### Seccion: Arquitectura 1.x (6 conceptos)
 
 - **Modules**  
   *Familia:* `despacho de runtime`  
@@ -67,7 +67,7 @@
   Construye la raíz de inyección y asocia $rootScope como ancestro común de toda la aplicación.
 
 
-### 📑 Sección: Templates y digest (6 conceptos)
+### Seccion: Templates y digest (6 conceptos)
 
 - **Scopes y prototipos**  
   *Familia:* `despacho de runtime`  
@@ -94,7 +94,7 @@
   Comprueba mutaciones superficiales en colecciones sin clonar estructuras anidadas.
 
 
-### 📑 Sección: Directivas y componentes (6 conceptos)
+### Seccion: Directivas y componentes (6 conceptos)
 
 - **Compile y link**  
   *Familia:* `despacho de runtime`  
@@ -121,7 +121,7 @@
   Distingue decoradores de comportamiento en atributos de componentes estructurales en elementos.
 
 
-### 📑 Sección: Datos y navegación (6 conceptos)
+### Seccion: Datos y navegación (6 conceptos)
 
 - **Services y factories**  
   *Familia:* `despacho de runtime`  
@@ -148,7 +148,7 @@
   Modela entidades remotas con métodos CRUD estandarizados sobre el servicio $http.
 
 
-### 📑 Sección: Calidad y seguridad (6 conceptos)
+### Seccion: Calidad y seguridad (6 conceptos)
 
 - **Unit tests con injector**  
   *Familia:* `despacho de runtime`  
@@ -175,7 +175,7 @@
   Intercepta llamadas HTTP simulando respuestas exitosas o errores de red en tests unitarios.
 
 
-### 📑 Sección: Migración gradual (6 conceptos)
+### Seccion: Migración gradual (6 conceptos)
 
 - **Mapa de dependencias**  
   *Familia:* `despacho de runtime`  
@@ -202,7 +202,7 @@
   Introduce interfaces y tipos graduales sobre controladores heredados antes de refactorizar.
 
 
-### 📑 Sección: Rendimiento y optimización del digest (6 conceptos)
+### Seccion: Rendimiento y optimización del digest (6 conceptos)
 
 - **Debounce en ng-model-options**  
   *Familia:* `planificación de trabajo`  
@@ -229,7 +229,7 @@
   Deriva cálculos matemáticos o análisis de cadenas fuera del hilo principal de UI.
 
 
-### 📑 Sección: Patrones de diseño heredados y anti-patrones (6 conceptos)
+### Seccion: Patrones de diseño heredados y anti-patrones (6 conceptos)
 
 - **Service vs Factory vs Provider**  
   *Familia:* `tejido de eventos`  
@@ -256,7 +256,7 @@
   Gestiona scopes hermanos y clones de transclusión sin perder bindings del contexto original.
 
 
-### 📑 Sección: Coexistencia y ngUpgrade (4 conceptos)
+### Seccion: Coexistencia y ngUpgrade (4 conceptos)
 
 - **UpgradeModule y bootstrapping híbrido**  
   *Familia:* `configuración declarativa`  
@@ -276,11 +276,11 @@
 
 
 
-## 📖 Recursos de Estudio y Referencias Oficiales
+## Referencias Bibliograficas y Documentacion Oficial
 - **[Official AngularJS Tutorial](https://docs.angularjs.org/tutorial)** (`tutorial` | Nivel: `beginner`): Recurso histórico; el soporte oficial de AngularJS terminó en enero de 2022.
 - **[AngularJS Conceptual Overview](https://docs.angularjs.org/guide/concepts)** (`official-docs` | Nivel: `intermediate`): Documentación congelada de la rama 1.x.
 - **[AngularJS HTML Compiler](https://docs.angularjs.org/guide/compiler)** (`reference` | Nivel: `advanced`): Documentación congelada de la rama 1.x.
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Diseño e interfaces](Grupo-Interfaces) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Diseño e interfaces](Grupo-Interfaces) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

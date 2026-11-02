@@ -1,22 +1,35 @@
-# 🏛️ Grupo: Plataformas y servidor
+# Grupo: Plataformas y servidor
 
 > **Runtimes, frameworks, contratos y automatización**  
 > **Total de Colecciones:** 10  
-> **Total de Conceptos Técnicos:** 1004
+> **Total de Conceptos Tecnicos:** 1004
 
 ---
 
-## 📋 Colecciones Integradas
+## Flujo Arquitectonico y Modelo Conceptual
+
+```mermaid
+flowchart TD
+    ClientReq["Peticion HTTP / Cliente"] --> Proxy["Reverse Proxy / NGINX (SSL, Cache, Rate Limit)"]
+    Proxy --> Server["Runtime del Servidor (Node.js / Python / .NET)"]
+    Server --> EventLoop["Event Loop / Worker Pool"]
+    EventLoop --> Services["Capa de Negocio y Microservicios"]
+    Services --> DB["Persistencia y Servicios Externos"]
+```
+
+---
+
+## Colecciones Integradas
 
 ### [APIs](Coleccion-apis) (`API`)
 
 - **Resumen:** REST, GraphQL, gRPC, eventos, tiempo real, contratos y seguridad.
 - **Ciclo de Vida:** `actual`
-- **Conceptos:** 48 conceptos distribuidos en 8 capítulos.
+- **Conceptos:** 48 conceptos distribuidos en 8 capitulos.
 - **Enlaces Directos:**
-  - 📖 [Explorar Atlas Teórico](https://luics415.github.io/Dev-Visualizer/apis)
-  - ⚡ [Ver Caso Práctico en Acción](https://luics415.github.io/Dev-Visualizer/apis-en-accion)
-  - 📄 [Ver Página Wiki Detallada](Coleccion-apis)
+  - [Explorar Atlas Teorico](https://luics415.github.io/Dev-Visualizer/apis)
+  - [Ver Caso Practico en Accion](https://luics415.github.io/Dev-Visualizer/apis-en-accion)
+  - [Ver Pagina Wiki Detallada](Coleccion-apis)
 
 ---
 
@@ -24,11 +37,11 @@
 
 - **Resumen:** Arquitectura, seguridad, persistencia, mensajería y confiabilidad.
 - **Ciclo de Vida:** `actual`
-- **Conceptos:** 96 conceptos distribuidos en 9 capítulos.
+- **Conceptos:** 96 conceptos distribuidos en 9 capitulos.
 - **Enlaces Directos:**
-  - 📖 [Explorar Atlas Teórico](https://luics415.github.io/Dev-Visualizer/backend)
-  - ⚡ [Ver Caso Práctico en Acción](https://luics415.github.io/Dev-Visualizer/backend-en-accion)
-  - 📄 [Ver Página Wiki Detallada](Coleccion-backend)
+  - [Explorar Atlas Teorico](https://luics415.github.io/Dev-Visualizer/backend)
+  - [Ver Caso Practico en Accion](https://luics415.github.io/Dev-Visualizer/backend-en-accion)
+  - [Ver Pagina Wiki Detallada](Coleccion-backend)
 
 ---
 
@@ -36,11 +49,11 @@
 
 - **Resumen:** Runtime, event loop, streams, workers, módulos y operación.
 - **Ciclo de Vida:** `actual`
-- **Conceptos:** 65 conceptos distribuidos en 11 capítulos.
+- **Conceptos:** 65 conceptos distribuidos en 11 capitulos.
 - **Enlaces Directos:**
-  - 📖 [Explorar Atlas Teórico](https://luics415.github.io/Dev-Visualizer/nodejs)
-  - ⚡ [Ver Caso Práctico en Acción](https://luics415.github.io/Dev-Visualizer/nodejs-en-accion)
-  - 📄 [Ver Página Wiki Detallada](Coleccion-nodejs)
+  - [Explorar Atlas Teorico](https://luics415.github.io/Dev-Visualizer/nodejs)
+  - [Ver Caso Practico en Accion](https://luics415.github.io/Dev-Visualizer/nodejs-en-accion)
+  - [Ver Pagina Wiki Detallada](Coleccion-nodejs)
 
 ---
 
@@ -48,11 +61,11 @@
 
 - **Resumen:** Contenedor, HTTP, Eloquent, políticas, colas, eventos y pruebas.
 - **Ciclo de Vida:** `actual`
-- **Conceptos:** 65 conceptos distribuidos en 11 capítulos.
+- **Conceptos:** 65 conceptos distribuidos en 11 capitulos.
 - **Enlaces Directos:**
-  - 📖 [Explorar Atlas Teórico](https://luics415.github.io/Dev-Visualizer/laravel)
-  - ⚡ [Ver Caso Práctico en Acción](https://luics415.github.io/Dev-Visualizer/laravel-en-accion)
-  - 📄 [Ver Página Wiki Detallada](Coleccion-laravel)
+  - [Explorar Atlas Teorico](https://luics415.github.io/Dev-Visualizer/laravel)
+  - [Ver Caso Practico en Accion](https://luics415.github.io/Dev-Visualizer/laravel-en-accion)
+  - [Ver Pagina Wiki Detallada](Coleccion-laravel)
 
 ---
 
@@ -60,11 +73,11 @@
 
 - **Resumen:** Workflows, credenciales, datos, reintentos, subflujos y operación.
 - **Ciclo de Vida:** `actual`
-- **Conceptos:** 55 conceptos distribuidos en 11 capítulos.
+- **Conceptos:** 55 conceptos distribuidos en 11 capitulos.
 - **Enlaces Directos:**
-  - 📖 [Explorar Atlas Teórico](https://luics415.github.io/Dev-Visualizer/n8n)
-  - ⚡ [Ver Caso Práctico en Acción](https://luics415.github.io/Dev-Visualizer/n8n-en-accion)
-  - 📄 [Ver Página Wiki Detallada](Coleccion-n8n)
+  - [Explorar Atlas Teorico](https://luics415.github.io/Dev-Visualizer/n8n)
+  - [Ver Caso Practico en Accion](https://luics415.github.io/Dev-Visualizer/n8n-en-accion)
+  - [Ver Pagina Wiki Detallada](Coleccion-n8n)
 
 ---
 
@@ -72,11 +85,11 @@
 
 - **Resumen:** SDK, CLR, IL, JIT/AOT, GC, bibliotecas, hosting y diagnóstico.
 - **Ciclo de Vida:** `actual`
-- **Conceptos:** 52 conceptos distribuidos en 8 capítulos.
+- **Conceptos:** 52 conceptos distribuidos en 8 capitulos.
 - **Enlaces Directos:**
-  - 📖 [Explorar Atlas Teórico](https://luics415.github.io/Dev-Visualizer/dotnet)
-  - ⚡ [Ver Caso Práctico en Acción](https://luics415.github.io/Dev-Visualizer/dotnet-en-accion)
-  - 📄 [Ver Página Wiki Detallada](Coleccion-dotnet)
+  - [Explorar Atlas Teorico](https://luics415.github.io/Dev-Visualizer/dotnet)
+  - [Ver Caso Practico en Accion](https://luics415.github.io/Dev-Visualizer/dotnet-en-accion)
+  - [Ver Pagina Wiki Detallada](Coleccion-dotnet)
 
 ---
 
@@ -84,11 +97,11 @@
 
 - **Resumen:** Tasks, modelos, grafos, visión, audio, texto, tiempo real, edge y operación responsable.
 - **Ciclo de Vida:** `actual`
-- **Conceptos:** 120 conceptos distribuidos en 24 capítulos.
+- **Conceptos:** 120 conceptos distribuidos en 24 capitulos.
 - **Enlaces Directos:**
-  - 📖 [Explorar Atlas Teórico](https://luics415.github.io/Dev-Visualizer/mediapipe)
-  - ⚡ [Ver Caso Práctico en Acción](https://luics415.github.io/Dev-Visualizer/mediapipe-en-accion)
-  - 📄 [Ver Página Wiki Detallada](Coleccion-mediapipe)
+  - [Explorar Atlas Teorico](https://luics415.github.io/Dev-Visualizer/mediapipe)
+  - [Ver Caso Practico en Accion](https://luics415.github.io/Dev-Visualizer/mediapipe-en-accion)
+  - [Ver Pagina Wiki Detallada](Coleccion-mediapipe)
 
 ---
 
@@ -96,11 +109,11 @@
 
 - **Resumen:** Auth, datos, Storage, Functions, Hosting, FCM y Rules.
 - **Ciclo de Vida:** `actual`
-- **Conceptos:** 250 conceptos distribuidos en 12 capítulos.
+- **Conceptos:** 250 conceptos distribuidos en 12 capitulos.
 - **Enlaces Directos:**
-  - 📖 [Explorar Atlas Teórico](https://luics415.github.io/Dev-Visualizer/firebase)
-  - ⚡ [Ver Caso Práctico en Acción](https://luics415.github.io/Dev-Visualizer/firebase-en-accion)
-  - 📄 [Ver Página Wiki Detallada](Coleccion-firebase)
+  - [Explorar Atlas Teorico](https://luics415.github.io/Dev-Visualizer/firebase)
+  - [Ver Caso Practico en Accion](https://luics415.github.io/Dev-Visualizer/firebase-en-accion)
+  - [Ver Pagina Wiki Detallada](Coleccion-firebase)
 
 ---
 
@@ -108,11 +121,11 @@
 
 - **Resumen:** Componentes, lifecycle, Compose, almacenamiento, permisos, trabajo y publicación.
 - **Ciclo de Vida:** `actual`
-- **Conceptos:** 130 conceptos distribuidos en 20 capítulos.
+- **Conceptos:** 130 conceptos distribuidos en 20 capitulos.
 - **Enlaces Directos:**
-  - 📖 [Explorar Atlas Teórico](https://luics415.github.io/Dev-Visualizer/android)
-  - ⚡ [Ver Caso Práctico en Acción](https://luics415.github.io/Dev-Visualizer/android-en-accion)
-  - 📄 [Ver Página Wiki Detallada](Coleccion-android)
+  - [Explorar Atlas Teorico](https://luics415.github.io/Dev-Visualizer/android)
+  - [Ver Caso Practico en Accion](https://luics415.github.io/Dev-Visualizer/android-en-accion)
+  - [Ver Pagina Wiki Detallada](Coleccion-android)
 
 ---
 
@@ -120,12 +133,12 @@
 
 - **Resumen:** Proyecto, HTTP, ORM, formularios, seguridad, tareas, pruebas y despliegue.
 - **Ciclo de Vida:** `actual`
-- **Conceptos:** 123 conceptos distribuidos en 19 capítulos.
+- **Conceptos:** 123 conceptos distribuidos en 19 capitulos.
 - **Enlaces Directos:**
-  - 📖 [Explorar Atlas Teórico](https://luics415.github.io/Dev-Visualizer/django)
-  - ⚡ [Ver Caso Práctico en Acción](https://luics415.github.io/Dev-Visualizer/django-en-accion)
-  - 📄 [Ver Página Wiki Detallada](Coleccion-django)
+  - [Explorar Atlas Teorico](https://luics415.github.io/Dev-Visualizer/django)
+  - [Ver Caso Practico en Accion](https://luics415.github.io/Dev-Visualizer/django-en-accion)
+  - [Ver Pagina Wiki Detallada](Coleccion-django)
 
 ---
 
-[← Volver al Inicio](Home) | [Ir al Índice Maestro de Conceptos →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ir al Indice Maestro de Conceptos ->](Indice-Maestro-7410-Conceptos)

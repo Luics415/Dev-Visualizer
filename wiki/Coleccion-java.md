@@ -1,43 +1,43 @@
-# 📘 [Java] Java
+# Java (Java)
 
 > **JVM, tipos, objetos, colecciones, concurrencia, GC, tooling y producción.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `java` |
-| **Grupo Arquitectónico** | [Lenguajes](Grupo-Languages) |
+| **Grupo Arquitectonico** | [Lenguajes](Grupo-Languages) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `objective-c` |
 | **Total de Conceptos** | **115 conceptos** |
-| **Capítulos / Secciones** | **20 secciones** |
+| **Capitulos / Secciones** | **20 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/java)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/java-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/java)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/java-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: Procesar pedidos dentro de la JVM
+## Estudio de Caso Practico: Procesar pedidos dentro de la JVM
 
 > **Caso integrado de Java:** Un servicio valida y procesa órdenes con un executor; una cola ilimitada provoca presión de memoria y se recupera con capacidad, rechazo y métricas.  
 > El servicio final relaciona cada pedido con thread, transacción, latencia, GC y resultado de negocio.
 
-### Fases de Ejecución:
-1. **Definir dominio** (Procesar pedidos dentro de la JVM: etapa 1 de 5): `record Order(String id, List<Item> items) {}` → Entrada modelada. *La etapa conserva un contrato explícito para que el siguiente paso de Java no dependa de supuestos ocultos.*
-2. **Ejecutar trabajo** (Procesar pedidos dentro de la JVM: etapa 2 de 5): `executor.submit(() -> process(order));` → Procesamiento concurrente. *La etapa conserva un contrato explícito para que el siguiente paso de Java no dependa de supuestos ocultos.*
-3. **Detectar cola infinita** (Procesar pedidos dentro de la JVM: etapa 3 de 5): `newFixedThreadPool(8)` → Presión de memoria confirmada. *El caso hace visible el fallo de Java; no continúa como si la evidencia fuera válida.*
-4. **Aplicar backpressure** (Procesar pedidos dentro de la JVM: etapa 4 de 5): `new ThreadPoolExecutor(8, 8, 0, MILLISECONDS, new ArrayBlockingQueue<>(200))` → Servicio estabilizado. *La recuperación de Java corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
-5. **Observar y cerrar** (Procesar pedidos dentro de la JVM: etapa 5 de 5): `executor.shutdown(); executor.awaitTermination(30, SECONDS);` → Cierre verificable. *La etapa conserva un contrato explícito para que el siguiente paso de Java no dependa de supuestos ocultos.*
+### Fases de Ejecucion:
+1. **Definir dominio** (Procesar pedidos dentro de la JVM: etapa 1 de 5): `record Order(String id, List<Item> items) {}` -> Entrada modelada. *La etapa conserva un contrato explícito para que el siguiente paso de Java no dependa de supuestos ocultos.*
+2. **Ejecutar trabajo** (Procesar pedidos dentro de la JVM: etapa 2 de 5): `executor.submit(() -> process(order));` -> Procesamiento concurrente. *La etapa conserva un contrato explícito para que el siguiente paso de Java no dependa de supuestos ocultos.*
+3. **Detectar cola infinita** (Procesar pedidos dentro de la JVM: etapa 3 de 5): `newFixedThreadPool(8)` -> Presión de memoria confirmada. *El caso hace visible el fallo de Java; no continúa como si la evidencia fuera válida.*
+4. **Aplicar backpressure** (Procesar pedidos dentro de la JVM: etapa 4 de 5): `new ThreadPoolExecutor(8, 8, 0, MILLISECONDS, new ArrayBlockingQueue<>(200))` -> Servicio estabilizado. *La recuperación de Java corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
+5. **Observar y cerrar** (Procesar pedidos dentro de la JVM: etapa 5 de 5): `executor.shutdown(); executor.awaitTermination(30, SECONDS);` -> Cierre verificable. *La etapa conserva un contrato explícito para que el siguiente paso de Java no dependa de supuestos ocultos.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (115)
+## Catalogo Sistematico de Conceptos (115)
 
-### 📑 Sección: Java esencial (5 conceptos)
+### Seccion: Java esencial (5 conceptos)
 
 - **Tipos primitivos y referencias**  
   *Familia:* `análisis y emisión`  
@@ -60,7 +60,7 @@
   Para entender Paquetes y módulos, se delimita fuentes versionadas, dependencias fijadas y configuración declarativa. La operación resuelve, construye y empaqueta el artefacto de forma repetible hasta producir una unidad identificable que puede verificarse antes de promoverse.
 
 
-### 📑 Sección: JVM (5 conceptos)
+### Seccion: JVM (5 conceptos)
 
 - **Bytecode**  
   *Familia:* `capas internas`  
@@ -83,7 +83,7 @@
   El recorrido de Heap y garbage collection toma valores con representación, dirección y tiempo de vida definidos. Posteriormente reserva, enlaza y libera almacenamiento siguiendo el contrato del runtime para validar estado accesible sin referencias colgantes ni corrupción.
 
 
-### 📑 Sección: Biblioteca y diseño (5 conceptos)
+### Seccion: Biblioteca y diseño (5 conceptos)
 
 - **Collections**  
   *Familia:* `despacho de runtime`  
@@ -106,7 +106,7 @@
   El recorrido de Fecha y tiempo toma un ejemplo mínimo, sus precondiciones y el estado inicial. Posteriormente aplica el mecanismo paso a paso haciendo visibles sus invariantes para validar un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Concurrencia y diagnóstico (5 conceptos)
+### Seccion: Concurrencia y diagnóstico (5 conceptos)
 
 - **Threads**  
   *Familia:* `planificación de trabajo`  
@@ -129,7 +129,7 @@
   Thread dumps estructura tareas con dependencias, recursos compartidos y una señal de cancelación en el sistema: ordena trabajo y sincronización sin ocultar intercalados posibles, garantizando progreso concurrente con ownership y terminación observables.
 
 
-### 📑 Sección: Producción (5 conceptos)
+### Seccion: Producción (5 conceptos)
 
 - **Testing**  
   *Familia:* `espectro de verificación`  
@@ -152,7 +152,7 @@
   Actualización de LTS estructura un ejemplo mínimo, sus precondiciones y el estado inicial en el sistema: aplica el mecanismo paso a paso haciendo visibles sus invariantes, garantizando un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Sistema de tipos (5 conceptos)
+### Seccion: Sistema de tipos (5 conceptos)
 
 - **Conversión primitiva**  
   *Familia:* `análisis y emisión`  
@@ -175,7 +175,7 @@
   Pattern / matching / exhaustivo estructura el flujo donde scanner y parser consumen tokens, construyen estructura y conservan posición para explicar cada decisión, logrando un árbol o coincidencia estructurada que las siguientes fases pueden recorrer de forma segura.
 
 
-### 📑 Sección: Diseño de objetos (6 conceptos)
+### Seccion: Diseño de objetos (6 conceptos)
 
 - **Identidad y value objects**  
   *Familia:* `configuración declarativa`  
@@ -202,7 +202,7 @@
   Para Defensive / copying, el runtime recorre tablas, ancestros o adaptadores hasta seleccionar una implementación compatible, manteniendo el método correcto ejecutado con estado encapsulado y una respuesta asociada al contrato.
 
 
-### 📑 Sección: Genéricos (5 conceptos)
+### Seccion: Genéricos (5 conceptos)
 
 - **Type erasure**  
   *Familia:* `validación y decisión`  
@@ -225,7 +225,7 @@
   Heap / pollution estructura el flujo donde el runtime o compilador reserva, comparte, mueve y libera almacenamiento respetando aliasing y alineación, logrando memoria válida durante toda la operación y recuperada al terminar su último uso.
 
 
-### 📑 Sección: Metadatos y reflexión (6 conceptos)
+### Seccion: Metadatos y reflexión (6 conceptos)
 
 - **Annotations**  
   *Familia:* `mapa de memoria`  
@@ -252,7 +252,7 @@
   Para Hidden / classes, el runtime recorre tablas, ancestros o adaptadores hasta seleccionar una implementación compatible, manteniendo el método correcto ejecutado con estado encapsulado y una respuesta asociada al contrato.
 
 
-### 📑 Sección: Class files y carga (7 conceptos)
+### Seccion: Class files y carga (7 conceptos)
 
 - **Constant pool**  
   *Familia:* `capas internas`  
@@ -283,7 +283,7 @@
   Split / packages coordina la ejecución: el grafo resuelve dependencias, compila, enlaza y adjunta procedencia a cada salida hasta obtener un artefacto reproducible, verificable y promovible entre entornos.
 
 
-### 📑 Sección: Memoria de la JVM (6 conceptos)
+### Seccion: Memoria de la JVM (6 conceptos)
 
 - **Object layout**  
   *Familia:* `mapa de memoria`  
@@ -310,7 +310,7 @@
   Para Reference / objects / and / reachability, el runtime o compilador reserva, comparte, mueve y libera almacenamiento respetando aliasing y alineación, manteniendo memoria válida durante toda la operación y recuperada al terminar su último uso.
 
 
-### 📑 Sección: Modelo de memoria concurrente (8 conceptos)
+### Seccion: Modelo de memoria concurrente (8 conceptos)
 
 - **Happens-before**  
   *Familia:* `validación y decisión`  
@@ -345,7 +345,7 @@
   Al operar con Var / Handle / access / modes, el runtime o compilador reserva, comparte, mueve y libera almacenamiento respetando aliasing y alineación, produciendo memoria válida durante toda la operación y recuperada al terminar su último uso.
 
 
-### 📑 Sección: Concurrencia moderna (6 conceptos)
+### Seccion: Concurrencia moderna (6 conceptos)
 
 - **Virtual threads**  
   *Familia:* `planificación de trabajo`  
@@ -372,7 +372,7 @@
   Para Scoped / values, el lenguaje resuelve expresiones y elige una ruta manteniendo alcance y manejo de fallo explícitos, manteniendo un valor, transición o error que el siguiente paso puede distinguir sin inspeccionar estado oculto.
 
 
-### 📑 Sección: Procesamiento de colecciones (5 conceptos)
+### Seccion: Procesamiento de colecciones (5 conceptos)
 
 - **Spliterators**  
   *Familia:* `análisis y emisión`  
@@ -395,7 +395,7 @@
   Optional / sin / abuso estructura el flujo donde el lenguaje resuelve expresiones y elige una ruta manteniendo alcance y manejo de fallo explícitos, logrando un valor, transición o error que el siguiente paso puede distinguir sin inspeccionar estado oculto.
 
 
-### 📑 Sección: I/O y networking (7 conceptos)
+### Seccion: I/O y networking (7 conceptos)
 
 - **Byte y character streams**  
   *Familia:* `ida y vuelta`  
@@ -426,7 +426,7 @@
   ALPN / protocol / negotiation coordina la ejecución: la capa de transporte encuadra, valida y convierte la carga mientras administra conexiones parciales hasta obtener una respuesta o estructura interna completa que conserva correlación y estado del intercambio.
 
 
-### 📑 Sección: Persistencia (5 conceptos)
+### Seccion: Persistencia (5 conceptos)
 
 - **JDBC**  
   *Familia:* `consulta e índice`  
@@ -449,7 +449,7 @@
   Query / plan / awareness estructura el flujo donde el adaptador prepara operaciones, adquiere recursos y aplica restricciones antes de confirmar, logrando estado persistido con integridad y visibilidad coherentes para lectores concurrentes.
 
 
-### 📑 Sección: Construcción modular (5 conceptos)
+### Seccion: Construcción modular (5 conceptos)
 
 - **JPMS descriptors**  
   *Familia:* `matriz de señales`  
@@ -472,7 +472,7 @@
   jlink / images estructura el flujo donde el grafo resuelve dependencias, compila, enlaza y adjunta procedencia a cada salida, logrando un artefacto reproducible, verificable y promovible entre entornos.
 
 
-### 📑 Sección: Pruebas y calidad (5 conceptos)
+### Seccion: Pruebas y calidad (5 conceptos)
 
 - **JUnit lifecycle**  
   *Familia:* `secuencia operativa`  
@@ -495,7 +495,7 @@
   Mutation / testing estructura el flujo donde la herramienta ejecuta, perturba o inspecciona el mecanismo y conserva el contraejemplo mínimo, logrando evidencia reproducible que distingue regresión, ruido y limitación conocida.
 
 
-### 📑 Sección: Seguridad (6 conceptos)
+### Seccion: Seguridad (6 conceptos)
 
 - **Deserialization filters**  
   *Familia:* `validación y decisión`  
@@ -522,7 +522,7 @@
   Para JAR / signature / verification, el control autentica, autoriza, normaliza y registra evidencia sin revelar secretos, manteniendo solo la capacidad permitida ejecutada con una decisión que puede auditarse.
 
 
-### 📑 Sección: Operación y rendimiento (8 conceptos)
+### Seccion: Operación y rendimiento (8 conceptos)
 
 - **JIT warmup**  
   *Familia:* `despacho de runtime`  
@@ -560,4 +560,4 @@
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

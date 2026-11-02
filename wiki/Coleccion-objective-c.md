@@ -1,46 +1,46 @@
-# 📘 [Obj-C] Objective-C
+# Objective-C (Obj-C)
 
 > **Mensajería, runtime, ARC, Foundation e interoperabilidad con Swift.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `objective-c` |
-| **Grupo Arquitectónico** | [Lenguajes](Grupo-Languages) |
+| **Grupo Arquitectonico** | [Lenguajes](Grupo-Languages) |
 | **Ciclo de Vida** | `legado` |
 | **Tema Visual** | `objective-c` |
 | **Total de Conceptos** | **48 conceptos** |
-| **Capítulos / Secciones** | **8 secciones** |
+| **Capitulos / Secciones** | **8 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/objective-c)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/objective-c-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/objective-c)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/objective-c-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: Objective-C en acción
+## Estudio de Caso Practico: Objective-C en acción
 
 > **Caso integrado · Módulo iOS legado con frontera Swift:** Un módulo de imágenes pierde memoria y duplica callbacks. La reparación hace visible dispatch, ARC, GCD y una interfaz estable para migrar sin reescribir todo.  
 > El módulo heredado queda estable, medible y encapsulado detrás de un protocolo que Swift puede consumir.
 
-### Fases de Ejecución:
-1. **Reproducir la fuga** (Una secuencia concreta): `open → background → resume → close` → síntoma acotado. *Instruments y una secuencia repetible separan la fuga de variaciones normales.*
-2. **Inspeccionar ownership** (Graph de referencias): `strong self → operation → block → self` → ciclo identificado. *ARC administra conteos, pero un ciclo fuerte sigue siendo alcanzable.*
-3. **Romper el ciclo** (Weak al capturar, strong al usar): `__weak typeof(self) weakSelf = self` → lifetime correcto. *La referencia débil expresa que la operación no debe mantener viva a la pantalla.*
-4. **Ordenar callbacks** (Una cola serial protege estado): `dispatch_async(stateQueue, ^{ ... })` → estado coordinado. *La cola expresa exclusión y ubicación de trabajo sin bloquear el hilo principal.*
-5. **Sanear el observer** (Registrar y retirar simétricamente): `addObserver → token → removeObserver` → ciclo de vida cerrado. *La suscripción tiene un recurso identificable y una retirada garantizada.*
-6. **Definir protocolo** (Swift ve una superficie pequeña): `@protocol ImageLoading` → frontera estable. *El protocolo describe capacidad sin exportar detalles del runtime.*
-7. **Probar el puente** (Objetos de ambos lenguajes cooperan): `Swift test → Obj-C fake` → interop verificada. *La prueba cruza la frontera real y captura convenciones de nombres y nullability.*
-8. **Migrar por módulo** (Sin gran reescritura): `Obj-C implementation → Swift implementation` → legado encapsulado. *Una frontera clara permite reemplazar implementación sin cambiar consumidores.*
+### Fases de Ejecucion:
+1. **Reproducir la fuga** (Una secuencia concreta): `open → background → resume → close` -> síntoma acotado. *Instruments y una secuencia repetible separan la fuga de variaciones normales.*
+2. **Inspeccionar ownership** (Graph de referencias): `strong self → operation → block → self` -> ciclo identificado. *ARC administra conteos, pero un ciclo fuerte sigue siendo alcanzable.*
+3. **Romper el ciclo** (Weak al capturar, strong al usar): `__weak typeof(self) weakSelf = self` -> lifetime correcto. *La referencia débil expresa que la operación no debe mantener viva a la pantalla.*
+4. **Ordenar callbacks** (Una cola serial protege estado): `dispatch_async(stateQueue, ^{ ... })` -> estado coordinado. *La cola expresa exclusión y ubicación de trabajo sin bloquear el hilo principal.*
+5. **Sanear el observer** (Registrar y retirar simétricamente): `addObserver → token → removeObserver` -> ciclo de vida cerrado. *La suscripción tiene un recurso identificable y una retirada garantizada.*
+6. **Definir protocolo** (Swift ve una superficie pequeña): `@protocol ImageLoading` -> frontera estable. *El protocolo describe capacidad sin exportar detalles del runtime.*
+7. **Probar el puente** (Objetos de ambos lenguajes cooperan): `Swift test → Obj-C fake` -> interop verificada. *La prueba cruza la frontera real y captura convenciones de nombres y nullability.*
+8. **Migrar por módulo** (Sin gran reescritura): `Obj-C implementation → Swift implementation` -> legado encapsulado. *Una frontera clara permite reemplazar implementación sin cambiar consumidores.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (48)
+## Catalogo Sistematico de Conceptos (48)
 
-### 📑 Sección: Lenguaje, objetos e isa (6 conceptos)
+### Seccion: Lenguaje, objetos e isa (6 conceptos)
 
 - **Clases, objetos e isa**  
   *Familia:* `análisis y emisión`  
@@ -67,7 +67,7 @@
   Usa sintaxis concisa para arrays, diccionarios y números encapsulados.
 
 
-### 📑 Sección: Despacho dinámico y objc_msgSend (6 conceptos)
+### Seccion: Despacho dinámico y objc_msgSend (6 conceptos)
 
 - **Función objc_msgSend**  
   *Familia:* `mapa de memoria`  
@@ -94,7 +94,7 @@
   Comprende la tabla de métodos, variables y protocolos de cada clase.
 
 
-### 📑 Sección: Introspección, selectors y message forwarding (6 conceptos)
+### Seccion: Introspección, selectors y message forwarding (6 conceptos)
 
 - **Introspección con isKindOfClass y respondsToSelector**  
   *Familia:* `telar relacional`  
@@ -121,7 +121,7 @@
   Crea objetos sustitutos para balanceo, logging y arquitectura distribuida.
 
 
-### 📑 Sección: Gestión de memoria y semántica ARC (6 conceptos)
+### Seccion: Gestión de memoria y semántica ARC (6 conceptos)
 
 - **Strong, weak y unsafe references**  
   *Familia:* `mapa de memoria`  
@@ -148,7 +148,7 @@
   Desuscribe notificaciones y cierra handles sin llamar explícitamente a retain o release.
 
 
-### 📑 Sección: Composición Cocoa, categorías y protocolos (6 conceptos)
+### Seccion: Composición Cocoa, categorías y protocolos (6 conceptos)
 
 - **Protocols y métodos requeridos u opcionales**  
   *Familia:* `flujo de transformación`  
@@ -175,7 +175,7 @@
   Asocia estado arbitrario a instancias existentes usando claves de runtime.
 
 
-### 📑 Sección: Grand Central Dispatch, colas y asincronía (6 conceptos)
+### Seccion: Grand Central Dispatch, colas y asincronía (6 conceptos)
 
 - **Colas seriales y concurrentes en GCD**  
   *Familia:* `cola y consumidor`  
@@ -202,7 +202,7 @@
   Modela dependencias, prioridades y cancelación de tareas complejas.
 
 
-### 📑 Sección: Fronteras seguras con Swift y modernización (6 conceptos)
+### Seccion: Fronteras seguras con Swift y modernización (6 conceptos)
 
 - **Nullability annotations (_Nonnull, _Nullable)**  
   *Familia:* `mapa de memoria`  
@@ -229,7 +229,7 @@
   Permite reemplazar implementaciones antiguas sin tocar código consumidor.
 
 
-### 📑 Sección: Diagnóstico, LLDB y profiling en Instruments (6 conceptos)
+### Seccion: Diagnóstico, LLDB y profiling en Instruments (6 conceptos)
 
 - **Depuración con LLDB y comandos po**  
   *Familia:* `validación y decisión`  
@@ -257,11 +257,11 @@
 
 
 
-## 📖 Recursos de Estudio y Referencias Oficiales
+## Referencias Bibliograficas y Documentacion Oficial
 - **[Programming with Objective-C](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ProgrammingWithObjectiveC/)** (`tutorial` | Nivel: `beginner`): Guía histórica oficial de Apple; la colección también explica el contexto moderno de mantenimiento e interoperabilidad con Swift.
 - **[Objective-C Runtime Programming Guide](https://developer.apple.com/library/archive/documentation/Cocoa/Conceptual/ObjCRuntimeGuide/Introduction/Introduction.html)** (`reference` | Nivel: `intermediate`): Documentación histórica oficial de Apple.
 - **[Block Implementation Specification](https://clang.llvm.org/docs/Block-ABI-Apple.html)** (`specification` | Nivel: `advanced`): 
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

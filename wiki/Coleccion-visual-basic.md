@@ -1,46 +1,46 @@
-# 📘 [VB] Visual Basic .NET
+# Visual Basic .NET (VB)
 
 > **Lenguaje .NET, eventos, LINQ, WinForms e interoperabilidad.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `visual-basic` |
-| **Grupo Arquitectónico** | [Lenguajes](Grupo-Languages) |
+| **Grupo Arquitectonico** | [Lenguajes](Grupo-Languages) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `visual-basic` |
 | **Total de Conceptos** | **48 conceptos** |
-| **Capítulos / Secciones** | **8 secciones** |
+| **Capitulos / Secciones** | **8 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/visual-basic)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/visual-basic-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/visual-basic)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/visual-basic-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: Visual Basic en acción
+## Estudio de Caso Practico: Visual Basic en acción
 
 > **Caso integrado · WinForms y biblioteca compartida:** Una herramienta de órdenes Windows separa eventos de UI, validación y persistencia, y comparte el dominio con una biblioteca C# sin congelar la ventana.  
 > El formulario se vuelve una superficie delgada; la lógica es tipada, probada e interoperable dentro de la misma solución .NET.
 
-### Fases de Ejecución:
-1. **Activar tipos estrictos** (Errores antes de ejecutar): `Option Strict On` → base tipada. *El cambio revela fronteras débiles antes de extraer lógica.*
-2. **Modelar la orden** (Clase con estado válido): `Public Class RepairOrder` → dominio explícito. *El objeto no permite combinaciones que el formulario tendría que recordar.*
-3. **Separar el presenter** (Eventos delegan intención): `Handles SaveButton.Click` → UI desacoplada. *Handles conecta la interacción, pero el presenter contiene el caso de uso.*
-4. **Validar y proyectar** (LINQ prepara la vista): `From order In orders Where order.IsOpen` → lista coherente. *La consulta se materializa antes de binding para evitar reevaluaciones sorpresivas.*
-5. **Guardar sin bloquear** (Await libera el thread UI): `Await repository.SaveAsync(order, ct)` → orden persistida. *Await retoma en el contexto de UI para actualizar controles de forma segura.*
-6. **Encontrar suscripción doble** (El handler vive más que la vista): `AddHandler service.Changed, AddressOf OnChanged` → lifetime incorrecto. *Un evento también crea una relación de ownership que debe terminar.*
-7. **Cerrar el lifecycle** (Suscripción simétrica): `RemoveHandler ... in Dispose` → fuga corregida. *Dispose cierra tanto controles como suscripciones externas.*
-8. **Compartir con C#** (Assembly común, dos lenguajes): `Domain.vbproj → CSharpWorker.csproj` → solución interoperable. *La plataforma común permite dividir responsabilidades sin traducir datos ni duplicar reglas.*
+### Fases de Ejecucion:
+1. **Activar tipos estrictos** (Errores antes de ejecutar): `Option Strict On` -> base tipada. *El cambio revela fronteras débiles antes de extraer lógica.*
+2. **Modelar la orden** (Clase con estado válido): `Public Class RepairOrder` -> dominio explícito. *El objeto no permite combinaciones que el formulario tendría que recordar.*
+3. **Separar el presenter** (Eventos delegan intención): `Handles SaveButton.Click` -> UI desacoplada. *Handles conecta la interacción, pero el presenter contiene el caso de uso.*
+4. **Validar y proyectar** (LINQ prepara la vista): `From order In orders Where order.IsOpen` -> lista coherente. *La consulta se materializa antes de binding para evitar reevaluaciones sorpresivas.*
+5. **Guardar sin bloquear** (Await libera el thread UI): `Await repository.SaveAsync(order, ct)` -> orden persistida. *Await retoma en el contexto de UI para actualizar controles de forma segura.*
+6. **Encontrar suscripción doble** (El handler vive más que la vista): `AddHandler service.Changed, AddressOf OnChanged` -> lifetime incorrecto. *Un evento también crea una relación de ownership que debe terminar.*
+7. **Cerrar el lifecycle** (Suscripción simétrica): `RemoveHandler ... in Dispose` -> fuga corregida. *Dispose cierra tanto controles como suscripciones externas.*
+8. **Compartir con C#** (Assembly común, dos lenguajes): `Domain.vbproj → CSharpWorker.csproj` -> solución interoperable. *La plataforma común permite dividir responsabilidades sin traducir datos ni duplicar reglas.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (48)
+## Catalogo Sistematico de Conceptos (48)
 
-### 📑 Sección: Fundamentos del lenguaje y Option Strict (6 conceptos)
+### Seccion: Fundamentos del lenguaje y Option Strict (6 conceptos)
 
 - **Option Strict y tipado estricto**  
   *Familia:* `matriz de señales`  
@@ -67,7 +67,7 @@
   Comprende la diferencia entre miembros estáticos compartidos y tipos instanciables.
 
 
-### 📑 Sección: Objetos, encapsulación y ciclo de vida (6 conceptos)
+### Seccion: Objetos, encapsulación y ciclo de vida (6 conceptos)
 
 - **Properties con Get y Set explícitos**  
   *Familia:* `análisis y emisión`  
@@ -94,7 +94,7 @@
   Modela datos ligeros copiados por valor para operaciones matemáticas y coordenadas.
 
 
-### 📑 Sección: Eventos, Handles, AddHandler y desacoplamiento (6 conceptos)
+### Seccion: Eventos, Handles, AddHandler y desacoplamiento (6 conceptos)
 
 - **Eventos con Event y RaiseEvent**  
   *Familia:* `propagación de eventos`  
@@ -121,7 +121,7 @@
   Previene fugas por referencias fuertes donde un publicador retiene formularios antiguos.
 
 
-### 📑 Sección: Colecciones genéricas y LINQ to Objects (6 conceptos)
+### Seccion: Colecciones genéricas y LINQ to Objects (6 conceptos)
 
 - **Colecciones genéricas List(Of T) y Dictionary**  
   *Familia:* `análisis y emisión`  
@@ -148,7 +148,7 @@
   Pasa comportamiento anónimo como parámetros para transformaciones funcionales.
 
 
-### 📑 Sección: XML Literals y metaprogramación visual (6 conceptos)
+### Seccion: XML Literals y metaprogramación visual (6 conceptos)
 
 - **Literales XML incrustados en código**  
   *Familia:* `configuración declarativa`  
@@ -175,7 +175,7 @@
   Aprovecha XML Literals en automatización de documentos y aplicaciones heredadas.
 
 
-### 📑 Sección: Asincronía moderna con Async, Await y Tasks (6 conceptos)
+### Seccion: Asincronía moderna con Async, Await y Tasks (6 conceptos)
 
 - **Modificador Async y operador Await**  
   *Familia:* `flujo de interfaz`  
@@ -202,7 +202,7 @@
   Asegura la invocación a Dispose o DisposeAsync al abandonar el ámbito.
 
 
-### 📑 Sección: WinForms mantenible, MVP y separación de capas (6 conceptos)
+### Seccion: WinForms mantenible, MVP y separación de capas (6 conceptos)
 
 - **Ciclo de vida del Form (Load, Shown, FormClosing)**  
   *Familia:* `ciclo de vida`  
@@ -229,7 +229,7 @@
   Reutiliza paneles y formularios complejos como bloques de construcción modulares.
 
 
-### 📑 Sección: Interoperabilidad con C#, COM y calidad (6 conceptos)
+### Seccion: Interoperabilidad con C#, COM y calidad (6 conceptos)
 
 - **Bibliotecas de clases interoperables con C#**  
   *Familia:* `constelación de mecanismos`  
@@ -257,11 +257,11 @@
 
 
 
-## 📖 Recursos de Estudio y Referencias Oficiales
+## Referencias Bibliograficas y Documentacion Oficial
 - **[Get started with Visual Basic](https://learn.microsoft.com/en-us/dotnet/visual-basic/getting-started/)** (`tutorial` | Nivel: `beginner`): 
 - **[Visual Basic Programming Guide](https://learn.microsoft.com/en-us/dotnet/visual-basic/programming-guide/)** (`official-docs` | Nivel: `intermediate`): 
 - **[Visual Basic Language Reference](https://learn.microsoft.com/en-us/dotnet/visual-basic/language-reference/)** (`reference` | Nivel: `advanced`): 
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

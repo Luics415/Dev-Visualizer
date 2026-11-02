@@ -1,43 +1,43 @@
-# 📘 [Kt] Kotlin
+# Kotlin (Kt)
 
 > **Null safety, objetos, funciones, coroutines, multiplataforma e interoperabilidad JVM.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `kotlin` |
-| **Grupo Arquitectónico** | [Lenguajes](Grupo-Languages) |
+| **Grupo Arquitectonico** | [Lenguajes](Grupo-Languages) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `c-sharp` |
 | **Total de Conceptos** | **105 conceptos** |
-| **Capítulos / Secciones** | **18 secciones** |
+| **Capitulos / Secciones** | **18 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/kotlin)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/kotlin-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/kotlin)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/kotlin-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: Sincronizar datos sin perder cancelación
+## Estudio de Caso Practico: Sincronizar datos sin perder cancelación
 
 > **Caso integrado de Kotlin:** Una aplicación sincroniza cambios offline con Flow, detecta un hijo desconectado de su scope y recupera concurrencia estructurada antes de confirmar estado.  
 > La interfaz solo marca sincronizado lo persistido y puede cancelar toda la operación al abandonar la pantalla.
 
-### Fases de Ejecución:
-1. **Modelar estados** (Sincronizar datos sin perder cancelación: etapa 1 de 5): `sealed interface SyncState` → Contrato visual completo. *La etapa conserva un contrato explícito para que el siguiente paso de Kotlin no dependa de supuestos ocultos.*
-2. **Combinar cambios** (Sincronizar datos sin perder cancelación: etapa 2 de 5): `repository.pending().collect { upload(it) }` → Carga progresiva. *La etapa conserva un contrato explícito para que el siguiente paso de Kotlin no dependa de supuestos ocultos.*
-3. **Detectar trabajo huérfano** (Sincronizar datos sin perder cancelación: etapa 3 de 5): `GlobalScope.launch { upload(item) }` → Consistencia en riesgo. *El caso hace visible el fallo de Kotlin; no continúa como si la evidencia fuera válida.*
-4. **Vincular al scope** (Sincronizar datos sin perder cancelación: etapa 4 de 5): `coroutineScope { launch { upload(item) } }` → Jerarquía recuperada. *La recuperación de Kotlin corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
-5. **Confirmar persistencia** (Sincronizar datos sin perder cancelación: etapa 5 de 5): `dao.markSynced(id); emit(Success(id))` → Sincronización verificable. *La etapa conserva un contrato explícito para que el siguiente paso de Kotlin no dependa de supuestos ocultos.*
+### Fases de Ejecucion:
+1. **Modelar estados** (Sincronizar datos sin perder cancelación: etapa 1 de 5): `sealed interface SyncState` -> Contrato visual completo. *La etapa conserva un contrato explícito para que el siguiente paso de Kotlin no dependa de supuestos ocultos.*
+2. **Combinar cambios** (Sincronizar datos sin perder cancelación: etapa 2 de 5): `repository.pending().collect { upload(it) }` -> Carga progresiva. *La etapa conserva un contrato explícito para que el siguiente paso de Kotlin no dependa de supuestos ocultos.*
+3. **Detectar trabajo huérfano** (Sincronizar datos sin perder cancelación: etapa 3 de 5): `GlobalScope.launch { upload(item) }` -> Consistencia en riesgo. *El caso hace visible el fallo de Kotlin; no continúa como si la evidencia fuera válida.*
+4. **Vincular al scope** (Sincronizar datos sin perder cancelación: etapa 4 de 5): `coroutineScope { launch { upload(item) } }` -> Jerarquía recuperada. *La recuperación de Kotlin corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
+5. **Confirmar persistencia** (Sincronizar datos sin perder cancelación: etapa 5 de 5): `dao.markSynced(id); emit(Success(id))` -> Sincronización verificable. *La etapa conserva un contrato explícito para que el siguiente paso de Kotlin no dependa de supuestos ocultos.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (105)
+## Catalogo Sistematico de Conceptos (105)
 
-### 📑 Sección: Lenguaje (5 conceptos)
+### Seccion: Lenguaje (5 conceptos)
 
 - **Val, var e inferencia**  
   *Familia:* `análisis y emisión`  
@@ -60,7 +60,7 @@
   En Sealed classes, un ejemplo mínimo, sus precondiciones y el estado inicial ingresa al flujo donde aplica el mecanismo paso a paso haciendo visibles sus invariantes para consolidar un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Modelo interno (5 conceptos)
+### Seccion: Modelo interno (5 conceptos)
 
 - **Compilación JVM**  
   *Familia:* `mapa de memoria`  
@@ -83,7 +83,7 @@
   El mecanismo de Reflection recibe datos identificables junto con esquema, restricciones y procedencia y valida, representa y recorre cada valor preservando relaciones, asegurando información consultable con integridad y significado estables.
 
 
-### 📑 Sección: Aplicación (5 conceptos)
+### Seccion: Aplicación (5 conceptos)
 
 - **Colecciones**  
   *Familia:* `análisis y emisión`  
@@ -106,7 +106,7 @@
   Flow estructura un ejemplo mínimo, sus precondiciones y el estado inicial en el sistema: aplica el mecanismo paso a paso haciendo visibles sus invariantes, garantizando un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Diagnóstico (5 conceptos)
+### Seccion: Diagnóstico (5 conceptos)
 
 - **Excepciones**  
   *Familia:* `mapa de memoria`  
@@ -129,7 +129,7 @@
   El recorrido de Interop con Java toma un comportamiento esperado, una entrada mínima y un síntoma observable. Posteriormente aísla variables y contrasta hipótesis con instrumentación repetible para validar una causa demostrada y una regresión protegida.
 
 
-### 📑 Sección: Producción (5 conceptos)
+### Seccion: Producción (5 conceptos)
 
 - **Structured concurrency**  
   *Familia:* `topología y tráfico`  
@@ -152,7 +152,7 @@
   Rendimiento y perfiles estructura un workload representativo, un presupuesto y una línea base en el sistema: mide la ruta crítica y cambia una variable por vez, garantizando una mejora cuantificada sin intercambiar corrección por velocidad.
 
 
-### 📑 Sección: Tipos y nulabilidad avanzada (5 conceptos)
+### Seccion: Tipos y nulabilidad avanzada (5 conceptos)
 
 - **Smart casts**  
   *Familia:* `análisis y emisión`  
@@ -175,7 +175,7 @@
   Contracts estructura el flujo donde el checker resuelve compatibilidad, inferencia, bounds y alternativas permitidas antes de emitir código, logrando una operación tipada cuyo contrato puede consumirse sin repetir validaciones.
 
 
-### 📑 Sección: Objetos y composición (7 conceptos)
+### Seccion: Objetos y composición (7 conceptos)
 
 - **Object declarations**  
   *Familia:* `despacho de runtime`  
@@ -206,7 +206,7 @@
   Context / receivers / parámetros / contexto coordina la ejecución: la evaluación aplica, compone o reduce expresiones propagando contexto sin mutar entradas compartidas hasta obtener un nuevo valor que mantiene las leyes de composición y puede razonarse localmente.
 
 
-### 📑 Sección: Genéricos expresivos (5 conceptos)
+### Seccion: Genéricos expresivos (5 conceptos)
 
 - **Declaration-site variance**  
   *Familia:* `análisis y emisión`  
@@ -229,7 +229,7 @@
   Type / aliases estructura el flujo donde el checker resuelve compatibilidad, inferencia, bounds y alternativas permitidas antes de emitir código, logrando una operación tipada cuyo contrato puede consumirse sin repetir validaciones.
 
 
-### 📑 Sección: Programación funcional (8 conceptos)
+### Seccion: Programación funcional (8 conceptos)
 
 - **Higher-order functions**  
   *Familia:* `flujo de transformación`  
@@ -264,7 +264,7 @@
   Al operar con Inline / value / transformations, el adaptador prepara operaciones, adquiere recursos y aplica restricciones antes de confirmar, produciendo estado persistido con integridad y visibilidad coherentes para lectores concurrentes.
 
 
-### 📑 Sección: Compilador y bytecode (6 conceptos)
+### Seccion: Compilador y bytecode (6 conceptos)
 
 - **Frontend FIR**  
   *Familia:* `mapa de memoria`  
@@ -291,7 +291,7 @@
   Para Synthetic / accessors, frontend, representación intermedia y runtime validan símbolos, optimizan rutas y enlazan dependencias, manteniendo un artefacto ejecutable con símbolos y comportamiento rastreables hasta la fuente.
 
 
-### 📑 Sección: Coroutines en profundidad (7 conceptos)
+### Seccion: Coroutines en profundidad (7 conceptos)
 
 - **Continuation passing style**  
   *Familia:* `planificación de trabajo`  
@@ -322,7 +322,7 @@
   Coroutine / exception / aggregation coordina la ejecución: la ejecución se suspende en puntos seguros y el runtime la reanuda cuando I/O o demanda permiten avanzar hasta obtener un valor, evento o cierre propagado sin bloquear el thread que coordina el flujo.
 
 
-### 📑 Sección: Flujos reactivos (6 conceptos)
+### Seccion: Flujos reactivos (6 conceptos)
 
 - **Cold y hot flows**  
   *Familia:* `planificación de trabajo`  
@@ -349,7 +349,7 @@
   Para Channel / Flow / fusion, el scheduler intercala trabajo mientras locks, mensajes o atomics establecen el orden observable, manteniendo progreso concurrente con ownership y terminación comprobables para cada tarea.
 
 
-### 📑 Sección: Interoperabilidad JVM (7 conceptos)
+### Seccion: Interoperabilidad JVM (7 conceptos)
 
 - **SAM conversions**  
   *Familia:* `capas internas`  
@@ -380,7 +380,7 @@
   Suspend / functions / vistas / desde coordina la ejecución: la ejecución se suspende en puntos seguros y el runtime la reanuda cuando I/O o demanda permiten avanzar hasta obtener un valor, evento o cierre propagado sin bloquear el thread que coordina el flujo.
 
 
-### 📑 Sección: Servidor y persistencia (5 conceptos)
+### Seccion: Servidor y persistencia (5 conceptos)
 
 - **Ktor pipelines**  
   *Familia:* `workflow y decisiones`  
@@ -403,7 +403,7 @@
   Configuración / por / entorno estructura el flujo donde el proceso inicia, atiende, emite telemetría y responde a drenado o actualización coordinada, logrando servicio disponible con estado, versión y camino de rollback verificables.
 
 
-### 📑 Sección: Multiplataforma (5 conceptos)
+### Seccion: Multiplataforma (5 conceptos)
 
 - **Source sets**  
   *Familia:* `telar relacional`  
@@ -426,7 +426,7 @@
   Bibliotecas / multiplataforma estructura el flujo donde el adaptador prepara operaciones, adquiere recursos y aplica restricciones antes de confirmar, logrando estado persistido con integridad y visibilidad coherentes para lectores concurrentes.
 
 
-### 📑 Sección: Pruebas (8 conceptos)
+### Seccion: Pruebas (8 conceptos)
 
 - **kotlin.test**  
   *Familia:* `espectro de verificación`  
@@ -461,7 +461,7 @@
   Al operar con Multiplatform / test / source / sets, el adaptador prepara operaciones, adquiere recursos y aplica restricciones antes de confirmar, produciendo estado persistido con integridad y visibilidad coherentes para lectores concurrentes.
 
 
-### 📑 Sección: Build y calidad (5 conceptos)
+### Seccion: Build y calidad (5 conceptos)
 
 - **Kotlin Gradle DSL**  
   *Familia:* `mapa de memoria`  
@@ -484,7 +484,7 @@
   Binary / compatibility / validation estructura el flujo donde el grafo resuelve dependencias, compila, enlaza y adjunta procedencia a cada salida, logrando un artefacto reproducible, verificable y promovible entre entornos.
 
 
-### 📑 Sección: Producción y rendimiento (6 conceptos)
+### Seccion: Producción y rendimiento (6 conceptos)
 
 - **Allocation profiling**  
   *Familia:* `evidencia y latencia`  
@@ -514,4 +514,4 @@
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

@@ -1,46 +1,46 @@
-# 📘 [Git] Git
+# Git (Git)
 
 > **Objetos, referencias, staging, historia, sincronización y rescate.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `git` |
-| **Grupo Arquitectónico** | [Control de versiones y calidad](Grupo-Versioning) |
+| **Grupo Arquitectonico** | [Control de versiones y calidad](Grupo-Versioning) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `git` |
 | **Total de Conceptos** | **60 conceptos** |
-| **Capítulos / Secciones** | **10 secciones** |
+| **Capitulos / Secciones** | **10 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/git)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/git-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/git)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/git-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: Git en acción
+## Estudio de Caso Practico: Git en acción
 
 > **Caso integrado · Hotfix recuperable:** Una regresión de cálculo se aísla, corrige y publica sin perder un experimento local. La historia muestra cada movimiento de HEAD, índice y referencias.  
 > El hotfix termina como un tag verificable y el experimento reaparece intacto: cada acción se entiende por el estado que modifica.
 
-### Fases de Ejecución:
-1. **Inspeccionar el síntoma** (Nada cambia antes de mirar): `git status --short && git log --graph` → estado inicial conocido. *Status y log establecen una línea base antes de elegir cualquier operación.*
-2. **Guardar el experimento** (El trabajo incompleto necesita identidad): `git stash push -u -m experiment` → experimento protegido. *Stash conserva el estado breve mientras el hotfix necesita partir de una base limpia.*
-3. **Crear la rama de reparación** (Una referencia nueva aísla el cambio): `git switch -c hotfix/total` → hotfix aislado. *La rama es un puntero, no una copia de todos los archivos.*
-4. **Construir un commit preciso** (Solo entra el hunk correcto): `git add -p && git commit` → snapshot enfocado. *La selección por hunks evita mezclar una mejora lateral con la reparación urgente.*
-5. **Actualizar la base** (Main avanzó en el remoto): `git fetch && git rebase origin/main` → conflicto contenido. *Fetch separa descargar de integrar y el rebase hace visible la única región incompatible.*
-6. **Resolver y verificar** (La intención decide el contenido): `git add total.c && git rebase --continue` → historia reparada. *Resolver significa escribir el resultado correcto y probarlo, no elegir ours o theirs por reflejo.*
-7. **Publicar y etiquetar** (La versión queda identificada): `git push -u origin hotfix/total && git tag -s v2.4.1` → hotfix trazable. *Push comparte objetos y referencias; el tag identifica el snapshot exacto que puede liberarse.*
-8. **Recuperar el experimento** (El contexto anterior regresa): `git switch experiment && git stash pop` → trabajo completo y recuperable. *El resultado demuestra que la urgencia no exigía destruir el trabajo previo.*
+### Fases de Ejecucion:
+1. **Inspeccionar el síntoma** (Nada cambia antes de mirar): `git status --short && git log --graph` -> estado inicial conocido. *Status y log establecen una línea base antes de elegir cualquier operación.*
+2. **Guardar el experimento** (El trabajo incompleto necesita identidad): `git stash push -u -m experiment` -> experimento protegido. *Stash conserva el estado breve mientras el hotfix necesita partir de una base limpia.*
+3. **Crear la rama de reparación** (Una referencia nueva aísla el cambio): `git switch -c hotfix/total` -> hotfix aislado. *La rama es un puntero, no una copia de todos los archivos.*
+4. **Construir un commit preciso** (Solo entra el hunk correcto): `git add -p && git commit` -> snapshot enfocado. *La selección por hunks evita mezclar una mejora lateral con la reparación urgente.*
+5. **Actualizar la base** (Main avanzó en el remoto): `git fetch && git rebase origin/main` -> conflicto contenido. *Fetch separa descargar de integrar y el rebase hace visible la única región incompatible.*
+6. **Resolver y verificar** (La intención decide el contenido): `git add total.c && git rebase --continue` -> historia reparada. *Resolver significa escribir el resultado correcto y probarlo, no elegir ours o theirs por reflejo.*
+7. **Publicar y etiquetar** (La versión queda identificada): `git push -u origin hotfix/total && git tag -s v2.4.1` -> hotfix trazable. *Push comparte objetos y referencias; el tag identifica el snapshot exacto que puede liberarse.*
+8. **Recuperar el experimento** (El contexto anterior regresa): `git switch experiment && git stash pop` -> trabajo completo y recuperable. *El resultado demuestra que la urgencia no exigía destruir el trabajo previo.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (60)
+## Catalogo Sistematico de Conceptos (60)
 
-### 📑 Sección: Modelo de objetos (6 conceptos)
+### Seccion: Modelo de objetos (6 conceptos)
 
 - **Repositorio y directorio .git**  
   *Familia:* `árbol de recursos`  
@@ -67,7 +67,7 @@
   Distingue valores de sistema, usuario, repositorio y worktree antes de diagnosticar un comportamiento inesperado.
 
 
-### 📑 Sección: Trabajo cotidiano (6 conceptos)
+### Seccion: Trabajo cotidiano (6 conceptos)
 
 - **git status**  
   *Familia:* `despacho de runtime`  
@@ -94,7 +94,7 @@
   Evita añadir residuos nuevos sin asumir que una regla deja de seguir archivos ya registrados.
 
 
-### 📑 Sección: Ramas e integración (6 conceptos)
+### Seccion: Ramas e integración (6 conceptos)
 
 - **Ramas como punteros móviles**  
   *Familia:* `secuencia operativa`  
@@ -121,7 +121,7 @@
   Reordena, combina, edita o descarta commits locales antes de compartirlos.
 
 
-### 📑 Sección: Repositorios distribuidos (6 conceptos)
+### Seccion: Repositorios distribuidos (6 conceptos)
 
 - **Clone y repositorios completos**  
   *Familia:* `análisis y emisión`  
@@ -148,7 +148,7 @@
   Relaciona una rama local con una referencia remota para medir ahead y behind.
 
 
-### 📑 Sección: Historia y diagnóstico (6 conceptos)
+### Seccion: Historia y diagnóstico (6 conceptos)
 
 - **log, show y graph**  
   *Familia:* `evidencia y latencia`  
@@ -175,7 +175,7 @@
   Ejecuta verificaciones alrededor de eventos sabiendo que no se distribuyen automáticamente con el clon.
 
 
-### 📑 Sección: Corrección y producción (6 conceptos)
+### Seccion: Corrección y producción (6 conceptos)
 
 - **Reset, restore y revert**  
   *Familia:* `secuencia operativa`  
@@ -202,7 +202,7 @@
   Empaqueta objetos y limpia estados inalcanzables respetando ventanas de recuperación.
 
 
-### 📑 Sección: Estructuras internas y plomería de Git (6 conceptos)
+### Seccion: Estructuras internas y plomería de Git (6 conceptos)
 
 - **Comandos de plomería vs porcelana**  
   *Familia:* `comparativa técnica`  
@@ -229,7 +229,7 @@
   Unifica índices de múltiples packfiles para optimizar operaciones de lectura sin reempaquetar todo.
 
 
-### 📑 Sección: Flujos de trabajo avanzados y múltiples árboles de trabajo (6 conceptos)
+### Seccion: Flujos de trabajo avanzados y múltiples árboles de trabajo (6 conceptos)
 
 - **git worktree y desarrollo en paralelo**  
   *Familia:* `cuadrícula paralela`  
@@ -256,7 +256,7 @@
   Configura índices virtuales, fsmonitor y prefetching para proyectos con millones de archivos.
 
 
-### 📑 Sección: Reescritura de historia y saneamiento forense (6 conceptos)
+### Seccion: Reescritura de historia y saneamiento forense (6 conceptos)
 
 - **git filter-repo vs filter-branch**  
   *Familia:* `secuencia operativa`  
@@ -283,7 +283,7 @@
   Elimina de forma irreversible objetos inalcanzables cuando se requiere liberar espacio físico.
 
 
-### 📑 Sección: Mecanismos de fusión avanzada y resolución (6 conceptos)
+### Seccion: Mecanismos de fusión avanzada y resolución (6 conceptos)
 
 - **Estrategia ortogonal (Ort merge strategy)**  
   *Familia:* `secuencia operativa`  
@@ -313,4 +313,4 @@
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Control de versiones y calidad](Grupo-Versioning) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Control de versiones y calidad](Grupo-Versioning) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

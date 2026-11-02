@@ -1,43 +1,43 @@
-# 📘 [NoSQL] NoSQL
+# NoSQL (NoSQL)
 
 > **Documentos, clave-valor, columnas, grafos, partición, replicación y consistencia.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `nosql` |
-| **Grupo Arquitectónico** | [Datos](Grupo-Data) |
+| **Grupo Arquitectonico** | [Datos](Grupo-Data) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `databases` |
 | **Total de Conceptos** | **123 conceptos** |
-| **Capítulos / Secciones** | **19 secciones** |
+| **Capitulos / Secciones** | **19 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/nosql)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/nosql-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/nosql)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/nosql-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: Repartir un flujo de telemetría
+## Estudio de Caso Practico: Repartir un flujo de telemetría
 
 > **Caso integrado de NoSQL:** Eventos de dispositivos se particionan y replican; una clave temporal concentra todo el tráfico y el sistema recupera distribución sin perder orden por dispositivo.  
 > El diseño final declara clave, consultas soportadas, consistencia, retención, reparación y procedimiento de expansión.
 
-### Fases de Ejecución:
-1. **Definir consultas** (Repartir un flujo de telemetría: etapa 1 de 5): `get(device_id, from, to)` → Contrato de lectura. *La etapa conserva un contrato explícito para que el siguiente paso de NoSQL no dependa de supuestos ocultos.*
-2. **Escribir eventos** (Repartir un flujo de telemetría: etapa 2 de 5): `partition = hash(device_id)` → Ingesta distribuida. *La etapa conserva un contrato explícito para que el siguiente paso de NoSQL no dependa de supuestos ocultos.*
-3. **Detectar partición caliente** (Repartir un flujo de telemetría: etapa 3 de 5): `partition = current_date` → Latencia y throttling. *El caso hace visible el fallo de NoSQL; no continúa como si la evidencia fuera válida.*
-4. **Rediseñar clave** (Repartir un flujo de telemetría: etapa 4 de 5): `partition = hash(device_id, day_bucket)` → Capacidad recuperada. *La recuperación de NoSQL corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
-5. **Verificar consistencia** (Repartir un flujo de telemetría: etapa 5 de 5): `read(CL=QUORUM); repair();` → Modelo operable. *La etapa conserva un contrato explícito para que el siguiente paso de NoSQL no dependa de supuestos ocultos.*
+### Fases de Ejecucion:
+1. **Definir consultas** (Repartir un flujo de telemetría: etapa 1 de 5): `get(device_id, from, to)` -> Contrato de lectura. *La etapa conserva un contrato explícito para que el siguiente paso de NoSQL no dependa de supuestos ocultos.*
+2. **Escribir eventos** (Repartir un flujo de telemetría: etapa 2 de 5): `partition = hash(device_id)` -> Ingesta distribuida. *La etapa conserva un contrato explícito para que el siguiente paso de NoSQL no dependa de supuestos ocultos.*
+3. **Detectar partición caliente** (Repartir un flujo de telemetría: etapa 3 de 5): `partition = current_date` -> Latencia y throttling. *El caso hace visible el fallo de NoSQL; no continúa como si la evidencia fuera válida.*
+4. **Rediseñar clave** (Repartir un flujo de telemetría: etapa 4 de 5): `partition = hash(device_id, day_bucket)` -> Capacidad recuperada. *La recuperación de NoSQL corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
+5. **Verificar consistencia** (Repartir un flujo de telemetría: etapa 5 de 5): `read(CL=QUORUM); repair();` -> Modelo operable. *La etapa conserva un contrato explícito para que el siguiente paso de NoSQL no dependa de supuestos ocultos.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (123)
+## Catalogo Sistematico de Conceptos (123)
 
-### 📑 Sección: Familias de modelos (5 conceptos)
+### Seccion: Familias de modelos (5 conceptos)
 
 - **Clave-valor**  
   *Familia:* `mapa de memoria`  
@@ -60,7 +60,7 @@
   El recorrido de Series temporales toma datos identificables junto con esquema, restricciones y procedencia. Posteriormente valida, representa y recorre cada valor preservando relaciones para validar información consultable con integridad y significado estables.
 
 
-### 📑 Sección: Distribución (5 conceptos)
+### Seccion: Distribución (5 conceptos)
 
 - **Particionado**  
   *Familia:* `tejido de eventos`  
@@ -83,7 +83,7 @@
   Consistencia eventual procesa un mensaje versionado, un destino y límites de tiempo: serializa, transporta y valida el intercambio a través de una frontera remota para entregar una respuesta correlacionada o un estado convergente verificable.
 
 
-### 📑 Sección: Modelado por acceso (5 conceptos)
+### Seccion: Modelado por acceso (5 conceptos)
 
 - **Agregados**  
   *Familia:* `telar relacional`  
@@ -106,7 +106,7 @@
   El recorrido de Change streams toma un ejemplo mínimo, sus precondiciones y el estado inicial. Posteriormente aplica el mecanismo paso a paso haciendo visibles sus invariantes para validar un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Diagnóstico (5 conceptos)
+### Seccion: Diagnóstico (5 conceptos)
 
 - **Hot partitions**  
   *Familia:* `tejido de eventos`  
@@ -129,7 +129,7 @@
   El recorrido de Capacidad toma un comportamiento esperado, una entrada mínima y un síntoma observable. Posteriormente aísla variables y contrasta hipótesis con instrumentación repetible para validar una causa demostrada y una regresión protegida.
 
 
-### 📑 Sección: Producción (5 conceptos)
+### Seccion: Producción (5 conceptos)
 
 - **Durabilidad**  
   *Familia:* `pasaporte del artefacto`  
@@ -152,7 +152,7 @@
   Selección de motor estructura un ejemplo mínimo, sus precondiciones y el estado inicial en el sistema: aplica el mecanismo paso a paso haciendo visibles sus invariantes, garantizando un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Teoría de sistemas distribuidos (6 conceptos)
+### Seccion: Teoría de sistemas distribuidos (6 conceptos)
 
 - **CAP con particiones reales**  
   *Familia:* `flujo de interfaz`  
@@ -179,7 +179,7 @@
   Dotted version vectors gestiona Teoría de sistemas distribuidos de modo que router y réplicas ubican, aplican y reconcilian el agregado según el modelo del motor, produciendo respuesta con frescura, alcance y durabilidad conocidas.
 
 
-### 📑 Sección: Motores clave-valor (7 conceptos)
+### Seccion: Motores clave-valor (7 conceptos)
 
 - **In-memory keyspace**  
   *Familia:* `memoria intermedia`  
@@ -210,7 +210,7 @@
   A través de Lease expiration semantics en Motores clave-valor, el sistema router y réplicas ubican, aplican y reconcilian el agregado según el modelo del motor manteniendo respuesta con frescura, alcance y durabilidad conocidas.
 
 
-### 📑 Sección: Bases documentales (7 conceptos)
+### Seccion: Bases documentales (7 conceptos)
 
 - **Document boundaries**  
   *Familia:* `configuración declarativa`  
@@ -241,7 +241,7 @@
   A través de Array-index explosion en Bases documentales, el sistema router y réplicas ubican, aplican y reconcilian el agregado según el modelo del motor manteniendo respuesta con frescura, alcance y durabilidad conocidas.
 
 
-### 📑 Sección: Columnas anchas (8 conceptos)
+### Seccion: Columnas anchas (8 conceptos)
 
 - **Partition keys**  
   *Familia:* `tejido de eventos`  
@@ -276,7 +276,7 @@
   En el flujo operativo de Columnas anchas, Repair and compaction interaction elige responsables, propaga versión y reconcilia respuestas según quorum o reloj para obtener una lectura o escritura cuyo alcance y frescura están cuantificados.
 
 
-### 📑 Sección: Bases de grafos (6 conceptos)
+### Seccion: Bases de grafos (6 conceptos)
 
 - **Property graph**  
   *Familia:* `consulta e índice`  
@@ -303,7 +303,7 @@
   Traversal fan-out gestiona Bases de grafos de modo que router y réplicas ubican, aplican y reconcilian el agregado según el modelo del motor, produciendo respuesta con frescura, alcance y durabilidad conocidas.
 
 
-### 📑 Sección: Series temporales y búsqueda (7 conceptos)
+### Seccion: Series temporales y búsqueda (7 conceptos)
 
 - **Time bucketing**  
   *Familia:* `jerarquía y dependencias`  
@@ -334,7 +334,7 @@
   A través de Time-bucket sizing en Series temporales y búsqueda, el sistema ubica, indexa, persiste y compacta manteniendo la unidad de consistencia elegida manteniendo lectura predecible y almacenamiento recuperable dentro del presupuesto.
 
 
-### 📑 Sección: Replicación interna (7 conceptos)
+### Seccion: Replicación interna (7 conceptos)
 
 - **Leader-follower**  
   *Familia:* `topología y tráfico`  
@@ -365,7 +365,7 @@
   A través de Foreground read repair en Replicación interna, el sistema elige responsables, propaga versión y reconcilia respuestas según quorum o reloj manteniendo una lectura o escritura cuyo alcance y frescura están cuantificados.
 
 
-### 📑 Sección: Transacciones no relacionales (7 conceptos)
+### Seccion: Transacciones no relacionales (7 conceptos)
 
 - **Single-partition transactions**  
   *Familia:* `consulta e índice`  
@@ -396,7 +396,7 @@
   A través de Conditional-write retries en Transacciones no relacionales, el sistema registra intención, valida conflictos y confirma o compensa la unidad completa manteniendo un estado durable que satisface aislamiento e invariantes declarados.
 
 
-### 📑 Sección: Evolución del modelo (7 conceptos)
+### Seccion: Evolución del modelo (7 conceptos)
 
 - **Versioned documents**  
   *Familia:* `flujo de transformación`  
@@ -427,7 +427,7 @@
   A través de Backfill checkpoints en Evolución del modelo, el sistema resuelve composición, restricciones y representación antes de aceptar la instancia manteniendo estructura válida cuyas operaciones permitidas están explícitas.
 
 
-### 📑 Sección: Testing distribuido (7 conceptos)
+### Seccion: Testing distribuido (7 conceptos)
 
 - **Fault injection**  
   *Familia:* `espectro de verificación`  
@@ -458,7 +458,7 @@
   A través de Nemesis fault profiles en Testing distribuido, el sistema instrumenta, correlaciona y agrega sin romper el presupuesto de ejecución manteniendo señal que permite localizar componente, versión y duración del problema.
 
 
-### 📑 Sección: Seguridad (7 conceptos)
+### Seccion: Seguridad (7 conceptos)
 
 - **Network isolation**  
   *Familia:* `aislamiento sobre host`  
@@ -489,7 +489,7 @@
   A través de Encrypted-field query limits en Seguridad, el sistema autentica, normaliza y autoriza antes de ejecutar con la capacidad mínima manteniendo decisión explícita y auditable que no expone secretos ni amplía privilegios.
 
 
-### 📑 Sección: Rendimiento y capacidad (7 conceptos)
+### Seccion: Rendimiento y capacidad (7 conceptos)
 
 - **Working set**  
   *Familia:* `evidencia y latencia`  
@@ -520,7 +520,7 @@
   A través de Compaction debt en Rendimiento y capacidad, el sistema ubica, indexa, persiste y compacta manteniendo la unidad de consistencia elegida manteniendo lectura predecible y almacenamiento recuperable dentro del presupuesto.
 
 
-### 📑 Sección: Integración de datos (7 conceptos)
+### Seccion: Integración de datos (7 conceptos)
 
 - **Change data capture**  
   *Familia:* `secuencia operativa`  
@@ -551,7 +551,7 @@
   A través de Connector offset recovery en Integración de datos, el sistema anexa, publica y proyecta en orden conservando checkpoint del consumidor manteniendo vista reconstruible y consumidor capaz de reanudar sin perder hechos.
 
 
-### 📑 Sección: Operación y recuperación (8 conceptos)
+### Seccion: Operación y recuperación (8 conceptos)
 
 - **Rolling maintenance**  
   *Familia:* `ida y vuelta`  
@@ -589,4 +589,4 @@
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Datos](Grupo-Data) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Datos](Grupo-Data) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

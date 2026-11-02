@@ -1,68 +1,68 @@
-# 📘 [Dart] Dart
+# Dart (Dart)
 
 > **Lenguaje orientado a objetos, Sound Null Safety, records, isolates, event loop y compilación dual JIT/AOT.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `dart` |
-| **Grupo Arquitectónico** | [Lenguajes](Grupo-Languages) |
+| **Grupo Arquitectonico** | [Lenguajes](Grupo-Languages) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `dart` |
 | **Total de Conceptos** | **60 conceptos** |
-| **Capítulos / Secciones** | **12 secciones** |
+| **Capitulos / Secciones** | **12 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/dart)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/dart-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/dart)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/dart-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: Ingesta masiva y serialización concurrente con Dart Isolates
+## Estudio de Caso Practico: Ingesta masiva y serialización concurrente con Dart Isolates
 
 > **Caso práctico integrado de Dart:** Construcción de un pipeline de procesamiento de telemetría IoT de alta frecuencia: recepción masiva en segundo plano con Isolates de Dart, normalización tipada estricta mediante Records y Sound Null Safety, procesamiento reactivo con Streams, resolución de saturación en la cola de microtareas y compilación AOT nativa.  
 > El caso demuestra cómo la arquitectura de memoria aislada sin bloqueos y el sistema de tipos Sound Null Safety de Dart garantizan estabilidad y predictibilidad procesando más de 100,000 eventos concurrentes por segundo.
 
-### Fases de Ejecución:
+### Fases de Ejecucion:
 1. **Inicialización de Worker Isolate** (Spawn de hilo independiente sin memoria compartida): `// Inicialización de Isolate secundario con ReceivePort
 final receivePort = ReceivePort();
 await Isolate.spawn(telemetryProcessorWorker, receivePort.sendPort);
-final sendPort = await receivePort.first as SendPort;` → Isolate inicializado listo para recibir paquetes de red. *El hilo principal conserva su capacidad de respuesta inmediata para eventos de usuario.*
+final sendPort = await receivePort.first as SendPort;` -> Isolate inicializado listo para recibir paquetes de red. *El hilo principal conserva su capacidad de respuesta inmediata para eventos de usuario.*
 2. **Normalización tipada con Records y Sound Null Safety** (Modelado de datos inmutables y desestructuración exhaustiva): `typedef TelemetryData = ({int sensorId, double value, DateTime stamp});
 
 TelemetryData parsePayload(Map<String, dynamic> raw) {
   final id = raw['id'] as int;
   final val = (raw['v'] as num).toDouble();
   return (sensorId: id, value: val, stamp: DateTime.now());
-}` → Estructura tipada de alta densidad empaquetada para el pipeline. *El analizador estático verifica la conformidad del contrato antes de compilar.*
+}` -> Estructura tipada de alta densidad empaquetada para el pipeline. *El analizador estático verifica la conformidad del contrato antes de compilar.*
 3. **Transformación reactiva con Streams y async*** (Pipeline continuo de datos con generadores asíncronos): `Stream<TelemetryData> processStream(Stream<TelemetryData> input) async* {
   await for (final packet in input) {
     if (packet.value > 0.0) {
       yield packet;
     }
   }
-}` → Flujo continuo de telemetría procesado en tiempo real. *La evaluación perezosa asegura que sólo se computen los paquetes efectivamente consumidos.*
+}` -> Flujo continuo de telemetría procesado en tiempo real. *La evaluación perezosa asegura que sólo se computen los paquetes efectivamente consumidos.*
 4. **Detección de saturación en Microtask Queue** (Starvation del Event Loop por acumulación de microtareas): `// ALERTA: scheduleMicrotask invocada recursivamente dentro del bucle
 // agota la cola de microtareas e impide atender eventos de I/O y temporizadores:
 // Latencia de I/O: 68 ms > 5 ms (Starvation detectada en el loop)
-scheduleMicrotask(() => processNextPacket());` → Degradación del servicio por inanición del Event Loop. *Un uso desmedido de microtareas monopoliza el hilo de ejecución e impide procesar eventos externos.*
+scheduleMicrotask(() => processNextPacket());` -> Degradación del servicio por inanición del Event Loop. *Un uso desmedido de microtareas monopoliza el hilo de ejecución e impide procesar eventos externos.*
 5. **Desacoplamiento y balanceo con Isolate.run** (Recuperación del tiempo de respuesta del Event Loop): `// Corrección: delegar cómputo pesado a Isolate.run con retorno diferido
 final result = await Isolate.run(() {
   return computeAggregates(pendingBatch);
-});` → Rendimiento restaurado con Event Loop libre de bloqueos. *El balanceo entre Isolates y el bucle de eventos garantiza una arquitectura reactiva sostenible.*
+});` -> Rendimiento restaurado con Event Loop libre de bloqueos. *El balanceo entre Isolates y el bucle de eventos garantiza una arquitectura reactiva sostenible.*
 6. **Compilación nativa AOT y verificación de rendimiento** (Código máquina directo ejecutando a 100,000 eventos/s): `// Compilación con dart compile exe:
 // Binario ELF/Mach-O nativo independiente sin dependencia de VM externa
 // Throughput: 112,000 ops/sec | Heap Resident: 18 MB | CPU Load: Óptimo
-assert(processedCount >= 100000);` → Servicio de telemetría Dart validado en producción a máxima velocidad. *La arquitectura de memoria aislada ofrece máxima fiabilidad y rendimiento constante bajo carga masiva.*
+assert(processedCount >= 100000);` -> Servicio de telemetría Dart validado en producción a máxima velocidad. *La arquitectura de memoria aislada ofrece máxima fiabilidad y rendimiento constante bajo carga masiva.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (60)
+## Catalogo Sistematico de Conceptos (60)
 
-### 📑 Sección: Sintaxis Moderna & Sound Null Safety (5 conceptos)
+### Seccion: Sintaxis Moderna & Sound Null Safety (5 conceptos)
 
 - **Inferencia var, final y const**  
   *Familia:* `flujo de transformación`  
@@ -85,7 +85,7 @@ assert(processedCount >= 100000);` → Servicio de telemetría Dart validado en 
   Difiere la inicialización de variables de instancia no anulables hasta su primer acceso verificando su asignación en tiempo de ejecución.
 
 
-### 📑 Sección: Records, Tuplas & Pattern Matching (5 conceptos)
+### Seccion: Records, Tuplas & Pattern Matching (5 conceptos)
 
 - **Records posicionales y nombrados**  
   *Familia:* `análisis y emisión`  
@@ -108,7 +108,7 @@ assert(processedCount >= 100000);` → Servicio de telemetría Dart validado en 
   Comprueba en tiempo de compilación que todas las ramas y combinaciones posibles de datos están cubiertas sin dejar casos sin manejar.
 
 
-### 📑 Sección: Programación Orientada a Objetos en Dart (5 conceptos)
+### Seccion: Programación Orientada a Objetos en Dart (5 conceptos)
 
 - **Constructores generativos y azucar sintáctico**  
   *Familia:* `análisis y emisión`  
@@ -131,7 +131,7 @@ assert(processedCount >= 100000);` → Servicio de telemetría Dart validado en 
   Crea instancias inmutables compartidas en memoria canónica si todos los campos son finales y se construyen con valores constantes.
 
 
-### 📑 Sección: Jerarquía de Tipos & Modificadores de Clase (5 conceptos)
+### Seccion: Jerarquía de Tipos & Modificadores de Clase (5 conceptos)
 
 - **Clases Sealed para jerarquías cerradas**  
   *Familia:* `jerarquía y dependencias`  
@@ -154,7 +154,7 @@ assert(processedCount >= 100000);` → Servicio de telemetría Dart validado en 
   Declara firmas de métodos sin implementación que deben satisfacer las subclases concretas en tiempo de ejecución.
 
 
-### 📑 Sección: Mixins, Extensión & Composición Funcional (5 conceptos)
+### Seccion: Mixins, Extensión & Composición Funcional (5 conceptos)
 
 - **Mixins y reutilización con with**  
   *Familia:* `flujo de transformación`  
@@ -177,7 +177,7 @@ assert(processedCount >= 100000);` → Servicio de telemetría Dart validado en 
   Proporciona contratos tipados específicos sobre tipos subyacentes existentes con cero costo de memoria y sin crear objetos wrapper en el heap.
 
 
-### 📑 Sección: Colecciones Declarativas & Operadores de Flujo (5 conceptos)
+### Seccion: Colecciones Declarativas & Operadores de Flujo (5 conceptos)
 
 - **List, Set y Map con tipado genérico**  
   *Familia:* `análisis y emisión`  
@@ -200,7 +200,7 @@ assert(processedCount >= 100000);` → Servicio de telemetría Dart validado en 
   Empaqueta colecciones en vistas de sólo lectura que arrojan excepciones ante intentos de inserción o mutación en tiempo de ejecución.
 
 
-### 📑 Sección: Genéricos Reificados & Sistema de Tipos (5 conceptos)
+### Seccion: Genéricos Reificados & Sistema de Tipos (5 conceptos)
 
 - **Genéricos reificados en runtime**  
   *Familia:* `análisis y emisión`  
@@ -223,7 +223,7 @@ assert(processedCount >= 100000);` → Servicio de telemetría Dart validado en 
   Maneja la sustitución segura de subtipos en colecciones y jerarquías controlando asignaciones de tipos con comprobaciones del compilador.
 
 
-### 📑 Sección: Asincronía & Event Loop en Dart (5 conceptos)
+### Seccion: Asincronía & Event Loop en Dart (5 conceptos)
 
 - **Arquitectura de dos colas del Event Loop**  
   *Familia:* `anatomía del concepto`  
@@ -246,7 +246,7 @@ assert(processedCount >= 100000);` → Servicio de telemetría Dart validado en 
   Crea y completa promesas manualmente desde fuentes externas, suscripciones de bajo nivel o llamadas a hardware.
 
 
-### 📑 Sección: Streams, Transformaciones & Programación Reactiva (5 conceptos)
+### Seccion: Streams, Transformaciones & Programación Reactiva (5 conceptos)
 
 - **StreamController y despacho reactivo**  
   *Familia:* `cola y consumidor`  
@@ -269,7 +269,7 @@ assert(processedCount >= 100000);` → Servicio de telemetría Dart validado en 
   Transforma flujos aplicando map, where, debounce, buffer y combinación de múltiples canales reactivos en un único flujo resultante.
 
 
-### 📑 Sección: Concurrencia, Memoria Aislada & Isolates (5 conceptos)
+### Seccion: Concurrencia, Memoria Aislada & Isolates (5 conceptos)
 
 - **Arquitectura de Isolates sin memoria compartida**  
   *Familia:* `anatomía del concepto`  
@@ -292,7 +292,7 @@ assert(processedCount >= 100000);` → Servicio de telemetría Dart validado en 
   Envía grandes estructuras binarias entre isolates transfiriendo la propiedad del búfer directamente sin costo de copia.
 
 
-### 📑 Sección: Compilación, Modos JIT/AOT & Optimización VM (5 conceptos)
+### Seccion: Compilación, Modos JIT/AOT & Optimización VM (5 conceptos)
 
 - **Modo JIT para desarrollo iterativo rápido**  
   *Familia:* `despacho de runtime`  
@@ -315,7 +315,7 @@ assert(processedCount >= 100000);` → Servicio de telemetría Dart validado en 
   Expone puertos de telemetría para inspeccionar asignaciones de memoria, rastrear microsegundos de CPU y depurar el heap.
 
 
-### 📑 Sección: Interoperabilidad Nativa con Dart FFI & Tooling (5 conceptos)
+### Seccion: Interoperabilidad Nativa con Dart FFI & Tooling (5 conceptos)
 
 - **Arquitectura de Foreign Function Interface (FFI)**  
   *Familia:* `mapa de memoria`  
@@ -339,11 +339,11 @@ assert(processedCount >= 100000);` → Servicio de telemetría Dart validado en 
 
 
 
-## 📖 Recursos de Estudio y Referencias Oficiales
+## Referencias Bibliograficas y Documentacion Oficial
 - **[A tour of the Dart language](https://dart.dev/language)** (`tutorial` | Nivel: `beginner`): 
 - **[Asynchronous programming: Futures and Streams](https://dart.dev/codelabs/async-await)** (`official-docs` | Nivel: `intermediate`): 
 - **[Dart Concurrency: Isolates and Event Loop](https://dart.dev/language/concurrency)** (`reference` | Nivel: `advanced`): 
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

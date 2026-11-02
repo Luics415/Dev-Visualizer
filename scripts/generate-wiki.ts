@@ -61,7 +61,7 @@ const collectionsData = collectionManifest.map((entry) => {
   const raw = coreConceptsMap[entry.id] ?? expandedCollectionById.get(entry.id)?.concepts ?? [];
   const concepts: ConceptItem[] = raw.map((c) => ({
     title: c.title,
-    description: c.description ?? "Concepto técnico clave del atlas de arquitectura.",
+    description: c.description ?? "Concepto técnico fundamental dentro del catálogo de arquitectura.",
     section: c.section ?? "General",
     family: c.family ?? "Arquitectura y Fundamentos",
   }));
@@ -89,31 +89,132 @@ const collectionsData = collectionManifest.map((entry) => {
 
 const totalConcepts = collectionsData.reduce((acc, c) => acc + c.concepts.length, 0);
 
-console.log(`Generando Wiki para ${collectionsData.length} colecciones y ${totalConcepts} conceptos...`);
+console.log(`Generando Wiki técnica profesional sin emojis para ${collectionsData.length} colecciones y ${totalConcepts} conceptos...`);
+
+// Group diagram mappings (Pure Mermaid, zero emojis)
+const groupDiagrams: Record<CollectionGroupId, string> = {
+  fundamentals: `\`\`\`mermaid
+flowchart TD
+    Prob["Problema Computacional"] --> Analisis["Analisis de Requisitos y Modelado"]
+    Analisis --> Diseno["Diseno Algoritmico y Estructura de Datos"]
+    Diseno --> Eval["Evaluacion Asintotica: O(1), O(log n), O(n), O(n log n)"]
+    Eval --> Impl["Implementacion y Casos de Prueba"]
+    Impl --> Verif["Verificacion Formal y Refactorizacion"]
+\`\`\``,
+  languages: `\`\`\`mermaid
+flowchart LR
+    Source["Codigo Fuente"] --> Lexer["Analisis Lexico (Tokens)"]
+    Lexer --> Parser["Analisis Sintactico (AST)"]
+    Parser --> Semantic["Analisis Semantico y Tipado"]
+    Semantic --> IR["Generacion de Codigo Intermedio (IR)"]
+    IR --> OptEngine["Optimizador de Compilador"]
+    OptEngine --> MachineCode["Codigo Maquina / Bytecode (JIT / AOT)"]
+\`\`\``,
+  interfaces: `\`\`\`mermaid
+flowchart TD
+    StateChange["Mutacion de Estado React 19"] --> VDOM["Reconciliacion Virtual DOM (Fiber Tree)"]
+    VDOM --> Commit["Fase de Commit al DOM del Navegador"]
+    Commit --> CSSOM["Recalculo de Estilos (CSSOM)"]
+    CSSOM --> Layout["Calculo de Layout / Reflow"]
+    Layout --> Paint["Pintado de Capas (Paint)"]
+    Paint --> GPU["Composicion Acelerada por GPU (Motion 14 @ 60 FPS)"]
+\`\`\``,
+  platforms: `\`\`\`mermaid
+flowchart TD
+    ClientReq["Peticion HTTP / Cliente"] --> Proxy["Reverse Proxy / NGINX (SSL, Cache, Rate Limit)"]
+    Proxy --> Server["Runtime del Servidor (Node.js / Python / .NET)"]
+    Server --> EventLoop["Event Loop / Worker Pool"]
+    EventLoop --> Services["Capa de Negocio y Microservicios"]
+    Services --> DB["Persistencia y Servicios Externos"]
+\`\`\``,
+  data: `\`\`\`mermaid
+flowchart TD
+    AppLayer["Capa de Aplicacion"] --> Cache["Nivel 1: Cache en Memoria (Redis / RAM)"]
+    Cache --> StorageEngine["Nivel 2: Motor de Almacenamiento (Buffer Pool)"]
+    StorageEngine --> WAL["Nivel 3: Write-Ahead Logging (WAL / Redo Log)"]
+    WAL --> Disk["Nivel 4: Tablas y Archivos de Datos en Disco"]
+    Disk --> Replica["Nivel 5: Replicacion y Copias de Seguridad"]
+\`\`\``,
+  versioning: `\`\`\`mermaid
+flowchart LR
+    WorkDir["Working Directory"] --> Staging["Staging Area (Index)"]
+    Staging --> LocalRepo["Repositorio Local (Commit DAG)"]
+    LocalRepo --> CI["Pipeline CI / Verificacion Automatica"]
+    CI --> RemoteRepo["Repositorio Remoto (Origin / Main)"]
+\`\`\``,
+  delivery: `\`\`\`mermaid
+flowchart TD
+    Push["Git Push / Pull Request"] --> BuildStep["Compilacion y Empaquetado de Contenedores"]
+    BuildStep --> SecScan["Escaneo SAST y Dependencias (CodeQL / Gitleaks)"]
+    SecScan --> TestGate["Quality Gates: Enlaces, Tipos, Accesibilidad"]
+    TestGate --> Deploy["Despliegue Continuo Zero-Downtime"]
+    Deploy --> Monitor["Telemetria, Metricas y Monitoreo Continuo"]
+\`\`\``,
+};
 
 // 1. Home.md
-const homeContent = `# 🌌 Dev Visualizer Wiki - Enciclopedia Técnica de Arquitectura
+const homeContent = `# Dev Visualizer Wiki - Enciclopedia Tecnica de Arquitectura
 
-Bienvenido a la **Wiki Oficial de Dev Visualizer**, el atlas pedagógico e interactivo de arquitectura de software, ingeniería de sistemas y lenguajes de programación.
+Bienvenido a la **Wiki Oficial de Dev Visualizer**, el atlas tecnico e interactivo de arquitectura de software, ingenieria de sistemas y lenguajes de programacion.
 
 ---
 
-## 📊 Métricas Globales del Ecosistema
+## Metricas Globales del Ecosistema
 
-| Métrica | Valor Verificado | Descripción |
+| Metrica | Valor Verificado | Descripcion Tecnica |
 | :--- | :--- | :--- |
-| **Conceptos Técnicos Indexados** | **${totalConcepts.toLocaleString("es-MX")}** | Modelos atómicos de aprendizaje con definiciones y escenas visuales |
-| **Colecciones Oficiales** | **${collectionsData.length}** | Núcleos tecnológicos categorizados en 7 grupos de especialización |
-| **Rutas Interactivas** | **${collectionsData.length * 2}** | 73 atlas teóricos + 73 estudios de caso prácticos en acción |
-| **Páginas Estáticas Generadas** | **394 páginas** | Compilación 100% estática (SSG) de alto rendimiento (0 latencia de red) |
-| **Estándar de Accesibilidad** | **WCAG 2.1 AAA** | Soporte para lectores de pantalla, modo de alto contraste y narración de audio |
+| **Conceptos Tecnicos Indexados** | **${totalConcepts.toLocaleString("es-MX")}** | Modelos atomicos de aprendizaje con definiciones y escenas visuales |
+| **Colecciones Oficiales** | **${collectionsData.length}** | Nucleos tecnologicos categorizados en 7 grupos de especializacion |
+| **Rutas Interactivas** | **${collectionsData.length * 2}** | 73 atlas teoricos + 73 estudios de caso practicos en accion |
+| **Paginas Estaticas Generadas** | **394 paginas** | Compilacion 100% estatica (SSG) de alto rendimiento (0 latencia de red) |
+| **Estandar de Accesibilidad** | **WCAG 2.1 AAA** | Soporte para lectores de pantalla, alto contraste y navegacion por teclado |
 | **Arquitectura de Software** | **Next.js 16 + React 19** | Motion 14 (GPU 60 FPS), Web Speech API y TypeScript 6 |
 
 ---
 
-## 🧭 Los 7 Grupos Arquitectónicos del Atlas
+## Diagrama de Arquitectura Global del Sistema
 
-Dev Visualizer organiza sus ${collectionsData.length} colecciones en 7 áreas troncales de la computación moderna:
+\`\`\`mermaid
+graph TD
+    subgraph Client ["Navegador Cliente (Zero-Runtime Lag)"]
+        UI["Interfaz de Usuario React 19"]
+        GPU["Renderizado Vectorial Motion 14 (60 FPS)"]
+        Audio["Motor de Audio Web Speech API"]
+        Search["Motor de Busqueda en Memoria (<100 KB)"]
+    end
+    subgraph Data ["Estructuras de Datos y Catalogo"]
+        Manifest["73 Colecciones Manifest"]
+        Index["7,410 Conceptos Compactos"]
+        Library["272 Recursos Tecnicos Validados"]
+        Quizzes["Bateria de Evaluaciones"]
+    end
+    subgraph Build ["Pipeline de Compilacion Estatica"]
+        NextSSG["Next.js 16 SSG (394 Paginas)"]
+        Audit["Auditoria Estatica (Links, A11y, Tipos)"]
+        CodeQL["GitHub CodeQL SAST"]
+    end
+    Data --> NextSSG
+    NextSSG --> Build
+    Build --> Client
+    UI --> GPU
+    UI --> Search
+    UI --> Audio
+\`\`\`
+
+---
+
+## Topologia de los 7 Grupos Arquitectonicos
+
+\`\`\`mermaid
+flowchart LR
+    Fund["01 Fundamentos"] --> Lang["02 Lenguajes"]
+    Lang --> Plat["04 Plataformas"]
+    Lang --> Inter["03 Interfaces"]
+    Plat --> DataG["05 Datos"]
+    Plat --> Infra["07 Infraestructura"]
+    Inter --> Version["06 Versionado"]
+    Version --> Infra
+\`\`\`
 
 ${(Object.keys(collectionGroupMeta) as CollectionGroupId[])
   .map((groupId) => {
@@ -123,7 +224,7 @@ ${(Object.keys(collectionGroupMeta) as CollectionGroupId[])
     const filename = `Grupo-${groupId.charAt(0).toUpperCase() + groupId.slice(1)}`;
     return `### [${meta.name}](${filename})
 > *${meta.description}*  
-> **${groupCols.length} Colecciones** | **${groupConcepts} Conceptos Técnicos**
+> **${groupCols.length} Colecciones** | **${groupConcepts} Conceptos Tecnicos**
 
 ${groupCols.map((c) => `- **[${c.label}](Coleccion-${sanitizeFilename(c.id)})** (\`${c.short}\`): ${c.summary} — *(${c.concepts.length} conceptos)*`).join("\n")}
 `;
@@ -132,29 +233,42 @@ ${groupCols.map((c) => `- **[${c.label}](Coleccion-${sanitizeFilename(c.id)})** 
 
 ---
 
-## ⚡ Enlaces Rápidos y Ecosistema
-- 🌐 **[Dev Visualizer en Vivo](https://luics415.github.io/Dev-Visualizer/)**
-- 📚 **[Índice Maestro de los ${totalConcepts} Conceptos](Indice-Maestro-7410-Conceptos)**
-- 🏗️ **[Arquitectura del Sistema y Rendimiento](Arquitectura-del-Sistema)**
-- 🛡️ **[Gobernanza, Seguridad y Pipeline de Auditoría](Gobernanza-y-Auditoria)**
-- 📦 **[Repositorio en GitHub](https://github.com/Luics415/Dev-Visualizer)**
+## Modelos Computacionales y Algoritmos Centrales
+
+### 1. Busqueda Vectorial Difusa en Tiempo Lineal: $O(N)$
+El motor de busqueda de Dev Visualizer indexa los ${totalConcepts} conceptos en una estructura de tuplas compactas \`[titulo, seccion, idColeccion]\` cargada directamente en memoria del cliente. La normalizacion fonetica descompone caracteres diacriticos mediante Unicode NFD, garantizando coincidencia insensible a tildes con una sobrecarga de memoria inferior a 100 KB.
+
+### 2. Sincronizacion de Estado React 19 sin Render-Drift
+El desacoplamiento del progreso de lectura se implementa mediante \`useSyncExternalStore\`, eliminando estados intermedios y desfases visuales entre el scroll pasivo del navegador y la barra de navegacion flotante.
+
+### 3. Pipeline de Audio Adaptativo
+La sintesis vocal en navegadores divide las cadenas de texto en fragmentos semanticos delimitados por pausas ortograficas (puntos y comas), previniendo los bloqueos clasicos de buffer del Web Speech API en oraciones largas.
 
 ---
-*Dev Visualizer Wiki • Creado por [@Luics415](https://github.com/Luics415) con la coautoría técnica de [@Azlynn17](https://github.com/Azlynn17).*
+
+## Enlaces de Referencia del Ecosistema
+- [Dev Visualizer en Vivo](https://luics415.github.io/Dev-Visualizer/)
+- [Indice Maestro de los ${totalConcepts} Conceptos](Indice-Maestro-7410-Conceptos)
+- [Arquitectura del Sistema y Rendimiento](Arquitectura-del-Sistema)
+- [Gobernanza, Seguridad y Pipeline de Auditoria](Gobernanza-y-Auditoria)
+- [Repositorio en GitHub](https://github.com/Luics415/Dev-Visualizer)
+
+---
+*Dev Visualizer Wiki • Mantenedor: [@Luics415](https://github.com/Luics415) • Coautoria Tecnica: [@Azlynn17](https://github.com/Azlynn17).*
 `;
 fs.writeFileSync(path.join(wikiDir, "Home.md"), homeContent, "utf8");
 
 // 2. _Sidebar.md
-const sidebarContent = `### 🌌 [Dev Visualizer Wiki](Home)
+const sidebarContent = `### [Dev Visualizer Wiki](Home)
 
-- **[🏠 Inicio](Home)**
-- **[📚 Índice Maestro (${totalConcepts})](Indice-Maestro-7410-Conceptos)**
-- **[🏗️ Arquitectura](Arquitectura-del-Sistema)**
-- **[🛡️ Gobernanza](Gobernanza-y-Auditoria)**
+- [Inicio](Home)
+- [Indice Maestro (${totalConcepts})](Indice-Maestro-7410-Conceptos)
+- [Arquitectura del Sistema](Arquitectura-del-Sistema)
+- [Gobernanza y Auditoria](Gobernanza-y-Auditoria)
 
 ---
 
-### 📂 Grupos de Arquitectura
+### Grupos de Arquitectura
 ${(Object.keys(collectionGroupMeta) as CollectionGroupId[])
   .map((groupId) => {
     const meta = collectionGroupMeta[groupId];
@@ -166,35 +280,41 @@ ${groupCols.map((c) => `  - [${c.short} - ${c.label}](Coleccion-${sanitizeFilena
   .join("\n")}
 
 ---
-- **[🌐 Atlas en Vivo](https://luics415.github.io/Dev-Visualizer/)**
-- **[📦 GitHub Repo](https://github.com/Luics415/Dev-Visualizer)**
+- [Atlas en Vivo](https://luics415.github.io/Dev-Visualizer/)
+- [Repositorio GitHub](https://github.com/Luics415/Dev-Visualizer)
 `;
 fs.writeFileSync(path.join(wikiDir, "_Sidebar.md"), sidebarContent, "utf8");
 
 // 3. _Footer.md
 const footerContent = `---
-**Dev Visualizer** • Atlas Pedagógico de Arquitectura e Ingeniería de Software  
-Autor: [@Luics415](https://github.com/Luics415) | Coautora: [@Azlynn17](https://github.com/Azlynn17)  
+**Dev Visualizer** • Atlas Tecnico de Arquitectura e Ingenieria de Software  
+Autor: [@Luics415](https://github.com/Luics415) | Coautoria Tecnica: [@Azlynn17](https://github.com/Azlynn17)  
 Licencia MIT • [Ver en GitHub](https://github.com/Luics415/Dev-Visualizer) • [Atlas en Vivo](https://luics415.github.io/Dev-Visualizer/)
 `;
 fs.writeFileSync(path.join(wikiDir, "_Footer.md"), footerContent, "utf8");
 
-// 4. Group Pages
+// 4. Group Pages (7 files)
 for (const groupId of Object.keys(collectionGroupMeta) as CollectionGroupId[]) {
   const meta = collectionGroupMeta[groupId];
   const groupCols = collectionsData.filter((c) => c.group === groupId);
   const groupConcepts = groupCols.reduce((acc, c) => acc + c.concepts.length, 0);
   const filename = `Grupo-${groupId.charAt(0).toUpperCase() + groupId.slice(1)}.md`;
 
-  const groupPageContent = `# 🏛️ Grupo: ${meta.name}
+  const groupPageContent = `# Grupo: ${meta.name}
 
 > **${meta.description}**  
 > **Total de Colecciones:** ${groupCols.length}  
-> **Total de Conceptos Técnicos:** ${groupConcepts}
+> **Total de Conceptos Tecnicos:** ${groupConcepts}
 
 ---
 
-## 📋 Colecciones Integradas
+## Flujo Arquitectonico y Modelo Conceptual
+
+${groupDiagrams[groupId]}
+
+---
+
+## Colecciones Integradas
 
 ${groupCols
   .map((c) => {
@@ -203,17 +323,17 @@ ${groupCols
 
 - **Resumen:** ${c.summary}
 - **Ciclo de Vida:** \`${c.lifecycle}\`
-- **Conceptos:** ${c.concepts.length} conceptos distribuidos en ${sectionsCount} capítulos.
+- **Conceptos:** ${c.concepts.length} conceptos distribuidos en ${sectionsCount} capitulos.
 - **Enlaces Directos:**
-  - 📖 [Explorar Atlas Teórico](https://luics415.github.io/Dev-Visualizer${c.href})
-  - ⚡ [Ver Caso Práctico en Acción](https://luics415.github.io/Dev-Visualizer${c.actionHref})
-  - 📄 [Ver Página Wiki Detallada](Coleccion-${sanitizeFilename(c.id)})
+  - [Explorar Atlas Teorico](https://luics415.github.io/Dev-Visualizer${c.href})
+  - [Ver Caso Practico en Accion](https://luics415.github.io/Dev-Visualizer${c.actionHref})
+  - [Ver Pagina Wiki Detallada](Coleccion-${sanitizeFilename(c.id)})
 
 ---`;
   })
   .join("\n\n")}
 
-[← Volver al Inicio](Home) | [Ir al Índice Maestro de Conceptos →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ir al Indice Maestro de Conceptos ->](Indice-Maestro-7410-Conceptos)
 `;
 
   fs.writeFileSync(path.join(wikiDir, filename), groupPageContent, "utf8");
@@ -228,54 +348,54 @@ for (const col of collectionsData) {
   if (col.expanded?.caseStudy) {
     const cs = col.expanded.caseStudy;
     caseStudySection = `
-## 🔬 Caso Práctico en Acción: ${cs.title}
+## Estudio de Caso Practico: ${cs.title}
 
 > **${cs.eyebrow}:** ${cs.description}  
 > ${cs.footer}
 
-### Fases de Ejecución:
-${cs.steps.map((st, idx) => `${idx + 1}. **${st.title}** (${st.subtitle}): \`${st.code}\` → ${st.result}. *${st.note}*`).join("\n")}
+### Fases de Ejecucion:
+${cs.steps.map((st, idx) => `${idx + 1}. **${st.title}** (${st.subtitle}): \`${st.code}\` -> ${st.result}. *${st.note}*`).join("\n")}
 `;
   }
 
   let resourcesSection = "";
   if (col.supplemental.length > 0) {
     resourcesSection = `
-## 📖 Recursos de Estudio y Referencias Oficiales
+## Referencias Bibliograficas y Documentacion Oficial
 ${col.supplemental.map((r) => `- **[${r.title}](${r.primaryUrl})** (\`${r.kind}\` | Nivel: \`${r.level}\`): ${r.note ?? ""}`).join("\n")}
 `;
   }
 
-  const colContent = `# 📘 [${col.short}] ${col.label}
+  const colContent = `# ${col.label} (${col.short})
 
 > **${col.summary}**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | \`${col.id}\` |
-| **Grupo Arquitectónico** | [${collectionGroupMeta[col.group].name}](Grupo-${col.group.charAt(0).toUpperCase() + col.group.slice(1)}) |
+| **Grupo Arquitectonico** | [${collectionGroupMeta[col.group].name}](Grupo-${col.group.charAt(0).toUpperCase() + col.group.slice(1)}) |
 | **Ciclo de Vida** | \`${col.lifecycle}\` |
 | **Tema Visual** | \`${col.theme}\` |
 | **Total de Conceptos** | **${col.concepts.length} conceptos** |
-| **Capítulos / Secciones** | **${sectionsList.length} secciones** |
+| **Capitulos / Secciones** | **${sectionsList.length} secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer${col.href})**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer${col.actionHref})**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer${col.href})
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer${col.actionHref})
 
 ${caseStudySection}
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (${col.concepts.length})
+## Catalogo Sistematico de Conceptos (${col.concepts.length})
 
 ${sectionsList
   .map(([sectionName, items]) => {
-    return `### 📑 Sección: ${sectionName} (${items.length} conceptos)
+    return `### Seccion: ${sectionName} (${items.length} conceptos)
 
 ${items
   .map((item) => {
@@ -291,34 +411,34 @@ ${items
 ${resourcesSection}
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: ${collectionGroupMeta[col.group].name}](Grupo-${col.group.charAt(0).toUpperCase() + col.group.slice(1)}) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: ${collectionGroupMeta[col.group].name}](Grupo-${col.group.charAt(0).toUpperCase() + col.group.slice(1)}) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)
 `;
 
   fs.writeFileSync(path.join(wikiDir, pageFilename), colContent, "utf8");
 }
 
 // 6. Indice-Maestro-7410-Conceptos.md
-let indexContent = `# 📖 Índice Maestro de Conceptos Técnicos (${totalConcepts.toLocaleString("es-MX")})
+let indexContent = `# Indice Maestro de Conceptos Tecnicos (${totalConcepts.toLocaleString("es-MX")})
 
-Este documento constituye el índice enciclopédico unificado de los **${totalConcepts.toLocaleString("es-MX")} conceptos técnicos** formalmente modelados en **Dev Visualizer**. Cada entrada cuenta con su definición semántica, sección pedagógica y enlace a su respectiva colección interactiva.
+Este documento constituye el indice enciclopedico unificado de los **${totalConcepts.toLocaleString("es-MX")} conceptos tecnicos** formalmente modelados en **Dev Visualizer**. Cada entrada cuenta con su definicion semantica, seccion pedagogica y enlace a su respectiva coleccion interactiva.
 
 ---
 
-## 📊 Resumen por Colección
-| Colección | Sigla | Grupo | Conceptos | Enlace Wiki | Atlas Interactivo |
+## Resumen Sistematico por Coleccion
+| Coleccion | Sigla | Grupo | Conceptos | Enlace Wiki | Atlas Interactivo |
 | :--- | :---: | :--- | :---: | :--- | :--- |
 ${collectionsData.map((c) => `| **${c.label}** | \`${c.short}\` | ${collectionGroupMeta[c.group].name} | **${c.concepts.length}** | [Wiki](Coleccion-${sanitizeFilename(c.id)}) | [En vivo](https://luics415.github.io/Dev-Visualizer${c.href}) |`).join("\n")}
 
 ---
 
-## 🗂️ Directorio Completo de Conceptos por Colección
+## Directorio Sistematico de Conceptos por Coleccion
 
 `;
 
 for (const col of collectionsData) {
   indexContent += `### [${col.label} (Coleccion-${sanitizeFilename(col.id)})] — ${col.concepts.length} Conceptos\n\n`;
   for (const [secName, items] of col.sectionsMap.entries()) {
-    indexContent += `#### 📂 ${secName}\n`;
+    indexContent += `#### ${secName}\n`;
     for (const item of items) {
       indexContent += `- **${item.title}**: ${item.description}\n`;
     }
@@ -330,108 +450,168 @@ for (const col of collectionsData) {
 fs.writeFileSync(path.join(wikiDir, "Indice-Maestro-7410-Conceptos.md"), indexContent, "utf8");
 
 // 7. Arquitectura-del-Sistema.md
-const archContent = `# 🏗️ Arquitectura Técnica y Rendimiento de Dev Visualizer
+const archContent = `# Arquitectura Tecnica y Rendimiento de Dev Visualizer
 
-**Dev Visualizer** está diseñado bajo los principios de máxima fidelidad pedagógica, cero regresiones y rendimiento extremo en el navegador web.
+**Dev Visualizer** esta disenado bajo los principios de maxima fidelidad pedagogica, cero regresiones y rendimiento extremo en el navegador web.
 
 ---
 
-## ⚙️ Stack Tecnológico Principal
+## Stack Tecnologico Principal
 
-| Componente | Tecnología | Versión | Rol en la Arquitectura |
+| Componente | Tecnologia | Version | Rol en la Arquitectura |
 | :--- | :--- | :--- | :--- |
-| **Framework Web** | Next.js | \`16.4.3\` | Generación Estática (SSG), compilación atómica de 394 páginas y optimización de assets. |
-| **Librería UI** | React | \`19.2.8\` | Modelo de componentes declarativo, hooks modernos y uso de \`useSyncExternalStore\` para estado desacoplado. |
-| **Motor de Animación** | Motion (Framer Motion) | \`14.8.0\` | Animaciones vectoriales GPU a 60 FPS con soporte estricto de \`prefers-reduced-motion\`. |
-| **Tipado Estático** | TypeScript | \`6.0.3\` | Contratos rigurosos para colecciones, preguntas de examen, esquemas de búsqueda y metadatos. |
-| **Síntesis de Audio** | Web Speech API | Nativa | Narración pedagógica de conceptos con chunking semántico por pausas de puntuación. |
-| **Motor de Búsqueda** | En Memoria | Nativo (<100 KB) | Indexación instantánea con tuplas comprimidas y normalización fonética de acentos. |
+| **Framework Web** | Next.js | \`16.4.3\` | Generacion Estatica (SSG), compilacion atomica de 394 paginas y optimizacion de assets. |
+| **Libreria UI** | React | \`19.2.8\` | Modelo de componentes declarativo, hooks modernos y uso de \`useSyncExternalStore\` para estado desacoplado. |
+| **Motor de Animacion** | Motion (Framer Motion) | \`14.8.0\` | Animaciones vectoriales GPU a 60 FPS con soporte estricto de \`prefers-reduced-motion\`. |
+| **Tipado Estatico** | TypeScript | \`6.0.3\` | Contratos rigurosos para colecciones, preguntas de examen, esquemas de busqueda y metadatos. |
+| **Sintesis de Audio** | Web Speech API | Nativa | Narracion pedagogica de conceptos con chunking semantico por pausas de puntuacion. |
+| **Motor de Busqueda** | En Memoria | Nativo (<100 KB) | Indexacion instantanea con tuplas comprimidas y normalizacion fonetica de acentos. |
 
 ---
 
-## 🚀 Decisiones de Diseño Clave
+## Diagrama de Ciclo de Vida SSG y Cero Latencia de Runtime
+
+\`\`\`mermaid
+sequenceDiagram
+    autonumber
+    actor Dev as Desarrollador / CI
+    participant Next as Next.js 16 SSG
+    participant Worker as 2 Worker Threads
+    participant Disk as /out (394 Paginas HTML)
+    participant Client as Navegador Usuario
+    Dev->>Next: npm run build
+    Next->>Worker: Distribuir 73 colecciones y rutas
+    Worker->>Disk: Generar HTML estatico pre-renderizado
+    Disk->>Client: Carga instantanea via GitHub Pages (0 fetch)
+    Client->>Client: useSyncExternalStore sincroniza estado local
+\`\`\`
+
+---
+
+## Decisiones de Diseno Clave
 
 ### 1. Static Site Generation (SSG) Puro
-Dev Visualizer compila sus 394 páginas y rutas técnicas durante el build de Next.js. No realiza llamadas de red ni solicitudes a bases de datos en tiempo de ejecución (0 runtime fetch lag). Esto garantiza disponibilidad del 100% en GitHub Pages, tiempos de carga casi instantáneos y navegación offline vía Service Workers.
+Dev Visualizer compila sus 394 paginas y rutas tecnicas durante el build de Next.js. No realiza llamadas de red ni solicitudes a bases de datos en tiempo de ejecucion (0 runtime fetch lag). Esto garantiza disponibilidad del 100% en GitHub Pages, tiempos de carga casi instantaneos y navegacion offline via Service Workers.
 
-### 2. Motor de Búsqueda Compacto
-El índice de los 7,410 conceptos se almacena en una estructura de tuplas compactas \`[título, sección, idColección]\`, manteniendo el tamaño total del bundle de búsqueda por debajo de los 100 KB. La búsqueda utiliza un algoritmo de distancia difusa con eliminación de tildes y caracteres especiales.
+### 2. Motor de Busqueda Compacto
+
+\`\`\`mermaid
+flowchart TD
+    Query["Entrada de Busqueda"] --> Norm["Normalizacion Fonetica (NFD, lowercase, tildes)"]
+    Norm --> SearchLoop["Escaneo Vectorial en RAW_CONCEPTS (<100 KB)"]
+    SearchLoop --> Filter["Filtrado por Coincidencia Parcial y Distancia"]
+    Filter --> Rank["Ponderacion por Titulo > Seccion > Coleccion"]
+    Rank --> Top["Top 8 Resultados Inmediatos"]
+\`\`\`
+
+El indice de los 7,410 conceptos se almacena en una estructura de tuplas compactas \`[titulo, seccion, idColeccion]\`, manteniendo el tamano total del bundle de busqueda por debajo de los 100 KB. La busqueda utiliza un algoritmo de distancia difusa con eliminacion de tildes y caracteres especiales.
 
 ### 3. Animaciones Aceleradas por Hardware
-Todas las escenas pedagógicas animadas (\`AnimatedConceptScene\`) transforman exclusivamente propiedades de composición (\`transform: translate3d\`, \`opacity\`), evitando recalcular el layout o causar repaints en el hilo principal del navegador.
+Todas las escenas pedagogicas animadas (\`AnimatedConceptScene\`) transforman exclusivamente propiedades de composicion (\`transform: translate3d\`, \`opacity\`), evitando recalcular el layout o causar repaints en el hilo principal del navegador.
 
 ---
-[← Volver al Inicio](Home)
+[<- Volver al Inicio](Home)
 `;
 fs.writeFileSync(path.join(wikiDir, "Arquitectura-del-Sistema.md"), archContent, "utf8");
 
 // 8. Gobernanza-y-Auditoria.md
-const govContent = `# 🛡️ Gobernanza, Calidad y Pipeline de Auditoría
+const govContent = `# Gobernanza, Calidad y Pipeline de Auditoria
 
-El repositorio **Dev Visualizer** implementa un modelo de gobernanza estricta asistido por un orquestador de agentes autónomos y CI/CD reproducible.
+El repositorio **Dev Visualizer** implementa un modelo de gobernanza estricta asistido por un orquestador de agentes autonomos y CI/CD reproducible.
 
 ---
 
-## 🔄 El Pipeline de 7 Habilidades Oficiales
+## Diagrama del Pipeline de 7 Habilidades Oficiales
+
+\`\`\`mermaid
+stateDiagram-v2
+    [*] --> Definir: 01-Definir
+    Definir --> Planificar: 02-Planificar
+    Planificar --> Construir: 03-Construir (Ramas atomicas)
+    Construir --> Verificar: 04-Verificar (Links, A11y, Build)
+    Verificar --> Revisar: 05-Revisar (CodeQL, Gitleaks, Audit)
+    Revisar --> Aprobar: 06-Aprobar (Dictamen formal)
+    Aprobar --> Centinela: 07-Centinela (Discussions 6h)
+    Centinela --> [*]
+\`\`\`
+
+---
+
+## Descripcion de las 7 Habilidades Oficiales
 
 Cada cambio propuesto debe recorrer rigurosamente las 7 fases normativas:
 
-1. **01-Definir:** Especificación de requisitos, criterios de aceptación, contratos de datos y alcance atómico.
-2. **02-Planificar:** Desglose secuencial de tareas con dependencias, mitigación de riesgos y puntos de control.
-3. **03-Construir:** Creación de ramas Git atómicas (\`feat/\`, \`fix/\`, \`docs/\`) y Pull Requests con plantillas formales y coautoría técnica (\`Co-authored-by: Azlynn17\`).
-4. **04-Verificar:** Ejecución del conjunto exhaustivo de validaciones:
-   - \`npm run check:library\`: Validación de integridad de colecciones y recursos.
-   - \`npm run check:links\`: Auditoría estática de enlaces internos para asegurar 0 enlaces rotos en las 394 páginas.
-   - \`npm run check:a11y\`: Validación estricta de contrastes, atributos ARIA y navegación por teclado.
-   - \`npm run build\` & \`npm run typecheck\`: Compilación limpia sin errores de tipos.
-5. **05-Revisar:** Auditoría de seguridad con \`npm audit\`, escaneo de credenciales con Gitleaks y análisis SAST con **GitHub CodeQL**.
-6. **06-Aprobar:** Emisión del dictamen formal ejecutivo (\`Aprobado\`, \`Requiere Cambios\` o \`Bloqueado\`).
-7. **07-Centinela:** Monitoreo y asistencia técnica en GitHub Discussions con ventana de cortesía humana y análisis contextualizado.
+1. **01-Definir:** Especificacion de requisitos, criterios de aceptacion, contratos de datos y alcance atomico.
+2. **02-Planificar:** Desglose secuencial de tareas con dependencias, mitigacion de riesgos y puntos de control.
+3. **03-Construir:** Creacion de ramas Git atomicas (\`feat/\`, \`fix/\`, \`docs/\`) y Pull Requests con plantillas formales y coautoria tecnica (\`Co-authored-by: Azlynn17\`).
+4. **04-Verificar:** Ejecucion del conjunto exhaustivo de validaciones:
+   - \`npm run check:library\`: Validacion de integridad de colecciones y recursos.
+   - \`npm run check:links\`: Auditoria estatica de enlaces internos para asegurar 0 enlaces rotos en las 394 paginas.
+   - \`npm run check:a11y\`: Validacion estricta de contrastes, atributos ARIA y navegacion por teclado.
+   - \`npm run build\` y \`npm run typecheck\`: Compilacion limpia sin errores de tipos.
+5. **05-Revisar:** Auditoria de seguridad con \`npm audit\`, escaneo de credenciales con Gitleaks y analisis SAST con **GitHub CodeQL**.
+6. **06-Aprobar:** Emision del dictamen formal ejecutivo (\`Aprobado\`, \`Requiere Cambios\` o \`Bloqueado\`).
+7. **07-Centinela:** Monitoreo y asistencia tecnica en GitHub Discussions con ventana de cortesia humana y analisis contextualizado.
 
 ---
 
-## 🔒 Postura de Seguridad Activa
+## Postura de Seguridad Activa
 
-- **Dependabot Alerts & Automated Fixes:** Monitoreo continuo de CVEs y apertura automática de PRs de actualización.
-- **Private Vulnerability Reporting:** Canal oficial privado para divulgación coordinada y responsable de fallos de seguridad.
-- **GitHub CodeQL SAST:** Análisis semántico profundo de seguridad en TypeScript, JavaScript y Python en cada PR.
+- **Dependabot Alerts y Automated Fixes:** Monitoreo continuo de CVEs y apertura automatica de PRs de actualizacion.
+- **Private Vulnerability Reporting:** Canal oficial privado para divulgacion coordinada y responsable de fallos de seguridad.
+- **GitHub CodeQL SAST:** Analisis semantico profundo de seguridad en TypeScript, JavaScript y Python en cada PR.
 
 ---
-[← Volver al Inicio](Home)
+[<- Volver al Inicio](Home)
 `;
 fs.writeFileSync(path.join(wikiDir, "Gobernanza-y-Auditoria.md"), govContent, "utf8");
 
-// 9. Also write the consolidated encyclopedic file into docs/WIKI_ENCICLOPEDIA_DEV_VISUALIZER.md
-const docsMasterContent = `# 🌌 Enciclopedia Técnica Dev Visualizer (73 Colecciones • ${totalConcepts.toLocaleString("es-MX")} Conceptos)
+// 9. Documento Maestro Versionado docs/WIKI_ENCICLOPEDIA_DEV_VISUALIZER.md
+const docsMasterContent = `# Enciclopedia Tecnica Dev Visualizer (73 Colecciones • ${totalConcepts.toLocaleString("es-MX")} Conceptos)
 
-> **Documento Maestro Integrado del Atlas Pedagógico Dev Visualizer**  
-> Fecha de generación: 2026-11-02 • Autor: [@Luics415](https://github.com/Luics415) • Coautora: [@Azlynn17](https://github.com/Azlynn17)
+> **Documento Maestro Integrado del Atlas Pedagogico Dev Visualizer**  
+> Fecha de generacion: 2026-11-02 • Autor: [@Luics415](https://github.com/Luics415) • Coautoria Tecnica: [@Azlynn17](https://github.com/Azlynn17)
 
 ---
 
-## 📊 Métricas Consolidadas
+## Metricas Consolidadas
 - **Colecciones Oficiales:** 73
-- **Conceptos Técnicos Indexados:** ${totalConcepts.toLocaleString("es-MX")}
-- **Rutas Técnicas:** 146
-- **Páginas SSG Generadas:** 394
+- **Conceptos Tecnicos Indexados:** ${totalConcepts.toLocaleString("es-MX")}
+- **Rutas Tecnicas:** 146
+- **Paginas SSG Generadas:** 394
 - **Recursos Verificados:** 272
 
 ---
 
-## 🏛️ Catálogo de Grupos y Colecciones
+## Diagrama de Arquitectura de Colecciones
+
+\`\`\`mermaid
+flowchart LR
+    Fund["01 Fundamentos"] --> Lang["02 Lenguajes"]
+    Lang --> Plat["04 Plataformas"]
+    Lang --> Inter["03 Interfaces"]
+    Plat --> DataG["05 Datos"]
+    Plat --> Infra["07 Infraestructura"]
+    Inter --> Version["06 Versionado"]
+    Version --> Infra
+\`\`\`
+
+---
+
+## Catalogo de Grupos y Colecciones
 ${(Object.keys(collectionGroupMeta) as CollectionGroupId[])
   .map((groupId) => {
     const meta = collectionGroupMeta[groupId];
     const groupCols = collectionsData.filter((c) => c.group === groupId);
     return `### Grupo: ${meta.name} (${meta.description})
-${groupCols.map((c) => `- **[${c.short}] ${c.label}** (${c.concepts.length} conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer${c.href}) | [En acción](https://luics415.github.io/Dev-Visualizer${c.actionHref}): ${c.summary}`).join("\n")}
+${groupCols.map((c) => `- **[${c.short}] ${c.label}** (${c.concepts.length} conceptos) — [Atlas en vivo](https://luics415.github.io/Dev-Visualizer${c.href}) | [En accion](https://luics415.github.io/Dev-Visualizer${c.actionHref}): ${c.summary}`).join("\n")}
 `;
   })
   .join("\n")}
 
 ---
 
-## 📚 Índice Temático de los ${totalConcepts.toLocaleString("es-MX")} Conceptos
+## Indice Tematico de los ${totalConcepts.toLocaleString("es-MX")} Conceptos
 *(Para consultar el desglose interactivo individual de cada concepto y sus escenas animadas, visita la Wiki de GitHub en \`/wiki\` o el Atlas interactivo en [https://luics415.github.io/Dev-Visualizer/](https://luics415.github.io/Dev-Visualizer/)).*
 
 ${collectionsData
@@ -449,4 +629,4 @@ ${Array.from(c.sectionsMap.entries())
 
 fs.writeFileSync(docsFile, docsMasterContent, "utf8");
 
-console.log(`¡Éxito! Se generaron ${fs.readdirSync(wikiDir).length} archivos en wiki/ y docs/WIKI_ENCICLOPEDIA_DEV_VISUALIZER.md.`);
+console.log(`Exito: Se generaron ${fs.readdirSync(wikiDir).length} archivos tecnicos sin emojis en wiki/ y docs/WIKI_ENCICLOPEDIA_DEV_VISUALIZER.md.`);

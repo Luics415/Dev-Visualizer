@@ -1,48 +1,48 @@
-# 📘 [101] Fundamentos de programación
+# Fundamentos de programación (101)
 
 > **Problemas, datos, control, funciones, diseño, pruebas y pensamiento computacional.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `programming-fundamentals` |
-| **Grupo Arquitectónico** | [Fundamentos](Grupo-Fundamentals) |
+| **Grupo Arquitectonico** | [Fundamentos](Grupo-Fundamentals) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `javascript` |
 | **Total de Conceptos** | **91 conceptos** |
-| **Capítulos / Secciones** | **15 secciones** |
+| **Capitulos / Secciones** | **15 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/fundamentos-programacion)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/fundamentos-programacion-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/fundamentos-programacion)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/fundamentos-programacion-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: De una necesidad a un programa comprobable
+## Estudio de Caso Practico: De una necesidad a un programa comprobable
 
 > **Caso integrado de Fundamentos de programación:** Una calculadora de consumo doméstico convierte requisitos ambiguos en reglas, detecta una lectura imposible, corrige el dato y entrega un resumen verificable.  
 > El resultado incluye ejemplos, límites y una traza que otra persona puede repetir.
 
-### Fases de Ejecución:
+### Fases de Ejecucion:
 1. **Definir contrato** (De una necesidad a un programa comprobable: etapa 1 de 5): `entrada: lecturas y tarifa
-salida: consumo y costo` → Contrato mínimo acordado. *La etapa conserva un contrato explícito para que el siguiente paso de Fundamentos de programación no dependa de supuestos ocultos.*
+salida: consumo y costo` -> Contrato mínimo acordado. *La etapa conserva un contrato explícito para que el siguiente paso de Fundamentos de programación no dependa de supuestos ocultos.*
 2. **Diseñar algoritmo** (De una necesidad a un programa comprobable: etapa 2 de 5): `consumo = actual - anterior
-costo = consumo * tarifa` → Traza normal resuelta. *La etapa conserva un contrato explícito para que el siguiente paso de Fundamentos de programación no dependa de supuestos ocultos.*
+costo = consumo * tarifa` -> Traza normal resuelta. *La etapa conserva un contrato explícito para que el siguiente paso de Fundamentos de programación no dependa de supuestos ocultos.*
 3. **Detectar lectura inválida** (De una necesidad a un programa comprobable: etapa 3 de 5): `actual = 1840
-anterior = 1912` → La ejecución se detiene con diagnóstico. *El caso hace visible el fallo de Fundamentos de programación; no continúa como si la evidencia fuera válida.*
+anterior = 1912` -> La ejecución se detiene con diagnóstico. *El caso hace visible el fallo de Fundamentos de programación; no continúa como si la evidencia fuera válida.*
 4. **Recuperar el dato** (De una necesidad a un programa comprobable: etapa 4 de 5): `actual = solicitar_lectura_corregida()
-assert actual >= anterior` → Entrada corregida y trazable. *La recuperación de Fundamentos de programación corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
+assert actual >= anterior` -> Entrada corregida y trazable. *La recuperación de Fundamentos de programación corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
 5. **Verificar resultado** (De una necesidad a un programa comprobable: etapa 5 de 5): `assert costo == 236.40
-imprimir_resumen()` → Programa pequeño y comprobable. *La etapa conserva un contrato explícito para que el siguiente paso de Fundamentos de programación no dependa de supuestos ocultos.*
+imprimir_resumen()` -> Programa pequeño y comprobable. *La etapa conserva un contrato explícito para que el siguiente paso de Fundamentos de programación no dependa de supuestos ocultos.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (91)
+## Catalogo Sistematico de Conceptos (91)
 
-### 📑 Sección: Pensamiento computacional (5 conceptos)
+### Seccion: Pensamiento computacional (5 conceptos)
 
 - **Problema, entrada y salida**  
   *Familia:* `flujo de ejecución`  
@@ -65,7 +65,7 @@ imprimir_resumen()` → Programa pequeño y comprobable. *La etapa conserva un c
   La función de Pseudocódigo y trazas manuales parte de un ejemplo mínimo, sus precondiciones y el estado inicial. Su ejecución aplica el mecanismo paso a paso haciendo visibles sus invariantes y produce un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Datos y ejecución (5 conceptos)
+### Seccion: Datos y ejecución (5 conceptos)
 
 - **Valores, tipos y representación**  
   *Familia:* `matriz de señales`  
@@ -88,7 +88,7 @@ imprimir_resumen()` → Programa pequeño y comprobable. *La etapa conserva un c
   La función de Entrada, salida y efectos parte de datos identificables junto con esquema, restricciones y procedencia. Su ejecución valida, representa y recorre cada valor preservando relaciones y produce información consultable con integridad y significado estables.
 
 
-### 📑 Sección: Control y composición (5 conceptos)
+### Seccion: Control y composición (5 conceptos)
 
 - **Condiciones y ramas**  
   *Familia:* `flujo de ejecución`  
@@ -111,7 +111,7 @@ imprimir_resumen()` → Programa pequeño y comprobable. *La etapa conserva un c
   Para entender Colecciones elementales, se delimita un ejemplo mínimo, sus precondiciones y el estado inicial. La operación aplica el mecanismo paso a paso haciendo visibles sus invariantes hasta producir un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Errores y diagnóstico (5 conceptos)
+### Seccion: Errores y diagnóstico (5 conceptos)
 
 - **Errores de sintaxis**  
   *Familia:* `evidencia y latencia`  
@@ -134,7 +134,7 @@ imprimir_resumen()` → Programa pequeño y comprobable. *La etapa conserva un c
   Para entender Casos límite y datos inválidos, se delimita datos identificables junto con esquema, restricciones y procedencia. La operación valida, representa y recorre cada valor preservando relaciones hasta producir información consultable con integridad y significado estables.
 
 
-### 📑 Sección: Calidad y crecimiento (5 conceptos)
+### Seccion: Calidad y crecimiento (5 conceptos)
 
 - **Nombres y legibilidad**  
   *Familia:* `espectro de verificación`  
@@ -157,7 +157,7 @@ imprimir_resumen()` → Programa pequeño y comprobable. *La etapa conserva un c
   Para entender Versionado y documentación, se delimita un comportamiento esperado, una entrada mínima y un síntoma observable. La operación aísla variables y contrasta hipótesis con instrumentación repetible hasta producir una causa demostrada y una regresión protegida.
 
 
-### 📑 Sección: Representación de información (7 conceptos)
+### Seccion: Representación de información (7 conceptos)
 
 - **Bits, bytes y palabras**  
   *Familia:* `consulta e índice`  
@@ -188,7 +188,7 @@ imprimir_resumen()` → Programa pequeño y comprobable. *La etapa conserva un c
   Compresión / sin / pérdida coordina la ejecución: el adaptador prepara operaciones, adquiere recursos y aplica restricciones antes de confirmar hasta obtener estado persistido con integridad y visibilidad coherentes para lectores concurrentes.
 
 
-### 📑 Sección: Diseño paso a paso (5 conceptos)
+### Seccion: Diseño paso a paso (5 conceptos)
 
 - **Requisitos observables**  
   *Familia:* `flujo de ejecución`  
@@ -211,7 +211,7 @@ imprimir_resumen()` → Programa pequeño y comprobable. *La etapa conserva un c
   Divide una responsabilidad grande en tareas pequeñas hasta que cada paso sea implementable y comprobable.
 
 
-### 📑 Sección: Modelado de datos (7 conceptos)
+### Seccion: Modelado de datos (7 conceptos)
 
 - **Entidades y atributos**  
   *Familia:* `configuración declarativa`  
@@ -242,7 +242,7 @@ imprimir_resumen()` → Programa pequeño y comprobable. *La etapa conserva un c
   Valores / opcionales / ausencia coordina la ejecución: el lenguaje resuelve expresiones y elige una ruta manteniendo alcance y manejo de fallo explícitos hasta obtener un valor, transición o error que el siguiente paso puede distinguir sin inspeccionar estado oculto.
 
 
-### 📑 Sección: Estado, efectos y tiempo (6 conceptos)
+### Seccion: Estado, efectos y tiempo (6 conceptos)
 
 - **Estado mutable e inmutable**  
   *Familia:* `máquina de estados`  
@@ -269,7 +269,7 @@ imprimir_resumen()` → Programa pequeño y comprobable. *La etapa conserva un c
   Para Máquinas / estados / finitos, la evaluación aplica, compone o reduce expresiones propagando contexto sin mutar entradas compartidas, manteniendo un nuevo valor que mantiene las leyes de composición y puede razonarse localmente.
 
 
-### 📑 Sección: Modularidad y contratos (8 conceptos)
+### Seccion: Modularidad y contratos (8 conceptos)
 
 - **Separación de responsabilidades**  
   *Familia:* `flujo de ejecución`  
@@ -304,7 +304,7 @@ imprimir_resumen()` → Programa pequeño y comprobable. *La etapa conserva un c
   Al operar con Compatibilidad / interfaces, el checker resuelve compatibilidad, inferencia, bounds y alternativas permitidas antes de emitir código, produciendo una operación tipada cuyo contrato puede consumirse sin repetir validaciones.
 
 
-### 📑 Sección: Estrategias de prueba (6 conceptos)
+### Seccion: Estrategias de prueba (6 conceptos)
 
 - **Tabla de casos de prueba**  
   *Familia:* `espectro de verificación`  
@@ -331,7 +331,7 @@ imprimir_resumen()` → Programa pequeño y comprobable. *La etapa conserva un c
   Para Pruebas / regresión, la herramienta ejecuta, perturba o inspecciona el mecanismo y conserva el contraejemplo mínimo, manteniendo evidencia reproducible que distingue regresión, ruido y limitación conocida.
 
 
-### 📑 Sección: Herramientas de desarrollo (7 conceptos)
+### Seccion: Herramientas de desarrollo (7 conceptos)
 
 - **Editor e IDE**  
   *Familia:* `pasaporte del artefacto`  
@@ -362,7 +362,7 @@ imprimir_resumen()` → Programa pequeño y comprobable. *La etapa conserva un c
   Automatización / tareas / repetibles coordina la ejecución: el grafo resuelve dependencias, compila, enlaza y adjunta procedencia a cada salida hasta obtener un artefacto reproducible, verificable y promovible entre entornos.
 
 
-### 📑 Sección: Seguridad desde el inicio (6 conceptos)
+### Seccion: Seguridad desde el inicio (6 conceptos)
 
 - **Datos confiables y no confiables**  
   *Familia:* `validación y decisión`  
@@ -389,7 +389,7 @@ imprimir_resumen()` → Programa pequeño y comprobable. *La etapa conserva un c
   Para Codificación / segura / salida, el control autentica, autoriza, normaliza y registra evidencia sin revelar secretos, manteniendo solo la capacidad permitida ejecutada con una decisión que puede auditarse.
 
 
-### 📑 Sección: Recursos y rendimiento (7 conceptos)
+### Seccion: Recursos y rendimiento (7 conceptos)
 
 - **Costo de CPU**  
   *Familia:* `planificación de trabajo`  
@@ -420,7 +420,7 @@ imprimir_resumen()` → Programa pequeño y comprobable. *La etapa conserva un c
   Presupuestos / recursos coordina la ejecución: la evaluación aplica, compone o reduce expresiones propagando contexto sin mutar entradas compartidas hasta obtener un nuevo valor que mantiene las leyes de composición y puede razonarse localmente.
 
 
-### 📑 Sección: Entrega y mantenimiento (7 conceptos)
+### Seccion: Entrega y mantenimiento (7 conceptos)
 
 - **Configuración por entorno**  
   *Familia:* `configuración declarativa`  
@@ -454,4 +454,4 @@ imprimir_resumen()` → Programa pequeño y comprobable. *La etapa conserva un c
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Fundamentos](Grupo-Fundamentals) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Fundamentos](Grupo-Fundamentals) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

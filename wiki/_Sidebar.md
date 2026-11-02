@@ -1,13 +1,13 @@
-### 🌌 [Dev Visualizer Wiki](Home)
+### [Dev Visualizer Wiki](Home)
 
-- **[🏠 Inicio](Home)**
-- **[📚 Índice Maestro (7410)](Indice-Maestro-7410-Conceptos)**
-- **[🏗️ Arquitectura](Arquitectura-del-Sistema)**
-- **[🛡️ Gobernanza](Gobernanza-y-Auditoria)**
+- [Inicio](Home)
+- [Indice Maestro (7410)](Indice-Maestro-7410-Conceptos)
+- [Arquitectura del Sistema](Arquitectura-del-Sistema)
+- [Gobernanza y Auditoria](Gobernanza-y-Auditoria)
 
 ---
 
-### 📂 Grupos de Arquitectura
+### Grupos de Arquitectura
 - **[Fundamentos](Grupo-Fundamentals)** (5)
   - [101 - Fundamentos de programación](Coleccion-programming-fundamentals)
   - [A&D - Algoritmos y estructuras de datos](Coleccion-algorithms)
@@ -90,5 +90,5 @@
   - [TeX - LaTeX](Coleccion-latex)
 
 ---
-- **[🌐 Atlas en Vivo](https://luics415.github.io/Dev-Visualizer/)**
-- **[📦 GitHub Repo](https://github.com/Luics415/Dev-Visualizer)**
+- [Atlas en Vivo](https://luics415.github.io/Dev-Visualizer/)
+- [Repositorio GitHub](https://github.com/Luics415/Dev-Visualizer)

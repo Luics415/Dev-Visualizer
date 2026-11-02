@@ -1,43 +1,43 @@
-# 📘 [And] Android
+# Android (And)
 
 > **Componentes, lifecycle, Compose, almacenamiento, permisos, trabajo y publicación.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `android` |
-| **Grupo Arquitectónico** | [Plataformas y servidor](Grupo-Platforms) |
+| **Grupo Arquitectonico** | [Plataformas y servidor](Grupo-Platforms) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `react-native` |
 | **Total de Conceptos** | **130 conceptos** |
-| **Capítulos / Secciones** | **20 secciones** |
+| **Capitulos / Secciones** | **20 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/android)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/android-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/android)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/android-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: Sincronizar una reparación offline
+## Estudio de Caso Practico: Sincronizar una reparación offline
 
 > **Caso integrado de Android:** Una app guarda una solicitud y la sincroniza con WorkManager; el proceso muere durante el upload y la tarea recupera estado idempotente al reiniciar.  
 > La experiencia final conserva datos, lifecycle, constraints, reintento y estado accesible aun sin conexión.
 
-### Fases de Ejecución:
-1. **Capturar solicitud** (Sincronizar una reparación offline: etapa 1 de 5): `dao.insert(Repair.pending(form))` → Trabajo preservado localmente. *La etapa conserva un contrato explícito para que el siguiente paso de Android no dependa de supuestos ocultos.*
-2. **Programar constraints** (Sincronizar una reparación offline: etapa 2 de 5): `OneTimeWorkRequestBuilder<SyncWorker>().setConstraints(network)` → Tarea delegada al sistema. *La etapa conserva un contrato explícito para que el siguiente paso de Android no dependa de supuestos ocultos.*
-3. **Simular muerte de proceso** (Sincronizar una reparación offline: etapa 3 de 5): `adb shell am kill app.id` → Sincronización interrumpida. *El caso hace visible el fallo de Android; no continúa como si la evidencia fuera válida.*
-4. **Reanudar idempotente** (Sincronizar una reparación offline: etapa 4 de 5): `api.putRepair(local.id, local.payload)` → Trabajo recuperado. *La recuperación de Android corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
-5. **Reconstruir UI** (Sincronizar una reparación offline: etapa 5 de 5): `dao.observe(id).collectAsStateWithLifecycle()` → Resultado consistente. *La etapa conserva un contrato explícito para que el siguiente paso de Android no dependa de supuestos ocultos.*
+### Fases de Ejecucion:
+1. **Capturar solicitud** (Sincronizar una reparación offline: etapa 1 de 5): `dao.insert(Repair.pending(form))` -> Trabajo preservado localmente. *La etapa conserva un contrato explícito para que el siguiente paso de Android no dependa de supuestos ocultos.*
+2. **Programar constraints** (Sincronizar una reparación offline: etapa 2 de 5): `OneTimeWorkRequestBuilder<SyncWorker>().setConstraints(network)` -> Tarea delegada al sistema. *La etapa conserva un contrato explícito para que el siguiente paso de Android no dependa de supuestos ocultos.*
+3. **Simular muerte de proceso** (Sincronizar una reparación offline: etapa 3 de 5): `adb shell am kill app.id` -> Sincronización interrumpida. *El caso hace visible el fallo de Android; no continúa como si la evidencia fuera válida.*
+4. **Reanudar idempotente** (Sincronizar una reparación offline: etapa 4 de 5): `api.putRepair(local.id, local.payload)` -> Trabajo recuperado. *La recuperación de Android corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
+5. **Reconstruir UI** (Sincronizar una reparación offline: etapa 5 de 5): `dao.observe(id).collectAsStateWithLifecycle()` -> Resultado consistente. *La etapa conserva un contrato explícito para que el siguiente paso de Android no dependa de supuestos ocultos.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (130)
+## Catalogo Sistematico de Conceptos (130)
 
-### 📑 Sección: Plataforma (5 conceptos)
+### Seccion: Plataforma (5 conceptos)
 
 - **Proyecto y Gradle**  
   *Familia:* `pasaporte del artefacto`  
@@ -60,7 +60,7 @@
   Compatibilidad de API estructura un mensaje versionado, un destino y límites de tiempo en el sistema: serializa, transporta y valida el intercambio a través de una frontera remota, garantizando una respuesta correlacionada o un estado convergente verificable.
 
 
-### 📑 Sección: Componentes y runtime (5 conceptos)
+### Seccion: Componentes y runtime (5 conceptos)
 
 - **Activities**  
   *Familia:* `mapa de memoria`  
@@ -83,7 +83,7 @@
   Para entender ART y proceso, se delimita tareas con dependencias, recursos compartidos y una señal de cancelación. La operación ordena trabajo y sincronización sin ocultar intercalados posibles hasta producir progreso concurrente con ownership y terminación observables.
 
 
-### 📑 Sección: Interfaz y estado (5 conceptos)
+### Seccion: Interfaz y estado (5 conceptos)
 
 - **Lifecycle**  
   *Familia:* `ciclo de vida`  
@@ -106,7 +106,7 @@
   La función de Persistencia local parte de datos identificables junto con esquema, restricciones y procedencia. Su ejecución valida, representa y recorre cada valor preservando relaciones y produce información consultable con integridad y significado estables.
 
 
-### 📑 Sección: Diagnóstico (5 conceptos)
+### Seccion: Diagnóstico (5 conceptos)
 
 - **Logcat**  
   *Familia:* `evidencia y latencia`  
@@ -129,7 +129,7 @@
   El recorrido de Pruebas instrumentadas toma un comportamiento esperado, una entrada mínima y un síntoma observable. Posteriormente aísla variables y contrasta hipótesis con instrumentación repetible para validar una causa demostrada y una regresión protegida.
 
 
-### 📑 Sección: Producción (5 conceptos)
+### Seccion: Producción (5 conceptos)
 
 - **Permisos**  
   *Familia:* `validación y decisión`  
@@ -152,7 +152,7 @@
   Play quality estructura un ejemplo mínimo, sus precondiciones y el estado inicial en el sistema: aplica el mecanismo paso a paso haciendo visibles sus invariantes, garantizando un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Arquitectura de aplicación (6 conceptos)
+### Seccion: Arquitectura de aplicación (6 conceptos)
 
 - **Unidirectional data flow**  
   *Familia:* `consulta e índice`  
@@ -179,7 +179,7 @@
   Process-death state restoration gestiona Arquitectura de aplicación de modo que el framework enruta el evento por componentes, Binder, ART y la capa de interfaz, produciendo estado visible y persistente que sobrevive la transición de lifecycle prevista.
 
 
-### 📑 Sección: Compose profundo (8 conceptos)
+### Seccion: Compose profundo (8 conceptos)
 
 - **Recomposition scopes**  
   *Familia:* `flujo de transformación`  
@@ -214,7 +214,7 @@
   En el flujo operativo de Compose profundo, Snapshot apply observers consulta, calcula ausencias y publica el nuevo valor junto con su invalidador para obtener reutilización medible sin cambiar el resultado funcional.
 
 
-### 📑 Sección: Interfaz clásica (6 conceptos)
+### Seccion: Interfaz clásica (6 conceptos)
 
 - **View hierarchy**  
   *Familia:* `despacho de runtime`  
@@ -241,7 +241,7 @@
   Window insets gestiona Interfaz clásica de modo que propaga elementos, aplica ventana o transformación y regula producción con demanda, produciendo salida ordenada con memoria y latencia acotadas.
 
 
-### 📑 Sección: Datos locales (7 conceptos)
+### Seccion: Datos locales (7 conceptos)
 
 - **Room schema**  
   *Familia:* `consulta e índice`  
@@ -272,7 +272,7 @@
   A través de Schema export verification en Datos locales, el sistema resuelve composición, restricciones y representación antes de aceptar la instancia manteniendo estructura válida cuyas operaciones permitidas están explícitas.
 
 
-### 📑 Sección: Red y sincronización (7 conceptos)
+### Seccion: Red y sincronización (7 conceptos)
 
 - **Conectividad cambiante**  
   *Familia:* `planificación de trabajo`  
@@ -303,7 +303,7 @@
   A través de Offline conflict resolution en Red y sincronización, el sistema serializa, negocia, transmite y traduce errores u ownership en la frontera manteniendo respuesta tipada o efecto confirmado con compatibilidad conocida.
 
 
-### 📑 Sección: Coroutines en Android (7 conceptos)
+### Seccion: Coroutines en Android (7 conceptos)
 
 - **Structured concurrency**  
   *Familia:* `topología y tráfico`  
@@ -334,7 +334,7 @@
   A través de Supervisor scope boundaries en Coroutines en Android, el sistema encola, planifica y reanuda unidades conservando causalidad y propagación de error manteniendo resultado, cancelación o reinicio visibles para el supervisor correcto.
 
 
-### 📑 Sección: Multimedia y sensores (7 conceptos)
+### Seccion: Multimedia y sensores (7 conceptos)
 
 - **CameraX**  
   *Familia:* `matriz de señales`  
@@ -365,7 +365,7 @@
   A través de Camera use-case binding en Multimedia y sensores, el sistema vincula el productor al lifecycle, transforma la muestra y entrega solo mientras el consumidor está activo manteniendo frame, señal o ubicación con tiempo y precisión conocidos.
 
 
-### 📑 Sección: Accesibilidad e internacionalización (7 conceptos)
+### Seccion: Accesibilidad e internacionalización (7 conceptos)
 
 - **Semantics de Compose**  
   *Familia:* `ciclo de vida`  
@@ -396,7 +396,7 @@
   A través de Locale plural rules en Accesibilidad e internacionalización, el sistema mide, compone, renderiza y actualiza solo las dependencias invalidadas manteniendo interfaz navegable cuyo estado visual y semántico coinciden.
 
 
-### 📑 Sección: Testing por capas (7 conceptos)
+### Seccion: Testing por capas (7 conceptos)
 
 - **JUnit local**  
   *Familia:* `espectro de verificación`  
@@ -427,7 +427,7 @@
   A través de Hermetic device fixtures en Testing por capas, el sistema ejecuta camino normal, límite y fallo mientras captura todos los efectos observables manteniendo evidencia repetible que distingue comportamiento correcto de una regresión.
 
 
-### 📑 Sección: Rendimiento (7 conceptos)
+### Seccion: Rendimiento (7 conceptos)
 
 - **Baseline Profiles**  
   *Familia:* `diagnóstico operativo`  
@@ -458,7 +458,7 @@
   A través de Heap leak analysis en Rendimiento, el sistema reserva, mapea o mueve memoria y registra quién debe reclamarla manteniendo datos accesibles durante el lifetime exacto y capacidad devuelta al finalizar.
 
 
-### 📑 Sección: Seguridad móvil (7 conceptos)
+### Seccion: Seguridad móvil (7 conceptos)
 
 - **Android Keystore**  
   *Familia:* `validación y decisión`  
@@ -489,7 +489,7 @@
   A través de Credential Manager lifecycle en Seguridad móvil, el sistema autentica, normaliza y autoriza antes de ejecutar con la capacidad mínima manteniendo decisión explícita y auditable que no expone secretos ni amplía privilegios.
 
 
-### 📑 Sección: Procesos y Binder (7 conceptos)
+### Seccion: Procesos y Binder (7 conceptos)
 
 - **Binder IPC**  
   *Familia:* `ciclo de vida`  
@@ -520,7 +520,7 @@
   A través de DeathRecipient recovery en Procesos y Binder, el sistema aísla el fallo, restaura o promueve y reproduce cambios hasta el punto seguro manteniendo servicio recuperado con pérdida y tiempo medidos.
 
 
-### 📑 Sección: Tooling y build (7 conceptos)
+### Seccion: Tooling y build (7 conceptos)
 
 - **Android Gradle Plugin**  
   *Familia:* `flujo de transformación`  
@@ -551,7 +551,7 @@
   A través de Baseline Profile installation en Tooling y build, el sistema instrumenta, correlaciona y agrega sin romper el presupuesto de ejecución manteniendo señal que permite localizar componente, versión y duración del problema.
 
 
-### 📑 Sección: Entrega y compatibilidad (7 conceptos)
+### Seccion: Entrega y compatibilidad (7 conceptos)
 
 - **App Bundles**  
   *Familia:* `pasaporte del artefacto`  
@@ -582,7 +582,7 @@
   A través de Staged rollout halt criteria en Entrega y compatibilidad, el sistema promueve por etapas, observa señales y conserva una ruta de reversión manteniendo versión activa con tráfico y datos dentro del contrato.
 
 
-### 📑 Sección: Diagnóstico en producción (8 conceptos)
+### Seccion: Diagnóstico en producción (8 conceptos)
 
 - **Crash reporting**  
   *Familia:* `evidencia y latencia`  
@@ -620,4 +620,4 @@
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Plataformas y servidor](Grupo-Platforms) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Plataformas y servidor](Grupo-Platforms) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

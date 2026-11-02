@@ -1,31 +1,31 @@
-# 📘 [Docker] Docker
+# Docker (Docker)
 
 > **Imágenes, BuildKit, storage, networking, Compose y runtime.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `docker` |
-| **Grupo Arquitectónico** | [Infraestructura y entrega](Grupo-Delivery) |
+| **Grupo Arquitectonico** | [Infraestructura y entrega](Grupo-Delivery) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `docker` |
 | **Total de Conceptos** | **236 conceptos** |
-| **Capítulos / Secciones** | **13 secciones** |
+| **Capitulos / Secciones** | **13 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/docker)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/docker-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/docker)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/docker-en-accion)
 
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (236)
+## Catalogo Sistematico de Conceptos (236)
 
-### 📑 Sección: Fundamentos de contenedores (15 conceptos)
+### Seccion: Fundamentos de contenedores (15 conceptos)
 
 - **Qué problema resuelve Docker**  
   *Familia:* `aislamiento sobre host`  
@@ -88,7 +88,7 @@
   Conecta código fuente, imagen versionada, registry y ejecución de la misma referencia en distintos entornos.
 
 
-### 📑 Sección: Arquitectura del runtime (16 conceptos)
+### Seccion: Arquitectura del runtime (16 conceptos)
 
 - **API de Docker Engine**  
   *Familia:* `aislamiento sobre host`  
@@ -155,7 +155,7 @@
   Permite mantener contenedores ejecutándose durante ciertas actualizaciones o reinicios del daemon.
 
 
-### 📑 Sección: CLI y ciclo de vida (16 conceptos)
+### Seccion: CLI y ciclo de vida (16 conceptos)
 
 - **docker run**  
   *Familia:* `aislamiento sobre host`  
@@ -222,7 +222,7 @@
   Comandos prune eliminan objetos no usados y requieren comprender qué datos o cachés se perderán.
 
 
-### 📑 Sección: Imágenes, capas y distribución (18 conceptos)
+### Seccion: Imágenes, capas y distribución (18 conceptos)
 
 - **Anatomía de una imagen**  
   *Familia:* `anatomía del concepto`  
@@ -297,7 +297,7 @@
   Elimina blobs sin referencias después de políticas de retención y coordinación segura.
 
 
-### 📑 Sección: Dockerfile y diseño de imágenes (24 conceptos)
+### Seccion: Dockerfile y diseño de imágenes (24 conceptos)
 
 - **FROM**  
   *Familia:* `pasaporte del artefacto`  
@@ -396,7 +396,7 @@
   Un init ligero puede reenviar señales y recolectar hijos cuando la aplicación no actúa correctamente como PID 1.
 
 
-### 📑 Sección: BuildKit y flujos de build (19 conceptos)
+### Seccion: BuildKit y flujos de build (19 conceptos)
 
 - **BuildKit**  
   *Familia:* `análisis y emisión`  
@@ -475,7 +475,7 @@
   docker buildx bake coordina múltiples targets, matrices y plataformas mediante definición declarativa.
 
 
-### 📑 Sección: Persistencia y storage (16 conceptos)
+### Seccion: Persistencia y storage (16 conceptos)
 
 - **Writable layer y copy-on-write**  
   *Familia:* `acumulación de recursos`  
@@ -542,7 +542,7 @@
   Un daemon puede fallar por falta de inodos o espacio aunque el contenedor parezca pequeño.
 
 
-### 📑 Sección: Networking (20 conceptos)
+### Seccion: Networking (20 conceptos)
 
 - **Modelo de red de contenedores**  
   *Familia:* `topología y tráfico`  
@@ -625,7 +625,7 @@
   inspect, exec, ip, ss, dig y capturas permiten seguir DNS, rutas, sockets y paquetes.
 
 
-### 📑 Sección: Docker Compose (20 conceptos)
+### Seccion: Docker Compose (20 conceptos)
 
 - **Compose Specification**  
   *Familia:* `ciclo de vida`  
@@ -708,7 +708,7 @@
   Comandos del proyecto agregan logs, estado y shell por servicio sin buscar IDs manualmente.
 
 
-### 📑 Sección: Seguridad de contenedores (20 conceptos)
+### Seccion: Seguridad de contenedores (20 conceptos)
 
 - **Modelo de amenaza**  
   *Familia:* `mapa de memoria`  
@@ -791,7 +791,7 @@
   Protege fuentes, builder, dependencias, attestations, registry y promoción hasta runtime.
 
 
-### 📑 Sección: Observabilidad y troubleshooting (18 conceptos)
+### Seccion: Observabilidad y troubleshooting (18 conceptos)
 
 - **Logging drivers**  
   *Familia:* `evidencia y latencia`  
@@ -866,7 +866,7 @@
   Eventos, logs y endpoint de métricas permiten observar fallos del runtime además de la aplicación.
 
 
-### 📑 Sección: Rendimiento y recursos (14 conceptos)
+### Seccion: Rendimiento y recursos (14 conceptos)
 
 - **Límites de memoria**  
   *Familia:* `memoria intermedia`  
@@ -925,7 +925,7 @@
   Límites, overcommit y perfiles reales determinan cuántos contenedores caben sin degradación.
 
 
-### 📑 Sección: Producción y ecosistema (20 conceptos)
+### Seccion: Producción y ecosistema (20 conceptos)
 
 - **Compose en producción**  
   *Familia:* `ciclo de vida`  
@@ -1011,4 +1011,4 @@
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Infraestructura y entrega](Grupo-Delivery) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Infraestructura y entrega](Grupo-Delivery) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

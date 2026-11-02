@@ -1,31 +1,31 @@
-# 📘 [AWS] AWS
+# AWS (AWS)
 
 > **Identidad, VPC, compute, datos, eventos, gobierno y costo.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `aws` |
-| **Grupo Arquitectónico** | [Infraestructura y entrega](Grupo-Delivery) |
+| **Grupo Arquitectonico** | [Infraestructura y entrega](Grupo-Delivery) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `aws` |
 | **Total de Conceptos** | **228 conceptos** |
-| **Capítulos / Secciones** | **18 secciones** |
+| **Capitulos / Secciones** | **18 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/aws)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/aws-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/aws)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/aws-en-accion)
 
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (228)
+## Catalogo Sistematico de Conceptos (228)
 
-### 📑 Sección: Fundamentos de nube y arquitectura AWS (13 conceptos)
+### Seccion: Fundamentos de nube y arquitectura AWS (13 conceptos)
 
 - **Cloud computing**  
   *Familia:* `aislamiento sobre host`  
@@ -80,7 +80,7 @@
   Asume que instancias, zonas, redes y dependencias pueden fallar y diseña recuperación automatizada.
 
 
-### 📑 Sección: Identidad, gobierno y seguridad (21 conceptos)
+### Seccion: Identidad, gobierno y seguridad (21 conceptos)
 
 - **IAM users**  
   *Familia:* `ciclo de vida`  
@@ -167,7 +167,7 @@
   Descubre y clasifica datos sensibles almacenados en S3.
 
 
-### 📑 Sección: Networking y conectividad (20 conceptos)
+### Seccion: Networking y conectividad (20 conceptos)
 
 - **Amazon VPC**  
   *Familia:* `topología y tráfico`  
@@ -250,7 +250,7 @@
   Modela el camino de red y señala el componente que bloquea conectividad.
 
 
-### 📑 Sección: Compute, balanceo y escalado (17 conceptos)
+### Seccion: Compute, balanceo y escalado (17 conceptos)
 
 - **Amazon EC2**  
   *Familia:* `topología y tráfico`  
@@ -321,7 +321,7 @@
   Simplifica compute, red y storage para cargas pequeñas con configuración predecible.
 
 
-### 📑 Sección: Contenedores y serverless (15 conceptos)
+### Seccion: Contenedores y serverless (15 conceptos)
 
 - **Amazon ECR**  
   *Familia:* `consulta e índice`  
@@ -384,7 +384,7 @@
   Planifica trabajos batch sobre capacidad administrada y colas por prioridad.
 
 
-### 📑 Sección: Storage y entrega de contenido (18 conceptos)
+### Seccion: Storage y entrega de contenido (18 conceptos)
 
 - **Amazon S3**  
   *Familia:* `superficie de aplicación`  
@@ -459,7 +459,7 @@
   Permite que CloudFront acceda a S3 sin hacer el bucket público.
 
 
-### 📑 Sección: Bases de datos, búsqueda y caché (19 conceptos)
+### Seccion: Bases de datos, búsqueda y caché (19 conceptos)
 
 - **Amazon RDS**  
   *Familia:* `superficie de aplicación`  
@@ -538,7 +538,7 @@
   Modela grafos de propiedades o RDF y ejecuta consultas de relaciones.
 
 
-### 📑 Sección: Mensajería, eventos e integración (15 conceptos)
+### Seccion: Mensajería, eventos e integración (15 conceptos)
 
 - **Amazon SQS Standard**  
   *Familia:* `planificación de trabajo`  
@@ -601,7 +601,7 @@
   Expone APIs GraphQL administradas con resolvers, subscriptions y fuentes de datos.
 
 
-### 📑 Sección: DNS, APIs, edge y protección (14 conceptos)
+### Seccion: DNS, APIs, edge y protección (14 conceptos)
 
 - **Amazon Route 53**  
   *Familia:* `jerarquía y dependencias`  
@@ -660,7 +660,7 @@
   Intercambia identidades autenticadas o invitadas por credenciales AWS temporales.
 
 
-### 📑 Sección: Observabilidad y operaciones (15 conceptos)
+### Seccion: Observabilidad y operaciones (15 conceptos)
 
 - **Amazon CloudWatch Metrics**  
   *Familia:* `evidencia y latencia`  
@@ -723,7 +723,7 @@
   Relaciona eventos AWS con recursos concretos de la cuenta.
 
 
-### 📑 Sección: Infraestructura como código, CI/CD y gobierno (16 conceptos)
+### Seccion: Infraestructura como código, CI/CD y gobierno (16 conceptos)
 
 - **AWS CloudFormation**  
   *Familia:* `memoria intermedia`  
@@ -790,7 +790,7 @@
   Atribuyen gasto a producto, equipo, entorno o centro de costo.
 
 
-### 📑 Sección: Confiabilidad, costo y sostenibilidad (15 conceptos)
+### Seccion: Confiabilidad, costo y sostenibilidad (15 conceptos)
 
 - **Alta disponibilidad Multi-AZ**  
   *Familia:* `flujo de ejecución`  
@@ -853,7 +853,7 @@
   Recupera de fallos, prueba procedimientos y adapta capacidad a la demanda.
 
 
-### 📑 Sección: Sitio privado con S3, CloudFront y OAC (5 conceptos)
+### Seccion: Sitio privado con S3, CloudFront y OAC (5 conceptos)
 
 - **Origen S3 privado de extremo a extremo**  
   *Familia:* `análisis y emisión`  
@@ -876,7 +876,7 @@
   Previsualiza aws s3 sync antes de aplicar cambios, trata --delete como operación riesgosa y confirma root object, headers, HTTPS, Cache Hit o Miss y denegación del acceso directo sin subir secretos al navegador.
 
 
-### 📑 Sección: API serverless con API Gateway y Lambda (5 conceptos)
+### Seccion: API serverless con API Gateway y Lambda (5 conceptos)
 
 - **Ruta, stage e integración serverless**  
   *Familia:* `árbol de recursos`  
@@ -899,7 +899,7 @@
   Procesa eventos de S3, EventBridge o SQS con operaciones idempotentes, separa productor y destino y evita escribir en el mismo patrón que vuelve a disparar la función indefinidamente.
 
 
-### 📑 Sección: DynamoDB guiado por patrones de acceso (5 conceptos)
+### Seccion: DynamoDB guiado por patrones de acceso (5 conceptos)
 
 - **Patrones de acceso antes del esquema**  
   *Familia:* `análisis y emisión`  
@@ -922,7 +922,7 @@
   Registra una clave estable de operación y usa ConditionExpression o una transacción para que reintentos no dupliquen efectos, diferenciando solicitud repetida de una nueva intención de negocio.
 
 
-### 📑 Sección: CloudWatch como evidencia operativa (5 conceptos)
+### Seccion: CloudWatch como evidencia operativa (5 conceptos)
 
 - **Logs estructurados, retención y datos sensibles**  
   *Familia:* `evidencia y latencia`  
@@ -945,7 +945,7 @@
   Interpreta estados OK, ALARM e INSUFFICIENT_DATA con periodos y umbrales adecuados, notifica por SNS y enlaza un runbook que incluye validación, mitigación y señales de recuperación.
 
 
-### 📑 Sección: IAM y evaluación de permisos (5 conceptos)
+### Seccion: IAM y evaluación de permisos (5 conceptos)
 
 - **Principal, Action, Resource y Condition**  
   *Familia:* `matriz de señales`  
@@ -968,7 +968,7 @@
   Diferencia la resource-based policy que permite a un servicio invocar Lambda del execution role que usa la función al acceder a S3, DynamoDB, logs u otros recursos durante su trabajo.
 
 
-### 📑 Sección: FinOps, atribución y control de gasto (5 conceptos)
+### Seccion: FinOps, atribución y control de gasto (5 conceptos)
 
 - **Cost Explorer como conversación temporal**  
   *Familia:* `evidencia y latencia`  
@@ -992,11 +992,11 @@
 
 
 
-## 📖 Recursos de Estudio y Referencias Oficiales
+## Referencias Bibliograficas y Documentacion Oficial
 - **[Getting Started on AWS](https://aws.amazon.com/getting-started/)** (`tutorial` | Nivel: `beginner`): 
 - **[Overview of Amazon Web Services](https://docs.aws.amazon.com/whitepapers/latest/aws-overview/introduction.html)** (`reference` | Nivel: `intermediate`): 
 - **[AWS Architecture Center](https://aws.amazon.com/architecture/)** (`reference` | Nivel: `advanced`): 
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Infraestructura y entrega](Grupo-Delivery) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Infraestructura y entrega](Grupo-Delivery) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

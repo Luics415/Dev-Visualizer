@@ -1,31 +1,31 @@
-# 📘 [DB] Bases de datos
+# Bases de datos (DB)
 
 > **Modelado, SQL, índices, concurrencia, distribución y backups.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `databases` |
-| **Grupo Arquitectónico** | [Datos](Grupo-Data) |
+| **Grupo Arquitectonico** | [Datos](Grupo-Data) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `databases` |
 | **Total de Conceptos** | **113 conceptos** |
-| **Capítulos / Secciones** | **10 secciones** |
+| **Capitulos / Secciones** | **10 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/bases-datos)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/bases-datos-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/bases-datos)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/bases-datos-en-accion)
 
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (113)
+## Catalogo Sistematico de Conceptos (113)
 
-### 📑 Sección: Fundamentos y modelado (11 conceptos)
+### Seccion: Fundamentos y modelado (11 conceptos)
 
 - **Qué es una base de datos**  
   *Familia:* `anatomía del concepto`  
@@ -72,7 +72,7 @@
   Eligen representación, rango, precisión y operaciones válidas.
 
 
-### 📑 Sección: SQL y operaciones relacionales (12 conceptos)
+### Seccion: SQL y operaciones relacionales (12 conceptos)
 
 - **DDL**  
   *Familia:* `ida y vuelta`  
@@ -123,7 +123,7 @@
   Nombran subconsultas para componer pasos legibles y, según el motor, recursivos.
 
 
-### 📑 Sección: Joins, agregación y análisis (10 conceptos)
+### Seccion: Joins, agregación y análisis (10 conceptos)
 
 - **INNER JOIN**  
   *Familia:* `capas internas`  
@@ -166,7 +166,7 @@
   Combinan resultados compatibles mediante UNION, INTERSECT o EXCEPT.
 
 
-### 📑 Sección: Integridad y reglas de datos (10 conceptos)
+### Seccion: Integridad y reglas de datos (10 conceptos)
 
 - **NOT NULL**  
   *Familia:* `contratos coordinados`  
@@ -209,7 +209,7 @@
   Registra quién, cuándo y qué cambió mediante tablas o logs especializados.
 
 
-### 📑 Sección: Índices y optimización de consultas (12 conceptos)
+### Seccion: Índices y optimización de consultas (12 conceptos)
 
 - **Qué es un índice**  
   *Familia:* `jerarquía y dependencias`  
@@ -260,7 +260,7 @@
   Escribe predicados que permitan usar un índice sin transformar la columna innecesariamente.
 
 
-### 📑 Sección: Transacciones y concurrencia (13 conceptos)
+### Seccion: Transacciones y concurrencia (13 conceptos)
 
 - **ACID**  
   *Familia:* `acumulación de recursos`  
@@ -315,7 +315,7 @@
   Coordinan cambios en múltiples recursos con costo y fallos adicionales.
 
 
-### 📑 Sección: Evolución de esquema y acceso (10 conceptos)
+### Seccion: Evolución de esquema y acceso (10 conceptos)
 
 - **Migraciones**  
   *Familia:* `máquina de estados`  
@@ -358,7 +358,7 @@
   Crean datos reproducibles para desarrollo, demo o pruebas.
 
 
-### 📑 Sección: NoSQL y modelos especializados (12 conceptos)
+### Seccion: NoSQL y modelos especializados (12 conceptos)
 
 - **Bases documentales**  
   *Familia:* `capas internas`  
@@ -409,7 +409,7 @@
   Usa índices invertidos, análisis lingüístico y ranking.
 
 
-### 📑 Sección: Distribución, replicación y particionado (11 conceptos)
+### Seccion: Distribución, replicación y particionado (11 conceptos)
 
 - **Replicación**  
   *Familia:* `configuración declarativa`  
@@ -456,7 +456,7 @@
   Define strong, eventual, monotonic o read-your-writes.
 
 
-### 📑 Sección: Operación, respaldo y seguridad (12 conceptos)
+### Seccion: Operación, respaldo y seguridad (12 conceptos)
 
 - **Backups lógicos y físicos**  
   *Familia:* `secuencia operativa`  
@@ -508,11 +508,11 @@
 
 
 
-## 📖 Recursos de Estudio y Referencias Oficiales
+## Referencias Bibliograficas y Documentacion Oficial
 - **[PostgreSQL Tutorial](https://www.postgresql.org/docs/current/tutorial.html)** (`tutorial` | Nivel: `beginner`): 
 - **[MIT OpenCourseWare: Database Systems](https://ocw.mit.edu/courses/6-830-database-systems-fall-2010/)** (`course` | Nivel: `intermediate`): 
 - **[CMU 15-445/645: Intro to Database Systems](https://15445.courses.cs.cmu.edu/)** (`course` | Nivel: `advanced`): 
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Datos](Grupo-Data) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Datos](Grupo-Data) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

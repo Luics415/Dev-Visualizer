@@ -1,29 +1,69 @@
-# 🌌 Dev Visualizer Wiki - Enciclopedia Técnica de Arquitectura
+# Dev Visualizer Wiki - Enciclopedia Tecnica de Arquitectura
 
-Bienvenido a la **Wiki Oficial de Dev Visualizer**, el atlas pedagógico e interactivo de arquitectura de software, ingeniería de sistemas y lenguajes de programación.
+Bienvenido a la **Wiki Oficial de Dev Visualizer**, el atlas tecnico e interactivo de arquitectura de software, ingenieria de sistemas y lenguajes de programacion.
 
 ---
 
-## 📊 Métricas Globales del Ecosistema
+## Metricas Globales del Ecosistema
 
-| Métrica | Valor Verificado | Descripción |
+| Metrica | Valor Verificado | Descripcion Tecnica |
 | :--- | :--- | :--- |
-| **Conceptos Técnicos Indexados** | **7,410** | Modelos atómicos de aprendizaje con definiciones y escenas visuales |
-| **Colecciones Oficiales** | **73** | Núcleos tecnológicos categorizados en 7 grupos de especialización |
-| **Rutas Interactivas** | **146** | 73 atlas teóricos + 73 estudios de caso prácticos en acción |
-| **Páginas Estáticas Generadas** | **394 páginas** | Compilación 100% estática (SSG) de alto rendimiento (0 latencia de red) |
-| **Estándar de Accesibilidad** | **WCAG 2.1 AAA** | Soporte para lectores de pantalla, modo de alto contraste y narración de audio |
+| **Conceptos Tecnicos Indexados** | **7,410** | Modelos atomicos de aprendizaje con definiciones y escenas visuales |
+| **Colecciones Oficiales** | **73** | Nucleos tecnologicos categorizados en 7 grupos de especializacion |
+| **Rutas Interactivas** | **146** | 73 atlas teoricos + 73 estudios de caso practicos en accion |
+| **Paginas Estaticas Generadas** | **394 paginas** | Compilacion 100% estatica (SSG) de alto rendimiento (0 latencia de red) |
+| **Estandar de Accesibilidad** | **WCAG 2.1 AAA** | Soporte para lectores de pantalla, alto contraste y navegacion por teclado |
 | **Arquitectura de Software** | **Next.js 16 + React 19** | Motion 14 (GPU 60 FPS), Web Speech API y TypeScript 6 |
 
 ---
 
-## 🧭 Los 7 Grupos Arquitectónicos del Atlas
+## Diagrama de Arquitectura Global del Sistema
 
-Dev Visualizer organiza sus 73 colecciones en 7 áreas troncales de la computación moderna:
+```mermaid
+graph TD
+    subgraph Client ["Navegador Cliente (Zero-Runtime Lag)"]
+        UI["Interfaz de Usuario React 19"]
+        GPU["Renderizado Vectorial Motion 14 (60 FPS)"]
+        Audio["Motor de Audio Web Speech API"]
+        Search["Motor de Busqueda en Memoria (<100 KB)"]
+    end
+    subgraph Data ["Estructuras de Datos y Catalogo"]
+        Manifest["73 Colecciones Manifest"]
+        Index["7,410 Conceptos Compactos"]
+        Library["272 Recursos Tecnicos Validados"]
+        Quizzes["Bateria de Evaluaciones"]
+    end
+    subgraph Build ["Pipeline de Compilacion Estatica"]
+        NextSSG["Next.js 16 SSG (394 Paginas)"]
+        Audit["Auditoria Estatica (Links, A11y, Tipos)"]
+        CodeQL["GitHub CodeQL SAST"]
+    end
+    Data --> NextSSG
+    NextSSG --> Build
+    Build --> Client
+    UI --> GPU
+    UI --> Search
+    UI --> Audio
+```
+
+---
+
+## Topologia de los 7 Grupos Arquitectonicos
+
+```mermaid
+flowchart LR
+    Fund["01 Fundamentos"] --> Lang["02 Lenguajes"]
+    Lang --> Plat["04 Plataformas"]
+    Lang --> Inter["03 Interfaces"]
+    Plat --> DataG["05 Datos"]
+    Plat --> Infra["07 Infraestructura"]
+    Inter --> Version["06 Versionado"]
+    Version --> Infra
+```
 
 ### [Fundamentos](Grupo-Fundamentals)
 > *Pensamiento computacional, algoritmos y práctica profesional*  
-> **5 Colecciones** | **480 Conceptos Técnicos**
+> **5 Colecciones** | **480 Conceptos Tecnicos**
 
 - **[Fundamentos de programación](Coleccion-programming-fundamentals)** (`101`): Problemas, datos, control, funciones, diseño, pruebas y pensamiento computacional. — *(91 conceptos)*
 - **[Algoritmos y estructuras de datos](Coleccion-algorithms)** (`A&D`): Complejidad, secuencias, árboles, grafos, búsqueda, ordenación y optimización. — *(120 conceptos)*
@@ -33,7 +73,7 @@ Dev Visualizer organiza sus 73 colecciones en 7 áreas troncales de la computaci
 
 ### [Lenguajes](Grupo-Languages)
 > *Sintaxis, tipos, memoria y ejecución*  
-> **27 Colecciones** | **2384 Conceptos Técnicos**
+> **27 Colecciones** | **2384 Conceptos Tecnicos**
 
 - **[JavaScript ES6+](Coleccion-javascript)** (`JS`): Lenguaje, objetos, asincronía, módulos, protocolos y memoria. — *(55 conceptos)*
 - **[TypeScript](Coleccion-typescript)** (`TS`): Modelado, narrowing, genéricos, compilador y producción. — *(64 conceptos)*
@@ -65,7 +105,7 @@ Dev Visualizer organiza sus 73 colecciones en 7 áreas troncales de la computaci
 
 ### [Diseño e interfaces](Grupo-Interfaces)
 > *Experiencia, web y aplicaciones móviles*  
-> **9 Colecciones** | **624 Conceptos Técnicos**
+> **9 Colecciones** | **624 Conceptos Tecnicos**
 
 - **[UX/UI](Coleccion-ux-ui)** (`UX`): Investigación, flujos, accesibilidad, prototipos y validación. — *(55 conceptos)*
 - **[HTML y CSS](Coleccion-html-css)** (`HTML`): Semántica, cascade, layout, responsive y render del navegador. — *(42 conceptos)*
@@ -79,7 +119,7 @@ Dev Visualizer organiza sus 73 colecciones en 7 áreas troncales de la computaci
 
 ### [Plataformas y servidor](Grupo-Platforms)
 > *Runtimes, frameworks, contratos y automatización*  
-> **10 Colecciones** | **1004 Conceptos Técnicos**
+> **10 Colecciones** | **1004 Conceptos Tecnicos**
 
 - **[APIs](Coleccion-apis)** (`API`): REST, GraphQL, gRPC, eventos, tiempo real, contratos y seguridad. — *(48 conceptos)*
 - **[Backend](Coleccion-backend)** (`Back`): Arquitectura, seguridad, persistencia, mensajería y confiabilidad. — *(96 conceptos)*
@@ -94,7 +134,7 @@ Dev Visualizer organiza sus 73 colecciones en 7 áreas troncales de la computaci
 
 ### [Datos](Grupo-Data)
 > *Estado, modelado, consultas y persistencia*  
-> **10 Colecciones** | **1120 Conceptos Técnicos**
+> **10 Colecciones** | **1120 Conceptos Tecnicos**
 
 - **[XML](Coleccion-xml)** (`XML`): Documentos, namespaces, parsing, XPath, XSLT, seguridad e interoperabilidad. — *(110 conceptos)*
 - **[XSD](Coleccion-xsd)** (`XSD`): Schemas XML, tipos, facets, identidad, composición, evolución y validación. — *(100 conceptos)*
@@ -109,7 +149,7 @@ Dev Visualizer organiza sus 73 colecciones en 7 áreas troncales de la computaci
 
 ### [Control de versiones y calidad](Grupo-Versioning)
 > *Historia, colaboración, diagnóstico y recuperación*  
-> **4 Colecciones** | **439 Conceptos Técnicos**
+> **4 Colecciones** | **439 Conceptos Tecnicos**
 
 - **[Git](Coleccion-git)** (`Git`): Objetos, referencias, staging, historia, sincronización y rescate. — *(60 conceptos)*
 - **[GitHub](Coleccion-github)** (`GH`): Colaboración, PRs, gobierno, seguridad, comunidad y releases. — *(60 conceptos)*
@@ -118,7 +158,7 @@ Dev Visualizer organiza sus 73 colecciones en 7 áreas troncales de la computaci
 
 ### [Infraestructura y entrega](Grupo-Delivery)
 > *Hosts, nube, pipelines y releases operables*  
-> **8 Colecciones** | **1359 Conceptos Técnicos**
+> **8 Colecciones** | **1359 Conceptos Tecnicos**
 
 - **[Linux](Coleccion-linux)** (`Linux`): Kernel, shell, procesos, redes, storage, hardening y contenedores. — *(182 conceptos)*
 - **[AWS](Coleccion-aws)** (`AWS`): Identidad, VPC, compute, datos, eventos, gobierno y costo. — *(228 conceptos)*
@@ -132,12 +172,25 @@ Dev Visualizer organiza sus 73 colecciones en 7 áreas troncales de la computaci
 
 ---
 
-## ⚡ Enlaces Rápidos y Ecosistema
-- 🌐 **[Dev Visualizer en Vivo](https://luics415.github.io/Dev-Visualizer/)**
-- 📚 **[Índice Maestro de los 7410 Conceptos](Indice-Maestro-7410-Conceptos)**
-- 🏗️ **[Arquitectura del Sistema y Rendimiento](Arquitectura-del-Sistema)**
-- 🛡️ **[Gobernanza, Seguridad y Pipeline de Auditoría](Gobernanza-y-Auditoria)**
-- 📦 **[Repositorio en GitHub](https://github.com/Luics415/Dev-Visualizer)**
+## Modelos Computacionales y Algoritmos Centrales
+
+### 1. Busqueda Vectorial Difusa en Tiempo Lineal: $O(N)$
+El motor de busqueda de Dev Visualizer indexa los 7410 conceptos en una estructura de tuplas compactas `[titulo, seccion, idColeccion]` cargada directamente en memoria del cliente. La normalizacion fonetica descompone caracteres diacriticos mediante Unicode NFD, garantizando coincidencia insensible a tildes con una sobrecarga de memoria inferior a 100 KB.
+
+### 2. Sincronizacion de Estado React 19 sin Render-Drift
+El desacoplamiento del progreso de lectura se implementa mediante `useSyncExternalStore`, eliminando estados intermedios y desfases visuales entre el scroll pasivo del navegador y la barra de navegacion flotante.
+
+### 3. Pipeline de Audio Adaptativo
+La sintesis vocal en navegadores divide las cadenas de texto en fragmentos semanticos delimitados por pausas ortograficas (puntos y comas), previniendo los bloqueos clasicos de buffer del Web Speech API en oraciones largas.
 
 ---
-*Dev Visualizer Wiki • Creado por [@Luics415](https://github.com/Luics415) con la coautoría técnica de [@Azlynn17](https://github.com/Azlynn17).*
+
+## Enlaces de Referencia del Ecosistema
+- [Dev Visualizer en Vivo](https://luics415.github.io/Dev-Visualizer/)
+- [Indice Maestro de los 7410 Conceptos](Indice-Maestro-7410-Conceptos)
+- [Arquitectura del Sistema y Rendimiento](Arquitectura-del-Sistema)
+- [Gobernanza, Seguridad y Pipeline de Auditoria](Gobernanza-y-Auditoria)
+- [Repositorio en GitHub](https://github.com/Luics415/Dev-Visualizer)
+
+---
+*Dev Visualizer Wiki • Mantenedor: [@Luics415](https://github.com/Luics415) • Coautoria Tecnica: [@Azlynn17](https://github.com/Azlynn17).*

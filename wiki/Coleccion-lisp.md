@@ -1,44 +1,44 @@
-# 📘 [λ] Lisp
+# Lisp (λ)
 
 > **S-expressions, evaluación, funciones, macros, metaprogramación y REPL.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `lisp` |
-| **Grupo Arquitectónico** | [Lenguajes](Grupo-Languages) |
+| **Grupo Arquitectonico** | [Lenguajes](Grupo-Languages) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `prolog` |
 | **Total de Conceptos** | **98 conceptos** |
-| **Capítulos / Secciones** | **16 secciones** |
+| **Capitulos / Secciones** | **16 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/lisp)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/lisp-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/lisp)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/lisp-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: Construir una DSL con macros
+## Estudio de Caso Practico: Construir una DSL con macros
 
 > **Caso integrado de Lisp:** Una DSL de reglas transforma formas en funciones, detecta captura accidental de símbolos y recupera higiene mediante nombres generados y expansión inspeccionable.  
 > La macro final muestra entrada, expansión, código compilado y errores de dominio sin ocultar evaluación.
 
-### Fases de Ejecución:
-1. **Leer la regla** (Construir una DSL con macros: etapa 1 de 5): `(rule premium (> score 80) (approve))` → Sintaxis capturada. *La etapa conserva un contrato explícito para que el siguiente paso de Lisp no dependa de supuestos ocultos.*
-2. **Expandir la DSL** (Construir una DSL con macros: etapa 2 de 5): `(macroexpand-1 '(rule premium ...))` → Código generado visible. *La etapa conserva un contrato explícito para que el siguiente paso de Lisp no dependa de supuestos ocultos.*
-3. **Detectar captura** (Construir una DSL con macros: etapa 3 de 5): `(let ((result :outer)) (rule ...))` → Expansión rechazada. *El caso hace visible el fallo de Lisp; no continúa como si la evidencia fuera válida.*
-4. **Generar símbolo fresco** (Construir una DSL con macros: etapa 4 de 5): `(let ((tmp (gensym "RESULT"))) ...)` → Macro recuperada. *La recuperación de Lisp corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
+### Fases de Ejecucion:
+1. **Leer la regla** (Construir una DSL con macros: etapa 1 de 5): `(rule premium (> score 80) (approve))` -> Sintaxis capturada. *La etapa conserva un contrato explícito para que el siguiente paso de Lisp no dependa de supuestos ocultos.*
+2. **Expandir la DSL** (Construir una DSL con macros: etapa 2 de 5): `(macroexpand-1 '(rule premium ...))` -> Código generado visible. *La etapa conserva un contrato explícito para que el siguiente paso de Lisp no dependa de supuestos ocultos.*
+3. **Detectar captura** (Construir una DSL con macros: etapa 3 de 5): `(let ((result :outer)) (rule ...))` -> Expansión rechazada. *El caso hace visible el fallo de Lisp; no continúa como si la evidencia fuera válida.*
+4. **Generar símbolo fresco** (Construir una DSL con macros: etapa 4 de 5): `(let ((tmp (gensym "RESULT"))) ...)` -> Macro recuperada. *La recuperación de Lisp corrige la causa, conserva trazabilidad y vuelve a ejecutar la etapa afectada.*
 5. **Compilar y probar** (Construir una DSL con macros: etapa 5 de 5): `(compile 'premium-rule)
-(run-tests)` → DSL verificable. *La etapa conserva un contrato explícito para que el siguiente paso de Lisp no dependa de supuestos ocultos.*
+(run-tests)` -> DSL verificable. *La etapa conserva un contrato explícito para que el siguiente paso de Lisp no dependa de supuestos ocultos.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (98)
+## Catalogo Sistematico de Conceptos (98)
 
-### 📑 Sección: Formas y evaluación (5 conceptos)
+### Seccion: Formas y evaluación (5 conceptos)
 
 - **S-expressions**  
   *Familia:* `jerarquía y dependencias`  
@@ -61,7 +61,7 @@
   El recorrido de REPL toma un ejemplo mínimo, sus precondiciones y el estado inicial. Posteriormente aplica el mecanismo paso a paso haciendo visibles sus invariantes para validar un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Entornos (5 conceptos)
+### Seccion: Entornos (5 conceptos)
 
 - **Bindings léxicos**  
   *Familia:* `despacho de runtime`  
@@ -84,7 +84,7 @@
   En Memoria y GC, valores con representación, dirección y tiempo de vida definidos ingresa al flujo donde reserva, enlaza y libera almacenamiento siguiendo el contrato del runtime para consolidar estado accesible sin referencias colgantes ni corrupción.
 
 
-### 📑 Sección: Extensión del lenguaje (5 conceptos)
+### Seccion: Extensión del lenguaje (5 conceptos)
 
 - **Macros**  
   *Familia:* `mapa de memoria`  
@@ -107,7 +107,7 @@
   El mecanismo de DSL recibe un ejemplo mínimo, sus precondiciones y el estado inicial y aplica el mecanismo paso a paso haciendo visibles sus invariantes, asegurando un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Diagnóstico interactivo (5 conceptos)
+### Seccion: Diagnóstico interactivo (5 conceptos)
 
 - **Conditions**  
   *Familia:* `evidencia y latencia`  
@@ -130,7 +130,7 @@
   Inspección y redefinición conecta un comportamiento esperado, una entrada mínima y un síntoma observable con su runtime interno: aísla variables y contrasta hipótesis con instrumentación repetible hasta exponer una causa demostrada y una regresión protegida.
 
 
-### 📑 Sección: Producción (5 conceptos)
+### Seccion: Producción (5 conceptos)
 
 - **CLOS**  
   *Familia:* `pasaporte del artefacto`  
@@ -153,7 +153,7 @@
   Portabilidad entre dialectos estructura un ejemplo mínimo, sus precondiciones y el estado inicial en el sistema: aplica el mecanismo paso a paso haciendo visibles sus invariantes, garantizando un efecto observable que puede explicarse y repetir otra persona.
 
 
-### 📑 Sección: Representación y lectura avanzada (7 conceptos)
+### Seccion: Representación y lectura avanzada (7 conceptos)
 
 - **Cons cells y listas impropias**  
   *Familia:* `jerarquía y dependencias`  
@@ -184,7 +184,7 @@
   A través de Read-time evaluation control en Representación y lectura avanzada, el sistema tokeniza, reconoce alternativas y construye una representación estructurada sin perder ubicación manteniendo árbol, match o diagnóstico consumible por la siguiente etapa.
 
 
-### 📑 Sección: Programación funcional (6 conceptos)
+### Seccion: Programación funcional (6 conceptos)
 
 - **Recursión de cola**  
   *Familia:* `acumulación de recursos`  
@@ -211,7 +211,7 @@
   Memoization con igualdad explícita gestiona Programación funcional de modo que consulta, calcula ausencias y publica el nuevo valor junto con su invalidador, produciendo reutilización medible sin cambiar el resultado funcional.
 
 
-### 📑 Sección: Common Lisp Object System (7 conceptos)
+### Seccion: Common Lisp Object System (7 conceptos)
 
 - **Generic functions**  
   *Familia:* `análisis y emisión`  
@@ -242,7 +242,7 @@
   A través de Class redefinition en Common Lisp Object System, el sistema resuelve composición, restricciones y representación antes de aceptar la instancia manteniendo estructura válida cuyas operaciones permitidas están explícitas.
 
 
-### 📑 Sección: Condiciones y recuperación (6 conceptos)
+### Seccion: Condiciones y recuperación (6 conceptos)
 
 - **Condition hierarchy**  
   *Familia:* `despacho de runtime`  
@@ -269,7 +269,7 @@
   Restart-case orchestration gestiona Condiciones y recuperación de modo que activa, usa y transfiere ownership solo bajo un protocolo explícito, produciendo recurso cerrado exactamente una vez y estado final observable.
 
 
-### 📑 Sección: Compilador y rendimiento (7 conceptos)
+### Seccion: Compilador y rendimiento (7 conceptos)
 
 - **Declarations de tipos**  
   *Familia:* `matriz de señales`  
@@ -300,7 +300,7 @@
   A través de Tail-call diagnostics en Compilador y rendimiento, el sistema analiza, expande, especializa y baja a una representación ejecutable manteniendo código cuyo origen y decisiones de optimización pueden inspeccionarse.
 
 
-### 📑 Sección: Testing y calidad (6 conceptos)
+### Seccion: Testing y calidad (6 conceptos)
 
 - **Pruebas unitarias con FiveAM**  
   *Familia:* `espectro de verificación`  
@@ -327,7 +327,7 @@
   Random-state reproducibility gestiona Testing y calidad de modo que ejecuta camino normal, límite y fallo mientras captura todos los efectos observables, produciendo evidencia repetible que distingue comportamiento correcto de una regresión.
 
 
-### 📑 Sección: Concurrencia (7 conceptos)
+### Seccion: Concurrencia (7 conceptos)
 
 - **Threads por implementación**  
   *Familia:* `planificación de trabajo`  
@@ -358,7 +358,7 @@
   A través de Atomic memory operations en Concurrencia, el sistema adquiere o señaliza sincronización, publica cambios y libera en un orden definido manteniendo estado visible sin carreras y progreso dentro del límite acordado.
 
 
-### 📑 Sección: Persistencia y datos (6 conceptos)
+### Seccion: Persistencia y datos (6 conceptos)
 
 - **Pathnames portables**  
   *Familia:* `árbol de recursos`  
@@ -385,7 +385,7 @@
   External formats and transcoding gestiona Persistencia y datos de modo que codifica campos en orden definido y reconstruye validando versión y rangos, produciendo representación interoperable que conserva significado al hacer round trip.
 
 
-### 📑 Sección: Interoperabilidad (7 conceptos)
+### Seccion: Interoperabilidad (7 conceptos)
 
 - **CFFI**  
   *Familia:* `despacho de runtime`  
@@ -416,7 +416,7 @@
   A través de Foreign resource finalization en Interoperabilidad, el sistema activa, usa y transfiere ownership solo bajo un protocolo explícito manteniendo recurso cerrado exactamente una vez y estado final observable.
 
 
-### 📑 Sección: Seguridad del lenguaje extensible (7 conceptos)
+### Seccion: Seguridad del lenguaje extensible (7 conceptos)
 
 - **Lectura de formas no confiables**  
   *Familia:* `espectro de verificación`  
@@ -447,7 +447,7 @@
   A través de Disabling read-time evaluation en Seguridad del lenguaje extensible, el sistema autentica, normaliza y autoriza antes de ejecutar con la capacidad mínima manteniendo decisión explícita y auditable que no expone secretos ni amplía privilegios.
 
 
-### 📑 Sección: Entrega y operación (7 conceptos)
+### Seccion: Entrega y operación (7 conceptos)
 
 - **ASDF systems**  
   *Familia:* `flujo de interfaz`  
@@ -481,4 +481,4 @@
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

@@ -1,31 +1,31 @@
-# 📘 [FB] Firebase
+# Firebase (FB)
 
 > **Auth, datos, Storage, Functions, Hosting, FCM y Rules.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `firebase` |
-| **Grupo Arquitectónico** | [Plataformas y servidor](Grupo-Platforms) |
+| **Grupo Arquitectonico** | [Plataformas y servidor](Grupo-Platforms) |
 | **Ciclo de Vida** | `actual` |
 | **Tema Visual** | `firebase` |
 | **Total de Conceptos** | **250 conceptos** |
-| **Capítulos / Secciones** | **12 secciones** |
+| **Capitulos / Secciones** | **12 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/firebase)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/firebase-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/firebase)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/firebase-en-accion)
 
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (250)
+## Catalogo Sistematico de Conceptos (250)
 
-### 📑 Sección: Plataforma, proyectos y arquitectura (15 conceptos)
+### Seccion: Plataforma, proyectos y arquitectura (15 conceptos)
 
 - **Qué es Firebase**  
   *Familia:* `anatomía del concepto`  
@@ -88,7 +88,7 @@
   SDKs, modelo de datos y triggers aceleran desarrollo, pero deben evaluarse frente a requisitos de migración.
 
 
-### 📑 Sección: SDKs, inicialización y desarrollo local (17 conceptos)
+### Seccion: SDKs, inicialización y desarrollo local (17 conceptos)
 
 - **Configuración de una app web**  
   *Familia:* `configuración declarativa`  
@@ -159,7 +159,7 @@
   Niveles de log del SDK ayudan a observar conexión, caché, autenticación y requests durante desarrollo.
 
 
-### 📑 Sección: Firebase Authentication (26 conceptos)
+### Seccion: Firebase Authentication (26 conceptos)
 
 - **Modelo de identidad**  
   *Familia:* `configuración declarativa`  
@@ -266,7 +266,7 @@
   Mensajes deben ser útiles sin revelar si una cuenta existe a un atacante.
 
 
-### 📑 Sección: Cloud Firestore: modelo de datos (22 conceptos)
+### Seccion: Cloud Firestore: modelo de datos (22 conceptos)
 
 - **Base de datos documental**  
   *Familia:* `consulta e índice`  
@@ -357,7 +357,7 @@
   Lectores tolerantes, versiones de documento y backfills permiten migrar datos existentes.
 
 
-### 📑 Sección: Cloud Firestore: consultas e índices (22 conceptos)
+### Seccion: Cloud Firestore: consultas e índices (22 conceptos)
 
 - **Consultas declarativas**  
   *Familia:* `jerarquía y dependencias`  
@@ -448,7 +448,7 @@
   Firestore no es un motor full-text; suele integrarse con servicios de búsqueda especializados.
 
 
-### 📑 Sección: Cloud Firestore: tiempo real, offline y escrituras (22 conceptos)
+### Seccion: Cloud Firestore: tiempo real, offline y escrituras (22 conceptos)
 
 - **Listeners en tiempo real**  
   *Familia:* `propagación de eventos`  
@@ -539,7 +539,7 @@
   Empaquetan snapshots preconstruidos para acelerar carga inicial en casos compatibles.
 
 
-### 📑 Sección: Realtime Database (15 conceptos)
+### Seccion: Realtime Database (15 conceptos)
 
 - **Árbol JSON**  
   *Familia:* `jerarquía y dependencias`  
@@ -602,7 +602,7 @@
   Firestore favorece documentos y queries ricas; RTDB destaca en árbol simple, presencia y sincronización de baja latencia.
 
 
-### 📑 Sección: Cloud Storage for Firebase (17 conceptos)
+### Seccion: Cloud Storage for Firebase (17 conceptos)
 
 - **Buckets**  
   *Familia:* `análisis y emisión`  
@@ -673,7 +673,7 @@
   Backends privilegiados pueden generar acceso temporal sin hacer público el objeto.
 
 
-### 📑 Sección: Cloud Functions for Firebase (24 conceptos)
+### Seccion: Cloud Functions for Firebase (24 conceptos)
 
 - **Functions serverless**  
   *Familia:* `ida y vuelta`  
@@ -772,7 +772,7 @@
   2nd gen se apoya en Cloud Run y revisiones para administrar instancias desplegadas.
 
 
-### 📑 Sección: Hosting y App Hosting (16 conceptos)
+### Seccion: Hosting y App Hosting (16 conceptos)
 
 - **Firebase Hosting**  
   *Familia:* `capas internas`  
@@ -839,7 +839,7 @@
   Releases previas pueden restaurarse sin reconstruir artefactos.
 
 
-### 📑 Sección: Mensajería, configuración y calidad (25 conceptos)
+### Seccion: Mensajería, configuración y calidad (25 conceptos)
 
 - **Firebase Cloud Messaging**  
   *Familia:* `espectro de verificación`  
@@ -942,7 +942,7 @@
   Las soluciones de deep linking deben planear migración cuando un producto deja de estar disponible.
 
 
-### 📑 Sección: Reglas, App Check, administración y operación (29 conceptos)
+### Seccion: Reglas, App Check, administración y operación (29 conceptos)
 
 - **Security Rules**  
   *Familia:* `comparativa técnica`  
@@ -1062,11 +1062,11 @@
 
 
 
-## 📖 Recursos de Estudio y Referencias Oficiales
+## Referencias Bibliograficas y Documentacion Oficial
 - **[Learn Firebase fundamentals](https://firebase.google.com/docs/guides)** (`tutorial` | Nivel: `beginner`): 
 - **[Add Firebase to a JavaScript project](https://firebase.google.com/docs/web/setup)** (`official-docs` | Nivel: `intermediate`): 
 - **[Unit-test Firebase Security Rules](https://firebase.google.com/docs/rules/unit-tests)** (`reference` | Nivel: `advanced`): 
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Plataformas y servidor](Grupo-Platforms) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Plataformas y servidor](Grupo-Platforms) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)

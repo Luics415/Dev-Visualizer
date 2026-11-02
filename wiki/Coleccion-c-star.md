@@ -1,46 +1,46 @@
-# 📘 [C*] C*
+# C* (C*)
 
 > **Programación data-parallel para sistemas Connection Machine.**
 
 ---
 
-## 📌 Ficha Técnica
+## Ficha Tecnica
 
-| Parámetro | Detalle |
+| Parametro | Detalle |
 | :--- | :--- |
 | **Identificador Interno** | `c-star` |
-| **Grupo Arquitectónico** | [Lenguajes](Grupo-Languages) |
+| **Grupo Arquitectonico** | [Lenguajes](Grupo-Languages) |
 | **Ciclo de Vida** | `histórico` |
 | **Tema Visual** | `c-star` |
 | **Total de Conceptos** | **42 conceptos** |
-| **Capítulos / Secciones** | **7 secciones** |
+| **Capitulos / Secciones** | **7 secciones** |
 
-### 🚀 Acceso en la Aplicación
-- 🌐 **[Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/c-star)**
-- ⚡ **[Modo Práctico e interactivo](https://luics415.github.io/Dev-Visualizer/c-star-en-accion)**
+### Acceso en la Aplicacion
+- [Explorar en el Atlas Interactivo](https://luics415.github.io/Dev-Visualizer/c-star)
+- [Modo Practico e Interactivo](https://luics415.github.io/Dev-Visualizer/c-star-en-accion)
 
 
-## 🔬 Caso Práctico en Acción: C* en acción
+## Estudio de Caso Practico: C* en acción
 
 > **Caso integrado · Difusión térmica paralela:** Una cuadrícula de temperaturas evoluciona sobre processing elements: masks, vecinos y reductions muestran cómo el dominio paralelo produce una convergencia global.  
 > La historia conserva su contexto histórico y separa cálculo local, comunicación y reducción global.
 
-### Fases de Ejecución:
-1. **Definir el shape** (Una celda por posición lógica): `shape [128][128] Grid` → dominio creado. *El shape expresa organización lógica antes de decidir operaciones.*
-2. **Cargar condiciones** (Bordes y fuente de calor): `where (edge) temp = 20;` → estado inicial. *Where selecciona elementos sin ejecutar un loop serial sobre cada celda.*
-3. **Leer vecinos** (Comunicación sobre la cuadrícula): `north = temp[pcoord(0)-1]` → vecindad disponible. *Acceder a otra coordenada implica comunicación real entre elementos.*
-4. **Actualizar en paralelo** (Misma fórmula, datos distintos): `next = .25*(n+s+e+w)` → iteración calculada. *El segundo buffer evita mezclar estados de la misma iteración.*
-5. **Detectar el borde inválido** (Una máscara faltante contamina): `where (!edge) next = ...` → frontera localizada. *La geometría del dominio también define qué vecinos existen.*
-6. **Reducir el error** (Muchos deltas a un máximo): `max_delta = max_reduce(abs(next-temp))` → criterio global. *La reducción convierte miles de resultados en una decisión serial.*
-7. **Iterar hasta converger** (Control serial, datos paralelos): `while (max_delta > epsilon)` → solución estable. *El host conserva el control del loop mientras la operación pesada permanece paralela.*
-8. **Exportar evidencia** (Datos y contexto histórico): `parallel I/O → heatmap` → experimento reproducible. *El resultado conserva shape, límites y tolerancia necesarios para interpretarlo.*
+### Fases de Ejecucion:
+1. **Definir el shape** (Una celda por posición lógica): `shape [128][128] Grid` -> dominio creado. *El shape expresa organización lógica antes de decidir operaciones.*
+2. **Cargar condiciones** (Bordes y fuente de calor): `where (edge) temp = 20;` -> estado inicial. *Where selecciona elementos sin ejecutar un loop serial sobre cada celda.*
+3. **Leer vecinos** (Comunicación sobre la cuadrícula): `north = temp[pcoord(0)-1]` -> vecindad disponible. *Acceder a otra coordenada implica comunicación real entre elementos.*
+4. **Actualizar en paralelo** (Misma fórmula, datos distintos): `next = .25*(n+s+e+w)` -> iteración calculada. *El segundo buffer evita mezclar estados de la misma iteración.*
+5. **Detectar el borde inválido** (Una máscara faltante contamina): `where (!edge) next = ...` -> frontera localizada. *La geometría del dominio también define qué vecinos existen.*
+6. **Reducir el error** (Muchos deltas a un máximo): `max_delta = max_reduce(abs(next-temp))` -> criterio global. *La reducción convierte miles de resultados en una decisión serial.*
+7. **Iterar hasta converger** (Control serial, datos paralelos): `while (max_delta > epsilon)` -> solución estable. *El host conserva el control del loop mientras la operación pesada permanece paralela.*
+8. **Exportar evidencia** (Datos y contexto histórico): `parallel I/O → heatmap` -> experimento reproducible. *El resultado conserva shape, límites y tolerancia necesarios para interpretarlo.*
 
 
 ---
 
-## 📚 Desglose Exhaustivo de Conceptos (42)
+## Catalogo Sistematico de Conceptos (42)
 
-### 📑 Sección: Connection Machine y arquitectura SIMD (6 conceptos)
+### Seccion: Connection Machine y arquitectura SIMD (6 conceptos)
 
 - **Front end y processing elements**  
   *Familia:* `flujo de interfaz`  
@@ -67,7 +67,7 @@
   Ensambla archivos C* enlazando bibliotecas del sistema de Thinking Machines.
 
 
-### 📑 Sección: Dominios, shapes y coordenadas pcoord (6 conceptos)
+### Seccion: Dominios, shapes y coordenadas pcoord (6 conceptos)
 
 - **Definición de shapes**  
   *Familia:* `evidencia y latencia`  
@@ -94,7 +94,7 @@
   Permite operar variables paralelas que comparten la misma distribución geométrica.
 
 
-### 📑 Sección: Variables paralelas y active sets (6 conceptos)
+### Seccion: Variables paralelas y active sets (6 conceptos)
 
 - **Calificador poly**  
   *Familia:* `secuencia operativa`  
@@ -121,7 +121,7 @@
   Conserva valores entre instrucciones paralelas sin depender de memoria global compartida.
 
 
-### 📑 Sección: Operaciones de selección where y máscaras (6 conceptos)
+### Seccion: Operaciones de selección where y máscaras (6 conceptos)
 
 - **Sentencia where paralela**  
   *Familia:* `telar relacional`  
@@ -148,7 +148,7 @@
   Aísla celdas perimetrales para aplicar condiciones de contorno físicas en simulaciones.
 
 
-### 📑 Sección: Reducciones globales y scans de prefijos (6 conceptos)
+### Seccion: Reducciones globales y scans de prefijos (6 conceptos)
 
 - **Operador de reducción += y suma global**  
   *Familia:* `topología y tráfico`  
@@ -175,7 +175,7 @@
   Aprovecha circuitos integrados de la Connection Machine para resolver sumas en O(log N).
 
 
-### 📑 Sección: Topología Hypercube, router y comunicación (6 conceptos)
+### Seccion: Topología Hypercube, router y comunicación (6 conceptos)
 
 - **Red de interconexión Hypercube**  
   *Familia:* `topología y tráfico`  
@@ -202,7 +202,7 @@
   Reorganiza dimensiones de datos distribuidos mediante patrones precalculados.
 
 
-### 📑 Sección: I/O masivo, Paris/Prism y legado en GPU (6 conceptos)
+### Seccion: I/O masivo, Paris/Prism y legado en GPU (6 conceptos)
 
 - **Arquitectura DataVault de I/O paralelo**  
   *Familia:* `anatomía del concepto`  
@@ -230,11 +230,11 @@
 
 
 
-## 📖 Recursos de Estudio y Referencias Oficiales
+## Referencias Bibliograficas y Documentacion Oficial
 - **[C* Programming Guide](https://people.csail.mit.edu/bradley/cm5docs/CStarProgrammingGuide.pdf)** (`book` | Nivel: `beginner`): Manual histórico preservado por MIT CSAIL.
 - **[C* User's Guide](https://www.bitsavers.org/pdf/thinkingMachines/CM5/CStarUsersGuide.pdf)** (`reference` | Nivel: `intermediate`): Manual histórico preservado por Bitsavers.
 - **[Connection Machine CM-5 documentation archive](https://people.csail.mit.edu/bradley/cm5docs/)** (`reference` | Nivel: `advanced`): Índice archivístico de manuales primarios del CM-5.
 
 
 ---
-[← Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Índice Maestro →](Indice-Maestro-7410-Conceptos)
+[<- Volver al Inicio](Home) | [Ver Grupo: Lenguajes](Grupo-Languages) | [Indice Maestro ->](Indice-Maestro-7410-Conceptos)
