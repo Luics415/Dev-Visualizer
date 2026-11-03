@@ -1,4 +1,4 @@
-import { execSync } from "node:child_process";
+import { execFileSync } from "node:child_process";
 import fs from "node:fs";
 import path from "node:path";
 import { fileURLToPath } from "node:url";
@@ -8,7 +8,7 @@ const wikiDir = path.resolve(__dirname, "../wiki");
 
 let token = "";
 try {
-  token = execSync("gh auth token", { encoding: "utf8" }).trim();
+  token = execFileSync("gh", ["auth", "token"], { encoding: "utf8" }).trim();
 } catch {
   token = process.env.GITHUB_TOKEN || "";
 }
@@ -35,16 +35,24 @@ for (const file of files) {
 }
 
 try {
-  execSync("git init", { cwd: tempDir, stdio: "ignore" });
-  execSync("git checkout -b master", { cwd: tempDir, stdio: "ignore" });
-  execSync("git config user.name \"Luics415\"", { cwd: tempDir, stdio: "ignore" });
-  execSync("git config user.email \"luics@users.noreply.github.com\"", { cwd: tempDir, stdio: "ignore" });
-  execSync("git add .", { cwd: tempDir, stdio: "ignore" });
-  execSync("git commit -m \"docs(wiki): enciclopedia tecnica para 73 colecciones y 7410 conceptos\n\nCo-authored-by: Azlynn17 <Azlynn17@users.noreply.github.com>\"", { cwd: tempDir, stdio: "ignore" });
-  execSync(`git remote add origin "${remoteUrl}"`, { cwd: tempDir, stdio: "ignore" });
+  execFileSync("git", ["init"], { cwd: tempDir, stdio: "ignore" });
+  execFileSync("git", ["checkout", "-b", "master"], { cwd: tempDir, stdio: "ignore" });
+  execFileSync("git", ["config", "user.name", "Luics415"], { cwd: tempDir, stdio: "ignore" });
+  execFileSync("git", ["config", "user.email", "luics@users.noreply.github.com"], { cwd: tempDir, stdio: "ignore" });
+  execFileSync("git", ["add", "."], { cwd: tempDir, stdio: "ignore" });
+  execFileSync(
+    "git",
+    [
+      "commit",
+      "-m",
+      "docs(wiki): enciclopedia tecnica para 73 colecciones y 7410 conceptos\n\nCo-authored-by: Azlynn17 <Azlynn17@users.noreply.github.com>",
+    ],
+    { cwd: tempDir, stdio: "ignore" },
+  );
+  execFileSync("git", ["remote", "add", "origin", remoteUrl], { cwd: tempDir, stdio: "ignore" });
 
   console.log(`Subiendo ${files.length} paginas a https://github.com/Luics415/Dev-Visualizer/wiki...`);
-  execSync("git push --force -u origin master", { cwd: tempDir, stdio: "inherit" });
+  execFileSync("git", ["push", "--force", "-u", "origin", "master"], { cwd: tempDir, stdio: "inherit" });
   console.log("Exito: Wiki sincronizada correctamente en GitHub.");
 } catch {
   console.warn("\nNota sobre la inicializacion de la Wiki en GitHub:");
