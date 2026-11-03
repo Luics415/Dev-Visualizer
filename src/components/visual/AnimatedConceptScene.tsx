@@ -29,7 +29,7 @@ function NodeText({ value }: { value: string }) {
 export function AnimatedConceptScene({ ariaLabel, code, nodes, outcome, variant }: AnimatedConceptSceneProps) {
   const sceneRef = useRef<HTMLDivElement>(null);
   const { playback, shouldAnimate } = useScenePlayback(sceneRef);
-  const repeat = { duration: shouldAnimate ? LOOP : 0, repeat: shouldAnimate ? Infinity : 0 } as const;
+  const repeat = { duration: LOOP, repeat: Infinity } as const;
   const safeNodes = nodes.length > 0 ? nodes : ["input", "process", "output"];
 
   return (
@@ -129,7 +129,7 @@ export function AnimatedConceptScene({ ariaLabel, code, nodes, outcome, variant 
               transition={{ ...repeat, times: [0, .08 + index * .18, .16 + index * .18, .6 + index * .08, 1] }}
             ><NodeText value={node} /></motion.div>
           ))}
-          <motion.i animate={{ rotate: [0, 360] }} transition={{ duration: shouldAnimate ? LOOP : 0, repeat: shouldAnimate ? Infinity : 0, ease: "linear" }} />
+          <motion.i animate={{ rotate: [0, 360] }} transition={{ duration: LOOP, repeat: Infinity, ease: "linear" }} />
         </div>
       ) : null}
 
@@ -237,7 +237,7 @@ export function AnimatedConceptScene({ ariaLabel, code, nodes, outcome, variant 
         <div className="atlas-network">
           <svg viewBox="0 0 300 150" aria-hidden="true"><path d="M50 75 L150 28 L250 75 L150 124 Z M50 75 H250 M150 28 V124" /></svg>
           {safeNodes.slice(0, 4).map((node, index) => <div key={node} className={`atlas-network__node atlas-network__node--${index}`}><NodeText value={node} /></div>)}
-          <motion.i animate={{ offsetDistance: ["0%", "100%"] }} transition={{ duration: shouldAnimate ? LOOP : 0, repeat: shouldAnimate ? Infinity : 0, ease: "linear" }} />
+          <motion.i animate={{ offsetDistance: ["0%", "100%"] }} transition={{ duration: LOOP, repeat: Infinity, ease: "linear" }} />
         </div>
       ) : null}
 
@@ -302,7 +302,7 @@ export function AnimatedConceptScene({ ariaLabel, code, nodes, outcome, variant 
         <div className="atlas-lifecycle">
           <svg viewBox="0 0 280 150" aria-hidden="true"><path d="M140 20 C220 20 250 110 188 132 C110 160 38 112 58 52 C70 18 108 12 140 20" /></svg>
           {safeNodes.slice(0, 4).map((node, index) => <div key={node} className={`atlas-lifecycle__stage atlas-lifecycle__stage--${index}`}><NodeText value={node} /></div>)}
-          <motion.i animate={{ offsetDistance: ["0%", "100%"] }} transition={{ duration: shouldAnimate ? LOOP : 0, repeat: shouldAnimate ? Infinity : 0, ease: "linear" }} />
+          <motion.i animate={{ offsetDistance: ["0%", "100%"] }} transition={{ duration: LOOP, repeat: Infinity, ease: "linear" }} />
         </div>
       ) : null}
 
@@ -354,7 +354,7 @@ export function AnimatedConceptScene({ ariaLabel, code, nodes, outcome, variant 
         <div className="atlas-workflow">
           {safeNodes.slice(0, 4).map((node, index) => <motion.div key={node} className={`atlas-workflow__node atlas-workflow__node--${index}`} animate={{ opacity: [.28, .28, 1, 1, .28] }} transition={{ ...repeat, times: [0, .08 + index * .16, .17 + index * .16, .75, .94] }}><em>{index + 1}</em><NodeText value={node} /></motion.div>)}
           <svg viewBox="0 0 300 140" aria-hidden="true"><path d="M52 70 H120 M180 70 H248 M150 46 V22 M150 94 V118" /></svg>
-          <motion.i animate={{ offsetDistance: ["0%", "100%"] }} transition={{ duration: shouldAnimate ? LOOP : 0, repeat: shouldAnimate ? Infinity : 0, ease: "linear" }} />
+          <motion.i animate={{ offsetDistance: ["0%", "100%"] }} transition={{ duration: LOOP, repeat: Infinity, ease: "linear" }} />
         </div>
       ) : null}
 
