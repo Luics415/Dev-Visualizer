@@ -103,7 +103,7 @@ const CAPABILITIES: readonly ActionCapability[] = [
 
 export function WhatYouCanDoSection() {
   return (
-    <section className="home-action-pillars-section" id="que-puedo-hacer" aria-label="Qué puedo hacer en Dev Visualizer">
+    <section className="home-action-pillars-section" id="capacidades-operativas" aria-label="Qué puedo hacer en Dev Visualizer">
       <div className="home-section-title-wrap">
         <span className="home-section-eyebrow">02 · CAPACIDADES OPERATIVAS</span>
         <h2>¿Qué puedo hacer en Dev Visualizer?</h2>
