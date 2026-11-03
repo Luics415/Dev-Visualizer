@@ -17,6 +17,7 @@ if sys.stdout and hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8")
         sys.stderr.reconfigure(encoding="utf-8")
     except Exception:
+        # Reconfiguración opcional de codificación; ignorar si el entorno no lo soporta.
         pass
 
 
@@ -49,6 +50,7 @@ def main():
     try:
         open_issues = len(json.loads(issues_raw))
     except Exception:
+        # Mantener contador en cero si la respuesta de issues es inválida o no parseable.
         pass
 
     prs_raw = run_cmd(["gh", "pr", "list", "--state", "open", "--json", "number"])
@@ -56,6 +58,7 @@ def main():
     try:
         open_prs = len(json.loads(prs_raw))
     except Exception:
+        # Mantener contador en cero si la respuesta de pull requests es inválida o no parseable.
         pass
 
     now_str = datetime.now(timezone.utc).strftime("%Y-%m-%d %H:%M:%S UTC")
