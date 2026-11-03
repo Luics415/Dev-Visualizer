@@ -1,5 +1,4 @@
 import { createHash } from "node:crypto";
-import { existsSync } from "node:fs";
 import { mkdir, readFile, writeFile } from "node:fs/promises";
 import http from "node:http";
 import https from "node:https";
@@ -317,10 +316,13 @@ async function main() {
 
     const filePath = path.join(resourceDir, target.fileName);
     let buffer;
-    if (existsSync(filePath)) {
-      console.log(`[preserve] Archivo existente detectado para ${target.id}: leyendo local...`);
+    try {
       buffer = await readFile(filePath);
-    } else {
+      console.log(`[preserve] Archivo existente detectado para ${target.id}: leyendo local...`);
+    } catch (readError) {
+      if (readError && readError.code !== "ENOENT") {
+        throw readError;
+      }
       console.log(`[preserve] Descargando ${target.id} desde ${target.downloadUrl}...`);
       buffer = await downloadBuffer(target.downloadUrl);
       await writeFile(filePath, buffer);
