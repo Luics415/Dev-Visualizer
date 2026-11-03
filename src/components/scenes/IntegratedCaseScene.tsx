@@ -32,7 +32,7 @@ export function IntegratedCaseScene({ title, steps }: IntegratedCaseSceneProps) 
           className="integrated-case__token"
           aria-hidden="true"
           animate={{ left: ["2%", "2%", "96%", "96%"], opacity: [0, 1, 1, 0] }}
-          transition={{ duration: shouldAnimate ? LOOP : 0, repeat: shouldAnimate ? Infinity : 0, ease: "linear", times: [0, .06, .94, 1] }}
+          transition={{ duration: LOOP, repeat: Infinity, ease: "linear", times: [0, .06, .94, 1] }}
         />
 
         {steps.map((stage, index) => {
@@ -42,7 +42,7 @@ export function IntegratedCaseScene({ title, steps }: IntegratedCaseSceneProps) 
               className={`integrated-case__step integrated-case__step--${stage.state ?? "normal"}`}
               key={stage.title}
               animate={{ opacity: [.72, .72, 1, 1, .76], y: [5, 5, 0, 0, -2] }}
-              transition={{ duration: shouldAnimate ? LOOP : 0, repeat: shouldAnimate ? Infinity : 0, times: [0, reveal, Math.min(reveal + .06, .9), Math.min(reveal + .22, .95), 1] }}
+              transition={{ duration: LOOP, repeat: Infinity, times: [0, reveal, Math.min(reveal + .06, .9), Math.min(reveal + .22, .95), 1] }}
             >
               <header><em>{String(index + 1).padStart(2, "0")}</em><div><strong>{stage.title}</strong><small>{stage.subtitle}</small></div></header>
               <div className="integrated-case__boundary">
