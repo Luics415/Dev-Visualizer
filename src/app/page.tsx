@@ -7,7 +7,7 @@ import { WhatYouCanDoSection } from "@/components/home/WhatYouCanDoSection";
 import { TrustEvidenceSection } from "@/components/home/TrustEvidenceSection";
 import { NextActionSection } from "@/components/home/NextActionSection";
 import { HomeConceptSearch } from "@/components/home/HomeConceptSearch";
-import { RightSidebarRoadmapDrawer } from "@/components/home/RightSidebarRoadmapDrawer";
+import { StartGuideDrawer } from "@/components/home/StartGuideDrawer";
 import { FloatingWelcomeCard } from "@/components/home/FloatingWelcomeCard";
 import { collectionManifest } from "@/data/collectionManifest";
 import { canonicalConceptCount } from "@/data/canonicalConceptCollections";
@@ -29,17 +29,13 @@ export default function HomePage() {
       {/* ── Hero Split de Alto Impacto (Inspirado en la Arquitectura de DevVizor) ── */}
       <header className="home-hero home-hero--split">
         <div className="home-hero__content-col">
-          <div className="home-hero__badge">
-            <span className="live-indicator-dot" />
-            <span>ALGORITHM & RUNTIME ARCHITECTURE VISUALIZATION</span>
-          </div>
 
           <h1 className="home-hero__headline">
             Comprende la arquitectura de software viéndola ejecutarse.
           </h1>
 
           <p className="home-hero__subheadline">
-            Avanza paso a paso por algoritmos de ordenamiento, recorridos en grafos, ciclos de eventos y <strong>{canonicalConceptCount.toLocaleString("es-MX")} conceptos técnicos</strong> con animaciones en vivo — pausa, retrocede e inspecciona cada marco en memoria y cada invariante de ejecución.
+            Simula algoritmos, ciclos de eventos y <strong>{canonicalConceptCount.toLocaleString("es-MX")} conceptos técnicos</strong> con animaciones interactivas paso a paso en memoria activa.
           </p>
 
           {/* Botones de Acción Principales */}
@@ -98,7 +94,7 @@ export default function HomePage() {
       <NextActionSection />
 
       {/* ── Panel Lateral Desplegable: Roadmap / ¿Por dónde empezar? ── */}
-      <RightSidebarRoadmapDrawer />
+      <StartGuideDrawer />
 
       {/* ── Tarjeta Flotante de Bienvenida / Onboarding Compacto ── */}
       <FloatingWelcomeCard />
