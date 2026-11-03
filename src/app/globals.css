@@ -8282,8 +8282,8 @@ body {
 }
 
 .home-pillar-card {
-  background: var(--panel-2);
-  border: 1px solid var(--line);
+  background: linear-gradient(180deg, rgba(21, 29, 49, 0.72), rgba(9, 13, 23, 0.9)), var(--panel);
+  border: 1px solid var(--line-soft);
   border-radius: var(--radius-lg);
   padding: 24px;
   display: flex;
@@ -8293,7 +8293,8 @@ body {
 .home-pillar-icon {
   width: 44px;
   height: 44px;
-  border-radius: var(--radius-md);
+  border-radius: 17px;
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.025);
   background: rgba(59, 211, 255, 0.08);
   border: 1px solid rgba(59, 211, 255, 0.2);
   color: var(--cyan);
@@ -8738,9 +8739,10 @@ body {
 .home-action-card {
   display: flex;
   flex-direction: column;
-  background: var(--panel-2);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-md);
+  background: linear-gradient(180deg, rgba(21, 29, 49, 0.72), rgba(9, 13, 23, 0.9)), var(--panel);
+  border: 1px solid var(--line-soft);
+  border-radius: 17px;
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.025);
   padding: 24px;
   position: relative;
   overflow: hidden;
@@ -8874,9 +8876,10 @@ body {
 .home-trust-card {
   display: flex;
   flex-direction: column;
-  background: var(--panel-2);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-md);
+  background: linear-gradient(180deg, rgba(21, 29, 49, 0.72), rgba(9, 13, 23, 0.9)), var(--panel);
+  border: 1px solid var(--line-soft);
+  border-radius: 17px;
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.025);
   padding: 24px;
   position: relative;
   overflow: hidden;
@@ -8993,9 +8996,10 @@ body {
 .home-step-card {
   display: flex;
   flex-direction: column;
-  background: var(--panel-2);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-md);
+  background: linear-gradient(180deg, rgba(21, 29, 49, 0.72), rgba(9, 13, 23, 0.9)), var(--panel);
+  border: 1px solid var(--line-soft);
+  border-radius: 17px;
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.025);
   padding: 24px;
   position: relative;
   overflow: hidden;
@@ -9942,13 +9946,13 @@ body {
    ESTILOS DE ARQUITECTURA TIPO DEVVIZOR CON DISEÑO NATIVO
    ========================================================= */
 
-/* ── 01. Hero Split (2 Columnas) ── */
+/* ── 01. Hero Split Compacto (2 Columnas) ── */
 .home-hero--split {
   display: grid;
-  grid-template-columns: 1.15fr 0.85fr;
-  gap: 36px;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 28px;
   align-items: center;
-  padding: 48px 0 36px;
+  padding: 24px 0 20px;
 }
 
 .home-hero__content-col {
@@ -9959,20 +9963,20 @@ body {
 }
 
 .home-hero__headline {
-  font-size: clamp(2.1rem, 4.4vw, 3.2rem);
+  font-size: clamp(1.85rem, 3.4vw, 2.5rem);
   font-weight: 800;
   line-height: 1.15;
   letter-spacing: -0.03em;
   color: #fff;
-  margin: 12px 0 16px;
+  margin: 0 0 12px;
 }
 
 .home-hero__subheadline {
-  font-size: 1.08rem;
-  line-height: 1.65;
+  font-size: 0.94rem;
+  line-height: 1.55;
   color: #a4b9d4;
-  margin: 0 0 24px;
-  max-width: 620px;
+  margin: 0 0 18px;
+  max-width: 540px;
 }
 
 .home-hero__subheadline strong {
@@ -9983,10 +9987,11 @@ body {
   display: flex;
   align-items: center;
   gap: 8px;
-  margin-top: 20px;
+  margin-top: 14px;
   font-family: var(--mono);
-  font-size: 0.76rem;
+  font-size: 0.72rem;
   color: var(--muted);
+  opacity: 0.8;
   flex-wrap: wrap;
 }
 
@@ -10329,9 +10334,9 @@ body {
   border: 1px solid rgba(255, 209, 102, 0.25);
 }
 
-/* ── 03. Sección de Tres Herramientas ("Three Tools") ── */
+/* ── 03. Sección de Tres Herramientas (Diseño Nativo de Tarjetas) ── */
 .three-tools-section {
-  padding: 48px 0 36px;
+  padding: 40px 0 28px;
 }
 
 .three-tools-grid {
@@ -10341,24 +10346,40 @@ body {
 }
 
 .three-tool-card {
+  --card-accent: var(--cyan);
+  position: relative;
   display: flex;
   flex-direction: column;
-  background: var(--panel-2);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-md);
-  padding: 24px;
-  position: relative;
+  min-height: 270px;
+  padding: 20px;
   overflow: hidden;
-  transition: all var(--t-fast);
+  border: 1px solid var(--line-soft);
+  border-radius: 17px;
+  background:
+    linear-gradient(180deg, rgba(21, 29, 49, 0.72), rgba(9, 13, 23, 0.9)),
+    var(--panel);
+  box-shadow: inset 0 1px rgba(255, 255, 255, 0.025);
+  transition: transform var(--t-fast), border-color var(--t-fast), box-shadow var(--t-fast);
+}
+
+.three-tool-card::after {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(circle at 50% 34%, color-mix(in srgb, var(--card-accent) 7%, transparent), transparent 58%);
+  content: "";
+  pointer-events: none;
 }
 
 .three-tool-card:hover {
-  border-color: rgba(59, 211, 255, 0.4);
-  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5), 0 0 24px rgba(59, 211, 255, 0.08);
   transform: translateY(-2px);
+  border-color: color-mix(in srgb, var(--card-accent) 55%, transparent);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.45), 0 0 20px color-mix(in srgb, var(--card-accent) 15%, transparent);
 }
 
 .three-tool-card__header {
+  position: relative;
+  z-index: 2;
   display: flex;
   align-items: center;
   justify-content: space-between;
@@ -10366,26 +10387,33 @@ body {
 }
 
 .three-tool-card__num {
+  display: grid;
+  min-width: 28px;
+  height: 24px;
+  place-items: center;
+  border-radius: var(--radius-sm);
+  background: color-mix(in srgb, var(--card-accent) 18%, transparent);
+  color: var(--card-accent);
   font-family: var(--mono);
-  font-size: 0.75rem;
+  font-size: 0.66rem;
   font-weight: 800;
-  color: var(--cyan);
-  background: rgba(59, 211, 255, 0.12);
-  border: 1px solid rgba(59, 211, 255, 0.25);
-  padding: 2px 8px;
-  border-radius: 4px;
 }
 
-.three-tool-card__badge {
+.three-tool-card__family {
+  color: color-mix(in srgb, var(--card-accent) 60%, #687892);
   font-family: var(--mono);
-  font-size: 0.68rem;
+  font-size: 0.62rem;
   font-weight: 700;
-  color: var(--muted);
-  letter-spacing: 0.08em;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
+  white-space: nowrap;
+  opacity: 0.85;
 }
 
 .three-tool-card__title {
-  font-size: 1.25rem;
+  position: relative;
+  z-index: 2;
+  font-size: 1.15rem;
   font-weight: 700;
   color: #fff;
   margin: 0 0 4px;
@@ -10393,333 +10421,308 @@ body {
 }
 
 .three-tool-card__subtitle {
-  font-size: 0.84rem;
-  color: var(--cyan);
+  position: relative;
+  z-index: 2;
+  font-size: 0.78rem;
+  color: var(--card-accent);
   font-family: var(--mono);
-  margin-bottom: 12px;
+  margin-bottom: 10px;
 }
 
 .three-tool-card__desc {
-  font-size: 0.9rem;
-  line-height: 1.6;
-  color: #9cb1cc;
-  margin: 0 0 16px;
+  position: relative;
+  z-index: 2;
+  font-size: 0.83rem;
+  line-height: 1.55;
+  color: var(--muted);
+  margin: 0 0 14px;
 }
 
 .three-tool-card__tags {
+  position: relative;
+  z-index: 2;
   display: flex;
   flex-wrap: wrap;
-  gap: 6px;
+  gap: 5px;
   margin-top: auto;
-  margin-bottom: 16px;
+  margin-bottom: 14px;
 }
 
 .three-tool-tag {
   font-family: var(--mono);
-  font-size: 0.7rem;
-  color: #cad8ec;
-  background: var(--panel);
-  border: 1px solid var(--line-soft);
-  border-radius: 4px;
-  padding: 2px 7px;
+  font-size: 0.65rem;
+  padding: 3px 8px;
+  border-radius: var(--radius-sm);
+  border: 1px solid color-mix(in srgb, var(--card-accent) 18%, transparent);
+  background: rgba(4, 8, 15, 0.42);
+  color: #a4b9d4;
 }
 
 .three-tool-card__footer {
-  padding-top: 14px;
-  border-top: 1px solid var(--line-soft);
+  position: relative;
+  z-index: 2;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.07);
 }
 
 .three-tool-link {
-  display: inline-flex;
+  display: flex;
   align-items: center;
-  gap: 6px;
+  justify-content: space-between;
   font-family: var(--mono);
-  font-size: 0.82rem;
+  font-size: 0.78rem;
   font-weight: 700;
-  color: var(--cyan);
+  color: var(--card-accent);
   text-decoration: none;
   transition: all var(--t-fast);
 }
 
 .three-tool-link:hover {
-  color: #fff;
-  transform: translateX(3px);
+  filter: brightness(1.2);
+  transform: translateX(2px);
 }
 
-/* ── 04. Pestañas Verticales Fijas y Cajón Lateral (Roadmap) ── */
-.roadmap-edge-bar {
+/* ── 04. Botón Lateral Izquierdo ("¿Por dónde empezar?") y Cajón Desplegable ── */
+.start-edge-bar {
   position: fixed;
-  right: 0;
+  left: 0;
   top: 50%;
   transform: translateY(-50%);
   z-index: 990;
   display: flex;
   flex-direction: column;
-  gap: 10px;
 }
 
-.roadmap-edge-btn {
+.start-edge-btn {
   display: flex;
   align-items: center;
   gap: 8px;
-  padding: 12px 14px;
-  background: rgba(7, 13, 26, 0.92);
+  padding: 10px 14px;
+  background: rgba(7, 13, 26, 0.94);
   backdrop-filter: blur(10px);
   border: 1px solid rgba(59, 211, 255, 0.4);
-  border-right: none;
-  border-radius: 10px 0 0 10px;
-  color: #fff;
+  border-left: none;
+  border-radius: 0 8px 8px 0;
+  color: var(--cyan);
   font-family: var(--mono);
-  font-size: 0.78rem;
+  font-size: 0.76rem;
   font-weight: 700;
   cursor: pointer;
-  box-shadow: -4px 6px 20px rgba(0, 0, 0, 0.5), 0 0 16px rgba(59, 211, 255, 0.15);
+  box-shadow: 4px 6px 20px rgba(0, 0, 0, 0.5), 0 0 16px rgba(59, 211, 255, 0.15);
   transition: all var(--t-fast);
 }
 
-.roadmap-edge-btn:hover {
-  background: rgba(59, 211, 255, 0.2);
-  color: var(--cyan);
-  transform: translateX(-4px);
+.start-edge-btn:hover {
+  background: rgba(59, 211, 255, 0.18);
+  color: #fff;
+  transform: translateX(4px);
 }
 
-.roadmap-edge-btn--start {
-  color: var(--cyan);
-}
-
-.roadmap-edge-dot {
-  width: 8px;
-  height: 8px;
+.start-edge-dot {
+  width: 7px;
+  height: 7px;
   border-radius: 50%;
   background: var(--cyan);
   box-shadow: 0 0 8px var(--cyan);
   animation: pulse-dot 1.4s infinite;
 }
 
-.roadmap-edge-icon {
-  font-size: 0.9rem;
-}
-
-.roadmap-drawer-backdrop {
+.start-drawer-backdrop {
   position: fixed;
   inset: 0;
   background: rgba(0, 0, 0, 0.72);
   backdrop-filter: blur(6px);
   z-index: 998;
-  animation: fade-in 0.25s ease-out;
+  animation: fade-in 0.2s ease-out;
 }
 
-.roadmap-drawer {
+.start-drawer {
   position: fixed;
   top: 0;
-  right: 0;
+  left: 0;
   bottom: 0;
-  width: min(500px, 94vw);
+  width: min(390px, 92vw);
   background: #060a14;
-  border-left: 1px solid rgba(59, 211, 255, 0.35);
+  border-right: 1px solid rgba(59, 211, 255, 0.35);
   z-index: 999;
   display: flex;
   flex-direction: column;
-  box-shadow: -16px 0 48px rgba(0, 0, 0, 0.8);
-  transform: translateX(100%);
-  transition: transform 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 16px 0 48px rgba(0, 0, 0, 0.8);
+  transform: translateX(-100%);
+  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-.roadmap-drawer--open {
+.start-drawer--open {
   transform: translateX(0);
 }
 
-.roadmap-drawer__header {
+.start-drawer__header {
   display: flex;
   align-items: flex-start;
   justify-content: space-between;
-  padding: 20px 24px;
+  padding: 16px 20px;
   border-bottom: 1px solid #1a273b;
   background: rgba(255, 255, 255, 0.02);
 }
 
-.roadmap-drawer__eyebrow {
+.start-drawer__eyebrow {
   display: block;
   font-family: var(--mono);
-  font-size: 0.68rem;
+  font-size: 0.64rem;
   font-weight: 700;
   color: var(--cyan);
-  margin-bottom: 4px;
+  margin-bottom: 3px;
 }
 
-.roadmap-drawer__header h2 {
-  font-size: 1.35rem;
+.start-drawer__header h2 {
+  font-size: 1.15rem;
+  font-weight: 700;
   color: #fff;
   margin: 0 0 4px;
 }
 
-.roadmap-drawer__header p {
-  font-size: 0.84rem;
+.start-drawer__header p {
+  font-size: 0.78rem;
   color: var(--muted);
   margin: 0;
+  line-height: 1.4;
 }
 
-.roadmap-drawer__close-btn {
-  background: rgba(255, 255, 255, 0.06);
-  border: 1px solid #28374d;
+.start-drawer__close-btn {
+  background: transparent;
+  border: 1px solid #233147;
   border-radius: 6px;
-  color: #cad8ec;
-  font-size: 1.1rem;
-  width: 32px;
-  height: 32px;
+  color: var(--muted);
+  cursor: pointer;
+  padding: 6px;
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
   transition: all var(--t-fast);
 }
 
-.roadmap-drawer__close-btn:hover {
-  background: rgba(255, 92, 92, 0.2);
-  border-color: #ff5c5c;
+.start-drawer__close-btn:hover {
   color: #fff;
+  border-color: rgba(59, 211, 255, 0.5);
+  background: rgba(59, 211, 255, 0.1);
 }
 
-.roadmap-drawer__body {
+.start-drawer__body {
   flex: 1;
   overflow-y: auto;
-  padding: 20px 24px;
+  padding: 16px;
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: 12px;
 }
 
-.roadmap-phase-card {
-  background: var(--panel-2);
-  border: 1px solid var(--line);
-  border-radius: var(--radius-sm);
-  padding: 16px;
+.start-phase-card {
+  background: linear-gradient(180deg, rgba(21, 29, 49, 0.72), rgba(9, 13, 23, 0.9)), var(--panel);
+  border: 1px solid var(--line-soft);
+  border-radius: 12px;
+  padding: 14px;
   transition: all var(--t-fast);
 }
 
-.roadmap-phase-card:hover {
-  border-color: rgba(59, 211, 255, 0.35);
+.start-phase-card:hover {
+  border-color: rgba(59, 211, 255, 0.4);
+  transform: translateY(-1px);
 }
 
-.roadmap-phase-card__header {
+.start-phase-card__header {
   display: flex;
   align-items: center;
-  justify-content: space-between;
-  margin-bottom: 8px;
+  gap: 8px;
+  margin-bottom: 6px;
 }
 
-.roadmap-phase-card__badge {
+.start-phase-card__badge {
   font-family: var(--mono);
-  font-size: 0.68rem;
+  font-size: 0.62rem;
   font-weight: 800;
   color: var(--cyan);
   background: rgba(59, 211, 255, 0.12);
-  padding: 2px 6px;
-  border-radius: 3px;
+  border: 1px solid rgba(59, 211, 255, 0.25);
+  padding: 1px 6px;
+  border-radius: 4px;
 }
 
-.roadmap-phase-card__duration {
+.start-phase-card__duration {
   font-family: var(--mono);
-  font-size: 0.68rem;
-  color: var(--yellow);
+  font-size: 0.62rem;
+  color: var(--muted);
 }
 
-.roadmap-phase-card__num {
+.start-phase-card__num {
+  margin-left: auto;
   font-family: var(--mono);
-  font-size: 0.72rem;
-  color: #4a5f78;
+  font-size: 0.65rem;
+  font-weight: 700;
+  color: #516584;
 }
 
-.roadmap-phase-card__title {
-  font-size: 1.05rem;
+.start-phase-card__title {
+  font-size: 0.96rem;
+  font-weight: 700;
   color: #fff;
-  margin: 0 0 6px;
+  margin: 0 0 4px;
 }
 
-.roadmap-phase-card__summary {
-  font-size: 0.82rem;
+.start-phase-card__summary {
+  font-size: 0.78rem;
   color: #9cb1cc;
   line-height: 1.45;
   margin: 0 0 10px;
 }
 
-.roadmap-phase-card__topics {
-  margin: 0 0 12px;
-  padding: 0;
-  list-style: none;
-  display: flex;
-  flex-direction: column;
-  gap: 4px;
+.start-phase-card__footer {
+  border-top: 1px solid rgba(255, 255, 255, 0.06);
+  padding-top: 8px;
 }
 
-.roadmap-phase-card__topics li {
-  font-size: 0.78rem;
-  color: #cad8ec;
-  display: flex;
-  flex-direction: column;
-  background: rgba(0, 0, 0, 0.25);
-  padding: 4px 8px;
-  border-radius: 4px;
-  border: 1px solid #1a273b;
-}
-
-.roadmap-phase-card__topics strong {
-  color: #fff;
-}
-
-.roadmap-phase-card__topics span {
-  font-size: 0.72rem;
-  color: var(--muted);
-}
-
-.roadmap-phase-link {
+.start-phase-link {
   display: inline-flex;
   align-items: center;
-  gap: 4px;
+  gap: 5px;
   font-family: var(--mono);
-  font-size: 0.78rem;
+  font-size: 0.74rem;
   font-weight: 700;
   color: var(--cyan);
-  text-decoration: none;
-}
-
-.roadmap-phase-link:hover {
-  text-decoration: underline;
-}
-
-.roadmap-drawer__footer {
-  padding: 16px 24px;
-  border-top: 1px solid #1a273b;
-  background: rgba(4, 8, 16, 0.85);
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
-
-.roadmap-drawer__footer-note {
-  font-size: 0.74rem;
-  color: var(--muted);
-}
-
-.roadmap-drawer__footer-cta {
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 8px;
-  padding: 10px 16px;
-  background: var(--cyan);
-  color: #040914;
-  font-family: var(--mono);
-  font-size: 0.84rem;
-  font-weight: 800;
-  border-radius: var(--radius-sm);
   text-decoration: none;
   transition: all var(--t-fast);
 }
 
-.roadmap-drawer__footer-cta:hover {
+.start-phase-link:hover {
+  color: #fff;
+  transform: translateX(3px);
+}
+
+.start-drawer__footer {
+  padding: 14px 16px;
+  border-top: 1px solid #1a273b;
+  background: rgba(255, 255, 255, 0.02);
+}
+
+.start-drawer__footer-cta {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  width: 100%;
+  padding: 10px;
+  background: var(--cyan);
+  color: #050811;
+  font-family: var(--mono);
+  font-size: 0.78rem;
+  font-weight: 800;
+  text-decoration: none;
+  border-radius: 8px;
+  transition: all var(--t-fast);
+}
+
+.start-drawer__footer-cta:hover {
   background: #64e0ff;
-  transform: translateY(-1px);
+  box-shadow: 0 0 20px rgba(59, 211, 255, 0.4);
 }
 
 /* ── 05. Tarjeta Flotante de Bienvenida / Onboarding Compacto ── */
@@ -10944,7 +10947,7 @@ body {
     border-right: none;
     border-bottom: 1px solid #1a273b;
   }
-  .roadmap-edge-bar {
+  .start-edge-bar {
     top: auto;
     bottom: 80px;
     transform: none;
