@@ -29,6 +29,7 @@ if sys.stdout and hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8")
         sys.stderr.reconfigure(encoding="utf-8")
     except Exception:
+        # Reconfiguración opcional de codificación; ignorar si el entorno no lo soporta.
         pass
 
 OWNER_DEFAULT = "Luics415"
@@ -292,6 +293,7 @@ def ensure_labels_exist(repo: str, labels: List[str]) -> None:
         try:
             run_cmd(cmd, check=False)
         except Exception:
+            # Si la etiqueta ya existe o falla la creación, se omite para no interrumpir el flujo.
             pass
 
 
@@ -943,6 +945,7 @@ def gather_repository_context() -> Dict[str, Any]:
                     lines = [line.strip() for line in f if line.strip() and not line.startswith("```")][:15]
                     context["docs_extracts"][doc_key] = " ".join(lines)[:600]
             except Exception:
+                # Omitir archivo si falla la lectura local para mantener el resto del contexto.
                 pass
 
     key_code_files = [
@@ -958,6 +961,7 @@ def gather_repository_context() -> Dict[str, Any]:
         if log_out:
             context["ultimos_commits"] = log_out.splitlines()
     except Exception:
+        # Historial de git no esencial; ignorar si el comando no está disponible.
         pass
 
     return context
@@ -1090,6 +1094,7 @@ def call_gemini_api(prompt: str, api_key: str) -> Optional[str]:
                     try:
                         error_body = he.read().decode("utf-8")
                     except Exception:
+                        # Si el cuerpo de respuesta HTTP no es decodificable, conservar cadena vacía.
                         pass
                     log(f"Diagnóstico Gemini API ({model} intento {attempt+1} - {he.code} {he.reason}): {error_body[:200]}")
                     if he.code in [503, 429] and attempt == 0:
