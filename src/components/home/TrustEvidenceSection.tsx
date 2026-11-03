@@ -134,22 +134,22 @@ export function TrustEvidenceSection() {
             <span className="home-term-cmd">npm run check</span>
           </div>
           <div className="home-term-output home-term-output--green">
-            ✔ [ESLint] 0 errores, 0 advertencias en código fuente TypeScript.
+            [OK] [ESLint] 0 errores, 0 advertencias en código fuente TypeScript.
           </div>
           <div className="home-term-output home-term-output--green">
-            ✔ [TypeScript] Verificación estricta (tsc --noEmit) sin errores de tipos.
+            [OK] [TypeScript] Verificación estricta (tsc --noEmit) sin errores de tipos.
           </div>
           <div className="home-term-output home-term-output--cyan">
-            ✔ [Library Catalog] 73 colecciones / 266 recursos con URLs y firmas verificadas.
+            [OK] [Library Catalog] 73 colecciones / 266 recursos con URLs y firmas verificadas.
           </div>
           <div className="home-term-output home-term-output--green">
-            ✔ [Next.js SSG] 394 páginas estáticas compiladas en 14.3 segundos.
+            [OK] [Next.js SSG] 394 páginas estáticas compiladas en 14.3 segundos.
           </div>
           <div className="home-term-output home-term-output--green">
-            ✔ [Links Audit] 394 páginas analizadas: 0 enlaces rotos detectados.
+            [OK] [Links Audit] 394 páginas analizadas: 0 enlaces rotos detectados.
           </div>
           <div className="home-term-output home-term-output--yellow">
-            ✔ [WCAG 2.1 AA] 394 páginas y 9,798 botones cumplen accesibilidad internacional.
+            [OK] [WCAG 2.1 AA] 394 páginas y 9,798 botones cumplen accesibilidad internacional.
           </div>
         </div>
       </div>
