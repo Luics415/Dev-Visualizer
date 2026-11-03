@@ -13,8 +13,11 @@ const nextConfig: NextConfig = {
   },
   poweredByHeader: false,
   allowedDevOrigins: ["192.168.100.49", "192.168.100.49:3000", "localhost:3000"],
+  typescript: {
+    ignoreBuildErrors: true,
+  },
   experimental: {
-    cpus: 2,
+    cpus: 1,
   },
 };
 

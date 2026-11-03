@@ -332,16 +332,16 @@ export function CollectionNav() {
     >
       <Link
         className="collection-nav__brand"
-        href="/colecciones"
-        aria-label="Abrir biblioteca de colecciones"
+        href="/"
+        aria-label="Ir a la página principal de Dev Visualizer"
         onClick={closeMobileMenu}
       >
         <Image src={`${basePath}/brand/dev-visualizer-icon.png`} alt="" width={128} height={128} />
       </Link>
 
       <div className="collection-nav__current" aria-live="polite">
-        <span>{normalizedPathname.startsWith("/libreria") ? "Recursos de estudio" : normalizedPathname === "/colecciones" ? "Biblioteca" : "Estudiando ahora"}</span>
-        <strong>{normalizedPathname.startsWith("/libreria") ? "Librería profesional" : active?.label ?? "Todas las colecciones"}</strong>
+        <span>{normalizedPathname === "/" ? "Plataforma educativa" : normalizedPathname.startsWith("/libreria") ? "Recursos de estudio" : normalizedPathname === "/colecciones" ? "Biblioteca" : "Estudiando ahora"}</span>
+        <strong>{normalizedPathname === "/" ? "Dev Visualizer" : normalizedPathname.startsWith("/libreria") ? "Librería profesional" : active?.label ?? "Todas las colecciones"}</strong>
       </div>
 
         <div className="collection-nav__sequence" role="group" aria-label="Ruta anterior y siguiente">
