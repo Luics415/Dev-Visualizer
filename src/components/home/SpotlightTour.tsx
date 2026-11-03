@@ -15,7 +15,7 @@ const TOUR_STEPS: readonly TourStep[] = [
     id: "welcome",
     title: "Bienvenido a Dev Visualizer",
     description:
-      "Comprende algoritmos, runtimes y arquitectura de software viéndolos ejecutarse paso a paso con animaciones interactivas que puedes pausar, retroceder e inspeccionar.",
+      "Comprende la arquitectura de software y los runtimes viéndolos ejecutarse paso a paso con animaciones interactivas en memoria viva que puedes pausar e inspeccionar.",
     target: null,
     tag: "INTRODUCCIÓN",
   },
@@ -23,40 +23,40 @@ const TOUR_STEPS: readonly TourStep[] = [
     id: "workbench",
     title: "Simulador de Código y Memoria",
     description:
-      "Inspecciona la ejecución de algoritmos frame a frame: código a la izquierda, punteros de partición L/R a la derecha y complejidad O(N log N) en tiempo real.",
+      "Inspecciona la ejecución de algoritmos frame a frame: código a la izquierda, punteros de partición L/R a la derecha y complejidad Big-O en tiempo real.",
     target: "#hero-simulator-workbench",
     tag: "SIMULADOR EN VIVO",
   },
   {
-    id: "visualizers",
-    title: "Visualizadores de Algoritmos",
+    id: "menu-01",
+    title: "Colecciones Temáticas",
     description:
-      "Explora simulaciones paso a paso de Quicksort, Dijkstra y el Event Loop de V8 con controles de reproducción frame a frame e inspección activa.",
-    target: "#tour-card-01",
-    tag: "HERRAMIENTAS · 01",
+      "Explora 73 colecciones tecnológicas y 7,410 conceptos canónicos organizados por dominios de arquitectura con mapas visuales interactivos.",
+    target: "#menu-card-01",
+    tag: "APARTADO · 01",
   },
   {
-    id: "cases",
-    title: "73 Casos Prácticos «En Acción»",
+    id: "menu-02",
+    title: "Capacidades Operativas",
     description:
-      "Escenarios de producción reales: inyección de fallos de red, saturación de pools de conexiones y mitigación resiliente con Circuit Breakers.",
-    target: "#tour-card-02",
-    tag: "HERRAMIENTAS · 02",
+      "73 escenarios de producción simulados: inyección de fallos de red, saturación de pools de base de datos, aislamiento en Docker y mitigación con Circuit Breakers.",
+    target: "#menu-card-02",
+    tag: "APARTADO · 02",
   },
   {
-    id: "library",
+    id: "menu-03",
     title: "Librería Profesional Preservada",
     description:
-      "266 recursos y normas oficiales: estándares formales de TC39 (ECMA-262), RFCs del IETF y especificaciones W3C sin alucinaciones.",
-    target: "#tour-card-03",
-    tag: "HERRAMIENTAS · 03",
+      "266 recursos y normas oficiales: especificaciones formales de TC39 (ECMA-262), RFCs del IETF y documentación primaria sin alucinaciones.",
+    target: "#menu-card-03",
+    tag: "APARTADO · 03",
   },
   {
     id: "start-guide",
     title: "¿Por dónde empezar?",
     description:
-      "¿No sabes por dónde comenzar? Haz clic en esta pestaña lateral en cualquier momento para abrir la ruta formativa en 6 secciones canónicas.",
-    target: "#tour-start-bar",
+      "¿No sabes por dónde comenzar? Haz clic en esta pestaña lateral en cualquier momento para desplegar la ruta formativa en 6 secciones canónicas.",
+    target: "#tour-start-btn",
     tag: "GUÍA LATERAL",
   },
 ];
