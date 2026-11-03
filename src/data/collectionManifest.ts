@@ -36,7 +36,7 @@ export const collectionGroupMeta: Record<CollectionGroupId, { name: string; desc
 };
 
 const collectionEntries: readonly CollectionManifestInput[] = [
-  { id: "javascript", label: "JavaScript ES6+", short: "JS", href: "/", actionHref: "/javascript-en-accion", group: "languages", theme: "javascript", lifecycle: "actual", summary: "Lenguaje, objetos, asincronía, módulos, protocolos y memoria." },
+  { id: "javascript", label: "JavaScript ES6+", short: "JS", href: "/javascript", actionHref: "/javascript-en-accion", group: "languages", theme: "javascript", lifecycle: "actual", summary: "Lenguaje, objetos, asincronía, módulos, protocolos y memoria." },
   { id: "typescript", label: "TypeScript", short: "TS", href: "/typescript", actionHref: "/typescript-en-accion", group: "languages", theme: "typescript", lifecycle: "actual", summary: "Modelado, narrowing, genéricos, compilador y producción." },
   { id: "python", label: "Python", short: "Py", href: "/python", actionHref: "/python-en-accion", group: "languages", theme: "python", lifecycle: "actual", summary: "Desde cero: lenguaje, biblioteca estándar, automatización, web, datos, IA y producción." },
   { id: "prolog", label: "Prolog", short: "PL", href: "/prolog", actionHref: "/prolog-en-accion", group: "languages", theme: "prolog", lifecycle: "actual", summary: "Términos, unificación, resolución, backtracking, restricciones, tabling, gramáticas y producción." },

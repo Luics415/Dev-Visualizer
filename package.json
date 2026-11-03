@@ -9,7 +9,7 @@
   },
   "scripts": {
     "dev": "next dev",
-    "build": "next build",
+    "build": "node --max-old-space-size=4096 node_modules/next/dist/bin/next build",
     "build:search-index": "tsx scripts/build-concept-search-index.ts",
     "check:links": "node scripts/validate-static-links.mjs",
     "check:library": "node scripts/validate-library-catalog.mjs",

@@ -1,132 +1,264 @@
-import type { ReactNode } from "react";
 import Link from "next/link";
-import { ConceptCard } from "@/components/concepts/ConceptCard";
-import { CollectionChapters } from "@/components/concepts/CollectionChapters";
-import { CollectionLibraryInvite } from "@/components/concepts/CollectionLibraryInvite";
 import { CollectionNav } from "@/components/navigation/CollectionNav";
-import { AnimatedConceptScene } from "@/components/visual/AnimatedConceptScene";
-import { collectionNotices } from "@/data/collectionNotices";
-import { ArraysScene } from "@/components/scenes/javascript/ArraysScene";
-import { AsyncAwaitScene } from "@/components/scenes/javascript/AsyncAwaitScene";
-import { ClosuresScene } from "@/components/scenes/javascript/ClosuresScene";
-import { ErrorHandlingScene } from "@/components/scenes/javascript/ErrorHandlingScene";
-import { EventLoopScene } from "@/components/scenes/javascript/EventLoopScene";
-import { FilterScene } from "@/components/scenes/javascript/FilterScene";
-import { FunctionsScene } from "@/components/scenes/javascript/FunctionsScene";
-import { MapScene } from "@/components/scenes/javascript/MapScene";
-import { ModulesScene } from "@/components/scenes/javascript/ModulesScene";
-import { ObjectsScene } from "@/components/scenes/javascript/ObjectsScene";
-import { PromisesScene } from "@/components/scenes/javascript/PromisesScene";
-import { ReduceScene } from "@/components/scenes/javascript/ReduceScene";
-import { ScopeScene } from "@/components/scenes/javascript/ScopeScene";
-import { VariablesScene } from "@/components/scenes/javascript/VariablesScene";
-import { javascriptConcepts } from "@/data/javascriptConcepts";
-import { slugify } from "@/lib/slugify";
-import { CollectionPrimer } from "@/components/concepts/CollectionPrimer";
-import { collectionNumber } from "@/data/collectionManifest";
-import { collectionPrimers } from "@/data/collectionPrimers";
-import { FloatingAudioBubble } from "@/components/audio/FloatingAudioBubble";
-import { buildConceptAudioTrack } from "@/lib/audioTrackHelper";
+import { HomeTourSection } from "@/components/home/HomeTourSection";
+import { HomeConceptSearch } from "@/components/home/HomeConceptSearch";
+import { collectionGroupMeta, collectionManifest, type CollectionGroupId } from "@/data/collectionManifest";
+import { canonicalConceptCount } from "@/data/canonicalConceptCollections";
 
-const specialScenes = new Map<string, ReactNode>([
-  ["Variables", <VariablesScene key="variables" />],
-  ["Funciones", <FunctionsScene key="functions" />],
-  ["Objetos", <ObjectsScene key="objects" />],
-  ["Arrays", <ArraysScene key="arrays" />],
-  ["map", <MapScene key="map" />],
-  ["filter", <FilterScene key="filter" />],
-  ["reduce", <ReduceScene key="reduce" />],
-  ["Promesas", <PromisesScene key="promises" />],
-  ["Async / Await", <AsyncAwaitScene key="async-await" />],
-  ["Módulos ES", <ModulesScene key="modules" />],
-  ["Closures", <ClosuresScene key="closures" />],
-  ["Scope", <ScopeScene key="scope" />],
-  ["Event Loop", <EventLoopScene key="event-loop" />],
-  ["Manejo de errores", <ErrorHandlingScene key="error-handling" />],
-]);
+export const metadata = {
+  title: "Dev Visualizer · Plataforma Educativa de Arquitectura de Software",
+  description:
+    "Enciclopedia interactiva con 7,410 conceptos técnicos, 394 colecciones interactivas y 7 áreas de arquitectura de software explicadas mediante modelos deterministas y código observable.",
+};
 
-const sections = [...new Set(javascriptConcepts.map((concept) => concept.section))];
-const chapters = sections.map((name) => ({ name, count: javascriptConcepts.filter((concept) => concept.section === name).length }));
+const QUICKSTART_ROUTES = [
+  {
+    title: "JavaScript ES6+",
+    badge: "Lenguajes",
+    href: "/javascript",
+    desc: "Valores, prototipos, asincronía, event loop y memoria.",
+  },
+  {
+    title: "TypeScript",
+    badge: "Lenguajes",
+    href: "/typescript",
+    desc: "Sistemas de tipos, narrowing, genéricos y compilación.",
+  },
+  {
+    title: "Python",
+    badge: "Lenguajes",
+    href: "/python",
+    desc: "Estructuras, modelo de objetos, GIL, generadores e IA.",
+  },
+  {
+    title: "Algoritmos y Estructuras",
+    badge: "Fundamentos",
+    href: "/algoritmos",
+    desc: "Complejidad O(N), árboles, grafos y programación dinámica.",
+  },
+  {
+    title: "Git y Arquitectura de Versiones",
+    badge: "Control de versiones",
+    href: "/git",
+    desc: "Objetos blob/tree/commit, ramas, merge tracking y rebase.",
+  },
+  {
+    title: "Docker y Contenedores",
+    badge: "Infraestructura",
+    href: "/docker",
+    desc: "Namespaces, cgroups, imágenes OCI, redes y orquestación.",
+  },
+  {
+    title: "Librería Profesional",
+    badge: "Preservación",
+    href: "/libreria",
+    desc: "179 recursos técnicos y manuales con integridad SHA-256.",
+  },
+  {
+    title: "Catálogo Completo",
+    badge: "Todas las rutas",
+    href: "/colecciones",
+    desc: "Explora las 394 colecciones organizadas por áreas de estudio.",
+  },
+];
 
-export default function Home() {
-  const audioTracks = javascriptConcepts.map((concept, index) =>
-    buildConceptAudioTrack("javascript", concept, index + 1)
-  );
+const PLATFORM_PILLARS = [
+  {
+    title: "Modelos Deterministas y Observabilidad",
+    desc: "Erradicamos las abstracciones opacas. Cada concepto se presenta con animaciones vectoriales paso a paso que revelan el comportamiento exacto de los punteros, registros de CPU, buffers y el árbol del DOM.",
+    icon: (
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <polygon points="12 2 2 7 12 12 22 7 12 2" />
+        <polyline points="2 17 12 22 22 17" />
+        <polyline points="2 12 12 17 22 12" />
+      </svg>
+    ),
+  },
+  {
+    title: "Doble Dimensión: Fundamentos y Casos en Acción",
+    desc: "Cada módulo vincula la teoría exhaustiva con un escenario de producción ('En acción'). Conecta el aprendizaje de sintaxis y mecanismos con métricas reales, pipelines y patrones de arquitectura aplicados.",
+    icon: (
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
+        <line x1="8" y1="21" x2="16" y2="21" />
+        <line x1="12" y1="17" x2="12" y2="21" />
+      </svg>
+    ),
+  },
+  {
+    title: "Accesibilidad Multimodal y Narración Nativa",
+    desc: "Integración profunda con la Web Speech API para lectura guiada en español neutro con cadencia técnica, soporte para navegación completa por teclado y contraste conforme a normas WCAG AA.",
+    icon: (
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+        <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" />
+      </svg>
+    ),
+  },
+  {
+    title: "Fuentes Canónicas y Preservación Técnica",
+    desc: "Fundamentación estricta en especificaciones formales (ECMA, W3C, RFCs, ISO). Nuestra librería técnica almacena manuales verificados con sumas criptográficas SHA-256 para estudio permanente.",
+    icon: (
+      <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+      </svg>
+    ),
+  },
+];
+
+export default function HomePage() {
+  const totalCollections = collectionManifest.length;
+  const totalRoutes = totalCollections * 2;
+  const groupsList = Object.entries(collectionGroupMeta) as [CollectionGroupId, { name: string; description: string }][];
 
   return (
     <main className="page-shell">
       <CollectionNav />
 
-      <header className="hero hero--javascript">
-        <div>
-          <span className="eyebrow eyebrow--javascript">Colección {collectionNumber("javascript")} · Lenguaje y runtime</span>
-          <h1>JavaScript ES6+ visualizado</h1>
-          <p>
-            Una ruta completa desde valores, funciones y estructuras hasta prototipos, asincronía, módulos, protocolos, binarios y gestión de recursos. Las escenas personalizadas permanecen y los conceptos avanzados adoptan nuevas metáforas visuales.
-          </p>
+      {/* ── Hero Principal ── */}
+      <header className="home-hero">
+        <div className="home-hero__badge">
+          <span>Ecosistema de Ingeniería · 7,410 Conceptos Técnicos</span>
         </div>
-        <div className="hero__counter hero__counter--javascript">
-          <strong>{javascriptConcepts.length}</strong>
-          <span>conceptos en {sections.length} capítulos</span>
+        <h1>Dev Visualizer</h1>
+        <p>
+          El atlas interactivo de arquitectura de software, lenguajes y sistemas distribuidos.
+          Aprende con modelos mentales deterministas, código observable, narración auditiva y fuentes canónicas verificadas.
+        </p>
+
+        <div className="home-hero__actions">
+          <a href="#tour" className="home-hero__btn home-hero__btn--primary">
+            <svg viewBox="0 0 24 24" width="18" height="18" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
+              <polygon points="5 3 19 12 5 21 5 3" />
+            </svg>
+            Iniciar Tour de Bienvenida
+          </a>
+          <Link href="/colecciones" className="home-hero__btn home-hero__btn--secondary">
+            Explorar 394 Colecciones →
+          </Link>
+          <Link href="/javascript" className="home-hero__btn home-hero__btn--tertiary">
+            Ruta JavaScript ES6+
+          </Link>
+          <Link href="/libreria" className="home-hero__btn home-hero__btn--tertiary">
+            Librería Técnica
+          </Link>
+        </div>
+
+        {/* ── Métricas Globales ── */}
+        <div className="home-stats-grid">
+          <div className="home-stat-card">
+            <strong>{canonicalConceptCount.toLocaleString("es-MX")}</strong>
+            <span>Conceptos técnicos explicados con modelos mentales</span>
+          </div>
+          <div className="home-stat-card">
+            <strong>{totalCollections}</strong>
+            <span>Colecciones estructuradas por especialidad</span>
+          </div>
+          <div className="home-stat-card">
+            <strong>{totalRoutes}</strong>
+            <span>Rutas canónicas activas (teoría y casos en acción)</span>
+          </div>
+          <div className="home-stat-card">
+            <strong>7</strong>
+            <span>Áreas maestras de arquitectura de sistemas</span>
+          </div>
         </div>
       </header>
 
-      <aside className="collection-notice">
-        <strong>Contexto tecnológico</strong>
-        <p>{collectionNotices["javascript"]}</p>
-      </aside>
+      {/* ── Tour Guiado Interactivo ("Welcome to Dev Visualizer") ── */}
+      <HomeTourSection />
 
-      <div className="collection-action-link">
-        <span>Después de estudiar los mecanismos</span>
-        <Link href="/javascript-en-accion">Ver JavaScript ES6+ en acción <b>↗</b></Link>
-      </div>
+      {/* ── Buscador Global Indexado en Memoria ── */}
+      <HomeConceptSearch />
 
-      <CollectionPrimer primer={collectionPrimers["javascript"]} />
+      {/* ── Las 7 Áreas Maestras de Arquitectura ── */}
+      <section className="home-domains-section" aria-label="Áreas de arquitectura">
+        <div className="home-section-title-wrap">
+          <span className="home-section-eyebrow">Taxonomía Arquitectónica</span>
+          <h2>Estructura del Conocimiento en 7 Áreas Maestras</h2>
+          <p>
+            Desde el cálculo computacional elemental hasta la orquestación distribuida en la nube, organizadas para un aprendizaje progresivo.
+          </p>
+        </div>
 
-      <CollectionChapters chapters={chapters} />
-      <CollectionLibraryInvite href="/libreria/javascript" collectionName="JavaScript ES6+" />
+        <div className="home-domains-grid">
+          {groupsList.map(([groupId, meta]) => {
+            const groupCollections = collectionManifest.filter((col) => col.group === groupId);
+            return (
+              <article key={groupId} className="home-domain-card">
+                <header className="home-domain-header">
+                  <span className="home-domain-badge">{meta.name}</span>
+                  <span className="home-domain-count">{groupCollections.length} colecciones</span>
+                </header>
+                <h3>{meta.name}</h3>
+                <p>{meta.description}</p>
+                <div className="home-domain-tags">
+                  {groupCollections.slice(0, 5).map((col) => (
+                    <Link key={col.id} href={col.href} className="home-domain-tag">
+                      {col.label}
+                    </Link>
+                  ))}
+                  {groupCollections.length > 5 ? (
+                    <Link href="/colecciones" className="home-domain-tag">
+                      +{groupCollections.length - 5} más
+                    </Link>
+                  ) : null}
+                </div>
+              </article>
+            );
+          })}
+        </div>
+      </section>
 
-      {sections.map((section) => (
-        <section className="collection-section" id={slugify(section)} key={section}>
-          <header className="collection-section__header">
-            <span>Capítulo {String(sections.indexOf(section) + 1).padStart(2, "0")}</span>
-            <h2>{section}</h2>
-            <b>{chapters.find((chapter) => chapter.name === section)?.count} conceptos</b>
-          </header>
-          <div className="concept-grid concept-grid--atlas" aria-label={section}>
-            {javascriptConcepts.map((concept, index) => concept.section === section ? (
-              <ConceptCard
-                key={concept.title}
-                index={index + 1}
-                title={concept.title}
-                description={concept.description}
-                collectionId="javascript"
-                section={concept.section}
-                family={concept.family}
-                layout={concept.layout}
-                audioTrack={audioTracks[index]}
-              >
-                {specialScenes.get(concept.title) ?? (concept.scene ? (
-                  <AnimatedConceptScene
-                    ariaLabel={`Animación explicativa de ${concept.title}`}
-                    code={concept.scene.code}
-                    nodes={concept.scene.nodes}
-                    outcome={concept.scene.outcome}
-                    caption={concept.scene.caption}
-                    variant={concept.scene.variant}
-                  />
-                ) : null)}
-              </ConceptCard>
-            ) : null)}
-          </div>
-        </section>
-      ))}
+      {/* ── Pilares Pedagógicos de la Plataforma ── */}
+      <section className="home-pillars-section" aria-label="Pilares metodológicos">
+        <div className="home-section-title-wrap">
+          <span className="home-section-eyebrow">Rigor y Calidad Técnica</span>
+          <h2>Pilares Metodológicos de Dev Visualizer</h2>
+          <p>
+            Un entorno concebido para ingenieros de software, arquitectos y profesionales técnicos que exigen precisión demostrable.
+          </p>
+        </div>
+
+        <div className="home-pillars-grid">
+          {PLATFORM_PILLARS.map((pillar) => (
+            <div key={pillar.title} className="home-pillar-card">
+              <div className="home-pillar-icon" aria-hidden="true">
+                {pillar.icon}
+              </div>
+              <h3>{pillar.title}</h3>
+              <p>{pillar.desc}</p>
+            </div>
+          ))}
+        </div>
+      </section>
+
+      {/* ── Rutas Recomendadas de Inicio Rápido ── */}
+      <section className="home-quickstart-section" aria-label="Rutas de inicio rápido">
+        <div className="home-section-title-wrap">
+          <span className="home-section-eyebrow">Inicio Rápido</span>
+          <h2>Rutas Recomendadas para Comenzar</h2>
+          <p>
+            Selecciona una de las rutas canónicas más consultadas o accede directamente a la biblioteca de preservación.
+          </p>
+        </div>
+
+        <div className="home-quickstart-grid">
+          {QUICKSTART_ROUTES.map((route) => (
+            <Link key={route.href} href={route.href} className="home-quickstart-card">
+              <div className="home-quickstart-info">
+                <strong>{route.title}</strong>
+                <span>{route.desc}</span>
+              </div>
+              <span className="home-quickstart-arrow" aria-hidden="true">→</span>
+            </Link>
+          ))}
+        </div>
+      </section>
 
       <footer className="project-note">
-        JavaScript no termina en la sintaxis: también incluye protocolos, modelo de objetos, colas, memoria y recursos que explican cómo se comporta el programa.
+        Dev Visualizer es un proyecto de código abierto para la enseñanza rigurosa de la ingeniería de software. Cada ruta canónica está diseñada para maximizar la transferencia conceptual sin comprometer la precisión técnica ni la accesibilidad.
       </footer>
-
-      <FloatingAudioBubble collectionName="JavaScript ES6+" tracks={audioTracks} />
     </main>
   );
 }
