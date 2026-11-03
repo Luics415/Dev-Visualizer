@@ -1,185 +1,164 @@
 import Link from "next/link";
 
+interface ActionStep {
+  step: string;
+  badge: string;
+  title: string;
+  description: string;
+  actionHref: string;
+  actionText: string;
+  secondaryHref: string;
+  secondaryText: string;
+  stats: string;
+}
+
+const STEPS: readonly ActionStep[] = [
+  {
+    step: "01",
+    badge: "SELECCIÓN INICIAL",
+    title: "Elige tu Ruta Técnica o Colección",
+    description:
+      "Explora el catálogo de 73 colecciones organizadas en 7 áreas maestras de arquitectura: desde lenguajes de bajo nivel hasta ingeniería distribuida en la nube.",
+    actionHref: "/colecciones",
+    actionText: "Abrir Catálogo de Colecciones",
+    secondaryHref: "/javascript",
+    secondaryText: "Ver Colección JavaScript",
+    stats: "73 Colecciones · 146 Rutas Canónicas",
+  },
+  {
+    step: "02",
+    badge: "DECONSTRUCCIÓN VISUAL",
+    title: "Observa la Animación y los Invariantes",
+    description:
+      "Avanza paso a paso por las escenas cinemáticas de cada concepto. Observa cómo cambian los marcos en el Call Stack, los punteros en memoria y las transiciones de estado.",
+    actionHref: "/python",
+    actionText: "Ver Simulación en Python",
+    secondaryHref: "/rust",
+    secondaryText: "Ver Simulación en Rust",
+    stats: "7,410 Conceptos Animados",
+  },
+  {
+    step: "03",
+    badge: "INCIDENTES REALES",
+    title: "Diagnostica el Caso de Producción «En Acción»",
+    description:
+      "Sumérgete en la ruta práctica de cada tecnología: inyección de fallos de red, cuellos de botella de concurrencia y aplicación de patrones de mitigación resiliente.",
+    actionHref: "/docker-en-accion",
+    actionText: "Caso Docker en Acción",
+    secondaryHref: "/backend-en-accion",
+    secondaryText: "Caso Backend en Acción",
+    stats: "73 Escenarios Prácticos Reales",
+  },
+  {
+    step: "04",
+    badge: "CERTIFICACIÓN SENIOR",
+    title: "Valida tu Modelo Mental y Desbloquea la Insignia",
+    description:
+      "Responde el quiz técnico de arquitectura. Desecha falacias comunes, asegura tu comprensión profunda y desbloquea la Insignia de Ancla de Dev Visualizer.",
+    actionHref: "/javascript/quiz",
+    actionText: "Iniciar Quiz y Desbloquear Insignia",
+    secondaryHref: "/libreria",
+    secondaryText: "Consultar Librería Normativa",
+    stats: "Insignia de Ancla Certificada",
+  },
+];
+
 export function NextActionSection() {
   return (
-    <section className="home-next-action-section" aria-label="Qué hago ahora - Flujo de inicio rápido">
+    <section className="home-next-action-section" id="que-hago-ahora" aria-label="Qué hago ahora - Hoja de ruta">
       <div className="home-section-title-wrap">
-        <span className="home-section-eyebrow">04 · Hoja de Ruta Operativa</span>
+        <span className="home-section-eyebrow">04 · HOJA DE RUTA OPERATIVA</span>
         <h2>¿Qué hago ahora? Flujo de Inicio Rápido</h2>
-        <p>
-          Secuencia de cuatro pasos estructurada con las tarjetas y métricas oficiales del proyecto para comenzar tu especialización hoy mismo.
+        <p className="home-section-lead">
+          Una secuencia de cuatro pasos estructurada para comenzar tu especialización hoy mismo sin fricción ni rodeos.
         </p>
       </div>
 
-      <div className="library-grid" aria-label="Pasos de inicio rápido">
-        {/* ── Paso 01 ── */}
-        <article className="library-card" data-lifecycle="actual">
-          <header>
-            <span>Paso 01</span>
-            <b>01</b>
-          </header>
-          <div className="library-card__status">
-            <span>Exploración Canónica</span>
-            <em>Paso 1 de 4</em>
-          </div>
-          <h2>Elige tu Tecnología o Ruta Técnica</h2>
-          <p>
-            Selecciona una de las 73 colecciones organizadas en las 7 áreas maestras de arquitectura según tu objetivo formativo o consulta el buscador difuso.
-          </p>
-          <div className="library-card__metrics">
-            <span>
-              <strong>73</strong> colecciones
-            </span>
-            <span>
-              <strong>146</strong> rutas
-            </span>
-            <span>
-              <strong>7</strong> áreas
-            </span>
-          </div>
-          <div className="library-card__actions">
-            <Link href="/colecciones">
-              Abrir catálogo <span>→</span>
-            </Link>
-            <Link href="/javascript">
-              Ruta JavaScript <span>↗</span>
-            </Link>
-          </div>
-        </article>
+      <div className="home-cards-grid" aria-label="Secuencia de 4 pasos">
+        {STEPS.map((s) => (
+          <article className="home-step-card" key={s.step}>
+            <div className="home-step-card__top">
+              <span className="home-step-card__number">PASO {s.step}</span>
+              <span className="home-step-card__badge">{s.badge}</span>
+            </div>
 
-        {/* ── Paso 02 ── */}
-        <article className="library-card" data-lifecycle="actual">
-          <header>
-            <span>Paso 02</span>
-            <b>02</b>
-          </header>
-          <div className="library-card__status">
-            <span>Modelo Mental</span>
-            <em>Paso 2 de 4</em>
-          </div>
-          <h2>Observa la Animación Determinista</h2>
-          <p>
-            Interactúa con las animaciones paso a paso para construir una representación mental exacta de la memoria física, la pila de llamadas y el ciclo de eventos.
-          </p>
-          <div className="library-card__metrics">
-            <span>
-              <strong>7,410</strong> conceptos
-            </span>
-            <span>
-              <strong>HiDPI</strong> canvas
-            </span>
-            <span>
-              <strong>Vector</strong> motion
-            </span>
-          </div>
-          <div className="library-card__actions">
-            <Link href="/javascript">
-              Ver JavaScript ES6+ <span>→</span>
-            </Link>
-            <Link href="/python">
-              Ver Python <span>↗</span>
-            </Link>
-          </div>
-        </article>
+            <h3 className="home-step-card__title">{s.title}</h3>
+            <p className="home-step-card__desc">{s.description}</p>
 
-        {/* ── Paso 03 ── */}
-        <article className="library-card" data-lifecycle="actual">
-          <header>
-            <span>Paso 03</span>
-            <b>03</b>
-          </header>
-          <div className="library-card__status">
-            <span>Producción Real</span>
-            <em>Paso 3 de 4</em>
-          </div>
-          <h2>Examina el Caso &ldquo;En Acción&rdquo;</h2>
-          <p>
-            Analiza el escenario técnico en producción: reproduce el fallo intencional de latencia, inspecciona la frontera de aislamiento y aplica la resiliencia.
-          </p>
-          <div className="library-card__metrics">
-            <span>
-              <strong>73</strong> casos reales
-            </span>
-            <span>
-              <strong>Logs</strong> auditoría
-            </span>
-            <span>
-              <strong>Parches</strong> verificados
-            </span>
-          </div>
-          <div className="library-card__actions">
-            <Link href="/docker-en-accion">
-              Docker en Acción <span>→</span>
-            </Link>
-            <Link href="/apis-en-accion">
-              APIs en Acción <span>↗</span>
-            </Link>
-          </div>
-        </article>
+            <div className="home-step-card__meta">
+              <span className="home-step-card__stats">{s.stats}</span>
+            </div>
 
-        {/* ── Paso 04 ── */}
-        <article className="library-card" data-lifecycle="actual">
-          <header>
-            <span>Paso 04</span>
-            <b>04</b>
-          </header>
-          <div className="library-card__status">
-            <span>Evaluación</span>
-            <em>Paso 4 de 4</em>
-          </div>
-          <h2>Valida tu Conocimiento con el Quiz</h2>
-          <p>
-            Responde el cuestionario técnico de evaluación formativa, analiza las explicaciones teóricas justificadas y desbloquea tu acreditación demostrable.
-          </p>
-          <div className="library-card__metrics">
-            <span>
-              <strong>73</strong> quizzes
-            </span>
-            <span>
-              <strong>Cripto</strong> insignias
-            </span>
-            <span>
-              <strong>Rigor</strong> senior
-            </span>
-          </div>
-          <div className="library-card__actions">
-            <Link href="/javascript/quiz">
-              Tomar Quiz <span>→</span>
-            </Link>
-            <Link href="/libreria">
-              Librería Técnica <span>↗</span>
-            </Link>
-          </div>
-        </article>
+            <div className="home-step-card__footer">
+              <Link href={s.actionHref} className="home-step-card__btn-primary">
+                <span>{s.actionText}</span>
+                <span aria-hidden="true">→</span>
+              </Link>
+              <Link href={s.secondaryHref} className="home-step-card__link-secondary">
+                <span>{s.secondaryText}</span>
+                <span aria-hidden="true">↗</span>
+              </Link>
+            </div>
+          </article>
+        ))}
       </div>
 
       {/* ── Lanzador de Rutas Directas ── */}
-      <div className="home-launchpad-panel">
+      <div className="home-launchpad-panel" aria-label="Accesos directos a tecnologías">
         <div className="home-launchpad-header">
-          <span className="home-launchpad-tag">LANZADOR RÁPIDO</span>
-          <h3>Rutas de Especialización Directa</h3>
-          <p>Selecciona una tecnología para abrir de inmediato su atlas interactivo:</p>
+          <span className="home-launchpad-tag">LANZADOR RÁPIDO DE RUTAS CANÓNICAS</span>
+          <h3>¿Prefieres ir directo a tu tecnología de especialidad?</h3>
+          <p>Accede de inmediato a los atlas interactivos más consultados de la plataforma:</p>
         </div>
 
         <div className="home-launchpad-grid">
-          {[
-            { label: "JavaScript ES6+", meta: "Event Loop · Prototipos · Asincronía", href: "/javascript" },
-            { label: "TypeScript", meta: "Sistema de Tipos · Narrowing · Genéricos", href: "/typescript" },
-            { label: "Python", meta: "Modelo de Objetos · GIL · Generadores", href: "/python" },
-            { label: "Algoritmos y Estructuras", meta: "Complejidad Big-O · Árboles · Grafos", href: "/algoritmos" },
-            { label: "Git y Arquitectura de Versiones", meta: "DAG · Blobs · Trees · Commits · Merges", href: "/git" },
-            { label: "Docker y Contenedores", meta: "Namespaces OCI · Cgroups · OverlayFS", href: "/docker" },
-            { label: "Librería Profesional", meta: "179 Manuales Técnicos con SHA-256", href: "/libreria" },
-            { label: "AWS Cloud Architecture", meta: "Serverless · DynamoDB · IAM · FinOps", href: "/aws" },
-          ].map((item) => (
-            <Link key={item.href} href={item.href} className="home-launchpad-item">
-              <div className="home-launchpad-item-info">
-                <strong>{item.label}</strong>
-                <span>{item.meta}</span>
-              </div>
-              <span className="home-launchpad-item-arrow" aria-hidden="true">↗</span>
-            </Link>
-          ))}
+          <Link href="/javascript" className="home-launchpad-item">
+            <div className="home-launchpad-item-info">
+              <strong>JavaScript ES6+ & V8</strong>
+              <span>Event Loop, Closures, Microtasks y Prototipos</span>
+            </div>
+            <span className="home-launchpad-item-arrow" aria-hidden="true">→</span>
+          </Link>
+
+          <Link href="/typescript" className="home-launchpad-item">
+            <div className="home-launchpad-item-info">
+              <strong>TypeScript Estricto</strong>
+              <span>Type System, Inferencia, Genéricos y AST</span>
+            </div>
+            <span className="home-launchpad-item-arrow" aria-hidden="true">→</span>
+          </Link>
+
+          <Link href="/python" className="home-launchpad-item">
+            <div className="home-launchpad-item-info">
+              <strong>Python Internals & CPython</strong>
+              <span>GIL, Bytecode, Descriptores y Asyncio</span>
+            </div>
+            <span className="home-launchpad-item-arrow" aria-hidden="true">→</span>
+          </Link>
+
+          <Link href="/docker" className="home-launchpad-item">
+            <div className="home-launchpad-item-info">
+              <strong>Docker & Linux Containers</strong>
+              <span>Namespaces, cgroups v2, OverlayFS y Redes</span>
+            </div>
+            <span className="home-launchpad-item-arrow" aria-hidden="true">→</span>
+          </Link>
+
+          <Link href="/backend" className="home-launchpad-item">
+            <div className="home-launchpad-item-info">
+              <strong>Backend & Sistemas Distribuidos</strong>
+              <span>Circuit Breaker, Sharding, CAP y gRPC</span>
+            </div>
+            <span className="home-launchpad-item-arrow" aria-hidden="true">→</span>
+          </Link>
+
+          <Link href="/bases-datos" className="home-launchpad-item">
+            <div className="home-launchpad-item-info">
+              <strong>Bases de Datos & SQL</strong>
+              <span>B+Trees, LSM-Trees, Transacciones ACID y EXPLAIN</span>
+            </div>
+            <span className="home-launchpad-item-arrow" aria-hidden="true">→</span>
+          </Link>
         </div>
       </div>
     </section>
