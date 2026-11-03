@@ -3,47 +3,70 @@
 import { useState, useEffect } from "react";
 import Link from "next/link";
 
-interface StartStep {
+interface GuideSection {
   number: string;
-  phase: string;
-  duration: string;
+  badge: string;
   title: string;
   summary: string;
   route: string;
+  actionText: string;
+  accent: string;
 }
 
-const START_STEPS: readonly StartStep[] = [
+const GUIDE_SECTIONS: readonly GuideSection[] = [
   {
     number: "01",
-    phase: "FASE 1",
-    duration: "1-2 sem",
-    title: "Lenguajes y Runtimes",
-    summary: "JavaScript (V8), Python, Rust y Go.",
-    route: "/javascript",
+    badge: "CATÁLOGO CANÓNICO",
+    title: "Colecciones Temáticas",
+    summary: "73 tecnologías y 7,410 conceptos organizados por áreas de especialización y vigencia.",
+    route: "/colecciones",
+    actionText: "Explorar Colecciones",
+    accent: "var(--cyan)",
   },
   {
     number: "02",
-    phase: "FASE 2",
-    duration: "2-4 sem",
-    title: "Memoria y Fundamentos",
-    summary: "Stack vs Heap, Event Loop y complejidad Big-O.",
-    route: "/colecciones",
+    badge: "DOCUMENTACIÓN",
+    title: "Librería Profesional",
+    summary: "266 recursos primarios, estándares formales de TC39, IETF RFCs y preservación digital.",
+    route: "/libreria",
+    actionText: "Consultar Librería",
+    accent: "var(--jinx-rose)",
   },
   {
     number: "03",
-    phase: "FASE 3",
-    duration: "3-4 sem",
-    title: "Algoritmos y Estructuras (DSA)",
-    summary: "Quicksort Hoare, árboles AVL y Dijkstra.",
-    route: "/colecciones",
+    badge: "HERRAMIENTAS",
+    title: "02 · Capacidades Operativas",
+    summary: "Consolas de simulación, telemetría de latencia, diagnóstico de fallos y terminal interactiva.",
+    route: "#capacidades-operativas",
+    actionText: "Ver Capacidades",
+    accent: "var(--green)",
   },
   {
     number: "04",
-    phase: "FASE 4",
-    duration: "4-6 sem",
-    title: "Sistemas Distribuidos",
-    summary: "Redes TCP/QUIC, contenedores y resiliencia.",
-    route: "/docker-en-accion",
+    badge: "FUNDAMENTOS",
+    title: "01 · Currículum y Runtimes",
+    summary: "Call Stack, Event Loop de V8, memoria física Stack vs Heap y complejidad Big-O.",
+    route: "#que-se-aprende",
+    actionText: "Ver Currículum",
+    accent: "var(--yellow)",
+  },
+  {
+    number: "05",
+    badge: "AUDITORÍA SAST",
+    title: "03 · Evidencia y Confianza",
+    summary: "Garantías formales, auditoría SAST continua y accesibilidad internacional WCAG 2.1 AA.",
+    route: "#puedo-confiar",
+    actionText: "Ver Evidencia",
+    accent: "var(--cyan)",
+  },
+  {
+    number: "06",
+    badge: "CERTIFICACIÓN",
+    title: "04 · Rutas y Certificación",
+    summary: "Quizzes de arquitectura de nivel senior para desbloquear la Insignia de Ancla.",
+    route: "#que-hago-ahora",
+    actionText: "Ver Certificación",
+    accent: "var(--violet)",
   },
 ];
 
@@ -75,10 +98,11 @@ export function StartGuideDrawer() {
 
   return (
     <>
-      {/* ── Botón Fijo en el Borde Izquierdo (Único, sin Roadmap) ── */}
-      <aside className="start-edge-bar" aria-label="Acceso rápido lateral">
+      {/* ── Botón Fijo en el Borde Izquierdo ── */}
+      <aside id="tour-start-bar" className="start-edge-bar" aria-label="Acceso rápido lateral">
         <button
           type="button"
+          id="tour-start-btn"
           className="start-edge-btn"
           onClick={() => setIsOpen(true)}
           aria-label="Abrir guía: ¿Por dónde empezar?"
@@ -97,7 +121,7 @@ export function StartGuideDrawer() {
         />
       )}
 
-      {/* ── Panel Desplegable Lateral Izquierdo (Compacto y Resumido) ── */}
+      {/* ── Panel Desplegable Lateral Izquierdo ── */}
       <div
         className={`start-drawer ${isOpen ? "start-drawer--open" : ""}`}
         role="dialog"
@@ -109,7 +133,7 @@ export function StartGuideDrawer() {
           <div className="start-drawer__header-text">
             <span className="start-drawer__eyebrow">SECUENCIA FORMATIVA SUGERIDA</span>
             <h2>¿Por dónde empezar?</h2>
-            <p>Ruta secuencial resumida para dominar arquitectura paso a paso.</p>
+            <p>Ruta secuencial resumida para dominar arquitectura paso a paso en 6 secciones.</p>
           </div>
           <button
             type="button"
@@ -124,26 +148,29 @@ export function StartGuideDrawer() {
           </button>
         </header>
 
-        {/* Fases Resumidas (Tarjetas Nativas Compactas) */}
+        {/* 6 Secciones Sugeridas (Diseño Nativo de Tarjetas) */}
         <div className="start-drawer__body">
-          {START_STEPS.map((step) => (
-            <article className="start-phase-card" key={step.number}>
+          {GUIDE_SECTIONS.map((sec) => (
+            <article
+              className="start-phase-card"
+              key={sec.number}
+              style={{ "--step-accent": sec.accent } as React.CSSProperties}
+            >
               <div className="start-phase-card__header">
-                <span className="start-phase-card__badge">{step.phase}</span>
-                <span className="start-phase-card__duration">{step.duration}</span>
-                <span className="start-phase-card__num">{step.number}</span>
+                <span className="start-phase-card__category">{sec.badge}</span>
+                <b className="start-phase-card__badge">{sec.number}</b>
               </div>
 
-              <h3 className="start-phase-card__title">{step.title}</h3>
-              <p className="start-phase-card__summary">{step.summary}</p>
+              <h3 className="start-phase-card__title">{sec.title}</h3>
+              <p className="start-phase-card__summary">{sec.summary}</p>
 
               <div className="start-phase-card__footer">
                 <Link
-                  href={step.route}
+                  href={sec.route}
                   className="start-phase-link"
                   onClick={() => setIsOpen(false)}
                 >
-                  <span>Iniciar {step.phase}</span>
+                  <span>{sec.actionText}</span>
                   <span aria-hidden="true">→</span>
                 </Link>
               </div>
@@ -158,7 +185,7 @@ export function StartGuideDrawer() {
             className="start-drawer__footer-cta"
             onClick={() => setIsOpen(false)}
           >
-            <span>Explorar las 73 Colecciones</span>
+            <span>Ver las 73 Colecciones Canónicas</span>
             <span aria-hidden="true">→</span>
           </Link>
         </footer>

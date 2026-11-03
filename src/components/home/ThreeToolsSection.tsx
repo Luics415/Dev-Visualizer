@@ -53,7 +53,7 @@ const TOOLS: readonly ToolItem[] = [
 
 export function ThreeToolsSection() {
   return (
-    <section className="three-tools-section" aria-label="Tres herramientas en un solo espacio de trabajo">
+    <section className="three-tools-section" id="tres-herramientas" aria-label="Tres herramientas en un solo espacio de trabajo">
       <div className="home-section-title-wrap">
         <span className="home-section-eyebrow">TRES HERRAMIENTAS, UN ESPACIO DE TRABAJO</span>
         <h2>Diseñado para razonar sobre código en ejecución</h2>
@@ -66,13 +66,14 @@ export function ThreeToolsSection() {
         {TOOLS.map((tool) => (
           <article
             className="three-tool-card"
+            id={`tour-card-${tool.number}`}
             key={tool.number}
             style={{ "--card-accent": tool.accent } as React.CSSProperties}
           >
-            <header className="three-tool-card__header">
-              <span className="three-tool-card__num">{tool.number}</span>
-              <span className="three-tool-card__family">{tool.badge}</span>
-            </header>
+            <div className="three-tool-card__top">
+              <span className="three-tool-card__category">{tool.badge}</span>
+              <b className="three-tool-card__badge">{tool.number}</b>
+            </div>
 
             <h3 className="three-tool-card__title">{tool.title}</h3>
             <span className="three-tool-card__subtitle">{tool.subtitle}</span>

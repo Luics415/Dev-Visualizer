@@ -119,7 +119,7 @@ export function HeroSimulatorWorkbench() {
   const handleReset = () => setStepIdx(0);
 
   return (
-    <div className="hero-workbench" aria-label="Simulador interactivo de ejecución en vivo">
+    <div id="hero-simulator-workbench" className="hero-workbench" aria-label="Simulador interactivo de ejecución en vivo">
       {/* ── Barra de Título Estilo IDE / macOS ── */}
       <div className="hero-workbench__titlebar">
         <div className="hero-workbench__dots" aria-hidden="true">

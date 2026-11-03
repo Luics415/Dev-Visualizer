@@ -8,7 +8,7 @@ import { TrustEvidenceSection } from "@/components/home/TrustEvidenceSection";
 import { NextActionSection } from "@/components/home/NextActionSection";
 import { HomeConceptSearch } from "@/components/home/HomeConceptSearch";
 import { StartGuideDrawer } from "@/components/home/StartGuideDrawer";
-import { FloatingWelcomeCard } from "@/components/home/FloatingWelcomeCard";
+import { SpotlightTour } from "@/components/home/SpotlightTour";
 import { collectionManifest } from "@/data/collectionManifest";
 import { canonicalConceptCount } from "@/data/canonicalConceptCollections";
 
@@ -97,7 +97,7 @@ export default function HomePage() {
       <StartGuideDrawer />
 
       {/* ── Tarjeta Flotante de Bienvenida / Onboarding Compacto ── */}
-      <FloatingWelcomeCard />
+      <SpotlightTour />
 
       {/* ── Nota de Cierre del Proyecto ── */}
       <footer className="project-note">
