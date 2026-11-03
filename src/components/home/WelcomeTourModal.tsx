@@ -43,8 +43,8 @@ export const TOUR_STEPS: readonly TourStep[] = [
     subtitle: "Rutas complementarias para dominar cada tecnología",
     description:
       "Cada colección del sistema dispone de dos dimensiones vinculadas: la ruta de fundamentos teóricos con animaciones conceptuales paso a paso, y el entorno de integración práctica ('En acción') que sitúa la tecnología en un caso de producción real con métricas, trazas e interacción directa.",
-    metric: "394",
-    metricLabel: "Colecciones interactivas con rutas canónicas dobles",
+    metric: "73",
+    metricLabel: "Colecciones estructuradas con 146 rutas canónicas",
     actionText: "Ver JavaScript ES6+",
     actionHref: "/javascript",
     icon: (
@@ -96,7 +96,7 @@ export const TOUR_STEPS: readonly TourStep[] = [
     subtitle: "Validación de retención y comprensión técnica",
     description:
       "Cada módulo dispone de quizzes interactivos diseñados para evaluar la asimilación conceptual. Las preguntas ofrecen retroalimentación técnica exhaustiva con justificación de opciones correctas e incorrectas, evitando dinámicas artificiales para centrarse en el rigor profesional.",
-    metric: "73+",
+    metric: "73",
     metricLabel: "Módulos evaluativos con retroalimentación explicada",
     actionText: "Ir a Quiz de JavaScript",
     actionHref: "/javascript/quiz",
