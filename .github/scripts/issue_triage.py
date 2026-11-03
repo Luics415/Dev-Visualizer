@@ -17,6 +17,7 @@ if sys.stdout and hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8")
         sys.stderr.reconfigure(encoding="utf-8")
     except Exception:
+        # Reconfiguración opcional de codificación; ignorar si el entorno no lo soporta.
         pass
 
 
