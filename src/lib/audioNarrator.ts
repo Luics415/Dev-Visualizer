@@ -125,15 +125,29 @@ export function isFemaleVoice(voice: SpeechSynthesisVoice): boolean {
 }
 
 export function cleanVoiceDisplayName(name: string): string {
-  const cleaned = name
-    .replace(/(Microsoft|Google|Apple)\s*/gi, "")
-    .replace(/\s*Online\s*\(Natural\)/gi, "")
-    .replace(/\s*Desktop/gi, "")
-    .replace(/\s*-\s*(Spanish|Español)\s*\([^)]+\)/gi, "")
-    .replace(/\s*\(?(Español|Spanish)(\s+de\s+[a-záéíóú\s]+)?\)?/gi, "")
-    .trim();
+  let cleaned = name;
+  const sanitizationPatterns = [
+    /(Microsoft|Google|Apple)\s*/gi,
+    /\s*Online\s*\(Natural\)/gi,
+    /\s*Desktop/gi,
+    /\s*-\s*(Spanish|Español)\s*\([^)]+\)/gi,
+    /\s*\(?(Español|Spanish)(\s+de\s+[a-záéíóú\s]+)?\)?/gi,
+  ];
 
-  const trimmed = cleaned.replace(/^[-–—\s]+|[-–—\s]+$/g, "");
+  for (const pattern of sanitizationPatterns) {
+    let prev: string;
+    do {
+      prev = cleaned;
+      cleaned = cleaned.replace(pattern, "");
+    } while (cleaned !== prev);
+  }
+
+  let trimmed = cleaned.trim();
+  let prevTrimmed: string;
+  do {
+    prevTrimmed = trimmed;
+    trimmed = trimmed.replace(/^[-–—\s]+|[-–—\s]+$/g, "");
+  } while (trimmed !== prevTrimmed);
 
   if (!trimmed || /^(estados unidos|mexico|méxico|españa)$/i.test(trimmed)) {
     if (/google/i.test(name)) return "Google Voz";
