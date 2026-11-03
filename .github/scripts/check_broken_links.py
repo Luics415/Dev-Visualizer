@@ -9,9 +9,6 @@ y documentación no contengan referencias rotas.
 import os
 import re
 import sys
-import json
-import urllib.request
-import urllib.error
 from typing import List, Dict, Tuple
 
 if sys.stdout and hasattr(sys.stdout, "reconfigure"):
@@ -19,6 +16,7 @@ if sys.stdout and hasattr(sys.stdout, "reconfigure"):
         sys.stdout.reconfigure(encoding="utf-8")
         sys.stderr.reconfigure(encoding="utf-8")
     except Exception:
+        # Reconfiguración opcional de codificación; ignorar si el entorno no lo soporta.
         pass
 
 
