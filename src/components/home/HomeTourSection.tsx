@@ -5,7 +5,8 @@ import Link from "next/link";
 import { TOUR_STEPS, WelcomeTourModal } from "./WelcomeTourModal";
 
 export function HomeTourSection() {
-  const [modalOpen, setModalOpen] = useState(false);
+  // El tour se inicia automáticamente desde que entras a la página; el botón seleccionable queda para uso opcional
+  const [modalOpen, setModalOpen] = useState(true);
   const [activeStepIndex, setActiveStepIndex] = useState(0);
 
   const activeStep = TOUR_STEPS[activeStepIndex];
@@ -27,7 +28,7 @@ export function HomeTourSection() {
           <svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
             <polygon points="5 3 19 12 5 21 5 3" />
           </svg>
-          Iniciar Tour Guiado Completo
+          Iniciar Tour Guiado (Opcional)
         </button>
       </div>
 
@@ -58,7 +59,7 @@ export function HomeTourSection() {
           </div>
 
           <h3 className="home-tour-title">{activeStep.title}</h3>
-          <h4 className="home-tour-subtitle">{activeStep.subtitle}</h4>
+          <p className="home-tour-subtitle">{activeStep.subtitle}</p>
           <p className="home-tour-description">{activeStep.description}</p>
 
           <div className="home-tour-metric-strip">
@@ -73,13 +74,13 @@ export function HomeTourSection() {
             ) : null}
           </div>
 
-          <footer className="home-tour-controls">
+          <div className="home-tour-controls">
             <button
               type="button"
               className="home-tour-nav-btn"
               onClick={() => setActiveStepIndex((prev) => Math.max(prev - 1, 0))}
               disabled={activeStepIndex === 0}
-              aria-label="Paso anterior del tour"
+              aria-label="Paso anterior"
             >
               ← Anterior
             </button>
@@ -90,12 +91,12 @@ export function HomeTourSection() {
               type="button"
               className="home-tour-nav-btn home-tour-nav-btn--primary"
               onClick={() => setActiveStepIndex((prev) => Math.min(prev + 1, TOUR_STEPS.length - 1))}
-              disabled={activeStepIndex === TOUR_STEPS.length - 1}
-              aria-label="Siguiente paso del tour"
+              disabled={activeStepIndex === 0 ? false : activeStepIndex === TOUR_STEPS.length - 1}
+              aria-label="Paso siguiente"
             >
               Siguiente →
             </button>
-          </footer>
+          </div>
         </div>
       </div>
 

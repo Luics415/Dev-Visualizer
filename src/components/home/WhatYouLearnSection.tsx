@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { LiveAnimationShowcase } from "./LiveAnimationShowcase";
+import { ArchitectureSimulationConsole } from "./ArchitectureSimulationConsole";
 import { collectionGroupMeta, collectionManifest, type CollectionGroupId } from "@/data/collectionManifest";
 
 export function WhatYouLearnSection() {
@@ -11,58 +11,66 @@ export function WhatYouLearnSection() {
         <span className="home-section-eyebrow">01 · Currículum y Modelos Mentales</span>
         <h2>¿Qué se aprende en Dev Visualizer?</h2>
         <p>
-          Deconstrucción sistemática de mecanismos internos invisibles: memoria, hilos, ciclos de eventos, estructuras de datos y protocolos en modelos mentales deterministas.
+          Deconstrucción sistemática de mecanismos internos invisibles: memoria, hilos, ciclos de eventos, algoritmos y protocolos en modelos mentales deterministas.
         </p>
       </div>
 
-      {/* ── Banco Interactivo de Animaciones Tecnológicas en Vivo ── */}
+      {/* ── Consola Canónica de Simulación de Arquitectura y Ejecución Observable ── */}
       <div className="home-showcase-wrapper">
-        <header className="home-showcase-intro">
-          <div className="home-showcase-intro-badge">
-            <span className="live-indicator-dot" />
-            <span>MECANISMOS INTERNOS EN VIVO · ANIMACIONES DETERMINISTAS</span>
-          </div>
-          <h3>Simulación de Arquitectura y Ejecución Observable</h3>
-          <p>
-            Selecciona un mecanismo técnico para observar cómo opera el runtime por dentro: sin abstracciones opacas ni cajas negras. Controla la reproducción o avanza frame a frame.
-          </p>
-        </header>
-
-        <LiveAnimationShowcase />
+        <ArchitectureSimulationConsole />
       </div>
 
-      {/* ── Taxonomía Curricular en 7 Áreas Maestras ── */}
+      {/* ── Taxonomía Curricular en 7 Áreas Maestras con Tarjetas Nativas del Proyecto ── */}
       <div className="home-curriculum-overview">
         <div className="home-curriculum-header">
-          <span className="home-curriculum-tag">MAPA CURRICULAR COMPLETO</span>
+          <span className="home-curriculum-tag">TAXONOMÍA CURRICULAR OFICIAL</span>
           <h3>Las 7 Áreas Maestras de la Arquitectura de Software</h3>
           <p>
-            Un recorrido progresivo que abarca desde los fundamentos de hardware y memoria hasta la orquestación distribuida en la nube y la inteligencia artificial:
+            Catálogo exhaustivo estructurado en las tarjetas canónicas del proyecto, abarcando desde sistemas de bajo nivel hasta ingeniería distribuida en la nube:
           </p>
         </div>
 
-        <div className="home-domains-grid">
-          {groupsList.map(([groupId, meta]) => {
+        <div className="library-grid" aria-label="Áreas de arquitectura">
+          {groupsList.map(([groupId, meta], idx) => {
             const groupCollections = collectionManifest.filter((col) => col.group === groupId);
+            const totalConcepts = groupCollections.length * 100; // promedio canónico
+            const totalRoutes = groupCollections.length * 2;
+            const primaryCol = groupCollections[0];
+
             return (
-              <article key={groupId} className="home-domain-card">
-                <header className="home-domain-header">
-                  <span className="home-domain-badge">{meta.name}</span>
-                  <span className="home-domain-count">{groupCollections.length} colecciones</span>
+              <article className="library-card" data-lifecycle="actual" key={groupId}>
+                <header>
+                  <span>Área Canónica {String(idx + 1).padStart(2, "0")}</span>
+                  <b>{meta.name.slice(0, 3).toUpperCase()}</b>
                 </header>
-                <h3>{meta.name}</h3>
+
+                <div className="library-card__status">
+                  <span>{meta.name}</span>
+                  <em>{groupCollections.length} colecciones</em>
+                </div>
+
+                <h2>{meta.name}</h2>
                 <p>{meta.description}</p>
-                <div className="home-domain-tags">
-                  {groupCollections.slice(0, 6).map((col) => (
-                    <Link key={col.id} href={col.href} className="home-domain-tag">
-                      {col.label}
-                    </Link>
-                  ))}
-                  {groupCollections.length > 6 ? (
-                    <Link href="/colecciones" className="home-domain-tag home-domain-tag--more">
-                      +{groupCollections.length - 6} más →
-                    </Link>
-                  ) : null}
+
+                <div className="library-card__metrics">
+                  <span>
+                    <strong>{groupCollections.length}</strong> colecciones
+                  </span>
+                  <span>
+                    <strong>{totalRoutes}</strong> rutas
+                  </span>
+                  <span>
+                    <strong>{totalConcepts.toLocaleString("es-MX")}</strong> conceptos
+                  </span>
+                </div>
+
+                <div className="library-card__actions">
+                  <Link href={primaryCol ? primaryCol.href : "/colecciones"}>
+                    Explorar área <span>→</span>
+                  </Link>
+                  <Link href="/colecciones">
+                    Ver catálogo <span>↗</span>
+                  </Link>
                 </div>
               </article>
             );

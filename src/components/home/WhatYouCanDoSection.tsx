@@ -1,124 +1,247 @@
 import Link from "next/link";
-
-type ActionCapability = {
-  num: string;
-  badge: string;
-  title: string;
-  description: string;
-  features: readonly string[];
-  ctaLabel: string;
-  ctaHref: string;
-};
-
-const ACTION_CAPABILITIES: readonly ActionCapability[] = [
-  {
-    num: "01",
-    badge: "Control Determinista",
-    title: "Inspeccionar Animaciones Paso a Paso",
-    description: "Navega frame a frame por el ciclo de ejecución de cada concepto. Observa cómo cambian los punteros de memoria, cómo se apilan los marcos en el Call Stack y cómo muta el estado sin efectos ocultos ni cajas negras.",
-    features: [
-      "Controles interactivos de reproducción, pausa y avance manual",
-      "Pausa automática al salir del viewport para optimizar recursos",
-      "Soporte nativo para modo de movimiento reducido (prefers-reduced-motion)",
-    ],
-    ctaLabel: "Inspeccionar JavaScript ES6+",
-    ctaHref: "/javascript",
-  },
-  {
-    num: "02",
-    badge: "Ingeniería de Producción",
-    title: "Diagnosticar 73 Casos Reales 'En Acción'",
-    description: "Cada colección conecta los conceptos con un escenario de producción real: inyección de latencia, agotamiento de conexiones en base de datos, desbordamiento de búfer o aislamiento de microservicios con fallos controlados.",
-    features: [
-      "Simulación de anomalías, cuellos de botella y picos de tráfico",
-      "Fronteras de contención y aplicación de patrones de resiliencia",
-      "Trazabilidad de errores con evidencias y logs de auditoría",
-    ],
-    ctaLabel: "Explorar Caso en Acción: Docker",
-    ctaHref: "/docker-en-accion",
-  },
-  {
-    num: "03",
-    badge: "Accesibilidad Nativa",
-    title: "Activar Síntesis Auditiva por Voz",
-    description: "Asimila conceptos complejos mientras observas las transiciones visuales mediante locución sintetizada nativa con la Web Speech API del navegador, con dicción técnica profesional en español neutro.",
-    features: [
-      "Segmentación oracional adaptada a terminología técnica de desarrollo",
-      "Tres velocidades calibradas (1.0x estándar, 1.25x dinámico, 1.5x repaso)",
-      "Procesamiento 100% en el cliente sin transferir audio a servidores externos",
-    ],
-    ctaLabel: "Probar Narración en Python",
-    ctaHref: "/python",
-  },
-  {
-    num: "04",
-    badge: "Evaluación Formativa",
-    title: "Acreditar Conocimientos con Quizzes Técnicos",
-    description: "Valida tu retención y juicio arquitectónico con evaluaciones formativas exhaustivas. Cada opción descartada o acertada incluye su justificación teórica y referencias a estándares.",
-    features: [
-      "Preguntas basadas en decisiones de diseño y análisis de fallos",
-      "Retroalimentación inmediata sin dinámicas de gamificación vacía",
-      "Generación de insignias de acreditación criptográfica verificable",
-    ],
-    ctaLabel: "Iniciar Quiz de Evaluación",
-    ctaHref: "/javascript/quiz",
-  },
-  {
-    num: "05",
-    badge: "Preservación Técnica",
-    title: "Consultar 179 Libros y Estándares Canónicos",
-    description: "Accede a una colección curada de manuales técnicos, libros de referencia y especificaciones oficiales con licencias de libre acceso y sumas de verificación criptográfica auditables.",
-    features: [
-      "Metadatos estructurados con autor, editorial, año e idioma",
-      "Hashes SHA-256 calculados e inmutables para cada recurso descargable",
-      "Filtros avanzados por tecnología, nivel formativo y disponibilidad",
-    ],
-    ctaLabel: "Abrir Librería Profesional",
-    ctaHref: "/libreria",
-  },
-];
+import { AnimatedConceptScene } from "@/components/visual/AnimatedConceptScene";
 
 export function WhatYouCanDoSection() {
   return (
-    <section className="home-action-pillars-section" aria-label="Qué puedo hacer en la plataforma">
+    <section className="home-action-pillars-section" aria-label="Qué puedo hacer en Dev Visualizer">
       <div className="home-section-title-wrap">
-        <span className="home-section-eyebrow">02 · Capacidades Operativas</span>
+        <span className="home-section-eyebrow">02 · Capacidades Operativas del Proyecto</span>
         <h2>¿Qué puedo hacer en Dev Visualizer?</h2>
         <p>
-          Cinco herramientas de ingeniería concebidas para transformar la teoría estática en modelos mentales aplicables en producción.
+          Cinco herramientas de ingeniería explicadas mediante las tarjetas conceptuales canónicas y animaciones deterministas de la plataforma.
         </p>
       </div>
 
-      <div className="home-action-pillars-grid">
-        {ACTION_CAPABILITIES.map((cap) => (
-          <article key={cap.num} className="home-action-pillar-card">
-            <header className="home-action-card-header">
-              <span className="home-action-card-num">{cap.num}</span>
-              <span className="home-action-card-badge">{cap.badge}</span>
-            </header>
-
-            <h3 className="home-action-card-title">{cap.title}</h3>
-            <p className="home-action-card-desc">{cap.description}</p>
-
-            <ul className="home-action-feature-list" aria-label={`Características de ${cap.title}`}>
-              {cap.features.map((feat, idx) => (
-                <li key={idx} className="home-action-feature-item">
-                  <svg viewBox="0 0 24 24" width="14" height="14" fill="none" stroke="var(--cyan)" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round" aria-hidden="true">
-                    <polyline points="20 6 9 17 4 12" />
-                  </svg>
-                  <span>{feat}</span>
-                </li>
-              ))}
-            </ul>
-
-            <div className="home-action-card-footer">
-              <Link href={cap.ctaHref} className="btn-cyber-primary">
-                <span>{cap.ctaLabel}</span>
-                <span aria-hidden="true">→</span>
-              </Link>
+      <div className="concept-cards-grid" aria-label="Capacidades de la plataforma">
+        {/* ── Tarjeta 01: Inspección Determinista ── */}
+        <article className="concept-card concept-card--ready concept-card--standard" data-family="ejecución">
+          <header className="concept-card__header">
+            <h2>
+              <span>01</span>
+              Inspeccionar Animaciones Paso a Paso
+            </h2>
+            <div className="concept-card__header-actions">
+              <span className="concept-card__family">ejecución</span>
             </div>
-          </article>
-        ))}
+          </header>
+
+          <div className="concept-card__stage">
+            <AnimatedConceptScene
+              ariaLabel="Animación de inspección determinista frame a frame"
+              code="const frame = inspectExecution(stack, heap, eventLoop);"
+              nodes={["01|Entrada de Datos", "02|Mutación en Heap", "03|Salida Observable"]}
+              outcome="Línea temporal determinista verificada sin cajas negras"
+              caption="Control granular frame a frame con pausa automática al salir del viewport"
+              variant="pipeline"
+            />
+          </div>
+
+          <p>
+            Navega frame a frame por el ciclo de ejecución de cada concepto. Observa cómo cambian los punteros de memoria, cómo se apilan los marcos en el Call Stack y cómo muta el estado sin efectos colaterales ocultos.
+          </p>
+
+          <footer className="concept-card__references" aria-label="Referencias de inspección">
+            <span>Ruta de acción y especificaciones</span>
+            <div>
+              <Link href="/javascript">
+                <small>Ruta canónica</small>
+                <b>Inspeccionar JavaScript ES6+</b>
+                <em>Runtime · Call Stack · V8</em>
+                <i aria-hidden="true">→</i>
+              </Link>
+              <a href="https://tc39.es/ecma262/" target="_blank" rel="noreferrer">
+                <small>Estándar</small>
+                <b>ECMA-262</b>
+                <em>ECMA International · 14th Edition</em>
+                <i aria-hidden="true">↗</i>
+              </a>
+            </div>
+          </footer>
+        </article>
+
+        {/* ── Tarjeta 02: Diagnóstico 73 Casos En Acción ── */}
+        <article className="concept-card concept-card--ready concept-card--standard" data-family="resiliencia">
+          <header className="concept-card__header">
+            <h2>
+              <span>02</span>
+              Diagnosticar 73 Casos Reales &ldquo;En Acción&rdquo;
+            </h2>
+            <div className="concept-card__header-actions">
+              <span className="concept-card__family">resiliencia</span>
+            </div>
+          </header>
+
+          <div className="concept-card__stage">
+            <AnimatedConceptScene
+              ariaLabel="Animación de caso en acción con inyección de anomalías"
+              code="isolate(faultyMicroservice, { timeout: 200, fallback: cachedResponse });"
+              nodes={["Tráfico|200 OK", "Latencia|504", "Frontera|Aislado", "Recuperado|Healthy"]}
+              outcome="Aislamiento de cascada de fallos con mitigación resiliente"
+              caption="Inyección de anomalías, cuellos de botella y límites de contención"
+              variant="state-machine"
+            />
+          </div>
+
+          <p>
+            Cada una de las 73 colecciones conecta los conceptos teóricos con un escenario de producción real: inyección de fallos de red, agotamiento de conexiones en base de datos, desbordamiento de búfer y aplicación de patrones de mitigación.
+          </p>
+
+          <footer className="concept-card__references" aria-label="Referencias de casos en acción">
+            <span>Ruta de acción y especificaciones</span>
+            <div>
+              <Link href="/docker-en-accion">
+                <small>Caso en acción</small>
+                <b>Explorar Docker en Acción</b>
+                <em>Namespaces · Cgroups · Contención</em>
+                <i aria-hidden="true">→</i>
+              </Link>
+              <a href="https://www.rfc-editor.org/rfc/rfc9110" target="_blank" rel="noreferrer">
+                <small>Estándar</small>
+                <b>RFC 9110</b>
+                <em>IETF HTTP Semantics · Architecture</em>
+                <i aria-hidden="true">↗</i>
+              </a>
+            </div>
+          </footer>
+        </article>
+
+        {/* ── Tarjeta 03: Síntesis Auditiva por Voz ── */}
+        <article className="concept-card concept-card--ready concept-card--standard" data-family="accesibilidad">
+          <header className="concept-card__header">
+            <h2>
+              <span>03</span>
+              Activar Síntesis Auditiva por Voz
+            </h2>
+            <div className="concept-card__header-actions">
+              <span className="concept-card__family">accesibilidad</span>
+            </div>
+          </header>
+
+          <div className="concept-card__stage">
+            <AnimatedConceptScene
+              ariaLabel="Animación de síntesis auditiva nativa con Web Speech API"
+              code="window.speechSynthesis.speak(new SpeechSynthesisUtterance(technicalText));"
+              nodes={["Texto Técnico|Segmentación", "Prosodia|Cadencia", "Síntesis Local|Web Speech"]}
+              outcome="Locución nativa en español neutro sin dependencias externas"
+              caption="Procesamiento 100% en el cliente con tres velocidades calibradas"
+              variant="layers"
+            />
+          </div>
+
+          <p>
+            Asimila conceptos complejos mientras observas las transiciones visuales mediante locución sintetizada nativa con la Web Speech API del navegador, calibrada con dicción técnica profesional en español neutro y pausas pedagógicas.
+          </p>
+
+          <footer className="concept-card__references" aria-label="Referencias de síntesis auditiva">
+            <span>Ruta de acción y especificaciones</span>
+            <div>
+              <Link href="/python">
+                <small>Ruta canónica</small>
+                <b>Probar Narración en Python</b>
+                <em>Audio integrado · Web Speech API</em>
+                <i aria-hidden="true">→</i>
+              </Link>
+              <a href="https://wicg.github.io/speech-api/" target="_blank" rel="noreferrer">
+                <small>Estándar</small>
+                <b>W3C Web Speech API</b>
+                <em>Speech API Community Group</em>
+                <i aria-hidden="true">↗</i>
+              </a>
+            </div>
+          </footer>
+        </article>
+
+        {/* ── Tarjeta 04: Quizzes Formativos y Acreditación ── */}
+        <article className="concept-card concept-card--ready concept-card--standard" data-family="evaluación">
+          <header className="concept-card__header">
+            <h2>
+              <span>04</span>
+              Acreditar Conocimientos con Quizzes Técnicos
+            </h2>
+            <div className="concept-card__header-actions">
+              <span className="concept-card__family">evaluación</span>
+            </div>
+          </header>
+
+          <div className="concept-card__stage">
+            <AnimatedConceptScene
+              ariaLabel="Animación de evaluación técnica con retroalimentación"
+              code="evaluateCandidateResponse(answer, { justifyError: true, issueBadge: true });"
+              nodes={["Pregunta de Juicio", "Análisis de Opciones", "Justificación Teórica", "Acreditación"]}
+              outcome="Insignia técnica criptográfica demostrable expedida"
+              caption="Evaluaciones formativas con análisis de causas de error y rigor conceptual"
+              variant="assurance-rack"
+            />
+          </div>
+
+          <p>
+            Valida tu retención y juicio arquitectónico con evaluaciones formativas exhaustivas. Cada opción acertada o descartada incluye su justificación teórica y referencias a especificaciones oficiales, sin dinámicas vacías de gamificación.
+          </p>
+
+          <footer className="concept-card__references" aria-label="Referencias de evaluación">
+            <span>Ruta de acción y especificaciones</span>
+            <div>
+              <Link href="/javascript/quiz">
+                <small>Evaluación</small>
+                <b>Iniciar Quiz de JavaScript</b>
+                <em>73 módulos evaluativos con justificación</em>
+                <i aria-hidden="true">→</i>
+              </Link>
+              <a href="https://www.iso.org/standard/35733.html" target="_blank" rel="noreferrer">
+                <small>Norma</small>
+                <b>ISO/IEC 25010</b>
+                <em>Systems and software quality models</em>
+                <i aria-hidden="true">↗</i>
+              </a>
+            </div>
+          </footer>
+        </article>
+
+        {/* ── Tarjeta 05: Preservación de 179 Libros y Manuales ── */}
+        <article className="concept-card concept-card--ready concept-card--standard" data-family="preservación">
+          <header className="concept-card__header">
+            <h2>
+              <span>05</span>
+              Consultar 179 Libros y Manuales Canónicos
+            </h2>
+            <div className="concept-card__header-actions">
+              <span className="concept-card__family">preservación</span>
+            </div>
+          </header>
+
+          <div className="concept-card__stage">
+            <AnimatedConceptScene
+              ariaLabel="Animación de verificación criptográfica de recursos"
+              code="const isValid = sha256sum(manualPdf) === manifestEntry.sha256;"
+              nodes={["Recurso Técnico", "Hash SHA-256", "Manifiesto Inmutable", "Integridad"]}
+              outcome="Integridad binaria verificada mediante sumas criptográficas"
+              caption="Biblioteca curada con metadatos estructurados y sumas SHA-256 auditables"
+              variant="artifact-passport"
+            />
+          </div>
+
+          <p>
+            Accede a una colección curada de manuales técnicos, libros de referencia y especificaciones oficiales con licencias de libre acceso y sumas de verificación criptográfica SHA-256 auditables byte a byte desde tu propia terminal.
+          </p>
+
+          <footer className="concept-card__references" aria-label="Referencias de librería">
+            <span>Ruta de acción y especificaciones</span>
+            <div>
+              <Link href="/libreria">
+                <small>Librería técnica</small>
+                <b>Abrir Librería Profesional</b>
+                <em>179 obras · Hashes inmutables</em>
+                <i aria-hidden="true">→</i>
+              </Link>
+              <a href="https://csrc.nist.gov/publications/detail/fips/180-4/final" target="_blank" rel="noreferrer">
+                <small>Estándar</small>
+                <b>NIST FIPS PUB 180-4</b>
+                <em>Secure Hash Standard (SHA-256)</em>
+                <i aria-hidden="true">↗</i>
+              </a>
+            </div>
+          </footer>
+        </article>
       </div>
     </section>
   );
