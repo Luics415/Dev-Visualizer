@@ -12,6 +12,8 @@ import json
 import urllib.request
 import subprocess
 
+OWNER_DEFAULT = "Luics415"
+
 if sys.stdout and hasattr(sys.stdout, "reconfigure"):
     try:
         sys.stdout.reconfigure(encoding="utf-8")
@@ -115,6 +117,11 @@ def main():
     author = issue.get("user", {}).get("login", "")
     url = issue.get("html_url", "")
     repo = os.environ.get("GITHUB_REPOSITORY", "Luics415/Dev-Visualizer")
+    owner = repo.split("/")[0] if "/" in repo else OWNER_DEFAULT
+
+    if title.lower().startswith("auditoria del orquestador"):
+        log(f"Issue #{issue_num} es una auditoría automatizada del sistema. Omitiendo triage.")
+        return
 
     log(f"Procesando Issue #{issue_num} '{title}' por @{author}")
 
@@ -128,13 +135,13 @@ def main():
     welcome_comment = f"""¡Hola @{author}! 👋 Gracias por abrir este reporte en **Dev Visualizer**.
 
 Tu solicitud ha sido clasificada en la categoría: **`{category}`**.
-@{OWNER} ha sido notificado para dar seguimiento a este reporte.
+@{owner} ha sido notificado para dar seguimiento a este reporte.
 
 - **Stack:** Next.js 16 (App Router), React 19, Motion, TypeScript.
 - **Atlas:** 73 colecciones interactivas y 146 rutas técnicas.
 - **Guía de Contribución:** Por favor revisa [`README.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/README.md) y [`AGENTS.md`](https://github.com/Luics415/Dev-Visualizer/blob/main/AGENTS.md).
 
-*(Equipo de Mantenedores de Dev Visualizer · @Luics415)*"""
+*(Equipo de Mantenedores de Dev Visualizer · @{owner})*"""
 
     run_cmd(["gh", "issue", "comment", str(issue_num), "--repo", repo, "--body", welcome_comment])
     log("Comentario de bienvenida publicado.")
