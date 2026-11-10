@@ -99,6 +99,9 @@ def send_discord_dm(repo: str, issue_num: int, title: str, author: str, category
 
 def main():
     event_path = os.environ.get("GITHUB_EVENT_PATH")
+    repo = os.environ.get("GITHUB_REPOSITORY", "Luics415/Dev-Visualizer")
+    owner = repo.split("/")[0] if "/" in repo else OWNER_DEFAULT
+
     if not event_path or not os.path.isfile(event_path):
         log("No se detectó evento de issue. Finalizando.")
         return
@@ -108,16 +111,33 @@ def main():
 
     issue = event.get("issue")
     if not issue:
-        log("El evento no contiene información de issue.")
-        return
+        # Soporte para ejecución manual vía workflow_dispatch
+        inputs = event.get("inputs", {})
+        target_num = inputs.get("issue_number")
+        if target_num:
+            log(f"Ejecución manual para Issue #{target_num}...")
+            issue_json = run_cmd(["gh", "issue", "view", str(target_num), "--repo", repo, "--json", "number,title,body,author,url"])
+            try:
+                issue_data = json.loads(issue_json)
+                issue = {
+                    "number": issue_data.get("number"),
+                    "title": issue_data.get("title", ""),
+                    "body": issue_data.get("body", ""),
+                    "user": {"login": issue_data.get("author", {}).get("login", "")},
+                    "html_url": issue_data.get("url", "")
+                }
+            except Exception as e:
+                log(f"Error parseando datos del issue #{target_num}: {e}")
+                return
+        else:
+            log("El evento no contiene información de issue.")
+            return
 
     issue_num = issue.get("number")
     title = issue.get("title", "")
     body = issue.get("body", "") or ""
     author = issue.get("user", {}).get("login", "")
     url = issue.get("html_url", "")
-    repo = os.environ.get("GITHUB_REPOSITORY", "Luics415/Dev-Visualizer")
-    owner = repo.split("/")[0] if "/" in repo else OWNER_DEFAULT
 
     if title.lower().startswith("auditoria del orquestador"):
         log(f"Issue #{issue_num} es una auditoría automatizada del sistema. Omitiendo triage.")

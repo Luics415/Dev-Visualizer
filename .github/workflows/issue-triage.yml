@@ -2,7 +2,13 @@ name: Triage Automatico de Issues
 
 on:
   issues:
-    types: [opened]
+    types: [opened, reopened]
+  workflow_dispatch:
+    inputs:
+      issue_number:
+        description: "Numero de issue a procesar"
+        required: false
+        default: "267"
 
 permissions:
   issues: write
@@ -15,6 +21,8 @@ jobs:
     steps:
       - name: Descargar repositorio
         uses: actions/checkout@v4
+        with:
+          ref: main
 
       - name: Configurar Python 3.12
         uses: actions/setup-python@v7
