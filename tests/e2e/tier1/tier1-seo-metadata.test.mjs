@@ -180,7 +180,7 @@ describe("Tier 1: SEO, Indexación y Variables de Entorno (F1 - F5)", () => {
       const content = readFileSync(layoutPath, "utf-8");
       assert.ok(content.includes('"Dev Visualizer"'), "JSON-LD debe contener el nombre 'Dev Visualizer'");
       assert.ok(content.includes("es-MX"), "JSON-LD debe declarar inLanguage: 'es-MX'");
-      assert.ok(content.includes("https://schema.org"), "JSON-LD debe declarar @context: https://schema.org");
+      assert.ok(/"@context":\s*"https:\/\/schema\.org"/.test(content), "JSON-LD debe declarar @context: https://schema.org");
     });
 
     it("T1-F4-04: Declaración de WebApplication educativa con costo cero", () => {
