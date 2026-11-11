@@ -12,6 +12,9 @@ import {
   QUIZ_PASS_PERCENTAGE,
 } from "@/lib/quizEngine";
 import { QuizAnchorBadge } from "./QuizAnchorBadge";
+import { useAuth } from "@/hooks/useAuth";
+import { QuizAuthGate } from "@/components/auth/QuizAuthGate";
+import { recordCompletedQuiz } from "@/lib/questsEngine";
 
 type QuizRunnerProps = {
   collectionId: string;
@@ -26,6 +29,8 @@ export function QuizRunner({
   collectionHref,
   allQuestions,
 }: QuizRunnerProps) {
+  const { isAuthenticated } = useAuth();
+
   // Muestrear 15 preguntas aleatorias con opciones barajadas por intento
   const [questions, setQuestions] = useState<QuizQuestion[]>(() =>
     sampleRandomQuizQuestions(allQuestions, QUIZ_SAMPLE_SIZE)
@@ -79,6 +84,7 @@ export function QuizRunner({
           totalQuestions: evaluated.totalQuestions,
           percentage: evaluated.percentage,
         });
+        recordCompletedQuiz(collectionId);
       }
     }
   }, [currentIndex, questions, answers, collectionId, collectionTitle]);
@@ -96,7 +102,7 @@ export function QuizRunner({
   // Atajos de teclado para responder cómodamente
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
-      if (isCompleted || !currentQuestion) return;
+      if (!isAuthenticated || isCompleted || !currentQuestion) return;
 
       if (!isAnswered) {
         if (e.key === "1" || e.key.toLowerCase() === "a") handleSelectOption(0);
@@ -113,7 +119,7 @@ export function QuizRunner({
 
     window.addEventListener("keydown", handleKeyDown);
     return () => window.removeEventListener("keydown", handleKeyDown);
-  }, [isAnswered, isCompleted, currentQuestion, handleSelectOption, handleNext]);
+  }, [isAuthenticated, isAnswered, isCompleted, currentQuestion, handleSelectOption, handleNext]);
 
   const progressPct = useMemo(() => {
     if (questions.length === 0) return 0;
@@ -125,6 +131,16 @@ export function QuizRunner({
       <div className="quiz-card quiz-card--loading">
         <p>Preparando preguntas didácticas para {collectionTitle}...</p>
       </div>
+    );
+  }
+
+  // Intercepción estricta: Si el usuario no está autenticado, renderizar QuizAuthGate (F13)
+  if (!isAuthenticated) {
+    return (
+      <QuizAuthGate
+        collectionTitle={collectionTitle}
+        collectionHref={collectionHref}
+      />
     );
   }
 
