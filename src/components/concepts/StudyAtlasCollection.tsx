@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useEffect, useRef } from "react";
 import { CollectionChapters } from "@/components/concepts/CollectionChapters";
 import { CollectionPrimer } from "@/components/concepts/CollectionPrimer";
 import { CollectionLibraryInvite } from "@/components/concepts/CollectionLibraryInvite";
@@ -15,6 +18,8 @@ import { slugify } from "@/lib/slugify";
 import { FloatingAudioBubble } from "@/components/audio/FloatingAudioBubble";
 import { buildConceptAudioTrack, isCollectionAudioEnabled } from "@/lib/audioTrackHelper";
 import { StudyNotesExportButton } from "@/components/concepts/StudyNotesExportButton";
+import { trackCollectionStudy } from "@/lib/telemetry";
+import { TrackedSection } from "@/hooks/useSectionDwellTime";
 
 type StudyAtlasCollectionProps = {
   collectionId: string;
@@ -47,6 +52,14 @@ export function StudyAtlasCollection({
   notice,
   actionHref,
 }: StudyAtlasCollectionProps) {
+  const trackedCollectionRef = useRef<string | null>(null);
+
+  useEffect(() => {
+    if (trackedCollectionRef.current === collectionId) return;
+    trackedCollectionRef.current = collectionId;
+    trackCollectionStudy(collectionId, title, "atlas");
+  }, [collectionId, title]);
+
   const sections = [...new Set(concepts.map((concept) => concept.section))];
   const primer = providedPrimer ?? collectionPrimers[primerKeyFromHeroClass(heroClassName)];
   const sources = officialReferencesForCollection(collectionId);
@@ -130,7 +143,12 @@ export function StudyAtlasCollection({
       {manifest ? <CollectionLibraryInvite href={`/libreria/${manifest.librarySlug}`} collectionName={manifest.label} /> : null}
 
       {sections.map((section, chapterIndex) => (
-        <section className="collection-section" id={slugify(section)} key={section}>
+        <TrackedSection
+          className="collection-section"
+          id={slugify(section)}
+          key={section}
+          sectionId={`atlas_${collectionId}_${slugify(section)}`}
+        >
           <header className="collection-section__header">
             <span>Capítulo {String(chapterIndex + 1).padStart(2, "0")}</span>
             <h2>{section}</h2>
@@ -162,7 +180,7 @@ export function StudyAtlasCollection({
               </ConceptCard>
             ) : null)}
           </div>
-        </section>
+        </TrackedSection>
       ))}
 
       {sources.length > 0 ? (

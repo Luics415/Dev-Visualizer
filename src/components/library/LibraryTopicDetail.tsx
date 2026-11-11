@@ -1,3 +1,5 @@
+"use client";
+
 import Link from "next/link";
 import { collectionManifest } from "@/data/collectionManifest";
 import {
@@ -13,6 +15,7 @@ import {
   supplementalResourcesForTopic,
 } from "@/data/professionalLibrary";
 import type { LibraryResource, LibraryTopic } from "@/data/libraryTypes";
+import { trackLibraryAction } from "@/lib/telemetry";
 import styles from "@/app/libreria/library.module.css";
 
 function formatResourceNote(note?: string) {
@@ -51,13 +54,53 @@ function ResourceCard({ resource }: { resource: LibraryResource }) {
             download={resource.localFile.fileName}
             className={styles.downloadLocal}
             title={`Descargar copia local verificada (${resource.localFile.fileName})`}
+            onClick={() => {
+              trackLibraryAction("download", {
+                topicId: resource.topicSlug,
+                fileName: resource.localFile?.fileName,
+                resourceType: resource.kind,
+                resourceId: resource.id,
+                format: resource.formats?.[0] ?? "pdf",
+              });
+            }}
           >
             📥 Copia local ({(resource.localFile.sizeBytes / (1024 * 1024)).toFixed(1)} MB) <span aria-hidden="true">↓</span>
           </a>
         ) : null}
-        <a href={resource.primaryUrl} target="_blank" rel="noopener noreferrer">Consultar recurso <span aria-hidden="true">↗</span></a>
+        <a
+          href={resource.primaryUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          onClick={() => {
+            trackLibraryAction("resource_click", {
+              topicId: resource.topicSlug,
+              url: resource.primaryUrl,
+              resourceTitle: resource.title,
+              resourceId: resource.id,
+              official: resource.kind === "official-docs" || resource.kind === "specification" || resource.kind === "reference",
+            });
+          }}
+        >
+          Consultar recurso <span aria-hidden="true">↗</span>
+        </a>
         {(resource.mirrors ?? []).map((mirror, index) => (
-          <a href={mirror} target="_blank" rel="noopener noreferrer" key={mirror}>Formato alternativo {index + 1} <span aria-hidden="true">↗</span></a>
+          <a
+            href={mirror}
+            target="_blank"
+            rel="noopener noreferrer"
+            key={mirror}
+            onClick={() => {
+              trackLibraryAction("resource_click", {
+                topicId: resource.topicSlug,
+                url: mirror,
+                resourceTitle: `${resource.title} (Formato alternativo ${index + 1})`,
+                resourceId: `${resource.id}_mirror_${index + 1}`,
+                official: false,
+              });
+            }}
+          >
+            Formato alternativo {index + 1} <span aria-hidden="true">↗</span>
+          </a>
         ))}
       </div>
     </article>

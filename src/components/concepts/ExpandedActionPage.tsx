@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { useEffect, useRef } from "react";
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { PracticalDeepDive } from "@/components/concepts/PracticalDeepDive";
 import { ActionQuizInvite } from "@/components/concepts/ActionQuizInvite";
@@ -20,6 +23,7 @@ import {
   getActionPresentationTrack,
   isCollectionAudioEnabled,
 } from "@/lib/audioTrackHelper";
+import { trackCollectionStudy } from "@/lib/telemetry";
 
 type ExpandedActionPageProps = {
   collection: ExpandedCollectionDefinition;
@@ -28,6 +32,14 @@ type ExpandedActionPageProps = {
 };
 
 export function ExpandedActionPage({ collection, manifest, collectionNumber }: ExpandedActionPageProps) {
+  const trackedCollectionRef = useRef<string | null>(null);
+
+  useEffect(() => {
+    if (trackedCollectionRef.current === collection.id) return;
+    trackedCollectionRef.current = collection.id;
+    trackCollectionStudy(collection.id, collection.title, "action");
+  }, [collection.id, collection.title]);
+
   const practical = collection.caseStudy;
   const rawNotice = collection.notice ?? collectionNotices[manifest.id];
   const isLegacy = manifest.lifecycle === "legado";
