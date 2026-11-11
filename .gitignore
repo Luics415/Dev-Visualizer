@@ -8,5 +8,6 @@ build
 *.tsbuildinfo
 .env*
 !.env.example
+.agents/teamwork/
 __pycache__/
 *.pyc

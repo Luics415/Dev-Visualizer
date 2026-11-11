@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
 import { CollectionNav } from "@/components/navigation/CollectionNav";
@@ -5,6 +6,12 @@ import { collectionManifest } from "@/data/collectionManifest";
 import { projectCredits } from "@/data/projectCredits";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+export const metadata: Metadata = {
+  title: "Acerca de",
+  description: "Atlas visual original e independiente para estudiar desarrollo de software. Conoce el propósito pedagógico, la autoría de Luics415, licencias de código abierto y avisos de independencia.",
+  alternates: { canonical: "/acerca" },
+};
 
 export default function AboutPage() {
   return (

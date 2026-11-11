@@ -15,6 +15,29 @@ const collectionCount = collectionManifest.length;
 const routeCount = collectionCount * 2;
 const atlasSummary = `${collectionCount} colecciones, ${routeCount} rutas canónicas y ${canonicalConceptCount.toLocaleString("es-MX")} conceptos`;
 
+const googleSiteVerification = process.env.NEXT_PUBLIC_GOOGLE_SITE_VERIFICATION?.trim();
+const googleBusinessVerification = process.env.NEXT_PUBLIC_GOOGLE_BUSINESS_VERIFICATION?.trim();
+
+const googleVerifications = [googleSiteVerification, googleBusinessVerification].filter(
+  (token): token is string => Boolean(token && token.length > 0)
+);
+
+const verificationConfig: Metadata["verification"] =
+  googleVerifications.length > 0 || googleBusinessVerification
+    ? {
+        ...(googleVerifications.length > 0
+          ? { google: googleVerifications.length === 1 ? googleVerifications[0] : googleVerifications }
+          : {}),
+        ...(googleBusinessVerification
+          ? {
+              other: {
+                "google-business-verification": googleBusinessVerification,
+              },
+            }
+          : {}),
+      }
+    : undefined;
+
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: { default: "Dev Visualizer", template: "%s · Dev Visualizer" },
@@ -68,6 +91,7 @@ export const metadata: Metadata = {
       "max-snippet": -1,
     },
   },
+  verification: verificationConfig,
   formatDetection: {
     email: false,
     address: false,
@@ -103,9 +127,53 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
         description: `Atlas visual educativo con ${atlasSummary} de desarrollo de software y una Librería profesional preservable.`,
         inLanguage: "es-MX",
         publisher: {
+          "@id": `${siteRoot}/#organization`,
+        },
+      },
+      {
+        "@type": "EducationalOrganization",
+        "@id": `${siteRoot}/#organization`,
+        name: "Dev Visualizer",
+        alternateName: ["DevVisualizer", "Dev Visualizer — Atlas Visual Educativo"],
+        url: `${siteRoot}/`,
+        logo: {
+          "@type": "ImageObject",
+          "@id": `${siteRoot}/#logo`,
+          url: assetUrl("/icon-192.png"),
+          caption: "Dev Visualizer Logo",
+          inLanguage: "es-MX",
+        },
+        image: socialCardUrl,
+        description: `Atlas visual educativo con ${atlasSummary} de desarrollo de software y una Librería profesional preservable.`,
+        founder: {
           "@type": "Person",
+          "@id": `${siteRoot}/#founder`,
           name: "Luics415",
           url: "https://github.com/Luics415",
+        },
+        sameAs: [
+          "https://github.com/Luics415/Dev-Visualizer",
+          "https://github.com/Luics415",
+        ],
+        knowsAbout: [
+          "Desarrollo de Software",
+          "Arquitectura de Software",
+          "Estructuras de Datos y Algoritmos",
+          "Bases de Datos y SQL",
+          "Sistemas Distribuidos",
+          "Frontend",
+          "Backend",
+          "DevOps e Infraestructura",
+          "Accesibilidad Web WCAG",
+        ],
+        inLanguage: "es-MX",
+        isAccessibleForFree: true,
+        offers: {
+          "@type": "Offer",
+          category: "Educational",
+          price: "0",
+          priceCurrency: "USD",
+          availability: "https://schema.org/InStock",
         },
       },
       {
@@ -120,6 +188,9 @@ export default function RootLayout({ children }: Readonly<{ children: React.Reac
           "@type": "Offer",
           price: "0",
           priceCurrency: "USD",
+        },
+        provider: {
+          "@id": `${siteRoot}/#organization`,
         },
         creator: {
           "@type": "Person",

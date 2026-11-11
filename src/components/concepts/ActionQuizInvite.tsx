@@ -1,4 +1,7 @@
+"use client";
+
 import Link from "next/link";
+import { trackButtonClick } from "@/lib/telemetry";
 
 export type ActionQuizInviteProps = {
   actionHref: string;
@@ -18,7 +21,13 @@ export function ActionQuizInvite({ actionHref, collectionTitle }: ActionQuizInvi
           Sin inicio de sesión y con intentos ilimitados.
         </p>
       </div>
-      <Link href={quizHref} className="action-quiz-invite__btn">
+      <Link
+        href={quizHref}
+        className="action-quiz-invite__btn"
+        onClick={() => {
+          trackButtonClick("action_quiz_invite_btn", "Iniciar Quiz Técnico", "action_quiz_invite");
+        }}
+      >
         <span>Iniciar Quiz Técnico</span>
       </Link>
     </section>

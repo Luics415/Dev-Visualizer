@@ -1,10 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import { collectionGroupMeta } from "@/data/collectionManifest";
 import type { LibraryIndexEntry } from "@/data/professionalLibrary";
 import { libraryResourceLevelLabels } from "@/data/libraryLabels";
+import { trackLibraryAction } from "@/lib/telemetry";
 import styles from "@/app/libreria/library.module.css";
 
 type FilterValue = "all" | string;
@@ -42,6 +43,54 @@ export function ProfessionalLibraryIndex({ entries }: { entries: readonly Librar
       return matchesQuery && matchesGroup && matchesFormat && matchesLevel && matchesProvenance && matchesAvailability;
     });
   }, [availability, entries, format, group, level, provenance, query]);
+
+  // Búsqueda con debounce de 600ms, deduplicación y supresión de consultas en blanco
+  const lastEmittedQueryRef = useRef("");
+
+  useEffect(() => {
+    const trimmed = query.trim();
+    if (!trimmed) {
+      lastEmittedQueryRef.current = "";
+      return;
+    }
+    if (trimmed === lastEmittedQueryRef.current) return;
+
+    const timer = setTimeout(() => {
+      lastEmittedQueryRef.current = trimmed;
+      trackLibraryAction("search", {
+        query: trimmed,
+        resultsCount: visible.length,
+        resultCount: visible.length,
+      });
+    }, 600);
+
+    return () => clearTimeout(timer);
+  }, [query, visible.length]);
+
+  // Monitoreo de filtros de área y nivel excluyendo el montaje inicial (resistente a StrictMode)
+  const prevFilterKeyRef = useRef<string | null>(null);
+
+  useEffect(() => {
+    const currentKey = `${group}:${level}`;
+    if (prevFilterKeyRef.current === null) {
+      prevFilterKeyRef.current = currentKey;
+      return;
+    }
+
+    if (prevFilterKeyRef.current === currentKey) {
+      return;
+    }
+
+    prevFilterKeyRef.current = currentKey;
+
+    trackLibraryAction("filter", {
+      category: group,
+      level,
+      resultsCount: visible.length,
+      activeFilterCount: (group !== "all" ? 1 : 0) + (level !== "all" ? 1 : 0),
+    });
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [group, level]);
 
   function resetFilters() {
     setQuery("");

@@ -10,6 +10,7 @@ import {
   copyMarkdownToClipboard,
 } from "@/lib/studyNotesExporter";
 import { slugify } from "@/lib/slugify";
+import { trackButtonClick } from "@/lib/telemetry";
 
 type StudyNotesExportButtonProps = {
   collectionId: string;
@@ -27,6 +28,7 @@ export function StudyNotesExportButton(props: StudyNotesExportButtonProps) {
   const [downloaded, setDownloaded] = useState(false);
 
   const handleDownload = () => {
+    trackButtonClick("export_study_notes_download", "Descargar Apuntes", "concept_header");
     const md = generateCollectionMarkdownCheatSheet(props);
     const filename = `ficha-repaso-${slugify(props.title)}`;
     downloadMarkdownFile(filename, md);
@@ -35,6 +37,7 @@ export function StudyNotesExportButton(props: StudyNotesExportButtonProps) {
   };
 
   const handleCopy = async () => {
+    trackButtonClick("export_study_notes_copy", "Copiar Apuntes", "concept_header");
     const md = generateCollectionMarkdownCheatSheet(props);
     const ok = await copyMarkdownToClipboard(md);
     if (ok) {
