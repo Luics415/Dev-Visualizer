@@ -1,3 +1,4 @@
+import type { Metadata } from "next";
 import Image from "next/image";
 import { CollectionNav } from "@/components/navigation/CollectionNav";
 import { CollectionLibrary } from "@/components/concepts/CollectionLibrary";
@@ -5,6 +6,12 @@ import { collectionManifest } from "@/data/collectionManifest";
 import { statsForCollection } from "@/data/collectionStats";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
+
+export const metadata: Metadata = {
+  title: "Colecciones",
+  description: "Explora 73 colecciones organizadas por áreas temáticas con conceptos animados, casos en acción, profundización técnica y fuentes oficiales.",
+  alternates: { canonical: "/colecciones" },
+};
 
 export default function CollectionsPage() {
   const entries = collectionManifest.map((collection) => ({ ...collection, stats: statsForCollection(collection.id) }));
