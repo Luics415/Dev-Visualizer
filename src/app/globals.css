@@ -10841,3 +10841,93 @@ body {
   outline: 2px solid var(--card-accent);
   outline-offset: 2px;
 }
+
+
+/* ==========================================================================
+   M4: Skeleton loading states & hardware-accelerated shimmer
+   ========================================================================== */
+
+@keyframes skeleton-shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+@keyframes shimmer {
+  0% {
+    transform: translateX(-100%);
+  }
+  100% {
+    transform: translateX(100%);
+  }
+}
+
+.skeleton {
+  position: relative;
+  overflow: hidden;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: var(--radius-sm, 8px);
+  display: block;
+}
+
+.skeleton::after,
+.skeleton-shimmer {
+  content: "";
+  position: absolute;
+  inset: 0;
+  transform: translateX(-100%);
+  background: linear-gradient(
+    90deg,
+    rgba(255, 255, 255, 0) 0%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0) 100%
+  );
+  animation: skeleton-shimmer 1.8s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  will-change: transform;
+  pointer-events: none;
+}
+
+/* Variantes estructurales para mitigar Cumulative Layout Shift (CLS) */
+.skeleton-text {
+  height: 1rem;
+  margin-top: 0.25rem;
+  margin-bottom: 0.25rem;
+  border-radius: 4px;
+}
+
+.skeleton-rectangular {
+  border-radius: var(--radius-md, 13px);
+}
+
+.skeleton-circular {
+  border-radius: 50%;
+  aspect-ratio: 1 / 1;
+}
+
+.skeleton-card {
+  min-height: 180px;
+  border-radius: var(--radius-lg, 18px);
+  border: 1px solid var(--line-soft, rgba(121, 145, 180, 0.2));
+  background-color: rgba(13, 18, 32, 0.72);
+}
+
+.skeleton-hero {
+  min-height: 280px;
+  border-radius: var(--radius-xl, 24px);
+  border: 1px solid var(--line-soft, rgba(121, 145, 180, 0.2));
+  background-color: rgba(13, 18, 32, 0.72);
+}
+
+/* Respeto estricto a accesibilidad y movimiento reducido (WCAG 2.1 AA) */
+@media (prefers-reduced-motion: reduce) {
+  .skeleton,
+  .skeleton-shimmer,
+  .skeleton::after,
+  .skeleton-shimmer::after {
+    animation: none !important;
+    transition: none !important;
+  }
+}
