@@ -10653,17 +10653,6 @@ body {
   animation: pulse-dot 1.4s infinite;
 }
 
-.start-edge-badge {
-  font-size: 0.62rem;
-  padding: 2px 6px;
-  border-radius: 4px;
-  background: rgba(59, 211, 255, 0.14);
-  border: 1px solid rgba(59, 211, 255, 0.35);
-  color: var(--cyan);
-  letter-spacing: 0.04em;
-  text-transform: uppercase;
-}
-
 /* ── Menú Radial Cinemático Desplegado ── */
 .radial-menu-overlay {
   position: fixed;
