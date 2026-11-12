@@ -259,9 +259,6 @@ export function StartGuideDrawer() {
         >
           <span className="start-edge-dot" aria-hidden="true" />
           <span>¿Por dónde empezar?</span>
-          <span className="start-edge-badge" aria-hidden="true">
-            Brújula
-          </span>
         </button>
       </aside>
 

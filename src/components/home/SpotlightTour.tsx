@@ -60,14 +60,21 @@ interface RectState {
   height: number;
 }
 
+/** Controla en memoria que el tour solo se autoejecute una vez por recarga de pestaña o nueva sesión. */
+let hasAutoOpenedTourInPageLoad = false;
+
 export function SpotlightTour() {
-  const [isOpen, setIsOpen] = useState(true);
+  const [isOpen, setIsOpen] = useState(() => !hasAutoOpenedTourInPageLoad);
   const [currentStep, setCurrentStep] = useState(0);
   const [spotlightRect, setSpotlightRect] = useState<RectState | null>(null);
   const [modalPos, setModalPos] = useState<{ top: number; left: number } | null>(null);
 
   const step = TOUR_STEPS[currentStep];
   const modalRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    hasAutoOpenedTourInPageLoad = true;
+  }, []);
 
   const updatePosition = useCallback(() => {
     if (!isOpen) return;
