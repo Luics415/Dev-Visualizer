@@ -13,7 +13,6 @@ interface RadialNode {
   summary: string;
   route: string;
   accent: string;
-  icon: string;
   angleDeg: number;
 }
 
@@ -26,8 +25,7 @@ const RADIAL_NODES: readonly RadialNode[] = [
     summary: "Call Stack, Event Loop y complejidad Big-O",
     route: "/javascript",
     accent: "var(--cyan)",
-    icon: "💻",
-    angleDeg: -90, // 12 en punto (arriba)
+    angleDeg: -90,
   },
   {
     id: "colecciones",
@@ -37,8 +35,7 @@ const RADIAL_NODES: readonly RadialNode[] = [
     summary: "7,410 conceptos canónicos interactivos",
     route: "/colecciones",
     accent: "#2dd4bf",
-    icon: "🌐",
-    angleDeg: -30, // 2 en punto
+    angleDeg: -30,
   },
   {
     id: "en-accion",
@@ -48,8 +45,7 @@ const RADIAL_NODES: readonly RadialNode[] = [
     summary: "Docker, fallos de red y Circuit Breakers",
     route: "/docker-en-accion",
     accent: "var(--green)",
-    icon: "⚡",
-    angleDeg: 30, // 4 en punto
+    angleDeg: 30,
   },
   {
     id: "trofeos",
@@ -59,8 +55,7 @@ const RADIAL_NODES: readonly RadialNode[] = [
     summary: "7 medallas oficiales de maestría técnica",
     route: "#trofeos-areas",
     accent: "var(--yellow)",
-    icon: "🏆",
-    angleDeg: 90, // 6 en punto (abajo)
+    angleDeg: 90,
   },
   {
     id: "libreria",
@@ -70,8 +65,7 @@ const RADIAL_NODES: readonly RadialNode[] = [
     summary: "266 normas formales TC39, RFCs y fuentes",
     route: "/libreria",
     accent: "var(--jinx-rose)",
-    icon: "📚",
-    angleDeg: 150, // 8 en punto
+    angleDeg: 150,
   },
   {
     id: "quizzes",
@@ -81,12 +75,10 @@ const RADIAL_NODES: readonly RadialNode[] = [
     summary: "Evalúa tus modelos mentales con cuestionarios",
     route: "/javascript/quiz",
     accent: "var(--violet)",
-    icon: "🎯",
-    angleDeg: 210, // 10 en punto
+    angleDeg: 210,
   },
 ];
 
-/** Medidas de referencia sincronizadas con los breakpoints de globals.css. */
 interface OrbitLayout {
   rx: number;
   ry: number;
@@ -102,11 +94,9 @@ function computeOrbitLayout(vw: number, vh: number): OrbitLayout {
         ? { rx: 175, cardW: 148, cardH: 112, core: 124 }
         : { rx: 140, cardW: 116, cardH: 86, core: 105 };
 
-  // Los nodos laterales (±30°, 150°, 210°) no deben salirse horizontalmente.
   const maxRx = (vw / 2 - tier.cardW / 2 - 10) / Math.cos(Math.PI / 6);
   const rx = Math.max(100, Math.min(tier.rx, maxRx));
 
-  // En vertical (móvil) la órbita se estira en elipse para separar las tarjetas.
   const stretch = vh > vw ? 1.3 : 1;
   const maxRy = vh / 2 - tier.cardH / 2 - 14;
   const minRy = tier.core / 2 + tier.cardH / 2 + 8;
@@ -131,7 +121,6 @@ export function StartGuideDrawer() {
   const { rx, ry } = layout;
 
   const openMenu = useCallback(() => {
-    // Calcula desde dónde "despega" el núcleo: centro real del botón respecto al centro del viewport.
     const btn = triggerRef.current;
     if (btn) {
       const r = btn.getBoundingClientRect();
@@ -150,7 +139,6 @@ export function StartGuideDrawer() {
     setIsOpen(false);
   }, []);
 
-  // Recalcula la órbita al redimensionar mientras está abierto
   useEffect(() => {
     if (!isOpen) return;
     let frame = 0;
@@ -165,7 +153,6 @@ export function StartGuideDrawer() {
     };
   }, [isOpen]);
 
-  // Cerrar con Escape
   useEffect(() => {
     if (!isOpen) return;
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -175,7 +162,6 @@ export function StartGuideDrawer() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen, closeMenu]);
 
-  // Bloqueo de scroll sin salto de layout (compensa el ancho de la barra de desplazamiento)
   useEffect(() => {
     if (!isOpen) return;
     const { body, documentElement } = document;
@@ -190,7 +176,6 @@ export function StartGuideDrawer() {
     };
   }, [isOpen]);
 
-  // Gestión de foco: entra al diálogo al abrir y vuelve al disparador al cerrar
   useEffect(() => {
     if (isOpen) {
       const id = window.setTimeout(() => closeBtnRef.current?.focus({ preventScroll: true }), 60);
@@ -202,7 +187,6 @@ export function StartGuideDrawer() {
     }
   }, [isOpen]);
 
-  // Trampa de foco con Tab dentro del menú radial
   const handleDialogKeyDown = useCallback((e: ReactKeyboardEvent<HTMLDivElement>) => {
     if (e.key !== "Tab" || !dialogRef.current) return;
     const items = Array.from(dialogRef.current.querySelectorAll<HTMLElement>(FOCUSABLE_SELECTOR));
@@ -223,7 +207,6 @@ export function StartGuideDrawer() {
       if (route.startsWith("#")) {
         e.preventDefault();
         closeMenu(false);
-        // Espera a que se libere el bloqueo de scroll antes de desplazarse
         window.setTimeout(() => {
           document.querySelector(route)?.scrollIntoView({ behavior: "smooth", block: "start" });
         }, 220);
@@ -240,7 +223,6 @@ export function StartGuideDrawer() {
 
   return (
     <>
-      {/* ── Botón Fijo en el Borde Izquierdo (Disparador) ── */}
       <aside
         id="tour-start-bar"
         className={`start-edge-bar ${isOpen ? "start-edge-bar--hidden" : ""}`}
@@ -262,7 +244,6 @@ export function StartGuideDrawer() {
         </button>
       </aside>
 
-      {/* ── Menú Radial Animado en Pantalla Completa ── */}
       <AnimatePresence>
         {isOpen && (
           <div
@@ -274,7 +255,6 @@ export function StartGuideDrawer() {
             aria-label="Menú radial interactivo: ¿Por dónde empezar?"
             onKeyDown={handleDialogKeyDown}
           >
-            {/* Backdrop oscuro con desenfoque */}
             <motion.div
               className="radial-menu-backdrop"
               initial={{ opacity: 0 }}
@@ -285,9 +265,7 @@ export function StartGuideDrawer() {
               aria-hidden="true"
             />
 
-            {/* Lienzo Central de la Órbita (punto 0,0 = centro del viewport) */}
             <div className="radial-menu-stage">
-              {/* Anillo orbital y rayos conectores (escala 1:1 con las coordenadas de los nodos) */}
               <svg
                 className="radial-menu-svg"
                 width={svgW}
@@ -328,7 +306,6 @@ export function StartGuideDrawer() {
                 })}
               </svg>
 
-              {/* Núcleo Central: el botón despega desde su posición real y aterriza en el centro */}
               <motion.div
                 className="radial-menu-core"
                 initial={{ x: origin.x, y: origin.y, scale: 0.35, opacity: 0 }}
@@ -358,12 +335,11 @@ export function StartGuideDrawer() {
                     onClick={() => closeMenu(true)}
                     aria-label="Cerrar menú radial"
                   >
-                    <span aria-hidden="true">✕</span> Cerrar
+                    <span aria-hidden="true">&times;</span> Cerrar
                   </button>
                 </div>
               </motion.div>
 
-              {/* Los 6 satélites: brotan del núcleo en escalonado y regresan en orden inverso */}
               {RADIAL_NODES.map((node, idx) => {
                 const rad = (node.angleDeg * Math.PI) / 180;
                 const targetX = Math.round(rx * Math.cos(rad));
@@ -402,9 +378,6 @@ export function StartGuideDrawer() {
                       <div className="radial-node-card__header">
                         <span className="radial-node-card__badge">
                           {node.number} · {node.badge}
-                        </span>
-                        <span className="radial-node-card__icon" aria-hidden="true">
-                          {node.icon}
                         </span>
                       </div>
 

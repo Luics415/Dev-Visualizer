@@ -1,14 +1,3 @@
-/**
- * Dev Visualizer — Explorador Visual de las 7 Áreas Canónicas (Feature F8/F20)
- * src/components/home/HomeArchitectureExplorer.tsx
- *
- * Muestra interactivamente las 7 áreas canónicas del atlas, sus 146 rutas canónicas
- * (73 colecciones teóricas + 73 casos prácticos en acción), sus tecnologías clave
- * y sus trofeos de completado.
- *
- * Preserva id="hero-simulator-workbench" para el recorrido guiado (SpotlightTour).
- */
-
 "use client";
 
 import { useState, useEffect, useCallback, useTransition } from "react";
@@ -21,7 +10,6 @@ interface ArchitectureAreaSpec {
   id: ThematicAreaId;
   name: string;
   shortName: string;
-  icon: string;
   badge: string;
   collectionsCount: number;
   actionCount: number;
@@ -36,7 +24,6 @@ const ARCHITECTURE_AREAS: readonly ArchitectureAreaSpec[] = [
     id: "fundamentals",
     name: "Fundamentos de Software",
     shortName: "Fundamentos",
-    icon: "🧩",
     badge: "5 COL · 10 RUTAS",
     collectionsCount: 5,
     actionCount: 5,
@@ -49,7 +36,6 @@ const ARCHITECTURE_AREAS: readonly ArchitectureAreaSpec[] = [
     id: "languages",
     name: "Lenguajes de Programación",
     shortName: "Lenguajes",
-    icon: "🌐",
     badge: "27 COL · 54 RUTAS",
     collectionsCount: 27,
     actionCount: 27,
@@ -62,7 +48,6 @@ const ARCHITECTURE_AREAS: readonly ArchitectureAreaSpec[] = [
     id: "interfaces",
     name: "Diseño e Interfaces",
     shortName: "Interfaces",
-    icon: "🎨",
     badge: "9 COL · 18 RUTAS",
     collectionsCount: 9,
     actionCount: 9,
@@ -75,7 +60,6 @@ const ARCHITECTURE_AREAS: readonly ArchitectureAreaSpec[] = [
     id: "platforms",
     name: "Plataforma y Servidor",
     shortName: "Servidor",
-    icon: "⚙️",
     badge: "10 COL · 20 RUTAS",
     collectionsCount: 10,
     actionCount: 10,
@@ -88,7 +72,6 @@ const ARCHITECTURE_AREAS: readonly ArchitectureAreaSpec[] = [
     id: "data",
     name: "Datos y Persistencia",
     shortName: "Datos",
-    icon: "🗄️",
     badge: "10 COL · 20 RUTAS",
     collectionsCount: 10,
     actionCount: 10,
@@ -101,7 +84,6 @@ const ARCHITECTURE_AREAS: readonly ArchitectureAreaSpec[] = [
     id: "versioning",
     name: "Control de Versiones y Calidad",
     shortName: "Calidad",
-    icon: "🛡️",
     badge: "4 COL · 8 RUTAS",
     collectionsCount: 4,
     actionCount: 4,
@@ -114,7 +96,6 @@ const ARCHITECTURE_AREAS: readonly ArchitectureAreaSpec[] = [
     id: "delivery",
     name: "Infraestructura y Entrega",
     shortName: "DevOps",
-    icon: "🚀",
     badge: "8 COL · 16 RUTAS",
     collectionsCount: 8,
     actionCount: 8,
@@ -138,7 +119,6 @@ export function HomeArchitectureExplorer() {
   const totalQuizzes = areaProgress?.totalQuizzes ?? activeArea.collectionsCount;
   const percentage = areaProgress?.percentage ?? 0;
 
-  // Auto-rotación suave entre las 7 áreas (pausable por el usuario)
   useEffect(() => {
     if (!isAutoPlaying) return;
     const interval = setInterval(() => {
@@ -193,7 +173,6 @@ export function HomeArchitectureExplorer() {
       className="hero-workbench"
       aria-label="Explorador visual de las 7 áreas canónicas de Dev Visualizer"
     >
-      {/* Barra Superior con Controles Mac y Estado Canónico */}
       <div className="hero-workbench__titlebar">
         <div className="hero-workbench__dots" aria-hidden="true">
           <span className="dot dot--red" />
@@ -204,11 +183,11 @@ export function HomeArchitectureExplorer() {
           Atlas de Arquitectura · 7 Áreas
         </span>
         <span className="hero-workbench__badge">
-          🟢 146 RUTAS CANÓNICAS
+          <span className="hero-workbench__badge-dot" aria-hidden="true" />
+          146 RUTAS CANÓNICAS
         </span>
       </div>
 
-      {/* Selector de Pestañas de las 7 Áreas Temáticas */}
       <div
         className="hero-workbench__tabs"
         role="tablist"
@@ -225,8 +204,8 @@ export function HomeArchitectureExplorer() {
               onClick={() => selectArea(idx)}
               title={`${area.name} (${area.collectionsCount} colecciones)`}
             >
-              <span className="hero-workbench__tab-icon" aria-hidden="true">
-                {area.icon}
+              <span className="hero-workbench__tab-num" aria-hidden="true">
+                {String(idx + 1).padStart(2, "0")}
               </span>
               <span className="hero-workbench__tab-name">{area.shortName}</span>
             </button>
@@ -234,12 +213,10 @@ export function HomeArchitectureExplorer() {
         })}
       </div>
 
-      {/* Panel Principal: Showcase Visual del Área Seleccionada */}
       <div className="hero-workbench__showcase">
-        {/* Encabezado del Área */}
         <div className="hero-workbench__showcase-header">
           <div className="hero-workbench__area-icon-box" aria-hidden="true">
-            {activeArea.icon}
+            {String(selectedIndex + 1).padStart(2, "0")}
           </div>
           <div className="hero-workbench__area-title-wrap">
             <span className="hero-workbench__area-tag">
@@ -254,7 +231,6 @@ export function HomeArchitectureExplorer() {
           </div>
         </div>
 
-        {/* Tres Contadores Canónicos Destacados */}
         <div className="hero-workbench__stats-row">
           <div className="hero-workbench__stat-card">
             <span className="hero-workbench__stat-num">{activeArea.collectionsCount}</span>
@@ -270,7 +246,6 @@ export function HomeArchitectureExplorer() {
           </div>
         </div>
 
-        {/* Tecnologías Clave de Esta Área */}
         <div className="hero-workbench__tech-row">
           <span className="hero-workbench__tech-title">Tecnologías:</span>
           <div className="hero-workbench__tech-tags">
@@ -282,7 +257,6 @@ export function HomeArchitectureExplorer() {
           </div>
         </div>
 
-        {/* Fila Inferior: Trofeo del Área + Botón de Explorar */}
         <div className="hero-workbench__action-footer">
           <div
             className={`hero-workbench__trophy-banner ${
@@ -290,7 +264,24 @@ export function HomeArchitectureExplorer() {
             }`}
           >
             <span className="hero-workbench__trophy-icon" aria-hidden="true">
-              {isAreaUnlocked ? "🏆" : activeArea.icon}
+              <svg
+                width="22"
+                height="22"
+                viewBox="0 0 24 24"
+                fill="none"
+                stroke="currentColor"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                aria-hidden="true"
+              >
+                <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
+                <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
+                <path d="M4 22h16" />
+                <path d="M10 14.66V17c0 .55-.45 1-1 1H7" />
+                <path d="M14 14.66V17c0 .55.45 1 1 1h2" />
+                <path d="M18 2H6v7a6 6 0 0 0 12 0V2z" />
+              </svg>
             </span>
             <div className="hero-workbench__trophy-details">
               <span className="hero-workbench__trophy-tag">
@@ -322,7 +313,6 @@ export function HomeArchitectureExplorer() {
         </div>
       </div>
 
-      {/* Barra de Controles Inferior */}
       <div className="hero-workbench__controls">
         <div className="hero-workbench__step-info">
           <span>Área {selectedIndex + 1} de {ARCHITECTURE_AREAS.length}</span>
@@ -338,7 +328,7 @@ export function HomeArchitectureExplorer() {
             aria-label="Área anterior"
             title="Área anterior"
           >
-            ◀
+            ←
           </button>
           <button
             type="button"
@@ -347,7 +337,7 @@ export function HomeArchitectureExplorer() {
             aria-label={isAutoPlaying ? "Pausar rotación" : "Reproducir rotación"}
             title={isAutoPlaying ? "Pausar rotación" : "Reproducir rotación"}
           >
-            {isAutoPlaying ? "⏸ Pausar" : "▶ Girar"}
+            {isAutoPlaying ? "Pausar" : "Girar"}
           </button>
           <button
             type="button"
@@ -356,7 +346,7 @@ export function HomeArchitectureExplorer() {
             aria-label="Siguiente área"
             title="Siguiente área"
           >
-            ▶
+            →
           </button>
         </div>
       </div>
