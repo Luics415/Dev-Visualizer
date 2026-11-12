@@ -18,7 +18,7 @@ export function ActionQuizInvite({ actionHref, collectionTitle }: ActionQuizInvi
         <h3>¿Listo para validar tu comprensión técnica{collectionTitle ? ` en ${collectionTitle}` : ""}?</h3>
         <p>
           Pon a prueba lo estudiado con una evaluación rápida de 15 preguntas seleccionadas al azar.
-          Sin inicio de sesión y con intentos ilimitados.
+          Inicia sesión con Google al entrar al quiz para conservar tus logros en cualquier dispositivo.
         </p>
       </div>
       <Link

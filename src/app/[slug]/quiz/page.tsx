@@ -108,8 +108,8 @@ export default async function QuizPage({ params }: QuizPageProps) {
           <h1>Quiz Didáctico: {title}</h1>
           <p>
             {isActionQuiz
-              ? "15 preguntas técnicas seleccionadas aleatoriamente para evaluar tu comprensión del caso práctico, flujos de ejecución y mecanismos en acción. Ilimitado y sin registro."
-              : "15 preguntas técnicas seleccionadas aleatoriamente de nuestro banco para evaluar tu comprensión de fundamentos y arquitectura. Ilimitado y sin registro."}
+              ? "15 preguntas técnicas seleccionadas aleatoriamente para evaluar tu comprensión del caso práctico, flujos de ejecución y mecanismos en acción. Inicia sesión con Google al comenzar para guardar tus logros entre dispositivos."
+              : "15 preguntas técnicas seleccionadas aleatoriamente de nuestro banco para evaluar tu comprensión de fundamentos y arquitectura. Inicia sesión con Google al comenzar para guardar tus logros entre dispositivos."}
           </p>
         </div>
         <div className="hero__counter">

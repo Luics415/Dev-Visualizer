@@ -1,0 +1,28 @@
+{
+  "auth": {
+    "authorizedDomains": [
+      "localhost",
+      "127.0.0.1",
+      "luics415.github.io",
+      "dev-visualizer-luics415.firebaseapp.com",
+      "dev-visualizer-luics415.web.app"
+    ],
+    "providers": {
+      "anonymous": false,
+      "emailPassword": true,
+      "googleSignIn": {
+        "oAuthBrandDisplayName": "Dev Visualizer",
+        "supportEmail": "alerivera8777@gmail.com",
+        "authorizedRedirectUris": [
+          "https://dev-visualizer-luics415.firebaseapp.com/__/auth/handler",
+          "https://luics415.github.io/Dev-Visualizer",
+          "http://localhost:3000"
+        ]
+      }
+    }
+  },
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  }
+}

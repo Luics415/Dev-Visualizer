@@ -1,24 +1,26 @@
-/**
- * Dev Visualizer — Módulo Central de Autenticación Client-Side (Feature F12)
- * src/lib/auth.ts
- *
- * Arquitectura cliente pura para navegación pública irrestricta y autenticación
- * exclusiva previa a cuestionarios técnicos (Hito 3 / F11 - F13).
- *
- * Características principales:
- * - Modelo AuthUser inmutable y tipado (Google y Correo Electrónico).
- * - Persistencia segura en localStorage con tolerancia completa a QuotaExceededError.
- * - Soporte para SSR y SSG sin discrepancias de hidratación (SSR-safe).
- * - Sincronización multi-pestaña mediante eventos nativos 'storage' y pub-sub en memoria.
- * - Desacoplado de dependencias externas; compatible con despliegue en GitHub Pages.
- */
+import {
+  onAuthStateChanged,
+  signInWithPopup,
+  signOut as firebaseSignOut,
+  type User as FirebaseUser,
+} from "firebase/auth";
+import {
+  createGoogleAuthProvider,
+  getFirebaseAuth,
+  isFirebaseConfigured,
+} from "./firebase";
+import {
+  startCloudProgressSync,
+  stopCloudProgressSync,
+} from "./cloudProgress";
 
 export interface AuthUser {
   id: string;
   email: string;
   displayName: string;
+  photoURL?: string;
   provider: "google" | "email";
-  authenticatedAt: string; // ISO 8601 UTC
+  authenticatedAt: string;
 }
 
 export interface AuthState {
@@ -38,18 +40,55 @@ export interface QuizGateEvaluation {
 
 export const AUTH_STORAGE_KEY = "dev_visualizer_auth_user";
 
-// Estado de respaldo en memoria ante entornos con cuota bloqueada o almacenamiento inaccesible
 let memoryFallbackUser: AuthUser | null = null;
 let isQuotaExceededActive = false;
+let isFirebaseListenerAttached = false;
 
-// Registro de observadores para reactividad interna en la misma pestaña
 const authSubscribers = new Set<() => void>();
 
-/**
- * Guarda o elimina de manera resiliente el usuario en localStorage.
- * Si ocurre QuotaExceededError o SecurityError, mantiene la sesión en memoria
- * para garantizar una experiencia continua y sin interrupciones didácticas.
- */
+function mapFirebaseUser(fbUser: FirebaseUser): AuthUser {
+  const email = fbUser.email || `${fbUser.uid}@users.devvisualizer.local`;
+  const prefix = email.split("@")[0] || "Usuario";
+  const providerId = fbUser.providerData[0]?.providerId;
+  const provider: "google" | "email" =
+    providerId === "password" ? "email" : "google";
+
+  return {
+    id: fbUser.uid,
+    email,
+    displayName: fbUser.displayName || prefix,
+    ...(fbUser.photoURL ? { photoURL: fbUser.photoURL } : {}),
+    provider,
+    authenticatedAt: fbUser.metadata.lastSignInTime
+      ? new Date(fbUser.metadata.lastSignInTime).toISOString()
+      : new Date().toISOString(),
+  };
+}
+
+function formatFirebaseAuthError(error: unknown): string {
+  const code =
+    error && typeof error === "object" && "code" in error
+      ? String((error as { code?: unknown }).code)
+      : "";
+
+  switch (code) {
+    case "auth/popup-closed-by-user":
+      return "Cerraste la ventana de selección de cuenta antes de completar el inicio de sesión.";
+    case "auth/cancelled-popup-request":
+      return "Se canceló la solicitud anterior. Intenta iniciar sesión nuevamente.";
+    case "auth/popup-blocked":
+      return "Tu navegador bloqueó la ventana emergente de Google. Permite las ventanas emergentes e inténtalo de nuevo.";
+    case "auth/unauthorized-domain":
+      return "Este dominio no está autorizado para iniciar sesión con Google en Firebase.";
+    case "auth/network-request-failed":
+      return "Error de conexión al contactar con Google. Verifica tu red e inténtalo nuevamente.";
+    default:
+      return error instanceof Error && error.message
+        ? error.message
+        : "No se pudo completar el inicio de sesión con Google.";
+  }
+}
+
 function persistUser(user: AuthUser | null): void {
   if (user === null) {
     memoryFallbackUser = null;
@@ -58,7 +97,6 @@ function persistUser(user: AuthUser | null): void {
       try {
         globalThis.localStorage.removeItem(AUTH_STORAGE_KEY);
       } catch {
-        // Ignorar fallos al remover en entornos restringidos
       }
     }
     return;
@@ -74,7 +112,6 @@ function persistUser(user: AuthUser | null): void {
     memoryFallbackUser = user;
     isQuotaExceededActive = false;
   } catch (err: unknown) {
-    // Tolerancia ante QuotaExceededError (ej. modo incógnito, cuota saturada o mock de prueba)
     memoryFallbackUser = user;
     isQuotaExceededActive = true;
     if (typeof console !== "undefined" && console.warn) {
@@ -86,10 +123,6 @@ function persistUser(user: AuthUser | null): void {
   }
 }
 
-/**
- * Obtiene el usuario autenticado activo desde localStorage o del respaldo en memoria.
- * Es completamente seguro en entornos de servidor (SSR / SSG) y devuelve `null` si no hay sesión.
- */
 export function getStoredUser(): AuthUser | null {
   if (typeof window === "undefined" || typeof globalThis.localStorage === "undefined") {
     return memoryFallbackUser;
@@ -113,20 +146,15 @@ export function getStoredUser(): AuthUser | null {
       }
     }
 
-    // Si localStorage no contiene el elemento:
     if (isQuotaExceededActive && memoryFallbackUser) {
-      // Comprobar si la cuota ya fue liberada o si el almacenamiento fue reseteado/limpiado
       try {
         const probeKey = "__dv_quota_probe__";
         globalThis.localStorage.setItem(probeKey, "1");
         globalThis.localStorage.removeItem(probeKey);
-        // Si fue posible escribir, la cuota ya no está bloqueada.
-        // Como AUTH_STORAGE_KEY no estaba, se asume que la sesión fue purgada externamente.
         isQuotaExceededActive = false;
         memoryFallbackUser = null;
         return null;
       } catch {
-        // La cuota continúa bloqueada; preservar la sesión en memoria
         return memoryFallbackUser;
       }
     }
@@ -134,14 +162,10 @@ export function getStoredUser(): AuthUser | null {
     memoryFallbackUser = null;
     return null;
   } catch {
-    // Si la lectura lanza (ej. fallo de JSON o sandbox estricto), recurrir al estado en memoria
     return memoryFallbackUser;
   }
 }
 
-/**
- * Retorna una instantánea sincrónica del estado de autenticación actual.
- */
 export function getAuthState(): { user: AuthUser | null; isAuthenticated: boolean; isLoading: boolean } {
   const user = getStoredUser();
   return {
@@ -151,11 +175,6 @@ export function getAuthState(): { user: AuthUser | null; isAuthenticated: boolea
   };
 }
 
-/**
- * Evalúa las condiciones de la compuerta previa al cuestionario (F13).
- * Si el usuario es anónimo, exige el paso por QuizAuthGate y bloquea el acceso a las preguntas.
- * Si el usuario está autenticado, desactiva la compuerta y autoriza el acceso inmediato.
- */
 export function evaluateQuizGate(user: AuthUser | null): QuizGateEvaluation {
   const isAuth = Boolean(
     user &&
@@ -174,9 +193,6 @@ export function evaluateQuizGate(user: AuthUser | null): QuizGateEvaluation {
   };
 }
 
-/**
- * Notifica a todos los suscriptores y despacha un evento local en la ventana.
- */
 function notifyAuthSubscribers(): void {
   authSubscribers.forEach((callback) => {
     try {
@@ -192,16 +208,53 @@ function notifyAuthSubscribers(): void {
     try {
       window.dispatchEvent(new Event("dev_visualizer_auth_change"));
     } catch {
-      // Ignorar fallos de despacho en entornos sintéticos
     }
   }
 }
 
-/**
- * Inicia sesión mediante proveedor Google (simulado para cliente educativo).
- * Genera un AuthUser válido y persistente en el dispositivo.
- */
+export function ensureFirebaseAuthSync(): void {
+  if (isFirebaseListenerAttached || !isFirebaseConfigured()) {
+    return;
+  }
+
+  const auth = getFirebaseAuth();
+  if (!auth) {
+    return;
+  }
+
+  isFirebaseListenerAttached = true;
+  onAuthStateChanged(auth, (fbUser) => {
+    if (fbUser) {
+      const mapped = mapFirebaseUser(fbUser);
+      persistUser(mapped);
+      startCloudProgressSync(mapped);
+      notifyAuthSubscribers();
+    } else {
+      const hadStoredUser = Boolean(getStoredUser());
+      stopCloudProgressSync(hadStoredUser);
+      persistUser(null);
+      notifyAuthSubscribers();
+    }
+  });
+}
+
 export async function signInWithGoogle(): Promise<AuthUser> {
+  const auth = getFirebaseAuth();
+  if (auth) {
+    try {
+      ensureFirebaseAuthSync();
+      const provider = createGoogleAuthProvider();
+      const result = await signInWithPopup(auth, provider);
+      const user = mapFirebaseUser(result.user);
+      persistUser(user);
+      startCloudProgressSync(user);
+      notifyAuthSubscribers();
+      return user;
+    } catch (err: unknown) {
+      throw new Error(formatFirebaseAuthError(err));
+    }
+  }
+
   const randomSuffix = Math.random().toString(36).slice(2, 8);
   const user: AuthUser = {
     id: `usr_google_${Date.now()}_${randomSuffix}`,
@@ -216,10 +269,6 @@ export async function signInWithGoogle(): Promise<AuthUser> {
   return user;
 }
 
-/**
- * Inicia sesión mediante Correo Electrónico.
- * Valida la estructura básica del email y genera una identidad persistente.
- */
 export async function signInWithEmail(email: string): Promise<AuthUser> {
   const cleanEmail = typeof email === "string" ? email.trim() : "";
   if (!cleanEmail || !cleanEmail.includes("@")) {
@@ -243,20 +292,18 @@ export async function signInWithEmail(email: string): Promise<AuthUser> {
   return user;
 }
 
-/**
- * Cierra la sesión activa del usuario, purgando las credenciales locales
- * y notificando inmediatamente a todos los componentes y pestañas.
- */
 export function signOut(): void {
+  const auth = getFirebaseAuth();
+  if (auth) {
+    stopCloudProgressSync(true);
+    void firebaseSignOut(auth).catch(() => {});
+  }
   persistUser(null);
   notifyAuthSubscribers();
 }
 
-/**
- * Permite que hooks de React (`useSyncExternalStore`) y componentes clientes
- * se suscriban a cambios de autenticación locales y entre pestañas (`storage`).
- */
 export function subscribeToAuth(callback: () => void): () => void {
+  ensureFirebaseAuthSync();
   authSubscribers.add(callback);
 
   const handleStorageEvent = (event: StorageEvent | Event) => {

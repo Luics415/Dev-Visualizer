@@ -280,9 +280,41 @@ export function getStoredCompletedCollections(areaId?: ThematicAreaId): string[]
   return Array.from(allIds);
 }
 
-/**
- * Limpia todo el progreso de quests (utilidad para tests y reset de usuario).
- */
+export function exportRawQuestsMap(): StoredQuestsMap {
+  const data = readStorageData();
+  const copy: StoredQuestsMap = {};
+  for (const area of THEMATIC_AREAS) {
+    const entry = data[area];
+    if (entry) {
+      copy[area] = {
+        completedCollections: [...entry.completedCollections],
+        ...(entry.unlockedAt ? { unlockedAt: entry.unlockedAt } : {}),
+      };
+    }
+  }
+  return copy;
+}
+
+export function replaceQuestsProgress(data: StoredQuestsMap): void {
+  const sanitized: StoredQuestsMap = {};
+  for (const area of THEMATIC_AREAS) {
+    const record = data[area];
+    if (record && Array.isArray(record.completedCollections)) {
+      const progress = calculateAreaProgress(
+        area,
+        record.completedCollections,
+        record.unlockedAt
+      );
+      sanitized[area] = {
+        completedCollections: Array.from(new Set(record.completedCollections)),
+        ...(progress.unlockedAt ? { unlockedAt: progress.unlockedAt } : {}),
+      };
+    }
+  }
+  writeStorageData(sanitized);
+  notifyQuestsSubscribers();
+}
+
 export function resetQuestsProgress(): void {
   memoryFallbackQuests = {};
   isQuotaExceededActive = false;
@@ -290,7 +322,6 @@ export function resetQuestsProgress(): void {
     try {
       globalThis.localStorage.removeItem(QUESTS_STORAGE_KEY);
     } catch {
-      // Ignorar
     }
   }
   notifyQuestsSubscribers();

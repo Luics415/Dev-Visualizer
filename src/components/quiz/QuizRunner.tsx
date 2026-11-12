@@ -14,7 +14,9 @@ import {
 import { QuizAnchorBadge } from "./QuizAnchorBadge";
 import { useAuth } from "@/hooks/useAuth";
 import { QuizAuthGate } from "@/components/auth/QuizAuthGate";
+import { BADGES_CHANGE_EVENT } from "@/lib/quizEngine";
 import { recordCompletedQuiz } from "@/lib/questsEngine";
+import { syncQuizCompletionToCloud } from "@/lib/cloudProgress";
 
 type QuizRunnerProps = {
   collectionId: string;
@@ -29,7 +31,7 @@ export function QuizRunner({
   collectionHref,
   allQuestions,
 }: QuizRunnerProps) {
-  const { isAuthenticated } = useAuth();
+  const { isAuthenticated, user } = useAuth();
 
   // Muestrear 15 preguntas aleatorias con opciones barajadas por intento
   const [questions, setQuestions] = useState<QuizQuestion[]>(() =>
@@ -44,7 +46,11 @@ export function QuizRunner({
   const hasBadge = useSyncExternalStore(
     (onStoreChange) => {
       window.addEventListener("storage", onStoreChange);
-      return () => window.removeEventListener("storage", onStoreChange);
+      window.addEventListener(BADGES_CHANGE_EVENT, onStoreChange);
+      return () => {
+        window.removeEventListener("storage", onStoreChange);
+        window.removeEventListener(BADGES_CHANGE_EVENT, onStoreChange);
+      };
     },
     () => isBadgeUnlocked(collectionId),
     () => false
@@ -76,18 +82,22 @@ export function QuizRunner({
       setIsCompleted(true);
 
       if (evaluated.passed) {
-        saveQuizBadge({
+        const badge = {
           collectionId,
           collectionTitle,
           unlockedAt: new Date().toISOString(),
           score: evaluated.score,
           totalQuestions: evaluated.totalQuestions,
           percentage: evaluated.percentage,
-        });
+        };
+        saveQuizBadge(badge);
         recordCompletedQuiz(collectionId);
+        if (user) {
+          void syncQuizCompletionToCloud(user, badge);
+        }
       }
     }
-  }, [currentIndex, questions, answers, collectionId, collectionTitle]);
+  }, [currentIndex, questions, answers, collectionId, collectionTitle, user]);
 
   const handleRestart = () => {
     const newSample = sampleRandomQuizQuestions(allQuestions, QUIZ_SAMPLE_SIZE);
@@ -134,7 +144,6 @@ export function QuizRunner({
     );
   }
 
-  // Intercepción estricta: Si el usuario no está autenticado, renderizar QuizAuthGate (F13)
   if (!isAuthenticated) {
     return (
       <QuizAuthGate

@@ -1,0 +1,168 @@
+rules_version = '2';
+
+// ===============================================================
+// Assumed Data Model
+// ===============================================================
+//
+// This security rules file assumes the following data structures:
+//
+// Collection: users
+// Document ID: {userId} (must match authenticated Firebase Auth request.auth.uid)
+// Fields (all required; no extraneous fields permitted):
+//   - uid: string (required, immutable on update, length 1..128, must equal {userId} and request.auth.uid)
+//   - displayName: string (required, length 0..120) - User display name
+//   - email: string (required, valid email format, length <= 254) - User email (PII: owner-only get)
+//   - provider: string (required, enum: ['google', 'email']) - Authentication provider
+//   - badges: map (required, size <= 100 entries) - Earned quiz badges keyed by collectionId
+//   - areas: map (required, size <= 10 entries) - Thematic area quest progress keyed by areaId
+//   - updatedAt: string (required, ISO 8601 date string, length 19..64) - Last sync timestamp
+//
+// Access & Privacy Model:
+//   - Owner-only single-document get, create, update, and delete (LFPDPPP / ARCO cancellation support).
+//   - Collection listing/querying on /users is strictly disabled (allow list: if false) to prevent PII leaks.
+//   - All other collections, documents, and subcollections are denied by default.
+//
+// ===============================================================
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ===============================================================
+    // Helper Functions
+    // ===============================================================
+
+    // Check if the user is authenticated
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    // Check if user owns the resource (for user-owned documents)
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // Check if user is owner based on existing document's uid field
+    function isDocOwner() {
+      return isAuthenticated() && request.auth.uid == resource.data.uid;
+    }
+
+    // Verify UID hasn't been tampered with on create
+    function uidUnchanged() {
+      return !('uid' in request.resource.data) ||
+        request.resource.data.uid == request.auth.uid;
+    }
+
+    // Ensure uid field is not modified on update
+    function uidNotModified() {
+      return !('uid' in request.resource.data) ||
+        request.resource.data.uid == resource.data.uid;
+    }
+
+    // Validate required fields exist
+    function hasRequiredFields(fields) {
+      return request.resource.data.keys().hasAll(fields);
+    }
+
+    // Validate that the document contains only the allowed fields
+    function hasOnlyAllowedFields(fields) {
+      return request.resource.data.keys().hasOnly(fields);
+    }
+
+    // Validate that immutable fields have not changed on update
+    function areImmutableFieldsUnchanged(fields) {
+      return !request.resource.data.diff(resource.data).affectedKeys().hasAny(fields);
+    }
+
+    // Validate string length bounds
+    function validStringLength(field, minLen, maxLen) {
+      return request.resource.data[field] is string &&
+        request.resource.data[field].size() >= minLen &&
+        request.resource.data[field].size() <= maxLen;
+    }
+
+    // Validate email format
+    function isValidEmail(email) {
+      return email is string &&
+        email.matches("^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\\.[a-zA-Z]{2,}$");
+    }
+
+    // Validate ISO 8601 date string format (YYYY-MM-DDTHH:MM:SS[.fff][Z|+HH:MM|-HH:MM])
+    // Note: Validates syntax/format only, not logical calendar validity.
+    function isValidDateString(dateStr) {
+      return dateStr is string &&
+        dateStr.matches("^\\d{4}-\\d{2}-\\d{2}T\\d{2}:\\d{2}:\\d{2}(\\.\\d{1,9})?(Z|(\\+|-)\\d{2}:\\d{2})?$");
+    }
+
+    // Validate that a map enforces maximum key-entry bounds
+    function isValidMapSize(mapData, maxSize) {
+      return mapData is map && mapData.size() <= maxSize;
+    }
+
+    // ===============================================================
+    // Domain Validators
+    // ===============================================================
+
+    // Validate user profile and quiz/quest progress document on both create and update
+    function isValidUser(data, userId) {
+      let allowedFields = [
+        'uid',
+        'displayName',
+        'email',
+        'provider',
+        'badges',
+        'areas',
+        'updatedAt'
+      ];
+
+      return hasOnlyAllowedFields(allowedFields) &&
+        hasRequiredFields(allowedFields) &&
+        data.uid is string &&
+        data.uid.size() > 0 &&
+        data.uid.size() <= 128 &&
+        data.uid == userId &&
+        data.uid == request.auth.uid &&
+        validStringLength('displayName', 0, 120) &&
+        validStringLength('email', 1, 254) &&
+        isValidEmail(data.email) &&
+        data.provider is string &&
+        data.provider in ['google', 'email'] &&
+        isValidMapSize(data.badges, 100) &&
+        isValidMapSize(data.areas, 10) &&
+        validStringLength('updatedAt', 19, 64) &&
+        isValidDateString(data.updatedAt);
+    }
+
+    // ===============================================================
+    // Collection Rules
+    // ===============================================================
+
+    match /users/{userId} {
+      // Owner-only single document read (protects PII such as email and displayName)
+      allow get: if isOwner(userId);
+
+      // Explicitly block listing/querying the users collection
+      allow list: if false;
+
+      // Owner can create their own document with strict schema, type, and size validation
+      allow create: if isOwner(userId) &&
+        uidUnchanged() &&
+        isValidUser(request.resource.data, userId);
+
+      // Owner can update their own document; validates full resulting schema and immutable uid
+      allow update: if isOwner(userId) &&
+        isDocOwner() &&
+        uidNotModified() &&
+        areImmutableFieldsUnchanged(['uid']) &&
+        request.resource.data.uid == resource.data.uid &&
+        isValidUser(request.resource.data, userId);
+
+      // Owner can delete only their own document (supports LFPDPPP / ARCO cancellation rights)
+      allow delete: if isOwner(userId);
+    }
+
+    // Default deny for all other paths and subcollections
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}
