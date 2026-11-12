@@ -1,12 +1,12 @@
 /**
- * Dev Visualizer — Explorador Interactivo de Arquitectura por Áreas (Feature F8/F20)
+ * Dev Visualizer — Explorador Visual de las 7 Áreas Canónicas (Feature F8/F20)
  * src/components/home/HomeArchitectureExplorer.tsx
  *
- * Consola interactiva que exhibe las 7 áreas canónicas del atlas, sus 146 rutas
- * canónicas (73 colecciones teóricas + 73 casos prácticos en acción) y los trofeos
- * simbólicos de completado.
+ * Muestra interactivamente las 7 áreas canónicas del atlas, sus 146 rutas canónicas
+ * (73 colecciones teóricas + 73 casos prácticos en acción), sus tecnologías clave
+ * y sus trofeos de completado.
  *
- * Mantiene id="hero-simulator-workbench" para preservar compatibilidad con SpotlightTour.
+ * Preserva id="hero-simulator-workbench" para el recorrido guiado (SpotlightTour).
  */
 
 "use client";
@@ -27,15 +27,14 @@ interface ArchitectureAreaSpec {
   actionCount: number;
   routesCount: number;
   trophyTitle: string;
-  fileName: string;
-  architectureConcept: string;
-  codeSnippet: readonly string[];
+  concept: string;
+  technologies: readonly string[];
 }
 
 const ARCHITECTURE_AREAS: readonly ArchitectureAreaSpec[] = [
   {
     id: "fundamentals",
-    name: "Fundamentos",
+    name: "Fundamentos de Software",
     shortName: "Fundamentos",
     icon: "🧩",
     badge: "5 COL · 10 RUTAS",
@@ -43,29 +42,12 @@ const ARCHITECTURE_AREAS: readonly ArchitectureAreaSpec[] = [
     actionCount: 5,
     routesCount: 10,
     trophyTitle: "Iniciador de Algoritmos y Lógica",
-    fileName: "fundamentos-algoritmos.ts",
-    architectureConcept: "Estructuras de datos, complejidad temporal O(N) y grafos DAG en memoria.",
-    codeSnippet: [
-      "// ÁREA 01 · Algoritmos, Estructuras y Complejidad Big-O",
-      "interface AlgorithmicNode<T> {",
-      "  readonly value: T;",
-      "  readonly edges: Map<string, number>; // Grafo ponderado",
-      "}",
-      "",
-      "function traverseDAG<T>(root: AlgorithmicNode<T>): Set<T> {",
-      "  const visited = new Set<T>();",
-      "  const stack: AlgorithmicNode<T>[] = [root];",
-      "  while (stack.length > 0) {",
-      "    const current = stack.pop()!;",
-      "    if (!visited.has(current.value)) visited.add(current.value);",
-      "  }",
-      "  return visited;",
-      "}",
-    ],
+    concept: "Algoritmos esenciales, estructuras de datos, lógica computacional y complejidad Big-O.",
+    technologies: ["Algoritmos", "Matemáticas", "Lógica", "Grafos", "Big-O"],
   },
   {
     id: "languages",
-    name: "Lenguajes",
+    name: "Lenguajes de Programación",
     shortName: "Lenguajes",
     icon: "🌐",
     badge: "27 COL · 54 RUTAS",
@@ -73,25 +55,12 @@ const ARCHITECTURE_AREAS: readonly ArchitectureAreaSpec[] = [
     actionCount: 27,
     routesCount: 54,
     trophyTitle: "Políglota de Código",
-    fileName: "v8-runtime-engine.ts",
-    architectureConcept: "Modelos de memoria (Stack vs Heap), ciclo de eventos V8 y tipado fuerte.",
-    codeSnippet: [
-      "// ÁREA 02 · 27 Lenguajes: Sintaxis, Memoria y Paradigmas",
-      "class V8RuntimeExecutionCoordinator {",
-      "  private callStack: Frame[] = [];",
-      "  private microtasks: Task[] = []; // Prioridad sobre macrotareas",
-      "",
-      "  public drainQueue(): void {",
-      "    while (this.callStack.length > 0) this.callStack.pop()!.evaluate();",
-      "    // Vaciado determinista de microtareas antes del próximo tick",
-      "    this.microtasks.forEach((task) => task.run());",
-      "  }",
-      "}",
-    ],
+    concept: "Sintaxis, modelos de memoria (Stack vs Heap), ciclo de eventos V8 y paradigmas.",
+    technologies: ["JavaScript", "TypeScript", "Python", "Rust", "Go", "C++", "Java", "C#"],
   },
   {
     id: "interfaces",
-    name: "Diseño e interfaces",
+    name: "Diseño e Interfaces",
     shortName: "Interfaces",
     icon: "🎨",
     badge: "9 COL · 18 RUTAS",
@@ -99,25 +68,12 @@ const ARCHITECTURE_AREAS: readonly ArchitectureAreaSpec[] = [
     actionCount: 9,
     routesCount: 18,
     trophyTitle: "Arquitecto de Experiencias y UI",
-    fileName: "ui-reconciliation-wcag.tsx",
-    architectureConcept: "Reconciliación DOM, tokens de diseño y accesibilidad WCAG 2.1 AA.",
-    codeSnippet: [
-      "// ÁREA 03 · Interfaces Accesibles y Sistemas de Diseño",
-      "export function AccessibleComponent({ title, isLive }: Props) {",
-      "  return (",
-      "    <article role='region' aria-label={title} aria-live={isLive ? 'polite' : 'off'}>",
-      "      <header className='design-tokens-header'>",
-      "        <h2>{title}</h2>",
-      "        <span className='contrast-ratio-badge'>WCAG AA · 4.5:1</span>",
-      "      </header>",
-      "    </article>",
-      "  );",
-      "}",
-    ],
+    concept: "Sistemas de diseño, reconciliación DOM, tokens, accesibilidad WCAG y apps móviles.",
+    technologies: ["HTML/CSS", "React", "Vue", "Svelte", "Tailwind", "React Native", "WCAG 2.1"],
   },
   {
     id: "platforms",
-    name: "Plataforma y servidor",
+    name: "Plataforma y Servidor",
     shortName: "Servidor",
     icon: "⚙️",
     badge: "10 COL · 20 RUTAS",
@@ -125,24 +81,12 @@ const ARCHITECTURE_AREAS: readonly ArchitectureAreaSpec[] = [
     actionCount: 10,
     routesCount: 20,
     trophyTitle: "Especialista en Sistemas y Backend",
-    fileName: "circuit-breaker-resilience.ts",
-    architectureConcept: "Runtimes de servidor, APIs concurrentes y patrón Circuit Breaker.",
-    codeSnippet: [
-      "// ÁREA 04 · Arquitectura Backend y Concurrencia de Servidor",
-      "class ResilientCircuitBreaker {",
-      "  private state: 'CLOSED' | 'OPEN' | 'HALF_OPEN' = 'CLOSED';",
-      "  private failureThreshold = 5;",
-      "",
-      "  async execute<T>(operation: () => Promise<T>): Promise<T> {",
-      "    if (this.state === 'OPEN') throw new Error('CircuitBreakerOpen: Fallback');",
-      "    return await operation().catch((err) => this.recordFailure(err));",
-      "  }",
-      "}",
-    ],
+    concept: "Runtimes de backend, APIs concurrentes, microservicios y patrones de resiliencia.",
+    technologies: ["Node.js", "Express", "Fastify", "Next.js", "NestJS", "Bun", "GraphQL"],
   },
   {
     id: "data",
-    name: "Datos",
+    name: "Datos y Persistencia",
     shortName: "Datos",
     icon: "🗄️",
     badge: "10 COL · 20 RUTAS",
@@ -150,46 +94,25 @@ const ARCHITECTURE_AREAS: readonly ArchitectureAreaSpec[] = [
     actionCount: 10,
     routesCount: 20,
     trophyTitle: "Maestro de Datos y Persistencia",
-    fileName: "acid-storage-engine.ts",
-    architectureConcept: "Transacciones ACID, índices B-Tree, particionado y persistencia NoSQL.",
-    codeSnippet: [
-      "// ÁREA 05 · Modelado de Datos, Motor Relacional y Persistencia",
-      "interface ACIDTransactionCoordinator {",
-      "  begin(): TransactionContext;",
-      "  writeAheadLog(entry: WALEntry): Promise<void>;",
-      "  commit(tx: TransactionContext): Promise<CommitResult>;",
-      "}",
-      "// Aislamiento serializable con consistencia estricta",
-      "const isolationLevel = 'SERIALIZABLE' as const;",
-      "const storageNodes = ['primary-rw', 'replica-01', 'replica-02'];",
-    ],
+    concept: "Modelado relacional ACID, motores NoSQL, índices B-Tree y persistencia distribuida.",
+    technologies: ["PostgreSQL", "MySQL", "Redis", "MongoDB", "SQLite", "Esquemas ACID"],
   },
   {
     id: "versioning",
-    name: "Control de versiones",
-    shortName: "Versiones",
+    name: "Control de Versiones y Calidad",
+    shortName: "Calidad",
     icon: "🛡️",
     badge: "4 COL · 8 RUTAS",
     collectionsCount: 4,
     actionCount: 4,
     routesCount: 8,
     trophyTitle: "Guardián de Integración y Calidad",
-    fileName: "git-dag-history.ts",
-    architectureConcept: "Grafo acíclico dirigido (DAG) de Git, ramas atómicas y compuertas CI.",
-    codeSnippet: [
-      "// ÁREA 06 · Control de Versiones con Git, GitHub y Análisis SAST",
-      "interface GitCommitObject {",
-      "  readonly hash: string; // SHA-256",
-      "  readonly parents: readonly string[]; // Grafo DAG",
-      "}",
-      "function enforceQualityGate(pr: PullRequest): boolean {",
-      "  return pr.sastStatus === 'PASS' && pr.testCoverage >= 90;",
-      "}",
-    ],
+    concept: "Grafo histórico de Git, flujo en GitHub, compuertas CI, análisis SAST y depuración.",
+    technologies: ["Git", "GitHub", "Chrome DevTools", "SAST", "Compuertas CI"],
   },
   {
     id: "delivery",
-    name: "Infraestructura",
+    name: "Infraestructura y Entrega",
     shortName: "DevOps",
     icon: "🚀",
     badge: "8 COL · 16 RUTAS",
@@ -197,18 +120,8 @@ const ARCHITECTURE_AREAS: readonly ArchitectureAreaSpec[] = [
     actionCount: 8,
     routesCount: 16,
     trophyTitle: "Ingeniero de Despliegue y DevOps",
-    fileName: "docker-namespaces-oci.ts",
-    architectureConcept: "Aislamiento en contenedores, namespaces Linux, cgroups y pipelines.",
-    codeSnippet: [
-      "// ÁREA 07 · Infraestructura, Docker y Despliegue Continuo",
-      "interface ContainerIsolationProfile {",
-      "  namespaces: ['pid', 'net', 'ipc', 'mnt', 'uts', 'user'];",
-      "  cgroups: { cpuShares: 1024; memoryLimitMB: 512 };",
-      "}",
-      "function buildMultiStageOCIImage(target: string): ImageDigest {",
-      "  return digestFor(target); // Compilación hermética distroless",
-      "}",
-    ],
+    concept: "Aislamiento en contenedores OCI, Linux, nubes públicas, Kubernetes y CI/CD.",
+    technologies: ["Docker", "Kubernetes", "Linux", "NGINX", "AWS", "Pipelines CI/CD"],
   },
 ];
 
@@ -225,7 +138,7 @@ export function HomeArchitectureExplorer() {
   const totalQuizzes = areaProgress?.totalQuizzes ?? activeArea.collectionsCount;
   const percentage = areaProgress?.percentage ?? 0;
 
-  // Auto-rotación didáctica entre las 7 áreas (pausable por el usuario)
+  // Auto-rotación suave entre las 7 áreas (pausable por el usuario)
   useEffect(() => {
     if (!isAutoPlaying) return;
     const interval = setInterval(() => {
@@ -278,9 +191,9 @@ export function HomeArchitectureExplorer() {
     <div
       id="hero-simulator-workbench"
       className="hero-workbench"
-      aria-label="Consola interactiva de las 7 áreas de arquitectura de software"
+      aria-label="Explorador visual de las 7 áreas canónicas de Dev Visualizer"
     >
-      {/* Barra Superior con Controles de Ventana y Estado Canónico */}
+      {/* Barra Superior con Controles Mac y Estado Canónico */}
       <div className="hero-workbench__titlebar">
         <div className="hero-workbench__dots" aria-hidden="true">
           <span className="dot dot--red" />
@@ -288,14 +201,14 @@ export function HomeArchitectureExplorer() {
           <span className="dot dot--green" />
         </div>
         <span className="hero-workbench__filename">
-          {activeArea.fileName}
+          Atlas de Arquitectura · 7 Áreas
         </span>
         <span className="hero-workbench__badge">
-          🟢 7 ÁREAS · 146 RUTAS
+          🟢 146 RUTAS CANÓNICAS
         </span>
       </div>
 
-      {/* Selector de Pestañas de las 7 Áreas Temáticas (Nombres Compactos para Ajuste Óptimo) */}
+      {/* Selector de Pestañas de las 7 Áreas Temáticas */}
       <div
         className="hero-workbench__tabs"
         role="tablist"
@@ -321,88 +234,89 @@ export function HomeArchitectureExplorer() {
         })}
       </div>
 
-      {/* Panel Superior: Editor de Código Limpio a Ancho Completo */}
-      <div className="hero-workbench__code-panel">
-        <pre className="hero-workbench__code">
-          <code>
-            {activeArea.codeSnippet.map((line, lineIdx) => (
-              <div key={lineIdx} className="hero-workbench__code-line">
-                <span className="hero-workbench__line-number" aria-hidden="true">
-                  {lineIdx + 1}
-                </span>
-                <span className="hero-workbench__line-content">{line}</span>
-              </div>
-            ))}
-          </code>
-        </pre>
-      </div>
-
-      {/* Panel Inferior: Dashboard de Métricas, Trofeos y Enlace Directo */}
-      <div className="hero-workbench__footer-dashboard">
-        <div className="hero-workbench__footer-header">
-          <div className="hero-workbench__footer-area-meta">
-            <span className="hero-workbench__area-tag">
-              ÁREA {selectedIndex + 1} DE 7 · {activeArea.name.toUpperCase()}
-            </span>
-            <p className="hero-workbench__area-concept">
-              {activeArea.architectureConcept}
-            </p>
+      {/* Panel Principal: Showcase Visual del Área Seleccionada */}
+      <div className="hero-workbench__showcase">
+        {/* Encabezado del Área */}
+        <div className="hero-workbench__showcase-header">
+          <div className="hero-workbench__area-icon-box" aria-hidden="true">
+            {activeArea.icon}
           </div>
-
-          {/* Métricas Canónicas en Grupo Compacto */}
-          <div className="hero-workbench__footer-metrics">
-            <div className="hero-workbench__metric-item">
-              <strong>{activeArea.collectionsCount}</strong>
-              <span>Col.</span>
-            </div>
-            <span className="hero-workbench__metric-sep" aria-hidden="true">·</span>
-            <div className="hero-workbench__metric-item">
-              <strong>{activeArea.actionCount}</strong>
-              <span>En Acción</span>
-            </div>
-            <span className="hero-workbench__metric-sep" aria-hidden="true">·</span>
-            <div className="hero-workbench__metric-item">
-              <strong>{activeArea.routesCount}</strong>
-              <span>Rutas</span>
-            </div>
+          <div className="hero-workbench__area-title-wrap">
+            <span className="hero-workbench__area-tag">
+              ÁREA {selectedIndex + 1} DE 7
+            </span>
+            <h3 className="hero-workbench__area-heading">
+              {activeArea.name}
+            </h3>
+            <p className="hero-workbench__area-desc">
+              {activeArea.concept}
+            </p>
           </div>
         </div>
 
-        {/* Fila de Trofeo y Botón de Exploración */}
-        <div className="hero-workbench__footer-actions-row">
+        {/* Tres Contadores Canónicos Destacados */}
+        <div className="hero-workbench__stats-row">
+          <div className="hero-workbench__stat-card">
+            <span className="hero-workbench__stat-num">{activeArea.collectionsCount}</span>
+            <span className="hero-workbench__stat-label">Colecciones Teóricas</span>
+          </div>
+          <div className="hero-workbench__stat-card">
+            <span className="hero-workbench__stat-num">{activeArea.actionCount}</span>
+            <span className="hero-workbench__stat-label">Casos «En Acción»</span>
+          </div>
+          <div className="hero-workbench__stat-card hero-workbench__stat-card--highlight">
+            <span className="hero-workbench__stat-num">{activeArea.routesCount}</span>
+            <span className="hero-workbench__stat-label">Rutas Canónicas</span>
+          </div>
+        </div>
+
+        {/* Tecnologías Clave de Esta Área */}
+        <div className="hero-workbench__tech-row">
+          <span className="hero-workbench__tech-title">Tecnologías:</span>
+          <div className="hero-workbench__tech-tags">
+            {activeArea.technologies.map((tech) => (
+              <span key={tech} className="hero-workbench__tech-pill">
+                {tech}
+              </span>
+            ))}
+          </div>
+        </div>
+
+        {/* Fila Inferior: Trofeo del Área + Botón de Explorar */}
+        <div className="hero-workbench__action-footer">
           <div
-            className={`hero-workbench__trophy-pill ${
-              isAreaUnlocked ? "hero-workbench__trophy-pill--unlocked" : ""
+            className={`hero-workbench__trophy-banner ${
+              isAreaUnlocked ? "hero-workbench__trophy-banner--unlocked" : ""
             }`}
           >
             <span className="hero-workbench__trophy-icon" aria-hidden="true">
               {isAreaUnlocked ? "🏆" : activeArea.icon}
             </span>
-            <div className="hero-workbench__trophy-texts">
-              <span className="hero-workbench__trophy-status">
-                {isAreaUnlocked ? "TROFEO DESBLOQUEADO" : "META / TROFEO"}
+            <div className="hero-workbench__trophy-details">
+              <span className="hero-workbench__trophy-tag">
+                {isAreaUnlocked ? "¡TROFEO DESBLOQUEADO!" : "TROFEO DE COMPLETADO"}
               </span>
               <strong className="hero-workbench__trophy-name">
                 {activeArea.trophyTitle}
               </strong>
-              <small className="hero-workbench__trophy-progress-label">
-                {completedQuizzes} / {totalQuizzes} quizzes ({percentage}%)
+              <small className="hero-workbench__trophy-progress">
+                {completedQuizzes} / {totalQuizzes} quizzes aprobados ({percentage}%)
               </small>
             </div>
           </div>
 
           <Link
             href="/colecciones"
-            className="hero-workbench__explore-btn"
+            className="hero-workbench__direct-btn"
             onClick={() => {
               trackButtonClick(
                 `hero_explore_area_${activeArea.id}`,
-                `Explorar ${activeArea.name}`,
+                `Explorar área ${activeArea.name}`,
                 "hero_workbench"
               );
             }}
           >
-            <span>Explorar {activeArea.shortName}</span>
+            <span>Explorar Colecciones</span>
             <span aria-hidden="true">→</span>
           </Link>
         </div>

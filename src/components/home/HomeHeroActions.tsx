@@ -2,8 +2,7 @@
  * Dev Visualizer — Acciones Principales del Hero (Feature F8)
  * src/components/home/HomeHeroActions.tsx
  *
- * Botones de acción principales con diseño cyber legible, accesibilidad WCAG
- * y registro de telemetría sin PII.
+ * Botones de acción cyber con textos concisos, alto contraste y sin desbordamiento.
  */
 
 "use client";
@@ -24,12 +23,12 @@ export function HomeHeroActions({ totalCollections }: HomeHeroActionsProps) {
         onClick={() => {
           trackButtonClick(
             "btn_hero_explore",
-            `Explorar las ${totalCollections} Colecciones`,
+            `Explorar ${totalCollections} Colecciones`,
             "home_hero"
           );
         }}
       >
-        <span>Explorar las {totalCollections} Colecciones</span>
+        <span>Explorar Colecciones</span>
         <span aria-hidden="true">→</span>
       </Link>
 
@@ -45,7 +44,7 @@ export function HomeHeroActions({ totalCollections }: HomeHeroActionsProps) {
         }}
       >
         <span className="btn-cyber-icon" aria-hidden="true">&gt;_</span>
-        <span>73 Casos «En Acción»</span>
+        <span>Casos «En Acción»</span>
       </Link>
 
       <Link

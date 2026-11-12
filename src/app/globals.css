@@ -9929,195 +9929,221 @@ body {
   font-size: 0.82rem;
 }
 
-/* Editor de Código a Ancho Completo */
-.hero-workbench__code-panel {
-  background: #03060c;
-  padding: 12px 14px;
-  overflow-x: auto;
-  border-bottom: 1px solid #1a273b;
-}
-
-.hero-workbench__code {
-  margin: 0;
-  font-family: var(--mono);
-  font-size: 0.74rem;
-  line-height: 1.55;
-}
-
-.hero-workbench__code-line {
-  display: flex;
-  gap: 12px;
-}
-
-.hero-workbench__line-number {
-  color: #3b506d;
-  user-select: none;
-  min-width: 16px;
-  text-align: right;
-}
-
-.hero-workbench__line-content {
-  color: #cad8ec;
-  white-space: pre;
-}
-
-/* Panel Inferior: Dashboard de Área, Métricas y Trofeo a Ancho Completo */
-.hero-workbench__footer-dashboard {
-  background: #070e1b;
-  padding: 12px 14px;
+/* Showcase Visual del Área Seleccionada (Dev Visualizer) */
+.hero-workbench__showcase {
+  background: radial-gradient(circle at 80% 20%, rgba(59, 211, 255, 0.08), transparent 60%), #070e1b;
+  padding: 18px 20px;
   display: flex;
   flex-direction: column;
-  gap: 10px;
+  gap: 16px;
 }
 
-.hero-workbench__footer-header {
+.hero-workbench__showcase-header {
   display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  flex-wrap: wrap;
+  align-items: flex-start;
+  gap: 14px;
 }
 
-.hero-workbench__footer-area-meta {
+.hero-workbench__area-icon-box {
+  width: 52px;
+  height: 52px;
+  border-radius: 12px;
+  background: rgba(59, 211, 255, 0.1);
+  border: 1px solid rgba(59, 211, 255, 0.3);
+  display: grid;
+  place-items: center;
+  font-size: 1.8rem;
+  flex-shrink: 0;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
+}
+
+.hero-workbench__area-title-wrap {
   display: flex;
   flex-direction: column;
   gap: 2px;
   min-width: 0;
-  flex: 1;
 }
 
 .hero-workbench__area-tag {
   font-family: var(--mono);
-  font-size: 0.64rem;
+  font-size: 0.65rem;
   font-weight: 800;
   color: var(--cyan);
-  letter-spacing: 0.06em;
+  letter-spacing: 0.08em;
 }
 
-.hero-workbench__area-concept {
+.hero-workbench__area-heading {
   margin: 0;
-  font-size: 0.78rem;
-  color: #9cb1cc;
-  line-height: 1.4;
-}
-
-.hero-workbench__footer-metrics {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-  background: rgba(0, 0, 0, 0.45);
-  border: 1px solid #1a273b;
-  border-radius: 8px;
-  padding: 4px 10px;
-  white-space: nowrap;
-}
-
-.hero-workbench__metric-item {
-  display: flex;
-  align-items: center;
-  gap: 4px;
-}
-
-.hero-workbench__metric-item strong {
-  font-family: var(--mono);
-  font-size: 0.84rem;
+  font-size: 1.25rem;
   font-weight: 800;
   color: #fff;
+  letter-spacing: -0.02em;
 }
 
-.hero-workbench__metric-item span {
-  font-size: 0.65rem;
+.hero-workbench__area-desc {
+  margin: 4px 0 0;
+  font-size: 0.82rem;
+  color: #a4b9d4;
+  line-height: 1.45;
+}
+
+/* Tres Contadores Canónicos Destacados */
+.hero-workbench__stats-row {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.hero-workbench__stat-card {
+  background: rgba(0, 0, 0, 0.4);
+  border: 1px solid #1a273b;
+  border-radius: 10px;
+  padding: 10px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 2px;
+}
+
+.hero-workbench__stat-card--highlight {
+  border-color: rgba(59, 211, 255, 0.4);
+  background: rgba(59, 211, 255, 0.08);
+}
+
+.hero-workbench__stat-num {
+  font-family: var(--mono);
+  font-size: 1.35rem;
+  font-weight: 800;
+  color: #fff;
+  line-height: 1;
+}
+
+.hero-workbench__stat-card--highlight .hero-workbench__stat-num {
+  color: var(--cyan);
+}
+
+.hero-workbench__stat-label {
+  font-size: 0.68rem;
   color: var(--muted);
+  font-weight: 600;
+  line-height: 1.2;
+}
+
+/* Tecnologías Clave */
+.hero-workbench__tech-row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.hero-workbench__tech-title {
+  font-family: var(--mono);
+  font-size: 0.7rem;
+  color: var(--muted);
+  font-weight: 700;
   text-transform: uppercase;
 }
 
-.hero-workbench__metric-sep {
-  color: #3b506d;
+.hero-workbench__tech-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
 }
 
-.hero-workbench__footer-actions-row {
+.hero-workbench__tech-pill {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  color: #cad8ec;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  padding: 2px 7px;
+  border-radius: 4px;
+}
+
+/* Fila Inferior: Trofeo + Botón Directo */
+.hero-workbench__action-footer {
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
   flex-wrap: wrap;
-  padding-top: 8px;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
 }
 
-.hero-workbench__trophy-pill {
+.hero-workbench__trophy-banner {
   display: flex;
   align-items: center;
-  gap: 8px;
-  background: rgba(255, 209, 102, 0.06);
-  border: 1px solid rgba(255, 209, 102, 0.2);
-  border-radius: 8px;
-  padding: 5px 10px;
-  min-width: 0;
+  gap: 10px;
+  background: rgba(255, 209, 102, 0.08);
+  border: 1px solid rgba(255, 209, 102, 0.25);
+  border-radius: 10px;
+  padding: 6px 12px;
+  flex: 1;
+  min-width: 220px;
 }
 
-.hero-workbench__trophy-pill--unlocked {
-  background: rgba(255, 209, 102, 0.16);
+.hero-workbench__trophy-banner--unlocked {
+  background: rgba(255, 209, 102, 0.18);
   border-color: #ffd166;
-  box-shadow: 0 0 12px rgba(255, 209, 102, 0.2);
+  box-shadow: 0 0 16px rgba(255, 209, 102, 0.25);
 }
 
 .hero-workbench__trophy-icon {
-  font-size: 1.25rem;
+  font-size: 1.4rem;
   line-height: 1;
 }
 
-.hero-workbench__trophy-texts {
+.hero-workbench__trophy-details {
   display: flex;
   flex-direction: column;
   gap: 1px;
-  min-width: 0;
 }
 
-.hero-workbench__trophy-status {
+.hero-workbench__trophy-tag {
   font-family: var(--mono);
-  font-size: 0.58rem;
+  font-size: 0.6rem;
   font-weight: 800;
   color: #ffd166;
   letter-spacing: 0.06em;
 }
 
 .hero-workbench__trophy-name {
-  font-size: 0.78rem;
-  font-weight: 700;
+  font-size: 0.82rem;
+  font-weight: 800;
   color: #fff;
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
+  line-height: 1.2;
 }
 
-.hero-workbench__trophy-progress-label {
+.hero-workbench__trophy-progress {
   font-family: var(--mono);
-  font-size: 0.62rem;
-  color: #9cb1cc;
+  font-size: 0.65rem;
+  color: #a4b9d4;
 }
 
-.hero-workbench__explore-btn {
+.hero-workbench__direct-btn {
   display: inline-flex;
   align-items: center;
-  gap: 6px;
-  padding: 7px 14px;
-  border-radius: 6px;
-  background: rgba(59, 211, 255, 0.12);
-  border: 1px solid rgba(59, 211, 255, 0.35);
-  color: var(--cyan);
+  gap: 7px;
+  padding: 10px 16px;
+  border-radius: 8px;
+  background: linear-gradient(135deg, var(--cyan) 0%, #1ea7d9 100%);
+  color: #03101c;
   font-family: var(--mono);
-  font-size: 0.74rem;
-  font-weight: 700;
+  font-size: 0.78rem;
+  font-weight: 800;
   text-decoration: none;
-  transition: all 0.15s ease;
+  transition: all 0.18s ease;
   white-space: nowrap;
+  box-shadow: 0 4px 14px rgba(59, 211, 255, 0.3);
 }
 
-.hero-workbench__explore-btn:hover {
-  background: var(--cyan);
-  color: #03101c;
-  box-shadow: 0 2px 10px rgba(59, 211, 255, 0.3);
+.hero-workbench__direct-btn:hover {
+  transform: translateY(-2px);
+  background: linear-gradient(135deg, #5fe0ff 0%, #2bbcee 100%);
+  box-shadow: 0 6px 20px rgba(59, 211, 255, 0.45);
 }
 
 /* Barra de Controles Inferior */

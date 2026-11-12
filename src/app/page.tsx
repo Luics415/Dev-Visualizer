@@ -7,7 +7,6 @@ import { HomeConceptSearch } from "@/components/home/HomeConceptSearch";
 import { StartGuideDrawer } from "@/components/home/StartGuideDrawer";
 import { SpotlightTour } from "@/components/home/SpotlightTour";
 import { collectionManifest } from "@/data/collectionManifest";
-import { canonicalConceptCount } from "@/data/canonicalConceptCollections";
 
 export const metadata = {
   title: "Dev Visualizer · Atlas Interactivo de Arquitectura de Software",
@@ -27,12 +26,11 @@ export default function HomePage() {
       <header className="home-hero home-hero--split">
         <div className="home-hero__content-col">
           <h1 className="home-hero__headline">
-            Comprende la arquitectura <br className="hero-break" />
-            de software viéndola ejecutarse.
+            Arquitectura de software en acción.
           </h1>
 
           <p className="home-hero__subheadline">
-            Simula algoritmos, ciclos de eventos y <strong>{canonicalConceptCount.toLocaleString("es-MX")} conceptos técnicos</strong> a través de 7 áreas de arquitectura, con animaciones interactivas paso a paso en memoria activa.
+            Simula 73 tecnologías, 146 rutas canónicas y 7 áreas de ingeniería con animaciones interactivas paso a paso en memoria activa.
           </p>
 
           {/* Botones de Acción Principales */}
