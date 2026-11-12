@@ -10697,47 +10697,47 @@ body {
 /* SVG Orbital de Conexión y Energía */
 .radial-menu-svg {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  width: 820px;
-  height: 820px;
-  max-width: 96vw;
-  max-height: 96vh;
+  top: 0;
+  left: 0;
+  translate: -50% -50%;
   overflow: visible;
   pointer-events: none;
   z-index: 1;
 }
 
-.radial-orbit-circle {
+.radial-orbit-ring {
   fill: none;
-  stroke: rgba(59, 211, 255, 0.16);
+  stroke: rgba(59, 211, 255, 0.2);
   stroke-width: 1.5;
-  stroke-dasharray: 6 6;
-  animation: spin-orbit 80s linear infinite;
+  stroke-dasharray: 6 8;
+  transform-box: fill-box;
+  transform-origin: center;
+  animation: orbit-dash-flow 6s linear infinite;
 }
 
 .radial-ray-line {
-  stroke: rgba(121, 145, 180, 0.22);
-  stroke-width: 1.5;
-  stroke-dasharray: 4 4;
+  stroke: rgba(121, 145, 180, 0.28);
+  stroke-width: 1.25;
+  stroke-linecap: round;
   transition: stroke 0.22s ease, stroke-width 0.22s ease, filter 0.22s ease;
 }
 
 .radial-ray-line--active {
-  stroke-width: 2.5;
-  stroke-dasharray: none;
+  stroke-width: 2.25;
   filter: drop-shadow(0 0 6px currentColor);
 }
 
-/* Núcleo Central: Orbe que se Desprende al Centro */
+/* Núcleo Central: Orbe que se Desprende al Centro.
+   El centrado usa la propiedad independiente `translate` para componerse
+   con el `transform` que escribe motion (x, y, scale) sin sobrescribirse. */
 .radial-menu-core {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
+  translate: -50% -50%;
   z-index: 10;
   pointer-events: auto;
+  will-change: transform, opacity;
 }
 
 .radial-core__orb {
@@ -10817,15 +10817,21 @@ body {
   transform: scale(1.05);
 }
 
-/* Satélites Radiales en Órbita */
+.radial-core__close-btn:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 2px;
+}
+
+/* Satélites Radiales en Órbita (centrado compuesto con el transform de motion) */
 .radial-node-satellite {
   position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
+  top: 0;
+  left: 0;
+  translate: -50% -50%;
   width: 185px;
   pointer-events: auto;
   z-index: 5;
+  will-change: transform, opacity;
 }
 
 .radial-node-card {
@@ -10838,14 +10844,23 @@ body {
   color: inherit;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 14px color-mix(in srgb, var(--node-accent) 14%, transparent);
   backdrop-filter: blur(10px);
-  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+  transition:
+    border-color 0.2s ease,
+    box-shadow 0.2s ease,
+    transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .radial-node-card:hover,
 .radial-node-card:focus-visible {
   border-color: var(--node-accent);
   box-shadow: 0 12px 32px rgba(0, 0, 0, 0.8), 0 0 25px color-mix(in srgb, var(--node-accent) 40%, transparent);
+  transform: translateY(-3px) scale(1.04);
   outline: none;
+}
+
+.radial-node-card:focus-visible {
+  outline: 2px solid var(--node-accent);
+  outline-offset: 3px;
 }
 
 .radial-node-card__header {
@@ -10899,9 +10914,23 @@ body {
   padding-top: 6px;
 }
 
+.radial-node-card__arrow {
+  display: inline-block;
+  transition: transform 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.radial-node-card:hover .radial-node-card__arrow,
+.radial-node-card:focus-visible .radial-node-card__arrow {
+  transform: translateX(4px);
+}
+
 @keyframes spin-orbit {
   from { transform: rotate(0deg); }
   to { transform: rotate(360deg); }
+}
+
+@keyframes orbit-dash-flow {
+  to { stroke-dashoffset: -140; }
 }
 
 @media (max-width: 768px) {
@@ -10934,7 +10963,7 @@ body {
 
 @media (max-width: 480px) {
   .radial-node-satellite {
-    width: 125px;
+    width: 116px;
   }
   .radial-node-card {
     padding: 7px 9px;
@@ -10956,6 +10985,26 @@ body {
   }
 }
 
+/* Movimiento reducido: se conservan los estados finales sin animaciones continuas */
+@media (prefers-reduced-motion: reduce) {
+  .radial-orbit-ring,
+  .radial-core__orb::after,
+  .start-edge-dot {
+    animation: none !important;
+  }
+  .radial-node-card,
+  .radial-node-card__arrow,
+  .start-edge-bar,
+  .spotlight-box,
+  .spotlight-modal {
+    transition: none !important;
+  }
+  .radial-node-card:hover,
+  .radial-node-card:focus-visible {
+    transform: none;
+  }
+}
+
 /* ── 05. Tour Interactivo con Spotlight y Fondo Oscuro ── */
 .spotlight-full-backdrop {
   position: fixed;
@@ -10963,7 +11012,7 @@ body {
   background: rgba(3, 6, 12, 0.82);
   backdrop-filter: blur(5px);
   z-index: 9998;
-  animation: fade-in 0.25s ease-out;
+  animation: spotlight-fade-in 0.25s ease-out;
 }
 
 .spotlight-box {
@@ -10976,11 +11025,12 @@ body {
     inset 0 0 20px rgba(59, 211, 255, 0.15);
   z-index: 9999;
   pointer-events: none;
+  animation: spotlight-fade-in 0.3s ease-out;
   transition:
-    top 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-    left 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-    width 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-    height 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    top 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    left 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    width 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    height 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
 .spotlight-modal {
@@ -10997,10 +11047,40 @@ body {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  animation: slide-up-card 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  animation: spotlight-slide-up 0.32s cubic-bezier(0.16, 1, 0.3, 1);
   transition:
-    top 0.35s cubic-bezier(0.16, 1, 0.3, 1),
-    left 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+    top 0.45s cubic-bezier(0.16, 1, 0.3, 1),
+    left 0.45s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Reproduce un fundido suave del contenido en cada cambio de paso */
+.spotlight-modal__body {
+  animation: spotlight-step-in 0.28s ease-out;
+}
+
+/* `translate` se compone con el transform !important del modal centrado */
+@keyframes spotlight-slide-up {
+  from { opacity: 0; translate: 0 14px; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+@keyframes spotlight-fade-in {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes spotlight-step-in {
+  from { opacity: 0; translate: 6px 0; }
+  to { opacity: 1; translate: 0 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .spotlight-full-backdrop,
+  .spotlight-box,
+  .spotlight-modal,
+  .spotlight-modal__body {
+    animation: none !important;
+  }
 }
 
 .spotlight-modal--centered {

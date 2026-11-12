@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect, useCallback } from "react";
+import { useState, useEffect, useCallback, useRef } from "react";
 
 interface TourStep {
   id: string;
@@ -67,6 +67,7 @@ export function SpotlightTour() {
   const [modalPos, setModalPos] = useState<{ top: number; left: number } | null>(null);
 
   const step = TOUR_STEPS[currentStep];
+  const modalRef = useRef<HTMLDivElement>(null);
 
   const updatePosition = useCallback(() => {
     if (!isOpen) return;
@@ -92,8 +93,9 @@ export function SpotlightTour() {
       height: rect.height,
     });
 
-    const modalWidth = Math.min(420, window.innerWidth * 0.92);
-    const modalHeight = 220;
+    // Medidas reales del modal (con respaldo si aún no se ha montado)
+    const modalWidth = modalRef.current?.offsetWidth ?? Math.min(440, window.innerWidth * 0.92);
+    const modalHeight = modalRef.current?.offsetHeight ?? 220;
 
     let targetLeft = rect.left + rect.width / 2 - modalWidth / 2;
     // Bound horizontally
@@ -119,13 +121,40 @@ export function SpotlightTour() {
     if (step.target) {
       const el = document.querySelector(step.target);
       if (el) {
-        el.scrollIntoView({ behavior: "smooth", block: "center" });
+        const position = window.getComputedStyle(el).position;
+        if (step.id === "navbar") {
+          // La barra es sticky: se vuelve al inicio para mostrarla en su contexto natural
+          window.scrollTo({ top: 0, behavior: "smooth" });
+        } else if (position !== "fixed") {
+          el.scrollIntoView({ behavior: "smooth", block: "center" });
+        }
       }
     }
 
-    const timeout = setTimeout(updatePosition, 300);
-    return () => clearTimeout(timeout);
-  }, [isOpen, step.target, updatePosition]);
+    // Reposiciona durante y al final del desplazamiento suave
+    const t1 = setTimeout(updatePosition, 60);
+    const t2 = setTimeout(updatePosition, 450);
+    return () => {
+      clearTimeout(t1);
+      clearTimeout(t2);
+    };
+  }, [isOpen, step.id, step.target, updatePosition]);
+
+  // Navegación por teclado: Escape cierra, flechas avanzan o retroceden
+  useEffect(() => {
+    if (!isOpen) return;
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") {
+        setIsOpen(false);
+      } else if (e.key === "ArrowRight") {
+        setCurrentStep((prev) => Math.min(TOUR_STEPS.length - 1, prev + 1));
+      } else if (e.key === "ArrowLeft") {
+        setCurrentStep((prev) => Math.max(0, prev - 1));
+      }
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, [isOpen]);
 
   // Update position on resize and scroll
   useEffect(() => {
@@ -207,6 +236,7 @@ export function SpotlightTour() {
 
       {/* ── Tarjeta Modal del Tour ── */}
       <div
+        ref={modalRef}
         className={`spotlight-modal ${isCentered ? "spotlight-modal--centered" : ""}`}
         style={
           modalPos
@@ -255,7 +285,7 @@ export function SpotlightTour() {
         </div>
 
         {/* Contenido del Paso */}
-        <div className="spotlight-modal__body">
+        <div className="spotlight-modal__body" key={step.id} aria-live="polite">
           <span className="spotlight-modal__tag">{step.tag}</span>
           <h3 className="spotlight-modal__title">{step.title}</h3>
           <p className="spotlight-modal__text">{step.description}</p>
