@@ -27,7 +27,8 @@ export default function HomePage() {
       <header className="home-hero home-hero--split">
         <div className="home-hero__content-col">
           <h1 className="home-hero__headline">
-            Comprende la arquitectura de software viéndola ejecutarse.
+            Comprende la arquitectura <br className="hero-break" />
+            de software viéndola ejecutarse.
           </h1>
 
           <p className="home-hero__subheadline">
