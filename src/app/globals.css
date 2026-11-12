@@ -9663,7 +9663,7 @@ body {
 /* ── 01. Hero Split Amplio y Cómodo (Dev Visualizer) ── */
 .home-hero--split {
   display: grid;
-  grid-template-columns: 0.95fr 1.05fr;
+  grid-template-columns: minmax(0, 0.95fr) minmax(0, 1.05fr);
   gap: clamp(24px, 3.2vw, 40px);
   align-items: center;
   padding: clamp(32px, 3.5vw, 48px);
@@ -9671,10 +9671,26 @@ body {
 
 @media (max-width: 1024px) {
   .home-hero--split {
-    grid-template-columns: 1fr;
-    gap: 32px;
-    padding: 28px 20px;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+    padding: 24px 18px;
   }
+}
+
+@media (max-width: 600px) {
+  .home-hero--split {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 20px;
+    padding: 18px 12px;
+    border-radius: 16px;
+  }
+}
+
+.home-hero__content-col,
+.home-hero__visual-col {
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
 }
 
 .home-hero__content-col {
@@ -9685,7 +9701,7 @@ body {
 }
 
 .home-hero__headline {
-  font-size: clamp(1.8rem, 2.7vw, 2.45rem);
+  font-size: clamp(1.55rem, 5.8vw, 2.45rem);
   font-weight: 800;
   line-height: 1.18;
   letter-spacing: -0.025em;
@@ -9693,6 +9709,8 @@ body {
   margin: 0 0 14px;
   text-wrap: balance;
   max-width: 520px;
+  overflow-wrap: break-word;
+  word-break: normal;
 }
 
 .hero-break {
@@ -9711,6 +9729,10 @@ body {
   color: #b0c4de;
   margin: 0 0 18px;
   max-width: 520px;
+  width: 100%;
+  overflow-wrap: break-word;
+  word-break: normal;
+  text-wrap: pretty;
 }
 
 .home-hero__subheadline strong {
@@ -9727,6 +9749,17 @@ body {
   color: var(--muted);
   opacity: 0.85;
   flex-wrap: wrap;
+  max-width: 100%;
+  overflow-wrap: break-word;
+  line-height: 1.5;
+}
+
+@media (max-width: 600px) {
+  .home-hero__footnote {
+    gap: 6px 8px;
+    font-size: 0.7rem;
+    margin-top: 10px;
+  }
 }
 
 .home-hero__footnote-sep {
@@ -9745,7 +9778,7 @@ body {
 
 @media (max-width: 520px) {
   .home-hero__actions {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
 }
 
@@ -9769,6 +9802,8 @@ body {
   user-select: none;
   white-space: nowrap;
   text-align: center;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .btn-cyber-primary {
@@ -9839,6 +9874,10 @@ body {
   box-shadow: 0 20px 48px rgba(0, 0, 0, 0.65), 0 0 35px rgba(59, 211, 255, 0.12);
   display: flex;
   flex-direction: column;
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
 }
 
 .hero-workbench__titlebar {
@@ -9850,12 +9889,16 @@ body {
   border-bottom: 1px solid #1a273b;
   font-family: var(--mono);
   font-size: 0.74rem;
+  min-width: 0;
+  gap: 8px;
+  box-sizing: border-box;
 }
 
 .hero-workbench__dots {
   display: flex;
   gap: 6px;
   align-items: center;
+  flex-shrink: 0;
 }
 
 .dot {
@@ -9873,6 +9916,10 @@ body {
   color: #cad8ec;
   font-weight: 600;
   font-size: 0.76rem;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 
 .hero-workbench__badge {
@@ -9884,6 +9931,8 @@ body {
   border: 1px solid rgba(73, 225, 168, 0.25);
   padding: 2px 8px;
   border-radius: 999px;
+  flex-shrink: 0;
+  white-space: nowrap;
 }
 
 /* Pestañas Compactas de las 7 Áreas */
@@ -9895,6 +9944,11 @@ body {
   background: #040710;
   border-bottom: 1px solid #1a273b;
   scrollbar-width: thin;
+  min-width: 0;
+  width: 100%;
+  max-width: 100%;
+  -webkit-overflow-scrolling: touch;
+  box-sizing: border-box;
 }
 
 .hero-workbench__tab {
@@ -9949,6 +10003,29 @@ body {
   display: flex;
   flex-direction: column;
   gap: 16px;
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 600px) {
+  .hero-workbench__showcase {
+    padding: 14px 12px;
+    gap: 12px;
+  }
+  .hero-workbench__area-icon-box {
+    width: 42px;
+    height: 42px;
+    font-size: 1rem;
+    border-radius: 10px;
+  }
+  .hero-workbench__area-heading {
+    font-size: 1.08rem;
+  }
+  .hero-workbench__area-desc {
+    font-size: 0.78rem;
+    line-height: 1.4;
+  }
 }
 
 .hero-workbench__showcase-header {
@@ -10007,6 +10084,8 @@ body {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 10px;
+  min-width: 0;
+  width: 100%;
 }
 
 .hero-workbench__stat-card {
@@ -10019,6 +10098,26 @@ body {
   align-items: center;
   text-align: center;
   gap: 2px;
+  min-width: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+}
+
+@media (max-width: 480px) {
+  .hero-workbench__stats-row {
+    gap: 6px;
+  }
+  .hero-workbench__stat-card {
+    padding: 8px 4px;
+    border-radius: 8px;
+  }
+  .hero-workbench__stat-num {
+    font-size: 1.15rem;
+  }
+  .hero-workbench__stat-label {
+    font-size: 0.62rem;
+    line-height: 1.15;
+  }
 }
 
 .hero-workbench__stat-card--highlight {
@@ -10084,6 +10183,8 @@ body {
   padding-top: 12px;
   border-top: 1px solid rgba(255, 255, 255, 0.08);
   flex-wrap: wrap;
+  min-width: 0;
+  width: 100%;
 }
 
 .hero-workbench__trophy-banner {
@@ -10096,6 +10197,24 @@ body {
   padding: 6px 12px;
   flex: 1;
   min-width: 220px;
+  box-sizing: border-box;
+}
+
+@media (max-width: 640px) {
+  .hero-workbench__action-footer {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .hero-workbench__trophy-banner {
+    width: 100%;
+    min-width: 0;
+  }
+  .hero-workbench__direct-btn {
+    width: 100%;
+    justify-content: center;
+    box-sizing: border-box;
+  }
 }
 
 .hero-workbench__trophy-banner--unlocked {
@@ -10166,6 +10285,22 @@ body {
   padding: 8px 14px;
   background: #040810;
   border-top: 1px solid #1a273b;
+  min-width: 0;
+  width: 100%;
+  box-sizing: border-box;
+}
+
+@media (max-width: 480px) {
+  .hero-workbench__controls {
+    flex-direction: column;
+    gap: 8px;
+    align-items: center;
+    padding: 8px 10px;
+  }
+  .hero-workbench__buttons {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 .hero-workbench__step-info {
@@ -11263,11 +11398,11 @@ body {
 }
 @media (max-width: 960px) {
   .home-hero--split {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
     gap: 28px;
   }
   .hero-workbench__body {
-    grid-template-columns: 1fr;
+    grid-template-columns: minmax(0, 1fr);
   }
   .hero-workbench__code-pane {
     border-right: none;
@@ -11282,6 +11417,26 @@ body {
     opacity: 0;
     pointer-events: none;
     transform: translateY(20px);
+  }
+}
+
+@media (max-width: 640px) {
+  .start-edge-bar {
+    bottom: 68px;
+  }
+  .start-edge-btn {
+    padding: 8px 12px;
+    font-size: 0.72rem;
+    gap: 6px;
+    border-radius: 0 8px 8px 0;
+  }
+  .floating-tour-reopen-btn {
+    bottom: 16px;
+    right: 14px;
+    padding: 8px 12px;
+    font-size: 0.72rem;
+    gap: 6px;
+    border-radius: 8px;
   }
 }
 
