@@ -21,11 +21,11 @@ const TOUR_STEPS: readonly TourStep[] = [
   },
   {
     id: "workbench",
-    title: "Simulador de Código y Memoria",
+    title: "Consola de Arquitectura por Áreas",
     description:
-      "Inspecciona la ejecución de algoritmos frame a frame: código a la izquierda, punteros de partición L/R a la derecha y complejidad Big-O en tiempo real.",
+      "Explora las 7 áreas de arquitectura del atlas: código en vivo, distribución de las 146 rutas canónicas y trofeos de completado.",
     target: "#hero-simulator-workbench",
-    tag: "SIMULADOR EN VIVO",
+    tag: "CONSOLA EN VIVO",
   },
   {
     id: "menu-01",
