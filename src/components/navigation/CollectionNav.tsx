@@ -326,6 +326,7 @@ export function CollectionNav() {
 
   return (
     <nav
+      id="main-nav"
       className="collection-nav"
       aria-label="Navegación de colecciones"
       style={{ "--nav-read": `${readPct}%` } as CSSProperties}

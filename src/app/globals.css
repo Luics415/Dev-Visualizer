@@ -10601,7 +10601,7 @@ body {
   outline-offset: 2px;
 }
 
-/* ── 04. Botón Lateral Izquierdo ("¿Por dónde empezar?") y Cajón Desplegable ── */
+/* ── 04. Botón Lateral Izquierdo ("¿Por dónde empezar?") y Menú Radial Animado ── */
 .start-edge-bar {
   position: fixed;
   left: 0;
@@ -10610,6 +10610,13 @@ body {
   z-index: 990;
   display: flex;
   flex-direction: column;
+  transition: opacity 0.25s ease, transform 0.25s ease;
+}
+
+.start-edge-bar--hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: translateY(-50%) translateX(-20px);
 }
 
 .start-edge-btn {
@@ -10646,217 +10653,307 @@ body {
   animation: pulse-dot 1.4s infinite;
 }
 
-.start-drawer-backdrop {
-  position: fixed;
-  inset: 0;
-  background: rgba(0, 0, 0, 0.75);
-  backdrop-filter: blur(6px);
-  z-index: 9998;
-  animation: fade-in 0.2s ease-out;
-}
-
-.start-drawer {
-  position: fixed;
-  top: 0;
-  left: 0;
-  bottom: 0;
-  width: min(420px, 94vw);
-  background: #070c18;
-  border-right: 1px solid rgba(121, 145, 180, 0.28);
-  z-index: 9999;
-  display: flex;
-  flex-direction: column;
-  box-shadow: 16px 0 48px rgba(0, 0, 0, 0.85);
-  transform: translateX(-100%);
-  transition: transform 0.28s cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.start-drawer--open {
-  transform: translateX(0);
-}
-
-.start-drawer__header {
-  display: flex;
-  align-items: flex-start;
-  justify-content: space-between;
-  padding: 18px 20px;
-  border-bottom: 1px solid rgba(121, 145, 180, 0.18);
-  background: rgba(255, 255, 255, 0.02);
-}
-
-.start-drawer__eyebrow {
-  display: block;
-  font-family: var(--mono);
-  font-size: 0.65rem;
-  font-weight: 800;
+.start-edge-badge {
+  font-size: 0.62rem;
+  padding: 2px 6px;
+  border-radius: 4px;
+  background: rgba(59, 211, 255, 0.14);
+  border: 1px solid rgba(59, 211, 255, 0.35);
   color: var(--cyan);
-  margin-bottom: 3px;
-  letter-spacing: 0.06em;
-}
-
-.start-drawer__header h2 {
-  font-size: 1.22rem;
-  font-weight: 750;
-  color: #fff;
-  margin: 0 0 4px;
-}
-
-.start-drawer__header p {
-  font-size: 0.78rem;
-  color: var(--muted);
-  margin: 0;
-  line-height: 1.4;
-}
-
-.start-drawer__close-btn {
-  background: transparent;
-  border: 1px solid rgba(121, 145, 180, 0.25);
-  border-radius: 8px;
-  color: var(--muted);
-  cursor: pointer;
-  padding: 6px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all var(--t-fast);
-}
-
-.start-drawer__close-btn:hover {
-  color: #fff;
-  border-color: rgba(59, 211, 255, 0.5);
-  background: rgba(59, 211, 255, 0.1);
-}
-
-.start-drawer__body {
-  flex: 1;
-  overflow-y: auto;
-  padding: 16px;
-  display: flex;
-  flex-direction: column;
-  gap: 12px;
-}
-
-/* Tarjeta de Fase Estilo .topicCard de /libreria */
-.start-phase-card {
-  --step-accent: var(--cyan);
-  position: relative;
-  overflow: hidden;
-  background: linear-gradient(145deg, color-mix(in srgb, var(--step-accent) 9%, transparent), rgba(11, 17, 30, 0.92) 42%);
-  border: 1px solid rgba(121, 145, 180, 0.22);
-  border-radius: 16px;
-  padding: 16px;
-  transition: border-color 180ms ease, transform 180ms ease;
-}
-
-.start-phase-card::before {
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 40%;
-  height: 2px;
-  content: "";
-  background: linear-gradient(90deg, transparent, var(--step-accent));
-}
-
-.start-phase-card:hover {
-  border-color: color-mix(in srgb, var(--step-accent) 58%, transparent);
-  transform: translateY(-2px);
-}
-
-.start-phase-card__header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 8px;
-}
-
-.start-phase-card__category {
-  font-family: var(--mono);
-  font-size: 0.65rem;
-  font-weight: 750;
-  color: var(--muted);
-  letter-spacing: 0.06em;
+  letter-spacing: 0.04em;
   text-transform: uppercase;
 }
 
-.start-phase-card__badge {
-  display: grid;
-  min-width: 36px;
-  height: 28px;
-  place-items: center;
-  border-radius: 7px;
-  background: color-mix(in srgb, var(--step-accent) 16%, transparent);
-  color: var(--step-accent);
-  font-family: var(--mono);
-  font-size: 0.68rem;
-  font-weight: 800;
-}
-
-.start-phase-card__title {
-  font-size: 1rem;
-  font-weight: 700;
-  color: #fff;
-  margin: 0 0 5px;
-}
-
-.start-phase-card__summary {
-  font-size: 0.78rem;
-  color: #9cb1cc;
-  line-height: 1.45;
-  margin: 0 0 12px;
-}
-
-.start-phase-card__footer {
-  border-top: 1px solid rgba(121, 145, 180, 0.14);
-  padding-top: 10px;
-}
-
-.start-phase-link {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  padding: 8px 12px;
-  border-radius: 8px;
-  background: color-mix(in srgb, var(--step-accent) 13%, transparent);
-  font-family: var(--mono);
-  font-size: 0.74rem;
-  font-weight: 750;
-  color: #fff;
-  text-decoration: none;
-  transition: all var(--t-fast);
-}
-
-.start-phase-link:hover {
-  background: color-mix(in srgb, var(--step-accent) 24%, transparent);
-  outline: 2px solid var(--step-accent);
-}
-
-.start-drawer__footer {
-  padding: 14px 16px;
-  border-top: 1px solid rgba(121, 145, 180, 0.18);
-  background: rgba(255, 255, 255, 0.02);
-}
-
-.start-drawer__footer-cta {
+/* ── Menú Radial Cinemático Desplegado ── */
+.radial-menu-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 99999;
   display: flex;
   align-items: center;
   justify-content: center;
-  gap: 8px;
-  width: 100%;
-  padding: 11px;
-  background: var(--cyan);
-  color: #050811;
-  font-family: var(--mono);
-  font-size: 0.78rem;
-  font-weight: 800;
-  text-decoration: none;
-  border-radius: 9px;
-  transition: all var(--t-fast);
+  overflow: hidden;
+  pointer-events: auto;
 }
 
-.start-drawer__footer-cta:hover {
-  background: #64e0ff;
-  box-shadow: 0 0 20px rgba(59, 211, 255, 0.4);
+.radial-menu-backdrop {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(circle at center, rgba(6, 15, 34, 0.88) 0%, rgba(2, 6, 15, 0.96) 100%);
+  backdrop-filter: blur(14px) saturate(180%);
+  cursor: pointer;
+}
+
+.radial-menu-stage {
+  position: relative;
+  width: 0;
+  height: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  pointer-events: none;
+}
+
+/* SVG Orbital de Conexión y Energía */
+.radial-menu-svg {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 820px;
+  height: 820px;
+  max-width: 96vw;
+  max-height: 96vh;
+  overflow: visible;
+  pointer-events: none;
+  z-index: 1;
+}
+
+.radial-orbit-circle {
+  fill: none;
+  stroke: rgba(59, 211, 255, 0.16);
+  stroke-width: 1.5;
+  stroke-dasharray: 6 6;
+  animation: spin-orbit 80s linear infinite;
+}
+
+.radial-ray-line {
+  stroke: rgba(121, 145, 180, 0.22);
+  stroke-width: 1.5;
+  stroke-dasharray: 4 4;
+  transition: stroke 0.22s ease, stroke-width 0.22s ease, filter 0.22s ease;
+}
+
+.radial-ray-line--active {
+  stroke-width: 2.5;
+  stroke-dasharray: none;
+  filter: drop-shadow(0 0 6px currentColor);
+}
+
+/* Núcleo Central: Orbe que se Desprende al Centro */
+.radial-menu-core {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 10;
+  pointer-events: auto;
+}
+
+.radial-core__orb {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 154px;
+  height: 154px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #0d1e3d 0%, #050b18 80%);
+  border: 2px solid rgba(59, 211, 255, 0.55);
+  box-shadow:
+    0 0 35px rgba(59, 211, 255, 0.25),
+    0 0 70px rgba(14, 165, 233, 0.15),
+    inset 0 0 20px rgba(59, 211, 255, 0.12);
+  text-align: center;
+  padding: 12px;
+  position: relative;
+}
+
+.radial-core__orb::after {
+  content: "";
+  position: absolute;
+  inset: -6px;
+  border-radius: 50%;
+  border: 1px dashed rgba(59, 211, 255, 0.3);
+  animation: spin-orbit 24s linear infinite;
+}
+
+.radial-core__icon-box {
+  color: var(--cyan);
+  margin-bottom: 4px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.radial-core__title {
+  font-size: 0.85rem;
+  font-weight: 800;
+  color: #fff;
+  margin: 0;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+}
+
+.radial-core__sub {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  color: var(--cyan);
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  margin-top: 3px;
+  font-weight: 700;
+}
+
+.radial-core__close-btn {
+  margin-top: 8px;
+  background: rgba(255, 255, 255, 0.08);
+  border: 1px solid rgba(121, 145, 180, 0.32);
+  border-radius: 12px;
+  color: #9cb1cc;
+  font-family: var(--mono);
+  font-size: 0.66rem;
+  font-weight: 700;
+  padding: 3px 9px;
+  cursor: pointer;
+  transition: all var(--t-fast);
+  z-index: 2;
+}
+
+.radial-core__close-btn:hover {
+  background: rgba(239, 68, 68, 0.2);
+  border-color: rgba(239, 68, 68, 0.5);
+  color: #ff8b8b;
+  transform: scale(1.05);
+}
+
+/* Satélites Radiales en Órbita */
+.radial-node-satellite {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 185px;
+  pointer-events: auto;
+  z-index: 5;
+}
+
+.radial-node-card {
+  display: block;
+  background: linear-gradient(145deg, color-mix(in srgb, var(--node-accent) 12%, transparent), rgba(9, 16, 32, 0.95) 45%);
+  border: 1px solid color-mix(in srgb, var(--node-accent) 35%, rgba(121, 145, 180, 0.2));
+  border-radius: 14px;
+  padding: 12px 14px;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 14px color-mix(in srgb, var(--node-accent) 14%, transparent);
+  backdrop-filter: blur(10px);
+  transition: border-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.radial-node-card:hover,
+.radial-node-card:focus-visible {
+  border-color: var(--node-accent);
+  box-shadow: 0 12px 32px rgba(0, 0, 0, 0.8), 0 0 25px color-mix(in srgb, var(--node-accent) 40%, transparent);
+  outline: none;
+}
+
+.radial-node-card__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 6px;
+}
+
+.radial-node-card__badge {
+  font-family: var(--mono);
+  font-size: 0.62rem;
+  font-weight: 800;
+  color: var(--node-accent);
+  letter-spacing: 0.05em;
+}
+
+.radial-node-card__icon {
+  font-size: 1.05rem;
+  line-height: 1;
+}
+
+.radial-node-card__title {
+  font-size: 0.88rem;
+  font-weight: 750;
+  color: #fff;
+  margin: 0 0 4px;
+  line-height: 1.25;
+}
+
+.radial-node-card__summary {
+  font-size: 0.72rem;
+  color: #9cb1cc;
+  line-height: 1.35;
+  margin: 0 0 8px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.radial-node-card__action {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 750;
+  color: var(--node-accent);
+  border-top: 1px solid rgba(121, 145, 180, 0.15);
+  padding-top: 6px;
+}
+
+@keyframes spin-orbit {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+@media (max-width: 768px) {
+  .radial-node-satellite {
+    width: 148px;
+  }
+  .radial-node-card {
+    padding: 9px 11px;
+    border-radius: 11px;
+  }
+  .radial-node-card__title {
+    font-size: 0.78rem;
+  }
+  .radial-node-card__summary {
+    font-size: 0.66rem;
+    margin-bottom: 5px;
+  }
+  .radial-core__orb {
+    width: 124px;
+    height: 124px;
+    padding: 8px;
+  }
+  .radial-core__title {
+    font-size: 0.74rem;
+  }
+  .radial-core__sub {
+    font-size: 0.56rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .radial-node-satellite {
+    width: 125px;
+  }
+  .radial-node-card {
+    padding: 7px 9px;
+    border-radius: 9px;
+  }
+  .radial-node-card__title {
+    font-size: 0.72rem;
+  }
+  .radial-node-card__summary {
+    display: none;
+  }
+  .radial-core__orb {
+    width: 105px;
+    height: 105px;
+    padding: 6px;
+  }
+  .radial-core__title {
+    font-size: 0.68rem;
+  }
 }
 
 /* ── 05. Tour Interactivo con Spotlight y Fondo Oscuro ── */
@@ -11112,6 +11209,11 @@ body {
     top: auto;
     bottom: 80px;
     transform: none;
+  }
+  .start-edge-bar--hidden {
+    opacity: 0;
+    pointer-events: none;
+    transform: translateY(20px);
   }
 }
 

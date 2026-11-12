@@ -20,44 +20,36 @@ const TOUR_STEPS: readonly TourStep[] = [
     tag: "INTRODUCCIÓN",
   },
   {
-    id: "workbench",
-    title: "Consola de Arquitectura por Áreas",
+    id: "navbar",
+    title: "Barra Superior de Navegación",
     description:
-      "Explora las 7 áreas de arquitectura del atlas: código en vivo, distribución de las 146 rutas canónicas y trofeos de completado.",
+      "Acceso global permanente: navega entre las 73 colecciones, 146 rutas canónicas, buscador en tiempo real y la librería técnica de estándares.",
+    target: "#main-nav",
+    tag: "BARRA SUPERIOR",
+  },
+  {
+    id: "workbench",
+    title: "Consola Interactiva del Hero",
+    description:
+      "Explora las 7 áreas de arquitectura del atlas: métricas en tiempo real, distribución de colecciones y trofeos canónicos de maestría técnica.",
     target: "#hero-simulator-workbench",
     tag: "CONSOLA EN VIVO",
   },
   {
-    id: "menu-01",
-    title: "Colecciones Temáticas",
+    id: "trophies",
+    title: "Trofeos de Completado por Área",
     description:
-      "Explora 73 colecciones tecnológicas y 7,410 conceptos canónicos organizados por dominios de arquitectura con mapas visuales interactivos.",
-    target: "#menu-card-01",
-    tag: "APARTADO · 01",
-  },
-  {
-    id: "menu-02",
-    title: "Capacidades Operativas",
-    description:
-      "73 escenarios de producción simulados: inyección de fallos de red, saturación de pools de base de datos, aislamiento en Docker y mitigación con Circuit Breakers.",
-    target: "#menu-card-02",
-    tag: "APARTADO · 02",
-  },
-  {
-    id: "menu-03",
-    title: "Librería Profesional Preservada",
-    description:
-      "266 recursos y normas oficiales: especificaciones formales de TC39 (ECMA-262), RFCs del IETF y documentación primaria sin alucinaciones.",
-    target: "#menu-card-03",
-    tag: "APARTADO · 03",
+      "Valida tus conocimientos resolviendo los quizzes técnicos de cada una de las 7 áreas de arquitectura para desbloquear tus medallas oficiales de maestría.",
+    target: "#trofeos-areas",
+    tag: "METAS Y RECONOCIMIENTOS",
   },
   {
     id: "start-guide",
     title: "¿Por dónde empezar?",
     description:
-      "¿No sabes por dónde comenzar? Haz clic en esta pestaña lateral en cualquier momento para desplegar la ruta formativa en 6 secciones canónicas.",
+      "Despliega el Menú Radial interactivo: una brújula visual animada que se desprende hacia el centro con las rutas formativas recomendadas según tu objetivo.",
     target: "#tour-start-btn",
-    tag: "GUÍA LATERAL",
+    tag: "MENÚ RADIAL GUÍA",
   },
 ];
 
