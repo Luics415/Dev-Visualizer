@@ -9,6 +9,7 @@ import type { ChangeEvent, ReactNode } from "react";
 import { collectionGroups, collectionLinks } from "@/data/collectionLinks";
 import { themeForPath } from "@/data/collectionManifest";
 import { searchTechnicalConcepts } from "@/data/conceptSearchIndex";
+import { useAuth } from "@/hooks/useAuth";
 import { useReadingProgress } from "@/hooks/useReadingProgress";
 
 const basePath = process.env.NEXT_PUBLIC_BASE_PATH ?? "";
@@ -68,7 +69,8 @@ export function CollectionNav() {
   const [query, setQuery] = useState("");
   const [highlightedIndex, setHighlightedIndex] = useState(-1);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const readPct = useReadingProgress(); // A10
+  const readPct = useReadingProgress();
+  const { user, isAuthenticated, signOut } = useAuth();
 
   const activeIndex = collectionLinks.findIndex((item) => normalizePathname(item.href) === normalizedPathname);
   const active = activeIndex >= 0 ? collectionLinks[activeIndex] : null;
@@ -377,35 +379,66 @@ export function CollectionNav() {
         )}
       </div>
 
-      <details
-        className="collection-picker collection-picker--desktop"
-        ref={detailsRef}
-        onToggle={(event) => {
-          if (!event.currentTarget.open) {
-            setQuery("");
-            setHighlightedIndex(-1);
-          }
-        }}
-      >
-        <summary>
-          <span>Explorar rutas</span>
-          <b>{collectionLinks.length}</b>
-        </summary>
-        <PickerShell>{pickerContents}</PickerShell>
-      </details>
-
-      <div className="collection-picker--mobile">
-        <button
-          className="collection-picker__mobile-trigger"
-          type="button"
-          aria-expanded={mobileMenuOpen}
-          aria-controls="mobile-collection-menu"
-          onClick={() => setMobileMenuOpen((open) => !open)}
+      <div className="collection-nav__end">
+        <details
+          className="collection-picker collection-picker--desktop"
+          ref={detailsRef}
+          onToggle={(event) => {
+            if (!event.currentTarget.open) {
+              setQuery("");
+              setHighlightedIndex(-1);
+            }
+          }}
         >
-          <span>Rutas</span>
-          <b>{collectionLinks.length}</b>
-          <em aria-hidden="true">{mobileMenuOpen ? "×" : "⌄"}</em>
-        </button>
+          <summary>
+            <span>Explorar rutas</span>
+            <b>{collectionLinks.length}</b>
+          </summary>
+          <PickerShell>{pickerContents}</PickerShell>
+        </details>
+
+        <div className="collection-picker--mobile">
+          <button
+            className="collection-picker__mobile-trigger"
+            type="button"
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-collection-menu"
+            onClick={() => setMobileMenuOpen((open) => !open)}
+          >
+            <span>Rutas</span>
+            <b>{collectionLinks.length}</b>
+            <em aria-hidden="true">{mobileMenuOpen ? "×" : "⌄"}</em>
+          </button>
+        </div>
+
+        {isAuthenticated && user ? (
+          <div className="collection-nav__account" aria-label={`Sesión activa de ${user.displayName}`}>
+            {user.photoURL ? (
+              <Image
+                src={user.photoURL}
+                alt={user.displayName || "Avatar"}
+                width={22}
+                height={22}
+                className="collection-nav__avatar"
+                referrerPolicy="no-referrer"
+                unoptimized
+              />
+            ) : (
+              <span className="collection-nav__avatar-fallback" aria-hidden="true">
+                {(user.displayName || "U").trim().charAt(0).toUpperCase()}
+              </span>
+            )}
+            <span className="collection-nav__account-name">{user.displayName}</span>
+            <button
+              type="button"
+              className="collection-nav__signout"
+              onClick={() => void signOut()}
+              aria-label="Cerrar sesión"
+            >
+              Cerrar sesión
+            </button>
+          </div>
+        ) : null}
       </div>
 
       {mobileMenuOpen && typeof document !== "undefined"

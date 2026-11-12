@@ -1,8 +1,9 @@
 import type { QuizQuestion, QuizBadge, QuizResult } from "@/data/quizTypes";
 
 export const QUIZ_SAMPLE_SIZE = 15;
-export const QUIZ_PASS_PERCENTAGE = 70; // 70% de aciertos para superar el reto
+export const QUIZ_PASS_PERCENTAGE = 70;
 export const QUIZ_STORAGE_KEY = "dev-visualizer-quiz-badges";
+export const BADGES_CHANGE_EVENT = "dev_visualizer_badges_change";
 
 /**
  * Baraja aleatoriamente las 4 opciones de una pregunta utilizando Fisher-Yates
@@ -114,14 +115,33 @@ export function saveQuizBadge(badge: QuizBadge): void {
   if (typeof window === "undefined") return;
   try {
     const badges = getUnlockedBadges();
-    // Guardar si no existe o si la puntuación actual es mayor
     const prev = badges[badge.collectionId];
     if (!prev || badge.score >= prev.score) {
       badges[badge.collectionId] = badge;
       localStorage.setItem(QUIZ_STORAGE_KEY, JSON.stringify(badges));
       window.dispatchEvent(new Event("storage"));
+      window.dispatchEvent(new Event(BADGES_CHANGE_EVENT));
     }
   } catch {
-    // Almacenamiento local bloqueado o cuota excedida
+  }
+}
+
+export function replaceUnlockedBadges(badges: Record<string, QuizBadge>): void {
+  if (typeof window === "undefined") return;
+  try {
+    localStorage.setItem(QUIZ_STORAGE_KEY, JSON.stringify(badges));
+    window.dispatchEvent(new Event("storage"));
+    window.dispatchEvent(new Event(BADGES_CHANGE_EVENT));
+  } catch {
+  }
+}
+
+export function clearUnlockedBadges(): void {
+  if (typeof window === "undefined") return;
+  try {
+    localStorage.removeItem(QUIZ_STORAGE_KEY);
+    window.dispatchEvent(new Event("storage"));
+    window.dispatchEvent(new Event(BADGES_CHANGE_EVENT));
+  } catch {
   }
 }

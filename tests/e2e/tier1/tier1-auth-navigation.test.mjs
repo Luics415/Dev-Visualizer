@@ -216,4 +216,79 @@ describe("Tier 1: Navegación Libre y Autenticación Exclusiva para Quizzes (F11
     });
   });
 
+  // ==========================================================================
+  // F23: Contrato UI QuizAuthGate, Aislamiento Multicuenta y Seguridad Firebase
+  // ==========================================================================
+  describe("F23: Contrato UI QuizAuthGate, Aislamiento Multicuenta y Seguridad Firebase", () => {
+    it("T1-F23-01: QuizAuthGate usa backdrop del Tour y textos exactos en español sin emojis", () => {
+      const gatePath = resolve(PROJECT_ROOT, "src/components/auth/QuizAuthGate.tsx");
+      const content = readFileSync(gatePath, "utf-8");
+      assert.match(content, /spotlight-full-backdrop/, "Debe usar el filtro opaco del tour");
+      assert.match(
+        content,
+        /Acción necesaria para registrar progreso/,
+        "Debe mostrar el título solicitado"
+      );
+      assert.match(
+        content,
+        /Para realizar preguntas de evaluación sobre el tema/,
+        "Debe incluir la descripción dinámica sobre el tema"
+      );
+      assert.match(content, /Continuar con Google/, "Debe mostrar el botón Continuar con Google");
+      assert.match(content, /Tal vez después/, "Debe mostrar el botón secundario Tal vez después");
+      assert.doesNotMatch(content, /\u{1F512}/u, "No debe contener emojis en lugar del icono SVG");
+    });
+
+    it("T1-F23-02: Aislamiento multicuenta limpia progreso local al cambiar de usuario", async () => {
+      const quizEngine = await import("@/lib/quizEngine");
+      const questsEngine = await import("@/lib/questsEngine");
+      const cloudProgress = await import("@/lib/cloudProgress");
+
+      quizEngine.saveQuizBadge({
+        collectionId: "prolog",
+        collectionTitle: "Prolog",
+        unlockedAt: "2026-11-12T10:00:00.000Z",
+        score: 14,
+        totalQuestions: 15,
+        percentage: 93,
+      });
+      questsEngine.recordCompletedQuiz("prolog");
+
+      assert.equal(Object.keys(quizEngine.getUnlockedBadges()).length, 1);
+
+      cloudProgress.startCloudProgressSync({
+        id: "uid-user-a",
+        displayName: "Usuario A",
+        email: "a@example.com",
+        provider: "google",
+        createdAt: "2026-11-12T10:00:00.000Z",
+      });
+
+      assert.equal(Object.keys(quizEngine.getUnlockedBadges()).length, 1, "Primer dueño conserva cache local inicial");
+
+      cloudProgress.startCloudProgressSync({
+        id: "uid-user-b",
+        displayName: "Usuario B",
+        email: "b@example.com",
+        provider: "google",
+        createdAt: "2026-11-12T10:05:00.000Z",
+      });
+
+      assert.equal(Object.keys(quizEngine.getUnlockedBadges()).length, 0, "Cambio a Usuario B debe limpiar insignias previas");
+      assert.deepEqual(questsEngine.exportRawQuestsMap(), {}, "Cambio a Usuario B debe limpiar progreso de áreas previo");
+    });
+
+    it("T1-F23-03: firestore.rules protege /users/{userId} y prohíbe secretos en archivos versionados", () => {
+      const rulesPath = resolve(PROJECT_ROOT, "firestore.rules");
+      assert.ok(existsSync(rulesPath), "firestore.rules debe existir");
+      const rules = readFileSync(rulesPath, "utf-8");
+      assert.match(rules, /match \/users\/\{userId\}/, "Debe declarar reglas para /users/{userId}");
+      assert.match(rules, /allow list:\s*if false;/, "Debe bloquear listado público de usuarios");
+      assert.match(rules, /allow get:\s*if isOwner\(userId\);/, "Solo el propietario puede leer su documento");
+
+      const envExample = readFileSync(resolve(PROJECT_ROOT, ".env.example"), "utf-8");
+      assert.doesNotMatch(envExample, /AIza[0-9A-Za-z-_]{35}/, ".env.example jamás debe contener llaves reales");
+    });
+  });
+
 });

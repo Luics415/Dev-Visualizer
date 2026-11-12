@@ -52,9 +52,9 @@ export default function CookiesPolicyPage() {
           <span>Memoria temporal</span>
           <h2>Almacenamiento técnico en sesión</h2>
           <p>
-            El navegador puede emplear <code>sessionStorage</code> técnico exclusivamente para recordar la posición del scroll
-            al navegar entre capítulos y colecciones. Esta información reside únicamente en tu dispositivo y se destruye
-            automáticamente al cerrar la pestaña.
+            El navegador emplea almacenamiento técnico local (<code>sessionStorage</code>, <code>localStorage</code> e IndexedDB de
+            Firebase) estrictamente necesario para la experiencia de estudio y, cuando decides iniciar sesión con Google para
+            realizar quizzes, mantener tu sesión activa y la sincronización de tus logros entre dispositivos sin usar cookies publicitarias.
           </p>
         </article>
 

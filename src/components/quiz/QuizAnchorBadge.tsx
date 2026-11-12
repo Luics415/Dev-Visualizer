@@ -93,7 +93,7 @@ export function QuizAnchorBadge({
           </span>
           <span className="quiz-anchor-badge__status">
             <span className="quiz-anchor-badge__pulse-dot" />
-            En LocalStorage
+            Sincronizado en cuenta
           </span>
         </div>
 

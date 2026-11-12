@@ -48,6 +48,7 @@ function isUserEqual(a: AuthUser | null, b: AuthUser | null): boolean {
     a.email === b.email &&
     a.provider === b.provider &&
     a.displayName === b.displayName &&
+    a.photoURL === b.photoURL &&
     a.authenticatedAt === b.authenticatedAt
   );
 }

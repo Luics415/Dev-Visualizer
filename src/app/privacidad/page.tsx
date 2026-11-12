@@ -18,8 +18,9 @@ export default function PrivacyPolicyPage() {
           <span className="eyebrow">Transparencia, gobernanza y datos personales</span>
           <h1>Aviso de Privacidad Integral</h1>
           <p>
-            Dev Visualizer opera bajo el principio de minimización absoluta: un atlas educativo de código abierto
-            que no almacena bases de datos personales, no incluye rastreadores publicitarios y respeta tus derechos de privacidad.
+            Dev Visualizer opera bajo el principio de minimización absoluta: todo el atlas educativo, visualizaciones
+            y documentación son de libre acceso sin registro; únicamente cuando inicias sesión con Google para realizar
+            quizzes sincronizamos tu progreso y logros asociados en Cloud Firestore.
           </p>
         </div>
         <div className="hero__counter" role="group" aria-label="Marco normativo de privacidad">
@@ -56,9 +57,11 @@ export default function PrivacyPolicyPage() {
           <span>Recolección de datos</span>
           <h2>Cero recopilación automática</h2>
           <p>
-            Dev Visualizer <strong>no recopila automáticamente datos personales ni sensibles</strong>. El sitio no utiliza
-            sistemas de registro, cuentas de usuario, formularios de captura hacia bases de datos privadas ni pasarelas comerciales.
-            Navegas de forma autónoma y libre.
+            Dev Visualizer <strong>no recopila automáticamente datos personales ni sensibles</strong> para navegar por el sitio.
+            Puedes explorar las colecciones, simuladores y librería de forma libre y anónima. Únicamente si decides
+            iniciar sesión voluntariamente con Google mediante Firebase Authentication al abrir un quiz, guardamos tu
+            identificador de cuenta, nombre visible, correo e insignias aprobadas en Cloud Firestore para conservar
+            tu progreso entre dispositivos.
           </p>
         </article>
 
@@ -89,9 +92,11 @@ export default function PrivacyPolicyPage() {
           <span>Transferencias de datos</span>
           <h2>Sin cesión a terceros</h2>
           <p>
-            No se transfieren ni venden datos personales a terceros. La plataforma se aloja de forma estática en GitHub Pages
-            (Fastly CDN). Los servidores de GitHub pueden procesar registros técnicos de conexión (IP, agente de usuario y marca de tiempo)
-            estrictamente necesarios para mitigar ataques DDoS y asegurar la infraestructura bajo su propia política de privacidad.
+            No se transfieren ni venden datos personales a terceros. La plataforma estática se aloja en GitHub Pages
+            (Fastly CDN), cuyos servidores pueden procesar registros técnicos de conexión (IP, agente de usuario y marca de tiempo)
+            estrictamente necesarios para mitigar ataques DDoS bajo su propia política de privacidad; de forma adicional,
+            la autenticación voluntaria para quizzes y la persistencia de logros utilizan servicios de Google Firebase bajo
+            acceso exclusivo del titular de la cuenta.
           </p>
         </div>
       </section>
