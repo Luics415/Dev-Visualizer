@@ -1,17 +1,17 @@
 import { CollectionNav } from "@/components/navigation/CollectionNav";
-import { HeroSimulatorWorkbench } from "@/components/home/HeroSimulatorWorkbench";
+import { HomeArchitectureExplorer } from "@/components/home/HomeArchitectureExplorer";
 import { HomeHeroActions } from "@/components/home/HomeHeroActions";
 import { HomeSectionsMenu } from "@/components/home/HomeSectionsMenu";
+import { HomeAchievementsSection } from "@/components/home/HomeAchievementsSection";
 import { HomeConceptSearch } from "@/components/home/HomeConceptSearch";
 import { StartGuideDrawer } from "@/components/home/StartGuideDrawer";
 import { SpotlightTour } from "@/components/home/SpotlightTour";
 import { collectionManifest } from "@/data/collectionManifest";
-import { canonicalConceptCount } from "@/data/canonicalConceptCollections";
 
 export const metadata = {
   title: "Dev Visualizer · Atlas Interactivo de Arquitectura de Software",
   description:
-    "Comprende el código y la arquitectura de software viéndolos ejecutarse. 7,410 conceptos técnicos, 73 colecciones, algoritmos observables, telemetría y especificaciones oficiales.",
+    "Comprende el código y la arquitectura de software viéndolos ejecutarse. 7,410 conceptos técnicos, 73 colecciones, 146 rutas canónicas, 7 áreas de arquitectura y trofeos de completado.",
 };
 
 export default function HomePage() {
@@ -22,15 +22,15 @@ export default function HomePage() {
     <main className="page-shell">
       <CollectionNav />
 
-      {/* ── Hero Split de Alto Impacto (Inspirado en la Arquitectura de DevVizor) ── */}
+      {/* ── Hero Split Amplio y Cómodo de Alto Impacto ── */}
       <header className="home-hero home-hero--split">
         <div className="home-hero__content-col">
           <h1 className="home-hero__headline">
-            Comprende la arquitectura de software viéndola ejecutarse.
+            Arquitectura de software en acción.
           </h1>
 
           <p className="home-hero__subheadline">
-            Simula algoritmos, ciclos de eventos y <strong>{canonicalConceptCount.toLocaleString("es-MX")} conceptos técnicos</strong> con animaciones interactivas paso a paso en memoria activa.
+            Simula 73 tecnologías, 146 rutas canónicas y 7 áreas de ingeniería con animaciones interactivas paso a paso en memoria activa.
           </p>
 
           {/* Botones de Acción Principales */}
@@ -42,18 +42,23 @@ export default function HomePage() {
             <span className="home-hero__footnote-sep">·</span>
             <span>{totalRoutes} rutas canónicas</span>
             <span className="home-hero__footnote-sep">·</span>
+            <span>7 áreas canónicas con trofeos</span>
+            <span className="home-hero__footnote-sep">·</span>
             <span>JavaScript, Python, Rust, Go, Docker, SQL, Linux</span>
           </div>
         </div>
 
-        {/* Columna Derecha: Workbench de Simulación en Vivo */}
+        {/* Columna Derecha: Consola Interactiva de las 7 Áreas de Arquitectura */}
         <div className="home-hero__visual-col">
-          <HeroSimulatorWorkbench />
+          <HomeArchitectureExplorer />
         </div>
       </header>
 
-      {/* ── Menú Guía Directo: Directorio de Secciones y Entornos ── */}
+      {/* ── Menú Guía Directo: Los 4 Pilares Fundamentales ── */}
       <HomeSectionsMenu />
+
+      {/* ── Sección de Metas y Trofeos de Completado por Área ── */}
+      <HomeAchievementsSection />
 
       {/* ── Buscador Global Indexado en Memoria (Sub-milisegundo) ── */}
       <HomeConceptSearch />

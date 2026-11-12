@@ -2,9 +2,7 @@
  * Dev Visualizer — Acciones Principales del Hero (Feature F8)
  * src/components/home/HomeHeroActions.tsx
  *
- * Componente interactivo de cliente para registrar clics de telemetría
- * en los tres enlaces de acción principales del Hero sin convertir
- * src/app/page.tsx en Client Component (preservando metadata de Next.js).
+ * Botones de acción cyber con textos concisos, alto contraste y sin desbordamiento.
  */
 
 "use client";
@@ -23,10 +21,14 @@ export function HomeHeroActions({ totalCollections }: HomeHeroActionsProps) {
         href="/colecciones"
         className="btn-cyber-primary"
         onClick={() => {
-          trackButtonClick("btn_hero_explore", `Explorar las ${totalCollections} Colecciones`, "home_hero");
+          trackButtonClick(
+            "btn_hero_explore",
+            `Explorar ${totalCollections} Colecciones`,
+            "home_hero"
+          );
         }}
       >
-        <span>Explorar las {totalCollections} Colecciones</span>
+        <span>Explorar Colecciones</span>
         <span aria-hidden="true">→</span>
       </Link>
 
@@ -34,26 +36,57 @@ export function HomeHeroActions({ totalCollections }: HomeHeroActionsProps) {
         href="/docker-en-accion"
         className="btn-cyber-secondary"
         onClick={() => {
-          trackButtonClick("btn_hero_production_cases", "Casos de Producción", "home_hero");
+          trackButtonClick(
+            "btn_hero_production_cases",
+            "Casos en Acción",
+            "home_hero"
+          );
         }}
       >
         <span className="btn-cyber-icon" aria-hidden="true">&gt;_</span>
-        <span>Casos de Producción</span>
+        <span>Casos «En Acción»</span>
       </Link>
 
       <Link
         href="/libreria"
         className="btn-cyber-outline"
         onClick={() => {
-          trackButtonClick("btn_hero_library", "Librería Profesional", "home_hero");
+          trackButtonClick(
+            "btn_hero_library",
+            "Librería Profesional",
+            "home_hero"
+          );
         }}
       >
-        <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+        <svg
+          viewBox="0 0 24 24"
+          width="16"
+          height="16"
+          fill="none"
+          stroke="currentColor"
+          strokeWidth="2"
+          aria-hidden="true"
+        >
           <path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20" />
           <path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z" />
         </svg>
         <span>Librería Profesional</span>
       </Link>
+
+      <a
+        href="#trofeos-areas"
+        className="btn-cyber-trophies"
+        onClick={() => {
+          trackButtonClick(
+            "btn_hero_trophies",
+            "Trofeos por Área",
+            "home_hero"
+          );
+        }}
+      >
+        <span aria-hidden="true">🏆</span>
+        <span>Trofeos por Área</span>
+      </a>
     </div>
   );
 }

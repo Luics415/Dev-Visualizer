@@ -15,68 +15,46 @@ const SECTION_MENU_ITEMS: readonly SectionMenuItem[] = [
   {
     number: "01",
     eyebrow: "01 · CATÁLOGO CANÓNICO",
-    badge: "73 COL",
+    badge: "73 COLECCIONES",
     title: "Colecciones Temáticas",
     description:
-      "Catálogo completo de 73 tecnologías y 7,410 conceptos canónicos organizados por dominios de arquitectura (Frontend, Backend, Runtimes, Nube y DevOps) con mapas visuales interactivos.",
+      "Explora 73 tecnologías y más de 7,400 conceptos con mapas visuales interactivos paso a paso en memoria viva.",
     route: "/colecciones",
     actionText: "Explorar las 73 Colecciones",
     accent: "var(--cyan)",
   },
   {
     number: "02",
-    eyebrow: "02 · CAPACIDADES OPERATIVAS",
-    badge: "73 CASOS",
-    title: "Capacidades Operativas",
+    eyebrow: "02 · CASOS PRÁCTICOS EN VIVO",
+    badge: "73 EN ACCIÓN",
+    title: "Casos «En Acción»",
     description:
-      "73 escenarios de producción simulados: inyección de fallos de red, saturación de pools de base de datos, aislamiento en Docker y mitigación con patrones Circuit Breaker.",
+      "Simula 73 escenarios reales de producción: inyección de fallos de red, saturación de pools de base de datos y aislamiento en Docker.",
     route: "/docker-en-accion",
-    actionText: "Ver Simulaciones de Producción",
+    actionText: "Ver Casos de Producción",
     accent: "var(--green)",
   },
   {
     number: "03",
     eyebrow: "03 · ESTÁNDARES FORMALES",
     badge: "266 NORMAS",
-    title: "Librería Profesional Preservada",
+    title: "Librería Profesional",
     description:
-      "266 recursos y normas oficiales: especificaciones formales de TC39 (ECMA-262), RFCs del IETF (HTTP/2, HTTP/3, QUIC) y documentación primaria sin alucinaciones.",
+      "Consulta especificaciones formales de TC39 (ECMA-262), RFCs del IETF y documentación primaria sin alucinaciones.",
     route: "/libreria",
     actionText: "Consultar 266 Recursos",
     accent: "var(--jinx-rose)",
   },
   {
     number: "04",
-    eyebrow: "04 · MODELO DE EJECUCIÓN",
-    badge: "V8 RUNTIME",
-    title: "Currículum y Runtimes",
+    eyebrow: "04 · METAS Y RECONOCIMIENTOS",
+    badge: "7 TROFEOS",
+    title: "Trofeos por Área",
     description:
-      "Trazabilidad de ejecución en tiempo real: Call Stack, Event Loop de V8, Microtasks vs Macrotasks, gestión de memoria Stack vs Heap y complejidad algorítmica Big-O.",
-    route: "/javascript",
-    actionText: "Acceder al Runtime de JavaScript",
+      "Supera las evaluaciones técnicas de las 7 áreas de arquitectura para validar tus modelos mentales y ganar tus trofeos.",
+    route: "#trofeos-areas",
+    actionText: "Ver Trofeos y Metas ↓",
     accent: "var(--yellow)",
-  },
-  {
-    number: "05",
-    eyebrow: "05 · RIGOR TÉCNICO Y ACCESIBILIDAD",
-    badge: "SAST 100%",
-    title: "Auditoría, Seguridad y Confianza",
-    description:
-      "Garantías formales de ingeniería: cero dependencias vulnerables, análisis SAST continuo, tipado estricto en TypeScript y accesibilidad internacional WCAG 2.1 AA.",
-    route: "/acerca",
-    actionText: "Ver Dictamen de Auditoría",
-    accent: "var(--cyan)",
-  },
-  {
-    number: "06",
-    eyebrow: "06 · VALIDACIÓN COGNITIVA",
-    badge: "QUIZ SENIOR",
-    title: "Evaluación y Certificación",
-    description:
-      "Evaluaciones técnicas de nivel senior para validar modelos mentales, resolver escenarios de concurrencia y arquitectura y desbloquear la Insignia de Ancla.",
-    route: "/javascript/quiz",
-    actionText: "Iniciar Quiz de Arquitectura",
-    accent: "var(--violet)",
   },
 ];
 
@@ -88,10 +66,10 @@ export function HomeSectionsMenu() {
       aria-label="Menú guía de apartados de la plataforma"
     >
       <div className="home-section-title-wrap">
-        <span className="home-section-eyebrow">GUÍA DE LA PLATAFORMA</span>
+        <span className="home-section-eyebrow">GUÍA RÁPIDA DE LA PLATAFORMA</span>
         <h2>Menú de Secciones y Entornos</h2>
         <p className="home-section-lead">
-          Directorio central de Dev Visualizer. Revisa qué encontrarás en cada apartado y accede directamente al entorno deseado.
+          Accede directamente a los 4 pilares fundamentales de Dev Visualizer con títulos claros y navegación fluida.
         </p>
       </div>
 
