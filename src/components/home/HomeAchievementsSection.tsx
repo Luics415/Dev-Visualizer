@@ -1,15 +1,3 @@
-/**
- * Dev Visualizer — Sección de Trofeos de Completado por Área (Feature F20/F21)
- * src/components/home/HomeAchievementsSection.tsx
- *
- * Muestra las 7 áreas de arquitectura de software, sus 146 rutas canónicas
- * (73 colecciones teóricas + 73 casos prácticos en acción) y los trofeos
- * simbólicos de completado otorgados al superar el 100% de los quizzes de cada área.
- *
- * Accesible según WCAG 2.1 AA (contrastes altos, barras de progreso semánticas,
- * etiquetas claras sin muros de texto abrumadores).
- */
-
 "use client";
 
 import { useState, useCallback } from "react";
@@ -22,7 +10,6 @@ import { SymbolicAchievementsModal } from "@/components/gamification/SymbolicAch
 interface AreaMeta {
   id: ThematicAreaId;
   name: string;
-  icon: string;
   collectionsCount: number;
   actionCount: number;
   routesCount: number;
@@ -34,7 +21,6 @@ const AREAS_CATALOG: readonly AreaMeta[] = [
   {
     id: "fundamentals",
     name: "Fundamentos",
-    icon: "🧩",
     collectionsCount: 5,
     actionCount: 5,
     routesCount: 10,
@@ -44,7 +30,6 @@ const AREAS_CATALOG: readonly AreaMeta[] = [
   {
     id: "languages",
     name: "Lenguajes",
-    icon: "🌐",
     collectionsCount: 27,
     actionCount: 27,
     routesCount: 54,
@@ -54,7 +39,6 @@ const AREAS_CATALOG: readonly AreaMeta[] = [
   {
     id: "interfaces",
     name: "Diseño e interfaces",
-    icon: "🎨",
     collectionsCount: 9,
     actionCount: 9,
     routesCount: 18,
@@ -64,7 +48,6 @@ const AREAS_CATALOG: readonly AreaMeta[] = [
   {
     id: "platforms",
     name: "Plataforma y servidor",
-    icon: "⚙️",
     collectionsCount: 10,
     actionCount: 10,
     routesCount: 20,
@@ -74,7 +57,6 @@ const AREAS_CATALOG: readonly AreaMeta[] = [
   {
     id: "data",
     name: "Datos",
-    icon: "🗄️",
     collectionsCount: 10,
     actionCount: 10,
     routesCount: 20,
@@ -84,7 +66,6 @@ const AREAS_CATALOG: readonly AreaMeta[] = [
   {
     id: "versioning",
     name: "Control de versiones y calidad",
-    icon: "🛡️",
     collectionsCount: 4,
     actionCount: 4,
     routesCount: 8,
@@ -94,7 +75,6 @@ const AREAS_CATALOG: readonly AreaMeta[] = [
   {
     id: "delivery",
     name: "Infraestructura y entrega",
-    icon: "🚀",
     collectionsCount: 8,
     actionCount: 8,
     routesCount: 16,
@@ -116,7 +96,6 @@ export function HomeAchievementsSection() {
     setIsModalOpen(false);
   }, []);
 
-  // Conteo total de trofeos desbloqueados por el usuario
   const unlockedCount = Object.values(questsProgress).filter((p) => p.isUnlocked).length;
 
   return (
@@ -125,7 +104,6 @@ export function HomeAchievementsSection() {
       id="trofeos-areas"
       aria-label="Metas de aprendizaje y trofeos de completado por área"
     >
-      {/* Encabezado con Títulos Grandes y Confortables */}
       <div className="home-section-title-wrap">
         <span className="home-section-eyebrow">METAS Y RECONOCIMIENTOS DE ARQUITECTURA</span>
         <h2 className="home-trophies__main-title">
@@ -135,9 +113,26 @@ export function HomeAchievementsSection() {
           Dev Visualizer cuenta con <strong>146 rutas canónicas</strong> (73 colecciones teóricas y 73 casos prácticos «En Acción») organizadas en <strong>7 áreas oficiales</strong>. Resuelve los quizzes de cada área para desbloquear su trofeo de completado.
         </p>
 
-        {/* Resumen de Trofeos Desbloqueados */}
         <div className="home-trophies__status-pill">
-          <span className="home-trophies__status-icon" aria-hidden="true">🏆</span>
+          <span className="home-trophies__status-icon" aria-hidden="true">
+            <svg
+              width="18"
+              height="18"
+              viewBox="0 0 24 24"
+              fill="none"
+              stroke="currentColor"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            >
+              <path d="M6 9H4.5a2.5 2.5 0 0 1 0-5H6" />
+              <path d="M18 9h1.5a2.5 2.5 0 0 0 0-5H18" />
+              <path d="M4 22h16" />
+              <path d="M10 14.66V17c0 .55-.45 1-1 1H7" />
+              <path d="M14 14.66V17c0 .55.45 1 1 1h2" />
+              <path d="M18 2H6v7a6 6 0 0 0 12 0V2z" />
+            </svg>
+          </span>
           <span>
             {unlockedCount === 0
               ? "Aún no has desbloqueado trofeos. ¡Comienza con tu primera área!"
@@ -153,16 +148,14 @@ export function HomeAchievementsSection() {
         </div>
       </div>
 
-      {/* Cuadrícula de las 7 Áreas con Tarjetas Cómodas y Fáciles de Leer */}
       <div className="home-trophies-grid">
-        {AREAS_CATALOG.map((area) => {
+        {AREAS_CATALOG.map((area, idx) => {
           const progress = questsProgress[area.id];
           const isUnlocked = progress?.isUnlocked ?? false;
           const completedQuizzes = progress?.completedQuizzes ?? 0;
           const totalQuizzes = progress?.totalQuizzes ?? area.collectionsCount;
           const percentage = progress?.percentage ?? 0;
 
-          // Buscar el logro asociado a esta área
           const achievement =
             achievements.find((a) => a.areaId === area.id) ??
             symbolicAchievements.find((a) => a.areaId === area.id);
@@ -175,41 +168,38 @@ export function HomeAchievementsSection() {
               }`}
               id={`trophy-card-${area.id}`}
             >
-              {/* Encabezado de la Tarjeta */}
               <div className="home-trophy-card__top">
                 <div className="home-trophy-card__icon-wrap" aria-hidden="true">
-                  <span className="home-trophy-card__icon">{area.icon}</span>
+                  <span className="home-trophy-card__number">
+                    {String(idx + 1).padStart(2, "0")}
+                  </span>
                 </div>
                 <div className="home-trophy-card__badge-wrap">
                   {isUnlocked ? (
                     <span className="home-trophy-card__badge home-trophy-card__badge--unlocked">
-                      🏆 ¡COMPLETADO!
+                      ¡COMPLETADO!
                     </span>
                   ) : percentage > 0 ? (
                     <span className="home-trophy-card__badge home-trophy-card__badge--progress">
-                      ⚡ {percentage}% COMPLETADO
+                      {percentage}% COMPLETADO
                     </span>
                   ) : (
                     <span className="home-trophy-card__badge home-trophy-card__badge--pending">
-                      🔒 META DE ÁREA
+                      META DE ÁREA
                     </span>
                   )}
                 </div>
               </div>
 
-              {/* Título de Área Grande y Cómodo */}
               <h3 className="home-trophy-card__area-name">{area.name}</h3>
 
-              {/* Título del Trofeo Simbólico */}
               <div className="home-trophy-card__trophy-title">
                 <span className="home-trophy-card__trophy-label">Trofeo Simbólico:</span>
                 <strong>{achievement?.badgeTitle ?? "Maestro del Área"}</strong>
               </div>
 
-              {/* Descripción Sencilla sin Muro de Texto */}
               <p className="home-trophy-card__desc">{area.description}</p>
 
-              {/* Desglose de Números Canónicos */}
               <div className="home-trophy-card__breakdown">
                 <div className="home-trophy-card__stat">
                   <strong>{area.collectionsCount}</strong>
@@ -227,7 +217,6 @@ export function HomeAchievementsSection() {
                 </div>
               </div>
 
-              {/* Barra de Progreso Semántica Accesible */}
               <div className="home-trophy-card__progress-wrap">
                 <div className="home-trophy-card__progress-labels">
                   <span>Progreso de Quizzes</span>
@@ -248,7 +237,6 @@ export function HomeAchievementsSection() {
                 </div>
               </div>
 
-              {/* Botón de Enlace para Explorar */}
               <div className="home-trophy-card__footer">
                 <Link
                   href="/colecciones"
@@ -270,7 +258,6 @@ export function HomeAchievementsSection() {
         })}
       </div>
 
-      {/* Modal Accesible de Reconocimientos */}
       <SymbolicAchievementsModal
         isOpen={isModalOpen}
         onClose={handleCloseModal}

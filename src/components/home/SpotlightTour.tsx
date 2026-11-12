@@ -60,7 +60,6 @@ interface RectState {
   height: number;
 }
 
-/** Controla en memoria que el tour solo se autoejecute una vez por recarga de pestaña o nueva sesión. */
 let hasAutoOpenedTourInPageLoad = false;
 
 export function SpotlightTour() {
@@ -100,20 +99,16 @@ export function SpotlightTour() {
       height: rect.height,
     });
 
-    // Medidas reales del modal (con respaldo si aún no se ha montado)
     const modalWidth = modalRef.current?.offsetWidth ?? Math.min(440, window.innerWidth * 0.92);
     const modalHeight = modalRef.current?.offsetHeight ?? 220;
 
     let targetLeft = rect.left + rect.width / 2 - modalWidth / 2;
-    // Bound horizontally
     targetLeft = Math.max(16, Math.min(targetLeft, window.innerWidth - modalWidth - 16));
 
     let targetTop = rect.bottom + 16;
-    // If not enough space below, place above
     if (targetTop + modalHeight > window.innerHeight && rect.top - modalHeight - 16 > 10) {
       targetTop = rect.top - modalHeight - 16;
     }
-    // If target is wide or tall, clamp to visible viewport
     if (targetTop + modalHeight > window.innerHeight) {
       targetTop = window.innerHeight - modalHeight - 20;
     }
@@ -121,7 +116,6 @@ export function SpotlightTour() {
     setModalPos({ top: targetTop, left: targetLeft });
   }, [isOpen, step.target]);
 
-  // Handle step change and scroll target into view
   useEffect(() => {
     if (!isOpen) return;
 
@@ -130,7 +124,6 @@ export function SpotlightTour() {
       if (el) {
         const position = window.getComputedStyle(el).position;
         if (step.id === "navbar") {
-          // La barra es sticky: se vuelve al inicio para mostrarla en su contexto natural
           window.scrollTo({ top: 0, behavior: "smooth" });
         } else if (position !== "fixed") {
           el.scrollIntoView({ behavior: "smooth", block: "center" });
@@ -138,7 +131,6 @@ export function SpotlightTour() {
       }
     }
 
-    // Reposiciona durante y al final del desplazamiento suave
     const t1 = setTimeout(updatePosition, 60);
     const t2 = setTimeout(updatePosition, 450);
     return () => {
@@ -147,7 +139,6 @@ export function SpotlightTour() {
     };
   }, [isOpen, step.id, step.target, updatePosition]);
 
-  // Navegación por teclado: Escape cierra, flechas avanzan o retroceden
   useEffect(() => {
     if (!isOpen) return;
     const handleKeyDown = (e: KeyboardEvent) => {
@@ -163,7 +154,6 @@ export function SpotlightTour() {
     return () => window.removeEventListener("keydown", handleKeyDown);
   }, [isOpen]);
 
-  // Update position on resize and scroll
   useEffect(() => {
     if (!isOpen) return;
 
@@ -218,7 +208,6 @@ export function SpotlightTour() {
 
   return (
     <>
-      {/* ── Overlay Completo Oscuro (Paso Inicial o Falla de Target) ── */}
       {!spotlightRect && (
         <div
           className="spotlight-full-backdrop"
@@ -227,7 +216,6 @@ export function SpotlightTour() {
         />
       )}
 
-      {/* ── Spotlight Box: Marco Iluminado con Sombra Expansiva hacia el Resto de la Pantalla ── */}
       {spotlightRect && (
         <div
           className="spotlight-box"
@@ -241,7 +229,6 @@ export function SpotlightTour() {
         />
       )}
 
-      {/* ── Tarjeta Modal del Tour ── */}
       <div
         ref={modalRef}
         className={`spotlight-modal ${isCentered ? "spotlight-modal--centered" : ""}`}
@@ -257,7 +244,6 @@ export function SpotlightTour() {
         aria-modal="true"
         aria-label={step.title}
       >
-        {/* Cabecera del Tour */}
         <div className="spotlight-modal__header">
           <div className="spotlight-modal__icon-and-dots">
             <span className="spotlight-modal__icon" aria-hidden="true">
@@ -291,14 +277,12 @@ export function SpotlightTour() {
           </button>
         </div>
 
-        {/* Contenido del Paso */}
         <div className="spotlight-modal__body" key={step.id} aria-live="polite">
           <span className="spotlight-modal__tag">{step.tag}</span>
           <h3 className="spotlight-modal__title">{step.title}</h3>
           <p className="spotlight-modal__text">{step.description}</p>
         </div>
 
-        {/* Pie con Controles Siguiente / Omitir / Anterior */}
         <div className="spotlight-modal__footer">
           <button
             type="button"

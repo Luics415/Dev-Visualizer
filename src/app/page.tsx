@@ -22,7 +22,6 @@ export default function HomePage() {
     <main className="page-shell">
       <CollectionNav />
 
-      {/* ── Hero Split Amplio y Cómodo de Alto Impacto ── */}
       <header className="home-hero home-hero--split">
         <div className="home-hero__content-col">
           <h1 className="home-hero__headline">
@@ -33,10 +32,8 @@ export default function HomePage() {
             Simula 73 tecnologías, 146 rutas canónicas y 7 áreas de ingeniería con animaciones interactivas paso a paso en memoria activa.
           </p>
 
-          {/* Botones de Acción Principales */}
           <HomeHeroActions totalCollections={totalCollections} />
 
-          {/* Línea de Estado y Tecnologías */}
           <div className="home-hero__footnote">
             <span>{totalCollections} colecciones temáticas</span>
             <span className="home-hero__footnote-sep">·</span>
@@ -48,28 +45,17 @@ export default function HomePage() {
           </div>
         </div>
 
-        {/* Columna Derecha: Consola Interactiva de las 7 Áreas de Arquitectura */}
         <div className="home-hero__visual-col">
           <HomeArchitectureExplorer />
         </div>
       </header>
 
-      {/* ── Menú Guía Directo: Los 4 Pilares Fundamentales ── */}
       <HomeSectionsMenu />
-
-      {/* ── Sección de Metas y Trofeos de Completado por Área ── */}
       <HomeAchievementsSection />
-
-      {/* ── Buscador Global Indexado en Memoria (Sub-milisegundo) ── */}
       <HomeConceptSearch />
-
-      {/* ── Panel Lateral Desplegable: Roadmap / ¿Por dónde empezar? ── */}
       <StartGuideDrawer />
-
-      {/* ── Tarjeta Flotante de Bienvenida / Onboarding Compacto con Spotlight ── */}
       <SpotlightTour />
 
-      {/* ── Nota de Cierre del Proyecto ── */}
       <footer className="project-note">
         Dev Visualizer es un atlas de código abierto diseñado para la enseñanza rigurosa de la ingeniería de software. Cada concepto y ruta canónica ha sido construido para fijar modelos mentales precisos sin comprometer los fundamentos técnicos, la accesibilidad WCAG 2.1 AA ni la privacidad del usuario.
       </footer>

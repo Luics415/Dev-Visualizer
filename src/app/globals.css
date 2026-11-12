@@ -9925,11 +9925,24 @@ body {
   color: var(--cyan);
 }
 
-.hero-workbench__tab-icon {
-  font-size: 0.82rem;
+.hero-workbench__tab-icon,
+.hero-workbench__tab-num {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 800;
+  opacity: 0.75;
 }
 
-/* Showcase Visual del Área Seleccionada (Dev Visualizer) */
+.hero-workbench__badge-dot {
+  display: inline-block;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #2dd4bf;
+  box-shadow: 0 0 8px #2dd4bf;
+  margin-right: 4px;
+}
+
 .hero-workbench__showcase {
   background: radial-gradient(circle at 80% 20%, rgba(59, 211, 255, 0.08), transparent 60%), #070e1b;
   padding: 18px 20px;
@@ -9952,7 +9965,10 @@ body {
   border: 1px solid rgba(59, 211, 255, 0.3);
   display: grid;
   place-items: center;
-  font-size: 1.8rem;
+  font-family: var(--mono);
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--cyan);
   flex-shrink: 0;
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
 }
@@ -9987,7 +10003,6 @@ body {
   line-height: 1.45;
 }
 
-/* Tres Contadores Canónicos Destacados */
 .hero-workbench__stats-row {
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -10030,7 +10045,6 @@ body {
   line-height: 1.2;
 }
 
-/* Tecnologías Clave */
 .hero-workbench__tech-row {
   display: flex;
   align-items: center;
@@ -10062,7 +10076,6 @@ body {
   border-radius: 4px;
 }
 
-/* Fila Inferior: Trofeo + Botón Directo */
 .hero-workbench__action-footer {
   display: flex;
   align-items: center;
@@ -10146,7 +10159,6 @@ body {
   box-shadow: 0 6px 20px rgba(59, 211, 255, 0.45);
 }
 
-/* Barra de Controles Inferior */
 .hero-workbench__controls {
   display: flex;
   align-items: center;
@@ -10199,7 +10211,6 @@ body {
   color: var(--cyan);
 }
 
-/* ── 03. Sección de Trofeos de Completado por Área ── */
 .home-trophies-section {
   padding: 56px 0 36px;
   border-top: 1px solid var(--line);
@@ -10300,7 +10311,13 @@ body {
   background: rgba(255, 255, 255, 0.05);
   display: grid;
   place-items: center;
-  font-size: 1.5rem;
+}
+
+.home-trophy-card__number {
+  font-family: var(--mono);
+  font-size: 1rem;
+  font-weight: 800;
+  color: var(--cyan);
 }
 
 .home-trophy-card__badge {
@@ -10461,7 +10478,6 @@ body {
   color: var(--cyan);
 }
 
-/* ── 03. Sección de Tres Herramientas (Diseño Idéntico a /libreria .topicCard) ── */
 .three-tools-section {
   padding: 44px 0 32px;
 }
@@ -10601,7 +10617,6 @@ body {
   outline-offset: 2px;
 }
 
-/* ── 04. Botón Lateral Izquierdo ("¿Por dónde empezar?") y Menú Radial Animado ── */
 .start-edge-bar {
   position: fixed;
   left: 0;
@@ -10653,7 +10668,6 @@ body {
   animation: pulse-dot 1.4s infinite;
 }
 
-/* ── Menú Radial Cinemático Desplegado ── */
 .radial-menu-overlay {
   position: fixed;
   inset: 0;
@@ -10683,7 +10697,6 @@ body {
   pointer-events: none;
 }
 
-/* SVG Orbital de Conexión y Energía */
 .radial-menu-svg {
   position: absolute;
   top: 0;
@@ -10716,9 +10729,6 @@ body {
   filter: drop-shadow(0 0 6px currentColor);
 }
 
-/* Núcleo Central: Orbe que se Desprende al Centro.
-   El centrado usa la propiedad independiente `translate` para componerse
-   con el `transform` que escribe motion (x, y, scale) sin sobrescribirse. */
 .radial-menu-core {
   position: absolute;
   top: 0;
@@ -10811,7 +10821,6 @@ body {
   outline-offset: 2px;
 }
 
-/* Satélites Radiales en Órbita (centrado compuesto con el transform de motion) */
 .radial-node-satellite {
   position: absolute;
   top: 0;
@@ -10865,11 +10874,6 @@ body {
   font-weight: 800;
   color: var(--node-accent);
   letter-spacing: 0.05em;
-}
-
-.radial-node-card__icon {
-  font-size: 1.05rem;
-  line-height: 1;
 }
 
 .radial-node-card__title {
@@ -10974,7 +10978,6 @@ body {
   }
 }
 
-/* Movimiento reducido: se conservan los estados finales sin animaciones continuas */
 @media (prefers-reduced-motion: reduce) {
   .radial-orbit-ring,
   .radial-core__orb::after,
@@ -10994,7 +10997,6 @@ body {
   }
 }
 
-/* ── 05. Tour Interactivo con Spotlight y Fondo Oscuro ── */
 .spotlight-full-backdrop {
   position: fixed;
   inset: 0;
@@ -11042,12 +11044,10 @@ body {
     left 0.45s cubic-bezier(0.16, 1, 0.3, 1);
 }
 
-/* Reproduce un fundido suave del contenido en cada cambio de paso */
 .spotlight-modal__body {
   animation: spotlight-step-in 0.28s ease-out;
 }
 
-/* `translate` se compone con el transform !important del modal centrado */
 @keyframes spotlight-slide-up {
   from { opacity: 0; translate: 0 14px; }
   to { opacity: 1; translate: 0 0; }
@@ -11261,7 +11261,6 @@ body {
   color: var(--cyan);
   transform: translateY(-2px);
 }
-/* ── 06. Media Queries para Móviles ── */
 @media (max-width: 960px) {
   .home-hero--split {
     grid-template-columns: 1fr;
@@ -11300,7 +11299,6 @@ body {
 }
 
 
-/* ── 07. Menú Guía Central de la Plataforma (Diseño Idéntico a /libreria .topicCard) ── */
 .home-menu-section {
   padding: 40px 0 32px;
 }
@@ -11474,7 +11472,6 @@ body {
   pointer-events: none;
 }
 
-/* Variantes estructurales para mitigar Cumulative Layout Shift (CLS) */
 .skeleton-text {
   height: 1rem;
   margin-top: 0.25rem;
@@ -11505,7 +11502,6 @@ body {
   background-color: rgba(13, 18, 32, 0.72);
 }
 
-/* Respeto estricto a accesibilidad y movimiento reducido (WCAG 2.1 AA) */
 @media (prefers-reduced-motion: reduce) {
   .skeleton,
   .skeleton-shimmer,
