@@ -11930,3 +11930,338 @@ body {
     transition: none !important;
   }
 }
+
+/* ── Pantalla 404 Cyberpunk con Rostro Animado ── */
+.not-found-page {
+  min-height: calc(100vh - 220px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding-top: 32px;
+  padding-bottom: 48px;
+}
+
+.not-found-card {
+  width: 100%;
+  max-width: 1060px;
+  background: #060a14;
+  border: 1px solid rgba(59, 211, 255, 0.3);
+  border-radius: 18px;
+  overflow: hidden;
+  box-shadow: 0 24px 64px rgba(0, 0, 0, 0.75), 0 0 40px rgba(59, 211, 255, 0.12);
+  display: flex;
+  flex-direction: column;
+}
+
+.not-found-card__titlebar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 12px 18px;
+  background: rgba(255, 255, 255, 0.03);
+  border-bottom: 1px solid #1a273b;
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  min-width: 0;
+  gap: 12px;
+}
+
+.not-found-card__dots {
+  display: flex;
+  gap: 6px;
+  align-items: center;
+  flex-shrink: 0;
+}
+
+.not-found-card__filename {
+  color: #cad8ec;
+  font-weight: 700;
+  font-size: 0.78rem;
+  letter-spacing: 0.04em;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.not-found-card__badge {
+  color: #ff5c5c;
+  font-weight: 800;
+  font-size: 0.68rem;
+  letter-spacing: 0.06em;
+  background: rgba(255, 92, 92, 0.12);
+  border: 1px solid rgba(255, 92, 92, 0.35);
+  padding: 3px 10px;
+  border-radius: 999px;
+  flex-shrink: 0;
+}
+
+.not-found-card__body {
+  display: grid;
+  grid-template-columns: minmax(280px, 360px) minmax(0, 1fr);
+  gap: 36px;
+  padding: 40px;
+  align-items: center;
+  background: radial-gradient(circle at 15% 30%, rgba(59, 211, 255, 0.06), transparent 50%), #070e1b;
+}
+
+@media (max-width: 900px) {
+  .not-found-card__body {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 28px;
+    padding: 28px 20px;
+  }
+}
+
+.not-found-face-stage {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 28px 20px;
+  border-radius: 14px;
+  background: radial-gradient(circle at 50% 50%, rgba(59, 211, 255, 0.1), transparent 70%), #040812;
+  border: 1px solid rgba(59, 211, 255, 0.22);
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.7), 0 10px 30px rgba(0, 0, 0, 0.5);
+  overflow: hidden;
+}
+
+.not-found-face-radar {
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(59, 211, 255, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(59, 211, 255, 0.05) 1px, transparent 1px);
+  background-size: 24px 24px;
+  pointer-events: none;
+  opacity: 0.7;
+}
+
+.not-found-face {
+  width: 100%;
+  max-width: 260px;
+  height: auto;
+  color: var(--cyan);
+  filter: drop-shadow(0 0 14px rgba(0, 240, 255, 0.45));
+  z-index: 1;
+}
+
+.not-found-face .face__eyes,
+.not-found-face .face__eye-lid,
+.not-found-face .face__mouth-left,
+.not-found-face .face__mouth-right,
+.not-found-face .face__nose,
+.not-found-face .face__pupil {
+  animation: notFoundEyes 1s 0.3s cubic-bezier(0.65, 0, 0.35, 1) forwards;
+}
+
+.not-found-face .face__eye-lid,
+.not-found-face .face__pupil {
+  animation-duration: 4s;
+  animation-delay: 1.3s;
+  animation-iteration-count: infinite;
+}
+
+.not-found-face .face__eye-lid {
+  animation-name: notFoundEyeLid;
+}
+
+.not-found-face .face__pupil {
+  animation-name: notFoundPupil;
+  stroke: #49e1a8;
+}
+
+.not-found-face .face__nose {
+  animation-name: notFoundNose;
+}
+
+.not-found-face .face__mouth-left,
+.not-found-face .face__mouth-right {
+  animation-timing-function: cubic-bezier(0.33, 1, 0.68, 1);
+  animation-name: notFoundMouthLeft;
+}
+
+.not-found-face .face__mouth-right {
+  animation-name: notFoundMouthRight;
+}
+
+@keyframes notFoundEyes {
+  from {
+    transform: translateY(112.5px);
+  }
+  to {
+    transform: translateY(15px);
+  }
+}
+
+@keyframes notFoundEyeLid {
+  from, 40%, 45%, to {
+    transform: translateY(0);
+  }
+  42.5% {
+    transform: translateY(17.5px);
+  }
+}
+
+@keyframes notFoundPupil {
+  from, 37.5%, 40%, 45%, 87.5%, to {
+    stroke-dashoffset: 0;
+    transform: translate(0, 0);
+  }
+  12.5%, 25%, 62.5%, 75% {
+    stroke-dashoffset: 0;
+    transform: translate(-35px, 0);
+  }
+  42.5% {
+    stroke-dashoffset: 35;
+    transform: translate(0, 17.5px);
+  }
+}
+
+@keyframes notFoundNose {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(42.5px);
+  }
+}
+
+@keyframes notFoundMouthLeft {
+  from, 50% {
+    stroke-dashoffset: 102;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@keyframes notFoundMouthRight {
+  from, 50% {
+    stroke-dashoffset: 102;
+  }
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .not-found-face .face__eyes,
+  .not-found-face .face__eye-lid,
+  .not-found-face .face__mouth-left,
+  .not-found-face .face__mouth-right,
+  .not-found-face .face__nose,
+  .not-found-face .face__pupil {
+    animation: none !important;
+  }
+  .not-found-face .face__eyes {
+    transform: translateY(15px);
+  }
+  .not-found-face .face__nose {
+    transform: translateY(42.5px);
+  }
+  .not-found-face .face__mouth-left,
+  .not-found-face .face__mouth-right {
+    stroke-dashoffset: 0;
+  }
+}
+
+.not-found-info {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  min-width: 0;
+}
+
+.not-found-info__tag {
+  font-family: var(--mono);
+  font-size: 0.68rem;
+  font-weight: 800;
+  color: #ff5c5c;
+  letter-spacing: 0.08em;
+  background: rgba(255, 92, 92, 0.08);
+  border: 1px solid rgba(255, 92, 92, 0.25);
+  padding: 4px 10px;
+  border-radius: 6px;
+  margin-bottom: 12px;
+}
+
+.not-found-info__title {
+  margin: 0 0 12px;
+  font-size: clamp(1.6rem, 3.2vw, 2.3rem);
+  font-weight: 800;
+  color: #fff;
+  letter-spacing: -0.025em;
+  line-height: 1.2;
+}
+
+.not-found-info__desc {
+  margin: 0 0 20px;
+  font-size: 0.94rem;
+  color: #a4b9d4;
+  line-height: 1.6;
+  max-width: 580px;
+}
+
+.not-found-terminal {
+  width: 100%;
+  max-width: 580px;
+  background: rgba(0, 0, 0, 0.55);
+  border: 1px solid #1a273b;
+  border-left: 3px solid #ff5c5c;
+  border-radius: 8px;
+  padding: 12px 14px;
+  font-family: var(--mono);
+  font-size: 0.74rem;
+  margin-bottom: 24px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.not-found-terminal__line {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.not-found-terminal__prompt {
+  color: var(--cyan);
+  font-weight: 800;
+}
+
+.not-found-terminal__cmd {
+  color: #fff;
+  font-weight: 600;
+}
+
+.not-found-terminal__output {
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  color: #8b9eb5;
+  font-size: 0.7rem;
+}
+
+.not-found-terminal__output span:first-child {
+  color: #ff7b7b;
+}
+
+.not-found-actions {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+  width: 100%;
+}
+
+@media (max-width: 600px) {
+  .not-found-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .not-found-actions > * {
+    width: 100%;
+    justify-content: center;
+  }
+}
