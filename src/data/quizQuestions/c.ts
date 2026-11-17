@@ -2,453 +2,753 @@ import type { QuizQuestion } from "@/data/quizTypes";
 
 export const cQuestions: QuizQuestion[] = [
   {
-    id: "c-q-01",
-    collectionId: "c",
-    question: "¿Qué segmentos componen el mapa de memoria virtual estándar de un proceso compilado en C?",
-    options: [
-      "Texto (código), Data (inicializadas), BSS (no inicializadas a cero), Heap (crecimiento hacia arriba) y Stack (crecimiento hacia abajo).",
-      "Heap, Garbage Collector, Virtual DOM y Thread Pool.",
-      "Registro de activación, tablas hash globales y partición swap exclusivamente.",
-      "Segmento de bytecodes, metadata JVM y memoria compartida POSIX."
+    "id": "c-q-01",
+    "collectionId": "c",
+    "question": "En C (Traducción y programa), ¿qué función técnica cumple «Fases de traducción»?",
+    "options": [
+      "Explica cómo caracteres, macros, unidades de traducción y link producen un ejecutable.",
+      "Separa describir un nombre de reservar almacenamiento o proporcionar una función.",
+      "Distingue programas con sistema operativo de implementaciones freestanding al operar.",
+      "Comparte contratos sin multiplicar definiciones ni ocultar dependencias en el flujo."
     ],
-    correctAnswerIndex: 0,
-    explanation: "El layout de memoria en C consta de Text (código máquina en solo lectura), Data (variables globales/estáticas inicializadas), BSS (estáticas a cero), Heap (memoria dinámica gestionada con malloc) y Stack (marcos de llamada locales).",
-    topic: "Layout de Memoria & Arquitectura",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 0,
+    "explanation": "Fases de traducción (Traducción y programa): Explica cómo caracteres, macros, unidades de traducción y link producen un ejecutable.",
+    "topic": "Traducción y programa",
+    "difficulty": "básico"
   },
   {
-    id: "c-q-02",
-    collectionId: "c",
-    question: "¿Por qué el operador 'sizeof' aplicado sobre una estructura (struct) a menudo devuelve un tamaño mayor que la suma de sus campos?",
-    options: [
-      "Por el alineamiento de memoria y relleno (padding) introducido por el compilador para alinear campos a límites de palabra de la CPU.",
-      "Porque añade una cabecera oculta con la tabla virtual de funciones (vtable).",
-      "Porque cada estructura reserva automáticamente 16 bytes para el puntero 'this'.",
-      "Es un fallo de redondeo dependiente del formato de coma flotante IEEE-754."
+    "id": "c-q-02",
+    "collectionId": "c",
+    "question": "Dentro de C, ¿cómo opera el mecanismo de «Función main y entorno hospedado» en traducción y programa?",
+    "options": [
+      "Separa describir un nombre de reservar almacenamiento o proporcionar una función al operar.",
+      "Distingue programas con sistema operativo de implementaciones freestanding en ejecución.",
+      "Explica cómo caracteres, macros, unidades de traducción y link producen un ejecutable.",
+      "Expande inclusión y macros antes del análisis del lenguaje, con límites de tipos y scope."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Las arquitecturas de CPU leen datos más rápido en direcciones múltiplos de su tamaño de palabra (2, 4 u 8 bytes). El compilador inserta bytes de 'padding' entre miembros para cumplir los requisitos de alineación natural del hardware.",
-    topic: "Estructuras & Padding",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 1,
+    "explanation": "Función main y entorno hospedado (Traducción y programa): Distingue programas con sistema operativo de implementaciones freestanding.",
+    "topic": "Traducción y programa",
+    "difficulty": "básico"
   },
   {
-    id: "c-q-03",
-    collectionId: "c",
-    question: "¿Qué peligro crítico presenta reasignar el puntero de origen directamente con 'ptr = realloc(ptr, new_size)'?",
-    options: [
-      "Si realloc() falla y retorna NULL, el puntero original se sobreescribe y el bloque previo queda inaccesible, causando una fuga de memoria.",
-      "realloc() borra automáticamente todos los datos del bloque previo aunque la reasignación tenga éxito.",
-      "Fuerza un fallo de segmentación inmediato en el kernel al cambiar el tamaño de un puntero.",
-      "Provoca un desbordamiento de búfer al copiar datos a una dirección no alineada."
+    "id": "c-q-03",
+    "collectionId": "c",
+    "question": "Al trabajar con C, ¿qué responsabilidad define a «Declaraciones y definiciones»?",
+    "options": [
+      "Explica cómo caracteres, macros, unidades de traducción y link producen un ejecutable al operar.",
+      "Expande inclusión y macros antes del análisis del lenguaje, con límites de tipos y scope.",
+      "Separa describir un nombre de reservar almacenamiento o proporcionar una función al operar.",
+      "Distingue programas con sistema operativo de implementaciones freestanding de forma segura."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Si realloc() no encuentra memoria disponible, devuelve NULL pero deja el bloque original intacto en el Heap. Si asignas directamente 'ptr = realloc(ptr, ...)', pierdes la referencia al bloque previo y no puedes liberarlo con free().",
-    topic: "Gestión de Memoria Dinámica",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 2,
+    "explanation": "Declaraciones y definiciones (Traducción y programa): Separa describir un nombre de reservar almacenamiento o proporcionar una función.",
+    "topic": "Traducción y programa",
+    "difficulty": "básico"
   },
   {
-    id: "c-q-04",
-    collectionId: "c",
-    question: "¿Cuál es la función del calificador de tipo 'volatile' en C?",
-    options: [
-      "Indica al optimizador del compilador que la variable puede cambiar fuera del control del flujo del programa (hardware I/O, señales), forzando lecturas directas de memoria.",
-      "Almacena la variable temporalmente en la memoria swap del disco duro.",
-      "Convierte la variable en un hilo asíncrono gestionado por pthreads.",
-      "Marca la variable como constante de solo lectura protegida contra escritura."
+    "id": "c-q-04",
+    "collectionId": "c",
+    "question": "En la arquitectura de C, ¿qué caracteriza técnicamente a «Headers y linkage»?",
+    "options": [
+      "Separa describir un nombre de reservar almacenamiento o proporcionar una función al operar.",
+      "Explica cómo caracteres, macros, unidades de traducción y link producen un ejecutable.",
+      "Distingue programas con sistema operativo de implementaciones freestanding en ejecución.",
+      "Comparte contratos sin multiplicar definiciones ni ocultar dependencias de forma segura."
     ],
-    correctAnswerIndex: 0,
-    explanation: "'volatile' previene que el compilador optimice lecturas o escrituras almacenando el valor en registros de la CPU. Cada acceso a una variable volatile obliga a emitir una instrucción de carga/almacenamiento real en la RAM física o registro mapeado.",
-    topic: "Calificadores de Tipo",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 3,
+    "explanation": "Headers y linkage (Traducción y programa): Comparte contratos sin multiplicar definiciones ni ocultar dependencias.",
+    "topic": "Traducción y programa",
+    "difficulty": "básico"
   },
   {
-    id: "c-q-05",
-    collectionId: "c",
-    question: "¿Qué estipula la 'Strict Aliasing Rule' en el estándar C?",
-    options: [
-      "Dos punteros de tipos incompatibles no pueden apuntar al mismo bloque de memoria, permitiendo al compilador reordenar accesos asumiendo independencia.",
-      "Todos los punteros deben ser declarados en la misma función donde se reservó la memoria dinámica.",
-      "Prohíbe que una variable local tenga el mismo nombre que una variable global en el mismo archivo.",
-      "Obliga a que todos los punteros sean casteados a (void*) antes de ser liberados con free()."
+    "id": "c-q-05",
+    "collectionId": "c",
+    "question": "Respecto a traducción y programa en C, ¿cuál es el propósito de «Preprocesador»?",
+    "options": [
+      "Expande inclusión y macros antes del análisis del lenguaje, con límites de tipos y scope al operar.",
+      "Separa describir un nombre de reservar almacenamiento o proporcionar una función al operar.",
+      "Explica cómo caracteres, macros, unidades de traducción y link producen un ejecutable.",
+      "Distingue programas con sistema operativo de implementaciones freestanding en el flujo."
     ],
-    correctAnswerIndex: 0,
-    explanation: "El estándar permite a los compiladores asumir que dos punteros de distinto tipo básico (ej. int* y float*) nunca se solapan en memoria. Violar esta regla (type punning sin uniones ni char*) es Undefined Behavior y genera optimizaciones erróneas.",
-    topic: "Punteros & Aliasing",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 0,
+    "explanation": "Preprocesador (Traducción y programa): Expande inclusión y macros antes del análisis del lenguaje, con límites de tipos y scope.",
+    "topic": "Traducción y programa",
+    "difficulty": "básico"
   },
   {
-    id: "c-q-06",
-    collectionId: "c",
-    question: "¿Qué efecto tiene declarar una función o variable global con la palabra clave 'static' a nivel de archivo?",
-    options: [
-      "Otorga enlace interno (internal linkage): el símbolo solo es visible y accesible dentro de esa unidad de traducción (.c).",
-      "Almacena la variable en la memoria de solo lectura del microprocesador.",
-      "Convierte la función en una macro evaluada por el preprocesador.",
-      "Fuerza a que la variable sea compartida entre múltiples procesos del sistema operativo."
+    "id": "c-q-06",
+    "collectionId": "c",
+    "question": "En C (Traducción y programa), ¿qué función técnica cumple «Pragmas y extensiones del compilador»?",
+    "options": [
+      "Separa describir un nombre de reservar almacenamiento o proporcionar una función al operar.",
+      "Aplica atributos de optimización y empaquetado sin romper portabilidad dentro del flujo.",
+      "Explica cómo caracteres, macros, unidades de traducción y link producen un ejecutable.",
+      "Distingue programas con sistema operativo de implementaciones freestanding en ejecución."
     ],
-    correctAnswerIndex: 0,
-    explanation: "A nivel de archivo (file scope), 'static' restringe la visibilidad del símbolo al archivo de código fuente actual, impidiendo colisiones de nombres durante el enlazado (linking) con otros módulos del proyecto.",
-    topic: "Enlace & Ámbitos",
-    difficulty: "básico"
+    "correctAnswerIndex": 1,
+    "explanation": "Pragmas y extensiones del compilador (Traducción y programa): Aplica atributos de optimización y empaquetado sin romper portabilidad.",
+    "topic": "Traducción y programa",
+    "difficulty": "básico"
   },
   {
-    id: "c-q-07",
-    collectionId: "c",
-    question: "¿Cuál es la semántica del calificador 'restrict' introducido en C99?",
-    options: [
-      "Garantiza al compilador que durante el ciclo de vida del puntero, solo se accederá al objeto apuntado a través de ese puntero específico.",
-      "Impide que el puntero sea desreferenciado fuera de bloques de control de excepciones.",
-      "Limita el número máximo de lecturas por segundo que pueden realizarse sobre un array.",
-      "Bloquea la variable para que no pueda ser compartida entre hilos de ejecución."
+    "id": "c-q-07",
+    "collectionId": "c",
+    "question": "Dentro de C, ¿cómo opera el mecanismo de «Tipos enteros y promociones» en tipos, enteros y representación binaria?",
+    "options": [
+      "Organiza campos respetando alineación, padding y representación dependiente de ABI al operar.",
+      "Distingue el objeto arreglos contiguos de la dirección que muchas expresiones producen.",
+      "Relaciona rango, signedness y conversiones antes de operar bits o tamaños con precisión.",
+      "Garantiza tamaños de 8, 16, 32 y 64 bits para protocolos y formatos binarios al evaluar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "'restrict' es una promesa al optimizador: afirma que no hay solapamiento (no aliasing) con otros punteros. Esto permite vectorizaciones avanzadas con instrucciones SIMD y mantener valores en registros sin recargas defensivas.",
-    topic: "Optimizaciones & C99",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 2,
+    "explanation": "Tipos enteros y promociones (Tipos, enteros y representación binaria): Relaciona rango, signedness y conversiones antes de operar bits o tamaños.",
+    "topic": "Tipos, enteros y representación binaria",
+    "difficulty": "básico"
   },
   {
-    id: "c-q-08",
-    collectionId: "c",
-    question: "¿Qué consecuencia define el estándar C para el desbordamiento de enteros con signo (Signed Integer Overflow)?",
-    options: [
-      "Es Comportamiento Indefinido (Undefined Behavior); el compilador puede asumir que nunca ocurre y eliminar ramas enteras de código.",
-      "Aplica obligatoriamente aritmética modular en complemento a dos con wraparound predecible.",
-      "Lanza una excepción de punto flotante SIGFPE que termina el proceso.",
-      "Convierte automáticamente el entero en un número de coma flotante de 64 bits."
+    "id": "c-q-08",
+    "collectionId": "c",
+    "question": "Al trabajar con C, ¿qué responsabilidad define a «Punto flotante»?",
+    "options": [
+      "Organiza campos respetando alineación, padding y representación dependiente de ABI al operar.",
+      "Distingue el objeto arreglos contiguos de la dirección que muchas expresiones producen.",
+      "Garantiza tamaños de 8, 16, 32 y 64 bits para protocolos y formatos binarios en el flujo.",
+      "Representa aproximaciones, redondeo, NaN e infinito sin asumir aritmética decimal exacta."
     ],
-    correctAnswerIndex: 0,
-    explanation: "A diferencia de los enteros sin signo (unsigned, donde el desbordamiento es modular según 2^N), el desbordamiento con signo es Undefined Behavior (UB). Compiladores como GCC y Clang eliminan chequeos como 'if (x + 1 < x)' asumiendo que nunca desborda.",
-    topic: "Undefined Behavior & Seguridad",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 3,
+    "explanation": "Punto flotante (Tipos, enteros y representación binaria): Representa aproximaciones, redondeo, NaN e infinito sin asumir aritmética decimal exacta.",
+    "topic": "Tipos, enteros y representación binaria",
+    "difficulty": "básico"
   },
   {
-    id: "c-q-09",
-    collectionId: "c",
-    question: "¿Cómo escala la aritmética de punteros en una expresión como 'ptr + 3' donde ptr es de tipo 'int*' en una plataforma de 32 bits (sizeof(int) = 4)?",
-    options: [
-      "Avanza la dirección de memoria física en 12 bytes (3 * sizeof(int)).",
-      "Avanza la dirección de memoria física en exactamente 3 bytes.",
-      "Multiplica el valor del puntero por 3 mediante desplazamiento de bits.",
-      "Accede al elemento en el índice 3 de la tabla hash de símbolos."
+    "id": "c-q-09",
+    "collectionId": "c",
+    "question": "En la arquitectura de C, ¿qué caracteriza técnicamente a «Arrays y decaimiento a puntero»?",
+    "options": [
+      "Distingue el objeto arreglos contiguos de la dirección que muchas expresiones producen.",
+      "Organiza campos respetando alineación, padding y representación dependiente de ABI.",
+      "Garantiza tamaños de 8, 16, 32 y 64 bits para protocolos y formatos binarios al operar.",
+      "Relaciona rango, signedness y conversiones antes de operar bits o tamaños al evaluar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "La aritmética de punteros en C se escala automáticamente por el tamaño del tipo de dato apuntado: ptr + n desplaza la dirección de memoria en 'n * sizeof(*ptr)' bytes.",
-    topic: "Aritmética de Punteros",
-    difficulty: "básico"
+    "correctAnswerIndex": 0,
+    "explanation": "Arrays y decaimiento a puntero (Tipos, enteros y representación binaria): Distingue el objeto array de la dirección que muchas expresiones producen.",
+    "topic": "Tipos, enteros y representación binaria",
+    "difficulty": "básico"
   },
   {
-    id: "c-q-10",
-    collectionId: "c",
-    question: "¿Cuál es el operador del preprocesador utilizado para concatenar tokens ('token pasting') en macros de C?",
-    options: [
-      "##",
-      "#",
-      "@@",
-      "$$"
+    "id": "c-q-10",
+    "collectionId": "c",
+    "question": "Respecto a tipos, enteros y representación binaria en C, ¿cuál es el propósito de «Struct, union»?",
+    "options": [
+      "Garantiza tamaños de 8, 16, 32 y 64 bits para protocolos y formatos binarios al operar.",
+      "Organiza campos respetando alineación, padding y representación dependiente de ABI.",
+      "Relaciona rango, signedness y conversiones antes de operar bits o tamaños al operar.",
+      "Da nombres y restricciones sin crear siempre un tipo nominal nuevo de forma segura."
     ],
-    correctAnswerIndex: 0,
-    explanation: "El operador '##' fusiona dos tokens en uno solo durante la fase de preprocesamiento (ej. COMMAND(quit) expande a cmd_quit mediante cmd_ ## name). El operador '#' individual se utiliza para convertir un argumento en una cadena de texto (stringification).",
-    topic: "Preprocesador & Macros",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 1,
+    "explanation": "Struct, union y padding (Tipos, enteros y representación binaria): Organiza campos respetando alineación, padding y representación dependiente de ABI.",
+    "topic": "Tipos, enteros y representación binaria",
+    "difficulty": "básico"
   },
   {
-    id: "c-q-11",
-    collectionId: "c",
-    question: "¿Qué ocurre con el array en la mayoría de las expresiones al pasarlo como argumento a una función en C ('Array Decay')?",
-    options: [
-      "Decae (decay) automáticamente a un puntero que apunta a la dirección del primer elemento del array.",
-      "Se copia íntegramente por valor en la pila de llamadas de la función receptora.",
-      "Se transforma en una estructura de lista doblemente enlazada en el Heap.",
-      "Lanza un error de compilación a menos que se especifique su longitud en tiempo de ejecución."
+    "id": "c-q-11",
+    "collectionId": "c",
+    "question": "En C (Tipos, enteros y representación binaria), ¿qué función técnica cumple «Enum, typedef y qualifiers»?",
+    "options": [
+      "Organiza campos respetando alineación, padding y representación dependiente de ABI al operar.",
+      "Distingue el objeto arreglos contiguos de la dirección que muchas expresiones producen.",
+      "Da nombres y restricciones sin crear siempre un tipo nominal nuevo durante la ejecución.",
+      "Garantiza tamaños de 8, 16, 32 y 64 bits para protocolos y formatos binarios al evaluar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "En la mayoría de las expresiones (salvo con sizeof y &), el identificador de un array decae a un puntero al primer elemento (&arr[0]). Por ello, 'void fn(int arr[])' es idéntico a 'void fn(int *arr)', perdiéndose la información de tamaño del array original.",
-    topic: "Arrays & Punteros",
-    difficulty: "básico"
+    "correctAnswerIndex": 2,
+    "explanation": "Enum, typedef y qualifiers (Tipos, enteros y representación binaria): Da nombres y restricciones sin crear siempre un tipo nominal nuevo.",
+    "topic": "Tipos, enteros y representación binaria",
+    "difficulty": "básico"
   },
   {
-    id: "c-q-12",
-    collectionId: "c",
-    question: "¿Qué vulnerabilidad histórica provocó que la función 'gets()' fuera declarada obsoleta en C99 y eliminada por completo del estándar en C11?",
-    options: [
-      "No acepta un parámetro de longitud máxima, permitiendo desbordamientos de búfer en la pila (Stack Buffer Overflow) con entradas largas.",
-      "Cifra los caracteres en memoria con un algoritmo débil vulnerable a criptoanálisis.",
-      "Bloquea el hilo del sistema operativo impidiendo recibir señales del temporizador.",
-      "Solo admite caracteres en minúscula arrojando excepciones con mayúsculas."
+    "id": "c-q-12",
+    "collectionId": "c",
+    "question": "Dentro de C, ¿cómo opera el mecanismo de «Enteros de ancho fijo stdint» en tipos, enteros y representación binaria?",
+    "options": [
+      "Organiza campos respetando alineación, padding y representación dependiente de ABI al operar.",
+      "Distingue el objeto arreglos contiguos de la dirección que muchas expresiones producen.",
+      "Representa aproximaciones, redondeo, NaN e infinito sin asumir aritmética decimal exacta.",
+      "Garantiza tamaños de 8, 16, 32 y 64 bits para protocolos y formatos binarios al evaluar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "'gets()' lee de stdin hasta encontrar un salto de línea sin verificar el tamaño del búfer de destino, facilitando la sobreescritura de la dirección de retorno en el stack frame y ejecución remota de código. Se sustituye por 'fgets()' o 'getline()'.",
-    topic: "Seguridad & Buffer Overflows",
-    difficulty: "básico"
+    "correctAnswerIndex": 3,
+    "explanation": "Enteros de ancho fijo stdint (Tipos, enteros y representación binaria): Garantiza tamaños de 8, 16, 32 y 64 bits para protocolos y formatos binarios.",
+    "topic": "Tipos, enteros y representación binaria",
+    "difficulty": "básico"
   },
   {
-    id: "c-q-13",
-    collectionId: "c",
-    question: "¿Cuál es la diferencia entre 'malloc()' y 'calloc()' en la asignación dinámica de memoria?",
-    options: [
-      "'calloc()' inicializa todos los bytes del bloque reservado a cero; 'malloc()' deja la memoria sin inicializar con contenido residual previo.",
-      "'malloc()' reserva memoria en el Heap y 'calloc()' en el Stack de llamadas.",
-      "'calloc()' solo puede reservar memoria para estructuras de más de 1024 bytes.",
-      "Son sinónimos con firmas idénticas mantenidos por retrocompatibilidad con C89."
+    "id": "c-q-13",
+    "collectionId": "c",
+    "question": "Al trabajar con C, ¿qué responsabilidad define a «Direcciones y aritmética de punteros»?",
+    "options": [
+      "Se mueve únicamente dentro de un array válido y conserva el tipo del elemento en ejecución.",
+      "Usa NULL o nullptr para representar ausencia sin desreferenciar direcciones inválidas.",
+      "Modela tablas de operaciones y eventos desacoplados mediante firmas estrictas al operar.",
+      "Administra capacidad dinámica con ownership, tamaño y caminos de error explícitos."
     ],
-    correctAnswerIndex: 0,
-    explanation: "malloc(size) solo asigna memoria sin alterar los bytes existentes. calloc(num, size) calcula num * size con protección contra desbordamiento de enteros e inicializa todos los bytes a cero (bits 0).",
-    topic: "Gestión de Memoria Dinámica",
-    difficulty: "básico"
+    "correctAnswerIndex": 0,
+    "explanation": "Direcciones y aritmética de punteros (Punteros y aritmética estricta): Se mueve únicamente dentro de un array válido y conserva el tipo del elemento.",
+    "topic": "Punteros y aritmética estricta",
+    "difficulty": "básico"
   },
   {
-    id: "c-q-14",
-    collectionId: "c",
-    question: "¿Qué mecanismo de selección por tipo en tiempo de compilación introdujo el estándar C11?",
-    options: [
-      "_Generic",
-      "template<typename T>",
-      "typeid()",
-      "typeof_unqual()"
+    "id": "c-q-14",
+    "collectionId": "c",
+    "question": "En la arquitectura de C, ¿qué caracteriza técnicamente a «Punteros void»?",
+    "options": [
+      "Usa NULL o nullptr para representar ausencia sin desreferenciar direcciones inválidas al operar.",
+      "Transporta memoria genérica exigiendo casts explícitos hacia tipos con alineación compatible.",
+      "Se mueve únicamente dentro de un array válido y conserva el tipo del elemento de forma clara.",
+      "Modela tablas de operaciones y eventos desacoplados mediante firmas estrictas de forma clara."
     ],
-    correctAnswerIndex: 0,
-    explanation: "C11 incorporó '_Generic(control_expr, type1: result1, type2: result2, default: default_result)', permitiendo sobrecarga ad-hoc en macros basada en el tipo de dato de la expresión evaluada en compilación.",
-    topic: "Estándar C11 & Metaprogramación",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 1,
+    "explanation": "Punteros void y alineación (Punteros y aritmética estricta): Transporta memoria genérica exigiendo casts explícitos hacia tipos con alineación compatible.",
+    "topic": "Punteros y aritmética estricta",
+    "difficulty": "básico"
   },
   {
-    id: "c-q-15",
-    collectionId: "c",
-    question: "¿Por qué una expresión como 'i = i++' produce Comportamiento Indefinido (Undefined Behavior) en C?",
-    options: [
-      "Viola las reglas de puntos de secuencia (sequence points): una variable escalar no puede modificarse más de una vez sin un punto de secuencia intermedio.",
-      "El compilador prohíbe que el operador de post-incremento se use en el lado derecho de una asignación.",
-      "Genera un bucle infinito que bloquea el registro del acumulador en el microprocesador.",
-      "Provoca una excepción de división por cero en la unidad aritmético-lógica."
+    "id": "c-q-15",
+    "collectionId": "c",
+    "question": "Respecto a punteros y aritmética estricta en C, ¿cuál es el propósito de «Punteros nulos y comprobación»?",
+    "options": [
+      "Se mueve únicamente dentro de un array válido y conserva el tipo del elemento al evaluar.",
+      "Modela tablas de operaciones y eventos desacoplados mediante firmas estrictas al operar.",
+      "Usa NULL o nullptr para representar ausencia sin desreferenciar direcciones inválidas.",
+      "Separa describir un nombre de reservar almacenamiento o proporcionar una función al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Entre dos puntos de secuencia sucesivos, un valor escalar solo puede tener su valor almacenado modificado una vez por la evaluación de una expresión. En 'i = i++', el valor de 'i' se escribe dos veces de forma no secuenciada.",
-    topic: "Sequence Points & Evaluación",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 2,
+    "explanation": "Punteros nulos y comprobación (Punteros y aritmética estricta): Usa NULL o nullptr para representar ausencia sin desreferenciar direcciones inválidas.",
+    "topic": "Punteros y aritmética estricta",
+    "difficulty": "básico"
   },
   {
-    id: "c-q-16",
-    collectionId: "c",
-    question: "¿Cómo se define un puntero a una función que recibe dos enteros y devuelve un entero en C?",
-    options: [
-      "int (*fn_ptr)(int, int);",
-      "int *fn_ptr(int, int);",
-      "fn_ptr<int, int> -> int;",
-      "int &fn_ptr(int, int);"
+    "id": "c-q-16",
+    "collectionId": "c",
+    "question": "En C (Punteros y aritmética estricta), ¿qué función técnica cumple «Puntero a puntero y mutación»?",
+    "options": [
+      "Transporta memoria genérica exigiendo casts explícitos hacia tipos con alineación compatible al operar.",
+      "Usa NULL o nullptr para representar ausencia sin desreferenciar direcciones inválidas al operar.",
+      "Se mueve únicamente dentro de un array válido y conserva el tipo del elemento sin perder estado.",
+      "Modifica la dirección que almacena un direcciones de memoria externo desde una función invocada."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Los paréntesis alrededor de (*fn_ptr) son obligatorios: 'int (*fn_ptr)(int, int)' declara un puntero a función. Sin los paréntesis, 'int *fn_ptr(int, int)' declara una función ordinaria que devuelve un puntero a entero (int*).",
-    topic: "Punteros a Funciones",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 3,
+    "explanation": "Puntero a puntero y mutación (Punteros y aritmética estricta): Modifica la dirección que almacena un puntero externo desde una función invocada.",
+    "topic": "Punteros y aritmética estricta",
+    "difficulty": "básico"
   },
   {
-    id: "c-q-17",
-    collectionId: "c",
-    question: "¿Cuál es la función del archivo de cabecera 'stdbool.h' en C99?",
-    options: [
-      "Define las macros 'bool' expandida a '_Bool', 'true' a 1 y 'false' a 0 para soporte booleano estandarizado.",
-      "Implementa operaciones de lógica difusa para sistemas de control en tiempo real.",
-      "Provee algoritmos de optimización booleana mediante mapas de Karnaugh.",
-      "Configura los permisos de acceso a variables booleanas en memoria compartida."
+    "id": "c-q-17",
+    "collectionId": "c",
+    "question": "Dentro de C, ¿cómo opera el mecanismo de «Punteros a funciones y callbacks» en punteros y aritmética estricta?",
+    "options": [
+      "Modela tablas de operaciones y eventos desacoplados mediante firmas estrictas en ejecución.",
+      "Se mueve únicamente dentro de un array válido y conserva el tipo del elemento al operar.",
+      "Usa NULL o nullptr para representar ausencia sin desreferenciar direcciones inválidas.",
+      "Administra capacidad dinámica con ownership, tamaño y caminos de error explícitos."
     ],
-    correctAnswerIndex: 0,
-    explanation: "En C99, el tipo primitivo nativo es '_Bool'. Para mantener compatibilidad con C++ y legibilidad, 'stdbool.h' provee las definiciones convenientes 'bool', 'true' y 'false'.",
-    topic: "Estándar C99 & Tipos",
-    difficulty: "básico"
+    "correctAnswerIndex": 0,
+    "explanation": "Punteros a funciones y callbacks (Punteros y aritmética estricta): Modela tablas de operaciones y eventos desacoplados mediante firmas estrictas.",
+    "topic": "Punteros y aritmética estricta",
+    "difficulty": "intermedio"
   },
   {
-    id: "c-q-18",
-    collectionId: "c",
-    question: "¿Qué diferencia existe entre un 'Little-Endian' y un 'Big-Endian' al almacenar un entero de 32 bits (0x12345678) en memoria?",
-    options: [
-      "Little-Endian almacena el byte menos significativo primero (78 56 34 12); Big-Endian almacena el byte más significativo primero (12 34 56 78).",
-      "Little-Endian utiliza compresión de ceros a la izquierda; Big-Endian duplica los bits de paridad.",
-      "Big-Endian solo es compatible con procesadores ARM; Little-Endian solo funciona en mainframes IBM.",
-      "Little-Endian almacena los números como enteros con signo; Big-Endian como enteros sin signo."
+    "id": "c-q-18",
+    "collectionId": "c",
+    "question": "Al trabajar con C, ¿qué responsabilidad define a «Punteros constantes y restrict»?",
+    "options": [
+      "Modifica la dirección que almacena un direcciones de memoria externo desde una función invocada sin degradar el flujo.",
+      "Distingue direcciones de memoria a datos inmutables de direcciones de memoria con dirección fija y sin solapamiento.",
+      "Transporta memoria genérica exigiendo casts explícitos hacia tipos con alineación compatible sin degradar el flujo.",
+      "Usa NULL o nullptr para representar ausencia sin desreferenciar direcciones inválidas bajo condiciones productivas."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Endianness define el orden de los bytes de palabras multisitio en memoria. En Little-Endian (x86, x86_64, la mayoría de ARM), el byte de menor peso se sitúa en la dirección de memoria más baja.",
-    topic: "Endianness & Hardware",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 1,
+    "explanation": "Punteros constantes y restrict (Punteros y aritmética estricta): Distingue punteros a datos inmutables de punteros con dirección fija y sin solapamiento.",
+    "topic": "Punteros y aritmética estricta",
+    "difficulty": "intermedio"
   },
   {
-    id: "c-q-19",
-    collectionId: "c",
-    question: "¿Qué efecto tiene utilizar 'union' en lugar de 'struct' en C?",
-    options: [
-      "Todos los miembros de la unión comparten la misma dirección base de memoria, y su tamaño total es el del miembro más grande.",
-      "Los miembros se almacenan de forma contigua uno tras otro sumando sus tamaños individuales.",
-      "Una unión solo puede almacenar datos de tipo texto codificados en ASCII.",
-      "Las uniones se destruyen automáticamente al salir de la función mediante recolección de basura."
+    "id": "c-q-19",
+    "collectionId": "c",
+    "question": "En la arquitectura de C, ¿qué caracteriza técnicamente a «Stack, static storage y heap»?",
+    "options": [
+      "Administra capacidad dinámica con ownership, tamaño y caminos de error explícitos al operar.",
+      "Previene accesos a regiones liberadas limpiando punteros inmediatamente tras free al operar.",
+      "Relaciona lifetime con región sin confundirlo con una regla universal de implementación.",
+      "Agrupa asignaciones con el mismo ciclo de vida para liberarlas en bloque a costo cero."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Una 'union' superpone todos sus miembros en la misma ubicación física de memoria. Modificar un miembro altera el valor interpretado de los otros, utilizándose para ahorro de memoria o 'type punning' controlado.",
-    topic: "Uniones & Gestión de Memoria",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 2,
+    "explanation": "Stack, static storage y heap (Memoria dinámica, lifetime y ownership): Relaciona lifetime con región sin confundirlo con una regla universal de implementación.",
+    "topic": "Memoria dinámica, lifetime y ownership",
+    "difficulty": "intermedio"
   },
   {
-    id: "c-q-20",
-    collectionId: "c",
-    question: "¿Qué problema previene el uso de 'snprintf()' en lugar de 'sprintf()'?",
-    options: [
-      "Desbordamientos de búfer (Buffer Overflows), al recibir un parámetro de tamaño máximo 'size' que limita los bytes escritos.",
-      "Errores de formato de precisión en números de coma flotante.",
-      "Interrupciones no capturadas de señales del sistema operativo.",
-      "Fugas de descriptores de archivo en sockets de red abiertos."
+    "id": "c-q-20",
+    "collectionId": "c",
+    "question": "Respecto a memoria dinámica, lifetime y ownership en C, ¿cuál es el propósito de «malloc, calloc, realloc y free»?",
+    "options": [
+      "Previene accesos a regiones liberadas limpiando punteros inmediatamente tras free.",
+      "Construye cadenas delimitadas verificando truncamiento antes de consumirlas al operar.",
+      "Distingue programas con sistema operativo de implementaciones freestanding al operar.",
+      "Administra capacidad dinámica con ownership, tamaño y caminos de error explícitos."
     ],
-    correctAnswerIndex: 0,
-    explanation: "'sprintf()' no conoce la capacidad del búfer receptor y continúa escribiendo indefinidamente si la cadena formateada es extensa. 'snprintf(buf, sizeof(buf), ...)' trunca la salida si excede el tamaño, evitando desbordamientos de memoria.",
-    topic: "Seguridad & Entrada/Salida",
-    difficulty: "básico"
+    "correctAnswerIndex": 3,
+    "explanation": "malloc, calloc, realloc y free (Memoria dinámica, lifetime y ownership): Administra capacidad dinámica con ownership, tamaño y caminos de error explícitos.",
+    "topic": "Memoria dinámica, lifetime y ownership",
+    "difficulty": "intermedio"
   },
   {
-    id: "c-q-21",
-    collectionId: "c",
-    question: "¿Qué directiva del preprocesador se utiliza tradicionalmente como 'Include Guard' para evitar inclusiones múltiples de un archivo de cabecera?",
-    options: [
-      "#ifndef HEADER_H / #define HEADER_H / #endif",
-      "#import <header.h>",
-      "#pragma ignore_duplicates",
-      "#include_once <header.h>"
+    "id": "c-q-21",
+    "collectionId": "c",
+    "question": "En C (Memoria dinámica, lifetime y ownership), ¿qué función técnica cumple «Ownership y responsabilidad de liberación»?",
+    "options": [
+      "Asigna un módulo dueño para cada buffer adquirido en el heap respetando las invariantes.",
+      "Administra capacidad dinámica con ownership, tamaño y caminos de error explícitos.",
+      "Previene accesos a regiones liberadas limpiando punteros inmediatamente tras free.",
+      "Agrupa asignaciones con el mismo ciclo de vida para liberarlas en bloque a costo cero."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Los include guards basados en #ifndef / #define / #endif previenen que las definiciones de tipos o constantes sean procesadas repetidamente en la misma unidad de compilación, evitando errores de redefinición.",
-    topic: "Preprocesador & Cabeceras",
-    difficulty: "básico"
+    "correctAnswerIndex": 0,
+    "explanation": "Ownership y responsabilidad de liberación (Memoria dinámica, lifetime y ownership): Asigna un módulo dueño para cada buffer adquirido en el heap.",
+    "topic": "Memoria dinámica, lifetime y ownership",
+    "difficulty": "intermedio"
   },
   {
-    id: "c-q-22",
-    collectionId: "c",
-    question: "¿Qué ocurre si se intenta escribir sobre un literal de cadena como 'char *str = \"hola\"; str[0] = 'H';'?",
-    options: [
-      "Provoca un fallo de segmentación (Segmentation Fault / SIGSEGV) porque los literales de cadena residen en el segmento Text de solo lectura.",
-      "El compilador convierte automáticamente la cadena a mayúsculas sin arrojar error.",
-      "La cadena se reubica automáticamente en el Heap mediante una copia profunda.",
-      "Se sobreescribe la variable global 'errno' con el código de error EACCES."
+    "id": "c-q-22",
+    "collectionId": "c",
+    "question": "Dentro de C, ¿cómo opera el mecanismo de «Doble liberación» en memoria dinámica, lifetime y ownership?",
+    "options": [
+      "Administra capacidad dinámica con ownership, tamaño y caminos de error explícitos.",
+      "Previene accesos a regiones liberadas limpiando punteros inmediatamente tras free.",
+      "Construye cadenas delimitadas verificando truncamiento antes de consumirlas al operar.",
+      "Distingue programas con sistema operativo de implementaciones freestanding al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Los literales de cadena se almacenan en memoria de solo lectura (.rodata / text segment). Intentar mutar sus bytes es Undefined Behavior y genera un fallo de protección de memoria (SIGSEGV) en sistemas operativos modernos.",
-    topic: "Cadenas & Memoria de Solo Lectura",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 1,
+    "explanation": "Doble liberación y use-after-free (Memoria dinámica, lifetime y ownership): Previene accesos a regiones liberadas limpiando punteros inmediatamente tras free.",
+    "topic": "Memoria dinámica, lifetime y ownership",
+    "difficulty": "intermedio"
   },
   {
-    id: "c-q-23",
-    collectionId: "c",
-    question: "¿Para qué se utiliza la función 'setjmp()' y 'longjmp()' en la biblioteca estándar de C?",
-    options: [
-      "Implementar saltos no locales (non-local jumps) guardando y restaurando el contexto de la CPU (registros y puntero de pila), emulando excepciones.",
-      "Asignar bloques contiguos de memoria en la caché L1 del procesador.",
-      "Saltar a una línea específica dentro de la misma función como alternativa a goto.",
-      "Crear un nuevo proceso en segundo plano similar a fork() en sistemas POSIX."
+    "id": "c-q-23",
+    "collectionId": "c",
+    "question": "Al trabajar con C, ¿qué responsabilidad define a «Fragmentación del heap»?",
+    "options": [
+      "Administra capacidad dinámica con ownership, tamaño y caminos de error explícitos al operar.",
+      "Previene accesos a regiones liberadas limpiando punteros inmediatamente tras free al operar.",
+      "Planifica patrones de reserva para evitar que reservas dispares agoten bloques contiguos.",
+      "Agrupa asignaciones con el mismo ciclo de vida para liberarlas en bloque a costo cero."
     ],
-    correctAnswerIndex: 0,
-    explanation: "'setjmp(env)' guarda el estado de los registros y el stack pointer en un búfer jmp_buf. 'longjmp(env, val)' restaura ese contexto inmediatamente desenrollando la pila, permitiendo saltar fuera de funciones profundas ante errores graves.",
-    topic: "Control de Flujo No Local",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 2,
+    "explanation": "Fragmentación del heap (Memoria dinámica, lifetime y ownership): Planifica patrones de reserva para evitar que reservas dispares agoten bloques contiguos.",
+    "topic": "Memoria dinámica, lifetime y ownership",
+    "difficulty": "intermedio"
   },
   {
-    id: "c-q-24",
-    collectionId: "c",
-    question: "¿Cuál es el propósito de la función 'free()' y qué ocurre si se invoca dos veces sobre el mismo puntero sin reasignar ('Double Free')?",
-    options: [
-      "Libera el bloque de memoria dinámica asociado; un double-free corrompe las estructuras del heap de malloc y abre vulnerabilidades de seguridad graves.",
-      "Lanza una excepción estandarizada de tipo MemoryException capturable por el programa.",
-      "free() es idempotente; invocarlo dos veces no produce ningún efecto secundario.",
-      "Reinicia automáticamente el proceso volviendo al inicio de la función main()."
+    "id": "c-q-24",
+    "collectionId": "c",
+    "question": "En la arquitectura de C, ¿qué caracteriza técnicamente a «Asignadores de arena y pools»?",
+    "options": [
+      "Administra capacidad dinámica con ownership, tamaño y caminos de error explícitos al operar.",
+      "Previene accesos a regiones liberadas limpiando punteros inmediatamente tras free.",
+      "Relaciona lifetime con región sin confundirlo con una regla universal de implementación.",
+      "Agrupa asignaciones con el mismo ciclo de vida para liberarlas en bloque a costo cero."
     ],
-    correctAnswerIndex: 0,
-    explanation: "free() informa al allocator del Heap que el bloque está disponible. Un 'double free' intenta liberar un bloque ya libre, corrompiendo las listas enlazadas internas del allocator (fastbins/tcache), lo que atacantes aprovechan para sobreescribir punteros de función.",
-    topic: "Seguridad & Gestión del Heap",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 3,
+    "explanation": "Asignadores de arena y pools (Memoria dinámica, lifetime y ownership): Agrupa asignaciones con el mismo ciclo de vida para liberarlas en bloque a costo cero.",
+    "topic": "Memoria dinámica, lifetime y ownership",
+    "difficulty": "intermedio"
   },
   {
-    id: "c-q-25",
-    collectionId: "c",
-    question: "¿Qué define la convención de llamadas 'cdecl' en la arquitectura x86 de 32 bits?",
-    options: [
-      "Los argumentos se apilan de derecha a izquierda y el llamador (caller) es responsable de limpiar la pila tras el retorno.",
-      "Los argumentos se pasan exclusivamente por registros del procesador y el receptor limpia la pila.",
-      "Los argumentos se almacenan en un array global compartido en el segmento BSS.",
-      "El primer argumento se pasa en el registro EAX y el segundo en EDX obligatoriamente."
+    "id": "c-q-25",
+    "collectionId": "c",
+    "question": "Respecto a aliasing, effective type y restrict en C, ¿cuál es el propósito de «Aliasing y effective type»?",
+    "options": [
+      "Define qué accesos pueden observar un objeto sin romper optimizaciones del compilador.",
+      "Informa al compilador que un puntero es el único acceso a su región durante el scope.",
+      "Separa describir un nombre de reservar almacenamiento o proporcionar una función.",
+      "Controla bifurcaciones por valor con etiquetas explícitas y salvaguardas default."
     ],
-    correctAnswerIndex: 0,
-    explanation: "En la convención 'cdecl' estándar de C en x86-32, los parámetros se empujan al stack de derecha a izquierda. Dado que el llamador conoce la cantidad exacta de argumentos, limpia la pila (add esp, N), lo que hace posibles funciones variádicas como printf.",
-    topic: "ABI & Convenciones de Llamada",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 0,
+    "explanation": "Aliasing y effective type (Aliasing, effective type y restrict): Define qué accesos pueden observar un objeto sin romper optimizaciones del compilador.",
+    "topic": "Aliasing, effective type y restrict",
+    "difficulty": "intermedio"
   },
   {
-    id: "c-q-26",
-    collectionId: "c",
-    question: "¿Cuál es el comportamiento de las 'Variable-Length Arrays' (VLA) introducidas en C99 y hechas opcionales en C11?",
-    options: [
-      "Permiten reservar arrays en la pila con una dimensión determinada en tiempo de ejecución, con riesgo de Stack Overflow sin captura de errores.",
-      "Permiten que los arrays crezcan dinámicamente en el Heap como vectores de C++.",
-      "Asignan memoria en un archivo temporal en disco si la pila supera 1 MB.",
-      "Solo admiten arrays de tipos de datos de coma flotante de doble precisión."
+    "id": "c-q-26",
+    "collectionId": "c",
+    "question": "En C (Aliasing, effective type y restrict), ¿qué función técnica cumple «Strict aliasing rule»?",
+    "options": [
+      "Fuerza lecturas y escrituras en memoria mapeada sin convertirlas en sincronización de hilos al operar.",
+      "Impide desreferenciar la misma memoria a través de tipos incompatibles salvo excepciones como char.",
+      "Usa uniones o memcpy para reinterpretar representaciones binarias sin violar reglas de aliasing.",
+      "Comprende cómo reordenamientos del optimizador asumen ausencia de efectos colaterales invisibles."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Los VLAs reservan espacio en el Stack según una variable 'int arr[n]'. Si 'n' es desmedido, provocan un desbordamiento de pila fatal sin posibilidad de comprobación previa como con malloc(), razón por la cual C11 las hizo opcionales (__STDC_NO_VLA__).",
-    topic: "Estándar C99/C11 & Pila",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 1,
+    "explanation": "Strict aliasing rule (Aliasing, effective type y restrict): Impide desreferenciar la misma memoria a través de tipos incompatibles salvo excepciones como char.",
+    "topic": "Aliasing, effective type y restrict",
+    "difficulty": "intermedio"
   },
   {
-    id: "c-q-27",
-    collectionId: "c",
-    question: "¿Para qué se utiliza la macro 'va_start', 'va_arg' y 'va_end' de 'stdarg.h'?",
-    options: [
-      "Implementar funciones que aceptan un número variable de argumentos (funciones variádicas como printf).",
-      "Validar firmas criptográficas de bibliotecas dinámicas compartidas.",
-      "Medir el tiempo de ejecución de una función en microsegundos.",
-      "Gestionar la sincronización de hilos mediante mutexes y semáforos."
+    "id": "c-q-27",
+    "collectionId": "c",
+    "question": "Dentro de C, ¿cómo opera el mecanismo de «El calificador restrict» en aliasing, effective type y restrict?",
+    "options": [
+      "Define qué accesos pueden observar un objeto sin romper optimizaciones del compilador.",
+      "Se mueve únicamente dentro de un array válido y conserva el tipo del elemento al operar.",
+      "Informa al compilador que un puntero es el único acceso a su región durante el scope.",
+      "Modela tablas de operaciones y eventos desacoplados mediante firmas estrictas al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "'stdarg.h' provee las macros para recorrer parámetros variables: va_start inicializa el puntero va_list a partir del último argumento con nombre, va_arg extrae el siguiente parámetro del tipo especificado y va_end limpia el estado.",
-    topic: "Funciones Variádicas",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 2,
+    "explanation": "El calificador restrict (Aliasing, effective type y restrict): Informa al compilador que un puntero es el único acceso a su región durante el scope.",
+    "topic": "Aliasing, effective type y restrict",
+    "difficulty": "intermedio"
   },
   {
-    id: "c-q-28",
-    collectionId: "c",
-    question: "¿Qué garantía ofrece 'int32_t' y 'uint64_t' del archivo de cabecera 'stdint.h' frente a 'int' o 'long'?",
-    options: [
-      "Garantizan un ancho de bits exacto e invariable independientemente de la arquitectura del procesador o del compilador.",
-      "Permiten realizar operaciones aritméticas a velocidad cuántica mediante aceleración por hardware.",
-      "Evitan desbordamientos numéricos convirtiendo los excesos en ceros silenciosos.",
-      "Cifran los enteros en memoria con algoritmos conformes al estándar FIPS 140-2."
+    "id": "c-q-28",
+    "collectionId": "c",
+    "question": "Al trabajar con C, ¿qué responsabilidad define a «Casts de tipos y type punning»?",
+    "options": [
+      "Fuerza lecturas y escrituras en memoria mapeada sin convertirlas en sincronización de hilos al operar.",
+      "Define qué accesos pueden observar un objeto sin romper optimizaciones del compilador al operar.",
+      "Informa al compilador que un puntero es el único acceso a su región durante el scope al evaluar.",
+      "Usa uniones o memcpy para reinterpretar representaciones binarias sin violar reglas de aliasing."
     ],
-    correctAnswerIndex: 0,
-    explanation: "En C, los tamaños de 'int' o 'long' varían según el modelo de datos (ILP32, LP64, LLP64). 'stdint.h' provee tipos con ancho exacto garantizado (int32_t son siempre 32 bits en complemento a dos), vital para portabilidad y protocolos de red.",
-    topic: "Tipos de Ancho Fijo & Portabilidad",
-    difficulty: "básico"
+    "correctAnswerIndex": 3,
+    "explanation": "Casts de tipos y type punning (Aliasing, effective type y restrict): Usa uniones o memcpy para reinterpretar representaciones binarias sin violar reglas de aliasing.",
+    "topic": "Aliasing, effective type y restrict",
+    "difficulty": "intermedio"
   },
   {
-    id: "c-q-29",
-    collectionId: "c",
-    question: "¿Cuál es la función del comando 'fflush(stdout)' en la biblioteca de entrada/salida estándar?",
-    options: [
-      "Fuerza la escritura inmediata de cualquier dato acumulado en el búfer de salida hacia el dispositivo o archivo destino.",
-      "Limpia el búfer de entrada de stdin descartando caracteres pendientes.",
-      "Cierra el descriptor de archivo de salida estándar liberando su memoria.",
-      "Reinicia los contadores de líneas leídas por la función scanf()."
+    "id": "c-q-29",
+    "collectionId": "c",
+    "question": "En la arquitectura de C, ¿qué caracteriza técnicamente a «Memory clobbers y optimizaciones»?",
+    "options": [
+      "Comprende cómo reordenamientos del optimizador asumen ausencia de efectos colaterales invisibles.",
+      "Fuerza lecturas y escrituras en memoria mapeada sin convertirlas en sincronización de hilos.",
+      "Define qué accesos pueden observar un objeto sin romper optimizaciones del compilador al operar.",
+      "Usa uniones o memcpy para reinterpretar representaciones binarias sin violar reglas de aliasing."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Los streams de salida de C son normalmente almacenados en búfer (línea o bloque) para rendimiento. 'fflush(stream)' vacía el búfer hacia el kernel inmediatamente. (Nota: usar fflush en streams de entrada como stdin es Undefined Behavior en el estándar).",
-    topic: "Entrada/Salida & Búfers",
-    difficulty: "básico"
+    "correctAnswerIndex": 0,
+    "explanation": "Memory clobbers y optimizaciones (Aliasing, effective type y restrict): Comprende cómo reordenamientos del optimizador asumen ausencia de efectos colaterales invisibles.",
+    "topic": "Aliasing, effective type y restrict",
+    "difficulty": "intermedio"
   },
   {
-    id: "c-q-30",
-    collectionId: "c",
-    question: "¿Qué palabra clave introduce el nuevo estándar C23 para representar punteros nulos de forma segura y tipada?",
-    options: [
-      "nullptr (de tipo nullptr_t)",
-      "NULL_PTR",
-      "void_null",
-      "nil"
+    "id": "c-q-30",
+    "collectionId": "c",
+    "question": "Respecto a aliasing, effective type y restrict en C, ¿cuál es el propósito de «Punteros volátiles en hardware»?",
+    "options": [
+      "Define qué accesos pueden observar un objeto sin romper optimizaciones del compilador al operar.",
+      "Fuerza lecturas y escrituras en memoria mapeada sin convertirlas en sincronización de hilos.",
+      "Informa al compilador que un puntero es el único acceso a su región durante el scope al operar.",
+      "Explica cómo caracteres, macros, unidades de traducción y link producen un ejecutable al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Históricamente, 'NULL' en C se definía como '((void*)0)' o '0', lo que causaba ambigüedades en macros y sobrecargas genéricas. C23 adopta 'nullptr' con tipo propio 'nullptr_t', alineándose con el estándar moderno de C++.",
-    topic: "Estándar C23 & Evolución",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 1,
+    "explanation": "Punteros volátiles en hardware (Aliasing, effective type y restrict): Fuerza lecturas y escrituras en memoria mapeada sin convertirlas en sincronización de hilos.",
+    "topic": "Aliasing, effective type y restrict",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "c-q-31",
+    "collectionId": "c",
+    "question": "En C (Control de flujo y secuencia temporal), ¿qué función técnica cumple «Expresiones y sequence rules»?",
+    "options": [
+      "Establece condiciones de terminación deterministas para prevenir bucles infinitos al operar.",
+      "Controla bifurcaciones por valor con etiquetas explícitas y salvaguardas default al operar.",
+      "Evita depender de órdenes de evaluación no garantizados durante la ejecución del módulo.",
+      "Maneja excepciones de bajo nivel sin corromper el stack ni omitir cierres críticos al operar."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Expresiones y sequence rules (Control de flujo y secuencia temporal): Evita depender de órdenes de evaluación no garantizados.",
+    "topic": "Control de flujo y secuencia temporal",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "c-q-32",
+    "collectionId": "c",
+    "question": "Dentro de C, ¿cómo opera el mecanismo de «Control de flujo condicional» en control de flujo y secuencia temporal?",
+    "options": [
+      "Establece condiciones de terminación deterministas para prevenir bucles infinitos al operar.",
+      "Controla bifurcaciones por valor con etiquetas explícitas y salvaguardas default al operar.",
+      "Maneja excepciones de bajo nivel sin corromper el stack ni omitir cierres críticos al operar.",
+      "Construye decisiones y loops con invariantes y salidas visibles dentro de la aplicación."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "Control de flujo condicional (Control de flujo y secuencia temporal): Construye decisiones y loops con invariantes y salidas visibles.",
+    "topic": "Control de flujo y secuencia temporal",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "c-q-33",
+    "collectionId": "c",
+    "question": "Al trabajar con C, ¿qué responsabilidad define a «Sentencias switch y fallthrough»?",
+    "options": [
+      "Controla bifurcaciones por valor con etiquetas explícitas y salvaguardas default de forma clara.",
+      "Maneja excepciones de bajo nivel sin corromper el stack ni omitir cierres críticos al operar.",
+      "Establece condiciones de terminación deterministas para prevenir bucles infinitos al operar.",
+      "Centraliza la liberación de recursos en bloques de salida unificados sin saltos cruzados."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Sentencias switch y fallthrough (Control de flujo y secuencia temporal): Controla bifurcaciones por valor con etiquetas explícitas y salvaguardas default.",
+    "topic": "Control de flujo y secuencia temporal",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "c-q-34",
+    "collectionId": "c",
+    "question": "En la arquitectura de C, ¿qué caracteriza técnicamente a «Loops while, for y do-while»?",
+    "options": [
+      "Controla bifurcaciones por valor con etiquetas explícitas y salvaguardas default al operar.",
+      "Establece condiciones de terminación deterministas para prevenir bucles infinitos.",
+      "Maneja excepciones de bajo nivel sin corromper el stack ni omitir cierres críticos.",
+      "Construye decisiones y loops con invariantes y salidas visibles sin perder estado."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Loops while, for y do-while (Control de flujo y secuencia temporal): Establece condiciones de terminación deterministas para prevenir bucles infinitos.",
+    "topic": "Control de flujo y secuencia temporal",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "c-q-35",
+    "collectionId": "c",
+    "question": "Respecto a control de flujo y secuencia temporal en C, ¿cuál es el propósito de «Saltos locales y goto de limpieza»?",
+    "options": [
+      "Maneja excepciones de bajo nivel sin corromper el stack ni omitir cierres críticos al operar.",
+      "Establece condiciones de terminación deterministas para prevenir bucles infinitos al operar.",
+      "Centraliza la liberación de recursos en bloques de salida unificados sin saltos cruzados.",
+      "Controla bifurcaciones por valor con etiquetas explícitas y salvaguardas default al operar."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Saltos locales y goto de limpieza (Control de flujo y secuencia temporal): Centraliza la liberación de recursos en bloques de salida unificados sin saltos cruzados.",
+    "topic": "Control de flujo y secuencia temporal",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "c-q-36",
+    "collectionId": "c",
+    "question": "En C (Control de flujo y secuencia temporal), ¿qué función técnica cumple «setjmp y longjmp en recuperación»?",
+    "options": [
+      "Controla bifurcaciones por valor con etiquetas explícitas y salvaguardas default al operar.",
+      "Establece condiciones de terminación deterministas para prevenir bucles infinitos.",
+      "Construye decisiones y loops con invariantes y salidas visibles de modo predecible.",
+      "Maneja excepciones de bajo nivel sin corromper el stack ni omitir cierres críticos."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "setjmp y longjmp en recuperación (Control de flujo y secuencia temporal): Maneja excepciones de bajo nivel sin corromper el stack ni omitir cierres críticos.",
+    "topic": "Control de flujo y secuencia temporal",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "c-q-37",
+    "collectionId": "c",
+    "question": "Dentro de C, ¿cómo opera el mecanismo de «Funciones y calling convention» en funciones, calling conventions y abi?",
+    "options": [
+      "Pasa argumentos a través de un ABI aunque el estándar no dicte registros concretos.",
+      "Reduce sobrecoste de llamadas sin multiplicar definiciones públicas en el binario.",
+      "Intercambia claridad por consumo de frames que el entorno puede limitar al operar.",
+      "Diseña nombres y layouts durables para interoperar con runtimes como Python y Rust."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Funciones y calling convention (Funciones, calling conventions y ABI): Pasa argumentos a través de un ABI aunque el estándar no dicte registros concretos.",
+    "topic": "Funciones, calling conventions y ABI",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "c-q-38",
+    "collectionId": "c",
+    "question": "Al trabajar con C, ¿qué responsabilidad define a «Pila de llamadas y frame pointers»?",
+    "options": [
+      "Reduce sobrecoste de llamadas sin multiplicar definiciones públicas en el binario al operar.",
+      "Conserva el estado de activación anterior y las variables locales en cada invocación.",
+      "Pasa argumentos a través de un ABI aunque el estándar no dicte registros concretos.",
+      "Diseña nombres y layouts durables para interoperar con runtimes como Python y Rust."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Pila de llamadas y frame pointers (Funciones, calling conventions y ABI): Conserva el estado de activación anterior y las variables locales en cada invocación.",
+    "topic": "Funciones, calling conventions y ABI",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "c-q-39",
+    "collectionId": "c",
+    "question": "En la arquitectura de C, ¿qué caracteriza técnicamente a «Argumentos variables con stdarg»?",
+    "options": [
+      "Conserva el estado de activación anterior y las variables locales en cada invocación al evaluar.",
+      "Pasa argumentos a través de un ABI aunque el estándar no dicte registros concretos al operar.",
+      "Procesa listas dinámicas verificando tipos y centinelas para evitar lecturas fuera de límite.",
+      "Diseña nombres y layouts durables para interoperar con runtimes como Python y Rust al operar."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Argumentos variables con stdarg (Funciones, calling conventions y ABI): Procesa listas dinámicas verificando tipos y centinelas para evitar lecturas fuera de límite.",
+    "topic": "Funciones, calling conventions y ABI",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "c-q-40",
+    "collectionId": "c",
+    "question": "Respecto a funciones, calling conventions y abi en C, ¿cuál es el propósito de «Funciones inline y linkage interno»?",
+    "options": [
+      "Intercambia claridad por consumo de frames que el entorno puede limitar en ejecución.",
+      "Pasa argumentos a través de un ABI aunque el estándar no dicte registros concretos.",
+      "Diseña nombres y layouts durables para interoperar con runtimes como Python y Rust.",
+      "Reduce sobrecoste de llamadas sin multiplicar definiciones públicas en el binario."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "Funciones inline y linkage interno (Funciones, calling conventions y ABI): Reduce sobrecoste de llamadas sin multiplicar definiciones públicas en el binario.",
+    "topic": "Funciones, calling conventions y ABI",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "c-q-41",
+    "collectionId": "c",
+    "question": "En C (Funciones, calling conventions y ABI), ¿qué función técnica cumple «Recursión y límites de stack»?",
+    "options": [
+      "Intercambia claridad por consumo de frames que el entorno puede limitar de forma segura.",
+      "Reduce sobrecoste de llamadas sin multiplicar definiciones públicas en el binario.",
+      "Pasa argumentos a través de un ABI aunque el estándar no dicte registros concretos.",
+      "Diseña nombres y layouts durables para interoperar con runtimes como Python y Rust."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Recursión y límites de stack (Funciones, calling conventions y ABI): Intercambia claridad por consumo de frames que el entorno puede limitar.",
+    "topic": "Funciones, calling conventions y ABI",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "c-q-42",
+    "collectionId": "c",
+    "question": "Dentro de C, ¿cómo opera el mecanismo de «Estabilidad de ABI y exportación» en funciones, calling conventions y abi?",
+    "options": [
+      "Reduce sobrecoste de llamadas sin multiplicar definiciones públicas en el binario al operar.",
+      "Diseña nombres y layouts durables para interoperar con runtimes como Python y Rust.",
+      "Intercambia claridad por consumo de frames que el entorno puede limitar al evaluar.",
+      "Pasa argumentos a través de un ABI aunque el estándar no dicte registros concretos."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Estabilidad de ABI y exportación (Funciones, calling conventions y ABI): Diseña nombres y layouts durables para interoperar con runtimes como Python y Rust.",
+    "topic": "Funciones, calling conventions y ABI",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "c-q-43",
+    "collectionId": "c",
+    "question": "Al trabajar con C, ¿qué responsabilidad define a «stdio y buffering»?",
+    "options": [
+      "Navega desplazamientos en archivos grandes verificando límites de tipo off_t con precisión.",
+      "Construye cadenas delimitadas verificando truncamiento antes de consumirlas en el flujo.",
+      "Distingue streams, buffers, EOF y errores de una lectura o escritura parcial al evaluar.",
+      "Transfiere bloques de estructuras verificando cantidad de elementos leídos en ejecución."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "stdio y buffering (I/O, streams y manejo de archivos): Distingue streams, buffers, EOF y errores de una lectura o escritura parcial.",
+    "topic": "I/O, streams y manejo de archivos",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "c-q-44",
+    "collectionId": "c",
+    "question": "En la arquitectura de C, ¿qué caracteriza técnicamente a «Archivos y descriptores del sistema»?",
+    "options": [
+      "Distingue streams, buffers, EOF y errores de una lectura o escritura parcial con precisión.",
+      "Navega desplazamientos en archivos grandes verificando límites de tipo off_t al evaluar.",
+      "Construye cadenas delimitadas verificando truncamiento antes de consumirlas en el flujo.",
+      "Adquiere handles y garantiza cierre en todos los caminos de salida durante la ejecución."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "Archivos y descriptores del sistema (I/O, streams y manejo de archivos): Adquiere handles y garantiza cierre en todos los caminos de salida.",
+    "topic": "I/O, streams y manejo de archivos",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "c-q-45",
+    "collectionId": "c",
+    "question": "Respecto a i/o, streams y manejo de archivos en C, ¿cuál es el propósito de «Lecturas binarias fread y fwrite»?",
+    "options": [
+      "Transfiere bloques de estructuras verificando cantidad de elementos leídos en ejecución.",
+      "Distingue streams, buffers, EOF y errores de una lectura o escritura parcial al operar.",
+      "Navega desplazamientos en archivos grandes verificando límites de tipo off_t al operar.",
+      "Construye cadenas delimitadas verificando truncamiento antes de consumirlas al operar."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Lecturas binarias fread y fwrite (I/O, streams y manejo de archivos): Transfiere bloques de estructuras verificando cantidad de elementos leídos.",
+    "topic": "I/O, streams y manejo de archivos",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "c-q-46",
+    "collectionId": "c",
+    "question": "En C (I/O, streams y manejo de archivos), ¿qué función técnica cumple «Posicionamiento con fseek y ftell»?",
+    "options": [
+      "Distingue streams, buffers, EOF y errores de una lectura o escritura parcial con precisión.",
+      "Navega desplazamientos en archivos grandes verificando límites de tipo off_t al evaluar.",
+      "Construye cadenas delimitadas verificando truncamiento antes de consumirlas en el flujo.",
+      "Transfiere bloques de estructuras verificando cantidad de elementos leídos en ejecución."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Posicionamiento con fseek y ftell (I/O, streams y manejo de archivos): Navega desplazamientos en archivos grandes verificando límites de tipo off_t.",
+    "topic": "I/O, streams y manejo de archivos",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "c-q-47",
+    "collectionId": "c",
+    "question": "Dentro de C, ¿cómo opera el mecanismo de «Formateo seguro con snprintf» en i/o, streams y manejo de archivos?",
+    "options": [
+      "Distingue streams, buffers, EOF y errores de una lectura o escritura parcial con precisión.",
+      "Navega desplazamientos en archivos grandes verificando límites de tipo off_t al evaluar.",
+      "Construye cadenas delimitadas verificando truncamiento antes de consumirlas en el flujo.",
+      "Transfiere bloques de estructuras verificando cantidad de elementos leídos en ejecución."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Formateo seguro con snprintf (I/O, streams y manejo de archivos): Construye cadenas delimitadas verificando truncamiento antes de consumirlas.",
+    "topic": "I/O, streams y manejo de archivos",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "c-q-48",
+    "collectionId": "c",
+    "question": "Al trabajar con C, ¿qué responsabilidad define a «Errores, errno y códigos de retorno»?",
+    "options": [
+      "Distingue streams, buffers, EOF y errores de una lectura o escritura parcial en ejecución.",
+      "Navega desplazamientos en archivos grandes verificando límites de tipo off_t al operar.",
+      "Construye cadenas delimitadas verificando truncamiento antes de consumirlas al evaluar.",
+      "Conserva causa antes de que otra operación modifique el contexto sin degradar el flujo."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "Errores, errno y códigos de retorno (I/O, streams y manejo de archivos): Conserva causa antes de que otra operación modifique el contexto.",
+    "topic": "I/O, streams y manejo de archivos",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "c-q-49",
+    "collectionId": "c",
+    "question": "En la arquitectura de C, ¿qué caracteriza técnicamente a «Atomics y memory order»?",
+    "options": [
+      "Coordina accesos concurrentes sin convertir volatile en sincronización dentro del flujo.",
+      "Ejecuta compare-and-swap para actualizar estado sin adquirir cerrojos de forma segura.",
+      "Administra capacidad dinámica con ownership, tamaño y caminos de error explícitos.",
+      "Previene accesos a regiones liberadas limpiando punteros inmediatamente tras free."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Atomics y memory order (Concurrencia, atomicidad y memoria C11/C23): Coordina accesos concurrentes sin convertir volatile en sincronización.",
+    "topic": "Concurrencia, atomicidad y memoria C11/C23",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "c-q-50",
+    "collectionId": "c",
+    "question": "Respecto a concurrencia, atomicidad y memoria c11/c23 en C, ¿cuál es el propósito de «Tipos atómicos y operaciones lock-free»?",
+    "options": [
+      "Coordina accesos concurrentes sin convertir volatile en sincronización de modo predecible.",
+      "Ejecuta compare-and-swap para actualizar estado sin adquirir cerrojos sin perder estado.",
+      "Administra capacidad dinámica con ownership, tamaño y caminos de error explícitos al operar.",
+      "Previene accesos a regiones liberadas limpiando punteros inmediatamente tras free al operar."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Tipos atómicos y operaciones lock-free (Concurrencia, atomicidad y memoria C11/C23): Ejecuta compare-and-swap (CAS) para actualizar estado sin adquirir cerrojos.",
+    "topic": "Concurrencia, atomicidad y memoria C11/C23",
+    "difficulty": "avanzado"
   }
 ];

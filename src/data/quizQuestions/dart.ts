@@ -2,453 +2,753 @@ import type { QuizQuestion } from "@/data/quizTypes";
 
 export const dartQuestions: QuizQuestion[] = [
   {
-    id: "dart-01",
-    collectionId: "dart",
-    question: "¿Qué garantiza el sistema 'Sound Null Safety' de Dart a nivel de compilación y optimización de código máquina?",
-    options: [
-      "Garantiza que una expresión tipada como no anulable (`T`) nunca podrá evaluar a `null` en tiempo de ejecución, permitiendo al compilador AOT eliminar comprobaciones defensivas de puntero nulo y generar binarios nativos más compactos y veloces.",
-      "Convierte automáticamente todos los valores `null` en ceros numéricos de 64 bits.",
-      "Obliga al compilador a envolver cada variable en un contenedor de tipo `Option<T>` en el heap.",
-      "Prohíbe el uso de estructuras de datos mutables en todo el programa."
+    "id": "dart-q-01",
+    "collectionId": "dart",
+    "question": "En Dart (Jerarquía de Tipos & Modificadores de Clase), ¿qué función técnica cumple «Modificador Base y control de subtipado»?",
+    "options": [
+      "Garantiza que una clase sólo pueda ser heredada mediante extends o implementada dentro de su biblioteca propietaria.",
+      "Declara firmas de métodos sin implementación que deben satisfacer las subclases concretas en tiempo de ejecución.",
+      "Crea y completa promesas manualmente desde fuentes externas, suscripciones de bajo nivel o llamadas a hardware.",
+      "Compila la aplicación Ahead-Of-Time a binarios máquina directos con arranque instantáneo y uso eficiente de CPU."
     ],
-    correctAnswerIndex: 0,
-    explanation: "La palabra 'Sound' (sólido) significa que el sistema de tipos no tiene fisuras: si un tipo es no nulo, jamás podrá contener `null`, lo que permite al compilador omitir bifurcaciones condicionales de verificación nula a nivel de procesador.",
-    topic: "Sound Null Safety",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 0,
+    "explanation": "Modificador Base y control de subtipado (Jerarquía de Tipos & Modificadores de Clase): Garantiza que una clase sólo pueda ser heredada mediante extends o implementada dentro de su biblioteca propietaria.",
+    "topic": "Jerarquía de Tipos & Modificadores de Clase",
+    "difficulty": "básico"
   },
   {
-    id: "dart-02",
-    collectionId: "dart",
-    question: "¿En qué se diferencia el modelo de concurrencia basado en 'Isolates' de Dart del modelo tradicional de hilos compartidos (threads) de C++ o Java?",
-    options: [
-      "Cada Isolate posee su propio heap de memoria completamente aislado y su propio bucle de eventos (Event Loop) independiente; no existe memoria mutable compartida y la comunicación se realiza exclusivamente mediante paso de mensajes serializados o transferencia de búferes a través de puertos (`SendPort` / `ReceivePort`).",
-      "Los Isolates se ejecutan exclusivamente en servidores en la nube y no en el hardware local.",
-      "Los Isolates comparten todas las variables globales y sincronizan escrituras con candados `mutex` automáticos a nivel de SO.",
-      "Dart no soporta concurrencia y todos los programas son monohilo bloqueantes sin excepciones."
+    "id": "dart-q-02",
+    "collectionId": "dart",
+    "question": "Dentro de Dart, ¿cómo opera el mecanismo de «Modificador Interface para contratos puros» en jerarquía de tipos & modificadores de clase?",
+    "options": [
+      "Garantiza que una clase sólo pueda ser heredada mediante extends o implementada dentro de su biblioteca propietaria al operar.",
+      "Exige que los consumidores externos sólo puedan implementar la interfaz de la clase sin heredar su implementación concreta.",
+      "Declara firmas de métodos sin implementación que deben satisfacer las subclases concretas en tiempo de ejecución al operar.",
+      "Restringe los parámetros de tipo mediante T extends Base para garantizar que el tipo acepte sólo miembros compatibles al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Al no compartir memoria, los Isolates previenen de raíz las condiciones de carrera (race conditions) y eliminan la necesidad de bloqueos o primitivas de sincronización complejas como semáforos o mutexes.",
-    topic: "Concurrencia e Isolates",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 1,
+    "explanation": "Modificador Interface para contratos puros (Jerarquía de Tipos & Modificadores de Clase): Exige que los consumidores externos sólo puedan implementar la interfaz de la clase sin heredar su implementación concreta.",
+    "topic": "Jerarquía de Tipos & Modificadores de Clase",
+    "difficulty": "básico"
   },
   {
-    id: "dart-03",
-    collectionId: "dart",
-    question: "En el Event Loop de Dart, ¿cuál es el orden estricto de precedencia entre la 'Microtask Queue' y la 'Event Queue'?",
-    options: [
-      "La Microtask Queue tiene prioridad absoluta: el bucle procesará todas las microtareas pendientes hasta vaciar la cola por completo antes de extraer y despachar el siguiente evento ordinario de la Event Queue.",
-      "La Event Queue se ejecuta siempre antes que las microtareas para garantizar que los clics de usuario no sufran retraso.",
-      "Ambas colas se alternan en una ronda estricta Round-Robin de 1 a 1.",
-      "Las microtareas se descartan automáticamente si el teléfono reduce su tasa de refresco a 60 Hz."
+    "id": "dart-q-03",
+    "collectionId": "dart",
+    "question": "Al trabajar con Dart, ¿qué responsabilidad define a «Clases Abstractas y contratos polimórficos»?",
+    "options": [
+      "Crea y completa promesas manualmente desde fuentes externas, suscripciones de bajo nivel o llamadas a hardware al operar.",
+      "Compila la aplicación Ahead-Of-Time a binarios máquina directos con arranque instantáneo y uso eficiente de CPU.",
+      "Declara firmas de métodos sin implementación que deben satisfacer las subclases concretas en tiempo de ejecución.",
+      "Invoca funciones compiladas en C, C++ o Rust directamente desde Dart cargando bibliotecas dinámicas compartidas."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Cualquier microtarea programada con `scheduleMicrotask(...)` se ejecuta inmediatamente tras el código síncrono actual. Si se encolan microtareas de forma ininterrumpida, la Event Queue puede sufrir inanición (starvation), congelando la respuesta a eventos de UI o temporizadores.",
-    topic: "Event Loop y Asincronía",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 2,
+    "explanation": "Clases Abstractas y contratos polimórficos (Jerarquía de Tipos & Modificadores de Clase): Declara firmas de métodos sin implementación que deben satisfacer las subclases concretas en tiempo de ejecución.",
+    "topic": "Jerarquía de Tipos & Modificadores de Clase",
+    "difficulty": "básico"
   },
   {
-    id: "dart-04",
-    collectionId: "dart",
-    question: "En Dart 3, ¿qué restricción arquitectónica impone declarar una clase con el modificador `sealed`?",
-    options: [
-      "La clase es implícitamente abstracta y todos sus subtipos directos deben ser declarados obligatoriamente dentro de la misma biblioteca o archivo fuente, permitiendo al compilador verificar exhaustividad (exhaustiveness checking) en expresiones `switch`.",
-      "La clase no puede tener constructores ni métodos de instancia.",
-      "La clase se almacena en memoria ROM de solo lectura en el dispositivo móvil.",
-      "Impide que cualquier método de la clase sea invocado de forma asíncrona."
+    "id": "dart-q-04",
+    "collectionId": "dart",
+    "question": "En la arquitectura de Dart, ¿qué caracteriza técnicamente a «Collection-If para construcción condicional»?",
+    "options": [
+      "Garantiza que una clase sólo pueda ser heredada mediante extends o implementada dentro de su biblioteca propietaria al operar.",
+      "Restringe los parámetros de tipo mediante T extends Base para garantizar que el tipo acepte sólo miembros compatibles al operar.",
+      "Inicia un nuevo isolate secundario ejecutando una función de entrada de larga duración con su propio bucle de eventos al operar.",
+      "Inserta o excluye elementos dentro de literales de colección evaluando expresiones booleanas de forma declarativa y limpia."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Una clase `sealed` define un conjunto cerrado de variantes. Al evaluar una instancia con un `switch`, el compilador de Dart 3 exige contemplar todos los subtipos posibles, evitando la necesidad de ramas `default` y avisando en tiempo de compilación si falta algún caso.",
-    topic: "Dart 3 Modificadores de Clases",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 3,
+    "explanation": "Collection-If para construcción condicional (Colecciones Declarativas & Operadores de Flujo): Inserta o excluye elementos dentro de literales de colección evaluando expresiones booleanas de forma declarativa y limpia.",
+    "topic": "Colecciones Declarativas & Operadores de Flujo",
+    "difficulty": "básico"
   },
   {
-    id: "dart-05",
-    collectionId: "dart",
-    question: "¿Qué son los 'Records' introducidos en Dart 3 y cuál es su beneficio principal frente a crear clases tradicionales?",
-    options: [
-      "Son tipos compuestos anónimos, inmutables y agregados de primera clase que permiten agrupar múltiples valores heterogéneos (posicionales y con nombre) sin el boilerplate de declarar una clase formal, con igualdad por valor intrínseca.",
-      "Archivos de registro en disco que graban las sesiones de depuración en formato CSV.",
-      "Estructuras mutables utilizadas exclusivamente para almacenar audio del micrófono.",
-      "Punteros de bajo nivel a registros de memoria física de la CPU."
+    "id": "dart-q-05",
+    "collectionId": "dart",
+    "question": "Respecto a colecciones declarativas & operadores de flujo en Dart, ¿cuál es el propósito de «Spread Operator y fusiones seguras»?",
+    "options": [
+      "Expande colecciones dentro de otras mediante los operadores .. bajo condiciones productivas.",
+      "El analizador estático verifica la conformidad del contrato antes de compilar al operar.",
+      "El hilo principal conserva su capacidad de respuesta inmediata para eventos de usuario.",
+      "La evaluación perezosa asegura que sólo se computen los paquetes efectivamente consumidos."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Por ejemplo, `(int x, {String label}) pair = (42, label: 'test');`. Los Records permiten retornar múltiples valores desde una función de manera elegante, con tipado estricto y desestructuración inmediata vía pattern matching.",
-    topic: "Dart 3 Records y Patrones",
-    difficulty: "básico"
+    "correctAnswerIndex": 0,
+    "explanation": "Spread Operator y fusiones seguras (Colecciones Declarativas & Operadores de Flujo): Expande colecciones dentro de otras mediante los operadores ... y ...? evitando excepciones ante listas anulables.",
+    "topic": "Colecciones Declarativas & Operadores de Flujo",
+    "difficulty": "básico"
   },
   {
-    id: "dart-06",
-    collectionId: "dart",
-    question: "¿Qué es un 'Extension Type' (`extension type Id(int value)`) introducido en Dart 3.3?",
-    options: [
-      "Una abstracción de coste cero (zero-cost abstraction) en tiempo de compilación que envuelve un tipo subyacente proporcionando una interfaz estática completamente nueva sin la sobrecarga de instanciar un objeto envoltorio (wrapper) en el heap en tiempo de ejecución.",
-      "Un plugin que permite ejecutar código Dart dentro de Microsoft Excel.",
-      "Un tipo que solo se puede compilar a formato WebAssembly.",
-      "Una directiva para importar archivos con extensiones `.c` y `.cpp`."
+    "id": "dart-q-06",
+    "collectionId": "dart",
+    "question": "En Dart (Genéricos Reificados & Sistema de Tipos), ¿qué función técnica cumple «Restricciones de tipo acotadas (Bounded Generics)»?",
+    "options": [
+      "Parametriza funciones y métodos independientes con tipos genéricos preservando la inferencia entre parámetros y retorno.",
+      "Restringe los parámetros de tipo mediante T extends Base para garantizar que el tipo acepte sólo miembros compatibles.",
+      "Crea alias de tipo expresivos y reutilizables para firmas de callbacks, transformadores y estructuras de datos anidadas.",
+      "Compila la aplicación Ahead-Of-Time a binarios máquina directos con arranque instantáneo y uso eficiente de CPU al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Los Extension Types son reemplazos estáticos transparentes: en tiempo de ejecución el objeto es idéntico a su tipo subyacente (un simple `int`), pero en tiempo de compilación el sistema de tipos previene mezclar identificadores o añade métodos semánticos con cero sobrecarga.",
-    topic: "Dart 3 Extension Types",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 1,
+    "explanation": "Restricciones de tipo acotadas (Bounded Generics) (Genéricos Reificados & Sistema de Tipos): Restringe los parámetros de tipo mediante T extends Base para garantizar que el tipo acepte sólo miembros compatibles.",
+    "topic": "Genéricos Reificados & Sistema de Tipos",
+    "difficulty": "básico"
   },
   {
-    id: "dart-07",
-    collectionId: "dart",
-    question: "En Dart, ¿cuál es el comportamiento de una variable declarada con el modificador `late`?",
-    options: [
-      "Difiere la inicialización de la variable hasta su primer acceso en tiempo de ejecución; si se accede antes de ser asignada y no posee inicializador, arroja un `LateInitializationError` en lugar de evaluar a nulo.",
-      "Fuerza a la variable a actualizar su valor cada 1000 milisegundos.",
-      "Indica al recolector de basura que libere la variable únicamente al cerrar el proceso.",
-      "Hace que la variable sea accesible desde cualquier hilo sin importar el Isolate."
+    "id": "dart-q-07",
+    "collectionId": "dart",
+    "question": "Dentro de Dart, ¿cómo opera el mecanismo de «Funciones genéricas de primera clase» en genéricos reificados & sistema de tipos?",
+    "options": [
+      "Restringe los parámetros de tipo mediante T extends Base para garantizar que el tipo acepte sólo miembros compatibles al operar.",
+      "Crea alias de tipo expresivos y reutilizables para firmas de callbacks, transformadores y estructuras de datos anidadas.",
+      "Parametriza funciones y métodos independientes con tipos genéricos preservando la inferencia entre parámetros y retorno.",
+      "Declara firmas de métodos sin implementación que deben satisfacer las subclases concretas en tiempo de ejecución al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "`late` permite declarar campos no anulables que no pueden inicializarse en el constructor, o implementar cálculos diferidos costosos (lazy loading) que solo se evalúan si el campo es realmente consultado.",
-    topic: "Sound Null Safety y Modificador late",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 2,
+    "explanation": "Funciones genéricas de primera clase (Genéricos Reificados & Sistema de Tipos): Parametriza funciones y métodos independientes con tipos genéricos preservando la inferencia entre parámetros y retorno.",
+    "topic": "Genéricos Reificados & Sistema de Tipos",
+    "difficulty": "básico"
   },
   {
-    id: "dart-08",
-    collectionId: "dart",
-    question: "¿Cómo opera un constructor de tipo factoría (`factory`) en una clase Dart frente a un constructor generativo ordinario?",
-    options: [
-      "No crea obligatoriamente una nueva instancia de su clase en cada llamada, pudiendo retornar una instancia preexistente desde una caché, una instancia de una subclase o inicializar un objeto complejo con lógica condicional previa.",
-      "Genera código Java nativo mediante reflexión en tiempo de ejecución.",
-      "Es un método que se ejecuta en segundo plano en un Isolate separado.",
-      "Requiere que todos los parámetros sean constantes globales numéricas."
+    "id": "dart-q-08",
+    "collectionId": "dart",
+    "question": "Al trabajar con Dart, ¿qué responsabilidad define a «Typedefs genéricos para firmas complejas»?",
+    "options": [
+      "Restringe los parámetros de tipo mediante T extends Base para garantizar que el tipo acepte sólo miembros compatibles al operar.",
+      "Parametriza funciones y métodos independientes con tipos genéricos preservando la inferencia entre parámetros y retorno.",
+      "Declara firmas de métodos sin implementación que deben satisfacer las subclases concretas en tiempo de ejecución al operar.",
+      "Crea alias de tipo expresivos y reutilizables para firmas de callbacks, transformadores y estructuras de datos anidadas."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Un constructor factory se comporta sintácticamente como un constructor al instanciarse (`new MyClass()`), pero internamente puede usar la sentencia `return` para devolver un singleton o una subclase apropiada según los argumentos.",
-    topic: "POO y Constructores",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 3,
+    "explanation": "Typedefs genéricos para firmas complejas (Genéricos Reificados & Sistema de Tipos): Crea alias de tipo expresivos y reutilizables para firmas de callbacks, transformadores y estructuras de datos anidadas.",
+    "topic": "Genéricos Reificados & Sistema de Tipos",
+    "difficulty": "básico"
   },
   {
-    id: "dart-09",
-    collectionId: "dart",
-    question: "En Dart, ¿cuál es la diferencia fundamental entre un generador sincrónico (`sync*`) y uno asincrónico (`async*`)?",
-    options: [
-      "`sync*` retorna un `Iterable<T>` perezoso evaluado bajo demanda con `yield`; `async*` retorna un `Stream<T>` asíncrono que emite una secuencia continua de eventos a medida que están disponibles con `yield` o `yield*`.",
-      "`sync*` bloquea permanentemente el hilo de ejecución hasta calcular un millón de valores.",
-      "`async*` solo puede emitir errores de red HTTP.",
-      "Ambos son idénticos y solo difieren en la versión del SDK en que fueron introducidos."
+    "id": "dart-q-09",
+    "collectionId": "dart",
+    "question": "En la arquitectura de Dart, ¿qué caracteriza técnicamente a «Completer para control imperativo de Futures»?",
+    "options": [
+      "Crea y completa promesas manualmente desde fuentes externas, suscripciones de bajo nivel o llamadas a hardware.",
+      "La arquitectura de memoria aislada ofrece máxima fiabilidad y rendimiento constante bajo carga masiva al operar.",
+      "Un uso desmedido de microtareas monopoliza el hilo de ejecución e impide procesar eventos externos al operar.",
+      "Compila la aplicación Ahead-Of-Time a binarios máquina directos con arranque instantáneo y uso eficiente de CPU."
     ],
-    correctAnswerIndex: 0,
-    explanation: "`sync*` produce valores bajo demanda (pull) según el consumidor avanza con `.moveNext()`. `async*` produce un flujo reactivo (push) que despacha valores mediante un Stream en el bucle de eventos.",
-    topic: "Generadores e Iterables",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 0,
+    "explanation": "Completer para control imperativo de Futures (Asincronía & Event Loop en Dart): Crea y completa promesas manualmente desde fuentes externas, suscripciones de bajo nivel o llamadas a hardware.",
+    "topic": "Asincronía & Event Loop en Dart",
+    "difficulty": "básico"
   },
   {
-    id: "dart-10",
-    collectionId: "dart",
-    question: "¿Qué distingue a un `Stream` de suscripción única (Single-Subscription) de un `Stream` de difusión (Broadcast Stream) en Dart?",
-    options: [
-      "Un Stream de suscripción única solo permite un único oyente (`listen`) durante todo su ciclo de vida y amortigua eventos hasta que se conecta; un Broadcast Stream permite múltiples oyentes simultáneos y descarta eventos si no hay suscriptores activos al momento de emitir.",
-      "Un Broadcast Stream transmite datos a través de ondas de radio FM.",
-      "Un Stream de suscripción única solo puede transportar cadenas de texto de hasta 256 bytes.",
-      "El Broadcast Stream requiere una cuenta de desarrollador de Google Cloud."
+    "id": "dart-q-10",
+    "collectionId": "dart",
+    "question": "Respecto a streams, transformaciones & programación reactiva en Dart, ¿cuál es el propósito de «StreamController y despacho reactivo»?",
+    "options": [
+      "Produce secuencias infinitas o diferidas de datos emitiendo valores perezosamente con yield y delegando flujos con yield* al operar.",
+      "Crea emisores de datos que gestionan suscripciones de oyentes, pausa, reanudación y cierre ordenado de flujos de información.",
+      "Itera sobre los elementos sucesivos de un Stream procesando cada evento en orden conforme arriba desde la fuente asíncrona.",
+      "Ejecuta código en hilos del sistema operativo con pilas de ejecución y montículos de memoria totalmente independientes al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Intentar añadir un segundo listener a un Single-Subscription Stream arroja `StateError: Bad state: Stream has already been listened to`. Para eventos de UI o sensores que múltiples componentes deben observar se utiliza `asBroadcastStream()`.",
-    topic: "Streams y Asincronía",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 1,
+    "explanation": "StreamController y despacho reactivo (Streams, Transformaciones & Programación Reactiva): Crea emisores de datos que gestionan suscripciones de oyentes, pausa, reanudación y cierre ordenado de flujos de información.",
+    "topic": "Streams, Transformaciones & Programación Reactiva",
+    "difficulty": "básico"
   },
   {
-    id: "dart-11",
-    collectionId: "dart",
-    question: "¿Cómo se implementa la composición de comportamiento mediante `mixin` en Dart y qué restricción introduce la cláusula `on` (`mixin M on SuperClass`)?",
-    options: [
-      "La cláusula `on` restringe el mixin para que únicamente pueda ser aplicado (con la palabra clave `with`) en clases que extiendan o implementen la clase especificada, otorgando al mixin acceso a los miembros de dicha superclase.",
-      "Obliga al mixin a ejecutarse en un hilo secundario del procesador.",
-      "Convierte todos los métodos del mixin en funciones recursivas de cola.",
-      "Impide que la clase resultante sea instanciada fuera del archivo fuente."
+    "id": "dart-q-11",
+    "collectionId": "dart",
+    "question": "En Dart (Streams, Transformaciones & Programación Reactiva), ¿qué función técnica cumple «Generadores asíncronos async*»?",
+    "options": [
+      "Itera sobre los elementos sucesivos de un Stream procesando cada evento en orden conforme arriba desde la fuente asíncrona.",
+      "Garantiza que una clase sólo pueda ser heredada mediante extends o implementada dentro de su biblioteca propietaria al operar.",
+      "Produce secuencias infinitas o diferidas de datos emitiendo valores perezosamente con yield y delegando flujos con yield*.",
+      "Restringe los parámetros de tipo mediante T extends Base para garantizar que el tipo acepte sólo miembros compatibles."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Los mixins son una forma de reutilizar código en múltiples jerarquías de clases. La cláusula `on` define los requisitos de tipo base para el mixin, permitiendo invocar métodos de `super` dentro del cuerpo del mixin de forma segura.",
-    topic: "Mixins y Composición",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 2,
+    "explanation": "Generadores asíncronos async* y yield (Streams, Transformaciones & Programación Reactiva): Produce secuencias infinitas o diferidas de datos emitiendo valores perezosamente con yield y delegando flujos con yield*.",
+    "topic": "Streams, Transformaciones & Programación Reactiva",
+    "difficulty": "básico"
   },
   {
-    id: "dart-12",
-    collectionId: "dart",
-    question: "En Dart 3, ¿qué permite hacer una 'Switch Expression' en comparación con la tradicional sentencia imperativa `switch`?",
-    options: [
-      "Produce un valor como una expresión evaluable que puede asignarse directamente a una variable o retornarse, utilizando sintaxis compacta con flechas `=>`, comas de separación y garantía estricta de exhaustividad.",
-      "Permite intercambiar físicamente dos variables en memoria sin variable temporal.",
-      "Ejecuta todas las ramas en paralelo utilizando múltiples núcleos de la CPU.",
-      "Solo evalúa valores enteros entre 0 y 9."
+    "id": "dart-q-12",
+    "collectionId": "dart",
+    "question": "Dentro de Dart, ¿cómo opera el mecanismo de «Consumo declarativo con await for» en streams, transformaciones & programación reactiva?",
+    "options": [
+      "Produce secuencias infinitas o diferidas de datos emitiendo valores perezosamente con yield y delegando flujos con yield* al operar.",
+      "Crea emisores de datos que gestionan suscripciones de oyentes, pausa, reanudación y cierre ordenado de flujos de información.",
+      "Garantiza que una clase sólo pueda ser heredada mediante extends o implementada dentro de su biblioteca propietaria al operar.",
+      "Itera sobre los elementos sucesivos de un Stream procesando cada evento en orden conforme arriba desde la fuente asíncrona."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Por ejemplo: `final label = switch (status) { Status.ok => 'Éxito', Status.error(code: final c) => 'Fallo $c' };`. Las switch expressions transforman el control de flujo en evaluación funcional sin necesidad de `break`.",
-    topic: "Dart 3 Switch Expressions",
-    difficulty: "básico"
+    "correctAnswerIndex": 3,
+    "explanation": "Consumo declarativo con await for (Streams, Transformaciones & Programación Reactiva): Itera sobre los elementos sucesivos de un Stream procesando cada evento en orden conforme arriba desde la fuente asíncrona.",
+    "topic": "Streams, Transformaciones & Programación Reactiva",
+    "difficulty": "básico"
   },
   {
-    id: "dart-13",
-    collectionId: "dart",
-    question: "¿Cuál es la función del método `Isolate.run()` introducido en Dart 2.19 / Dart 3 para tareas computacionales pesadas?",
-    options: [
-      "Engloba la creación de un Isolate efímero, la transferencia de la función y sus argumentos, la ejecución del cómputo intensivo, el retorno del resultado a través de un canal seguro y la terminación automática del Isolate en una única llamada asíncrona ergonómica.",
-      "Ejecuta un script de Bash en la consola del sistema operativo.",
-      "Descarga paquetes desde pub.dev en tiempo de ejecución.",
-      "Convierte la aplicación en un servicio daemon de Windows."
+    "id": "dart-q-13",
+    "collectionId": "dart",
+    "question": "Al trabajar con Dart, ¿qué responsabilidad define a «Arquitectura de Isolates sin memoria compartida»?",
+    "options": [
+      "Ejecuta código en hilos del sistema operativo con pilas de ejecución y montículos de memoria totalmente independientes al operar.",
+      "Inicia un nuevo isolate secundario ejecutando una función de entrada de larga duración con su propio bucle de eventos.",
+      "Transfiere mensajes inmutables entre isolates mediante puertos serializados sin riesgo de carreras de datos ni deadlocks.",
+      "Ejecuta una función pesada en un isolate temporal y retorna el resultado al isolate principal con recolección automática."
     ],
-    correctAnswerIndex: 0,
-    explanation: "`Isolate.run(() => heavyCalculation())` simplifica enormemente el uso de Isolates, evitando el engorroso boilerplate manual de instanciar `ReceivePort`, `SendPort`, `spawn` y `kill` para tareas aisladas como parseo de JSON gigante o procesamiento de imágenes.",
-    topic: "Concurrencia e Isolates",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 0,
+    "explanation": "Arquitectura de Isolates sin memoria compartida (Concurrencia, Memoria Aislada & Isolates): Ejecuta código en hilos del sistema operativo con pilas de ejecución y montículos de memoria totalmente independientes.",
+    "topic": "Concurrencia, Memoria Aislada & Isolates",
+    "difficulty": "básico"
   },
   {
-    id: "dart-14",
-    collectionId: "dart",
-    question: "¿Qué optimización realiza el compilador 'dart2wasm' en comparación con el clásico 'dart2js' para aplicaciones web?",
-    options: [
-      "Compila el código Dart a módulos WebAssembly binarios con soporte de Garbage Collection nativo de Wasm (WasmGC), logrando tiempos de carga más rápidos, ejecución cercana a velocidad nativa y rendimiento predecible sin pasar por transpilación a JavaScript.",
-      "Genera código Java para ser interpretado por Applets de navegador.",
-      "Comprime las imágenes PNG a vectores SVG en tiempo real.",
-      "Elimina todas las llamadas de red para que la app funcione siempre offline."
+    "id": "dart-q-14",
+    "collectionId": "dart",
+    "question": "En la arquitectura de Dart, ¿qué caracteriza técnicamente a «Canales de comunicación SendPort y ReceivePort»?",
+    "options": [
+      "Inicia un nuevo isolate secundario ejecutando una función de entrada de larga duración con su propio bucle de eventos al operar.",
+      "Transfiere mensajes inmutables entre isolates mediante puertos serializados sin riesgo de carreras de datos ni deadlocks.",
+      "Ejecuta código en hilos del sistema operativo con pilas de ejecución y montículos de memoria totalmente independientes.",
+      "Ejecuta una función pesada en un isolate temporal y retorna el resultado al isolate principal con recolección automática."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Con el soporte de WasmGC en navegadores modernos, `dart2wasm` permite compilar Flutter Web y código Dart directamente a WebAssembly sin emular un recolector de basura en Wasm lineal, duplicando la fluidez y reduciendo tiempos de fotograma.",
-    topic: "Compilación Web y Wasm",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 1,
+    "explanation": "Canales de comunicación SendPort y ReceivePort (Concurrencia, Memoria Aislada & Isolates): Transfiere mensajes inmutables entre isolates mediante puertos serializados sin riesgo de carreras de datos ni deadlocks.",
+    "topic": "Concurrencia, Memoria Aislada & Isolates",
+    "difficulty": "básico"
   },
   {
-    id: "dart-15",
-    collectionId: "dart",
-    question: "En el sistema de tipos de Dart, ¿cuál es el tipo raíz supremo (Top Type) de la jerarquía de tipos de la cual derivan todos los valores?",
-    options: [
-      "`Object?`",
-      "`dynamic`",
-      "`void`",
-      "`Never`"
+    "id": "dart-q-15",
+    "collectionId": "dart",
+    "question": "Respecto a concurrencia, memoria aislada & isolates en Dart, ¿cuál es el propósito de «Isolate.spawn para workers persistentes»?",
+    "options": [
+      "Ejecuta código en hilos del sistema operativo con pilas de ejecución y montículos de memoria totalmente independientes.",
+      "Compila la aplicación Ahead-Of-Time a binarios máquina directos con arranque instantáneo y uso eficiente de CPU al operar.",
+      "Inicia un nuevo isolate secundario ejecutando una función de entrada de larga duración con su propio bucle de eventos.",
+      "Invoca funciones compiladas en C, C++ o Rust directamente desde Dart cargando bibliotecas dinámicas compartidas al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "En Dart con Sound Null Safety, el Top Type absoluto es `Object?`, el cual abarca tanto `Object` (cualquier valor no nulo) como `Null`. En el extremo inferior de la jerarquía, el Bottom Type es `Never` (un tipo sin valores posibles, usado para funciones que nunca retornan).",
-    topic: "Jerarquía de Tipos",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 2,
+    "explanation": "Isolate.spawn para workers persistentes (Concurrencia, Memoria Aislada & Isolates): Inicia un nuevo isolate secundario ejecutando una función de entrada de larga duración con su propio bucle de eventos.",
+    "topic": "Concurrencia, Memoria Aislada & Isolates",
+    "difficulty": "básico"
   },
   {
-    id: "dart-16",
-    collectionId: "dart",
-    question: "¿Cuál es la diferencia sustancial entre los tipos `dynamic` y `Object?` en Dart?",
-    options: [
-      "`dynamic` desactiva todas las comprobaciones estáticas de tipos del compilador permitiendo invocar cualquier método o propiedad en tiempo de compilación arriesgando un `NoSuchMethodError` en tiempo de ejecución; `Object?` obliga a realizar narrowing o comprobaciones de tipo (`is`) antes de acceder a miembros específicos.",
-      "`Object?` solo puede almacenar números enteros, mientras que `dynamic` solo admite cadenas.",
-      "`dynamic` se asigna en el stack y `Object?` en la memoria del disco.",
-      "Son sinónimos exactos a nivel de código máquina."
+    "id": "dart-q-16",
+    "collectionId": "dart",
+    "question": "En Dart (Concurrencia, Memoria Aislada & Isolates), ¿qué función técnica cumple «Isolate.run para cómputo intensivo puntual»?",
+    "options": [
+      "Inicia un nuevo isolate secundario ejecutando una función de entrada de larga duración con su propio bucle de eventos al operar.",
+      "Ejecuta código en hilos del sistema operativo con pilas de ejecución y montículos de memoria totalmente independientes.",
+      "Transfiere mensajes inmutables entre isolates mediante puertos serializados sin riesgo de carreras de datos ni deadlocks.",
+      "Ejecuta una función pesada en un isolate temporal y retorna el resultado al isolate principal con recolección automática."
     ],
-    correctAnswerIndex: 0,
-    explanation: "`dynamic` apaga el análisis estático para esa variable, tratando cada invocación de método como llamada dinámica tardía. `Object?` mantiene el rigor del compilador exigiendo comprobaciones de tipo explícitas antes de su uso.",
-    topic: "Sistema de Tipos",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 3,
+    "explanation": "Isolate.run para cómputo intensivo puntual (Concurrencia, Memoria Aislada & Isolates): Ejecuta una función pesada en un isolate temporal y retorna el resultado al isolate principal con recolección automática.",
+    "topic": "Concurrencia, Memoria Aislada & Isolates",
+    "difficulty": "básico"
   },
   {
-    id: "dart-17",
-    collectionId: "dart",
-    question: "¿Qué papel cumple el operador de cascada (`..` y `?..`) en Dart?",
-    options: [
-      "Permite realizar una secuencia de operaciones, invocaciones a métodos y asignaciones de campos sobre el mismo objeto retornando al final la instancia original receptora en lugar del valor del método llamado.",
-      "Concatena dos listas inmutables creando un nuevo conjunto hash.",
-      "Calcula la división entera modular de dos flotantes de 64 bits.",
-      "Cancela una llamada asíncrona si tarda más de 5 segundos."
+    "id": "dart-q-17",
+    "collectionId": "dart",
+    "question": "Dentro de Dart, ¿cómo opera el mecanismo de «Transferencia de búferes de memoria sin copia» en concurrencia, memoria aislada & isolates?",
+    "options": [
+      "Envía grandes estructuras binarias entre isolates transfiriendo la propiedad del búfer directamente sin costo de duplicados.",
+      "Inicia un nuevo isolate secundario ejecutando una función de entrada de larga duración con su propio bucle de eventos.",
+      "Ejecuta código en hilos del sistema operativo con pilas de ejecución y montículos de memoria totalmente independientes.",
+      "Transfiere mensajes inmutables entre isolates mediante puertos serializados sin riesgo de carreras de datos ni deadlocks."
     ],
-    correctAnswerIndex: 0,
-    explanation: "El operador de cascada facilita la inicialización fluida de objetos: `final paint = Paint()..color = Colors.black..strokeWidth = 2.0;`. El resultado de la expresión global es el objeto `Paint`, no el valor de retorno de las asignaciones individuales.",
-    topic: "Operadores y Sintaxis",
-    difficulty: "básico"
+    "correctAnswerIndex": 0,
+    "explanation": "Transferencia de búferes de memoria sin copia (Concurrencia, Memoria Aislada & Isolates): Envía grandes estructuras binarias entre isolates transfiriendo la propiedad del búfer directamente sin costo de copia.",
+    "topic": "Concurrencia, Memoria Aislada & Isolates",
+    "difficulty": "intermedio"
   },
   {
-    id: "dart-18",
-    collectionId: "dart",
-    question: "¿Cómo opera el operador de desestructuración y coalescencia nula `??=` en Dart?",
-    options: [
-      "Asigna el valor del operando derecho a la variable del operando izquierdo única y exclusivamente si dicha variable es actualmente `null`.",
-      "Compara dos cadenas ignorando mayúsculas y minúsculas.",
-      "Calcula la raíz cuadrada del operando izquierdo.",
-      "Lanza una excepción si el operando derecho no es un booleano."
+    "id": "dart-q-18",
+    "collectionId": "dart",
+    "question": "Al trabajar con Dart, ¿qué responsabilidad define a «Modo AOT a código binario nativo»?",
+    "options": [
+      "La arquitectura de memoria aislada ofrece máxima fiabilidad y rendimiento constante bajo carga masiva en ejecución.",
+      "Compila la aplicación Ahead-Of-Time a binarios máquina directos con arranque instantáneo y uso eficiente de CPU.",
+      "Crea y completa promesas manualmente desde fuentes externas, suscripciones de bajo nivel o llamadas a hardware.",
+      "Invoca funciones compiladas en C, C++ o Rust directamente desde Dart cargando bibliotecas dinámicas compartidas."
     ],
-    correctAnswerIndex: 0,
-    explanation: "`x ??= valor;` equivale semánticamente a `if (x == null) { x = valor; }`, simplificando la inicialización condicional perezosa de campos y cachés.",
-    topic: "Operadores y Sound Null Safety",
-    difficulty: "básico"
+    "correctAnswerIndex": 1,
+    "explanation": "Modo AOT a código binario nativo (Compilación, Modos JIT/AOT & Optimización VM): Compila la aplicación Ahead-Of-Time a binarios máquina directos (ARM64, x86_64) con arranque instantáneo y uso eficiente de CPU.",
+    "topic": "Compilación, Modos JIT/AOT & Optimización VM",
+    "difficulty": "intermedio"
   },
   {
-    id: "dart-19",
-    collectionId: "dart",
-    question: "¿Para qué sirve el archivo `analysis_options.yaml` en un proyecto Dart?",
-    options: [
-      "Configura el analizador estático de Dart, definiendo el conjunto de reglas de linting habilitadas (e.g. `package:lints/recommended.yaml`), advertencias estrictas de tipos (`strict-casts`, `strict-inference`) y exclusiones de archivos generados.",
-      "Establece las credenciales de despliegue para la tienda de aplicaciones.",
-      "Define la versión del sistema operativo del servidor de producción.",
-      "Almacena las traducciones a diferentes idiomas de la interfaz."
+    "id": "dart-q-19",
+    "collectionId": "dart",
+    "question": "En la arquitectura de Dart, ¿qué caracteriza técnicamente a «Garbage Collector generacional de Dart»?",
+    "options": [
+      "Expone puertos de telemetría para inspeccionar asignaciones de memoria, rastrear microsegundos de CPU y depurar el heap al operar.",
+      "Compila la aplicación Ahead-Of-Time a binarios máquina directos con arranque instantáneo y uso eficiente de CPU en el flujo.",
+      "Recupera memoria rápidamente mediante un Young Space para objetos de vida corta y un Old Space compacto para datos longevos.",
+      "Restringe los parámetros de tipo mediante T extends Base para garantizar que el tipo acepte sólo miembros compatibles al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "El analizador estático de Dart lee `analysis_options.yaml` para asegurar consistencia arquitectónica, estilo y prevención de bugs en todo el equipo antes de que el código sea compilado o commiteado.",
-    topic: "Tooling y Análisis Estático",
-    difficulty: "básico"
+    "correctAnswerIndex": 2,
+    "explanation": "Garbage Collector generacional de Dart (Compilación, Modos JIT/AOT & Optimización VM): Recupera memoria rápidamente mediante un Young Space para objetos de vida corta y un Old Space compacto para datos longevos.",
+    "topic": "Compilación, Modos JIT/AOT & Optimización VM",
+    "difficulty": "intermedio"
   },
   {
-    id: "dart-20",
-    collectionId: "dart",
-    question: "En Dart 3, ¿qué prohíbe el modificador de clase `base` a los desarrolladores externos que importan el paquete desde otra biblioteca?",
-    options: [
-      "Prohíbe que la clase sea implementada mediante `implements` (forzando a que únicamente pueda ser extendida mediante herencia `extends`), garantizando que los nuevos métodos agregados por el autor en el futuro no rompan el código de los consumidores.",
-      "Prohíbe crear subclases dentro del mismo archivo fuente.",
-      "Impide que la clase tenga campos privados que comiencen con guion bajo (`_`).",
-      "Obliga a que todos los constructores sean marcados como `const`."
+    "id": "dart-q-20",
+    "collectionId": "dart",
+    "question": "Respecto a compilación, modos jit/aot & optimización vm en Dart, ¿cuál es el propósito de «Dart VM Service y métricas de profiling»?",
+    "options": [
+      "Compila la aplicación Ahead-Of-Time a binarios máquina directos con arranque instantáneo y uso eficiente de CPU al evaluar.",
+      "Declara firmas de métodos sin implementación que deben satisfacer las subclases concretas en tiempo de ejecución al operar.",
+      "Garantiza que una clase sólo pueda ser heredada mediante extends o implementada dentro de su biblioteca propietaria.",
+      "Expone puertos de telemetría para inspeccionar asignaciones de memoria, rastrear microsegundos de CPU y depurar el heap."
     ],
-    correctAnswerIndex: 0,
-    explanation: "El modificador `base` asegura la integridad de la interfaz pública de una clase: al impedir `implements`, el autor del paquete puede añadir métodos con implementación concreta en futuras versiones menores sin causar fallos de compilación en librerías cliente.",
-    topic: "Dart 3 Modificadores de Clases",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 3,
+    "explanation": "Dart VM Service y métricas de profiling (Compilación, Modos JIT/AOT & Optimización VM): Expone puertos de telemetría para inspeccionar asignaciones de memoria, rastrear microsegundos de CPU y depurar el heap.",
+    "topic": "Compilación, Modos JIT/AOT & Optimización VM",
+    "difficulty": "intermedio"
   },
   {
-    id: "dart-21",
-    collectionId: "dart",
-    question: "¿Qué ventaja ofrece el modificador de clase `interface` en Dart 3?",
-    options: [
-      "Permite que bibliotecas externas implementen la interfaz mediante `implements`, pero prohíbe que la extiendan mediante `extends`, impidiendo la reutilización frágil de implementación interna.",
-      "Convierte la clase en un socket de red TCP para comunicación con bases de datos.",
-      "Fuerza a que todos los métodos devuelvan una cadena en formato JSON.",
-      "Desactiva el recolector de basura para las instancias de esa clase."
+    "id": "dart-q-21",
+    "collectionId": "dart",
+    "question": "En Dart (Interoperabilidad Nativa con Dart FFI & Tooling), ¿qué función técnica cumple «Arquitectura de Foreign Function Interface (FFI)»?",
+    "options": [
+      "Invoca funciones compiladas en C, C++ o Rust directamente desde Dart cargando bibliotecas dinámicas compartidas.",
+      "La arquitectura de memoria aislada ofrece máxima fiabilidad y rendimiento constante bajo carga masiva al operar.",
+      "Crea y completa promesas manualmente desde fuentes externas, suscripciones de bajo nivel o llamadas a hardware.",
+      "Compila la aplicación Ahead-Of-Time a binarios máquina directos con arranque instantáneo y uso eficiente de CPU."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Una `interface class` define un contrato puro para el exterior. Si se desea permitir tanto herencia de código como implementación de interfaz libremente, se usa una clase estándar sin modificadores restrictivos.",
-    topic: "Dart 3 Modificadores de Clases",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 0,
+    "explanation": "Arquitectura de Foreign Function Interface (FFI) (Interoperabilidad Nativa con Dart FFI & Tooling): Invoca funciones compiladas en C, C++ o Rust directamente desde Dart cargando bibliotecas dinámicas compartidas (.so, .dylib, .dll).",
+    "topic": "Interoperabilidad Nativa con Dart FFI & Tooling",
+    "difficulty": "intermedio"
   },
   {
-    id: "dart-22",
-    collectionId: "dart",
-    question: "¿Cuál es el propósito del operador `identical(a, b)` en Dart frente al operador de comparación de igualdad `a == b`?",
-    options: [
-      "`identical(a, b)` comprueba si ambas referencias apuntan exactamente al mismo objeto físico en memoria (identidad de puntero), mientras que `==` puede ser sobrescrito por la clase para evaluar igualdad estructural o por valor.",
-      "`identical` compara el tamaño en bytes de los archivos en disco.",
-      "`==` solo funciona con números enteros impares.",
-      "`identical` convierte automáticamente ambas variables a formato binario base64 antes de compararlas."
+    "id": "dart-q-22",
+    "collectionId": "dart",
+    "question": "Dentro de Dart, ¿cómo opera el mecanismo de «Mapeo de Structs» en interoperabilidad nativa con dart ffi & tooling?",
+    "options": [
+      "Invoca funciones compiladas en C, C++ o Rust directamente desde Dart cargando bibliotecas dinámicas compartidas al evaluar.",
+      "Declara representaciones exactas de estructuras en memoria de C gestionando asignación con malloc y liberación con free.",
+      "Garantiza estándares de calidad de código, formato unificado y verificación estática en flujos de integración continua.",
+      "Genera enlaces y tipos de Dart automáticamente a partir de archivos de cabecera de C mediante el analizador de LLVM/Clang."
     ],
-    correctAnswerIndex: 0,
-    explanation: "`identical(a, b)` es una función fundamental de la biblioteca `dart:core` que verifica identidad referencial pura en la memoria heap, siendo la base del chequeo de widgets `const` en Flutter.",
-    topic: "Modelo de Memoria y Comparación",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 1,
+    "explanation": "Mapeo de Structs y memoria nativa con dart:ffi (Interoperabilidad Nativa con Dart FFI & Tooling): Declara representaciones exactas de estructuras en memoria de C gestionando asignación con malloc y liberación con free.",
+    "topic": "Interoperabilidad Nativa con Dart FFI & Tooling",
+    "difficulty": "intermedio"
   },
   {
-    id: "dart-23",
-    collectionId: "dart",
-    question: "En la gestión de colecciones de Dart, ¿qué utilidad tiene el operador de propagación con verificación nula (`...?`) (Null-aware spread operator)?",
-    options: [
-      "Desempaqueta e inserta todos los elementos de una colección dentro de otra lista o mapa, pero si la colección evaluada es `null`, simplemente no inserta nada en lugar de lanzar una excepción.",
-      "Elimina todos los elementos duplicados de un conjunto en tiempo $O(1)$.",
-      "Calcula la media geométrica de una lista de enteros.",
-      "Ordena la colección de forma descendente en un hilo paralelo."
+    "id": "dart-q-23",
+    "collectionId": "dart",
+    "question": "Al trabajar con Dart, ¿qué responsabilidad define a «Punteros nativos y punteros opacos»?",
+    "options": [
+      "Garantiza estándares de calidad de código, formato unificado y verificación estática en flujos de integración continua al operar.",
+      "Declara representaciones exactas de estructuras en memoria de C gestionando asignación con malloc y liberación con free.",
+      "Manipula direcciones de memoria física y buffers de bytes directos con comprobaciones de tipado estricto en la capa de Dart.",
+      "Genera enlaces y tipos de Dart automáticamente a partir de archivos de cabecera de C mediante el analizador de LLVM/Clang."
     ],
-    correctAnswerIndex: 0,
-    explanation: "`final lista = [1, 2, ...?posibleListaNula];` evita escribir engorrosas comprobaciones `if (posibleListaNula != null) ...posibleListaNula` dentro de literales de colecciones.",
-    topic: "Colecciones y Control de Flujo",
-    difficulty: "básico"
+    "correctAnswerIndex": 2,
+    "explanation": "Punteros nativos y punteros opacos (Interoperabilidad Nativa con Dart FFI & Tooling): Manipula direcciones de memoria física y buffers de bytes directos con comprobaciones de tipado estricto en la capa de Dart.",
+    "topic": "Interoperabilidad Nativa con Dart FFI & Tooling",
+    "difficulty": "intermedio"
   },
   {
-    id: "dart-24",
-    collectionId: "dart",
-    question: "¿Qué caracteriza a una 'Native Asset' en Dart mediante el sistema de hooks (`hook/build.dart`) introducido en versiones recientes del SDK?",
-    options: [
-      "Permite compilar y empaquetar código fuente de C/C++/Rust automáticamente durante la fase de compilación del paquete Dart, resolviendo herramientas nativas y enlazando dinámicamente las bibliotecas compiladas con `dart:ffi` de forma transparente.",
-      "Es un script que descarga imágenes PNG desde Google Cloud Storage.",
-      "Convierte la aplicación Dart en una imagen de Docker de forma obligatoria.",
-      "Añade soporte para compilar proyectos en procesadores PowerPC de 1995."
+    "id": "dart-q-24",
+    "collectionId": "dart",
+    "question": "En la arquitectura de Dart, ¿qué caracteriza técnicamente a «package:ffigen para enlaces automáticos»?",
+    "options": [
+      "Garantiza estándares de calidad de código, formato unificado y verificación estática en flujos de integración continua al operar.",
+      "Invoca funciones compiladas en C, C++ o Rust directamente desde Dart cargando bibliotecas dinámicas compartidas al operar.",
+      "Declara representaciones exactas de estructuras en memoria de C gestionando asignación con malloc y liberación con free.",
+      "Genera enlaces y tipos de Dart automáticamente a partir de archivos de cabecera de C mediante el analizador de LLVM/Clang."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Native Assets reemplaza la necesidad de orquestaciones manuales con CMake, Makefiles o scripts de Gradle para compilar librerías C nativas: el compilador de Dart ejecuta `hook/build.dart` y enlaza el binario nativo directamente al artefacto final.",
-    topic: "Dart Native Assets y FFI",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 3,
+    "explanation": "package:ffigen para enlaces automáticos (Interoperabilidad Nativa con Dart FFI & Tooling): Genera enlaces y tipos de Dart automáticamente a partir de archivos de cabecera (.h) de C mediante el analizador de LLVM/Clang.",
+    "topic": "Interoperabilidad Nativa con Dart FFI & Tooling",
+    "difficulty": "intermedio"
   },
   {
-    id: "dart-25",
-    collectionId: "dart",
-    question: "En Dart, ¿cuál es la diferencia entre un constructor constante (`const Constructor(...)`) y uno no constante?",
-    options: [
-      "Un constructor `const` exige que todas las variables de instancia de la clase sean finales (`final`), permitiendo crear instancias inmutables en tiempo de compilación que residen en una memoria compartida única canonicalizada.",
-      "Un constructor `const` no puede recibir argumentos en su invocación.",
-      "Un constructor constante solo puede usarse en archivos de prueba unitaria.",
-      "Un constructor constante genera automáticamente getters y setters mutables para todos los campos."
+    "id": "dart-q-25",
+    "collectionId": "dart",
+    "question": "Respecto a interoperabilidad nativa con dart ffi & tooling en Dart, ¿cuál es el propósito de «dart analyze, format y compilación multiplataforma»?",
+    "options": [
+      "Garantiza estándares de calidad de código, formato unificado y verificación estática en flujos de integración continua al operar.",
+      "Invoca funciones compiladas en C, C++ o Rust directamente desde Dart cargando bibliotecas dinámicas compartidas al operar.",
+      "Declara representaciones exactas de estructuras en memoria de C gestionando asignación con malloc y liberación con free.",
+      "Declara firmas de métodos sin implementación que deben satisfacer las subclases concretas en tiempo de ejecución."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Los constructores constantes permiten canonicalización: `const Point(1, 2)` instanciado 1000 veces en diferentes partes del código fuente apunta siempre a la misma dirección física de memoria, ahorrando memoria RAM.",
-    topic: "Constructores y Constantes",
-    difficulty: "básico"
+    "correctAnswerIndex": 0,
+    "explanation": "dart analyze, format y compilación multiplataforma (Interoperabilidad Nativa con Dart FFI & Tooling): Garantiza estándares de calidad de código, formato unificado y verificación estática en flujos de integración continua.",
+    "topic": "Interoperabilidad Nativa con Dart FFI & Tooling",
+    "difficulty": "intermedio"
   },
   {
-    id: "dart-26",
-    collectionId: "dart",
-    question: "¿Cómo funciona el desmantelamiento de patrones (Pattern Destructuring) con Records en Dart 3?",
-    options: [
-      "Permite extraer y vincular simultáneamente múltiples campos posicionales o con nombre en variables locales individuales mediante la sintaxis: `var (x, y) = getCoords();` o `var (:name, :age) = getUser();`.",
-      "Elimina permanentemente el objeto de la memoria RAM del sistema.",
-      "Cifra los valores con el algoritmo criptográfico SHA-256.",
-      "Convierte los campos en claves primarias de una base de datos SQL."
+    "id": "dart-q-26",
+    "collectionId": "dart",
+    "question": "En Dart (Caso en acción), ¿qué función técnica cumple «Inicialización de Worker Isolate»?",
+    "options": [
+      "El analizador estático verifica la conformidad del contrato antes de compilar en el flujo.",
+      "El hilo principal conserva su capacidad de respuesta inmediata para eventos de usuario.",
+      "La evaluación perezosa asegura que sólo se computen los paquetes efectivamente consumidos.",
+      "Expande colecciones dentro de otras mediante los operadores .. dentro de la aplicación."
     ],
-    correctAnswerIndex: 0,
-    explanation: "El pattern destructuring reduce drásticamente el código boilerplate: se pueden extraer valores directamente en asignaciones o verificarlos condicionalmente en sentencias `if-case`.",
-    topic: "Dart 3 Records y Patrones",
-    difficulty: "básico"
+    "correctAnswerIndex": 1,
+    "explanation": "Inicialización de Worker Isolate (Caso en acción): El hilo principal conserva su capacidad de respuesta inmediata para eventos de usuario.",
+    "topic": "Caso en acción",
+    "difficulty": "intermedio"
   },
   {
-    id: "dart-27",
-    collectionId: "dart",
-    question: "En Dart, ¿qué es un constructor de redireccionamiento (Redirecting Constructor)?",
-    options: [
-      "Un constructor cuyo cuerpo está vacío y delega la inicialización invocando a otro constructor de la misma clase mediante `: this(...)` o `: this.named(...)` en la lista de inicialización.",
-      "Un constructor que redirige las solicitudes HTTP a un puerto proxy.",
-      "Un constructor que abre una nueva pestaña en el navegador web.",
-      "Un constructor que captura excepciones de puntero nulo y las envía a Sentry."
+    "id": "dart-q-27",
+    "collectionId": "dart",
+    "question": "Dentro de Dart, ¿cómo opera el mecanismo de «Normalización tipada con Records y Sound Null Safety» en caso en acción?",
+    "options": [
+      "El hilo principal conserva su capacidad de respuesta inmediata para eventos de usuario al operar.",
+      "La evaluación perezosa asegura que sólo se computen los paquetes efectivamente consumidos.",
+      "El analizador estático verifica la conformidad del contrato antes de compilar al operar.",
+      "Expande colecciones dentro de otras mediante los operadores .. manteniendo consistencia."
     ],
-    correctAnswerIndex: 0,
-    explanation: "El redireccionamiento permite centralizar la inicialización en un único constructor generativo principal y ofrecer constructores nombrados de conveniencia que redirigen con valores predeterminados.",
-    topic: "Constructores",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 2,
+    "explanation": "Normalización tipada con Records y Sound Null Safety (Caso en acción): El analizador estático verifica la conformidad del contrato antes de compilar.",
+    "topic": "Caso en acción",
+    "difficulty": "intermedio"
   },
   {
-    id: "dart-28",
-    collectionId: "dart",
-    question: "¿Qué excepción lanza la máquina virtual de Dart cuando se invoca un método inexistente sobre una variable tipada como `dynamic`?",
-    options: [
-      "`NoSuchMethodError`",
-      "`NullPointerException`",
-      "`TypeError`",
-      "`UnsupportedError`"
+    "id": "dart-q-28",
+    "collectionId": "dart",
+    "question": "Al trabajar con Dart, ¿qué responsabilidad define a «Transformación reactiva con Streams y async*»?",
+    "options": [
+      "El hilo principal conserva su capacidad de respuesta inmediata para eventos de usuario al operar.",
+      "El analizador estático verifica la conformidad del contrato antes de compilar en el flujo.",
+      "Expande colecciones dentro de otras mediante los operadores .. respetando las invariantes.",
+      "La evaluación perezosa asegura que sólo se computen los paquetes efectivamente consumidos."
     ],
-    correctAnswerIndex: 0,
-    explanation: "En variables `dynamic`, las llamadas a métodos no se comprueban en tiempo de compilación. Si el objeto subyacente carece del método en tiempo de ejecución (y no sobrescribe `noSuchMethod`), la VM lanza `NoSuchMethodError`.",
-    topic: "Manejo de Errores y Runtimes",
-    difficulty: "básico"
+    "correctAnswerIndex": 3,
+    "explanation": "Transformación reactiva con Streams y async* (Caso en acción): La evaluación perezosa asegura que sólo se computen los paquetes efectivamente consumidos.",
+    "topic": "Caso en acción",
+    "difficulty": "intermedio"
   },
   {
-    id: "dart-29",
-    collectionId: "dart",
-    question: "¿Qué optimización y utilidad ofrecen los 'Extension Methods' tradicionales (`extension NumberParsing on String`) introducidos en Dart 2.7?",
-    options: [
-      "Permiten agregar nuevos métodos y propiedades computadas a clases existentes (incluso de bibliotecas externas o del SDK como `String` o `List`) sin modificar su código fuente original ni recurrir a herencia de clases.",
-      "Permiten modificar el hardware de la tarjeta gráfica del terminal.",
-      "Descargan automáticamente dependencias de Gradle.",
-      "Permiten usar variables sin declarar su tipo en tiempo de compilación."
+    "id": "dart-q-29",
+    "collectionId": "dart",
+    "question": "En la arquitectura de Dart, ¿qué caracteriza técnicamente a «Detección de saturación en Microtask Queue»?",
+    "options": [
+      "Un uso desmedido de microtareas monopoliza el hilo de ejecución e impide procesar eventos externos.",
+      "La evaluación perezosa asegura que sólo se computen los paquetes efectivamente consumidos al operar.",
+      "El balanceo entre Isolates y el bucle de eventos garantiza una arquitectura reactiva sostenible.",
+      "El hilo principal conserva su capacidad de respuesta inmediata para eventos de usuario al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Las extensiones son azúcar sintáctico estático resuelto en tiempo de compilación: no mutan la clase original ni añaden campos de almacenamiento en el objeto, pero proporcionan APIs fluidas y legibles (e.g. `'42'.parseInt()`).",
-    topic: "Extension Methods",
-    difficulty: "básico"
+    "correctAnswerIndex": 0,
+    "explanation": "Detección de saturación en Microtask Queue (Caso en acción): Un uso desmedido de microtareas monopoliza el hilo de ejecución e impide procesar eventos externos.",
+    "topic": "Caso en acción",
+    "difficulty": "intermedio"
   },
   {
-    id: "dart-30",
-    collectionId: "dart",
-    question: "¿Qué herramienta oficial de Dart se utiliza para aplicar correcciones automáticas y refactorizaciones de linter en toda una base de código?",
-    options: [
-      "`dart fix --apply`",
-      "`dart compile exe`",
-      "`dart test --coverage`",
-      "`dart doc --dry-run`"
+    "id": "dart-q-30",
+    "collectionId": "dart",
+    "question": "Respecto a caso en acción en Dart, ¿cuál es el propósito de «Desacoplamiento»?",
+    "options": [
+      "La evaluación perezosa asegura que sólo se computen los paquetes efectivamente consumidos al operar.",
+      "El balanceo entre Isolates y el bucle de eventos garantiza una arquitectura reactiva sostenible.",
+      "El hilo principal conserva su capacidad de respuesta inmediata para eventos de usuario al operar.",
+      "El analizador estático verifica la conformidad del contrato antes de compilar sin perder estado."
     ],
-    correctAnswerIndex: 0,
-    explanation: "`dart fix` consulta las advertencias del analizador y las recetas de migración de versiones del SDK para corregir mecánicamente cambios de API obsoleta y reglas de estilo en un solo comando determinista.",
-    topic: "Tooling y Productividad",
-    difficulty: "básico"
+    "correctAnswerIndex": 1,
+    "explanation": "Desacoplamiento y balanceo con Isolate.run (Caso en acción): El balanceo entre Isolates y el bucle de eventos garantiza una arquitectura reactiva sostenible.",
+    "topic": "Caso en acción",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "dart-q-31",
+    "collectionId": "dart",
+    "question": "En Dart (Caso en acción), ¿qué función técnica cumple «Compilación nativa AOT»?",
+    "options": [
+      "El balanceo entre Isolates y el bucle de eventos garantiza una arquitectura reactiva sostenible al operar.",
+      "Un uso desmedido de microtareas monopoliza el hilo de ejecución e impide procesar eventos externos.",
+      "La arquitectura de memoria aislada ofrece máxima fiabilidad y rendimiento constante bajo carga masiva.",
+      "La evaluación perezosa asegura que sólo se computen los paquetes efectivamente consumidos en el flujo."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Compilación nativa AOT y verificación de rendimiento (Caso en acción): La arquitectura de memoria aislada ofrece máxima fiabilidad y rendimiento constante bajo carga masiva.",
+    "topic": "Caso en acción",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "dart-q-32",
+    "collectionId": "dart",
+    "question": "Dentro de Dart, ¿cómo opera el mecanismo de «Inferencia var, final» en sintaxis moderna & sound null safety?",
+    "options": [
+      "Promueve variables a subtipos específicos o elimina su nulabilidad tras comprobaciones condicionales sin requerir conversiones forzadas manuales sin perder estado.",
+      "Garantiza que una variable no anulable nunca contenga null en ningún momento de la ejecución mediante análisis estático formal del compilador sin perder estado.",
+      "Aplica ?. para invocación condicional, ?? para valor de fallback por defecto y ??= para asignación condicionada a la ausencia previa de valor sin perder estado.",
+      "Distingue entre inferencia automática de tipo en asignación, inmutabilidad de referencia en tiempo de ejecución y constantes evaluadas en tiempo de compilación."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "Inferencia var, final y const (Sintaxis Moderna & Sound Null Safety): Distingue entre inferencia automática de tipo en asignación, inmutabilidad de referencia en tiempo de ejecución y constantes evaluadas en tiempo de compilación.",
+    "topic": "Sintaxis Moderna & Sound Null Safety",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "dart-q-33",
+    "collectionId": "dart",
+    "question": "Al trabajar con Dart, ¿qué responsabilidad define a «Sound Null Safety y sistema de tipos»?",
+    "options": [
+      "Garantiza que una variable no anulable nunca contenga null en ningún momento de la ejecución mediante análisis estático formal del compilador.",
+      "Difiere la inicialización de variables de instancia no anulables hasta su primer acceso verificando su asignación en tiempo de ejecución.",
+      "Aplica ?. para invocación condicional, ?? para valor de fallback por defecto y ??= para asignación condicionada a la ausencia previa de valor.",
+      "Declara múltiples puntos de entrada inicializadores con nombres semánticos que pueden redirigir a otros inicializadores de la misma clase."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Sound Null Safety y sistema de tipos (Sintaxis Moderna & Sound Null Safety): Garantiza que una variable no anulable nunca contenga null en ningún momento de la ejecución mediante análisis estático formal del compilador.",
+    "topic": "Sintaxis Moderna & Sound Null Safety",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "dart-q-34",
+    "collectionId": "dart",
+    "question": "En la arquitectura de Dart, ¿qué caracteriza técnicamente a «Promoción de tipos y análisis de flujo»?",
+    "options": [
+      "Difiere la inicialización de variables de instancia no anulables hasta su primer acceso verificando su asignación en tiempo de ejecución al evaluar.",
+      "Promueve variables a subtipos específicos o elimina su nulabilidad tras comprobaciones condicionales sin requerir conversiones forzadas manuales.",
+      "Garantiza que una variable no anulable nunca contenga null en ningún momento de la ejecución mediante análisis estático formal del compilador.",
+      "Aplica ?. para invocación condicional, ?? para valor de fallback por defecto y ??= para asignación condicionada a la ausencia previa de valor."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Promoción de tipos y análisis de flujo (Sintaxis Moderna & Sound Null Safety): Promueve variables a subtipos específicos o elimina su nulabilidad tras comprobaciones condicionales sin requerir conversiones forzadas manuales.",
+    "topic": "Sintaxis Moderna & Sound Null Safety",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "dart-q-35",
+    "collectionId": "dart",
+    "question": "Respecto a sintaxis moderna & sound null safety en Dart, ¿cuál es el propósito de «Operadores de navegación»?",
+    "options": [
+      "Difiere la inicialización de variables de instancia no anulables hasta su primer acceso verificando su asignación en tiempo de ejecución al operar.",
+      "Garantiza que una variable no anulable nunca contenga null en ningún momento de la ejecución mediante análisis estático formal del compilador.",
+      "Aplica ?. para invocación condicional, ?? para valor de fallback por defecto y ??= para asignación condicionada a la ausencia previa de valor.",
+      "Declara múltiples puntos de entrada inicializadores con nombres semánticos que pueden redirigir a otros inicializadores de la misma clase."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Operadores de navegación y asignación segura (Sintaxis Moderna & Sound Null Safety): Aplica ?. para invocación condicional, ?? para valor de fallback por defecto y ??= para asignación condicionada a la ausencia previa de valor.",
+    "topic": "Sintaxis Moderna & Sound Null Safety",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "dart-q-36",
+    "collectionId": "dart",
+    "question": "En Dart (Sintaxis Moderna & Sound Null Safety), ¿qué función técnica cumple «Inicialización tardía con late»?",
+    "options": [
+      "Extrae campos de registros, listas, mapas e instancias directamente en variables locales dentro de una única sentencia declarativa al operar.",
+      "Añade condiciones booleanas adicionales a una rama de patrón permitiendo filtrar evaluaciones complejas antes de ejecutar la acción al operar.",
+      "Ejecuta asignaciones de campos finales y verificaciones de invariantes con assert antes de que se invoque el cuerpo del constructor al operar.",
+      "Difiere la inicialización de variables de instancia no anulables hasta su primer acceso verificando su asignación en tiempo de ejecución."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "Inicialización tardía con late (Sintaxis Moderna & Sound Null Safety): Difiere la inicialización de variables de instancia no anulables hasta su primer acceso verificando su asignación en tiempo de ejecución.",
+    "topic": "Sintaxis Moderna & Sound Null Safety",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "dart-q-37",
+    "collectionId": "dart",
+    "question": "Dentro de Dart, ¿cómo opera el mecanismo de «Records posicionales y nombrados» en records, tuplas & pattern matching?",
+    "options": [
+      "Empaqueta múltiples valores heterogéneos en estructuras anónimas inmutables de primera clase con tipado estricto garantizado por el compilador.",
+      "Comprueba en tiempo de compilación que todas las ramas y combinaciones posibles de datos están cubiertas sin dejar casos sin manejar al operar.",
+      "Añade condiciones booleanas adicionales a una rama de patrón permitiendo filtrar evaluaciones complejas antes de ejecutar la acción al operar.",
+      "Extrae campos de registros, listas, mapas e instancias directamente en variables locales dentro de una única sentencia declarativa al operar."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Records posicionales y nombrados (Records, Tuplas & Pattern Matching): Empaqueta múltiples valores heterogéneos en estructuras anónimas inmutables de primera clase con tipado estricto garantizado por el compilador.",
+    "topic": "Records, Tuplas & Pattern Matching",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "dart-q-38",
+    "collectionId": "dart",
+    "question": "Al trabajar con Dart, ¿qué responsabilidad define a «Desestructuración de tuplas y objetos»?",
+    "options": [
+      "Evalúa patrones de datos exhaustivos en expresiones switch concisas retornando un valor calculado sin requerir sentencias break al operar.",
+      "Extrae campos de registros, listas, mapas e instancias directamente en variables locales dentro de una única sentencia declarativa.",
+      "Añade condiciones booleanas adicionales a una rama de patrón permitiendo filtrar evaluaciones complejas antes de ejecutar la acción.",
+      "Comprueba en tiempo de compilación que todas las ramas y combinaciones posibles de datos están cubiertas sin dejar casos sin manejar."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Desestructuración de tuplas y objetos (Records, Tuplas & Pattern Matching): Extrae campos de registros, listas, mapas e instancias directamente en variables locales dentro de una única sentencia declarativa.",
+    "topic": "Records, Tuplas & Pattern Matching",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "dart-q-39",
+    "collectionId": "dart",
+    "question": "En la arquitectura de Dart, ¿qué caracteriza técnicamente a «Pattern Matching en Switch Expressions»?",
+    "options": [
+      "Produce secuencias infinitas o diferidas de datos emitiendo valores perezosamente con yield y delegando flujos con yield* al operar.",
+      "Genera enlaces y tipos de Dart automáticamente a partir de archivos de cabecera de C mediante el analizador de LLVM/Clang al operar.",
+      "Evalúa patrones de datos exhaustivos en expresiones switch concisas retornando un valor calculado sin requerir sentencias break.",
+      "Exige que los consumidores externos sólo puedan implementar la interfaz de la clase sin heredar su implementación concreta al operar."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Pattern Matching en Switch Expressions (Records, Tuplas & Pattern Matching): Evalúa patrones de datos exhaustivos en expresiones switch concisas retornando un valor calculado sin requerir sentencias break.",
+    "topic": "Records, Tuplas & Pattern Matching",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "dart-q-40",
+    "collectionId": "dart",
+    "question": "Respecto a records, tuplas & pattern matching en Dart, ¿cuál es el propósito de «Guard Clauses con cláusula when»?",
+    "options": [
+      "Evalúa patrones de datos exhaustivos en expresiones switch concisas retornando un valor calculado sin requerir sentencias break al operar.",
+      "Extrae campos de registros, listas, mapas e instancias directamente en variables locales dentro de una única sentencia declarativa.",
+      "Comprueba en tiempo de compilación que todas las ramas y combinaciones posibles de datos están cubiertas sin dejar casos sin manejar.",
+      "Añade condiciones booleanas adicionales a una rama de patrón permitiendo filtrar evaluaciones complejas antes de ejecutar la acción."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "Guard Clauses con cláusula when (Records, Tuplas & Pattern Matching): Añade condiciones booleanas adicionales a una rama de patrón permitiendo filtrar evaluaciones complejas antes de ejecutar la acción.",
+    "topic": "Records, Tuplas & Pattern Matching",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "dart-q-41",
+    "collectionId": "dart",
+    "question": "En Dart (Records, Tuplas & Pattern Matching), ¿qué función técnica cumple «Exhaustividad estática de patrones»?",
+    "options": [
+      "Comprueba en tiempo de compilación que todas las ramas y combinaciones posibles de datos están cubiertas sin dejar casos sin manejar.",
+      "Evalúa patrones de datos exhaustivos en expresiones switch concisas retornando un valor calculado sin requerir sentencias break.",
+      "Extrae campos de registros, listas, mapas e instancias directamente en variables locales dentro de una única sentencia declarativa.",
+      "Añade condiciones booleanas adicionales a una rama de patrón permitiendo filtrar evaluaciones complejas antes de ejecutar la acción."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Exhaustividad estática de patrones (Records, Tuplas & Pattern Matching): Comprueba en tiempo de compilación que todas las ramas y combinaciones posibles de datos están cubiertas sin dejar casos sin manejar.",
+    "topic": "Records, Tuplas & Pattern Matching",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "dart-q-42",
+    "collectionId": "dart",
+    "question": "Dentro de Dart, ¿cómo opera el mecanismo de «Constructores generativos y azucar sintáctico» en programación orientada a objetos en dart?",
+    "options": [
+      "Transfiere mensajes inmutables entre isolates mediante puertos serializados sin riesgo de carreras de datos ni deadlocks al operar.",
+      "Asigna parámetros formales directamente a variables de instancia mediante this.campo en la lista de argumentos del constructor.",
+      "Ejecuta una función pesada en un isolate temporal y retorna el resultado al isolate principal con recolección automática al operar.",
+      "Parametriza funciones y métodos independientes con tipos genéricos preservando la inferencia entre parámetros y retorno al operar."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Constructores generativos y azucar sintáctico (Programación Orientada a Objetos en Dart): Asigna parámetros formales directamente a variables de instancia mediante this.campo en la lista de argumentos del constructor.",
+    "topic": "Programación Orientada a Objetos en Dart",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "dart-q-43",
+    "collectionId": "dart",
+    "question": "Al trabajar con Dart, ¿qué responsabilidad define a «Listas de inicialización y aserciones»?",
+    "options": [
+      "Asigna parámetros formales directamente a variables de instancia mediante this.campo en la lista de argumentos del constructor al operar.",
+      "Crea instancias inmutables compartidas en memoria canónica si todos los campos son finales y se construyen con valores constantes.",
+      "Ejecuta asignaciones de campos finales y verificaciones de invariantes con assert antes de que se invoque el cuerpo del constructor.",
+      "Implementa inicializadores que no crean necesariamente una nueva instancia retornando objetos preexistentes o subtipos polimórficos."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Listas de inicialización y aserciones (Programación Orientada a Objetos en Dart): Ejecuta asignaciones de campos finales y verificaciones de invariantes con assert antes de que se invoque el cuerpo del constructor.",
+    "topic": "Programación Orientada a Objetos en Dart",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "dart-q-44",
+    "collectionId": "dart",
+    "question": "En la arquitectura de Dart, ¿qué caracteriza técnicamente a «Constructores Named y Redirigidos»?",
+    "options": [
+      "Ejecuta asignaciones de campos finales y verificaciones de invariantes con assert antes de que se invoque el cuerpo del constructor al operar.",
+      "Implementa inicializadores que no crean necesariamente una nueva instancia retornando objetos preexistentes o subtipos polimórficos al operar.",
+      "Crea instancias inmutables compartidas en memoria canónica si todos los campos son finales y se construyen con valores constantes al operar.",
+      "Declara múltiples puntos de entrada inicializadores con nombres semánticos que pueden redirigir a otros inicializadores de la misma clase."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "Constructores Named y Redirigidos (Programación Orientada a Objetos en Dart): Declara múltiples puntos de entrada constructores con nombres semánticos que pueden redirigir a otros constructores de la misma clase.",
+    "topic": "Programación Orientada a Objetos en Dart",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "dart-q-45",
+    "collectionId": "dart",
+    "question": "Respecto a programación orientada a objetos en dart en Dart, ¿cuál es el propósito de «Constructores Factory»?",
+    "options": [
+      "Implementa inicializadores que no crean necesariamente una nueva instancia retornando objetos preexistentes o subtipos polimórficos.",
+      "Asigna parámetros formales directamente a variables de instancia mediante this.campo en la lista de argumentos del constructor.",
+      "Crea instancias inmutables compartidas en memoria canónica si todos los campos son finales y se construyen con valores constantes.",
+      "Ejecuta asignaciones de campos finales y verificaciones de invariantes con assert antes de que se invoque el cuerpo del constructor."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Constructores Factory y caché de instancias (Programación Orientada a Objetos en Dart): Implementa constructores que no crean necesariamente una nueva instancia retornando objetos preexistentes o subtipos polimórficos.",
+    "topic": "Programación Orientada a Objetos en Dart",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "dart-q-46",
+    "collectionId": "dart",
+    "question": "En Dart (Programación Orientada a Objetos en Dart), ¿qué función técnica cumple «Constructores Const y canonicidad»?",
+    "options": [
+      "Asigna parámetros formales directamente a variables de instancia mediante this.campo en la lista de argumentos del constructor al operar.",
+      "Crea instancias inmutables compartidas en memoria canónica si todos los campos son finales y se construyen con valores constantes.",
+      "Ejecuta asignaciones de campos finales y verificaciones de invariantes con assert antes de que se invoque el cuerpo del constructor.",
+      "Implementa inicializadores que no crean necesariamente una nueva instancia retornando objetos preexistentes o subtipos polimórficos."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Constructores Const y canonicidad (Programación Orientada a Objetos en Dart): Crea instancias inmutables compartidas en memoria canónica si todos los campos son finales y se construyen con valores constantes.",
+    "topic": "Programación Orientada a Objetos en Dart",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "dart-q-47",
+    "collectionId": "dart",
+    "question": "Dentro de Dart, ¿cómo opera el mecanismo de «Clases Sealed para jerarquías cerradas» en jerarquía de tipos & modificadores de clase?",
+    "options": [
+      "Impide totalmente la herencia o implementación de una clase fuera de su archivo de definición garantizando estabilidad binaria sin perder estado.",
+      "Exige que los consumidores externos sólo puedan implementar la interfaz de la clase sin heredar su implementación concreta de modo predecible.",
+      "Define familias de tipos donde todos los subtipos directos deben residir en la misma biblioteca permitiendo validación exhaustiva de switches.",
+      "Difiere la inicialización de variables de instancia no anulables hasta su primer acceso verificando su asignación en tiempo de ejecución al operar."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Clases Sealed para jerarquías cerradas (Jerarquía de Tipos & Modificadores de Clase): Define familias de tipos donde todos los subtipos directos deben residir en la misma biblioteca permitiendo validación exhaustiva de switches.",
+    "topic": "Jerarquía de Tipos & Modificadores de Clase",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "dart-q-48",
+    "collectionId": "dart",
+    "question": "Al trabajar con Dart, ¿qué responsabilidad define a «Modificador Final para sellar clases»?",
+    "options": [
+      "Exige que los consumidores externos sólo puedan implementar la interfaz de la clase sin heredar su implementación concreta al operar.",
+      "Garantiza que una clase sólo pueda ser heredada mediante extends o implementada dentro de su biblioteca propietaria al evaluar.",
+      "Declara firmas de métodos sin implementación que deben satisfacer las subclases concretas en tiempo de ejecución con precisión.",
+      "Impide totalmente la herencia o implementación de una clase fuera de su archivo de definición garantizando estabilidad binaria."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "Modificador Final para sellar clases (Jerarquía de Tipos & Modificadores de Clase): Impide totalmente la herencia o implementación de una clase fuera de su archivo de definición garantizando estabilidad binaria.",
+    "topic": "Jerarquía de Tipos & Modificadores de Clase",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "dart-q-49",
+    "collectionId": "dart",
+    "question": "En la arquitectura de Dart, ¿qué caracteriza técnicamente a «Mixins y reutilización con with»?",
+    "options": [
+      "Inyecta métodos y estado en una jerarquía de clases mediante linealización de mixins sin incurrir en problemas de herencia múltiple al operar.",
+      "Limita la aplicación de un mixin a clases que extiendan o implementen un tipo base determinado para acceder a sus miembros protegidos.",
+      "Crea emisores de datos que gestionan suscripciones de oyentes, pausa, reanudación y cierre ordenado de flujos de información al operar.",
+      "Asigna parámetros formales directamente a variables de instancia mediante this.campo en la lista de argumentos del constructor."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Mixins y reutilización con with (Mixins, Extensión & Composición Funcional): Inyecta métodos y estado en una jerarquía de clases mediante linealización de mixins sin incurrir en problemas de herencia múltiple.",
+    "topic": "Mixins, Extensión & Composición Funcional",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "dart-q-50",
+    "collectionId": "dart",
+    "question": "Respecto a mixins, extensión & composición funcional en Dart, ¿cuál es el propósito de «Restricciones de mixin con la cláusula on»?",
+    "options": [
+      "Inyecta métodos y estado en una jerarquía de clases mediante linealización de mixins sin incurrir en problemas de herencia múltiple al operar.",
+      "Limita la aplicación de un mixin a clases que extiendan o implementen un tipo base determinado para acceder a sus miembros protegidos.",
+      "Evalúa patrones de datos exhaustivos en expresiones switch concisas retornando un valor calculado sin requerir sentencias break al operar.",
+      "Asigna parámetros formales directamente a variables de instancia mediante this.campo en la lista de argumentos del constructor al operar."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Restricciones de mixin con la cláusula on (Mixins, Extensión & Composición Funcional): Limita la aplicación de un mixin a clases que extiendan o implementen un tipo base determinado para acceder a sus miembros protegidos.",
+    "topic": "Mixins, Extensión & Composición Funcional",
+    "difficulty": "avanzado"
   }
 ];

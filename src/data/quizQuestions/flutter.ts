@@ -2,453 +2,753 @@ import type { QuizQuestion } from "@/data/quizTypes";
 
 export const flutterQuestions: QuizQuestion[] = [
   {
-    id: "flt-01",
-    collectionId: "flutter",
-    question: "En la arquitectura interna de Flutter, ¿cuáles son los tres árboles que colaboran de manera concurrente para transformar código declarativo en píxeles?",
-    options: [
-      "Widget Tree (configuración inmutable y efímera), Element Tree (gestor del ciclo de vida y estructura persistente) y RenderObject Tree (cálculo de layout geométrico, hit-testing y pintura directa).",
-      "DOM Tree, Shadow Tree y CSSOM Tree.",
-      "Source Tree, Bytecode Tree y Native View Hierarchy.",
-      "State Tree, Provider Tree y Dispatcher Tree."
+    "id": "flutter-q-01",
+    "collectionId": "flutter",
+    "question": "En Flutter (Dibujo a Bajo Nivel con CustomPainter & Canvas), ¿qué función técnica cumple «CustomClipper y máscaras geométricas»?",
+    "options": [
+      "Recorta el contorno visible de cualquier widget hijo aplicando formas vectoriales arbitrarias con antialiasing por hardware al operar.",
+      "Evita invocar el método de pintado cuando los parámetros y datos del lienzo no han cambiado respecto a la iteración anterior.",
+      "Genera valores continuos entre 0.0 y 1.0 sincronizados cuadro a cuadro con la tasa de refresco nativa de la pantalla al operar.",
+      "Comunica la aplicación Flutter con código nativo en Kotlin/Java y Swift/Objective-C mediante serialización binaria estándar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Los widgets son planos inmutables y baratos que se destruyen y recrean constantemente. El Element Tree vincula los widgets con los RenderObjects correspondientes, reutilizando y actualizando las instancias de RenderObject de forma quirúrgica para máxima eficiencia.",
-    topic: "Arquitectura Interna y Tres Árboles",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 0,
+    "explanation": "CustomClipper y máscaras geométricas (Dibujo a Bajo Nivel con CustomPainter & Canvas): Recorta el contorno visible de cualquier widget hijo aplicando formas vectoriales arbitrarias con antialiasing por hardware.",
+    "topic": "Dibujo a Bajo Nivel con CustomPainter & Canvas",
+    "difficulty": "básico"
   },
   {
-    id: "flt-02",
-    collectionId: "flutter",
-    question: "¿Qué problema crítico resolvió la introducción del nuevo motor de renderizado 'Impeller' en Flutter frente al motor histórico 'Skia'?",
-    options: [
-      "La eliminación completa del 'Shader Compilation Jank' (tirones de animación en el primer render) mediante la precompilación estática AOT (Ahead-of-Time) de una colección cerrada de shaders para Metal y Vulkan.",
-      "La necesidad de compilar la app con el compilador de Java en Android.",
-      "La imposibilidad de ejecutar código Dart en sistemas embebidos.",
-      "El soporte de bases de datos relacionales en la memoria GPU del dispositivo."
+    "id": "flutter-q-02",
+    "collectionId": "flutter",
+    "question": "Dentro de Flutter, ¿cómo opera el mecanismo de «Optimización shouldRepaint para rendimiento» en dibujo a bajo nivel con custompainter & canvas?",
+    "options": [
+      "Recorta el contorno visible de cualquier widget hijo aplicando formas vectoriales arbitrarias con antialiasing por hardware al operar.",
+      "Evita invocar el método de pintado cuando los parámetros y datos del lienzo no han cambiado respecto a la iteración anterior.",
+      "Configura color, grosor de trazo, estilos de pintura, filtros de desenfoque, máscaras y modos de mezcla shader sobre el canvas.",
+      "Genera valores continuos entre 0.0 y 1.0 sincronizados cuadro a cuadro con la tasa de refresco nativa de la pantalla al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Skia compilaba shaders en tiempo de ejecución (JIT) la primera vez que se encontraba una combinación gráfica nueva, provocando saltos de fotogramas perceptibles. Impeller precompila todos los shaders a formato binario (MSL/SPIR-V) durante la fase de build.",
-    topic: "Motor de Renderizado Impeller",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 1,
+    "explanation": "Optimización shouldRepaint para rendimiento (Dibujo a Bajo Nivel con CustomPainter & Canvas): Evita invocar el método de pintado cuando los parámetros y datos del lienzo no han cambiado respecto a la iteración anterior.",
+    "topic": "Dibujo a Bajo Nivel con CustomPainter & Canvas",
+    "difficulty": "básico"
   },
   {
-    id: "flt-03",
-    collectionId: "flutter",
-    question: "¿Cuál es la regla de oro que resume formalmente el sistema de dimensionamiento y layout en Flutter?",
-    options: [
-      "\"Constraints go down. Sizes go up. Parent sets position.\"",
-      "\"Parents take all available space, children adapt their margin, siblings align vertically.\"",
-      "\"Widgets define width and height, elements calculate padding, canvas scales linearly.\"",
-      "\"Roots declare pixels, flex items calculate ratios, painters clip overflows.\""
+    "id": "flutter-q-03",
+    "collectionId": "flutter",
+    "question": "Al trabajar con Flutter, ¿qué responsabilidad define a «Arquitectura moderna del motor Impeller»?",
+    "options": [
+      "La instrumentación fluye en tiempo real con una experiencia visual de respuesta instantánea a 120 FPS al operar.",
+      "Captura eventos de bajo nivel de puntero directamente desde el pipeline de entrada de la plataforma al operar.",
+      "Sustituye a Skia empleando una arquitectura gráfica orientada a APIs modernas para renderizado ultrarrápido.",
+      "La interfaz prescinde de puentes lentos de serialización interactuando directamente con el motor gráfico."
     ],
-    correctAnswerIndex: 0,
-    explanation: "El padre pasa restricciones (`BoxConstraints`: minWidth, maxWidth, minHeight, maxHeight) al hijo; el hijo decide su propio tamaño dentro de esas restricciones y lo devuelve al padre; finalmente el padre asigna la posición relativa del hijo.",
-    topic: "Sistema de Layout y BoxConstraints",
-    difficulty: "básico"
+    "correctAnswerIndex": 2,
+    "explanation": "Arquitectura moderna del motor Impeller (Motor Gráfico Impeller & Shaders AOT): Sustituye a Skia empleando una arquitectura gráfica orientada a APIs modernas (Vulkan en Android, Metal en iOS) para renderizado ultrarrápido.",
+    "topic": "Motor Gráfico Impeller & Shaders AOT",
+    "difficulty": "básico"
   },
   {
-    id: "flt-04",
-    collectionId: "flutter",
-    question: "En el ciclo de vida de un `StatefulWidget`, ¿en qué orden estricto se invocan los métodos durante la inicialización de su `State`?",
-    options: [
-      "`createState()` $\\to$ `initState()` $\\to$ `didChangeDependencies()` $\\to$ `build()`",
-      "`initState()` $\\to$ `createState()` $\\to$ `build()` $\\to$ `didUpdateWidget()`",
-      "`build()` $\\to$ `initState()` $\\to$ `didChangeDependencies()` $\\to$ `dispose()`",
-      "`createState()` $\\to$ `build()` $\\to$ `initState()` $\\to$ `deactivate()`"
+    "id": "flutter-q-04",
+    "collectionId": "flutter",
+    "question": "En la arquitectura de Flutter, ¿qué caracteriza técnicamente a «AnimationController y sincronización con Ticker»?",
+    "options": [
+      "Transmite flujos continuos de datos desde sensores nativos hacia la aplicación Flutter como un Stream reactivo al operar.",
+      "Sustituye a Skia empleando una arquitectura gráfica orientada a APIs modernas para renderizado ultrarrápido al operar.",
+      "La interfaz prescinde de puentes lentos de serialización interactuando directamente con el motor gráfico en el flujo.",
+      "Genera valores continuos entre 0.0 y 1.0 sincronizados cuadro a cuadro con la tasa de refresco nativa de la pantalla."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Flutter llama primero a `createState()`. Luego se ejecuta `initState()` una única vez (aquí no se puede acceder a `InheritedWidgets` que dependan de context con cambios). Inmediatamente después se llama a `didChangeDependencies()` y por último a `build()`.",
-    topic: "Ciclo de Vida de StatefulWidget",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 3,
+    "explanation": "AnimationController y sincronización con Ticker (Sistema de Animaciones, Tweens & Física): Genera valores continuos entre 0.0 y 1.0 sincronizados cuadro a cuadro con la tasa de refresco nativa (60 Hz a 120 Hz) de la pantalla.",
+    "topic": "Sistema de Animaciones, Tweens & Física",
+    "difficulty": "básico"
   },
   {
-    id: "flt-05",
-    collectionId: "flutter",
-    question: "¿Qué representa técnicamente el objeto `BuildContext` recibido como parámetro en el método `build(BuildContext context)`?",
-    options: [
-      "Es una referencia directa a la instancia del `Element` en el Element Tree correspondiente a ese widget específico, que define su ubicación y relaciones en el árbol.",
-      "Un objeto singleton que almacena la memoria RAM total disponible del teléfono.",
-      "El contexto de dibujo 2D del Canvas de la GPU.",
-      "Un diccionario estático de pares clave-valor provenientes del archivo `pubspec.yaml`."
+    "id": "flutter-q-05",
+    "collectionId": "flutter",
+    "question": "Respecto a reconocimiento de gestos, arena & hit-testing en Flutter, ¿cuál es el propósito de «Listener»?",
+    "options": [
+      "Captura eventos de bajo nivel de puntero directamente desde el pipeline de entrada de la plataforma.",
+      "Un árbol sin límites de repintado propaga mutaciones locales a toda la jerarquía de la pantalla.",
+      "Las mutaciones de la gráfica vectorial no provocan repintados en el resto de la interfaz al operar.",
+      "El aislamiento visual devuelve la fluidez continua sin alterar la arquitectura reactiva al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "`BuildContext` es una interfaz implementada directamente por la clase abstracta `Element`. Permite al widget consultar el árbol hacia arriba (por ejemplo buscando un `InheritedWidget` con `Theme.of(context)` o `MediaQuery.of(context)`).",
-    topic: "BuildContext y Element Tree",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 0,
+    "explanation": "Listener y eventos crudos de puntero (PointerEvents) (Reconocimiento de Gestos, Arena & Hit-Testing): Captura eventos de bajo nivel de puntero (PointerDown, PointerMove, PointerUp) directamente desde el pipeline de entrada de la plataforma.",
+    "topic": "Reconocimiento de Gestos, Arena & Hit-Testing",
+    "difficulty": "básico"
   },
   {
-    id: "flt-06",
-    collectionId: "flutter",
-    question: "¿Cuál es la causa habitual de la excepción 'Vertical viewport was given unbounded height' en Flutter?",
-    options: [
-      "Colocar un `ListView` (que por defecto intenta expandirse infinitamente en el eje de scroll) dentro de un `Column` sin envolverlo en un `Expanded` o `Flexible`, o sin activar `shrinkWrap: true`.",
-      "Asignar un color RGBA con canal alfa igual a 0.",
-      "Usar fuentes tipográficas de más de 32 puntos en pantallas móviles.",
-      "Compilar la aplicación en modo Debug en lugar de Release."
+    "id": "flutter-q-06",
+    "collectionId": "flutter",
+    "question": "En Flutter (Plataformas Nativas, MethodChannels & DevTools), ¿qué función técnica cumple «MethodChannel»?",
+    "options": [
+      "Transmite flujos continuos de datos desde sensores nativos hacia la aplicación Flutter como un Stream reactivo de forma segura.",
+      "Comunica la aplicación Flutter con código nativo en Kotlin/Java y Swift/Objective-C mediante serialización binaria estándar.",
+      "Genera valores continuos entre 0.0 y 1.0 sincronizados cuadro a cuadro con la tasa de refresco nativa de la pantalla al operar.",
+      "Recorta el contorno visible de cualquier widget hijo aplicando formas vectoriales arbitrarias con antialiasing por hardware."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Un `Column` pasa restricciones de altura no acotada (`maxHeight: double.infinity`) a sus hijos. Si un `ListView` sin restricción intenta expandirse al infinito dentro de un contenedor no acotado, el motor de layout no puede calcular su tamaño y lanza este error clásico.",
-    topic: "Layout y RenderFlex",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 1,
+    "explanation": "MethodChannel y mensajería binaria asíncrona (Plataformas Nativas, MethodChannels & DevTools): Comunica la aplicación Flutter con código nativo en Kotlin/Java (Android) y Swift/Objective-C (iOS) mediante serialización binaria estándar.",
+    "topic": "Plataformas Nativas, MethodChannels & DevTools",
+    "difficulty": "básico"
   },
   {
-    id: "flt-07",
-    collectionId: "flutter",
-    question: "¿Por qué el uso de constructores `const` en la instanciación de widgets mejora drásticamente el rendimiento de una aplicación Flutter?",
-    options: [
-      "Permite a Dart canonicalizar las instancias en tiempo de compilación creando una única instancia en memoria global, permitiendo a Flutter omitir por completo el re-renderizado (`rebuild`) de ese subárbol cuando el padre se reconstruye.",
-      "Compila los widgets a código ensamblador nativo en tiempo de ejecución.",
-      "Desactiva las animaciones automáticas de Material 3 para ahorrar ciclos de CPU.",
-      "Guarda los widgets en la memoria caché del disco duro para restaurarlos tras un reinicio del móvil."
+    "id": "flutter-q-07",
+    "collectionId": "flutter",
+    "question": "Dentro de Flutter, ¿cómo opera el mecanismo de «EventChannel para streams nativos» en plataformas nativas, methodchannels & devtools?",
+    "options": [
+      "La interfaz prescinde de puentes lentos de serialización interactuando directamente con el motor gráfico al operar.",
+      "Sustituye a Skia empleando una arquitectura gráfica orientada a APIs modernas para renderizado ultrarrápido.",
+      "Transmite flujos continuos de datos desde sensores nativos hacia la aplicación Flutter como un Stream reactivo.",
+      "La instrumentación fluye en tiempo real con una experiencia visual de respuesta instantánea a 120 FPS al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Al ser constantes e inmutables canonicalizadas, Flutter compara sus identidades por puntero (`identical(oldWidget, newWidget)`). Si son idénticos, Flutter sabe con certeza matemática que no han cambiado y se salta su método `build()`.",
-    topic: "Optimización y Widgets Const",
-    difficulty: "básico"
+    "correctAnswerIndex": 2,
+    "explanation": "EventChannel para streams nativos (Plataformas Nativas, MethodChannels & DevTools): Transmite flujos continuos de datos desde sensores nativos (acelerómetro, GPS, Bluetooth) hacia la aplicación Flutter como un Stream reactivo.",
+    "topic": "Plataformas Nativas, MethodChannels & DevTools",
+    "difficulty": "básico"
   },
   {
-    id: "flt-08",
-    collectionId: "flutter",
-    question: "¿Para qué sirve el widget `RepaintBoundary` en la optimización de interfaces complejas con animaciones intensas?",
-    options: [
-      "Aísla a su subárbol en una capa de visualización separada (`Layer`), de modo que cuando el contenido interno cambia o se anima, solo se repinta ese subárbol sin obligar al resto de la pantalla exterior a repintarse.",
-      "Impide que los usuarios puedan interactuar con la pantalla mediante toques táctiles.",
-      "Establece una barrera criptográfica que impide la inspección del DOM con Flutter Inspector.",
-      "Elimina los bordes redondeados de todos los botones de la pantalla."
+    "id": "flutter-q-08",
+    "collectionId": "flutter",
+    "question": "Al trabajar con Flutter, ¿qué responsabilidad define a «Configuración del canvas con CustomPainter»?",
+    "options": [
+      "Un árbol sin límites de repintado propaga mutaciones locales a toda la jerarquía de la pantalla en el flujo.",
+      "La instrumentación fluye en tiempo real con una experiencia visual de respuesta instantánea a 120 FPS.",
+      "Las mutaciones de la gráfica vectorial no provocan repintados en el resto de la interfaz de forma segura.",
+      "La interfaz prescinde de puentes lentos de serialización interactuando directamente con el motor gráfico."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Si un contador numérico o aguja de reloj se anima rápidamente, envolverlo en `RepaintBoundary` evita que el fondo estático pesado y otros widgets circundantes tengan que volver a ser rasterizados en cada fotograma.",
-    topic: "Rendimiento y RepaintBoundary",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 3,
+    "explanation": "Configuración del canvas con CustomPainter (Caso en acción): La interfaz prescinde de puentes lentos de serialización interactuando directamente con el motor gráfico.",
+    "topic": "Caso en acción",
+    "difficulty": "básico"
   },
   {
-    id: "flt-09",
-    collectionId: "flutter",
-    question: "¿Cómo comunica un `InheritedWidget` a sus descendientes que deben reconstruirse cuando sus datos internos sufren una modificación?",
-    options: [
-      "A través de la implementación del método booleano `updateShouldNotify(covariant InheritedWidget oldWidget)`.",
-      "Enviando una señal HTTP POST al servidor localhost de Flutter.",
-      "Invocando recursivamente `setState()` en todos los widgets registrados en el árbol.",
-      "Mediante una notificación push silenciosa despachada por el sistema operativo."
+    "id": "flutter-q-09",
+    "collectionId": "flutter",
+    "question": "En la arquitectura de Flutter, ¿qué caracteriza técnicamente a «Despacho reactivo de estado con BLoC»?",
+    "options": [
+      "La interfaz gráfica sólo se redibuja ante transiciones de estado explícitas sin degradar el flujo.",
+      "El aislamiento visual devuelve la fluidez continua sin alterar la arquitectura reactiva.",
+      "Las mutaciones de la gráfica vectorial no provocan repintados en el resto de la interfaz.",
+      "Un árbol sin límites de repintado propaga mutaciones locales a toda la jerarquía de la pantalla."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Cuando un `InheritedWidget` es reconstruido con nuevos datos, Flutter ejecuta `updateShouldNotify`. Si retorna `true`, notifica exclusivamente a aquellos elementos descendientes que se registraron como dependientes mediante `dependOnInheritedWidgetOfExactType`.",
-    topic: "Gestión de Estado e InheritedWidget",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 0,
+    "explanation": "Despacho reactivo de estado con BLoC (Caso en acción): La interfaz gráfica sólo se redibuja ante transiciones de estado explícitas.",
+    "topic": "Caso en acción",
+    "difficulty": "básico"
   },
   {
-    id: "flt-10",
-    collectionId: "flutter",
-    question: "En el patrón de arquitectura BLoC (Business Logic Component), ¿cuál es el contrato estricto de entrada y salida entre la interfaz de usuario y la lógica de negocio?",
-    options: [
-      "La UI envía 'Eventos' (Events) al BLoC a través de un canal Sink/Event Stream, y el BLoC emite 'Estados' (States) inmutables a la UI a través de un Stream reactivo.",
-      "La UI invoca directamente métodos síncronos de mutación que alteran variables globales públicas.",
-      "El BLoC manipula directamente los píxeles del Canvas mediante llamadas a Skia/Impeller.",
-      "La comunicación se realiza guardando y leyendo archivos JSON en el directorio temporal del dispositivo."
+    "id": "flutter-q-10",
+    "collectionId": "flutter",
+    "question": "Respecto a caso en acción en Flutter, ¿cuál es el propósito de «Aislamiento de capas GPU con RepaintBoundary»?",
+    "options": [
+      "El aislamiento visual devuelve la fluidez continua sin alterar la arquitectura reactiva al operar.",
+      "Las mutaciones de la gráfica vectorial no provocan repintados en el resto de la interfaz.",
+      "La interfaz gráfica sólo se redibuja ante transiciones de estado explícitas en ejecución.",
+      "Un árbol sin límites de repintado propaga mutaciones locales a toda la jerarquía de la pantalla."
     ],
-    correctAnswerIndex: 0,
-    explanation: "BLoC garantiza separación absoluta de responsabilidades: los widgets disparan intenciones (eventos) y reaccionan de forma pasiva a los estados entrantes (`BlocBuilder` / `BlocListener`), facilitando pruebas unitarias de lógica pura sin mocks de interfaz.",
-    topic: "Arquitectura BLoC",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 1,
+    "explanation": "Aislamiento de capas GPU con RepaintBoundary (Caso en acción): Las mutaciones de la gráfica vectorial no provocan repintados en el resto de la interfaz.",
+    "topic": "Caso en acción",
+    "difficulty": "básico"
   },
   {
-    id: "flt-11",
-    collectionId: "flutter",
-    question: "¿Qué ventaja fundamental ofrece la librería 'Riverpod' sobre el paquete 'Provider' clásico en Flutter?",
-    options: [
-      "Riverpod no depende de `BuildContext` para resolver dependencias, es completamente seguro en tiempo de compilación (evita el runtime `ProviderNotFoundException`), y permite múltiples providers del mismo tipo sin colisiones.",
-      "Riverpod elimina la necesidad de usar el lenguaje Dart permitiendo escribir lógica en Rust nativo.",
-      "Riverpod almacena todo el estado de la app en la blockchain de Ethereum.",
-      "Riverpod funciona exclusivamente en aplicaciones web sin soporte móvil."
+    "id": "flutter-q-11",
+    "collectionId": "flutter",
+    "question": "En Flutter (Caso en acción), ¿qué función técnica cumple «Detección de sobrecosto por rebuild global»?",
+    "options": [
+      "Las mutaciones de la gráfica vectorial no provocan repintados en el resto de la interfaz al operar.",
+      "El aislamiento visual devuelve la fluidez continua sin alterar la arquitectura reactiva al operar.",
+      "Un árbol sin límites de repintado propaga mutaciones locales a toda la jerarquía de la pantalla.",
+      "La interfaz gráfica sólo se redibuja ante transiciones de estado explícitas de modo predecible."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Riverpod fue creado por Remi Rousselet (autor de Provider) para superar los fallos de diseño inherentes a la dependencia del árbol de widgets (`BuildContext`), ofreciendo providers declarativos globales, autodestrucción con `.autoDispose` y manejo asíncrono con `AsyncValue`.",
-    topic: "Gestión de Estado y Riverpod",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 2,
+    "explanation": "Detección de sobrecosto por rebuild global (Caso en acción): Un árbol sin límites de repintado propaga mutaciones locales a toda la jerarquía de la pantalla.",
+    "topic": "Caso en acción",
+    "difficulty": "básico"
   },
   {
-    id: "flt-12",
-    collectionId: "flutter",
-    question: "¿Bajo qué circunstancias es estrictamente necesario proporcionar una 'Key' (como `ValueKey` u `ObjectKey`) a los widgets en una lista dinámica o modificable?",
-    options: [
-      "Cuando los elementos de la lista son `StatefulWidgets` y la lista puede cambiar de orden, eliminarse o insertarse elementos, permitiendo a Flutter emparejar correctamente el Element con su State correspondiente según su identidad y no solo por su posición u orden en el árbol.",
-      "Solo cuando los widgets tienen estilos con gradientes lineales.",
-      "Para que el motor de búsqueda de Google pueda indexar la pantalla.",
-      "Para cifrar los textos mostrados en pantalla con AES-256."
+    "id": "flutter-q-12",
+    "collectionId": "flutter",
+    "question": "Dentro de Flutter, ¿cómo opera el mecanismo de «Restauración con RepaintBoundary y Rebuild selectivo» en caso en acción?",
+    "options": [
+      "La interfaz gráfica sólo se redibuja ante transiciones de estado explícitas de forma clara.",
+      "Las mutaciones de la gráfica vectorial no provocan repintados en el resto de la interfaz.",
+      "Un árbol sin límites de repintado propaga mutaciones locales a toda la jerarquía de la pantalla.",
+      "El aislamiento visual devuelve la fluidez continua sin alterar la arquitectura reactiva."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Flutter preserva el estado en el Element Tree comparando `runtimeType` y `key`. Si dos widgets tienen el mismo tipo y carecen de clave explícita, al reordenar la lista Flutter asignará por error el estado del widget previo al nuevo elemento en esa posición numérica.",
-    topic: "Claves (Keys) y Preservación de Estado",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 3,
+    "explanation": "Restauración con RepaintBoundary y Rebuild selectivo (Caso en acción): El aislamiento visual devuelve la fluidez continua sin alterar la arquitectura reactiva.",
+    "topic": "Caso en acción",
+    "difficulty": "básico"
   },
   {
-    id: "flt-13",
-    collectionId: "flutter",
-    question: "¿Qué diferencia funcional existe entre `MethodChannel` y `EventChannel` en la interoperabilidad de Flutter con la plataforma nativa (Android/iOS)?",
-    options: [
-      "`MethodChannel` está diseñado para llamadas RPC bidireccionales discretas de tipo solicitud/respuesta; `EventChannel` está especializado en transmisión unidireccional de flujos continuos de datos (Streams) desde la plataforma nativa hacia Flutter (e.g. sensores, GPS, conectividad).",
-      "`EventChannel` solo funciona a través de conexiones de red inalámbricas Bluetooth.",
-      "`MethodChannel` requiere reiniciar la aplicación cada vez que se invoca un método.",
-      "`EventChannel` compila el código nativo a JavaScript antes de enviarlo."
+    "id": "flutter-q-13",
+    "collectionId": "flutter",
+    "question": "Al trabajar con Flutter, ¿qué responsabilidad define a «Auditoría en Flutter DevTools y verificación con Impeller»?",
+    "options": [
+      "La instrumentación fluye en tiempo real con una experiencia visual de respuesta instantánea a 120 FPS.",
+      "Un árbol sin límites de repintado propaga mutaciones locales a toda la jerarquía de la pantalla.",
+      "Las mutaciones de la gráfica vectorial no provocan repintados en el resto de la interfaz al evaluar.",
+      "El aislamiento visual devuelve la fluidez continua sin alterar la arquitectura reactiva en el flujo."
     ],
-    correctAnswerIndex: 0,
-    explanation: "`MethodChannel` permite invocar un método nativo y esperar un `Future` de respuesta. `EventChannel` conecta un `Stream` de Dart con un listener nativo continuo (como `SensorEventListener` en Android o `CLLocationManagerDelegate` en iOS).",
-    topic: "Platform Channels",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 0,
+    "explanation": "Auditoría en Flutter DevTools y verificación con Impeller (Caso en acción): La instrumentación fluye en tiempo real con una experiencia visual de respuesta instantánea a 120 FPS.",
+    "topic": "Caso en acción",
+    "difficulty": "básico"
   },
   {
-    id: "flt-14",
-    collectionId: "flutter",
-    question: "¿Qué función cumple el compilador FFI (`dart:ffi`) frente a los tradicionales Platform Channels en Flutter?",
-    options: [
-      "Permite invocar bibliotecas nativas de C/C++/Rust directamente en el mismo espacio de memoria de forma síncrona y con sobrecarga de serialización cero (cero copias), sin cruzar el hilo de la plataforma del SO.",
-      "Permite ejecutar código PHP dentro del simulador de iPhone.",
-      "Descarga fuentes tipográficas en una cuadrícula paralela en segundo plano.",
-      "Genera interfaces de usuario automáticas a partir de esquemas GraphQL."
+    "id": "flutter-q-14",
+    "collectionId": "flutter",
+    "question": "En la arquitectura de Flutter, ¿qué caracteriza técnicamente a «UI declarativa como función del estado»?",
+    "options": [
+      "Construye pantallas y componentes sofisticados combinando múltiples widgets pequeños de responsabilidad única en lugar de extender clases monolíticas complejas al evaluar.",
+      "Expresa la interfaz de usuario como una función matemática pura donde cualquier transición del estado de datos produce de forma reactiva una nueva configuración visual.",
+      "Conserva estado mutable entre múltiples reconstrucciones desacoplando la configuración efímera del widget de un objeto State de larga vida en memoria sin perder estado.",
+      "Las restricciones geométricas bajan desde el padre, los tamaños finales suben desde el hijo, y el padre determina la posición cartesiana absoluta del elemento al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Mientras que los Platform Channels serializan datos binarios asíncronamente con `StandardMessageCodec` a través de sockets nativos de la plataforma, `dart:ffi` permite enlazar dinámicamente librerías C nativas con punteros directos para cómputo intensivo (e.g. machine learning, procesamiento de audio o SQLite).",
-    topic: "Dart FFI y Rendimiento Nativo",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 1,
+    "explanation": "UI declarativa como función del estado (Filosofía de Widgets & UI Declarativa): Expresa la interfaz de usuario como una función matemática pura donde cualquier transición del estado de datos produce de forma reactiva una nueva configuración visual.",
+    "topic": "Filosofía de Widgets & UI Declarativa",
+    "difficulty": "básico"
   },
   {
-    id: "flt-15",
-    collectionId: "flutter",
-    question: "En las pruebas de widgets de Flutter (`WidgetTester`), ¿cuál es la diferencia entre invocar `tester.pump()` y `tester.pumpAndSettle()`?",
-    options: [
-      "`tester.pump()` avanza el tiempo simulado un único frame o duración discreta; `tester.pumpAndSettle()` ejecuta repetidamente frames sucesivos hasta que no queden microtareas pendientes ni animaciones en progreso (el árbol se 'asienta' por completo).",
-      "`pumpAndSettle()` reinicia el sistema operativo del emulador en cada aserción.",
-      "`tester.pump()` solo puede llamarse al final del test para liberar memoria.",
-      "`tester.pumpAndSettle()` lanza una excepción si el widget utiliza constructores `const`."
+    "id": "flutter-q-15",
+    "collectionId": "flutter",
+    "question": "Respecto a filosofía de widgets & ui declarativa en Flutter, ¿cuál es el propósito de «StatelessWidget e inmutabilidad estricta»?",
+    "options": [
+      "Orquesta initState, didChangeDependencies, build, didUpdateWidget y dispose de forma determinista conforme el widget interactúa con su entorno.",
+      "Interpola valores de posición, escala, rotación o color aplicando curvas elásticas, cinéticas o desaceleradas mediante CurvedAnimation al operar.",
+      "Describe interfaces estáticas cuya apariencia depende exclusivamente de parámetros inmutables provistos en su llamada constructora constante.",
+      "Aísla la reconstrucción del widget animado de sus componentes estáticos evitando llamadas redundantes al método build de toda la vista al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "`tester.pump()` dispara un nuevo frame para procesar un cambio puntual. Si hay animaciones activas (como una transición de página o animación infinita), `pumpAndSettle()` esperará hasta que concluyan (o arrojará timeout si la animación no termina nunca).",
-    topic: "Testing de Widgets",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 2,
+    "explanation": "StatelessWidget e inmutabilidad estricta (Filosofía de Widgets & UI Declarativa): Describe interfaces estáticas cuya apariencia depende exclusivamente de parámetros inmutables provistos en su llamada constructora constante.",
+    "topic": "Filosofía de Widgets & UI Declarativa",
+    "difficulty": "básico"
   },
   {
-    id: "flt-16",
-    collectionId: "flutter",
-    question: "¿Qué rol desempeña el widget `CustomPaint` junto con la clase abstracta `CustomPainter` en Flutter?",
-    options: [
-      "Proporciona un lienzo de dibujo vectorial de bajo nivel (`Canvas`) y un objeto `Size` que permite pintar figuras geométricas, líneas, arcos, rutas complejas (`Path`) y efectos visuales personalizados directamente en el RenderObject.",
-      "Permite editar fotos mediante herramientas de retoque digital con inteligencia artificial.",
-      "Convierte la aplicación en un editor de imágenes rasterizadas similar a Photoshop.",
-      "Aplica un filtro sepia automático a todas las pantallas de la app."
+    "id": "flutter-q-16",
+    "collectionId": "flutter",
+    "question": "En Flutter (Filosofía de Widgets & UI Declarativa), ¿qué función técnica cumple «StatefulWidget»?",
+    "options": [
+      "Orquesta initState, didChangeDependencies, build, didUpdateWidget y dispose de forma determinista conforme el widget interactúa con su entorno al operar.",
+      "Describe interfaces estáticas cuya apariencia depende exclusivamente de parámetros inmutables provistos en su llamada constructora constante al operar.",
+      "Precompila todos los fragment y vertex shaders durante el build AOT evitando tirones en el primer renderizado de cualquier pantalla o animación al operar.",
+      "Conserva estado mutable entre múltiples reconstrucciones desacoplando la configuración efímera del widget de un objeto State de larga vida en memoria."
     ],
-    correctAnswerIndex: 0,
-    explanation: "`CustomPainter` implementa `paint(Canvas canvas, Size size)` y `shouldRepaint(covariant CustomPainter oldDelegate)`. Es el mecanismo estándar para crear gráficos personalizados, medidores, ondas y visualizaciones de alto rendimiento en Flutter.",
-    topic: "CustomPainter y Gráficos",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 3,
+    "explanation": "StatefulWidget y objeto State persistente (Filosofía de Widgets & UI Declarativa): Conserva estado mutable entre múltiples reconstrucciones desacoplando la configuración efímera del widget de un objeto State de larga vida en memoria.",
+    "topic": "Filosofía de Widgets & UI Declarativa",
+    "difficulty": "básico"
   },
   {
-    id: "flt-17",
-    collectionId: "flutter",
-    question: "En Flutter, ¿cuál es el propósito de la propiedad `shrinkWrap: true` en un `ListView` o `GridView` y qué costo acarrea su uso indebido?",
-    options: [
-      "Fuerza a la lista a calcular y ajustar su tamaño total a la suma de las dimensiones de todos sus hijos en lugar de ocupar todo el espacio disponible; su uso indebido destruye la virtualización perezosa al forzar el cálculo de layout de todos los elementos.",
-      "Comprime las imágenes contenidas en la lista en formato WebP.",
-      "Oculta la barra de scroll cuando el usuario deja de interactuar con la pantalla.",
-      "Desactiva los eventos de toque táctil en todos los elementos excepto el primero."
+    "id": "flutter-q-17",
+    "collectionId": "flutter",
+    "question": "Dentro de Flutter, ¿cómo opera el mecanismo de «Ciclo de vida del objeto State» en filosofía de widgets & ui declarativa?",
+    "options": [
+      "Orquesta initState, didChangeDependencies, build, didUpdateWidget y dispose de forma determinista conforme el widget interactúa con su entorno.",
+      "Describe interfaces estáticas cuya apariencia depende exclusivamente de parámetros inmutables provistos en su llamada constructora constante.",
+      "Aplica restricciones donde el ancho y alto están fijados en valores exactos inamovibles o en rangos abiertos con valores mínimos en cero.",
+      "Convierte trazados vectoriales complejos en triángulos simples directamente en la GPU acelerando el renderizado de curvas Bezier masivas."
     ],
-    correctAnswerIndex: 0,
-    explanation: "`shrinkWrap: true` obliga a medir el tamaño de toda la colección de elementos de golpe para conocer la altura total del contenedor, eliminando el beneficio de reciclaje bajo demanda (`ListView.builder`) y penalizando gravemente el rendimiento en listas largas.",
-    topic: "Virtualización y ListView",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 0,
+    "explanation": "Ciclo de vida del objeto State (Filosofía de Widgets & UI Declarativa): Orquesta initState, didChangeDependencies, build, didUpdateWidget y dispose de forma determinista conforme el widget interactúa con su entorno.",
+    "topic": "Filosofía de Widgets & UI Declarativa",
+    "difficulty": "intermedio"
   },
   {
-    id: "flt-18",
-    collectionId: "flutter",
-    question: "En el sistema de animación de Flutter, ¿cuál es la función de una `CurvedAnimation`?",
-    options: [
-      "Aplica una curva de aceleración o deceleración no lineal (e.g. `Curves.easeInOut`, `Curves.bounceOut`) a un `AnimationController` lineal subyacente.",
-      "Dibuja una línea curva de Bezier en el fondo de la pantalla.",
-      "Modifica la frecuencia de actualización de la pantalla del dispositivo a 144 Hz.",
-      "Ajusta el volumen del sonido de reproducción de los efectos táctiles."
+    "id": "flutter-q-18",
+    "collectionId": "flutter",
+    "question": "Al trabajar con Flutter, ¿qué responsabilidad define a «Composición atómica sobre herencia»?",
+    "options": [
+      "Conserva estado mutable entre múltiples reconstrucciones desacoplando la configuración efímera del widget de un objeto State de larga vida en memoria en ejecución.",
+      "Construye pantallas y componentes sofisticados combinando múltiples widgets pequeños de responsabilidad única en lugar de extender clases monolíticas complejas.",
+      "Orquesta initState, didChangeDependencies, build, didUpdateWidget y dispose de forma determinista conforme el widget interactúa con su entorno dentro del flujo.",
+      "Describe interfaces estáticas cuya apariencia depende exclusivamente de parámetros inmutables provistos en su llamada constructora constante de modo predecible."
     ],
-    correctAnswerIndex: 0,
-    explanation: "`AnimationController` produce valores estrictamente lineales de 0.0 a 1.0 en función del tiempo. `CurvedAnimation(parent: controller, curve: Curves.easeOut)` transforma esa tasa lineal para crear movimientos naturales y orgánicos.",
-    topic: "Animaciones y Curvas",
-    difficulty: "básico"
+    "correctAnswerIndex": 1,
+    "explanation": "Composición atómica sobre herencia (Filosofía de Widgets & UI Declarativa): Construye pantallas y componentes sofisticados combinando múltiples widgets pequeños de responsabilidad única en lugar de extender clases monolíticas complejas.",
+    "topic": "Filosofía de Widgets & UI Declarativa",
+    "difficulty": "intermedio"
   },
   {
-    id: "flt-19",
-    collectionId: "flutter",
-    question: "¿Qué es una animación 'Hero' en Flutter y cómo coordina la transición visual entre dos pantallas distintas?",
-    options: [
-      "Anima un widget compartido entre dos rutas marcadas con el mismo identificador de etiqueta (`tag`), volando y transformando suavemente su tamaño y posición desde la pantalla de origen a la de destino durante la transición del Navigator.",
-      "Una animación de cómic que reproduce efectos de sonido de superhéroes al hacer tap.",
-      "Un script de compilación que optimiza los binarios para arquitecturas ARM v8.",
-      "Un botón flotante principal de Material Design que no puede ser ocultado."
+    "id": "flutter-q-19",
+    "collectionId": "flutter",
+    "question": "En la arquitectura de Flutter, ¿qué caracteriza técnicamente a «Widget Tree como especificación efímera»?",
+    "options": [
+      "Calcula restricciones de tamaño, posiciones cartesianas absolutas en pantalla, hit-testing de eventos táctiles y emisión de primitivas de dibujo al operar.",
+      "Vincula los widgets inmutables con los nodos gráficos reales, gestionando la identidad en memoria, el ciclo de vida y la reconciliación eficiente.",
+      "Genera jerarquías inmutables y ultraligeras que Flutter crea, compara y descarta a altísima velocidad sin penalización de memoria ni de renderizado.",
+      "Usa ValueKey, ObjectKey y GlobalKey para preservar el estado interno de elementos al reordenar, insertar o filtrar colecciones dinámicas de widgets."
     ],
-    correctAnswerIndex: 0,
-    explanation: "El widget `Hero(tag: 'id-producto', child: ...)` en ambas rutas permite al Navigator orquestar una superposición temporal (Overlay) que interpola tamaño y posición entre pantallas dispares ofreciendo continuidad visual fluida.",
-    topic: "Hero Animations y Transiciones",
-    difficulty: "básico"
+    "correctAnswerIndex": 2,
+    "explanation": "Widget Tree como especificación efímera (El Árbol Tripartito: Widget, Element y RenderObject): Genera jerarquías inmutables y ultraligeras que Flutter crea, compara y descarta a altísima velocidad sin penalización de memoria ni de renderizado.",
+    "topic": "El Árbol Tripartito: Widget, Element y RenderObject",
+    "difficulty": "intermedio"
   },
   {
-    id: "flt-20",
-    collectionId: "flutter",
-    question: "¿Por qué en Flutter es preferible usar `ListView.builder` en lugar del constructor por defecto `ListView(children: [...])` para listas de datos extensas o desconocidas?",
-    options: [
-      "`ListView.builder` construye y renderiza únicamente aquellos elementos que están actualmente visibles dentro del viewport (más una pequeña zona de pre-renderizado de caché), reciclando memoria y optimizando CPU.",
-      "`ListView.builder` traduce el texto de los elementos a 10 idiomas automáticamente.",
-      "`ListView(children: [...])` solo soporta un máximo de 10 elementos en total.",
-      "`ListView.builder` desactiva la barra de scroll para evitar tirones de GPU."
+    "id": "flutter-q-20",
+    "collectionId": "flutter",
+    "question": "Respecto a el árbol tripartito: widget, element y renderobject en Flutter, ¿cuál es el propósito de «Element Tree como administrador de ciclo de vida»?",
+    "options": [
+      "Calcula restricciones de tamaño, posiciones cartesianas absolutas en pantalla, hit-testing de eventos táctiles y emisión de primitivas de dibujo al operar.",
+      "Genera jerarquías inmutables y ultraligeras que Flutter crea, compara y descarta a altísima velocidad sin penalización de memoria ni de renderizado.",
+      "Usa ValueKey, ObjectKey y GlobalKey para preservar el estado interno de elementos al reordenar, insertar o filtrar colecciones dinámicas de widgets.",
+      "Vincula los widgets inmutables con los nodos gráficos reales, gestionando la identidad en memoria, el ciclo de vida y la reconciliación eficiente."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Pasar un array con miles de widgets en `ListView(children: ...)` instancia todos los objetos y elementos a la vez en memoria. `ListView.builder` proporciona virtualización perezosa (lazy windowing) instanciando solo las celdas en pantalla.",
-    topic: "Rendimiento y Listas",
-    difficulty: "básico"
+    "correctAnswerIndex": 3,
+    "explanation": "Element Tree como administrador de ciclo de vida (El Árbol Tripartito: Widget, Element y RenderObject): Vincula los widgets inmutables con los nodos gráficos reales, gestionando la identidad en memoria, el ciclo de vida y la reconciliación eficiente.",
+    "topic": "El Árbol Tripartito: Widget, Element y RenderObject",
+    "difficulty": "intermedio"
   },
   {
-    id: "flt-21",
-    collectionId: "flutter",
-    question: "En la gestión de dependencias y paquetes de Flutter, ¿qué archivo garantiza que todo el equipo y el pipeline de CI/CD compilen exactamente las mismas versiones de las bibliotecas?",
-    options: [
-      "`pubspec.lock`",
-      "`pubspec.yaml`",
-      "`.metadata`",
-      "`analysis_options.yaml`"
+    "id": "flutter-q-21",
+    "collectionId": "flutter",
+    "question": "En Flutter (El Árbol Tripartito: Widget, Element y RenderObject), ¿qué función técnica cumple «RenderObject Tree como ejecutor de geometría»?",
+    "options": [
+      "Calcula restricciones de tamaño, posiciones cartesianas absolutas en pantalla, hit-testing de eventos táctiles y emisión de primitivas de dibujo.",
+      "Vincula los widgets inmutables con los nodos gráficos reales, gestionando la identidad en memoria, el ciclo de vida y la reconciliación eficiente.",
+      "Separa un sub-árbol en su propia capa de rasterización GPU evitando que sus actualizaciones invaliden y redibujen los widgets circundantes.",
+      "Simula comportamientos físicos de masa, rigidez y amortiguamiento realistas para elementos que rebotan o responden al arrastre del usuario."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Mientras que `pubspec.yaml` define rangos de versiones semánticas deseados (e.g. `^2.4.0`), `pubspec.lock` registra los hashes criptográficos y las versiones exactas resueltas de cada paquete transitivo garantizando reproducibilidad absoluta del build.",
-    topic: "Tooling y Gestión de Paquetes",
-    difficulty: "básico"
+    "correctAnswerIndex": 0,
+    "explanation": "RenderObject Tree como ejecutor de geometría (El Árbol Tripartito: Widget, Element y RenderObject): Calcula restricciones de tamaño, posiciones cartesianas absolutas en pantalla, hit-testing de eventos táctiles y emisión de primitivas de dibujo.",
+    "topic": "El Árbol Tripartito: Widget, Element y RenderObject",
+    "difficulty": "intermedio"
   },
   {
-    id: "flt-22",
-    collectionId: "flutter",
-    question: "¿Qué realiza la herramienta 'Dart Obfuscation' (`--obfuscate --split-debug-info=...`) al generar un release en Flutter?",
-    options: [
-      "Oculta identificadores de símbolos, clases y nombres de métodos en el código AOT nativo compilado, reduciendo el tamaño del binario y extrayendo las tablas de símbolos para desofuscar stack traces en producción.",
-      "Cifra el código fuente con contraseña que el usuario debe ingresar al instalar la app.",
-      "Convierte la aplicación en una extensión de navegador web.",
-      "Genera pruebas unitarias automatizadas con cobertura de ramas del 100%."
+    "id": "flutter-q-22",
+    "collectionId": "flutter",
+    "question": "Dentro de Flutter, ¿cómo opera el mecanismo de «Claves y preservación de identidad (Keys)» en el árbol tripartito: widget, element y renderobject?",
+    "options": [
+      "Calcula restricciones de tamaño, posiciones cartesianas absolutas en pantalla, hit-testing de eventos táctiles y emisión de primitivas de dibujo al operar.",
+      "Usa ValueKey, ObjectKey y GlobalKey para preservar el estado interno de elementos al reordenar, insertar o filtrar colecciones dinámicas de widgets.",
+      "Vincula los widgets inmutables con los nodos gráficos reales, gestionando la identidad en memoria, el ciclo de vida y la reconciliación eficiente.",
+      "Genera jerarquías inmutables y ultraligeras que Flutter crea, compara y descarta a altísima velocidad sin penalización de memoria ni de renderizado."
     ],
-    correctAnswerIndex: 0,
-    explanation: "La ofuscación dificulta la ingeniería inversa del binario compilado de Flutter. El parámetro `--split-debug-info` genera archivos de símbolos de depuración esenciales para traducir reportes de errores ofuscados (crash symbolication) en Crashlytics o Sentry.",
-    topic: "Seguridad y Compilación de Releases",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 1,
+    "explanation": "Claves y preservación de identidad (Keys) (El Árbol Tripartito: Widget, Element y RenderObject): Usa ValueKey, ObjectKey y GlobalKey para preservar el estado interno de elementos al reordenar, insertar o filtrar colecciones dinámicas de widgets.",
+    "topic": "El Árbol Tripartito: Widget, Element y RenderObject",
+    "difficulty": "intermedio"
   },
   {
-    id: "flt-23",
-    collectionId: "flutter",
-    question: "¿Cuál es la función del widget `FutureBuilder` en Flutter y qué patrón de estado maneja?",
-    options: [
-      "Se suscribe a un `Future` y reconstruye su interfaz visual de forma declarativa según el estado asíncrono actual provisto por el objeto `AsyncSnapshot` (`ConnectionState.waiting`, `hasError`, `hasData`).",
-      "Permite enviar transacciones financieras a una pasarela de pago en el futuro.",
-      "Detiene el hilo de ejecución principal de la aplicación hasta que la petición HTTP finaliza.",
-      "Genera predicciones con modelos de aprendizaje automático sobre acciones del usuario."
+    "id": "flutter-q-23",
+    "collectionId": "flutter",
+    "question": "Al trabajar con Flutter, ¿qué responsabilidad define a «BuildContext como coordenada en el árbol»?",
+    "options": [
+      "Genera jerarquías inmutables y ultraligeras que Flutter crea, compara y descarta a altísima velocidad sin penalización de memoria ni de renderizado en ejecución.",
+      "Usa ValueKey, ObjectKey y GlobalKey para preservar el estado interno de elementos al reordenar, insertar o filtrar colecciones dinámicas de widgets al operar.",
+      "Representa la ubicación exacta de un widget dentro del árbol de elementos y permite consultar temas heredados, medios de pantalla y ancestros en la jerarquía.",
+      "Vincula los widgets inmutables con los nodos gráficos reales, gestionando la identidad en memoria, el ciclo de vida y la reconciliación eficiente en el flujo."
     ],
-    correctAnswerIndex: 0,
-    explanation: "`FutureBuilder` conecta la naturaleza asíncrona de Dart con el paradigma reactivo de Flutter: evita manejar manualmente booleanos `isLoading` y suscripciones imperativas en el ciclo de vida del State.",
-    topic: "Asincronía y UI Reactiva",
-    difficulty: "básico"
+    "correctAnswerIndex": 2,
+    "explanation": "BuildContext como coordenada en el árbol (El Árbol Tripartito: Widget, Element y RenderObject): Representa la ubicación exacta de un widget dentro del árbol de elementos y permite consultar temas heredados, medios de pantalla y ancestros en la jerarquía.",
+    "topic": "El Árbol Tripartito: Widget, Element y RenderObject",
+    "difficulty": "intermedio"
   },
   {
-    id: "flt-24",
-    collectionId: "flutter",
-    question: "En la navegación moderna de Flutter con `go_router`, ¿qué ventaja proporciona el soporte de navegación declarativa basada en rutas sobre el Navigator 1.0 imperativo?",
-    options: [
-      "Soporte transparente y bidireccional para URLs en la web (deep linking, sincronización con el historial del navegador, parámetros de consulta y rutas anidadas / ShellRoute).",
-      "Elimina la necesidad de definir widgets en la aplicación.",
-      "Permite ejecutar rutas en diferentes servidores web distribuidos.",
-      "Duplica la velocidad de renderizado de las fuentes tipográficas."
+    "id": "flutter-q-24",
+    "collectionId": "flutter",
+    "question": "En la arquitectura de Flutter, ¿qué caracteriza técnicamente a «Regla cardinal de Constraints»?",
+    "options": [
+      "Distribuye el espacio disponible en los ejes principal y transversal controlando alineación, expansión elástica con Flexible y ajuste estricto con Expanded al operar.",
+      "Inspecciona las restricciones espaciales entrantes en tiempo de ejecución para alternar dinámicamente entre layouts de móvil, tableta o escritorio en el flujo.",
+      "Superpone múltiples widgets en capas tridimensionales ordenadas posicionando elementos de forma absoluta o relativa a los límites del contenedor con precisión.",
+      "Las restricciones geométricas bajan desde el padre, los tamaños finales suben desde el hijo, y el padre determina la posición cartesiana absoluta del elemento."
     ],
-    correctAnswerIndex: 0,
-    explanation: "`go_router` implementa la API de Router (Navigator 2.0) de forma ergonómica: sincroniza de forma nativa el estado de navegación de la app con la barra de direcciones de la web y deep links en iOS/Android sin escribir boilerplate manual.",
-    topic: "Navegación y go_router",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 3,
+    "explanation": "Regla cardinal de Constraints (Protocolo de Layout, BoxConstraints & RenderBox): Las restricciones geométricas bajan desde el padre, los tamaños finales suben desde el hijo, y el padre determina la posición cartesiana absoluta del elemento.",
+    "topic": "Protocolo de Layout, BoxConstraints & RenderBox",
+    "difficulty": "intermedio"
   },
   {
-    id: "flt-25",
-    collectionId: "flutter",
-    question: "¿Qué utilidad tiene la clase `GlobalKey` en Flutter y por qué debe usarse con moderación?",
-    options: [
-      "Permite acceder al `State` o al `RenderBox` de un widget desde cualquier lugar de la app y mover widgets entre diferentes posiciones del árbol sin perder su estado; es costosa porque el framework debe recorrer y reorganizar el árbol globalmente.",
-      "Almacena las variables de sesión del usuario en el disco duro.",
-      "Es una clave pública de cifrado para conexiones TLS.",
-      "Genera identificadores universales únicos (UUID) para bases de datos relacionales."
+    "id": "flutter-q-25",
+    "collectionId": "flutter",
+    "question": "Respecto a protocolo de layout, boxconstraints & renderbox en Flutter, ¿cuál es el propósito de «BoxConstraints tight y loose»?",
+    "options": [
+      "Aplica restricciones donde el ancho y alto están fijados en valores exactos inamovibles o en rangos abiertos con valores mínimos en cero.",
+      "Dibuja primitivas gráficas vectoriales personalizadas invocando directamente la API de Canvas sin sobrecarga de widgets intermedios.",
+      "Implementa patrones de notificación ligera que reconstruyen selectivamente únicamente los widgets suscritos a la mutación del valor.",
+      "Separa estrictamente la lógica de negocio de la UI procesando flujos asíncronos de eventos entrantes y emitiendo estados inmutables."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Una `GlobalKey` es una clave globalmente única que permite acceder a `currentState` (e.g. `formKey.currentState!.validate()`). Sin embargo, su uso excesivo ralentiza la fase de reconciliation porque Flutter debe verificar la unicidad global en cada frame.",
-    topic: "GlobalKey y Arquitectura",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 0,
+    "explanation": "BoxConstraints tight y loose (Protocolo de Layout, BoxConstraints & RenderBox): Aplica restricciones donde el ancho y alto están fijados en valores exactos inamovibles o en rangos abiertos con valores mínimos en cero.",
+    "topic": "Protocolo de Layout, BoxConstraints & RenderBox",
+    "difficulty": "intermedio"
   },
   {
-    id: "flt-26",
-    collectionId: "flutter",
-    question: "¿Cómo funciona el mecanismo de accesibilidad de Flutter para transmitir la interfaz visual a lectores de pantalla como TalkBack y VoiceOver?",
-    options: [
-      "Flutter genera un árbol semántico paralelo ('Semantics Tree') compuesto por nodos `SemanticsNode` que describen etiquetas, acciones (tap, scroll, dismiss) y estados a los servicios de accesibilidad del sistema operativo nativo.",
-      "Flutter lee en voz alta el código fuente de los archivos `.dart` mediante síntesis de voz.",
-      "Los lectores de pantalla analizan capturas de pantalla de la app mediante OCR en la nube.",
-      "Flutter no soporta lectores de pantalla nativos y requiere auriculares especiales."
+    "id": "flutter-q-26",
+    "collectionId": "flutter",
+    "question": "En Flutter (Protocolo de Layout, BoxConstraints & RenderBox), ¿qué función técnica cumple «RenderFlex, Row y Column»?",
+    "options": [
+      "Inspecciona las restricciones espaciales entrantes en tiempo de ejecución para alternar dinámicamente entre layouts de móvil, tableta o escritorio en el flujo.",
+      "Distribuye el espacio disponible en los ejes principal y transversal controlando alineación, expansión elástica con Flexible y ajuste estricto con Expanded.",
+      "Superpone múltiples widgets en capas tridimensionales ordenadas posicionando elementos de forma absoluta o relativa a los límites del contenedor al evaluar.",
+      "Aplica restricciones donde el ancho y alto están fijados en valores exactos inamovibles o en rangos abiertos con valores mínimos en cero de modo predecible."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Flutter no utiliza vistas nativas de Android o iOS, por lo que construye su propio Semantics Tree. Widgets como `Semantics` o propiedades semánticas en botones traducen la UI a la API nativa de accesibilidad de cada plataforma.",
-    topic: "Accesibilidad (A11y)",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 1,
+    "explanation": "RenderFlex, Row y Column (Protocolo de Layout, BoxConstraints & RenderBox): Distribuye el espacio disponible en los ejes principal y transversal controlando alineación, expansión elástica con Flexible y ajuste estricto con Expanded.",
+    "topic": "Protocolo de Layout, BoxConstraints & RenderBox",
+    "difficulty": "intermedio"
   },
   {
-    id: "flt-27",
-    collectionId: "flutter",
-    question: "En Flutter, ¿qué ocurre si se invoca `setState()` después de que el método `dispose()` de un `State` ya ha sido ejecutado?",
-    options: [
-      "Flutter lanza una excepción `FlutterError`: \"setState() called after dispose()\", indicando que se intentó actualizar el estado de un widget que ya fue desmontado permanentemente del árbol.",
-      "El dispositivo móvil se reinicia automáticamente en modo seguro.",
-      "La pantalla se vuelve completamente blanca de forma permanente.",
-      "El estado se guarda silenciosamente en la base de datos local SQLite."
+    "id": "flutter-q-27",
+    "collectionId": "flutter",
+    "question": "Dentro de Flutter, ¿cómo opera el mecanismo de «Stack, Positioned y apilamiento z-index» en protocolo de layout, boxconstraints & renderbox?",
+    "options": [
+      "Aplica restricciones donde el ancho y alto están fijados en valores exactos inamovibles o en rangos abiertos con valores mínimos en cero al evaluar.",
+      "Inspecciona las restricciones espaciales entrantes en tiempo de ejecución para alternar dinámicamente entre layouts de móvil, tableta o escritorio.",
+      "Superpone múltiples widgets en capas tridimensionales ordenadas posicionando elementos de forma absoluta o relativa a los límites del contenedor.",
+      "Separa un sub-árbol en su propia capa de rasterización GPU evitando que sus actualizaciones invaliden y redibujen los widgets circundantes al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Este error ocurre comúnmente cuando una petición asíncrona (como un `Future` o listener) concluye tras la salida del usuario de la pantalla. Para prevenirlo se comprueba la propiedad booleana `if (mounted) setState(...)`.",
-    topic: "Ciclo de Vida y Manejo de Errores",
-    difficulty: "básico"
+    "correctAnswerIndex": 2,
+    "explanation": "Stack, Positioned y apilamiento z-index (Protocolo de Layout, BoxConstraints & RenderBox): Superpone múltiples widgets en capas tridimensionales ordenadas posicionando elementos de forma absoluta o relativa a los límites del contenedor.",
+    "topic": "Protocolo de Layout, BoxConstraints & RenderBox",
+    "difficulty": "intermedio"
   },
   {
-    id: "flt-28",
-    collectionId: "flutter",
-    question: "¿Qué diferencia existe entre un widget `Flexible` y un widget `Expanded` dentro de un `Row` o `Column`?",
-    options: [
-      "`Expanded` es una subclase de `Flexible` que tiene su propiedad `fit` preconfigurada de forma estricta como `FlexFit.tight`, obligando al hijo a ocupar todo el espacio sobrante asignado; `Flexible` por defecto usa `FlexFit.loose` permitiendo al hijo ser más pequeño si así lo desea.",
-      "`Expanded` solo funciona en orientación vertical, mientras que `Flexible` solo funciona en horizontal.",
-      "`Flexible` no admite el uso del parámetro `flex` numérico.",
-      "`Expanded` solo permite widgets de texto, mientras que `Flexible` admite imágenes."
+    "id": "flutter-q-28",
+    "collectionId": "flutter",
+    "question": "Al trabajar con Flutter, ¿qué responsabilidad define a «LayoutBuilder para adaptación responsiva»?",
+    "options": [
+      "Aplica restricciones donde el ancho y alto están fijados en valores exactos inamovibles o en rangos abiertos con valores mínimos en cero en ejecución.",
+      "Superpone múltiples widgets en capas tridimensionales ordenadas posicionando elementos de forma absoluta o relativa a los límites del contenedor.",
+      "Describe interfaces estáticas cuya apariencia depende exclusivamente de parámetros inmutables provistos en su llamada constructora constante al operar.",
+      "Inspecciona las restricciones espaciales entrantes en tiempo de ejecución para alternar dinámicamente entre layouts de móvil, tableta o escritorio."
     ],
-    correctAnswerIndex: 0,
-    explanation: "En términos de implementación: `class Expanded extends Flexible { const Expanded({ ... }) : super(fit: FlexFit.tight); }`. Con `FlexFit.loose`, el widget hijo puede no consumir todo el espacio que se le otorga.",
-    topic: "Layout y Flexibilidad",
-    difficulty: "básico"
+    "correctAnswerIndex": 3,
+    "explanation": "LayoutBuilder para adaptación responsiva (Protocolo de Layout, BoxConstraints & RenderBox): Inspecciona las restricciones espaciales entrantes en tiempo de ejecución para alternar dinámicamente entre layouts de móvil, tableta o escritorio.",
+    "topic": "Protocolo de Layout, BoxConstraints & RenderBox",
+    "difficulty": "intermedio"
   },
   {
-    id: "flt-29",
-    collectionId: "flutter",
-    question: "En la herramienta Flutter DevTools, ¿qué vista permite diagnosticar y detectar fugas de memoria y acumulación indebida de objetos?",
-    options: [
-      "La pestaña 'Memory' con herramientas de instantáneas de heap (Heap Snapshot), rastreo de asignaciones de objetos y análisis de retenedores de referencias.",
-      "La consola de depuración del terminal de comandos.",
-      "El visor de registros de Firebase Analytics.",
-      "La herramienta de inspección de red de Chrome DevTools."
+    "id": "flutter-q-29",
+    "collectionId": "flutter",
+    "question": "En la arquitectura de Flutter, ¿qué caracteriza técnicamente a «Aislamiento de pintura con RepaintBoundary»?",
+    "options": [
+      "Separa un sub-árbol en su propia capa de rasterización GPU evitando que sus actualizaciones invaliden y redibujen los widgets circundantes.",
+      "Permite que un widget hijo ignore las restricciones del padre y dibuje fuera de su límite sin generar errores de RenderFlex overflow.",
+      "Mide y dibuja tipografías vectoriales complejas gestionando saltos de línea, selección de glifos y aceleración bidireccional de texto.",
+      "Calcula el tamaño natural de un sub-árbol realizando múltiples pasadas de medición cuando se requiere simetría forzada entre columnas."
     ],
-    correctAnswerIndex: 0,
-    explanation: "La pestaña Memory de Flutter DevTools permite tomar snapshots del heap de la máquina virtual de Dart, comparar dos estados para ver qué objetos no fueron recolectados por el Garbage Collector y rastrear quién mantiene la referencia activa.",
-    topic: "DevTools y Profiling",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 0,
+    "explanation": "Aislamiento de pintura con RepaintBoundary (Composición Gráfica, Capas & RepaintBoundary): Separa un sub-árbol en su propia capa de rasterización GPU evitando que sus actualizaciones invaliden y redibujen los widgets circundantes.",
+    "topic": "Composición Gráfica, Capas & RepaintBoundary",
+    "difficulty": "intermedio"
   },
   {
-    id: "flt-30",
-    collectionId: "flutter",
-    question: "¿Qué rol desempeña la función `didUpdateWidget(covariant T oldWidget)` en el ciclo de vida de un `StatefulWidget`?",
-    options: [
-      "Se ejecuta cuando el widget padre se reconstruye y suministra nuevos parámetros o configuración al widget actual conservando el mismo `Element` y `State` en el árbol, permitiendo comparar los campos antiguos con los nuevos y reaccionar adecuadamente.",
-      "Se invoca exclusivamente cuando la pantalla cambia de resolución o tasa de refresco.",
-      "Borra permanentemente la base de datos local de la aplicación.",
-      "Descarga las actualizaciones de código OTA desde el servidor de Google."
+    "id": "flutter-q-30",
+    "collectionId": "flutter",
+    "question": "Respecto a composición gráfica, capas & repaintboundary en Flutter, ¿cuál es el propósito de «Layer Tree y composición en la GPU»?",
+    "options": [
+      "Permite que un widget hijo ignore las restricciones del padre y dibuje fuera de su límite sin generar errores de RenderFlex overflow al operar.",
+      "Genera una jerarquía de capas de dibujo que el motor gráfico compone de forma acelerada por hardware aprovechando texturas independientes.",
+      "Mide y dibuja tipografías vectoriales complejas gestionando saltos de línea, selección de glifos y aceleración bidireccional de texto.",
+      "Calcula el tamaño natural de un sub-árbol realizando múltiples pasadas de medición cuando se requiere simetría forzada entre columnas."
     ],
-    correctAnswerIndex: 0,
-    explanation: "`didUpdateWidget` es el gancho idóneo para suscribirse a nuevos flujos o reiniciar animaciones si un parámetro crítico pasado por el padre ha cambiado: `if (oldWidget.id != widget.id) { _reconnect(widget.id); }`.",
-    topic: "Ciclo de Vida de StatefulWidget",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 1,
+    "explanation": "Layer Tree y composición en la GPU (Composición Gráfica, Capas & RepaintBoundary): Genera una jerarquía de capas de dibujo que el motor gráfico compone de forma acelerada por hardware aprovechando texturas independientes.",
+    "topic": "Composición Gráfica, Capas & RepaintBoundary",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "flutter-q-31",
+    "collectionId": "flutter",
+    "question": "En Flutter (Composición Gráfica, Capas & RepaintBoundary), ¿qué función técnica cumple «RenderParagraph»?",
+    "options": [
+      "Permite que un widget hijo ignore las restricciones del padre y dibuje fuera de su límite sin generar errores de RenderFlex overflow al operar.",
+      "Calcula el tamaño natural de un sub-árbol realizando múltiples pasadas de medición cuando se requiere simetría forzada entre columnas.",
+      "Mide y dibuja tipografías vectoriales complejas gestionando saltos de línea, selección de glifos y aceleración bidireccional de texto.",
+      "Configura color, grosor de trazo, estilos de pintura, filtros de desenfoque, máscaras y modos de mezcla shader sobre el canvas al operar."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "RenderParagraph y formateo de texto nativo (Composición Gráfica, Capas & RepaintBoundary): Mide y dibuja tipografías vectoriales complejas gestionando saltos de línea, selección de glifos y aceleración bidireccional de texto.",
+    "topic": "Composición Gráfica, Capas & RepaintBoundary",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "flutter-q-32",
+    "collectionId": "flutter",
+    "question": "Dentro de Flutter, ¿cómo opera el mecanismo de «OverflowBox y control de desbordamiento visual» en composición gráfica, capas & repaintboundary?",
+    "options": [
+      "Mide y dibuja tipografías vectoriales complejas gestionando saltos de línea, selección de glifos y aceleración bidireccional de texto.",
+      "Calcula el tamaño natural de un sub-árbol realizando múltiples pasadas de medición cuando se requiere simetría forzada entre columnas.",
+      "Configura color, grosor de trazo, estilos de pintura, filtros de desenfoque, máscaras y modos de mezcla shader sobre el canvas al operar.",
+      "Permite que un widget hijo ignore las restricciones del padre y dibuje fuera de su límite sin generar errores de RenderFlex overflow."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "OverflowBox y control de desbordamiento visual (Composición Gráfica, Capas & RepaintBoundary): Permite que un widget hijo ignore las restricciones del padre y dibuje fuera de su límite sin generar errores de RenderFlex overflow.",
+    "topic": "Composición Gráfica, Capas & RepaintBoundary",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "flutter-q-33",
+    "collectionId": "flutter",
+    "question": "Al trabajar con Flutter, ¿qué responsabilidad define a «IntrinsicHeight e IntrinsicWidth como costo controlado»?",
+    "options": [
+      "Calcula el tamaño natural de un sub-árbol realizando múltiples pasadas de medición cuando se requiere simetría forzada entre columnas al operar.",
+      "Permite que un widget hijo ignore las restricciones del padre y dibuje fuera de su límite sin generar errores de RenderFlex overflow.",
+      "Mide y dibuja tipografías vectoriales complejas gestionando saltos de línea, selección de glifos y aceleración bidireccional de texto.",
+      "Configura color, grosor de trazo, estilos de pintura, filtros de desenfoque, máscaras y modos de mezcla shader sobre el canvas al operar."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "IntrinsicHeight e IntrinsicWidth como costo controlado (Composición Gráfica, Capas & RepaintBoundary): Calcula el tamaño natural de un sub-árbol realizando múltiples pasadas de medición cuando se requiere simetría forzada entre columnas.",
+    "topic": "Composición Gráfica, Capas & RepaintBoundary",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "flutter-q-34",
+    "collectionId": "flutter",
+    "question": "En la arquitectura de Flutter, ¿qué caracteriza técnicamente a «CustomPainter y emisión de DisplayList»?",
+    "options": [
+      "Evita invocar el método de pintado cuando los parámetros y datos del lienzo no han cambiado respecto a la iteración anterior al operar.",
+      "Dibuja primitivas gráficas vectoriales personalizadas invocando directamente la API de Canvas sin sobrecarga de widgets intermedios.",
+      "Configura color, grosor de trazo, estilos de pintura, filtros de desenfoque, máscaras y modos de mezcla shader sobre el canvas al operar.",
+      "Recorta el contorno visible de cualquier widget hijo aplicando formas vectoriales arbitrarias con antialiasing por hardware al operar."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "CustomPainter y emisión de DisplayList (Dibujo a Bajo Nivel con CustomPainter & Canvas): Dibuja primitivas gráficas vectoriales personalizadas invocando directamente la API de Canvas sin sobrecarga de widgets intermedios.",
+    "topic": "Dibujo a Bajo Nivel con CustomPainter & Canvas",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "flutter-q-35",
+    "collectionId": "flutter",
+    "question": "Respecto a dibujo a bajo nivel con custompainter & canvas en Flutter, ¿cuál es el propósito de «Paint y configuración de renderizado gráfico»?",
+    "options": [
+      "Recorta el contorno visible de cualquier widget hijo aplicando formas vectoriales arbitrarias con antialiasing por hardware al operar.",
+      "Evita invocar el método de pintado cuando los parámetros y datos del lienzo no han cambiado respecto a la iteración anterior.",
+      "Configura color, grosor de trazo, estilos de pintura, filtros de desenfoque, máscaras y modos de mezcla shader sobre el canvas.",
+      "Comunica la aplicación Flutter con código nativo en Kotlin/Java y Swift/Objective-C mediante serialización binaria estándar."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Paint y configuración de renderizado gráfico (Dibujo a Bajo Nivel con CustomPainter & Canvas): Configura color, grosor de trazo, estilos de pintura, filtros de desenfoque, máscaras y modos de mezcla shader sobre el canvas.",
+    "topic": "Dibujo a Bajo Nivel con CustomPainter & Canvas",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "flutter-q-36",
+    "collectionId": "flutter",
+    "question": "En Flutter (Dibujo a Bajo Nivel con CustomPainter & Canvas), ¿qué función técnica cumple «Path vectorial»?",
+    "options": [
+      "Dibuja primitivas gráficas vectoriales personalizadas invocando directamente la API de Canvas sin sobrecarga de widgets intermedios al evaluar.",
+      "Configura color, grosor de trazo, estilos de pintura, filtros de desenfoque, máscaras y modos de mezcla shader sobre el canvas en ejecución.",
+      "Evita invocar el método de pintado cuando los parámetros y datos del lienzo no han cambiado respecto a la iteración anterior de forma clara.",
+      "Traza polígonos, arcos elípticos y curvas cuadráticas y cúbicas complejas para generar interfaces gráficas personalizadas de alta precisión."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "Path vectorial y curvas de Bezier (Dibujo a Bajo Nivel con CustomPainter & Canvas): Traza polígonos, arcos elípticos y curvas cuadráticas y cúbicas complejas para generar interfaces gráficas personalizadas de alta precisión.",
+    "topic": "Dibujo a Bajo Nivel con CustomPainter & Canvas",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "flutter-q-37",
+    "collectionId": "flutter",
+    "question": "Dentro de Flutter, ¿cómo opera el mecanismo de «Eliminación de Shader Compilation Jank» en motor gráfico impeller & shaders aot?",
+    "options": [
+      "Precompila todos los fragment y vertex shaders durante el build AOT evitando tirones en el primer renderizado de cualquier pantalla o animación al operar.",
+      "Convierte trazados vectoriales complejos en triángulos simples directamente en la GPU acelerando el renderizado de curvas Bezier masivas al operar.",
+      "Agrupa instrucciones de dibujo en pases de renderizado que maximizan la concurrencia del hardware gráfico y minimizan cambios de estado al operar.",
+      "Carga y ejecuta archivos SPIR-V de shaders HLSL/GLSL personalizados para efectos visuales avanzados, deformaciones e iluminación en tiempo real."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Eliminación de Shader Compilation Jank (Motor Gráfico Impeller & Shaders AOT): Precompila todos los fragment y vertex shaders durante el build AOT evitando tirones en el primer renderizado de cualquier pantalla o animación.",
+    "topic": "Motor Gráfico Impeller & Shaders AOT",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "flutter-q-38",
+    "collectionId": "flutter",
+    "question": "Al trabajar con Flutter, ¿qué responsabilidad define a «Teselado dinámico de curvas y polígonos»?",
+    "options": [
+      "Agrupa instrucciones de dibujo en pases de renderizado que maximizan la concurrencia del hardware gráfico y minimizan cambios de estado al operar.",
+      "Convierte trazados vectoriales complejos en triángulos simples directamente en la GPU acelerando el renderizado de curvas Bezier masivas.",
+      "Dibuja primitivas gráficas vectoriales personalizadas invocando directamente la API de Canvas sin sobrecarga de widgets intermedios al operar.",
+      "Implementa patrones de notificación ligera que reconstruyen selectivamente únicamente los widgets suscritos a la mutación del valor al operar."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Teselado dinámico de curvas y polígonos (Motor Gráfico Impeller & Shaders AOT): Convierte trazados vectoriales complejos en triángulos simples directamente en la GPU acelerando el renderizado de curvas Bezier masivas.",
+    "topic": "Motor Gráfico Impeller & Shaders AOT",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "flutter-q-39",
+    "collectionId": "flutter",
+    "question": "En la arquitectura de Flutter, ¿qué caracteriza técnicamente a «RenderPass»?",
+    "options": [
+      "Convierte trazados vectoriales complejos en triángulos simples directamente en la GPU acelerando el renderizado de curvas Bezier masivas.",
+      "Administra el ciclo de vida de los servicios de la aplicación con resolución tipada y pruebas unitarias aisladas sin BuildContext al operar.",
+      "Agrupa instrucciones de dibujo en pases de renderizado que maximizan la concurrencia del hardware gráfico y minimizan cambios de estado.",
+      "Dibuja primitivas gráficas vectoriales personalizadas invocando directamente la API de Canvas sin sobrecarga de widgets intermedios."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "RenderPass y canalización de comandos gráficos (Motor Gráfico Impeller & Shaders AOT): Agrupa instrucciones de dibujo en pases de renderizado que maximizan la concurrencia del hardware gráfico y minimizan cambios de estado.",
+    "topic": "Motor Gráfico Impeller & Shaders AOT",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "flutter-q-40",
+    "collectionId": "flutter",
+    "question": "Respecto a motor gráfico impeller & shaders aot en Flutter, ¿cuál es el propósito de «Shaders personalizados con Flutter GPU»?",
+    "options": [
+      "Convierte trazados vectoriales complejos en triángulos simples directamente en la GPU acelerando el renderizado de curvas Bezier masivas al operar.",
+      "Agrupa instrucciones de dibujo en pases de renderizado que maximizan la concurrencia del hardware gráfico y minimizan cambios de estado al operar.",
+      "Precompila todos los fragment y vertex shaders durante el build AOT evitando tirones en el primer renderizado de cualquier pantalla o animación.",
+      "Carga y ejecuta archivos SPIR-V de shaders HLSL/GLSL personalizados para efectos visuales avanzados, deformaciones e iluminación en tiempo real."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "Shaders personalizados con Flutter GPU (Motor Gráfico Impeller & Shaders AOT): Carga y ejecuta archivos SPIR-V de shaders HLSL/GLSL personalizados para efectos visuales avanzados, deformaciones e iluminación en tiempo real.",
+    "topic": "Motor Gráfico Impeller & Shaders AOT",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "flutter-q-41",
+    "collectionId": "flutter",
+    "question": "En Flutter (Gestión de Estado, Inyección Contextual & BLoC), ¿qué función técnica cumple «InheritedWidget para propagación contextual»?",
+    "options": [
+      "Distribuye modelos de datos hacia abajo en el árbol de widgets permitiendo suscripciones automáticas sin paso manual de props.",
+      "Genera valores continuos entre 0.0 y 1.0 sincronizados cuadro a cuadro con la tasa de refresco nativa de la pantalla al operar.",
+      "Recorta el contorno visible de cualquier widget hijo aplicando formas vectoriales arbitrarias con antialiasing por hardware.",
+      "Comunica la aplicación Flutter con código nativo en Kotlin/Java y Swift/Objective-C mediante serialización binaria estándar."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "InheritedWidget para propagación contextual (Gestión de Estado, Inyección Contextual & BLoC): Distribuye modelos de datos hacia abajo en el árbol de widgets permitiendo suscripciones automáticas sin paso manual de props.",
+    "topic": "Gestión de Estado, Inyección Contextual & BLoC",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "flutter-q-42",
+    "collectionId": "flutter",
+    "question": "Dentro de Flutter, ¿cómo opera el mecanismo de «ChangeNotifier y ValueNotifier reactivos» en gestión de estado, inyección contextual & bloc?",
+    "options": [
+      "Distribuye modelos de datos hacia abajo en el árbol de widgets permitiendo suscripciones automáticas sin paso manual de props al operar.",
+      "Implementa patrones de notificación ligera que reconstruyen selectivamente únicamente los widgets suscritos a la mutación del valor.",
+      "Administra el ciclo de vida de los servicios de la aplicación con resolución tipada y pruebas unitarias aisladas sin BuildContext.",
+      "Separa estrictamente la lógica de negocio de la UI procesando flujos asíncronos de eventos entrantes y emitiendo estados inmutables."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "ChangeNotifier y ValueNotifier reactivos (Gestión de Estado, Inyección Contextual & BLoC): Implementa patrones de notificación ligera que reconstruyen selectivamente únicamente los widgets suscritos a la mutación del valor.",
+    "topic": "Gestión de Estado, Inyección Contextual & BLoC",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "flutter-q-43",
+    "collectionId": "flutter",
+    "question": "Al trabajar con Flutter, ¿qué responsabilidad define a «Patrón BLoC»?",
+    "options": [
+      "Distribuye modelos de datos hacia abajo en el árbol de widgets permitiendo suscripciones automáticas sin paso manual de props al operar.",
+      "Administra el ciclo de vida de los servicios de la aplicación con resolución tipada y pruebas unitarias aisladas sin BuildContext.",
+      "Separa estrictamente la lógica de negocio de la UI procesando flujos asíncronos de eventos entrantes y emitiendo estados inmutables.",
+      "Implementa patrones de notificación ligera que reconstruyen selectivamente únicamente los widgets suscritos a la mutación del valor."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Patrón BLoC y flujo unidireccional de eventos (Gestión de Estado, Inyección Contextual & BLoC): Separa estrictamente la lógica de negocio de la UI procesando flujos asíncronos de eventos entrantes y emitiendo estados inmutables.",
+    "topic": "Gestión de Estado, Inyección Contextual & BLoC",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "flutter-q-44",
+    "collectionId": "flutter",
+    "question": "En la arquitectura de Flutter, ¿qué caracteriza técnicamente a «BlocBuilder, BlocListener y buildWhen»?",
+    "options": [
+      "Implementa patrones de notificación ligera que reconstruyen selectivamente únicamente los widgets suscritos a la mutación del valor al evaluar.",
+      "Separa estrictamente la lógica de negocio de la UI procesando flujos asíncronos de eventos entrantes y emitiendo estados inmutables al operar.",
+      "Administra el ciclo de vida de los servicios de la aplicación con resolución tipada y pruebas unitarias aisladas sin BuildContext al operar.",
+      "Controla con precisión quirúrgica qué widgets se reconstruyen y cuáles ejecutan efectos secundarios ante transiciones de estado específicas."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "BlocBuilder, BlocListener y buildWhen (Gestión de Estado, Inyección Contextual & BLoC): Controla con precisión quirúrgica qué widgets se reconstruyen y cuáles ejecutan efectos secundarios ante transiciones de estado específicas.",
+    "topic": "Gestión de Estado, Inyección Contextual & BLoC",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "flutter-q-45",
+    "collectionId": "flutter",
+    "question": "Respecto a gestión de estado, inyección contextual & bloc en Flutter, ¿cuál es el propósito de «Inyección de dependencias con Provider y Riverpod»?",
+    "options": [
+      "Administra el ciclo de vida de los servicios de la aplicación con resolución tipada y pruebas unitarias aisladas sin BuildContext al operar.",
+      "Distribuye modelos de datos hacia abajo en el árbol de widgets permitiendo suscripciones automáticas sin paso manual de props.",
+      "Implementa patrones de notificación ligera que reconstruyen selectivamente únicamente los widgets suscritos a la mutación del valor.",
+      "Separa estrictamente la lógica de negocio de la UI procesando flujos asíncronos de eventos entrantes y emitiendo estados inmutables."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Inyección de dependencias con Provider y Riverpod (Gestión de Estado, Inyección Contextual & BLoC): Administra el ciclo de vida de los servicios de la aplicación con resolución tipada y pruebas unitarias aisladas sin BuildContext.",
+    "topic": "Gestión de Estado, Inyección Contextual & BLoC",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "flutter-q-46",
+    "collectionId": "flutter",
+    "question": "En Flutter (Sistema de Animaciones, Tweens & Física), ¿qué función técnica cumple «Tweens matemáticos»?",
+    "options": [
+      "Aísla la reconstrucción del widget animado de sus componentes estáticos evitando llamadas redundantes al método build de toda la vista.",
+      "Interpola valores de posición, escala, rotación o color aplicando curvas elásticas, cinéticas o desaceleradas mediante CurvedAnimation.",
+      "Anima cambios de propiedades visuales automáticamente con AnimatedContainer, AnimatedOpacity y AnimatedAlign sin controladores manuales.",
+      "Genera valores continuos entre 0.0 y 1.0 sincronizados cuadro a cuadro con la tasa de refresco nativa de la pantalla sin perder estado."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Tweens matemáticos y curvas de aceleración (Sistema de Animaciones, Tweens & Física): Interpola valores de posición, escala, rotación o color aplicando curvas elásticas, cinéticas o desaceleradas mediante CurvedAnimation.",
+    "topic": "Sistema de Animaciones, Tweens & Física",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "flutter-q-47",
+    "collectionId": "flutter",
+    "question": "Dentro de Flutter, ¿cómo opera el mecanismo de «AnimatedBuilder para aislamiento de frames» en sistema de animaciones, tweens & física?",
+    "options": [
+      "Interpola valores de posición, escala, rotación o color aplicando curvas elásticas, cinéticas o desaceleradas mediante CurvedAnimation.",
+      "Anima cambios de propiedades visuales automáticamente con AnimatedContainer, AnimatedOpacity y AnimatedAlign sin controladores manuales.",
+      "Aísla la reconstrucción del widget animado de sus componentes estáticos evitando llamadas redundantes al método build de toda la vista.",
+      "Genera valores continuos entre 0.0 y 1.0 sincronizados cuadro a cuadro con la tasa de refresco nativa de la pantalla sin perder estado."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "AnimatedBuilder para aislamiento de frames (Sistema de Animaciones, Tweens & Física): Aísla la reconstrucción del widget animado de sus componentes estáticos evitando llamadas redundantes al método build de toda la vista.",
+    "topic": "Sistema de Animaciones, Tweens & Física",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "flutter-q-48",
+    "collectionId": "flutter",
+    "question": "Al trabajar con Flutter, ¿qué responsabilidad define a «Animaciones implícitas declarativas»?",
+    "options": [
+      "Interpola valores de posición, escala, rotación o color aplicando curvas elásticas, cinéticas o desaceleradas mediante CurvedAnimation al operar.",
+      "Aísla la reconstrucción del widget animado de sus componentes estáticos evitando llamadas redundantes al método build de toda la vista.",
+      "Genera valores continuos entre 0.0 y 1.0 sincronizados cuadro a cuadro con la tasa de refresco nativa de la pantalla de modo predecible.",
+      "Anima cambios de propiedades visuales automáticamente con AnimatedContainer, AnimatedOpacity y AnimatedAlign sin controladores manuales."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "Animaciones implícitas declarativas (Sistema de Animaciones, Tweens & Física): Anima cambios de propiedades visuales automáticamente con AnimatedContainer, AnimatedOpacity y AnimatedAlign sin controladores manuales.",
+    "topic": "Sistema de Animaciones, Tweens & Física",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "flutter-q-49",
+    "collectionId": "flutter",
+    "question": "En la arquitectura de Flutter, ¿qué caracteriza técnicamente a «Física de resortes con SpringSimulation»?",
+    "options": [
+      "Simula comportamientos físicos de masa, rigidez y amortiguamiento realistas para elementos que rebotan o responden al arrastre del usuario.",
+      "Interpola valores de posición, escala, rotación o color aplicando curvas elásticas, cinéticas o desaceleradas mediante CurvedAnimation.",
+      "Aísla la reconstrucción del widget animado de sus componentes estáticos evitando llamadas redundantes al método build de toda la vista.",
+      "Anima cambios de propiedades visuales automáticamente con AnimatedContainer, AnimatedOpacity y AnimatedAlign sin controladores manuales."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Física de resortes con SpringSimulation (Sistema de Animaciones, Tweens & Física): Simula comportamientos físicos de masa, rigidez y amortiguamiento realistas para elementos que rebotan o responden al arrastre del usuario.",
+    "topic": "Sistema de Animaciones, Tweens & Física",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "flutter-q-50",
+    "collectionId": "flutter",
+    "question": "Respecto a reconocimiento de gestos, arena & hit-testing en Flutter, ¿cuál es el propósito de «GestureDetector y eventos semánticos»?",
+    "options": [
+      "Administra el ciclo de vida de los servicios de la aplicación con resolución tipada y pruebas unitarias aisladas sin BuildContext al operar.",
+      "Reconoce toques, pulsaciones largas, doble toques, arrastres direccionales y gestos de escala con coordenadas cartesianas normalizadas.",
+      "Configura color, grosor de trazo, estilos de pintura, filtros de desenfoque, máscaras y modos de mezcla shader sobre el canvas al operar.",
+      "Dibuja primitivas gráficas vectoriales personalizadas invocando directamente la API de Canvas sin sobrecarga de widgets intermedios."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "GestureDetector y eventos semánticos (Reconocimiento de Gestos, Arena & Hit-Testing): Reconoce toques, pulsaciones largas, doble toques, arrastres direccionales y gestos de escala con coordenadas cartesianas normalizadas.",
+    "topic": "Reconocimiento de Gestos, Arena & Hit-Testing",
+    "difficulty": "avanzado"
   }
 ];
