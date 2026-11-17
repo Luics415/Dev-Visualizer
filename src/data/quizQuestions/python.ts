@@ -2,453 +2,753 @@ import type { QuizQuestion } from "@/data/quizTypes";
 
 export const pythonQuestions: QuizQuestion[] = [
   {
-    id: "py-q-01",
-    collectionId: "python",
-    question: "¿Cuál es el propósito del Global Interpreter Lock (GIL) en la implementación estándar CPython?",
-    options: [
-      "Evitar condiciones de carrera sincronizando el acceso a estructuras internas de CPython y conteo de referencias.",
-      "Impedir que múltiples procesos del sistema operativo ejecuten scripts de Python simultáneamente.",
-      "Optimizar el cálculo vectorial en librerías científicas compiladas como NumPy y PyTorch.",
-      "Bloquear la ejecución de código no firmado descargado a través del gestor pip."
+    "id": "python-q-01",
+    "collectionId": "python",
+    "question": "En Python (Antes de escribir código), ¿qué función técnica cumple «Problema, entrada y salida»?",
+    "options": [
+      "Describe con palabras qué recibe el programa, qué resultado debe producir y qué condiciones hacen válido ese resultado.",
+      "Distingue la información que entra, la que cambia durante el proceso y la que debe conservarse después con precisión.",
+      "Ensaya primero un ejemplo sencillo y después vacío, mínimo, máximo, repetido, inválido o interrumpido de forma clara.",
+      "Observa un síntoma, formula una hipótesis, cambia una sola variable y conserva evidencia de la causa de forma segura."
     ],
-    correctAnswerIndex: 0,
-    explanation: "El GIL es un mutex que protege la gestión de memoria de CPython (especialmente el conteo de referencias), garantizando que solo un hilo nativo ejecute bytecode de Python a la vez.",
-    topic: "CPython & Concurrencia",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 0,
+    "explanation": "Problema, entrada y salida (Antes de escribir código): Describe con palabras qué recibe el programa, qué resultado debe producir y qué condiciones hacen válido ese resultado.",
+    "topic": "Antes de escribir código",
+    "difficulty": "básico"
   },
   {
-    id: "py-q-02",
-    collectionId: "python",
-    question: "¿Cómo optimiza la directiva '__slots__' el uso de memoria en instancias de clases en Python?",
-    options: [
-      "Sustituye el diccionario dinámico '__dict__' de cada instancia por un array de punteros de tamaño fijo.",
-      "Comprime los valores de los atributos utilizando el algoritmo Zstandard en tiempo de ejecución.",
-      "Almacena las instancias directamente en la memoria caché L2 del procesador.",
-      "Convierte la clase en una estructura inmutable de solo lectura en C."
+    "id": "python-q-02",
+    "collectionId": "python",
+    "question": "Dentro de Python, ¿cómo opera el mecanismo de «Algoritmo» en antes de escribir código?",
+    "options": [
+      "Modela unicidad y operaciones de conjuntos como unión, intersección y diferencia al operar.",
+      "Descompone una meta en pasos finitos, ordenados y no ambiguos antes de elegir sintaxis.",
+      "Vincula un nombre con un objeto y diferencia reasignar el nombre de mutar el objeto.",
+      "Elige entre dos valores de forma breve solo cuando la decisión sigue siendo legible."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Por defecto, cada objeto en Python posee un diccionario __dict__ para atributos arbitrarios. Declarar __slots__ reserva espacio directo para un conjunto cerrado de atributos, ahorrando memoria masivamente.",
-    topic: "Modelo de Objetos & Memoria",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 1,
+    "explanation": "Algoritmo (Antes de escribir código): Descompone una meta en pasos finitos, ordenados y no ambiguos antes de elegir sintaxis.",
+    "topic": "Antes de escribir código",
+    "difficulty": "básico"
   },
   {
-    id: "py-q-03",
-    collectionId: "python",
-    question: "¿Qué métodos componen el 'Descriptor Protocol' en el modelo de datos de Python?",
-    options: [
-      "__get__(), __set__() y __delete__()",
-      "__enter__(), __exit__() y __close__()",
-      "__iter__(), __next__() y __aiter__()",
-      "__init__(), __new__() y __del__()"
+    "id": "python-q-03",
+    "collectionId": "python",
+    "question": "Al trabajar con Python, ¿qué responsabilidad define a «Datos y estado»?",
+    "options": [
+      "Observa un síntoma, formula una hipótesis, cambia una sola variable y conserva evidencia de la causa al operar.",
+      "Ensaya primero un ejemplo sencillo y después vacío, mínimo, máximo, repetido, inválido o interrumpido.",
+      "Distingue la información que entra, la que cambia durante el proceso y la que debe conservarse después.",
+      "Descompone una meta en pasos finitos, ordenados y no ambiguos antes de elegir sintaxis de forma segura."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Un descriptor es un objeto que define al menos uno de los métodos __get__(), __set__() o __delete__(). Mecanismos como @property, classmethod y staticmethod se construyen sobre este protocolo.",
-    topic: "Metaprogramación & Descriptores",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 2,
+    "explanation": "Datos y estado (Antes de escribir código): Distingue la información que entra, la que cambia durante el proceso y la que debe conservarse después.",
+    "topic": "Antes de escribir código",
+    "difficulty": "básico"
   },
   {
-    id: "py-q-04",
-    collectionId: "python",
-    question: "¿Cuál es la diferencia principal entre '__new__()' e '__init__()' en el ciclo de vida de un objeto?",
-    options: [
-      "'__new__()' es el constructor estático que crea y retorna la instancia física; '__init__()' es el inicializador de atributos.",
-      "'__init__()' asigna memoria en el Heap de CPython; '__new__()' compila los métodos de la clase.",
-      "'__new__()' solo se ejecuta en subclases que heredan de Exception; '__init__()' es universal.",
-      "No existe diferencia; son sinónimos mantenidos por retrocompatibilidad con Python 2."
+    "id": "python-q-04",
+    "collectionId": "python",
+    "question": "En la arquitectura de Python, ¿qué caracteriza técnicamente a «Caso normal y casos límite»?",
+    "options": [
+      "Observa un síntoma, formula una hipótesis, cambia una sola variable y conserva evidencia de la causa al operar.",
+      "Distingue la información que entra, la que cambia durante el proceso y la que debe conservarse después.",
+      "Descompone una meta en pasos finitos, ordenados y no ambiguos antes de elegir sintaxis de forma clara.",
+      "Ensaya primero un ejemplo sencillo y después vacío, mínimo, máximo, repetido, inválido o interrumpido."
     ],
-    correctAnswerIndex: 0,
-    explanation: "__new__(cls) es el método que efectivamente instancia y reserva memoria para el objeto en el Heap de C, devolviendo la nueva instancia. Luego, __init__(self) se encarga de inicializar su estado.",
-    topic: "Modelo de Objetos",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 3,
+    "explanation": "Caso normal y casos límite (Antes de escribir código): Ensaya primero un ejemplo sencillo y después vacío, mínimo, máximo, repetido, inválido o interrumpido.",
+    "topic": "Antes de escribir código",
+    "difficulty": "básico"
   },
   {
-    id: "py-q-05",
-    collectionId: "python",
-    question: "¿Qué ventaja introduce 'asyncio.TaskGroup' (introducido en Python 3.11) frente a 'asyncio.gather()'?",
-    options: [
-      "Manejo estructurado de concurrencia: si una tarea falla, cancela automáticamente las demás y agrupa errores en un ExceptionGroup.",
-      "Permite ejecutar corrutinas en hilos nativos del kernel sin necesidad de un bucle de eventos.",
-      "Multiplica por diez el rendimiento de las llamadas de red I/O mediante llamadas directas a epoll.",
-      "Garantiza que las tareas se ejecuten estrictamente en orden secuencial sin paralelismo."
+    "id": "python-q-05",
+    "collectionId": "python",
+    "question": "Respecto a antes de escribir código en Python, ¿cuál es el propósito de «Depuración como experimento»?",
+    "options": [
+      "Observa un síntoma, formula una hipótesis, cambia una sola variable y conserva evidencia de la causa al operar.",
+      "Ensaya primero un ejemplo sencillo y después vacío, mínimo, máximo, repetido, inválido o interrumpido.",
+      "Descompone una meta en pasos finitos, ordenados y no ambiguos antes de elegir sintaxis en el flujo.",
+      "Distingue la información que entra, la que cambia durante el proceso y la que debe conservarse después."
     ],
-    correctAnswerIndex: 0,
-    explanation: "TaskGroup implementa Structured Concurrency. Entra como context manager (async with asyncio.TaskGroup() as tg); si una tarea lanza una excepción, las tareas hijas pendientes se cancelan limpiamente y se propaga un ExceptionGroup.",
-    topic: "Asincronía & Asyncio",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 0,
+    "explanation": "Depuración como experimento (Antes de escribir código): Observa un síntoma, formula una hipótesis, cambia una sola variable y conserva evidencia de la causa.",
+    "topic": "Antes de escribir código",
+    "difficulty": "básico"
   },
   {
-    id: "py-q-06",
-    collectionId: "python",
-    question: "¿Cómo gestiona CPython la recolección de basura ante referencias circulares?",
-    options: [
-      "Utiliza un recolector cíclico generacional (Generations 0, 1 y 2) que rastrea grafos de punteros de objetos contenedores.",
-      "Fuerza un error de recursión profunda ('RecursionError') y termina el intérprete de forma inmediata.",
-      "Convierte automáticamente las referencias cíclicas en referencias débiles (weakref).",
-      "Delega la recolección al recolector de basura de la máquina virtual de Java o del sistema operativo."
+    "id": "python-q-06",
+    "collectionId": "python",
+    "question": "En Python (Preparar el entorno), ¿qué función técnica cumple «Instalación oficial»?",
+    "options": [
+      "Lee python --version y platform.python_implementation para no confundir Python 3.14 con CPython, PyPy u otro runtime al operar.",
+      "Obtiene Python desde un distribuidor confiable y comprende qué intérprete, launcher y herramientas quedaron instalados.",
+      "Usa resaltado, autocompletado, terminal, help, dir y documentación sin depender de copiar código desconocido al operar.",
+      "Guarda instrucciones en un archivo .py, lo ejecuta desde su carpeta y comprende directorio de trabajo y código de salida."
     ],
-    correctAnswerIndex: 0,
-    explanation: "CPython usa primariamente conteo de referencias (liberación inmediata en refcount = 0). Para referencias cíclicas donde el refcount nunca llega a cero, un recolector generacional (gc) analiza grafos aislados periódicamente.",
-    topic: "Gestión de Memoria & GC",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 1,
+    "explanation": "Instalación oficial (Preparar el entorno): Obtiene Python desde un distribuidor confiable y comprende qué intérprete, launcher y herramientas quedaron instalados.",
+    "topic": "Preparar el entorno",
+    "difficulty": "básico"
   },
   {
-    id: "py-q-07",
-    collectionId: "python",
-    question: "¿Qué regla de resolución de ámbitos sigue Python para resolver el valor de una variable?",
-    options: [
-      "Regla LEGB: Local -> Enclosing -> Global -> Built-in",
-      "Regla LIFO: Última variable declarada en memoria tiene prioridad absoluta",
-      "Regla GLBE: Global -> Local -> Built-in -> Enclosing",
-      "Regla BASH: Busca en el entorno de shell antes de evaluar variables internas"
+    "id": "python-q-07",
+    "collectionId": "python",
+    "question": "Dentro de Python, ¿cómo opera el mecanismo de «Versión e implementación» en preparar el entorno?",
+    "options": [
+      "Usa resaltado, autocompletado, terminal, help, dir y documentación sin depender de copiar código desconocido al evaluar.",
+      "Obtiene Python desde un distribuidor confiable y comprende qué intérprete, launcher y herramientas quedaron instalados.",
+      "Lee python --version y platform.python_implementation para no confundir Python 3.14 con CPython, PyPy u otro runtime.",
+      "Relaciona claves hashables con valores, conserva orden de inserción y usa get, items y setdefault con criterio al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Python busca identificadores siguiendo el orden LEGB: primero en el ámbito local de la función, luego en funciones envolventes (closures), después en el módulo global, y finalmente en los built-ins nativos.",
-    topic: "Ámbitos & Namespaces",
-    difficulty: "básico"
+    "correctAnswerIndex": 2,
+    "explanation": "Versión e implementación (Preparar el entorno): Lee python --version y platform.python_implementation para no confundir Python 3.14 con CPython, PyPy u otro runtime.",
+    "topic": "Preparar el entorno",
+    "difficulty": "básico"
   },
   {
-    id: "py-q-08",
-    collectionId: "python",
-    question: "¿Para qué se utiliza la palabra clave 'nonlocal' en una función anidada?",
-    options: [
-      "Permite reasignar una variable definida en el ámbito envolvente más cercano que no sea global.",
-      "Convierte la variable en un hilo secundario independiente del intérprete.",
-      "Declara que la variable reside en una biblioteca dinámica compartida (.so o .dll).",
-      "Impide que la variable sea modificada por closures posteriores marcándola como inmutable."
+    "id": "python-q-08",
+    "collectionId": "python",
+    "question": "Al trabajar con Python, ¿qué responsabilidad define a «REPL»?",
+    "options": [
+      "Separa lo que calcula un valor de lo que controla, importa, define o modifica el estado al operar.",
+      "Descompone una meta en pasos finitos, ordenados y no ambiguos antes de elegir sintaxis al operar.",
+      "Elige aritmética decimal, racional o compleja cuando el dominio no encaja en int o float al operar.",
+      "Prueba expresiones de forma inmediata y reconoce que su estado desaparece al cerrar la sesión."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Por defecto, asignar a una variable dentro de una función crea una variable local. 'nonlocal' indica que la asignación debe modificar la variable del ámbito envolvente (enclosing) de la closure externa.",
-    topic: "Ámbitos & Closures",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 3,
+    "explanation": "REPL (Preparar el entorno): Prueba expresiones de forma inmediata y reconoce que su estado desaparece al cerrar la sesión.",
+    "topic": "Preparar el entorno",
+    "difficulty": "básico"
   },
   {
-    id: "py-q-09",
-    collectionId: "python",
-    question: "¿Cuál es la función del decorador '@functools.wraps(fn)' al construir un decorador personalizado?",
-    options: [
-      "Preserva los metadatos de la función original como '__name__', '__doc__' y '__annotations__' en la función wrapper.",
-      "Bloquea la función para que no pueda ser invocada por más de un hilo simultáneamente.",
-      "Convierte automáticamente funciones síncronas en corrutinas asíncronas de asyncio.",
-      "Compila la función con optimizaciones numéricas mediante LLVM antes de su llamada."
+    "id": "python-q-09",
+    "collectionId": "python",
+    "question": "En la arquitectura de Python, ¿qué caracteriza técnicamente a «Scripts y terminal»?",
+    "options": [
+      "Guarda instrucciones en un archivo .py, lo ejecuta desde su carpeta y comprende directorio de trabajo y código de salida.",
+      "Lee python --version y platform.python_implementation para no confundir Python 3.14 con CPython, PyPy u otro runtime.",
+      "Obtiene Python desde un distribuidor confiable y comprende qué intérprete, launcher y herramientas quedaron instalados.",
+      "Usa resaltado, autocompletado, terminal, help, dir y documentación sin depender de copiar código desconocido al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Al reemplazar una función por un wrapper, los atributos introspectivos (__name__, __doc__, __module__) se perderían. @functools.wraps copia estos metadatos manteniendo intacta la introspección y documentación.",
-    topic: "Decoradores & Metaprogramación",
-    difficulty: "básico"
+    "correctAnswerIndex": 0,
+    "explanation": "Scripts y terminal (Preparar el entorno): Guarda instrucciones en un archivo .py, lo ejecuta desde su carpeta y comprende directorio de trabajo y código de salida.",
+    "topic": "Preparar el entorno",
+    "difficulty": "básico"
   },
   {
-    id: "py-q-10",
-    collectionId: "python",
-    question: "¿Qué define el 'Method Resolution Order' (MRO) en Python y qué algoritmo utiliza?",
-    options: [
-      "El orden de búsqueda de atributos en herencia múltiple, calculado mediante el algoritmo C3 Linearization.",
-      "El orden cronológico en que los métodos son compilados por el optimizador peephole.",
-      "La prioridad con la que las excepciones son capturadas en bloques 'try...except'.",
-      "Un algoritmo de ordenación por burbuja aplicado sobre las funciones de un módulo."
+    "id": "python-q-10",
+    "collectionId": "python",
+    "question": "Respecto a preparar el entorno en Python, ¿cuál es el propósito de «Editor y ayuda integrada»?",
+    "options": [
+      "Prueba expresiones de forma inmediata y reconoce que su estado desaparece al cerrar la sesión sin perder estado.",
+      "Usa resaltado, autocompletado, terminal, help, dir y documentación sin depender de copiar código desconocido.",
+      "Distingue la información que entra, la que cambia durante el proceso y la que debe conservarse después al operar.",
+      "Trata el texto como Unicode y distingue caracteres percibidos, puntos de código y unidades almacenadas al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "El MRO determina cómo se buscan métodos en jerarquías con herencia múltiple. Desde Python 2.3 se utiliza el algoritmo C3 Linearization, que garantiza monotonicidad y consistencia de orden local.",
-    topic: "Herencia & MRO",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 1,
+    "explanation": "Editor y ayuda integrada (Preparar el entorno): Usa resaltado, autocompletado, terminal, help, dir y documentación sin depender de copiar código desconocido.",
+    "topic": "Preparar el entorno",
+    "difficulty": "básico"
   },
   {
-    id: "py-q-11",
-    collectionId: "python",
-    question: "¿Cuál es el propósito del método de clase '__init_subclass__' introducido en Python 3.6?",
-    options: [
-      "Permite a una clase base personalizar y validar la creación de sus subclases sin necesidad de escribir una metaclase compleja.",
-      "Fuerza a que todas las subclases inicialicen sus propiedades antes de compilar el módulo.",
-      "Genera automáticamente la documentación de las subclases en formato Markdown.",
-      "Impide que otras clases puedan heredar de la clase base convirtiéndola en una clase 'final'."
+    "id": "python-q-11",
+    "collectionId": "python",
+    "question": "En Python (Primer programa y sintaxis), ¿qué función técnica cumple «Indentación significativa»?",
+    "options": [
+      "Muestra resultados, recibe texto del usuario y convierte explícitamente cuando necesita otro tipo al evaluar.",
+      "Separa lo que calcula un valor de lo que controla, importa, define o modifica el estado sin perder estado.",
+      "Agrupa bloques mediante espacios consistentes y entiende por qué una sangría cambia el flujo del programa.",
+      "Observa un síntoma, formula una hipótesis, cambia una sola variable y conserva evidencia de la causa al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "__init_subclass__ es un gancho simplificado que se ejecuta cada vez que una nueva subclase se define, permitiendo registrar subclases, validar atributos o inyectar lógica sin el sobrecoste de una metaclase completa.",
-    topic: "Metaprogramación & Clases",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 2,
+    "explanation": "Indentación significativa (Primer programa y sintaxis): Agrupa bloques mediante espacios consistentes y entiende por qué una sangría cambia el flujo del programa.",
+    "topic": "Primer programa y sintaxis",
+    "difficulty": "básico"
   },
   {
-    id: "py-q-12",
-    collectionId: "python",
-    question: "¿Qué efecto tiene utilizar 'yield from iterable' dentro de una función generadora?",
-    options: [
-      "Delega la generación y canaliza bidireccionalmente valores, excepciones y retornos entre el llamador y el subgenerador.",
-      "Cierra de forma irreversible el generador liberando sus variables de la pila.",
-      "Transforma el iterable en un archivo temporal en disco para evitar sobrecargar la memoria.",
-      "Convierte el generador en una función pura que no mantiene estado interno."
+    "id": "python-q-12",
+    "collectionId": "python",
+    "question": "Dentro de Python, ¿cómo opera el mecanismo de «Comentarios y legibilidad» en primer programa y sintaxis?",
+    "options": [
+      "Vincula un nombre con un objeto y diferencia reasignar el nombre de mutar el objeto al operar.",
+      "Separa lo que calcula un valor de lo que controla, importa, define o modifica el estado.",
+      "Modela unicidad y operaciones de conjuntos como unión, intersección y diferencia al operar.",
+      "Explica intención o restricciones sin narrar literalmente cada instrucción en ejecución."
     ],
-    correctAnswerIndex: 0,
-    explanation: "'yield from' no solo emite elementos de un iterable, sino que abre un canal bidireccional transparente que reenvía llamadas a .send() y .throw() directamente al subgenerador subyacente.",
-    topic: "Generadores & Corrutinas",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 3,
+    "explanation": "Comentarios y legibilidad (Primer programa y sintaxis): Explica intención o restricciones sin narrar literalmente cada instrucción.",
+    "topic": "Primer programa y sintaxis",
+    "difficulty": "básico"
   },
   {
-    id: "py-q-13",
-    collectionId: "python",
-    question: "¿Qué diferencia existe entre '__repr__()' y '__str__()' en el modelo de objetos de Python?",
-    options: [
-      "'__repr__()' busca una representación inequívoca para desarrolladores (idealmente código ejecutable); '__str__()' es legible para el usuario final.",
-      "'__repr__()' se utiliza únicamente para serialización binaria; '__str__()' para salida por consola.",
-      "'__str__()' es obligatorio en todas las clases; '__repr__()' solo se utiliza en decoradores.",
-      "No existe diferencia; si ambos se definen, Python selecciona uno al azar."
+    "id": "python-q-13",
+    "collectionId": "python",
+    "question": "Al trabajar con Python, ¿qué responsabilidad define a «Nombres y asignación»?",
+    "options": [
+      "Vincula un nombre con un objeto y diferencia reasignar el nombre de mutar el objeto.",
+      "Explica intención o restricciones sin narrar literalmente cada instrucción al operar.",
+      "Modela unicidad y operaciones de conjuntos como unión, intersección y diferencia.",
+      "Consume elementos de cualquier iterable sin depender de índices manuales al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "La convención de Python establece que __repr__ debe ser explícito y detallado (facilitando depuración o incluso eval(repr(obj)) == obj), mientras que __str__ está pensado para una lectura amigable en interfaces y logs.",
-    topic: "Modelo de Objetos",
-    difficulty: "básico"
+    "correctAnswerIndex": 0,
+    "explanation": "Nombres y asignación (Primer programa y sintaxis): Vincula un nombre con un objeto y diferencia reasignar el nombre de mutar el objeto.",
+    "topic": "Primer programa y sintaxis",
+    "difficulty": "básico"
   },
   {
-    id: "py-q-14",
-    collectionId: "python",
-    question: "¿Cómo funciona un 'Context Manager' implementado mediante la sentencia 'with'?",
-    options: [
-      "Ejecuta '__enter__()' al ingresar al bloque y garantiza la ejecución de '__exit__()' al salir, incluso ante excepciones.",
-      "Crea un hilo aislado del sistema operativo que se destruye al finalizar el bloque.",
-      "Suspende la ejecución del recolector de basura durante todo el bloque de código.",
-      "Registra una transacción ACID en el sistema de archivos del sistema operativo."
+    "id": "python-q-14",
+    "collectionId": "python",
+    "question": "En la arquitectura de Python, ¿qué caracteriza técnicamente a «Expresiones y sentencias»?",
+    "options": [
+      "Vincula un nombre con un objeto y diferencia reasignar el nombre de mutar el objeto al operar.",
+      "Separa lo que calcula un valor de lo que controla, importa, define o modifica el estado.",
+      "Explica intención o restricciones sin narrar literalmente cada instrucción en ejecución.",
+      "Modela unicidad y operaciones de conjuntos como unión, intersección y diferencia al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "El protocolo de context managers llama a __enter__() al inicio. Al terminar el bloque (sea con éxito o por excepción), se invoca __exit__(exc_type, exc_val, exc_tb), asegurando la liberación de recursos.",
-    topic: "Context Managers",
-    difficulty: "básico"
+    "correctAnswerIndex": 1,
+    "explanation": "Expresiones y sentencias (Primer programa y sintaxis): Separa lo que calcula un valor de lo que controla, importa, define o modifica el estado.",
+    "topic": "Primer programa y sintaxis",
+    "difficulty": "básico"
   },
   {
-    id: "py-q-15",
-    collectionId: "python",
-    question: "¿Qué es el 'Duck Typing' y cómo se promueve en Python según el principio EAFP?",
-    options: [
-      "'Easier to Ask for Forgiveness than Permission': asumir que el objeto tiene los métodos necesarios y capturar excepciones si falla.",
-      "Comprobar exhaustivamente los tipos de todas las variables con 'isinstance()' antes de cualquier operación.",
-      "Prohibir que los métodos acepten más de dos tipos de argumentos distintos.",
-      "Compilar el código fuente a archivos estáticos .pyc antes de ejecutar comprobaciones de tipos."
+    "id": "python-q-15",
+    "collectionId": "python",
+    "question": "Respecto a primer programa y sintaxis en Python, ¿cuál es el propósito de «print e input»?",
+    "options": [
+      "Separa lo que calcula un valor de lo que controla, importa, define o modifica el estado en ejecución.",
+      "Vincula un nombre con un objeto y diferencia reasignar el nombre de mutar el objeto con precisión.",
+      "Muestra resultados, recibe texto del usuario y convierte explícitamente cuando necesita otro tipo.",
+      "Extrae posiciones y rangos sin olvidar límites exclusivos, índices negativos e inmutabilidad al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "EAFP ('Es más fácil pedir perdón que permiso') promueve intentar la operación directamente y manejar las excepciones correspondientes (ej. AttributeError o KeyError), en lugar de verificaciones previas intensivas (LBYL).",
-    topic: "Filosofía & Diseño en Python",
-    difficulty: "básico"
+    "correctAnswerIndex": 2,
+    "explanation": "print e input (Primer programa y sintaxis): Muestra resultados, recibe texto del usuario y convierte explícitamente cuando necesita otro tipo.",
+    "topic": "Primer programa y sintaxis",
+    "difficulty": "básico"
   },
   {
-    id: "py-q-16",
-    collectionId: "python",
-    question: "¿Cuál es la función de 'typing.Protocol' (PEP 544) en el sistema de tipos de Python?",
-    options: [
-      "Permite tipado estructural (duck typing estático): una clase satisface el Protocol si implementa sus métodos, sin herencia explícita.",
-      "Define las reglas de encriptación TLS utilizadas por las conexiones HTTP de urllib.",
-      "Obliga a que las clases hereden de una clase base abstracta de forma nominal obligatoria.",
-      "Es una interfaz que optimiza la serialización de datos hacia sockets Unix."
+    "id": "python-q-16",
+    "collectionId": "python",
+    "question": "En Python (Números, verdad y ausencia), ¿qué función técnica cumple «float»?",
+    "options": [
+      "Elige aritmética decimal, racional o compleja cuando el dominio no encaja en int o float al evaluar.",
+      "Compone condiciones con and, or y not atendiendo evaluación perezosa y valores truthy o falsy.",
+      "Representa ausencia deliberada y se compara por identidad con is, no como cero ni cadena vacía.",
+      "Reconoce aproximación binaria, valores infinitos y NaN para no exigir igualdad decimal imposible."
     ],
-    correctAnswerIndex: 0,
-    explanation: "typing.Protocol habilita el tipado estructural estático. Si una clase define los atributos y métodos requeridos por el Protocol, type checkers como mypy o pyright la aceptan sin necesidad de subclasear explícitamente.",
-    topic: "Type Annotations & Tipado Estático",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 3,
+    "explanation": "float (Números, verdad y ausencia): Reconoce aproximación binaria, valores infinitos y NaN para no exigir igualdad decimal imposible.",
+    "topic": "Números, verdad y ausencia",
+    "difficulty": "básico"
   },
   {
-    id: "py-q-17",
-    collectionId: "python",
-    question: "¿Qué peligro presenta utilizar objetos mutables (como listas o diccionarios) como argumentos por defecto en funciones?",
-    options: [
-      "El valor por defecto se evalúa una sola vez al cargar la función, compartiéndose la misma instancia mutable entre todas las llamadas.",
-      "Provoca un fallo de segmentación (Segmentation Fault) en CPython al tercer intento de mutación.",
-      "Inhabilita el recolector de basura para todos los argumentos de la función.",
-      "Obliga a que la función deba llamarse obligatoriamente con argumentos nombrados (kwargs)."
+    "id": "python-q-17",
+    "collectionId": "python",
+    "question": "Dentro de Python, ¿cómo opera el mecanismo de «bool y operadores lógicos» en números, verdad y ausencia?",
+    "options": [
+      "Compone condiciones con and, or y not atendiendo evaluación perezosa y valores truthy o falsy.",
+      "Elige aritmética decimal, racional o compleja cuando el dominio no encaja en int o float.",
+      "Representa ausencia deliberada y se compara por identidad con is, no como cero ni cadena vacía.",
+      "Separa lo que calcula un valor de lo que controla, importa, define o modifica el estado."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Las expresiones de argumentos por defecto se evalúan cuando la función se define, no cuando se invoca. Si se usa una lista 'def fn(x=[])', cualquier mutación dentro de la función persistirá en llamadas futuras.",
-    topic: "Funciones & Trampas Comunes",
-    difficulty: "básico"
+    "correctAnswerIndex": 0,
+    "explanation": "bool y operadores lógicos (Números, verdad y ausencia): Compone condiciones con and, or y not atendiendo evaluación perezosa y valores truthy o falsy.",
+    "topic": "Números, verdad y ausencia",
+    "difficulty": "intermedio"
   },
   {
-    id: "py-q-18",
-    collectionId: "python",
-    question: "¿Qué módulo de la biblioteca estándar permite inspeccionar el bytecode generado por CPython para una función?",
-    options: [
-      "dis (disassembler)",
-      "sys (system inspector)",
-      "ast (abstract syntax tree)",
-      "types (typing module)"
+    "id": "python-q-18",
+    "collectionId": "python",
+    "question": "Al trabajar con Python, ¿qué responsabilidad define a «None»?",
+    "options": [
+      "Elige aritmética decimal, racional o compleja cuando el dominio no encaja en int o float al operar.",
+      "Representa ausencia deliberada y se compara por identidad con is, no como cero ni cadena vacía.",
+      "Compone condiciones con and, or y not atendiendo evaluación perezosa y valores truthy o falsy.",
+      "Reconoce aproximación binaria, valores infinitos y NaN para no exigir igualdad decimal imposible."
     ],
-    correctAnswerIndex: 0,
-    explanation: "El módulo 'dis' analiza y desensambla código de Python en instrucciones de bytecode de CPython (ej. LOAD_FAST, BINARY_OP, RETURN_VALUE), permitiendo auditar el funcionamiento interno del intérprete.",
-    topic: "Bytecode & Compilación Interna",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 1,
+    "explanation": "None (Números, verdad y ausencia): Representa ausencia deliberada y se compara por identidad con is, no como cero ni cadena vacía.",
+    "topic": "Números, verdad y ausencia",
+    "difficulty": "intermedio"
   },
   {
-    id: "py-q-19",
-    collectionId: "python",
-    question: "¿Qué es una 'Metaclase' en Python y de cuál hereda 'type' por defecto?",
-    options: [
-      "Una clase cuya instancia es otra clase; en Python, la metaclase por defecto es 'type'.",
-      "Una función decoradora que transforma métodos en generadores de corrutinas.",
-      "Una estructura de datos que reside en el núcleo del sistema operativo.",
-      "Un archivo especial .pyi que contiene anotaciones de tipo para CPython."
+    "id": "python-q-19",
+    "collectionId": "python",
+    "question": "En la arquitectura de Python, ¿qué caracteriza técnicamente a «Decimal, Fraction»?",
+    "options": [
+      "Vincula un nombre con un objeto y diferencia reasignar el nombre de mutar el objeto al operar.",
+      "Elige entre dos valores de forma breve solo cuando la decisión sigue siendo legible al operar.",
+      "Elige aritmética decimal, racional o compleja cuando el dominio no encaja en int o float.",
+      "Modela unicidad y operaciones de conjuntos como unión, intersección y diferencia al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "En Python, las clases son objetos y se crean a partir de una metaclase. 'type' es la metaclase universal por defecto que construye todas las clases estándar en tiempo de ejecución.",
-    topic: "Metaprogramación & Metaclases",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 2,
+    "explanation": "Decimal, Fraction y complex (Números, verdad y ausencia): Elige aritmética decimal, racional o compleja cuando el dominio no encaja en int o float.",
+    "topic": "Números, verdad y ausencia",
+    "difficulty": "intermedio"
   },
   {
-    id: "py-q-20",
-    collectionId: "python",
-    question: "¿Cómo opera el desempaquetado extendido (extended unpacking) con el operador '*'?",
-    options: [
-      "Captura el remanente de elementos no asignados en una lista (ej: 'head, *tail = items').",
-      "Multiplica los valores de la tupla por el número de variables en el lado izquierdo.",
-      "Fuerza a que todos los elementos sean convertidos a cadenas UTF-8.",
-      "Genera una copia profunda inmutable del iterable original."
+    "id": "python-q-20",
+    "collectionId": "python",
+    "question": "Respecto a texto, unicode y bytes en Python, ¿cuál es el propósito de «str»?",
+    "options": [
+      "Extrae posiciones y rangos sin olvidar límites exclusivos, índices negativos e inmutabilidad en ejecución.",
+      "Convierte entre str y bytes usando una codificación explícita y una política consciente ante errores.",
+      "Distingue datos binarios inmutables, buffers mutables y vistas sin copia para protocolos y rendimiento.",
+      "Trata el texto como Unicode y distingue caracteres percibidos, puntos de código y unidades almacenadas."
     ],
-    correctAnswerIndex: 0,
-    explanation: "El operador estrella en asignaciones múltiples (*tail) captura todos los elementos restantes que no coincidan con las variables fijas posicionales, empaquetándolos automáticamente en una lista.",
-    topic: "Sintaxis & Operadores",
-    difficulty: "básico"
+    "correctAnswerIndex": 3,
+    "explanation": "str y puntos de código (Texto, Unicode y bytes): Trata el texto como Unicode y distingue caracteres percibidos, puntos de código y unidades almacenadas.",
+    "topic": "Texto, Unicode y bytes",
+    "difficulty": "intermedio"
   },
   {
-    id: "py-q-21",
-    collectionId: "python",
-    question: "¿Qué garantía ofrece 'dataclasses.dataclass(frozen=True)' sobre las instancias generadas?",
-    options: [
-      "Impide la reasignación o adición de atributos lanzando FrozenInstanceError y genera un método '__hash__' válido.",
-      "Cifra los campos del objeto en memoria para prevenir ataques de lectura no autorizada.",
-      "Convierte la clase en una extensión nativa en lenguaje C compilada dinámicamente.",
-      "Obliga a que todos los atributos sean strings o tuplas inmutables."
+    "id": "python-q-21",
+    "collectionId": "python",
+    "question": "En Python (Texto, Unicode y bytes), ¿qué función técnica cumple «Indexación y slicing»?",
+    "options": [
+      "Extrae posiciones y rangos sin olvidar límites exclusivos, índices negativos e inmutabilidad.",
+      "Normaliza, separa, une y construye mensajes con f-strings sin concatenaciones frágiles.",
+      "Descompone una meta en pasos finitos, ordenados y no ambiguos antes de elegir sintaxis.",
+      "Separa lo que calcula un valor de lo que controla, importa, define o modifica el estado."
     ],
-    correctAnswerIndex: 0,
-    explanation: "'frozen=True' intercepta las asignaciones (__setattr__ y __delattr__) arrojando FrozenInstanceError. Al ser inmutable, genera automáticamente un __hash__() que permite usar la instancia en sets o como clave de diccionarios.",
-    topic: "Data Classes & Inmutabilidad",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 0,
+    "explanation": "Indexación y slicing (Texto, Unicode y bytes): Extrae posiciones y rangos sin olvidar límites exclusivos, índices negativos e inmutabilidad.",
+    "topic": "Texto, Unicode y bytes",
+    "difficulty": "intermedio"
   },
   {
-    id: "py-q-22",
-    collectionId: "python",
-    question: "¿Qué diferencia existe entre 'concurrent.futures.ThreadPoolExecutor' y 'ProcessPoolExecutor'?",
-    options: [
-      "ThreadPoolExecutor comparte memoria y está limitado por el GIL para tareas CPU-bound; ProcessPoolExecutor usa procesos aislados con memoria propia.",
-      "ProcessPoolExecutor solo funciona en sistemas operativos Unix/Linux; ThreadPoolExecutor solo en Windows.",
-      "ThreadPoolExecutor requiere que los datos sean serializables con pickle; ProcessPoolExecutor no.",
-      "ProcessPoolExecutor no admite el envío de funciones lambda o asíncronas."
+    "id": "python-q-22",
+    "collectionId": "python",
+    "question": "Dentro de Python, ¿cómo opera el mecanismo de «Métodos y formato» en texto, unicode y bytes?",
+    "options": [
+      "Modela unicidad y operaciones de conjuntos como unión, intersección y diferencia al operar.",
+      "Normaliza, separa, une y construye mensajes con f-strings sin concatenaciones frágiles.",
+      "Vincula un nombre con un objeto y diferencia reasignar el nombre de mutar el objeto.",
+      "Elige entre dos valores de forma breve solo cuando la decisión sigue siendo legible."
     ],
-    correctAnswerIndex: 0,
-    explanation: "ThreadPoolExecutor utiliza hilos del SO que comparten el espacio de memoria del proceso (ideal para I/O-bound). ProcessPoolExecutor crea procesos independientes que eluden el GIL para paralelismo real en múltiples núcleos de CPU.",
-    topic: "Concurrencia & Paralelismo",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 1,
+    "explanation": "Métodos y formato (Texto, Unicode y bytes): Normaliza, separa, une y construye mensajes con f-strings sin concatenaciones frágiles.",
+    "topic": "Texto, Unicode y bytes",
+    "difficulty": "intermedio"
   },
   {
-    id: "py-q-23",
-    collectionId: "python",
-    question: "¿Cuál es el rol de '__getitem__' y '__setitem__' en una clase personalizada?",
-    options: [
-      "Implementar la sintaxis de indexación por corchetes (ej: obj[key] y obj[key] = value).",
-      "Definir el orden de serialización de atributos en formato JSON.",
-      "Determinar qué propiedades pueden ser leídas a través del operador punto.",
-      "Controlar la cantidad máxima de elementos que pueden ser insertados en una lista."
+    "id": "python-q-23",
+    "collectionId": "python",
+    "question": "Al trabajar con Python, ¿qué responsabilidad define a «Codificar y decodificar»?",
+    "options": [
+      "Extrae posiciones y rangos sin olvidar límites exclusivos, índices negativos e inmutabilidad al evaluar.",
+      "Trata el texto como Unicode y distingue caracteres percibidos, puntos de código y unidades almacenadas.",
+      "Convierte entre str y bytes usando una codificación explícita y una política consciente ante errores.",
+      "Normaliza, separa, une y construye mensajes con f-strings sin concatenaciones frágiles con precisión."
     ],
-    correctAnswerIndex: 0,
-    explanation: "__getitem__(self, key) y __setitem__(self, key, value) permiten que cualquier clase emule el comportamiento de secuencias (listas/tuplas) o mapeos (diccionarios) mediante la notación de corchetes.",
-    topic: "Modelo de Objetos",
-    difficulty: "básico"
+    "correctAnswerIndex": 2,
+    "explanation": "Codificar y decodificar (Texto, Unicode y bytes): Convierte entre str y bytes usando una codificación explícita y una política consciente ante errores.",
+    "topic": "Texto, Unicode y bytes",
+    "difficulty": "intermedio"
   },
   {
-    id: "py-q-24",
-    collectionId: "python",
-    question: "¿Qué es el 'walrus operator' (:=) introducido en Python 3.8?",
-    options: [
-      "El operador de expresión de asignación: permite asignar un valor a una variable dentro de una expresión.",
-      "Un operador de comparación que verifica igualdad estricta de punteros en memoria.",
-      "Un operador de concatenación asíncrona para generadores de flujos de datos.",
-      "Un modificador que marca variables como protegidas ante sobreescritura externa."
+    "id": "python-q-24",
+    "collectionId": "python",
+    "question": "En la arquitectura de Python, ¿qué caracteriza técnicamente a «bytes, bytearray y memoryview»?",
+    "options": [
+      "Extrae posiciones y rangos sin olvidar límites exclusivos, índices negativos e inmutabilidad en ejecución.",
+      "Convierte entre str y bytes usando una codificación explícita y una política consciente ante errores.",
+      "Trata el texto como Unicode y distingue caracteres percibidos, puntos de código y unidades almacenadas.",
+      "Distingue datos binarios inmutables, buffers mutables y vistas sin copia para protocolos y rendimiento."
     ],
-    correctAnswerIndex: 0,
-    explanation: "El operador de morsa (:=) asigna valores a variables como parte de una expresión más grande (por ejemplo: if (n := len(items)) > 10: print(n)), evitando cálculos redundantes.",
-    topic: "Sintaxis & Operadores Modernos",
-    difficulty: "básico"
+    "correctAnswerIndex": 3,
+    "explanation": "bytes, bytearray y memoryview (Texto, Unicode y bytes): Distingue datos binarios inmutables, buffers mutables y vistas sin copia para protocolos y rendimiento.",
+    "topic": "Texto, Unicode y bytes",
+    "difficulty": "intermedio"
   },
   {
-    id: "py-q-25",
-    collectionId: "python",
-    question: "¿Qué función cumple el módulo 'weakref' en Python?",
-    options: [
-      "Crear referencias débiles a objetos sin incrementar su contador de referencias, permitiendo al GC recolectarlos.",
-      "Reducir la precisión de números de coma flotante para acelerar operaciones matemáticas.",
-      "Eliminar variables globales de forma forzada cuando la memoria RAM supera el 90%.",
-      "Crear copias superficiales de objetos grandes sin duplicar arrays internos."
+    "id": "python-q-25",
+    "collectionId": "python",
+    "question": "Respecto a decisiones y coincidencia de patrones en Python, ¿cuál es el propósito de «Comparaciones»?",
+    "options": [
+      "Construye relaciones de igualdad, orden, pertenencia e identidad sin mezclar sus significados al operar.",
+      "Elige entre dos valores de forma breve solo cuando la decisión sigue siendo legible al operar.",
+      "Desestructura formas de datos y selecciona ramas mediante patrones, guards y captura controlada.",
+      "Separa lo que calcula un valor de lo que controla, importa, define o modifica el estado."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Un weakref.ref(obj) permite acceder a un objeto mientras esté vivo, pero no impide que su refcount llegue a cero y sea destruido, ideal para cachés o grafos circulares.",
-    topic: "Gestión de Memoria",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 0,
+    "explanation": "Comparaciones (Decisiones y coincidencia de patrones): Construye relaciones de igualdad, orden, pertenencia e identidad sin mezclar sus significados.",
+    "topic": "Decisiones y coincidencia de patrones",
+    "difficulty": "intermedio"
   },
   {
-    id: "py-q-26",
-    collectionId: "python",
-    question: "¿Cuál es la función del método '__call__' en una instancia de clase?",
-    options: [
-      "Permite que la instancia del objeto pueda ser invocada directamente como si fuera una función (ej: obj()).",
-      "Llama al recolector de basura para validar que la instancia sea serializable.",
-      "Invoca el constructor de la clase base sin requerir la palabra clave super().",
-      "Registra la instancia en la tabla de procesos activos del sistema operativo."
+    "id": "python-q-26",
+    "collectionId": "python",
+    "question": "En Python (Decisiones y coincidencia de patrones), ¿qué función técnica cumple «if, elif y else»?",
+    "options": [
+      "Construye relaciones de igualdad, orden, pertenencia e identidad sin mezclar sus significados al operar.",
+      "Ordena condiciones de lo específico a lo general y garantiza una salida comprensible por cada rama.",
+      "Desestructura formas de datos y selecciona ramas mediante patrones, guards y captura controlada.",
+      "Elige entre dos valores de forma breve solo cuando la decisión sigue siendo legible de forma clara."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Al definir __call__(self, *args, **kwargs), las instancias de la clase se vuelven 'callables', permitiendo crear closures orientadas a objetos, decoradores basados en clases o factorías de estado.",
-    topic: "Modelo de Objetos",
-    difficulty: "básico"
+    "correctAnswerIndex": 1,
+    "explanation": "if, elif y else (Decisiones y coincidencia de patrones): Ordena condiciones de lo específico a lo general y garantiza una salida comprensible por cada rama.",
+    "topic": "Decisiones y coincidencia de patrones",
+    "difficulty": "intermedio"
   },
   {
-    id: "py-q-27",
-    collectionId: "python",
-    question: "¿Qué ocurre cuando una función generadora llega a una sentencia 'return value' en Python 3.3+?",
-    options: [
-      "Lanza 'StopIteration' adjuntando 'value' en el atributo 'value' de la excepción.",
-      "Descarta silenciosamente el valor devuelto ya que los generadores solo admiten yield.",
-      "Convierte el generador en una corrutina asíncrona que emite un evento al bucle de eventos.",
-      "Imprime el valor en la salida estándar de errores (stderr) como mensaje de diagnóstico."
+    "id": "python-q-27",
+    "collectionId": "python",
+    "question": "Dentro de Python, ¿cómo opera el mecanismo de «Expresión condicional» en decisiones y coincidencia de patrones?",
+    "options": [
+      "Explica intención o restricciones sin narrar literalmente cada instrucción en el flujo.",
+      "Modela unicidad y operaciones de conjuntos como unión, intersección y diferencia.",
+      "Elige entre dos valores de forma breve solo cuando la decisión sigue siendo legible.",
+      "Consume elementos de cualquier iterable sin depender de índices manuales al evaluar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "En generadores, 'return x' finaliza la iteración lanzando StopIteration(x). Cuando el generador se consume con 'val = yield from subgen()', la variable 'val' recibe el valor retornado por el subgenerador.",
-    topic: "Generadores & Corrutinas",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 2,
+    "explanation": "Expresión condicional (Decisiones y coincidencia de patrones): Elige entre dos valores de forma breve solo cuando la decisión sigue siendo legible.",
+    "topic": "Decisiones y coincidencia de patrones",
+    "difficulty": "intermedio"
   },
   {
-    id: "py-q-28",
-    collectionId: "python",
-    question: "¿Qué optimización realiza el compilador de CPython sobre cadenas pequeñas y enteros (-5 a 256)?",
-    options: [
-      "Interning (internamiento): reutiliza las mismas instancias fijas singleton en memoria (is devuelve True).",
-      "Compresión LZ4 en tiempo de carga para reducir el tamaño del ejecutable.",
-      "Conversión a enteros de 16 bits sin signo en registros del microprocesador.",
-      "Asignación en la pila de llamadas (Stack) en lugar del montículo (Heap)."
+    "id": "python-q-28",
+    "collectionId": "python",
+    "question": "Al trabajar con Python, ¿qué responsabilidad define a «match y case»?",
+    "options": [
+      "Construye relaciones de igualdad, orden, pertenencia e identidad sin mezclar sus significados al operar.",
+      "Elige entre dos valores de forma breve solo cuando la decisión sigue siendo legible en el flujo.",
+      "Expande secuencias y mappings solo después de validar que coinciden con la firma esperada al operar.",
+      "Desestructura formas de datos y selecciona ramas mediante patrones, guards y captura controlada."
     ],
-    correctAnswerIndex: 0,
-    explanation: "CPython pre-crea y mantiene una tabla de singletons para enteros en el rango [-5, 256] y aplica string interning para identificadores. De este modo, múltiples referencias a 42 o 'abc' apuntan al mismo bloque de memoria.",
-    topic: "CPython Internals & Optimización",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 3,
+    "explanation": "match y case (Decisiones y coincidencia de patrones): Desestructura formas de datos y selecciona ramas mediante patrones, guards y captura controlada.",
+    "topic": "Decisiones y coincidencia de patrones",
+    "difficulty": "intermedio"
   },
   {
-    id: "py-q-29",
-    collectionId: "python",
-    question: "¿Cómo resuelve Python las anotaciones de tipo con referencias circulares o forward references?",
-    options: [
-      "Usando 'from __future__ import annotations' (PEP 563) para almacenar las anotaciones como cadenas diferidas evaluadas en tiempo de análisis.",
-      "Declarando las clases dentro de un bloque try...except circular.",
-      "Reemplazando las anotaciones con comentarios '# type: ignore' en cada línea afectada.",
-      "Compilando los módulos con una bandera especial '--forward-refs' de mypy."
+    "id": "python-q-29",
+    "collectionId": "python",
+    "question": "En la arquitectura de Python, ¿qué caracteriza técnicamente a «Invariantes de una decisión»?",
+    "options": [
+      "Define qué debe seguir siendo cierto antes y después de cualquier rama para detectar estados imposibles al operar.",
+      "Ordena condiciones de lo específico a lo general y garantiza una salida comprensible por cada rama.",
+      "Desestructura formas de datos y selecciona ramas mediante patrones, guards y captura controlada al operar.",
+      "Construye relaciones de igualdad, orden, pertenencia e identidad sin mezclar sus significados al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Con 'from __future__ import annotations', el compilador no evalúa las expresiones de tipo al definir la clase, sino que las almacena como cadenas de texto simples, permitiendo referenciar clases antes de su definición o en ciclos.",
-    topic: "Type Annotations & PEPs",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 0,
+    "explanation": "Invariantes de una decisión (Decisiones y coincidencia de patrones): Define qué debe seguir siendo cierto antes y después de cualquier rama para detectar estados imposibles.",
+    "topic": "Decisiones y coincidencia de patrones",
+    "difficulty": "intermedio"
   },
   {
-    id: "py-q-30",
-    collectionId: "python",
-    question: "¿Qué define la propuesta PEP 703 implementada experimentalmente en Python 3.13?",
-    options: [
-      "La opción de compilar CPython sin el Global Interpreter Lock (Free-threaded Python) para paralelismo real multinúcleo en hilos.",
-      "La deprecación total de los tipos de datos mutables en la biblioteca estándar.",
-      "La adopción obligatoria del compilador Rust para los módulos internos de CPython.",
-      "Un protocolo de empaquetado que sustituye pip y wheel por formatos binarios propietarios."
+    "id": "python-q-30",
+    "collectionId": "python",
+    "question": "Respecto a repetición y recorridos en Python, ¿cuál es el propósito de «while»?",
+    "options": [
+      "Interrumpe, salta o detecta que una búsqueda terminó sin ruptura, evitando flags innecesarias al operar.",
+      "Repite mientras una condición sea cierta y demuestra que el estado avanza hacia una terminación.",
+      "Expande secuencias y mappings solo después de validar que coinciden con la firma esperada al operar.",
+      "Elige aritmética decimal, racional o compleja cuando el dominio no encaja en int o float al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "PEP 703 ('Making the Global Interpreter Lock Optional in CPython') introduce el soporte para compilar CPython en modo 'free-threaded' sin GIL, reemplazando el lock global con mecanismos de bloqueo granular y conteo de referencias atómico.",
-    topic: "Evolución del Lenguaje & PEPs",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 1,
+    "explanation": "while (Repetición y recorridos): Repite mientras una condición sea cierta y demuestra que el estado avanza hacia una terminación.",
+    "topic": "Repetición y recorridos",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "python-q-31",
+    "collectionId": "python",
+    "question": "En Python (Repetición y recorridos), ¿qué función técnica cumple «for»?",
+    "options": [
+      "Modela unicidad y operaciones de conjuntos como unión, intersección y diferencia al operar.",
+      "Vincula un nombre con un objeto y diferencia reasignar el nombre de mutar el objeto.",
+      "Consume elementos de cualquier iterable sin depender de índices manuales de forma clara.",
+      "Elige entre dos valores de forma breve solo cuando la decisión sigue siendo legible."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "for y protocolo iterable (Repetición y recorridos): Consume elementos de cualquier iterable sin depender de índices manuales.",
+    "topic": "Repetición y recorridos",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "python-q-32",
+    "collectionId": "python",
+    "question": "Dentro de Python, ¿cómo opera el mecanismo de «range, enumerate y zip» en repetición y recorridos?",
+    "options": [
+      "Repite mientras una condición sea cierta y demuestra que el estado avanza hacia una terminación al operar.",
+      "Interrumpe, salta o detecta que una búsqueda terminó sin ruptura, evitando flags innecesarias al operar.",
+      "Reconoce aproximación binaria, valores infinitos y NaN para no exigir igualdad decimal imposible al operar.",
+      "Genera secuencias de índices, conserva posición y recorre colecciones relacionadas de manera explícita."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "range, enumerate y zip (Repetición y recorridos): Genera secuencias de índices, conserva posición y recorre colecciones relacionadas de manera explícita.",
+    "topic": "Repetición y recorridos",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "python-q-33",
+    "collectionId": "python",
+    "question": "Al trabajar con Python, ¿qué responsabilidad define a «break, continue y else»?",
+    "options": [
+      "Interrumpe, salta o detecta que una búsqueda terminó sin ruptura, evitando flags innecesarias al operar.",
+      "Repite mientras una condición sea cierta y demuestra que el estado avanza hacia una terminación.",
+      "Separa lo que calcula un valor de lo que controla, importa, define o modifica el estado.",
+      "Descompone una meta en pasos finitos, ordenados y no ambiguos antes de elegir sintaxis al operar."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "break, continue y else (Repetición y recorridos): Interrumpe, salta o detecta que una búsqueda terminó sin ruptura, evitando flags innecesarias.",
+    "topic": "Repetición y recorridos",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "python-q-34",
+    "collectionId": "python",
+    "question": "En la arquitectura de Python, ¿qué caracteriza técnicamente a «Comprensiones»?",
+    "options": [
+      "Genera secuencias de índices, conserva posición y recorre colecciones relacionadas de manera explícita en el flujo.",
+      "Construye listas, conjuntos o diccionarios mediante transformación y filtro cuando el flujo cabe en una lectura.",
+      "Repite mientras una condición sea cierta y demuestra que el estado avanza hacia una terminación de forma segura.",
+      "Interrumpe, salta o detecta que una búsqueda terminó sin ruptura, evitando flags innecesarias sin perder estado."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Comprensiones (Repetición y recorridos): Construye listas, conjuntos o diccionarios mediante transformación y filtro cuando el flujo cabe en una lectura.",
+    "topic": "Repetición y recorridos",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "python-q-35",
+    "collectionId": "python",
+    "question": "Respecto a colecciones y mutabilidad en Python, ¿cuál es el propósito de «list»?",
+    "options": [
+      "Representa una secuencia inmutable, empaqueta resultados y permite desempaquetado estructurado.",
+      "Modela unicidad y operaciones de conjuntos como unión, intersección y diferencia en ejecución.",
+      "Mantiene una secuencia mutable ordenada y diferencia append, extend, insert, sort y una copia.",
+      "Separa lo que calcula un valor de lo que controla, importa, define o modifica el estado al operar."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "list (Colecciones y mutabilidad): Mantiene una secuencia mutable ordenada y diferencia append, extend, insert, sort y una copia.",
+    "topic": "Colecciones y mutabilidad",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "python-q-36",
+    "collectionId": "python",
+    "question": "En Python (Colecciones y mutabilidad), ¿qué función técnica cumple «tuple»?",
+    "options": [
+      "Mantiene una secuencia mutable ordenada y diferencia append, extend, insert, sort y una copia al operar.",
+      "Modela unicidad y operaciones de conjuntos como unión, intersección y diferencia con precisión.",
+      "Elige aritmética decimal, racional o compleja cuando el dominio no encaja en int o float al operar.",
+      "Representa una secuencia inmutable, empaqueta resultados y permite desempaquetado estructurado."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "tuple (Colecciones y mutabilidad): Representa una secuencia inmutable, empaqueta resultados y permite desempaquetado estructurado.",
+    "topic": "Colecciones y mutabilidad",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "python-q-37",
+    "collectionId": "python",
+    "question": "Dentro de Python, ¿cómo opera el mecanismo de «dict» en colecciones y mutabilidad?",
+    "options": [
+      "Relaciona claves hashables con valores, conserva orden de inserción y usa get, items y setdefault con criterio.",
+      "Visualiza referencias compartidas y decide cuándo copiar contenedores o también sus objetos anidados al operar.",
+      "Representa una secuencia inmutable, empaqueta resultados y permite desempaquetado estructurado con precisión.",
+      "Mantiene una secuencia mutable ordenada y diferencia append, extend, insert, sort y una copia de forma clara."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "dict (Colecciones y mutabilidad): Relaciona claves hashables con valores, conserva orden de inserción y usa get, items y setdefault con criterio.",
+    "topic": "Colecciones y mutabilidad",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "python-q-38",
+    "collectionId": "python",
+    "question": "Al trabajar con Python, ¿qué responsabilidad define a «set y frozenset»?",
+    "options": [
+      "Vincula un nombre con un objeto y diferencia reasignar el nombre de mutar el objeto al operar.",
+      "Modela unicidad y operaciones de conjuntos como unión, intersección y diferencia al operar.",
+      "Elige entre dos valores de forma breve solo cuando la decisión sigue siendo legible al operar.",
+      "Descompone una meta en pasos finitos, ordenados y no ambiguos antes de elegir sintaxis."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "set y frozenset (Colecciones y mutabilidad): Modelan unicidad y operaciones de conjuntos como unión, intersección y diferencia.",
+    "topic": "Colecciones y mutabilidad",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "python-q-39",
+    "collectionId": "python",
+    "question": "En la arquitectura de Python, ¿qué caracteriza técnicamente a «Alias, copia superficial y profunda»?",
+    "options": [
+      "Representa una secuencia inmutable, empaqueta resultados y permite desempaquetado estructurado al operar.",
+      "Mantiene una secuencia mutable ordenada y diferencia append, extend, insert, sort y una copia al operar.",
+      "Visualiza referencias compartidas y decide cuándo copiar contenedores o también sus objetos anidados.",
+      "Representa ausencia deliberada y se compara por identidad con is, no como cero ni cadena vacía al operar."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Alias, copia superficial y profunda (Colecciones y mutabilidad): Visualiza referencias compartidas y decide cuándo copiar contenedores o también sus objetos anidados.",
+    "topic": "Colecciones y mutabilidad",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "python-q-40",
+    "collectionId": "python",
+    "question": "Respecto a funciones fundamentales en Python, ¿cuál es el propósito de «def, llamada y return»?",
+    "options": [
+      "Evalúa defaults una sola vez al definir la función y evita contenedores mutables compartidos accidentalmente al operar.",
+      "Recoge posiciones con *args y nombres con **kwargs sin convertirlos en una excusa para contratos opacos en el flujo.",
+      "Diseña llamadas comprensibles y usa marcadores / y * cuando el contrato necesita restringir la forma de forma clara.",
+      "Encapsula una transformación con nombre, recibe argumentos y devuelve un resultado en vez de imprimirlo por defecto."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "def, llamada y return (Funciones fundamentales): Encapsula una transformación con nombre, recibe argumentos y devuelve un resultado en vez de imprimirlo por defecto.",
+    "topic": "Funciones fundamentales",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "python-q-41",
+    "collectionId": "python",
+    "question": "En Python (Funciones fundamentales), ¿qué función técnica cumple «Parámetros posicionales y por nombre»?",
+    "options": [
+      "Diseña llamadas comprensibles y usa marcadores / y * cuando el contrato necesita restringir la forma.",
+      "Expande secuencias y mappings solo después de validar que coinciden con la firma esperada al operar.",
+      "Representa ausencia deliberada y se compara por identidad con is, no como cero ni cadena vacía.",
+      "Representa una secuencia inmutable, empaqueta resultados y permite desempaquetado estructurado."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Parámetros posicionales y por nombre (Funciones fundamentales): Diseña llamadas comprensibles y usa marcadores / y * cuando el contrato necesita restringir la forma.",
+    "topic": "Funciones fundamentales",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "python-q-42",
+    "collectionId": "python",
+    "question": "Dentro de Python, ¿cómo opera el mecanismo de «Valores predeterminados» en funciones fundamentales?",
+    "options": [
+      "Recoge posiciones con *args y nombres con **kwargs sin convertirlos en una excusa para contratos opacos al operar.",
+      "Evalúa defaults una sola vez al definir la función y evita contenedores mutables compartidos accidentalmente.",
+      "Diseña llamadas comprensibles y usa marcadores / y * cuando el contrato necesita restringir la forma al operar.",
+      "Expande secuencias y mappings solo después de validar que coinciden con la firma esperada de modo predecible."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Valores predeterminados (Funciones fundamentales): Evalúa defaults una sola vez al definir la función y evita contenedores mutables compartidos accidentalmente.",
+    "topic": "Funciones fundamentales",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "python-q-43",
+    "collectionId": "python",
+    "question": "Al trabajar con Python, ¿qué responsabilidad define a «Argumentos variables»?",
+    "options": [
+      "Diseña llamadas comprensibles y usa marcadores / y * cuando el contrato necesita restringir la forma al operar.",
+      "Expande secuencias y mappings solo después de validar que coinciden con la firma esperada con precisión.",
+      "Recoge posiciones con *args y nombres con **kwargs sin convertirlos en una excusa para contratos opacos.",
+      "Muestra resultados, recibe texto del usuario y convierte explícitamente cuando necesita otro tipo al operar."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Argumentos variables (Funciones fundamentales): Recoge posiciones con *args y nombres con **kwargs sin convertirlos en una excusa para contratos opacos.",
+    "topic": "Funciones fundamentales",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "python-q-44",
+    "collectionId": "python",
+    "question": "En la arquitectura de Python, ¿qué caracteriza técnicamente a «Desempaquetado en llamadas»?",
+    "options": [
+      "Vincula un nombre con un objeto y diferencia reasignar el nombre de mutar el objeto al operar.",
+      "Elige entre dos valores de forma breve solo cuando la decisión sigue siendo legible al operar.",
+      "Descompone una meta en pasos finitos, ordenados y no ambiguos antes de elegir sintaxis.",
+      "Expande secuencias y mappings solo después de validar que coinciden con la firma esperada."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "Desempaquetado en llamadas (Funciones fundamentales): Expande secuencias y mappings solo después de validar que coinciden con la firma esperada.",
+    "topic": "Funciones fundamentales",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "python-q-45",
+    "collectionId": "python",
+    "question": "Respecto a contratos y composición funcional en Python, ¿cuál es el propósito de «Alcance LEGB»?",
+    "options": [
+      "Resuelve nombres en ámbitos local, enclosing, global y builtins, y limita global o nonlocal a necesidades justificadas al operar.",
+      "Describe tipos esperados para personas y herramientas sin convertirlos automáticamente en validación de runtime al operar.",
+      "Separa cálculo de entrada/salida y usa recursión solo cuando el modelo y los límites de profundidad la justifican.",
+      "Construye listas, conjuntos o diccionarios mediante transformación y filtro cuando el flujo cabe en una lectura al operar."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Alcance LEGB (Contratos y composición funcional): Resuelve nombres en ámbitos local, enclosing, global y builtins, y limita global o nonlocal a necesidades justificadas.",
+    "topic": "Contratos y composición funcional",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "python-q-46",
+    "collectionId": "python",
+    "question": "En Python (Contratos y composición funcional), ¿qué función técnica cumple «Docstrings»?",
+    "options": [
+      "Pasa comportamiento, conserva contexto léxico y reconoce cuándo una closure retiene estado al operar.",
+      "Documenta propósito, parámetros, resultado, errores y efectos observables desde la propia API.",
+      "Separa lo que calcula un valor de lo que controla, importa, define o modifica el estado al operar.",
+      "Descompone una meta en pasos finitos, ordenados y no ambiguos antes de elegir sintaxis al operar."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Docstrings (Contratos y composición funcional): Documenta propósito, parámetros, resultado, errores y efectos observables desde la propia API.",
+    "topic": "Contratos y composición funcional",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "python-q-47",
+    "collectionId": "python",
+    "question": "Dentro de Python, ¿cómo opera el mecanismo de «Anotaciones» en contratos y composición funcional?",
+    "options": [
+      "Separa cálculo de entrada/salida y usa recursión solo cuando el modelo y los límites de profundidad la justifican.",
+      "Documenta propósito, parámetros, resultado, errores y efectos observables desde la propia API sin perder estado.",
+      "Describe tipos esperados para personas y herramientas sin convertirlos automáticamente en validación de runtime.",
+      "Agrupa bloques mediante espacios consistentes y entiende por qué una sangría cambia el flujo del programa al operar."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Anotaciones (Contratos y composición funcional): Describe tipos esperados para personas y herramientas sin convertirlos automáticamente en validación de runtime.",
+    "topic": "Contratos y composición funcional",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "python-q-48",
+    "collectionId": "python",
+    "question": "Al trabajar con Python, ¿qué responsabilidad define a «Funciones como objetos»?",
+    "options": [
+      "Vincula un nombre con un objeto y diferencia reasignar el nombre de mutar el objeto al operar.",
+      "Elige entre dos valores de forma breve solo cuando la decisión sigue siendo legible al operar.",
+      "Descompone una meta en pasos finitos, ordenados y no ambiguos antes de elegir sintaxis.",
+      "Pasa comportamiento, conserva contexto léxico y reconoce cuándo una closure retiene estado."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "Funciones como objetos y closures (Contratos y composición funcional): Pasa comportamiento, conserva contexto léxico y reconoce cuándo una closure retiene estado.",
+    "topic": "Contratos y composición funcional",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "python-q-49",
+    "collectionId": "python",
+    "question": "En la arquitectura de Python, ¿qué caracteriza técnicamente a «Pureza, efectos»?",
+    "options": [
+      "Separa cálculo de entrada/salida y usa recursión solo cuando el modelo y los límites de profundidad la justifican.",
+      "Describe tipos esperados para personas y herramientas sin convertirlos automáticamente en validación de runtime.",
+      "Documenta propósito, parámetros, resultado, errores y efectos observables desde la propia API sin perder estado.",
+      "Usa resaltado, autocompletado, terminal, help, dir y documentación sin depender de copiar código desconocido."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Pureza, efectos y recursión (Contratos y composición funcional): Separa cálculo de entrada/salida y usa recursión solo cuando el modelo y los límites de profundidad la justifican.",
+    "topic": "Contratos y composición funcional",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "python-q-50",
+    "collectionId": "python",
+    "question": "Respecto a errores y recuperación en Python, ¿cuál es el propósito de «Errores sintácticos, de runtime y lógicos»?",
+    "options": [
+      "Extrae posiciones y rangos sin olvidar límites exclusivos, índices negativos e inmutabilidad al operar.",
+      "Distingue código que no se analiza, una ejecución que falla y un resultado válido pero equivocado.",
+      "Pasa comportamiento, conserva contexto léxico y reconoce cuándo una closure retiene estado al operar.",
+      "Prueba expresiones de forma inmediata y reconoce que su estado desaparece al cerrar la sesión."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Errores sintácticos, de runtime y lógicos (Errores y recuperación): Distingue código que no se analiza, una ejecución que falla y un resultado válido pero equivocado.",
+    "topic": "Errores y recuperación",
+    "difficulty": "avanzado"
   }
 ];

@@ -2,453 +2,753 @@ import type { QuizQuestion } from "@/data/quizTypes";
 
 export const typescriptQuestions: QuizQuestion[] = [
   {
-    id: "ts-q-01",
-    collectionId: "typescript",
-    question: "¿Qué es la verificación exhaustiva ('Exhaustiveness Checking') y cómo se implementa con el tipo 'never'?",
-    options: [
-      "Asignar la variable restante en la rama 'default' de un switch a una variable de tipo 'never' para detectar casos no contemplados en compilación.",
-      "Ejecutar un script de pruebas unitarias que evalúa el 100% de la cobertura de líneas antes de compilar.",
-      "Verificar en tiempo de ejecución que ningún objeto tenga propiedades con valores nulos o indefinidos.",
-      "Una directiva de tsconfig.json que rechaza cualquier archivo que contenga imports no utilizados."
+    "id": "typescript-q-01",
+    "collectionId": "typescript",
+    "question": "En TypeScript (Fundamentos del sistema de tipos), ¿qué función técnica cumple «Inferencia de tipos»?",
+    "options": [
+      "Deduce tipos a partir de valores, retornos y contexto para reducir anotaciones redundantes.",
+      "Acepta cualquier valor en la frontera, pero obliga a comprobarlo antes de usarlo al operar.",
+      "Distingue funciones que no producen un valor útil de rutas que nunca completan normalmente.",
+      "Evita reasignaciones accidentales a propiedades o colecciones vistas como inmutables."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Al reducir un Discriminated Union exhaustivamente en un switch o if/else, el tipo remanente en el bloque 'default' es 'never'. Si se añade un nuevo miembro a la unión y no se maneja, TypeScript arroja un error de compilación.",
-    topic: "Type Narrowing & Control Flow",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 0,
+    "explanation": "Inferencia de tipos (Fundamentos del sistema de tipos): Deduce tipos a partir de valores, retornos y contexto para reducir anotaciones redundantes.",
+    "topic": "Fundamentos del sistema de tipos",
+    "difficulty": "básico"
   },
   {
-    id: "ts-q-02",
-    collectionId: "typescript",
-    question: "¿Cuál es la diferencia fundamental entre el tipo 'unknown' y el tipo 'any'?",
-    options: [
-      "'unknown' es el tipo superior seguro (top type) que prohíbe operaciones sin previo narrowing; 'any' desactiva la verificación de tipos.",
-      "'unknown' solo acepta valores primitivos, mientras que 'any' admite objetos y funciones exclusivamente.",
-      "'any' se valida en tiempo de compilación y 'unknown' se delega a validación en tiempo de ejecución.",
-      "No existe diferencia; 'unknown' es un alias puramente estético introducido en TypeScript 3.0."
+    "id": "typescript-q-02",
+    "collectionId": "typescript",
+    "question": "Dentro de TypeScript, ¿cómo opera el mecanismo de «Anotaciones» en fundamentos del sistema de tipos?",
+    "options": [
+      "Deduce tipos a partir de valores, retornos y contexto para reducir anotaciones redundantes al operar.",
+      "Declara explícitamente el tipo esperado cuando la inferencia no expresa por sí sola el contrato.",
+      "Distingue funciones que no producen un valor útil de rutas que nunca completan normalmente al operar.",
+      "Representa string, number, boolean, bigint, symbol, null y undefined dentro del sistema estático."
     ],
-    correctAnswerIndex: 0,
-    explanation: "'unknown' representa cualquier valor posible pero exige comprobación de tipos (type narrowing) antes de invocar métodos o acceder a propiedades. 'any' apaga el sistema de tipos permitiendo cualquier operación.",
-    topic: "Sistema de Tipos",
-    difficulty: "básico"
+    "correctAnswerIndex": 1,
+    "explanation": "Anotaciones (Fundamentos del sistema de tipos): Declaran explícitamente el tipo esperado cuando la inferencia no expresa por sí sola el contrato.",
+    "topic": "Fundamentos del sistema de tipos",
+    "difficulty": "básico"
   },
   {
-    id: "ts-q-03",
-    collectionId: "typescript",
-    question: "¿Qué comportamiento introduce la palabra clave 'infer' en los tipos condicionales de TypeScript?",
-    options: [
-      "Permite deducir y capturar una variable de tipo dentro de la cláusula 'extends' de un tipo condicional.",
-      "Fuerza al compilador a inferir el tipo de retorno de una función asíncrona sin necesidad de Promise<T>.",
-      "Optimiza el árbol sintáctico abstracto (AST) deduciendo tipos numéricos en expresiones constantes.",
-      "Genera esquemas de validación JSON Schema automáticamente a partir de interfaces declaradas."
+    "id": "typescript-q-03",
+    "collectionId": "typescript",
+    "question": "Al trabajar con TypeScript, ¿qué responsabilidad define a «Tipos primitivos»?",
+    "options": [
+      "Deduce tipos a partir de valores, retornos y contexto para reducir anotaciones redundantes al operar.",
+      "Distingue funciones que no producen un valor útil de rutas que nunca completan normalmente al operar.",
+      "Representa string, number, boolean, bigint, symbol, null y undefined dentro del sistema estático.",
+      "Declara explícitamente el tipo esperado cuando la inferencia no expresa por sí sola el contrato."
     ],
-    correctAnswerIndex: 0,
-    explanation: "'infer' se utiliza dentro de tipos condicionales (ej. T extends (infer R)[] ? R : never) para declarar una variable de tipo que el compilador deduce a partir del tipo evaluado, base de utilidades como ReturnType<T>.",
-    topic: "Tipos Condicionales & Genéricos",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 2,
+    "explanation": "Tipos primitivos (Fundamentos del sistema de tipos): Representan string, number, boolean, bigint, symbol, null y undefined dentro del sistema estático.",
+    "topic": "Fundamentos del sistema de tipos",
+    "difficulty": "básico"
   },
   {
-    id: "ts-q-04",
-    collectionId: "typescript",
-    question: "¿Qué caracteriza a los 'Distributive Conditional Types' cuando operan sobre un tipo genérico desnudo?",
-    options: [
-      "Cuando se aplica una unión a un tipo genérico desnudo 'T extends U ? X : Y', el condicional se distribuye sobre cada miembro de la unión.",
-      "Distribuyen la carga de compilación entre múltiples núcleos del procesador al evaluar tipos masivos.",
-      "Convierten automáticamente arrays bidimensionales en uniones de tipos planos de una sola dimensión.",
-      "Permiten herencia múltiple entre interfaces que comparten nombres de propiedades idénticos."
+    "id": "typescript-q-04",
+    "collectionId": "typescript",
+    "question": "En la arquitectura de TypeScript, ¿qué caracteriza técnicamente a «any»?",
+    "options": [
+      "Representa string, number, boolean, bigint, symbol, null y undefined dentro del sistema estático de modo predecible.",
+      "Declara explícitamente el tipo esperado cuando la inferencia no expresa por sí sola el contrato dentro del flujo.",
+      "Añade una marca estática para evitar mezclar valores estructuralmente idénticos con significados diferentes al operar.",
+      "Desactiva gran parte de la comprobación y permite que operaciones potencialmente inseguras atraviesen el sistema."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Si T es un parámetro de tipo genérico desnudo (sin envolver en tupla [T]), T extends U distribuye la unión: (A | B) extends U ? X : Y se evalúa como (A extends U ? X : Y) | (B extends U ? X : Y).",
-    topic: "Tipos Condicionales & Genéricos",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 3,
+    "explanation": "any (Fundamentos del sistema de tipos): Desactiva gran parte de la comprobación y permite que operaciones potencialmente inseguras atraviesen el sistema.",
+    "topic": "Fundamentos del sistema de tipos",
+    "difficulty": "básico"
   },
   {
-    id: "ts-q-05",
-    collectionId: "typescript",
-    question: "¿Cuál es la función de un 'Type Predicate' en una función con signatura 'x is Type'?",
-    options: [
-      "Informa al compilador que si la función retorna 'true', la variable evaluada se estrecha (narrows) al tipo especificado.",
-      "Convierte la función en un validador asíncrono que rechaza promesas si el valor no coincide con el esquema.",
-      "Añade metadatos en tiempo de compilación para que el recolector de basura priorice la variable.",
-      "Es una anotación puramente decorativa para la generación de documentación en TypeDoc."
+    "id": "typescript-q-05",
+    "collectionId": "typescript",
+    "question": "Respecto a fundamentos del sistema de tipos en TypeScript, ¿cuál es el propósito de «unknown»?",
+    "options": [
+      "Acepta cualquier valor en la frontera, pero obliga a comprobarlo antes de usarlo en ejecución.",
+      "Deduce tipos a partir de valores, retornos y contexto para reducir anotaciones redundantes.",
+      "Distingue funciones que no producen un valor útil de rutas que nunca completan normalmente.",
+      "Evita reasignaciones accidentales a propiedades o colecciones vistas como inmutables."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Una función con retorno 'pet is Fish' es un predicado de tipo personalizado. Cuando un bloque if (isFish(pet)) evalúa true, TypeScript asume dentro del bloque que 'pet' es de tipo Fish.",
-    topic: "Type Narrowing & Guards",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 0,
+    "explanation": "unknown (Fundamentos del sistema de tipos): Acepta cualquier valor en la frontera, pero obliga a comprobarlo antes de usarlo.",
+    "topic": "Fundamentos del sistema de tipos",
+    "difficulty": "básico"
   },
   {
-    id: "ts-q-06",
-    collectionId: "typescript",
-    question: "¿Qué problema resuelve la bandera 'exactOptionalPropertyTypes' en el archivo 'tsconfig.json'?",
-    options: [
-      "Diferencia entre una propiedad opcional omitida y una propiedad explícitamente asignada con el valor 'undefined'.",
-      "Impide que los objetos tengan propiedades adicionales no declaradas en la interfaz de origen.",
-      "Fuerza a que todos los campos marcados con '?' deban inicializarse obligatoriamente en el constructor.",
-      "Elimina las propiedades opcionales del archivo compilado en formato JavaScript."
+    "id": "typescript-q-06",
+    "collectionId": "typescript",
+    "question": "En TypeScript (Fundamentos del sistema de tipos), ¿qué función técnica cumple «void y never»?",
+    "options": [
+      "Acepta cualquier valor en la frontera, pero obliga a comprobarlo antes de usarlo en ejecución.",
+      "Distingue funciones que no producen un valor útil de rutas que nunca completan normalmente.",
+      "Deduce tipos a partir de valores, retornos y contexto para reducir anotaciones redundantes.",
+      "Evita reasignaciones accidentales a propiedades o colecciones vistas como inmutables al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Sin esta bandera, foo?: string permite tanto omitir 'foo' como asignar 'foo: undefined'. Con 'exactOptionalPropertyTypes: true', asignar 'foo: undefined' es un error a menos que el tipo declare explícitamente 'string | undefined'.",
-    topic: "Compilador & Configuración",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 1,
+    "explanation": "void y never (Fundamentos del sistema de tipos): Distinguen funciones que no producen un valor útil de rutas que nunca completan normalmente.",
+    "topic": "Fundamentos del sistema de tipos",
+    "difficulty": "básico"
   },
   {
-    id: "ts-q-07",
-    collectionId: "typescript",
-    question: "¿Cómo se implementa el patrón 'Nominal Typing' (Branded Types) en el sistema estructural de TypeScript?",
-    options: [
-      "Intersecando un tipo primitivo con un objeto que contiene una clave única mediante 'unique symbol' (ej: string & { readonly __brand: unique symbol }).",
-      "Utilizando la palabra clave 'nominal class' soportada desde la versión 5.0 del compilador.",
-      "Declarando las interfaces dentro de un archivo exclusivo con extensión '.nominal.ts'.",
-      "Añadiendo una anotación de comentario '@nominal' sobre la definición del type alias."
+    "id": "typescript-q-07",
+    "collectionId": "typescript",
+    "question": "Dentro de TypeScript, ¿cómo opera el mecanismo de «Uniones» en modelado de datos?",
+    "options": [
+      "Obligan a representar ausencia en el tipo y evitar accesos que podrían fallar en el flujo.",
+      "Evita reasignaciones accidentales a propiedades o colecciones vistas como inmutables.",
+      "Permite que un valor pertenezca a varias alternativas explícitas sin degradar el flujo.",
+      "Diferencian colecciones homogéneas de secuencias con longitud y posiciones conocidas."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Dado que TypeScript es estructural (duck typing), para simular tipado nominal se añade una marca o 'brand' única a través de un símbolo privado, impidiendo asignaciones accidentales entre IDs semánticamente distintos (ej. UserId vs OrderId).",
-    topic: "Técnicas de Modelado Avanzado",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 2,
+    "explanation": "Uniones (Modelado de datos): Permiten que un valor pertenezca a varias alternativas explícitas.",
+    "topic": "Modelado de datos",
+    "difficulty": "básico"
   },
   {
-    id: "ts-q-08",
-    collectionId: "typescript",
-    question: "¿Qué efecto tiene el operador 'satisfies' introducido en TypeScript 4.9?",
-    options: [
-      "Verifica que una expresión coincide con un tipo sin alterar el tipo inferido más específico del valor.",
-      "Convierte automáticamente todos los métodos síncronos del objeto en funciones basadas en promesas.",
-      "Garantiza que un objeto implemente una interfaz sin permitir la adición de métodos getters o setters.",
-      "Fuerza al recolector de basura a mantener el objeto en memoria durante todo el ciclo de vida del script."
+    "id": "typescript-q-08",
+    "collectionId": "typescript",
+    "question": "Al trabajar con TypeScript, ¿qué responsabilidad define a «Tipos literales»?",
+    "options": [
+      "Evita reasignaciones accidentales a propiedades o colecciones vistas como inmutables al operar.",
+      "Diferencian colecciones homogéneas de secuencias con longitud y posiciones conocidas.",
+      "Obligan a representar ausencia en el tipo y evitar accesos que podrían fallar al operar.",
+      "Restringe un valor a opciones exactas como \"idle\" | \"loading\" | \"success\" con precisión."
     ],
-    correctAnswerIndex: 0,
-    explanation: "'const palette = { red: '#ff0000' } satisfies Record<string, string>' valida que cumple el contrato pero preserva la inferencia exacta de claves y tipos literales, a diferencia de una anotación convencional que ensancharía el tipo.",
-    topic: "Sintaxis & Operadores Modernos",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 3,
+    "explanation": "Tipos literales (Modelado de datos): Restringen un valor a opciones exactas como \"idle\" | \"loading\" | \"success\".",
+    "topic": "Modelado de datos",
+    "difficulty": "básico"
   },
   {
-    id: "ts-q-09",
-    collectionId: "typescript",
-    question: "¿Cómo opera la varianza en los parámetros de funciones cuando la opción 'strictFunctionTypes' está activada?",
-    options: [
-      "Los tipos de los parámetros de funciones se evalúan de manera contravariante, mientras que los valores de retorno son covariantes.",
-      "Los tipos de los parámetros se evalúan de forma estrictamente invariante en todos los escenarios.",
-      "Tanto los parámetros como los valores de retorno se evalúan de forma bivariante por retrocompatibilidad.",
-      "Se permite asignar funciones que reciben subtipos más específicos a variables de funciones genéricas."
+    "id": "typescript-q-09",
+    "collectionId": "typescript",
+    "question": "En la arquitectura de TypeScript, ¿qué caracteriza técnicamente a «null, undefined y strictNullChecks»?",
+    "options": [
+      "Obligan a representar ausencia en el tipo y evitar accesos que podrían fallar al operar.",
+      "Evita reasignaciones accidentales a propiedades o colecciones vistas como inmutables.",
+      "Diferencian colecciones homogéneas de secuencias con longitud y posiciones conocidas.",
+      "Restringe un valor a opciones exactas como \"idle\" | \"loading\" | \"success\" en el flujo."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Con 'strictFunctionTypes', TypeScript aplica contravarianza en parámetros de funciones (no métodos): una función que acepta Animal puede asignarse donde se espera una que acepte Dog, pero no al revés, asegurando soundness.",
-    topic: "Teoría de Tipos & Varianza",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 0,
+    "explanation": "null, undefined y strictNullChecks (Modelado de datos): Obligan a representar ausencia en el tipo y evitar accesos que podrían fallar.",
+    "topic": "Modelado de datos",
+    "difficulty": "básico"
   },
   {
-    id: "ts-q-10",
-    collectionId: "typescript",
-    question: "¿Cuál es la utilidad del tipo de utilidad 'Extract<T, U>' en TypeScript?",
-    options: [
-      "Extrae de la unión T todos los miembros que son asignables al tipo U.",
-      "Elimina del objeto T las propiedades que coinciden con las claves de U.",
-      "Convierte una tupla U en un array plano de elementos de tipo T.",
-      "Extrae los argumentos de una función T y los retorna en una tupla tipada."
+    "id": "typescript-q-10",
+    "collectionId": "typescript",
+    "question": "Respecto a modelado de datos en TypeScript, ¿cuál es el propósito de «Propiedades opcionales»?",
+    "options": [
+      "Evita reasignaciones accidentales a propiedades o colecciones vistas como inmutables al operar.",
+      "Modela campos que pueden no existir sin confundir ausencia con un valor undefined explícito.",
+      "Diferencian colecciones homogéneas de secuencias con longitud y posiciones conocidas al operar.",
+      "Obligan a representar ausencia en el tipo y evitar accesos que podrían fallar con precisión."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Extract<T, U> se define como T extends U ? T : never. Filtra una unión de tipos T conservando únicamente aquellos miembros que son compatibles o asignables a U.",
-    topic: "Utility Types",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 1,
+    "explanation": "Propiedades opcionales (Modelado de datos): Modelan campos que pueden no existir sin confundir ausencia con un valor undefined explícito.",
+    "topic": "Modelado de datos",
+    "difficulty": "básico"
   },
   {
-    id: "ts-q-11",
-    collectionId: "typescript",
-    question: "¿Qué permite la técnica de 'Key Remapping' en Mapped Types mediante la palabra clave 'as'?",
-    options: [
-      "Transformar, renombrar o filtrar claves de un objeto iterado usando Template Literal Types o tipos condicionales.",
-      "Cambiar la dirección de memoria física donde se almacena el puntero del objeto en tiempo de ejecución.",
-      "Mapear claves numéricas a nombres de columnas de una base de datos relacional externa.",
-      "Forzar a que todas las claves del objeto sean de solo lectura en tiempo de ejecución."
+    "id": "typescript-q-11",
+    "collectionId": "typescript",
+    "question": "En TypeScript (Modelado de datos), ¿qué función técnica cumple «Readonly»?",
+    "options": [
+      "Obligan a representar ausencia en el tipo y evitar accesos que podrían fallar al operar.",
+      "Restringe un valor a opciones exactas como \"idle\" | \"loading\" | \"success\" al evaluar.",
+      "Evita reasignaciones accidentales a propiedades o colecciones vistas como inmutables.",
+      "Describe la forma estructural de propiedades, métodos, índices y llamadas al evaluar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Con key remapping: { [K in keyof T as `get${Capitalize<string & K>}`]: () => T[K] }, se pueden generar nuevos nombres de propiedades a partir de claves existentes o excluir claves produciendo 'never'.",
-    topic: "Mapped Types & Template Literals",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 2,
+    "explanation": "Readonly (Modelado de datos): Evita reasignaciones accidentales a propiedades o colecciones vistas como inmutables.",
+    "topic": "Modelado de datos",
+    "difficulty": "básico"
   },
   {
-    id: "ts-q-12",
-    collectionId: "typescript",
-    question: "¿Qué diferencia semántica existe entre 'type' e 'interface' con respecto a la declaración duplicada ('Declaration Merging')?",
-    options: [
-      "Múltiples declaraciones de una 'interface' con el mismo nombre se fusionan automáticamente; los 'type' alias duplicados arrojan error de identificador repetido.",
-      "Los 'type' se fusionan únicamente dentro de módulos, mientras que las 'interface' se fusionan en el ámbito global.",
-      "Las interfaces no admiten declaración duplicada y arrojan un error fatal en el compilador.",
-      "Ambos admiten Declaration Merging de forma indistinta bajo la opción 'mergeDeclarations: true'."
+    "id": "typescript-q-12",
+    "collectionId": "typescript",
+    "question": "Dentro de TypeScript, ¿cómo opera el mecanismo de «Arrays y tuplas» en modelado de datos?",
+    "options": [
+      "Obligan a representar ausencia en el tipo y evitar accesos que podrían fallar al operar.",
+      "Restringe un valor a opciones exactas como \"idle\" | \"loading\" | \"success\" al evaluar.",
+      "Describe la forma estructural de propiedades, métodos, índices y llamadas al evaluar.",
+      "Diferencian colecciones homogéneas de secuencias con longitud y posiciones conocidas."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Las interfaces son extensibles y admiten Declaration Merging: declarar 'interface Window' dos veces fusiona sus miembros, clave para enriquecer bibliotecas y tipos globales. Un 'type' con nombre duplicado produce error sintáctico.",
-    topic: "Modelado & Arquitectura",
-    difficulty: "básico"
+    "correctAnswerIndex": 3,
+    "explanation": "Arrays y tuplas (Modelado de datos): Diferencian colecciones homogéneas de secuencias con longitud y posiciones conocidas.",
+    "topic": "Modelado de datos",
+    "difficulty": "básico"
   },
   {
-    id: "ts-q-13",
-    collectionId: "typescript",
-    question: "¿Qué impacto tiene la opción 'verbatimModuleSyntax' en 'tsconfig.json'?",
-    options: [
-      "Exige usar explícitamente 'import type' para importaciones solo de tipo, garantizando que el compilador sepa con certeza qué emitir en JS.",
-      "Obliga a que todos los imports utilicen rutas absolutas comenzando por la raíz del sistema de archivos.",
-      "Convierte todos los módulos ES6 compilados a sintaxis CommonJS basada en require().",
-      "Prohíbe el uso de extensiones de archivo '.js' o '.ts' en las rutas de importación de módulos."
+    "id": "typescript-q-13",
+    "collectionId": "typescript",
+    "question": "Al trabajar con TypeScript, ¿qué responsabilidad define a «Tipos de objetos»?",
+    "options": [
+      "Describe la forma estructural de propiedades, métodos, índices y llamadas dentro del flujo.",
+      "Evita reasignaciones accidentales a propiedades o colecciones vistas como inmutables.",
+      "Diferencian colecciones homogéneas de secuencias con longitud y posiciones conocidas.",
+      "Obligan a representar ausencia en el tipo y evitar accesos que podrían fallar al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "'verbatimModuleSyntax' simplifica y estandariza la elisión de imports. Si un import no lleva 'type', TypeScript asume que debe preservarse en el JS resultante, eliminando ambigüedades con herramientas como esbuild o Vite.",
-    topic: "Compilador & Módulos",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 0,
+    "explanation": "Tipos de objetos (Modelado de datos): Describen la forma estructural de propiedades, métodos, índices y llamadas.",
+    "topic": "Modelado de datos",
+    "difficulty": "básico"
   },
   {
-    id: "ts-q-14",
-    collectionId: "typescript",
-    question: "¿Cuál es el propósito del operador 'as const' (const assertions) en una expresión?",
-    options: [
-      "Indica al compilador que infiera tipos literales exactos y marque todas las propiedades y arrays como 'readonly' profundamente.",
-      "Declara una constante en la memoria inmutable del runtime impidiendo mutaciones en JavaScript nativo.",
-      "Convierte un objeto en una instancia sellada mediante Object.seal() en tiempo de ejecución.",
-      "Es una directiva de optimización para que el empaquetador elimine código muerto en producción."
+    "id": "typescript-q-14",
+    "collectionId": "typescript",
+    "question": "En la arquitectura de TypeScript, ¿qué caracteriza técnicamente a «Alias de tipos»?",
+    "options": [
+      "Obligan a representar ausencia en el tipo y evitar accesos que podrían fallar en el flujo.",
+      "Asigna nombres reutilizables a cualquier composición de tipos manteniendo consistencia.",
+      "Evita reasignaciones accidentales a propiedades o colecciones vistas como inmutables.",
+      "Diferencian colecciones homogéneas de secuencias con longitud y posiciones conocidas."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Una 'const assertion' ([1, 2] as const) evita que los primitivos se ensanchen (number -> 1) y convierte arrays y objetos en tuplas y estructuras con propiedades de solo lectura ('readonly').",
-    topic: "Inferencia & Tipos Literales",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 1,
+    "explanation": "Alias de tipos (Modelado de datos): Asigna nombres reutilizables a cualquier composición de tipos.",
+    "topic": "Modelado de datos",
+    "difficulty": "básico"
   },
   {
-    id: "ts-q-15",
-    collectionId: "typescript",
-    question: "¿Qué representa el tipo 'never' en la jerarquía de tipos de TypeScript?",
-    options: [
-      "El 'bottom type' que representa un conjunto vacío de valores y es asignable a cualquier otro tipo, pero ningún tipo es asignable a él.",
-      "Un tipo que representa funciones asíncronas que nunca se resuelven.",
-      "El tipo padre universal del cual heredan 'unknown', 'any' y 'Object'.",
-      "Un valor nulo especial utilizado para limpiar referencias en Web Workers."
+    "id": "typescript-q-15",
+    "collectionId": "typescript",
+    "question": "Respecto a modelado de datos en TypeScript, ¿cuál es el propósito de «Interfaces»?",
+    "options": [
+      "Obligan a representar ausencia en el tipo y evitar accesos que podrían fallar en el flujo.",
+      "Evita reasignaciones accidentales a propiedades o colecciones vistas como inmutables.",
+      "Declara contratos extensibles y admiten declaración merging respetando las invariantes.",
+      "Diferencian colecciones homogéneas de secuencias con longitud y posiciones conocidas."
     ],
-    correctAnswerIndex: 0,
-    explanation: "'never' es el tipo inferior (bottom type). Representa valores que nunca ocurren (ej. funciones que siempre lanzan excepciones o bucles infinitos). No contiene ningún valor pero es compatible con todos los destinos.",
-    topic: "Sistema de Tipos",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 2,
+    "explanation": "Interfaces (Modelado de datos): Declaran contratos extensibles y admiten declaración merging.",
+    "topic": "Modelado de datos",
+    "difficulty": "básico"
   },
   {
-    id: "ts-q-16",
-    collectionId: "typescript",
-    question: "¿Para qué se utiliza 'Module Augmentation' en archivos '.d.ts'?",
-    options: [
-      "Añadir o sobreescribir declaraciones de tipos en módulos de terceros o de la biblioteca estándar sin modificar sus fuentes.",
-      "Comprimir el tamaño de los archivos de definición de tipos antes de publicarlos en npm.",
-      "Descargar dinámicamente definiciones de DefinitelyTyped (@types) en tiempo de compilación.",
-      "Dividir un módulo de gran tamaño en sub-módulos para paralelizar el empaquetado en Webpack."
+    "id": "typescript-q-16",
+    "collectionId": "typescript",
+    "question": "En TypeScript (Modelado de datos), ¿qué función técnica cumple «Intersecciones»?",
+    "options": [
+      "Obligan a representar ausencia en el tipo y evitar accesos que podrían fallar en el flujo.",
+      "Evita reasignaciones accidentales a propiedades o colecciones vistas como inmutables.",
+      "Diferencian colecciones homogéneas de secuencias con longitud y posiciones conocidas.",
+      "Exigen que un valor satisfaga simultáneamente varias estructuras sin degradar el flujo."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Module Augmentation (declare module 'express' { ... }) permite enriquecer contratos de librerías externas (por ejemplo, agregar propiedades a Request de Express) dentro del proyecto consumidor.",
-    topic: "Declaraciones & Tipos Ambientales",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 3,
+    "explanation": "Intersecciones (Modelado de datos): Exigen que un valor satisfaga simultáneamente varias estructuras.",
+    "topic": "Modelado de datos",
+    "difficulty": "básico"
   },
   {
-    id: "ts-q-17",
-    collectionId: "typescript",
-    question: "¿Cómo funciona la discriminación de uniones ('Discriminated Unions') en TypeScript?",
-    options: [
-      "Utiliza una propiedad común de tipo literal (el 'discriminante') en cada variante de la unión para que el compilador estreche el tipo.",
-      "Analiza el tamaño en bytes de cada interfaz en la unión para determinar cuál instanciar.",
-      "Requiere que cada objeto contenga una clave con un hash criptográfico SHA-1.",
-      "Es un algoritmo que evalúa la presencia de métodos asíncronos en las variantes de la unión."
+    "id": "typescript-q-17",
+    "collectionId": "typescript",
+    "question": "Dentro de TypeScript, ¿cómo opera el mecanismo de «Uniones discriminadas» en modelado de datos?",
+    "options": [
+      "Usa una propiedad literal común para representar estados mutuamente excluyentes de forma segura.",
+      "Modela campos que pueden no existir sin confundir ausencia con un valor undefined explícito.",
+      "Evita reasignaciones accidentales a propiedades o colecciones vistas como inmutables al operar.",
+      "Diferencian colecciones homogéneas de secuencias con longitud y posiciones conocidas al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Las Discriminated Unions combinan variantes que comparten una propiedad literal con valores únicos (ej. kind: 'circle' | 'square'). Al comprobar if (shape.kind === 'circle'), TypeScript estrecha shape a Circle.",
-    topic: "Type Narrowing & Control Flow",
-    difficulty: "básico"
+    "correctAnswerIndex": 0,
+    "explanation": "Uniones discriminadas (Modelado de datos): Usan una propiedad literal común para representar estados mutuamente excluyentes de forma segura.",
+    "topic": "Modelado de datos",
+    "difficulty": "intermedio"
   },
   {
-    id: "ts-q-18",
-    collectionId: "typescript",
-    question: "¿Qué efecto produce el modificador 'readonly' en una propiedad de una interfaz de TypeScript?",
-    options: [
-      "El compilador impide reasignar esa propiedad tras la inicialización del objeto, pero no previene mutaciones internas de objetos anidados.",
-      "Congela el objeto en tiempo de ejecución invocando automáticamente Object.freeze().",
-      "Hace que la propiedad sea invisible para métodos serializadores como JSON.stringify().",
-      "Permite que la propiedad solo sea leída desde hilos secundarios de Web Workers."
+    "id": "typescript-q-18",
+    "collectionId": "typescript",
+    "question": "Al trabajar con TypeScript, ¿qué responsabilidad define a «Tipos de funciones»?",
+    "options": [
+      "Declara el tipo del receptor esperado sin convertirse en un argumento real de JavaScript.",
+      "Declara parámetros, retorno, overloads y firmas de callback respetando las invariantes.",
+      "Modela llamadas con argumentos ausentes y preservan una firma clara de modo predecible.",
+      "Acepta cualquier valor en la frontera, pero obliga a comprobarlo antes de usarlo al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "'readonly' es una restricción en tiempo de compilación que previene reasignaciones superficiales (obj.prop = val genera error). No tiene impacto en tiempo de ejecución ni congela objetos anidados automáticamente.",
-    topic: "Modelado de Interfaces",
-    difficulty: "básico"
+    "correctAnswerIndex": 1,
+    "explanation": "Tipos de funciones (Funciones tipadas): Declaran parámetros, retorno, overloads y firmas de callback.",
+    "topic": "Funciones tipadas",
+    "difficulty": "intermedio"
   },
   {
-    id: "ts-q-19",
-    collectionId: "typescript",
-    question: "¿Cuál es el resultado de aplicar el tipo de utilidad 'NonNullable<T>' sobre 'string | number | null | undefined'?",
-    options: [
-      "'string | number', excluyendo cualquier valor que sea null o undefined de la unión.",
-      "'string | number | boolean', reemplazando los tipos nulos por el valor true por defecto.",
-      "Un error de compilación porque los tipos primitivos no pueden combinarse con tipos de utilidad.",
-      "'never', porque la presencia de null contamina destructivamente toda la unión."
+    "id": "typescript-q-19",
+    "collectionId": "typescript",
+    "question": "En la arquitectura de TypeScript, ¿qué caracteriza técnicamente a «Firmas de llamada y constructores»?",
+    "options": [
+      "Declara el tipo del receptor esperado sin convertirse en un argumento real de JavaScript.",
+      "Modela llamadas con argumentos ausentes y preservan una firma clara de modo predecible.",
+      "Modela valores que pueden invocarse con o construirse mediante new durante la ejecución.",
+      "Acepta cualquier valor en la frontera, pero obliga a comprobarlo antes de usarlo al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "NonNullable<T> se define como T extends null | undefined ? never : T. Elimina 'null' y 'undefined' de cualquier tipo unión, dejando intactos los demás miembros.",
-    topic: "Utility Types",
-    difficulty: "básico"
+    "correctAnswerIndex": 2,
+    "explanation": "Firmas de llamada y constructores (Funciones tipadas): Modelan valores que pueden invocarse con () o construirse mediante new.",
+    "topic": "Funciones tipadas",
+    "difficulty": "intermedio"
   },
   {
-    id: "ts-q-20",
-    collectionId: "typescript",
-    question: "¿Qué diferencia existe entre un 'Tuple Type' y un 'Array Type' en TypeScript?",
-    options: [
-      "Una tupla tiene un número fijo (o con elementos opcionales/rest definidos) de posiciones donde cada índice puede tener un tipo distinto; un array es homogéneo y de longitud abierta.",
-      "Las tuplas se compilan a estructuras de datos nativas de C++ en Node.js, mientras que los arrays usan listas enlazadas.",
-      "Los arrays solo admiten datos numéricos, mientras que las tuplas admiten cadenas y objetos exclusivamente.",
-      "No existe diferencia; en TypeScript una tupla es simplemente un sinónimo de ReadonlyArray."
+    "id": "typescript-q-20",
+    "collectionId": "typescript",
+    "question": "Respecto a funciones tipadas en TypeScript, ¿cuál es el propósito de «Sobrecargas»?",
+    "options": [
+      "Declara el tipo del receptor esperado sin convertirse en un argumento real de JavaScript al operar.",
+      "Usa operadores reales de JavaScript como guards que refinan el tipo dentro de cada rama al operar.",
+      "Permite que métodos fluent devuelvan el subtipo concreto mediante el tipo especial this al operar.",
+      "Expresa varias formas públicas de invocar una función con una implementación compatible común."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Un array (string[]) modela una colección de longitud indeterminada con elementos de tipo uniforme. Una tupla ([string, number]) define posiciones fijas con tipos específicos en cada posición.",
-    topic: "Estructuras & Tuplas",
-    difficulty: "básico"
+    "correctAnswerIndex": 3,
+    "explanation": "Sobrecargas (Funciones tipadas): Expresan varias formas públicas de invocar una función con una implementación compatible común.",
+    "topic": "Funciones tipadas",
+    "difficulty": "intermedio"
   },
   {
-    id: "ts-q-21",
-    collectionId: "typescript",
-    question: "¿Cómo optimiza TypeScript las llamadas recursivas profundas en tipos condicionales desde la versión 4.5?",
-    options: [
-      "Mediante eliminación de recursión de cola (Tail-call Elimination) para evitar errores de 'Type instantiation is excessively deep'.",
-      "Almacenando los tipos calculados en una base de datos SQLite temporal en la carpeta .cache.",
-      "Limitando estrictamente la recursividad a un máximo inamovible de 3 niveles de profundidad.",
-      "Compilando los tipos recursivos a código WebAssembly binario para evaluación instantánea."
+    "id": "typescript-q-21",
+    "collectionId": "typescript",
+    "question": "En TypeScript (Funciones tipadas), ¿qué función técnica cumple «Parámetros opcionales y por defecto»?",
+    "options": [
+      "Modela llamadas con argumentos ausentes y preservan una firma clara dentro de la aplicación.",
+      "Declara el tipo del receptor esperado sin convertirse en un argumento real de JavaScript.",
+      "Acepta cualquier valor en la frontera, pero obliga a comprobarlo antes de usarlo.",
+      "Modela valores que pueden invocarse con o construirse mediante new sin perder estado."
     ],
-    correctAnswerIndex: 0,
-    explanation: "TypeScript implementa tail-call recursion elimination para tipos condicionales. Si una rama retorna directamente la llamada recursiva sin transformaciones externas, no incrementa la profundidad de la pila del evaluador de tipos.",
-    topic: "Rendimiento del Compilador",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 0,
+    "explanation": "Parámetros opcionales y por defecto (Funciones tipadas): Modelan llamadas con argumentos ausentes y preservan una firma clara.",
+    "topic": "Funciones tipadas",
+    "difficulty": "intermedio"
   },
   {
-    id: "ts-q-22",
-    collectionId: "typescript",
-    question: "¿Qué garantiza el uso del operador de aserción no nula ('!') en una expresión como 'elem!.click()'?",
-    options: [
-      "Indica al compilador que asuma que la expresión no es 'null' ni 'undefined', eliminando la advertencia sin comprobación en runtime.",
-      "Lanza un TypeError síncrono si el valor es null antes de ejecutar el método click().",
-      "Invoca el recolector de basura para asegurar que el elemento siga existiendo en el DOM.",
-      "Convierte la llamada en un método reactivo que reintenta la ejecución si el elemento aparece después."
+    "id": "typescript-q-22",
+    "collectionId": "typescript",
+    "question": "Dentro de TypeScript, ¿cómo opera el mecanismo de «this en funciones» en funciones tipadas?",
+    "options": [
+      "Modela llamadas con argumentos ausentes y preservan una firma clara dentro de la aplicación.",
+      "Declara el tipo del receptor esperado sin convertirse en un argumento real de JavaScript.",
+      "Acepta cualquier valor en la frontera, pero obliga a comprobarlo antes de usarlo al operar.",
+      "Evita reasignaciones accidentales a propiedades o colecciones vistas como inmutables."
     ],
-    correctAnswerIndex: 0,
-    explanation: "El operador '!' es una aserción de no nulidad puramente en tiempo de compilación. Elimina 'null' y 'undefined' del tipo inferido, pero si en tiempo de ejecución es null, el programa lanzará un error no capturado.",
-    topic: "Aserciones de Tipos",
-    difficulty: "básico"
+    "correctAnswerIndex": 1,
+    "explanation": "this en funciones (Funciones tipadas): Declara el tipo del receptor esperado sin convertirse en un argumento real de JavaScript.",
+    "topic": "Funciones tipadas",
+    "difficulty": "intermedio"
   },
   {
-    id: "ts-q-23",
-    collectionId: "typescript",
-    question: "¿Cuál es el propósito del operador de indexación 'T[K]' (Indexed Access Types)?",
-    options: [
-      "Obtener el tipo de una propiedad específica K dentro de un tipo de objeto T.",
-      "Acceder al elemento en el índice K de un array físico en tiempo de ejecución.",
-      "Crear una copia superficial de la propiedad K del objeto T en memoria volátil.",
-      "Verificar si la clave K está protegida con la palabra clave private."
+    "id": "typescript-q-23",
+    "collectionId": "typescript",
+    "question": "Al trabajar con TypeScript, ¿qué responsabilidad define a «Narrowing»?",
+    "options": [
+      "Permite encapsular una comprobación personalizada con un retorno value is Type en el flujo.",
+      "Usa never para detectar variantes nuevas que no fueron atendidas en un switch al operar.",
+      "Reduce un tipo amplio mediante control de flujo y comprobaciones de runtime en el flujo.",
+      "Usa operadores reales de JavaScript como guards que refinan el tipo dentro de cada rama."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Los Indexed Access Types permiten consultar el tipo de una propiedad de otro tipo. Por ejemplo, Person['age'] devuelve el tipo de 'age' en la interfaz Person.",
-    topic: "Tipos Indexados",
-    difficulty: "básico"
+    "correctAnswerIndex": 2,
+    "explanation": "Narrowing (Narrowing y seguridad): Reduce un tipo amplio mediante control de flujo y comprobaciones de runtime.",
+    "topic": "Narrowing y seguridad",
+    "difficulty": "intermedio"
   },
   {
-    id: "ts-q-24",
-    collectionId: "typescript",
-    question: "¿Qué ventaja aportan los 'Template Literal Types' combinados con Mapped Types?",
-    options: [
-      "Permiten componer y validar patrones de strings basados en uniones de tipos literales (ej: `on${Capitalize<Event>}`).",
-      "Interpolan variables de entorno del servidor en plantillas HTML durante el empaquetado.",
-      "Permiten escribir código TypeScript dentro de cadenas de texto que se evalúan dinámicamente con eval().",
-      "Generan expresiones regulares optimizadas para motores de búsqueda de bases de datos NoSQL."
+    "id": "typescript-q-24",
+    "collectionId": "typescript",
+    "question": "En la arquitectura de TypeScript, ¿qué caracteriza técnicamente a «typeof, instanceof e in»?",
+    "options": [
+      "Permite encapsular una comprobación personalizada con un retorno value is Type en el flujo.",
+      "Usa never para detectar variantes nuevas que no fueron atendidas en un switch al operar.",
+      "Reduce un tipo amplio mediante control de flujo y comprobaciones de runtime en el flujo.",
+      "Usa operadores reales de JavaScript como guards que refinan el tipo dentro de cada rama."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Los Template Literal Types extienden la sintaxis de plantillas de strings de JavaScript al sistema de tipos, permitiendo construir y validar uniones combinatorias de nombres de eventos, rutas o acciones de Redux.",
-    topic: "Template Literal Types",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 3,
+    "explanation": "typeof, instanceof e in (Narrowing y seguridad): Usa operadores reales de JavaScript como guards que refinan el tipo dentro de cada rama.",
+    "topic": "Narrowing y seguridad",
+    "difficulty": "intermedio"
   },
   {
-    id: "ts-q-25",
-    collectionId: "typescript",
-    question: "¿Qué previene la bandera 'noImplicitOverride' en clases de TypeScript?",
-    options: [
-      "Que una subclase sobreescriba accidentalmente un método de la clase base sin utilizar explícitamente la palabra clave 'override'.",
-      "Que una clase hija herede métodos protegidos de una clase abstracta sin llamar a super().",
-      "Que los métodos estáticos sean invocados desde instancias individuales de la clase.",
-      "Que una clase implemente más de tres interfaces simultáneamente en su declaración."
+    "id": "typescript-q-25",
+    "collectionId": "typescript",
+    "question": "Respecto a narrowing y seguridad en TypeScript, ¿cuál es el propósito de «Predicados de tipo»?",
+    "options": [
+      "Permite encapsular una comprobación personalizada con un retorno value is Type al operar.",
+      "Usa operadores reales de JavaScript como guards que refinan el tipo dentro de cada rama.",
+      "Usa never para detectar variantes nuevas que no fueron atendidas en un switch al operar.",
+      "Reduce un tipo amplio mediante control de flujo y comprobaciones de runtime al evaluar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Con 'noImplicitOverride: true', cualquier método de una subclase que tenga el mismo nombre que uno de la clase base debe incluir 'override'. Si el método de la clase base cambia de nombre, el compilador alerta de inmediato.",
-    topic: "Clases & POO en TypeScript",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 0,
+    "explanation": "Predicados de tipo (Narrowing y seguridad): Permiten encapsular una comprobación personalizada con un retorno value is Type.",
+    "topic": "Narrowing y seguridad",
+    "difficulty": "intermedio"
   },
   {
-    id: "ts-q-26",
-    collectionId: "typescript",
-    question: "¿Cuál es la diferencia entre 'any' y 'void' como tipo de retorno de una función callback?",
-    options: [
-      "'void' indica que el llamador ignora el valor devuelto, permitiendo retornar cualquier valor pero desalentando su uso.",
-      "'void' prohíbe taxativamente que la función use la palabra clave return con cualquier valor que no sea undefined.",
-      "'any' fuerza a que la función deba ser asíncrona retornando una Promise siempre.",
-      "No existe diferencia; en callbacks ambos tipos fuerzan la misma validación estricta de retorno."
+    "id": "typescript-q-26",
+    "collectionId": "typescript",
+    "question": "En TypeScript (Narrowing y seguridad), ¿qué función técnica cumple «Funciones de aserción»?",
+    "options": [
+      "Convierte propiedades y elementos inferidos en readonly y conserva valores literales exactos al operar.",
+      "Declara que una función lanza si una condición no se cumple y refina el tipo después de llamarla.",
+      "Usa operadores reales de JavaScript como guards que refinan el tipo dentro de cada rama al operar.",
+      "Comprueba que una expresión cumple un contrato sin reemplazar su tipo inferido más específico."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Cuando un callback tipa su retorno como void (ej: () => void), TypeScript permite que la función devuelva cualquier valor pero prohíbe que el consumidor del callback dependa de ese valor devuelto, facilitando compatibilidad con métodos como forEach.",
-    topic: "Funciones & Callbacks",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 1,
+    "explanation": "Funciones de aserción (Narrowing y seguridad): Declaran que una función lanza si una condición no se cumple y refina el tipo después de llamarla.",
+    "topic": "Narrowing y seguridad",
+    "difficulty": "intermedio"
   },
   {
-    id: "ts-q-27",
-    collectionId: "typescript",
-    question: "¿Qué efecto tiene el flag 'isolatedModules' en la configuración de TypeScript?",
-    options: [
-      "Advierte si se utiliza código que herramientas monofilamento como Babel o esbuild no pueden transpilar de forma segura por archivo.",
-      "Aísla cada módulo en un contenedor Docker separado durante el proceso de compilación del proyecto.",
-      "Impide que los módulos importen archivos que se encuentren fuera de la carpeta 'src'.",
-      "Desactiva por completo el sistema de caché incremental del compilador de TypeScript."
+    "id": "typescript-q-27",
+    "collectionId": "typescript",
+    "question": "Dentro de TypeScript, ¿cómo opera el mecanismo de «Comprobación exhaustiva» en narrowing y seguridad?",
+    "options": [
+      "Permite encapsular una comprobación personalizada con un retorno value is Type en el flujo.",
+      "Reduce un tipo amplio mediante control de flujo y comprobaciones de runtime en el flujo.",
+      "Usa never para detectar variantes nuevas que no fueron atendidas en un switch al operar.",
+      "Usa operadores reales de JavaScript como guards que refinan el tipo dentro de cada rama."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Transpiladores como Babel procesan un archivo a la vez sin conocer los tipos de otros archivos. 'isolatedModules' alerta ante patrones que requieren información de tipo cruzada (como reexportar tipos como valores o const enums no inicializados).",
-    topic: "Compilador & Ecosistema",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 2,
+    "explanation": "Comprobación exhaustiva (Narrowing y seguridad): Usa never para detectar variantes nuevas que no fueron atendidas en un switch.",
+    "topic": "Narrowing y seguridad",
+    "difficulty": "intermedio"
   },
   {
-    id: "ts-q-28",
-    collectionId: "typescript",
-    question: "¿Cómo se construye el tipo de utilidad 'Record<K, T>' en el lenguaje?",
-    options: [
-      "type Record<K extends keyof any, T> = { [P in K]: T };",
-      "type Record<K, T> = Map<K, T>;",
-      "type Record<K, T> = T extends K ? [K, T] : never;",
-      "type Record<K, T> = { key: K; value: T }[];"
+    "id": "typescript-q-28",
+    "collectionId": "typescript",
+    "question": "Al trabajar con TypeScript, ¿qué responsabilidad define a «Aserciones de tipo»?",
+    "options": [
+      "Convierte propiedades y elementos inferidos en readonly y conserva valores literales exactos al operar.",
+      "Comprueba que una expresión cumple un contrato sin reemplazar su tipo inferido más específico al operar.",
+      "Declara que una función lanza si una condición no se cumple y refina el tipo después de llamarla.",
+      "Indica al compilador que el programador conoce un tipo más específico, sin validar nada en runtime."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Record<K, T> es un Mapped Type que mapea cada clave P en K (donde K es una unión de strings, numbers o symbols) hacia el tipo de valor T.",
-    topic: "Utility Types Internals",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 3,
+    "explanation": "Aserciones de tipo (Narrowing y seguridad): Indican al compilador que el programador conoce un tipo más específico, sin validar nada en runtime.",
+    "topic": "Narrowing y seguridad",
+    "difficulty": "intermedio"
   },
   {
-    id: "ts-q-29",
-    collectionId: "typescript",
-    question: "¿Para qué se utiliza la directiva triple slash '/// <reference path=\"...\" />'?",
-    options: [
-      "Indicar al compilador una dependencia explícita hacia otro archivo de declaración de tipos para su inclusión en la compilación.",
-      "Forzar una importación síncrona en tiempo de ejecución antes de cargar el script principal.",
-      "Desactivar las advertencias del linter exclusivamente en las siguientes tres líneas de código.",
-      "Conectar el archivo a un servidor de telemetría de tipos en la nube durante el desarrollo."
+    "id": "typescript-q-29",
+    "collectionId": "typescript",
+    "question": "En la arquitectura de TypeScript, ¿qué caracteriza técnicamente a «satisfies»?",
+    "options": [
+      "Comprueba que una expresión cumple un contrato sin reemplazar su tipo inferido más específico.",
+      "Usa operadores reales de JavaScript como guards que refinan el tipo dentro de cada rama.",
+      "Convierte propiedades y elementos inferidos en readonly y conserva valores literales exactos.",
+      "Permite encapsular una comprobación personalizada con un retorno value is Type en ejecución."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Las directivas triple-slash son directivas para el compilador de TypeScript. <reference path='...' /> declara dependencias entre archivos de tipos, común en proyectos legacy o bundles que no utilizan módulos ES nativos.",
-    topic: "Declaraciones & Directivas",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 0,
+    "explanation": "satisfies (Narrowing y seguridad): Comprueba que una expresión cumple un contrato sin reemplazar su tipo inferido más específico.",
+    "topic": "Narrowing y seguridad",
+    "difficulty": "intermedio"
   },
   {
-    id: "ts-q-30",
-    collectionId: "typescript",
-    question: "¿Qué diferencia a los nuevos Decoradores de ECMAScript (Stage 3) introducidos en TypeScript 5.0 frente a los antiguos 'experimentalDecorators'?",
-    options: [
-      "Siguen el estándar oficial de TC39, no requieren emitDecoratorMetadata y reciben un objeto de contexto fuertemente tipado.",
-      "Solo pueden aplicarse sobre clases abstractas y no admiten métodos ni campos de clase.",
-      "Requieren el uso obligatorio de Babel para poder transpilarse a código ejecutable en Node.js.",
-      "Se ejecutan en tiempo de compilación y se eliminan por completo del JavaScript emitido."
+    "id": "typescript-q-30",
+    "collectionId": "typescript",
+    "question": "Respecto a narrowing y seguridad en TypeScript, ¿cuál es el propósito de «Const assertions»?",
+    "options": [
+      "Usa operadores reales de JavaScript como guards que refinan el tipo dentro de cada rama al operar.",
+      "Convierte propiedades y elementos inferidos en readonly y conserva valores literales exactos.",
+      "Comprueba que una expresión cumple un contrato sin reemplazar su tipo inferido más específico.",
+      "Permite encapsular una comprobación personalizada con un retorno value is Type con precisión."
     ],
-    correctAnswerIndex: 0,
-    explanation: "TypeScript 5.0 soporta la propuesta Stage 3 de TC39 de decoradores nativos sin banderas experimentales. Cada decorador recibe el valor y un objeto 'context' tipado (ClassMethodDecoratorContext, etc.), sin depender de reflect-metadata.",
-    topic: "Decoradores & Metaprogramación",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 1,
+    "explanation": "Const assertions (Narrowing y seguridad): Convierte propiedades y elementos inferidos en readonly y conserva valores literales exactos.",
+    "topic": "Narrowing y seguridad",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "typescript-q-31",
+    "collectionId": "typescript",
+    "question": "En TypeScript (Genéricos y tipos derivados), ¿qué función técnica cumple «Genéricos»?",
+    "options": [
+      "Limita los tipos aceptados sin perder la información específica del argumento en ejecución.",
+      "Describe estructuras que se contienen a sí mismas como árboles, JSON o rutas anidadas.",
+      "Relacionan entrada y salida mediante parámetros de tipo reutilizables sin perder estado.",
+      "Ofrecen transformaciones estándar como Partial, Required, Pick, Omit, Record y Awaited."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Genéricos (Genéricos y tipos derivados): Relacionan entrada y salida mediante parámetros de tipo reutilizables.",
+    "topic": "Genéricos y tipos derivados",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "typescript-q-32",
+    "collectionId": "typescript",
+    "question": "Dentro de TypeScript, ¿cómo opera el mecanismo de «Restricciones genéricas» en genéricos y tipos derivados?",
+    "options": [
+      "Describe estructuras que se contienen a sí mismas como árboles, JSON o rutas anidadas al operar.",
+      "Ofrecen transformaciones estándar como Partial, Required, Pick, Omit, Record y Awaited.",
+      "Recorren claves para transformar sistemáticamente modificadores y valores con precisión.",
+      "Limita los tipos aceptados sin perder la información específica del argumento al operar."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "Restricciones genéricas (Genéricos y tipos derivados): Limitan los tipos aceptados sin perder la información específica del argumento.",
+    "topic": "Genéricos y tipos derivados",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "typescript-q-33",
+    "collectionId": "typescript",
+    "question": "Al trabajar con TypeScript, ¿qué responsabilidad define a «Parámetros genéricos por defecto»?",
+    "options": [
+      "Proporciona un tipo de respaldo cuando el consumidor no especifica uno de modo predecible.",
+      "Limita los tipos aceptados sin perder la información específica del argumento al operar.",
+      "Describe estructuras que se contienen a sí mismas como árboles, JSON o rutas anidadas.",
+      "Ofrecen transformaciones estándar como Partial, Required, Pick, Omit, Record y Awaited."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Parámetros genéricos por defecto (Genéricos y tipos derivados): Proporcionan un tipo de respaldo cuando el consumidor no especifica uno.",
+    "topic": "Genéricos y tipos derivados",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "typescript-q-34",
+    "collectionId": "typescript",
+    "question": "En la arquitectura de TypeScript, ¿qué caracteriza técnicamente a «keyof»?",
+    "options": [
+      "Limita los tipos aceptados sin perder la información específica del argumento en el flujo.",
+      "Produce una unión con las claves conocidas de un tipo dentro de la arquitectura activa.",
+      "Describe estructuras que se contienen a sí mismas como árboles, JSON o rutas anidadas.",
+      "Ofrecen transformaciones estándar como Partial, Required, Pick, Omit, Record y Awaited."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "keyof (Genéricos y tipos derivados): Produce una unión con las claves conocidas de un tipo.",
+    "topic": "Genéricos y tipos derivados",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "typescript-q-35",
+    "collectionId": "typescript",
+    "question": "Respecto a genéricos y tipos derivados en TypeScript, ¿cuál es el propósito de «typeof en posiciones de tipo»?",
+    "options": [
+      "Limita los tipos aceptados sin perder la información específica del argumento en ejecución.",
+      "Describe estructuras que se contienen a sí mismas como árboles, JSON o rutas anidadas.",
+      "Deriva un tipo desde la forma estática de un valor ya declarado dentro de la aplicación.",
+      "Ofrecen transformaciones estándar como Partial, Required, Pick, Omit, Record y Awaited."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "typeof en posiciones de tipo (Genéricos y tipos derivados): Deriva un tipo desde la forma estática de un valor ya declarado.",
+    "topic": "Genéricos y tipos derivados",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "typescript-q-36",
+    "collectionId": "typescript",
+    "question": "En TypeScript (Genéricos y tipos derivados), ¿qué función técnica cumple «Indexed access types»?",
+    "options": [
+      "Limita los tipos aceptados sin perder la información específica del argumento en ejecución.",
+      "Describe estructuras que se contienen a sí mismas como árboles, JSON o rutas anidadas.",
+      "Ofrecen transformaciones estándar como Partial, Required, Pick, Omit, Record y Awaited.",
+      "Selecciona el tipo de una propiedad o conjunto de propiedades con T[K] dentro del flujo."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "Indexed access types (Genéricos y tipos derivados): Selecciona el tipo de una propiedad o conjunto de propiedades con T[K].",
+    "topic": "Genéricos y tipos derivados",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "typescript-q-37",
+    "collectionId": "typescript",
+    "question": "Dentro de TypeScript, ¿cómo opera el mecanismo de «Mapped types» en genéricos y tipos derivados?",
+    "options": [
+      "Recorren claves para transformar sistemáticamente modificadores y valores dentro del flujo.",
+      "Limita los tipos aceptados sin perder la información específica del argumento al operar.",
+      "Describe estructuras que se contienen a sí mismas como árboles, JSON o rutas anidadas.",
+      "Ofrecen transformaciones estándar como Partial, Required, Pick, Omit, Record y Awaited."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Mapped types (Genéricos y tipos derivados): Recorren claves para transformar sistemáticamente modificadores y valores.",
+    "topic": "Genéricos y tipos derivados",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "typescript-q-38",
+    "collectionId": "typescript",
+    "question": "Al trabajar con TypeScript, ¿qué responsabilidad define a «Remapeo de claves»?",
+    "options": [
+      "Limita los tipos aceptados sin perder la información específica del argumento en ejecución.",
+      "Cambia nombres de propiedades dentro de un mapped type mediante as durante la ejecución.",
+      "Describe estructuras que se contienen a sí mismas como árboles, JSON o rutas anidadas.",
+      "Ofrecen transformaciones estándar como Partial, Required, Pick, Omit, Record y Awaited."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Remapeo de claves (Genéricos y tipos derivados): Cambia nombres de propiedades dentro de un mapped type mediante as.",
+    "topic": "Genéricos y tipos derivados",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "typescript-q-39",
+    "collectionId": "typescript",
+    "question": "En la arquitectura de TypeScript, ¿qué caracteriza técnicamente a «Tipos condicionales»?",
+    "options": [
+      "Limita los tipos aceptados sin perder la información específica del argumento en ejecución.",
+      "Describe estructuras que se contienen a sí mismas como árboles, JSON o rutas anidadas.",
+      "Seleccionan un tipo según una relación de asignabilidad durante la ejecución del módulo.",
+      "Ofrecen transformaciones estándar como Partial, Required, Pick, Omit, Record y Awaited."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Tipos condicionales (Genéricos y tipos derivados): Seleccionan un tipo según una relación de asignabilidad.",
+    "topic": "Genéricos y tipos derivados",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "typescript-q-40",
+    "collectionId": "typescript",
+    "question": "Respecto a genéricos y tipos derivados en TypeScript, ¿cuál es el propósito de «infer»?",
+    "options": [
+      "Limita los tipos aceptados sin perder la información específica del argumento en ejecución.",
+      "Describe estructuras que se contienen a sí mismas como árboles, JSON o rutas anidadas.",
+      "Ofrecen transformaciones estándar como Partial, Required, Pick, Omit, Record y Awaited.",
+      "Extrae una parte de un tipo dentro de la rama verdadera de un condicional con precisión."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "infer (Genéricos y tipos derivados): Extrae una parte de un tipo dentro de la rama verdadera de un condicional.",
+    "topic": "Genéricos y tipos derivados",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "typescript-q-41",
+    "collectionId": "typescript",
+    "question": "En TypeScript (Genéricos y tipos derivados), ¿qué función técnica cumple «Template literal types»?",
+    "options": [
+      "Construye uniones de strings combinando literales y otras uniones manteniendo consistencia.",
+      "Limita los tipos aceptados sin perder la información específica del argumento al operar.",
+      "Describe estructuras que se contienen a sí mismas como árboles, JSON o rutas anidadas.",
+      "Ofrecen transformaciones estándar como Partial, Required, Pick, Omit, Record y Awaited."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Template literal types (Genéricos y tipos derivados): Construyen uniones de strings combinando literales y otras uniones.",
+    "topic": "Genéricos y tipos derivados",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "typescript-q-42",
+    "collectionId": "typescript",
+    "question": "Dentro de TypeScript, ¿cómo opera el mecanismo de «Utility Types» en genéricos y tipos derivados?",
+    "options": [
+      "Limita los tipos aceptados sin perder la información específica del argumento en el flujo.",
+      "Ofrecen transformaciones estándar como Partial, Required, Pick, Omit, Record y Awaited.",
+      "Describe estructuras que se contienen a sí mismas como árboles, JSON o rutas anidadas.",
+      "Recorren claves para transformar sistemáticamente modificadores y valores en ejecución."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Utility Types (Genéricos y tipos derivados): Ofrecen transformaciones estándar como Partial, Required, Pick, Omit, Record y Awaited.",
+    "topic": "Genéricos y tipos derivados",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "typescript-q-43",
+    "collectionId": "typescript",
+    "question": "Al trabajar con TypeScript, ¿qué responsabilidad define a «Tipos recursivos»?",
+    "options": [
+      "Limita los tipos aceptados sin perder la información específica del argumento al evaluar.",
+      "Recorren claves para transformar sistemáticamente modificadores y valores en el flujo.",
+      "Describe estructuras que se contienen a sí mismas como árboles, JSON o rutas anidadas.",
+      "Extrae una parte de un tipo dentro de la rama verdadera de un condicional en el flujo."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Tipos recursivos (Genéricos y tipos derivados): Describen estructuras que se contienen a sí mismas como árboles, JSON o rutas anidadas.",
+    "topic": "Genéricos y tipos derivados",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "typescript-q-44",
+    "collectionId": "typescript",
+    "question": "En la arquitectura de TypeScript, ¿qué caracteriza técnicamente a «Tipos nominales con branding»?",
+    "options": [
+      "Ofrecen transformaciones estándar como Partial, Required, Pick, Omit, Record y Awaited dentro de la aplicación.",
+      "Describe estructuras que se contienen a sí mismas como árboles, JSON o rutas anidadas sin degradar el flujo.",
+      "Indica al compilador que el programador conoce un tipo más específico, sin validar nada en runtime al operar.",
+      "Añade una marca estática para evitar mezclar valores estructuralmente idénticos con significados diferentes."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "Tipos nominales con branding (Genéricos y tipos derivados): Añaden una marca estática para evitar mezclar valores estructuralmente idénticos con significados diferentes.",
+    "topic": "Genéricos y tipos derivados",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "typescript-q-45",
+    "collectionId": "typescript",
+    "question": "Respecto a clases y módulos en TypeScript, ¿cuál es el propósito de «Clases y modificadores»?",
+    "options": [
+      "Tipan propiedades, constructores y métodos con public, protected, private y readonly.",
+      "Define comportamiento compartido y miembros que las subclases deben implementar.",
+      "Usa el sistema de módulos de JavaScript y añaden comprobación estática entre archivos.",
+      "Permite encapsular una comprobación personalizada con un retorno value is Type."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Clases y modificadores (Clases y módulos): Tipan propiedades, constructores y métodos con public, protected, private y readonly.",
+    "topic": "Clases y módulos",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "typescript-q-46",
+    "collectionId": "typescript",
+    "question": "En TypeScript (Clases y módulos), ¿qué función técnica cumple «Clases abstractas»?",
+    "options": [
+      "Tipan propiedades, constructores y métodos con public, protected, private y readonly al operar.",
+      "Define comportamiento compartido y miembros que las subclases deben implementar al operar.",
+      "Usa el sistema de módulos de JavaScript y añaden comprobación estática entre archivos.",
+      "Permite que métodos fluent devuelvan el subtipo concreto mediante el tipo especial this."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Clases abstractas (Clases y módulos): Definen comportamiento compartido y miembros que las subclases deben implementar.",
+    "topic": "Clases y módulos",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "typescript-q-47",
+    "collectionId": "typescript",
+    "question": "Dentro de TypeScript, ¿cómo opera el mecanismo de «Polimorfismo de this» en clases y módulos?",
+    "options": [
+      "Define comportamiento compartido y miembros que las subclases deben implementar al evaluar.",
+      "Tipan propiedades, constructores y métodos con public, protected, private y readonly.",
+      "Permite que métodos fluent devuelvan el subtipo concreto mediante el tipo especial this.",
+      "Usa el sistema de módulos de JavaScript y añaden comprobación estática entre archivos."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Polimorfismo de this (Clases y módulos): Permite que métodos fluent devuelvan el subtipo concreto mediante el tipo especial this.",
+    "topic": "Clases y módulos",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "typescript-q-48",
+    "collectionId": "typescript",
+    "question": "Al trabajar con TypeScript, ¿qué responsabilidad define a «Decoradores»?",
+    "options": [
+      "Desactiva gran parte de la comprobación y permite que operaciones potencialmente inseguras atraviesen el sistema con precisión.",
+      "Añade una marca estática para evitar mezclar valores estructuralmente idénticos con significados diferentes de forma segura.",
+      "Permite que métodos fluent devuelvan el subtipo concreto mediante el tipo especial this manteniendo la trazabilidad técnica.",
+      "Añade metadatos o transformaciones declarativas a clases y miembros mediante la propuesta estándar soportada por TypeScript."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "Decoradores (Clases y módulos): Añaden metadatos o transformaciones declarativas a clases y miembros mediante la propuesta estándar soportada por TypeScript.",
+    "topic": "Clases y módulos",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "typescript-q-49",
+    "collectionId": "typescript",
+    "question": "En la arquitectura de TypeScript, ¿qué caracteriza técnicamente a «Módulos y exports»?",
+    "options": [
+      "Usa el sistema de módulos de JavaScript y añaden comprobación estática entre archivos al operar.",
+      "Define comportamiento compartido y miembros que las subclases deben implementar.",
+      "Tipan propiedades, constructores y métodos con public, protected, private y readonly.",
+      "Permite que métodos fluent devuelvan el subtipo concreto mediante el tipo especial this."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Módulos y exports (Clases y módulos): Usan el sistema de módulos de JavaScript y añaden comprobación estática entre archivos.",
+    "topic": "Clases y módulos",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "typescript-q-50",
+    "collectionId": "typescript",
+    "question": "Respecto a clases y módulos en TypeScript, ¿cuál es el propósito de «Imports y exports solo de tipos»?",
+    "options": [
+      "Define comportamiento compartido y miembros que las subclases deben implementar al evaluar.",
+      "Marcan dependencias que deben desaparecer al emitir JavaScript manteniendo consistencia.",
+      "Tipan propiedades, constructores y métodos con public, protected, private y readonly.",
+      "Usa el sistema de módulos de JavaScript y añaden comprobación estática entre archivos."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Imports y exports solo de tipos (Clases y módulos): Marcan dependencias que deben desaparecer al emitir JavaScript.",
+    "topic": "Clases y módulos",
+    "difficulty": "avanzado"
   }
 ];

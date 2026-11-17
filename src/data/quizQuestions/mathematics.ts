@@ -2,453 +2,753 @@ import type { QuizQuestion } from "@/data/quizTypes";
 
 export const mathematicsQuestions: QuizQuestion[] = [
   {
-    id: "math-01",
-    collectionId: "mathematics",
-    question: "¿Qué postula la Ley de De Morgan para la negación de una disyunción lógica en álgebra de Boole?",
-    options: [
-      "$\\neg (A \\lor B) \\iff \\neg A \\land \\neg B$",
-      "$\\neg (A \\lor B) \\iff \\neg A \\lor \\neg B$",
-      "$\\neg (A \\land B) \\iff \\neg A \\land \\neg B$",
-      "$\\neg (A \\lor B) \\iff A \\land B$"
+    "id": "mathematics-q-01",
+    "collectionId": "mathematics",
+    "question": "En Matemáticas para programación (Álgebra booleana y circuitos), ¿qué función técnica cumple «Tablas de verdad»?",
+    "options": [
+      "Enumeran todas las asignaciones posibles para comprobar equivalencia, satisfacibilidad y cobertura lógica al operar.",
+      "Reescriben proposiciones como conjunciones o disyunciones canónicas útiles para análisis y solvers al operar.",
+      "Reduce expresiones mediante identidades para disminuir condiciones redundantes o puertas físicas al operar.",
+      "Garantiza colisiones cuando más objetos ocupan menos categorías, incluso sin localizar cuál ocurre al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Las leyes de De Morgan establecen la dualidad entre conjunción y disyunción: la negación de la disyunción es la conjunción de las negaciones ($\\neg(A \\lor B) \\iff \\neg A \\land \\neg B$) y la negación de la conjunción es la disyunción de las negaciones.",
-    topic: "Lógica y Álgebra Booleana",
-    difficulty: "básico"
+    "correctAnswerIndex": 0,
+    "explanation": "Tablas de verdad (Álgebra booleana y circuitos): Enumeran todas las asignaciones posibles para comprobar equivalencia, satisfacibilidad y cobertura lógica.",
+    "topic": "Álgebra booleana y circuitos",
+    "difficulty": "básico"
   },
   {
-    id: "math-02",
-    collectionId: "mathematics",
-    question: "Si un conjunto finito $S$ posee cardinalidad $|S| = n$, ¿cuál es la cardinalidad de su conjunto potencia (Power Set) $\\mathcal{P}(S)$?",
-    options: [
-      "$n!$",
-      "$2^n$",
-      "$n^2$",
-      "$\\binom{n}{2}$"
+    "id": "mathematics-q-02",
+    "collectionId": "mathematics",
+    "question": "Dentro de Matemáticas para programación, ¿cómo opera el mecanismo de «Formas normales CNF y DNF» en álgebra booleana y circuitos?",
+    "options": [
+      "Reduce expresiones mediante identidades para disminuir condiciones redundantes o puertas físicas al operar.",
+      "Reescriben proposiciones como conjunciones o disyunciones canónicas útiles para análisis y solvers.",
+      "Distribuye negaciones sobre conjunciones y disyunciones sin alterar el valor lógico de forma clara.",
+      "Componen funciones booleanas cuya salida depende únicamente de la entrada presente de forma segura."
     ],
-    correctAnswerIndex: 1,
-    explanation: "El conjunto potencia contiene todos los subconjuntos posibles de $S$. Dado que cada uno de los $n$ elementos tiene exactamente dos opciones (pertenecer o no pertenecer al subconjunto), por el principio de multiplicación existen $2^n$ subconjuntos posibles.",
-    topic: "Teoría de Conjuntos",
-    difficulty: "básico"
+    "correctAnswerIndex": 1,
+    "explanation": "Formas normales CNF y DNF (Álgebra booleana y circuitos): Reescriben proposiciones como conjunciones o disyunciones canónicas útiles para análisis y solvers.",
+    "topic": "Álgebra booleana y circuitos",
+    "difficulty": "básico"
   },
   {
-    id: "math-03",
-    collectionId: "mathematics",
-    question: "En teoría de números, ¿qué calcula el Algoritmo de Euclides Extendido más allá del Máximo Común Divisor (MCD) $\\gcd(a, b)$?",
-    options: [
-      "Los factores primos exclusivos de la factorización canónica de $a$ y $b$.",
-      "Los coeficientes enteros de Bézout $x$ e $y$ tales que satisfacen la identidad diofántica lineal $a \\cdot x + b \\cdot y = \\gcd(a, b)$.",
-      "El menor número entero coprimo con $a \\cdot b$ en tiempo $O(1)$.",
-      "La transformada rápida de Fourier modular aplicada a $a$ y $b$."
+    "id": "mathematics-q-03",
+    "collectionId": "mathematics",
+    "question": "Al trabajar con Matemáticas para programación, ¿qué responsabilidad define a «Leyes de De Morgan»?",
+    "options": [
+      "Componen funciones booleanas cuya salida depende únicamente de la entrada presente al operar.",
+      "Codifica secuencias como coeficientes de series para operar y resolver conteos al operar.",
+      "Distribuye negaciones sobre conjunciones y disyunciones sin alterar el valor lógico.",
+      "Factoriza cualquier matriz para analizar rango, aproximación y condicionamiento."
     ],
-    correctAnswerIndex: 1,
-    explanation: "El Algoritmo de Euclides Extendido computa tanto $\\gcd(a, b)$ como los enteros $x, y$ de la identidad de Bézout, lo que resulta fundamental para calcular el inverso modular multiplicativo en criptografía RSA y curvas elípticas.",
-    topic: "Teoría de Números",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 2,
+    "explanation": "Leyes de De Morgan (Álgebra booleana y circuitos): Distribuyen negaciones sobre conjunciones y disyunciones sin alterar el valor lógico.",
+    "topic": "Álgebra booleana y circuitos",
+    "difficulty": "básico"
   },
   {
-    id: "math-04",
-    collectionId: "mathematics",
-    question: "Bajo qué condición matemática existe el inverso multiplicativo de un entero $a$ módulo $m$ ($a^{-1} \\pmod m$ tal que $a \\cdot a^{-1} \\equiv 1 \\pmod m$)?",
-    options: [
-      "$a$ debe ser estrictamente mayor que $m$.",
-      "$a$ y $m$ deben ser coprimos, es decir, $\\gcd(a, m) = 1$.",
-      "$m$ debe ser obligatoriamente una potencia de dos ($2^k$).",
-      "$a + m$ debe ser un número par divisible por 4."
+    "id": "mathematics-q-04",
+    "collectionId": "mathematics",
+    "question": "En la arquitectura de Matemáticas para programación, ¿qué caracteriza técnicamente a «Simplificación booleana»?",
+    "options": [
+      "Distribuye negaciones sobre conjunciones y disyunciones sin alterar el valor lógico de forma segura.",
+      "Reescriben proposiciones como conjunciones o disyunciones canónicas útiles para análisis y solvers.",
+      "Componen funciones booleanas cuya salida depende únicamente de la entrada presente con precisión.",
+      "Reduce expresiones mediante identidades para disminuir condiciones redundantes o puertas físicas."
     ],
-    correctAnswerIndex: 1,
-    explanation: "Por la identidad de Bézout, $a \\cdot x + m \\cdot y = \\gcd(a, m)$. Tomando módulo $m$, tenemos $a \\cdot x \\equiv \\gcd(a, m) \\pmod m$. Para que esto sea congruente con 1, el $\\gcd(a, m)$ debe ser estrictamente 1.",
-    topic: "Aritmética Modular",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 3,
+    "explanation": "Simplificación booleana (Álgebra booleana y circuitos): Reduce expresiones mediante identidades para disminuir condiciones redundantes o puertas físicas.",
+    "topic": "Álgebra booleana y circuitos",
+    "difficulty": "básico"
   },
   {
-    id: "math-05",
-    collectionId: "mathematics",
-    question: "¿Qué enuncia el Pequeño Teorema de Fermat para un número primo $p$ y un entero $a$ que no es divisible por $p$?",
-    options: [
-      "$a^{p-1} \\equiv 1 \\pmod p$",
-      "$a^p \\equiv p \\pmod a$",
-      "$a^{p+1} \\equiv 0 \\pmod p$",
-      "$p^{a-1} \\equiv a \\pmod p$"
+    "id": "mathematics-q-05",
+    "collectionId": "mathematics",
+    "question": "Respecto a álgebra booleana y circuitos en Matemáticas para programación, ¿cuál es el propósito de «Puertas y circuitos combinacionales»?",
+    "options": [
+      "Componen funciones booleanas cuya salida depende únicamente de la entrada presente.",
+      "Distribuye negaciones sobre conjunciones y disyunciones sin alterar el valor lógico.",
+      "Codifica secuencias como coeficientes de series para operar y resolver conteos.",
+      "Factoriza cualquier matriz para analizar rango, aproximación y condicionamiento."
     ],
-    correctAnswerIndex: 0,
-    explanation: "El Pequeño Teorema de Fermat establece que si $p$ es primo y $\\gcd(a, p) = 1$, entonces $a^{p-1} \\equiv 1 \\pmod p$. Multiplicando por $a$, $a^p \\equiv a \\pmod p$ para todo entero $a$. Es la base del test de primalidad de Fermat.",
-    topic: "Teoría de Números",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 0,
+    "explanation": "Puertas y circuitos combinacionales (Álgebra booleana y circuitos): Componen funciones booleanas cuya salida depende únicamente de la entrada presente.",
+    "topic": "Álgebra booleana y circuitos",
+    "difficulty": "básico"
   },
   {
-    id: "math-06",
-    collectionId: "mathematics",
-    question: "En combinatoria, ¿cuál es la fórmula de recurrencia que gobierna la construcción del Triángulo de Pascal para los coeficientes binomiales $\\binom{n}{k}$?",
-    options: [
-      "$\\binom{n}{k} = \\binom{n-1}{k-1} + \\binom{n-1}{k}$",
-      "$\\binom{n}{k} = \\binom{n-1}{k} \\cdot \\binom{n}{k-1}$",
-      "$\\binom{n}{k} = \\binom{n-2}{k} + 2\\binom{n-1}{k}$",
-      "$\\binom{n}{k} = \\frac{n}{k} \\binom{n}{k-1}$"
+    "id": "mathematics-q-06",
+    "collectionId": "mathematics",
+    "question": "En Matemáticas para programación (Teoría de números), ¿qué función técnica cumple «Divisibilidad y máximo común divisor»?",
+    "options": [
+      "Agrupa enteros por residuos y hace seguras operaciones cíclicas bajo un módulo fijo al evaluar.",
+      "Caracteriza factores compartidos y normaliza proporciones enteras mediante restos sucesivos.",
+      "Calcula coeficientes de Bézout y permite obtener inversos modulares cuando existen al operar.",
+      "Reconstruye un valor a partir de residuos con módulos coprimos y una solución modular única."
     ],
-    correctAnswerIndex: 0,
-    explanation: "La identidad de Pascal $\\binom{n}{k} = \\binom{n-1}{k-1} + \\binom{n-1}{k}$ refleja la elección combinatoria de considerar un elemento distinguido: o bien se incluye en el grupo (quedando elegir $k-1$ de los $n-1$), o se excluye (eligiendo $k$ de los $n-1$).",
-    topic: "Combinatoria",
-    difficulty: "básico"
+    "correctAnswerIndex": 1,
+    "explanation": "Divisibilidad y máximo común divisor (Teoría de números): Caracteriza factores compartidos y normaliza proporciones enteras mediante restos sucesivos.",
+    "topic": "Teoría de números",
+    "difficulty": "básico"
   },
   {
-    id: "math-07",
-    collectionId: "mathematics",
-    question: "En teoría de grafos, ¿qué establece el Lema del Apretón de Manos (Handshaking Lemma) para cualquier grafo finito no dirigido $G = (V, E)$?",
-    options: [
-      "La suma de los grados de todos los vértices es igual exactamente al doble del número de aristas: $\\sum_{v \\in V} \\deg(v) = 2|E|$.",
-      "El número de vértices con grado par debe ser siempre mayor que el número de vértices con grado impar.",
-      "Todo grafo conexo posee un número primo de caminos hamiltonianos.",
-      "El diámetro del grafo es menor o igual a $\\log_2 |V|$."
+    "id": "mathematics-q-07",
+    "collectionId": "mathematics",
+    "question": "Dentro de Matemáticas para programación, ¿cómo opera el mecanismo de «Algoritmo extendido de Euclides» en teoría de números?",
+    "options": [
+      "Agrupa enteros por residuos y hace seguras operaciones cíclicas bajo un módulo fijo.",
+      "Codifica secuencias como coeficientes de series para operar y resolver conteos.",
+      "Calcula coeficientes de Bézout y permite obtener inversos modulares cuando existen.",
+      "Factoriza cualquier matriz para analizar rango, aproximación y condicionamiento."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Dado que cada arista incide en exactamente dos vértices y contribuye con 1 al grado de cada uno, la suma de los grados cuenta cada arista dos veces. Un corolario directo es que todo grafo contiene un número par de vértices con grado impar.",
-    topic: "Teoría de Grafos",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 2,
+    "explanation": "Algoritmo extendido de Euclides (Teoría de números): Calcula coeficientes de Bézout y permite obtener inversos modulares cuando existen.",
+    "topic": "Teoría de números",
+    "difficulty": "básico"
   },
   {
-    id: "math-08",
-    collectionId: "mathematics",
-    question: "¿Qué condición necesaria y suficiente demostró Leonhard Euler para que un grafo conexo no dirigido posea un Ciclo Euleriano (un circuito cerrado que recorre cada arista exactamente una vez)?",
-    options: [
-      "Todos los vértices del grafo deben tener un grado estrictamente par.",
-      "El grafo debe ser un árbol binario completo sin ciclos impares.",
-      "El grafo debe tener exactamente dos vértices con grado impar.",
-      "El número de vértices debe ser una potencia de 2."
+    "id": "mathematics-q-08",
+    "collectionId": "mathematics",
+    "question": "Al trabajar con Matemáticas para programación, ¿qué responsabilidad define a «Aritmética modular»?",
+    "options": [
+      "Calcula coeficientes de Bézout y permite obtener inversos modulares cuando existen al operar.",
+      "Codifica secuencias como coeficientes de series para operar y resolver conteos al operar.",
+      "Factoriza cualquier matriz para analizar rango, aproximación y condicionamiento.",
+      "Agrupa enteros por residuos y hace seguras operaciones cíclicas bajo un módulo fijo."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Euler demostró que para entrar y salir de cada vértice sin repetir aristas, cada vértice visitado debe tener tantas aristas de entrada como de salida, lo que exige que todos los vértices tengan grado par en un grafo no dirigido conexo.",
-    topic: "Teoría de Grafos",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 3,
+    "explanation": "Aritmética modular (Teoría de números): Agrupa enteros por residuos y hace seguras operaciones cíclicas bajo un módulo fijo.",
+    "topic": "Teoría de números",
+    "difficulty": "básico"
   },
   {
-    id: "math-09",
-    collectionId: "mathematics",
-    question: "En álgebra lineal, ¿cuál es el significado geométrico del valor absoluto del determinante de una matriz cuadrada de orden $3 \\times 3$, $|\\det(A)|$?",
-    options: [
-      "La suma de las longitudes euclidianas de los tres vectores columna.",
-      "El volumen del paralelepípedo orientado formado por los tres vectores columna (o fila) en el espacio tridimensional $\\mathbb{R}^3$.",
-      "El ángulo de rotación entre el eje X y el eigenvector principal.",
-      "La distancia de Chebyshev al plano nulo ortogonal."
+    "id": "mathematics-q-09",
+    "collectionId": "mathematics",
+    "question": "En la arquitectura de Matemáticas para programación, ¿qué caracteriza técnicamente a «Números primos y factorización»?",
+    "options": [
+      "Explica la descomposición única que sostiene divisores, hashes y varios sistemas criptográficos.",
+      "Caracteriza factores compartidos y normaliza proporciones enteras mediante restos sucesivos.",
+      "Reconstruye un valor a partir de residuos con módulos coprimos y una solución modular única.",
+      "Agrupa enteros por residuos y hace seguras operaciones cíclicas bajo un módulo fijo al operar."
     ],
-    correctAnswerIndex: 1,
-    explanation: "Geométricamente, el determinante representa el factor de escala de volumen introducido por la transformación lineal. En 2D representa el área del paralelogramo y en 3D el volumen del paralelepípedo. Un determinante nulo indica colapso a una dimensión menor.",
-    topic: "Álgebra Lineal",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 0,
+    "explanation": "Números primos y factorización (Teoría de números): Explica la descomposición única que sostiene divisores, hashes y varios sistemas criptográficos.",
+    "topic": "Teoría de números",
+    "difficulty": "básico"
   },
   {
-    id: "math-10",
-    collectionId: "mathematics",
-    question: "Para dos vectores unitarios normalizados $\\mathbf{u}$ y $\\mathbf{v}$, ¿a qué equivale directamente su producto punto (dot product) $\\mathbf{u} \\cdot \\mathbf{v}$?",
-    options: [
-      "A la distancia euclidiana al cuadrado entre ambos vectores.",
-      "Al coseno del ángulo $\\theta$ formado entre ambos vectores (Similitud Coseno).",
-      "Al seno del ángulo $\\theta$ correspondiente al área de proyección ortogonal.",
-      "A la norma infinita del vector residual normalizado."
+    "id": "mathematics-q-10",
+    "collectionId": "mathematics",
+    "question": "Respecto a teoría de números en Matemáticas para programación, ¿cuál es el propósito de «Teorema chino del resto»?",
+    "options": [
+      "Agrupa enteros por residuos y hace seguras operaciones cíclicas bajo un módulo fijo al evaluar.",
+      "Reconstruye un valor a partir de residuos con módulos coprimos y una solución modular única.",
+      "Calcula coeficientes de Bézout y permite obtener inversos modulares cuando existen al operar.",
+      "Caracteriza factores compartidos y normaliza proporciones enteras mediante restos sucesivos."
     ],
-    correctAnswerIndex: 1,
-    explanation: "Dado que $\\mathbf{u} \\cdot \\mathbf{v} = \\|\\mathbf{u}\\| \\|\\mathbf{v}\\| \\cos(\\theta)$, si $\\|\\mathbf{u}\\| = \\|\\mathbf{v}\\| = 1$, entonces $\\mathbf{u} \\cdot \\mathbf{v} = \\cos(\\theta)$. Es la métrica estándar de similitud semántica en embeddings de procesamiento de lenguaje natural y motores de búsqueda vectorial.",
-    topic: "Álgebra Lineal Computacional",
-    difficulty: "básico"
+    "correctAnswerIndex": 1,
+    "explanation": "Teorema chino del resto (Teoría de números): Reconstruye un valor a partir de residuos con módulos coprimos y una solución modular única.",
+    "topic": "Teoría de números",
+    "difficulty": "básico"
   },
   {
-    id: "math-11",
-    collectionId: "mathematics",
-    question: "Si una matriz cuadrada $A$ de tamaño $n \\times n$ tiene un autovalor (eigenvalue) $\\lambda$ con autovector asociado $\\mathbf{v} \\neq \\mathbf{0}$, ¿qué ecuación matricial se satisface por definición?",
-    options: [
-      "$A \\mathbf{v} = \\lambda \\mathbf{v}$",
-      "$A \\mathbf{v} = \\mathbf{v}^T \\lambda$",
-      "$A^T A = \\lambda I$",
-      "$\\det(A - \\mathbf{v} I) = \\lambda$"
+    "id": "mathematics-q-11",
+    "collectionId": "mathematics",
+    "question": "En Matemáticas para programación (Combinatoria aplicada), ¿qué función técnica cumple «Permutaciones y combinaciones»?",
+    "options": [
+      "Expresa un conteo mediante casos menores y requieren bases que aseguren terminación al evaluar.",
+      "Codifica secuencias como coeficientes de series para operar y resolver conteos en ejecución.",
+      "Cuenta selecciones considerando si importan orden, repetición y disponibilidad de elementos.",
+      "Cambia entre componentes rectangulares y magnitud-ángulo cuidando cuadrantes y origen al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Un eigenvector $\\mathbf{v}$ es un vector cuya dirección no se altera bajo la transformación lineal $A$, siendo únicamente escalado por el factor $\\lambda$, lo que equivale algebraicamente a $(A - \\lambda I)\\mathbf{v} = \\mathbf{0}$ con $\\det(A - \\lambda I) = 0$.",
-    topic: "Álgebra Lineal",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 2,
+    "explanation": "Permutaciones y combinaciones (Combinatoria aplicada): Cuenta selecciones considerando si importan orden, repetición y disponibilidad de elementos.",
+    "topic": "Combinatoria aplicada",
+    "difficulty": "básico"
   },
   {
-    id: "math-12",
-    collectionId: "mathematics",
-    question: "En teoría de la probabilidad, ¿cuál es el enunciado formal del Teorema de Bayes para calcular la probabilidad a posteriori $P(A|B)$?",
-    options: [
-      "$P(A|B) = \\frac{P(B|A) P(A)}{P(B)}$",
-      "$P(A|B) = \\frac{P(A \\cup B)}{P(A) P(B)}$",
-      "$P(A|B) = P(A) - P(B) + P(A \\cap B)$",
-      "$P(A|B) = \\frac{P(A) + P(B)}{1 - P(A \\cap B)}$"
+    "id": "mathematics-q-12",
+    "collectionId": "mathematics",
+    "question": "Dentro de Matemáticas para programación, ¿cómo opera el mecanismo de «Principio del palomar» en combinatoria aplicada?",
+    "options": [
+      "Cuenta selecciones considerando si importan orden, repetición y disponibilidad de elementos al operar.",
+      "Expresa un conteo mediante casos menores y requieren bases que aseguren terminación de forma clara.",
+      "Codifica secuencias como coeficientes de series para operar y resolver conteos de modo predecible.",
+      "Garantiza colisiones cuando más objetos ocupan menos categorías, incluso sin localizar cuál ocurre."
     ],
-    correctAnswerIndex: 0,
-    explanation: "El Teorema de Bayes actualiza la creencia previa $P(A)$ ante la nueva evidencia observada $B$ multiplicando por la verosimilitud (likelihood) $P(B|A)$ y normalizando por la probabilidad marginal de la evidencia $P(B)$.",
-    topic: "Probabilidad y Estadística",
-    difficulty: "básico"
+    "correctAnswerIndex": 3,
+    "explanation": "Principio del palomar (Combinatoria aplicada): Garantiza colisiones cuando más objetos ocupan menos categorías, incluso sin localizar cuál ocurre.",
+    "topic": "Combinatoria aplicada",
+    "difficulty": "básico"
   },
   {
-    id: "math-13",
-    collectionId: "mathematics",
-    question: "¿Qué define formalmente a la Varianza $\\mathrm{Var}(X)$ de una variable aleatoria $X$ con esperanza matemática $\\mu = E[X]$?",
-    options: [
-      "$\\mathrm{Var}(X) = E[X] - \\min(X)$",
-      "$\\mathrm{Var}(X) = E[(X - \\mu)^2] = E[X^2] - (E[X])^2$",
-      "$\\mathrm{Var}(X) = \\frac{E[X]}{\\sqrt{n}}$",
-      "$\\mathrm{Var}(X) = \\int_{-\\infty}^\\infty (x - \\mu) dx$"
+    "id": "mathematics-q-13",
+    "collectionId": "mathematics",
+    "question": "Al trabajar con Matemáticas para programación, ¿qué responsabilidad define a «Funciones generadoras»?",
+    "options": [
+      "Codifica secuencias como coeficientes de series para operar y resolver conteos al operar.",
+      "Expresa un conteo mediante casos menores y requieren bases que aseguren terminación.",
+      "Componen funciones booleanas cuya salida depende únicamente de la entrada presente.",
+      "Calcula coeficientes de Bézout y permite obtener inversos modulares cuando existen."
     ],
-    correctAnswerIndex: 1,
-    explanation: "La varianza mide la dispersión cuadrática esperada respecto a la media: $\\mathrm{Var}(X) = E[(X - E[X])^2]$. Desarrollando algebraicamente resulta en la conocida identidad computacional $E[X^2] - (E[X])^2$.",
-    topic: "Probabilidad y Estadística",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 0,
+    "explanation": "Funciones generadoras (Combinatoria aplicada): Codifican secuencias como coeficientes de series para operar y resolver conteos.",
+    "topic": "Combinatoria aplicada",
+    "difficulty": "básico"
   },
   {
-    id: "math-14",
-    collectionId: "mathematics",
-    question: "¿Qué garantiza el Teorema Central del Límite (TCL) para la suma o media muestral de $n$ variables aleatorias independientes e idénticamente distribuidas (i.i.d.) con media $\\mu$ y varianza finita $\\sigma^2$?",
-    options: [
-      "Que todas las variables individuales convergen a valores enteros deterministas.",
-      "Que cuando $n \\to \\infty$, la distribución de la media muestral estandarizada $\\frac{\\bar{X}_n - \\mu}{\\sigma / \\sqrt{n}}$ converge en distribución a una Distribución Normal estándar $\\mathcal{N}(0, 1)$, independientemente de la forma de la distribución original.",
-      "Que la varianza de la suma de variables crece de forma exponencial $O(2^n)$.",
-      "Que la mediana de la muestra será exactamente igual a la moda de la población."
+    "id": "mathematics-q-14",
+    "collectionId": "mathematics",
+    "question": "En la arquitectura de Matemáticas para programación, ¿qué caracteriza técnicamente a «Recurrencias combinatorias»?",
+    "options": [
+      "Codifica secuencias como coeficientes de series para operar y resolver conteos al operar.",
+      "Expresa un conteo mediante casos menores y requieren bases que aseguren terminación.",
+      "Factoriza cualquier matriz para analizar rango, aproximación y condicionamiento.",
+      "Determina si un grafo puede dibujarse sin cruces y restringe su densidad posible."
     ],
-    correctAnswerIndex: 1,
-    explanation: "El Teorema Central del Límite es uno de los pilares de la estadística inferencial y el aprendizaje automático, explicando por qué los errores y sumas de múltiples efectos aleatorios independientes tienden naturalmente a una curva gaussiana.",
-    topic: "Probabilidad y Estadística",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 1,
+    "explanation": "Recurrencias combinatorias (Combinatoria aplicada): Expresan un conteo mediante casos menores y requieren bases que aseguren terminación.",
+    "topic": "Combinatoria aplicada",
+    "difficulty": "básico"
   },
   {
-    id: "math-15",
-    collectionId: "mathematics",
-    question: "En cálculo multivariable aplicado a optimización y Machine Learning, ¿qué representa el vector Gradiente $\\nabla f(\\mathbf{x})$ de una función escalar diferenciable $f: \\mathbb{R}^n \\to \\mathbb{R}$?",
-    options: [
-      "El vector de segundas derivadas cruzadas que cuantifica la curvatura local.",
-      "El vector de derivadas parciales que apunta en la dirección de máximo crecimiento instantáneo de la función, cuya magnitud representa la tasa de dicho incremento.",
-      "El punto donde la función se anula obligatoriamente satisfaciendo $f(\\mathbf{x}) = 0$.",
-      "La proyección ortogonal del hiperplano secante sobre el eje coordenado principal."
+    "id": "mathematics-q-15",
+    "collectionId": "mathematics",
+    "question": "Respecto a teoría de grafos en Matemáticas para programación, ¿cuál es el propósito de «Grado, camino y conectividad»?",
+    "options": [
+      "Determina si un grafo puede dibujarse sin cruces y restringe su densidad posible al operar.",
+      "Caracterizan grafos acíclicos donde cada par conectado posee un camino simple único.",
+      "Relaciona incidencias y recorridos para determinar qué vértices pueden alcanzarse.",
+      "Codifica secuencias como coeficientes de series para operar y resolver conteos."
     ],
-    correctAnswerIndex: 1,
-    explanation: "El gradiente $\\nabla f = \\left[ \\frac{\\partial f}{\\partial x_1}, \\dots, \\frac{\\partial f}{\\partial x_n} \\right]^T$ indica la dirección de máxima pendiente positiva. Por eso, los algoritmos de optimización restan el gradiente ($-\\eta \\nabla f$) para descender hacia mínimos locales (Gradient Descent).",
-    topic: "Cálculo y Optimización",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 2,
+    "explanation": "Grado, camino y conectividad (Teoría de grafos): Relaciona incidencias y recorridos para determinar qué vértices pueden alcanzarse.",
+    "topic": "Teoría de grafos",
+    "difficulty": "básico"
   },
   {
-    id: "math-16",
-    collectionId: "mathematics",
-    question: "¿Qué información fundamental sobre una función multivariable proporciona su Matriz Hessiana $H(f)$ en un punto crítico donde $\\nabla f(\\mathbf{x}) = \\mathbf{0}$?",
-    options: [
-      "Determina la convexidad local y la naturaleza del punto crítico: si $H$ es definida positiva es un mínimo local, si es definida negativa es un máximo local, y si tiene autovalores de signos mixtos es un punto de silla (saddle point).",
-      "Calcula el número de iteraciones requeridas para que el algoritmo converja con tolerancia $\\epsilon = 10^{-6}$.",
-      "Permite calcular la integral de línea en torno al borde de Lipschitz del dominio.",
-      "Transforma la función no lineal en una distribución discreta de Poisson."
+    "id": "mathematics-q-16",
+    "collectionId": "mathematics",
+    "question": "En Matemáticas para programación (Teoría de grafos), ¿qué función técnica cumple «Árboles y bosques»?",
+    "options": [
+      "Determina si un grafo puede dibujarse sin cruces y restringe su densidad posible al operar.",
+      "Relaciona incidencias y recorridos para determinar qué vértices pueden alcanzarse.",
+      "Codifica secuencias como coeficientes de series para operar y resolver conteos al operar.",
+      "Caracterizan grafos acíclicos donde cada par conectado posee un camino simple único."
     ],
-    correctAnswerIndex: 0,
-    explanation: "La matriz Hessiana contiene las segundas derivadas parciales $\\frac{\\partial^2 f}{\\partial x_i \\partial x_j}$. Su espectro de autovalores describe la curvatura local: todos positivos implican cuenco hacia arriba (mínimo), negativos implican cuenco hacia abajo (máximo), y mixtos denotan punto de silla.",
-    topic: "Cálculo y Optimización",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 3,
+    "explanation": "Árboles y bosques (Teoría de grafos): Caracterizan grafos acíclicos donde cada par conectado posee un camino simple único.",
+    "topic": "Teoría de grafos",
+    "difficulty": "básico"
   },
   {
-    id: "math-17",
-    collectionId: "mathematics",
-    question: "¿Cuál es la expresión matemática de la Entropía de Shannon $H(X)$ para una fuente discreta de información con distribución de probabilidad $P(X)$?",
-    options: [
-      "$H(X) = -\\sum_{x \\in \\mathcal{X}} P(x) \\log_2 P(x)$",
-      "$H(X) = \\sum_{x \\in \\mathcal{X}} (P(x))^2$",
-      "$H(X) = \\frac{1}{n} \\sum_{i=1}^n \\sqrt{P(x_i)}$",
-      "$H(X) = \\prod_{x \\in \\mathcal{X}} \\log_{10}(1 - P(x))$"
+    "id": "mathematics-q-17",
+    "collectionId": "mathematics",
+    "question": "Dentro de Matemáticas para programación, ¿cómo opera el mecanismo de «Grafos bipartitos» en teoría de grafos?",
+    "options": [
+      "Separa vértices en dos partes y permite detectar ciclos impares o modelar asignaciones.",
+      "Determina si un grafo puede dibujarse sin cruces y restringe su densidad posible.",
+      "Relaciona incidencias y recorridos para determinar qué vértices pueden alcanzarse.",
+      "Caracterizan grafos acíclicos donde cada par conectado posee un camino simple único."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Claude Shannon (1948) definió la entropía de información como la esperanza de la autoinformación ($I(x) = -\\log_2 P(x)$), cuantificando la incertidumbre promedio o la tasa mínima teórica de compresión sin pérdida (en bits) por símbolo.",
-    topic: "Teoría de la Información",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 0,
+    "explanation": "Grafos bipartitos (Teoría de grafos): Separan vértices en dos partes y permiten detectar ciclos impares o modelar asignaciones.",
+    "topic": "Teoría de grafos",
+    "difficulty": "intermedio"
   },
   {
-    id: "math-18",
-    collectionId: "mathematics",
-    question: "En aprendizaje automático, ¿qué mide rigurosamente la Divergencia de Kullback-Leibler (KL Divergence) $D_{KL}(P \\parallel Q)$ entre dos distribuciones de probabilidad $P$ y $Q$?",
-    options: [
-      "La distancia euclidiana simétrica en el espacio de Hilbert entre las dos funciones.",
-      "La cantidad de información o sorpresa adicional que se incurre al codificar eventos muestreados de la distribución real $P$ utilizando un modelo aproximado con distribución $Q$.",
-      "La correlación lineal de Pearson normalizada en el intervalo $[-1, 1]$.",
-      "El número de puntos donde ambas funciones de densidad de probabilidad se intersecan exactamente."
+    "id": "mathematics-q-18",
+    "collectionId": "mathematics",
+    "question": "Al trabajar con Matemáticas para programación, ¿qué responsabilidad define a «Planaridad»?",
+    "options": [
+      "Caracterizan grafos acíclicos donde cada par conectado posee un camino simple único al operar.",
+      "Determina si un grafo puede dibujarse sin cruces y restringe su densidad posible al operar.",
+      "Separa vértices en dos partes y permite detectar ciclos impares o modelar asignaciones.",
+      "Relaciona incidencias y recorridos para determinar qué vértices pueden alcanzarse al operar."
     ],
-    correctAnswerIndex: 1,
-    explanation: "$D_{KL}(P \\parallel Q) = \\sum_x P(x) \\log \\frac{P(x)}{Q(x)}$. Es no negativa ($D_{KL} \\ge 0$ por la desigualdad de Gibbs) y asimétrica ($D_{KL}(P \\parallel Q) \\neq D_{KL}(Q \\parallel P)$), constituyendo una pseudo-distancia que sustenta la función de pérdida Cross-Entropy.",
-    topic: "Teoría de la Información",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 1,
+    "explanation": "Planaridad (Teoría de grafos): Determina si un grafo puede dibujarse sin cruces y restringe su densidad posible.",
+    "topic": "Teoría de grafos",
+    "difficulty": "intermedio"
   },
   {
-    id: "math-19",
-    collectionId: "mathematics",
-    question: "¿Qué establece la Fórmula Poliedral de Euler ($V - E + F = 2$) para cualquier grafo conexo planar?",
-    options: [
-      "Que el número de vértices ($V$) menos aristas ($E$) más regiones o caras delimitadas ($F$) es invariablemente igual a 2.",
-      "Que todo grafo conexo puede ser coloreado con un máximo de 2 colores sin adyacencias idénticas.",
-      "Que el número de ciclos independientes es igual al factorial del número de vértices.",
-      "Que la densidad del grafo no puede exceder $2V$ aristas bajo ninguna topología."
+    "id": "mathematics-q-19",
+    "collectionId": "mathematics",
+    "question": "En la arquitectura de Matemáticas para programación, ¿qué caracteriza técnicamente a «Coloración de grafos»?",
+    "options": [
+      "Separa vértices en dos partes y permite detectar ciclos impares o modelar asignaciones de modo predecible.",
+      "Caracterizan grafos acíclicos donde cada par conectado posee un camino simple único de modo predecible.",
+      "Asigna recursos incompatibles a colores distintos minimizando conflictos y, cuando es posible, cantidad.",
+      "Reescriben proposiciones como conjunciones o disyunciones canónicas útiles para análisis y solvers al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "La relación de Euler $V - E + F = 2$ es un invariante topológico de grafos planares conexos en el plano (o esfera), del cual se deriva que en cualquier grafo planar simple con $V \\ge 3$, $E \\le 3V - 6$, probando que los grafos planares son inherentemente dispersos.",
-    topic: "Matemática Discreta y Topología",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 2,
+    "explanation": "Coloración de grafos (Teoría de grafos): Asigna recursos incompatibles a colores distintos minimizando conflictos y, cuando es posible, cantidad.",
+    "topic": "Teoría de grafos",
+    "difficulty": "intermedio"
   },
   {
-    id: "math-20",
-    collectionId: "mathematics",
-    question: "En el sistema criptográfico RSA, si elegimos dos primos gigantes $p$ y $q$ y computamos el módulo $n = p \\cdot q$, ¿cuál es el valor de la función totiente de Euler $\\phi(n)$ utilizada para generar las claves pública ($e$) y privada ($d$)?",
-    options: [
-      "$\\phi(n) = p + q - 1$",
-      "$\\phi(n) = (p - 1)(q - 1)$",
-      "$\\phi(n) = \\frac{p \\cdot q}{2}$",
-      "$\\phi(n) = p^2 - q^2$"
+    "id": "mathematics-q-20",
+    "collectionId": "mathematics",
+    "question": "Respecto a probabilidad discreta en Matemáticas para programación, ¿cuál es el propósito de «Espacios muestrales»?",
+    "options": [
+      "Resumen centro y dispersión sin afirmar que un resultado individual tomará esos valores al operar.",
+      "Modela transiciones cuyo próximo estado depende del actual mediante una matriz estocástica.",
+      "Componen funciones booleanas cuya salida depende únicamente de la entrada presente al operar.",
+      "Define resultados posibles y eventos medibles antes de asignar probabilidades coherentes."
     ],
-    correctAnswerIndex: 1,
-    explanation: "Dado que $\\phi$ es multiplicativa y para un primo $p$, $\\phi(p) = p - 1$, para el producto de dos primos coprimos distintos $n = pq$ se cumple que $\\phi(n) = \\phi(p)\\phi(q) = (p - 1)(q - 1)$. La clave privada $d$ satisface $e \\cdot d \\equiv 1 \\pmod{\\phi(n)}$.",
-    topic: "Criptografía y Teoría de Números",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 3,
+    "explanation": "Espacios muestrales (Probabilidad discreta): Define resultados posibles y eventos medibles antes de asignar probabilidades coherentes.",
+    "topic": "Probabilidad discreta",
+    "difficulty": "intermedio"
   },
   {
-    id: "math-21",
-    collectionId: "mathematics",
-    question: "¿Qué postula el Principio del Palomar (Pigeonhole Principle) formulado formalmente por Dirichlet?",
-    options: [
-      "Si $n$ palomas se distribuyen en $k$ casilleros y $n > k$, entonces al menos un casillero debe contener estrictamente $\\lceil n/k \\rceil$ o más palomas.",
-      "Todo número entero positivo mayor que 1 puede factorizarse de manera única como producto de primos.",
-      "El número de combinaciones de $n$ elementos tomados de $k$ en $k$ es siempre divisible por $k!$.",
-      "Una red de comunicaciones con $k$ nodos puede transmitir como máximo $k^2$ paquetes por segundo."
+    "id": "mathematics-q-21",
+    "collectionId": "mathematics",
+    "question": "En Matemáticas para programación (Probabilidad discreta), ¿qué función técnica cumple «Teorema de Bayes»?",
+    "options": [
+      "Actualiza una creencia con evidencia combinando verosimilitud, prior y probabilidad marginal.",
+      "Resumen centro y dispersión sin afirmar que un resultado individual tomará esos valores.",
+      "Define resultados posibles y eventos medibles antes de asignar probabilidades coherentes.",
+      "Modela transiciones cuyo próximo estado depende del actual mediante una matriz estocástica."
     ],
-    correctAnswerIndex: 0,
-    explanation: "El principio del palomar garantiza por contradicción que no es posible que todos los casilleros tengan como máximo $\\lfloor (n-1)/k \\rfloor$ objetos sin que la suma sea menor que $n$. Se usa para demostrar colisiones en funciones hash, existencia de subsecuencias monótonas y propiedades combinatorias.",
-    topic: "Combinatoria",
-    difficulty: "básico"
+    "correctAnswerIndex": 0,
+    "explanation": "Teorema de Bayes (Probabilidad discreta): Actualiza una creencia con evidencia combinando verosimilitud, prior y probabilidad marginal.",
+    "topic": "Probabilidad discreta",
+    "difficulty": "intermedio"
   },
   {
-    id: "math-22",
-    collectionId: "mathematics",
-    question: "En una relación matemática binaria $\\mathcal{R}$ sobre un conjunto $A$, ¿qué tres propiedades debe satisfacer para ser catalogada como una 'Relación de Equivalencia'?",
-    options: [
-      "Reflexiva, Simétrica y Transitiva.",
-      "Irreflexiva, Antisimétrica y Convexa.",
-      "Biyectiva, Inyectiva y Sobreyectiva.",
-      "Idempotente, Asociativa y Distributiva."
+    "id": "mathematics-q-22",
+    "collectionId": "mathematics",
+    "question": "Dentro de Matemáticas para programación, ¿cómo opera el mecanismo de «Esperanza y varianza» en probabilidad discreta?",
+    "options": [
+      "Define resultados posibles y eventos medibles antes de asignar probabilidades coherentes.",
+      "Resumen centro y dispersión sin afirmar que un resultado individual tomará esos valores.",
+      "Relaciona incidencias y recorridos para determinar qué vértices pueden alcanzarse al operar.",
+      "Mide la probabilidad de detectar un efecto real bajo tamaño, ruido y umbral dados al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Una relación de equivalencia debe cumplir: $\\forall a \\in A, a \\mathcal{R} a$ (reflexiva); si $a \\mathcal{R} b \\implies b \\mathcal{R} a$ (simétrica); y si $a \\mathcal{R} b \\land b \\mathcal{R} c \\implies a \\mathcal{R} c$ (transitiva). Particiona al conjunto $A$ en clases de equivalencia disjuntas.",
-    topic: "Teoría de Conjuntos y Relaciones",
-    difficulty: "básico"
+    "correctAnswerIndex": 1,
+    "explanation": "Esperanza y varianza (Probabilidad discreta): Resumen centro y dispersión sin afirmar que un resultado individual tomará esos valores.",
+    "topic": "Probabilidad discreta",
+    "difficulty": "intermedio"
   },
   {
-    id: "math-23",
-    collectionId: "mathematics",
-    question: "En aritmética modular, ¿qué garantiza el Teorema Chino del Resto (Chinese Remainder Theorem - CRT)?",
-    options: [
-      "Que todo sistema de congruencias lineales $x \\equiv a_i \\pmod{m_i}$ tiene una solución única módulo $M = \\prod m_i$, siempre que los módulos $m_1, m_2, \\dots, m_k$ sean coprimos dos a dos.",
-      "Que cualquier polinomio de grado $n$ tiene exactamente $n$ raíces complejas.",
-      "Que el tiempo para calcular matrices modulares se reduce a $O(\\log n)$ usando multiplicación de Strassen.",
-      "Que los números primos terminados en 1, 3, 7 y 9 se distribuyen con igual densidad asintótica."
+    "id": "mathematics-q-23",
+    "collectionId": "mathematics",
+    "question": "Al trabajar con Matemáticas para programación, ¿qué responsabilidad define a «Cadenas de Markov»?",
+    "options": [
+      "Resumen centro y dispersión sin afirmar que un resultado individual tomará esos valores al operar.",
+      "Define resultados posibles y eventos medibles antes de asignar probabilidades coherentes.",
+      "Modela transiciones cuyo próximo estado depende del actual mediante una matriz estocástica.",
+      "Actualiza una creencia con evidencia combinando verosimilitud, prior y probabilidad marginal."
     ],
-    correctAnswerIndex: 0,
-    explanation: "El CRT permite descomponer cómputos con enteros gigantescos en sistemas de módulos más pequeños e independientes donde $\\gcd(m_i, m_j) = 1$, procesarlos en paralelo y luego reconstruir la solución única módulo el producto total, acelerando la evaluación de RSA.",
-    topic: "Aritmética Modular",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 2,
+    "explanation": "Cadenas de Markov (Probabilidad discreta): Modelan transiciones cuyo próximo estado depende del actual mediante una matriz estocástica.",
+    "topic": "Probabilidad discreta",
+    "difficulty": "intermedio"
   },
   {
-    id: "math-24",
-    collectionId: "mathematics",
-    question: "¿En qué consiste la Descomposición en Valores Singulares (SVD - Singular Value Decomposition) de una matriz real arbitraria $A$ de dimensiones $m \\times n$?",
-    options: [
-      "Factorizar $A$ como $A = U \\Sigma V^T$, donde $U$ y $V$ son matrices ortogonales y $\\Sigma$ es una matriz diagonal con los valores singulares ordenados en forma no creciente.",
-      "Invertir la matriz sumando la matriz identidad multiplicada por una constante de regularización $\\lambda$.",
-      "Separar la matriz en su parte triangular inferior y triangular superior mediante eliminación gaussiana.",
-      "Proyectar la matriz en un hipercubo de Hilbert de dimensión infinita."
+    "id": "mathematics-q-24",
+    "collectionId": "mathematics",
+    "question": "En la arquitectura de Matemáticas para programación, ¿qué caracteriza técnicamente a «Muestreo y sesgo»?",
+    "options": [
+      "Cuantifican incompatibilidad con un modelo nulo sin convertir un p-valor en probabilidad causal al operar.",
+      "Controla falsos positivos cuando muchas hipótesis se prueban sobre los mismos datos sin perder estado.",
+      "Explica la descomposición única que sostiene divisores, hashes y varios sistemas criptográficos al operar.",
+      "Evalúa si el mecanismo de selección representa la población o favorece sistemáticamente ciertos casos."
     ],
-    correctAnswerIndex: 0,
-    explanation: "SVD descompone cualquier matriz en rotación ($V^T$), escalado ortogonal ($\\Sigma$) y segunda rotación ($U$). Constituye la base teórica de Principal Component Analysis (PCA), compresión de imágenes, filtrado colaborativo en sistemas de recomendación y pseudo-inversas.",
-    topic: "Álgebra Lineal Avanzada",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 3,
+    "explanation": "Muestreo y sesgo (Inferencia estadística): Evalúa si el mecanismo de selección representa la población o favorece sistemáticamente ciertos casos.",
+    "topic": "Inferencia estadística",
+    "difficulty": "intermedio"
   },
   {
-    id: "math-25",
-    collectionId: "mathematics",
-    question: "En la geometría de Curvas Elípticas sobre cuerpos finitos $\\mathbb{F}_p$ ($y^2 \\equiv x^3 + ax + b \\pmod p$), ¿qué estructura matemática forman los puntos racionales de la curva junto con el punto del infinito $\\mathcal{O}$?",
-    options: [
-      "Un Grupo Abeliano (conmutativo) bajo la operación de adición de puntos definida por el método de la cuerda y la tangente.",
-      "Un espacio vectorial no lineal de curvatura negativa constante.",
-      "Un anillo no conmutativo con divisores de cero periódicos.",
-      "Un semigrupo asimétrico sin elemento neutro invertible."
+    "id": "mathematics-q-25",
+    "collectionId": "mathematics",
+    "question": "Respecto a inferencia estadística en Matemáticas para programación, ¿cuál es el propósito de «Estimación puntual»?",
+    "options": [
+      "Calcula un parámetro con un estadístico y acompaña el valor con su incertidumbre de forma segura.",
+      "Controla falsos positivos cuando muchas hipótesis se prueban sobre los mismos datos al operar.",
+      "Mide la probabilidad de detectar un efecto real bajo tamaño, ruido y umbral dados al operar.",
+      "Define longitud, ángulo y similitud respetando las propiedades del espacio vectorial."
     ],
-    correctAnswerIndex: 0,
-    explanation: "La suma geométrica de puntos (secante/tangente y reflejo respecto al eje horizontal) satisface cerradura, asociatividad, elemento neutro (el punto en el infinito $\\mathcal{O}$), inversos aditivos y conmutatividad, formando un grupo abeliano finito base de ECDSA y Ed25519.",
-    topic: "Criptografía y Curvas Elípticas",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 0,
+    "explanation": "Estimación puntual (Inferencia estadística): Calcula un parámetro con un estadístico y acompaña el valor con su incertidumbre.",
+    "topic": "Inferencia estadística",
+    "difficulty": "intermedio"
   },
   {
-    id: "math-26",
-    collectionId: "mathematics",
-    question: "¿Qué cuantifica la 'Desigualdad de Chebyshev' respecto a la probabilidad de que una variable aleatoria $X$ se desvíe de su media $\\mu$ más de $k$ desviaciones estándar $\\sigma$?",
-    options: [
-      "$P(|X - \\mu| \\ge k\\sigma) \\le \\frac{1}{k^2}$ para cualquier constante $k > 0$, válida para cualquier distribución de probabilidad con varianza finita.",
-      "$P(|X - \\mu| \\ge k\\sigma) = e^{-k^2/2}$ exclusivamente para distribuciones continuas.",
-      "$P(|X - \\mu| \\ge k\\sigma) \\ge 1 - \\frac{1}{k}$ para variables aleatorias gaussianas.",
-      "$P(|X - \\mu| \\ge k\\sigma) = 0$ siempre que $k \\ge 3$."
+    "id": "mathematics-q-26",
+    "collectionId": "mathematics",
+    "question": "En Matemáticas para programación (Inferencia estadística), ¿qué función técnica cumple «Pruebas de hipótesis»?",
+    "options": [
+      "Controla falsos positivos cuando muchas hipótesis se prueban sobre los mismos datos de forma clara.",
+      "Cuantifican incompatibilidad con un modelo nulo sin convertir un p-valor en probabilidad causal.",
+      "Mide la probabilidad de detectar un efecto real bajo tamaño, ruido y umbral dados con precisión.",
+      "Calcula un parámetro con un estadístico y acompaña el valor con su incertidumbre de forma clara."
     ],
-    correctAnswerIndex: 0,
-    explanation: "La desigualdad de Chebyshev acota superiormente la probabilidad en las colas sin requerir conocer la forma paramétrica de la distribución: por ejemplo, no más de $1/4$ (25%) de los valores pueden diferir de la media en más de 2 desviaciones estándar ($k=2$).",
-    topic: "Probabilidad y Estadística",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 1,
+    "explanation": "Pruebas de hipótesis (Inferencia estadística): Cuantifican incompatibilidad con un modelo nulo sin convertir un p-valor en probabilidad causal.",
+    "topic": "Inferencia estadística",
+    "difficulty": "intermedio"
   },
   {
-    id: "math-27",
-    collectionId: "mathematics",
-    question: "En combinatoria y probabilidad, ¿qué calcula el 'Principio de Inclusión-Exclusión' para la unión de tres conjuntos finitos $A$, $B$ y $C$?",
-    options: [
-      "$|A \\cup B \\cup C| = |A| + |B| + |C| - |A \\cap B| - |A \\cap C| - |B \\cap C| + |A \\cap B \\cap C|$",
-      "$|A \\cup B \\cup C| = |A| + |B| + |C| - |A \\cap B \\cap C|$",
-      "$|A \\cup B \\cup C| = |A \\cap B| + |B \\cap C| + |A \\cap C|$",
-      "$|A \\cup B \\cup C| = (|A| \\cdot |B| \\cdot |C|) - (|A \\cap B \\cap C|)$"
+    "id": "mathematics-q-27",
+    "collectionId": "mathematics",
+    "question": "Dentro de Matemáticas para programación, ¿cómo opera el mecanismo de «Potencia estadística» en inferencia estadística?",
+    "options": [
+      "Calcula un parámetro con un estadístico y acompaña el valor con su incertidumbre al operar.",
+      "Controla falsos positivos cuando muchas hipótesis se prueban sobre los mismos datos.",
+      "Mide la probabilidad de detectar un efecto real bajo tamaño, ruido y umbral dados.",
+      "Codifica secuencias como coeficientes de series para operar y resolver conteos."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Para calcular el tamaño de la unión sin contar elementos repetidos, se suman los tamaños individuales, se restan las intersecciones de dos en dos (que fueron contadas dos veces) y se suma de nuevo la intersección triple (que fue restada de más).",
-    topic: "Combinatoria",
-    difficulty: "básico"
+    "correctAnswerIndex": 2,
+    "explanation": "Potencia estadística (Inferencia estadística): Mide la probabilidad de detectar un efecto real bajo tamaño, ruido y umbral dados.",
+    "topic": "Inferencia estadística",
+    "difficulty": "intermedio"
   },
   {
-    id: "math-28",
-    collectionId: "mathematics",
-    question: "En optimización convexa, ¿por qué es tan valiosa la propiedad de convexidad para una función objetivo $f: \\mathbb{R}^n \\to \\mathbb{R}$?",
-    options: [
-      "Porque garantiza que cualquier mínimo local es simultáneamente un mínimo global.",
-      "Porque permite resolver la función evaluando únicamente valores impares de entrada.",
-      "Porque elimina completamente la necesidad de calcular derivadas numéricas o simbólicas.",
-      "Porque asegura que la función oscila en torno a una asíntota senoidal estable."
+    "id": "mathematics-q-28",
+    "collectionId": "mathematics",
+    "question": "Al trabajar con Matemáticas para programación, ¿qué responsabilidad define a «Corrección por comparaciones múltiples»?",
+    "options": [
+      "Calcula un parámetro con un estadístico y acompaña el valor con su incertidumbre al operar.",
+      "Mide la probabilidad de detectar un efecto real bajo tamaño, ruido y umbral dados.",
+      "Codifica secuencias como coeficientes de series para operar y resolver conteos al operar.",
+      "Controla falsos positivos cuando muchas hipótesis se prueban sobre los mismos datos."
     ],
-    correctAnswerIndex: 0,
-    explanation: "En una función convexa ($f(\\theta x + (1-\\theta)y) \\le \\theta f(x) + (1-\\theta)f(y)$ para $\\theta \\in [0, 1]$), el conjunto de nivel inferior es convexo y no existen mínimos locales falsos ni trampas de meseta que atrapen a un algoritmo de optimización.",
-    topic: "Optimización Matemática",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 3,
+    "explanation": "Corrección por comparaciones múltiples (Inferencia estadística): Controla falsos positivos cuando muchas hipótesis se prueban sobre los mismos datos.",
+    "topic": "Inferencia estadística",
+    "difficulty": "intermedio"
   },
   {
-    id: "math-29",
-    collectionId: "mathematics",
-    question: "¿Qué expresa la 'Regla de la Cadena' del cálculo diferencial en notación matricial (Jacobiana) para la composición de funciones $f(g(\\mathbf{x}))$ en redes neuronales profundas?",
-    options: [
-      "La matriz Jacobiana de la composición es el producto matricial de las Jacobianas individuales: $J_{f \\circ g}(\\mathbf{x}) = J_f(g(\\mathbf{x})) \\cdot J_g(\\mathbf{x})$.",
-      "La Jacobiana de la composición es la suma directa $J_f + J_g$ normalizada por la traza.",
-      "Las derivadas cruzadas deben ser forzadas a cero mediante dropout convolucional.",
-      "La regla de la cadena solo es válida para funciones polinomiales de grado 1."
+    "id": "mathematics-q-29",
+    "collectionId": "mathematics",
+    "question": "En la arquitectura de Matemáticas para programación, ¿qué caracteriza técnicamente a «Producto interno y normas»?",
+    "options": [
+      "Define longitud, ángulo y similitud respetando las propiedades del espacio vectorial.",
+      "Factoriza cualquier matriz para analizar rango, aproximación y condicionamiento.",
+      "Encuentran direcciones que una transformación solo escala y revelan modos dominantes.",
+      "Codifica secuencias como coeficientes de series para operar y resolver conteos."
     ],
-    correctAnswerIndex: 0,
-    explanation: "El algoritmo de Backpropagation es una aplicación eficiente de programación dinámica de la regla de la cadena multivariable: propaga gradientes hacia atrás multiplicando sucesivamente por las matrices Jacobianas de cada capa.",
-    topic: "Cálculo y Aprendizaje Profundo",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 0,
+    "explanation": "Producto interno y normas (Álgebra lineal computacional): Define longitud, ángulo y similitud respetando las propiedades del espacio vectorial.",
+    "topic": "Álgebra lineal computacional",
+    "difficulty": "intermedio"
   },
   {
-    id: "math-30",
-    collectionId: "mathematics",
-    question: "En computación teórica, ¿qué establece la Tesis de Church-Turing?",
-    options: [
-      "Cualquier función que sea efectivamente computable de manera algorítmica puede ser calculada por una Máquina de Turing (o equivalentemente por el cálculo lambda de Church).",
-      "Que ningún algoritmo puede superar una complejidad temporal asintótica de $O(2^N)$.",
-      "Que los computadores cuánticos son capaces de resolver problemas NP-Completos en tiempo polinomial estricto.",
-      "Que las funciones recursivas requieren compiladores con optimización de cola para ser ejecutadas en hardware Von Neumann."
+    "id": "mathematics-q-30",
+    "collectionId": "mathematics",
+    "question": "Respecto a álgebra lineal computacional en Matemáticas para programación, ¿cuál es el propósito de «Sistemas de ecuaciones lineales»?",
+    "options": [
+      "Define longitud, ángulo y similitud respetando las propiedades del espacio vectorial al operar.",
+      "Representa restricciones simultáneas y distingue solución única, múltiple o inconsistente.",
+      "Encuentran direcciones que una transformación solo escala y revelan modos dominantes al operar.",
+      "Factoriza cualquier matriz para analizar rango, aproximación y condicionamiento al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "La Tesis de Church-Turing postula que la noción intuitiva e informal de 'cálculo algorítmico efectivo' equivale exactamente a la computabilidad formal definida por máquinas de Turing, sistemas Post, funciones recursivas $\\mu$ o $\\lambda$-cálculo.",
-    topic: "Computabilidad y Teoría de la Computación",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 1,
+    "explanation": "Sistemas de ecuaciones lineales (Álgebra lineal computacional): Representan restricciones simultáneas y distinguen solución única, múltiple o inconsistente.",
+    "topic": "Álgebra lineal computacional",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "mathematics-q-31",
+    "collectionId": "mathematics",
+    "question": "En Matemáticas para programación (Álgebra lineal computacional), ¿qué función técnica cumple «Descomposición LU»?",
+    "options": [
+      "Representa restricciones simultáneas y distingue solución única, múltiple o inconsistente al operar.",
+      "Define longitud, ángulo y similitud respetando las propiedades del espacio vectorial en el flujo.",
+      "Factoriza una matriz en triangulares para resolver varios términos independientes eficientemente.",
+      "Encuentran direcciones que una transformación solo escala y revelan modos dominantes en el flujo."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Descomposición LU (Álgebra lineal computacional): Factoriza una matriz en triangulares para resolver varios términos independientes eficientemente.",
+    "topic": "Álgebra lineal computacional",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "mathematics-q-32",
+    "collectionId": "mathematics",
+    "question": "Dentro de Matemáticas para programación, ¿cómo opera el mecanismo de «Autovalores y autovectores» en álgebra lineal computacional?",
+    "options": [
+      "Factoriza cualquier matriz para analizar rango, aproximación y condicionamiento al operar.",
+      "Define longitud, ángulo y similitud respetando las propiedades del espacio vectorial.",
+      "Codifica secuencias como coeficientes de series para operar y resolver conteos al operar.",
+      "Encuentran direcciones que una transformación solo escala y revelan modos dominantes."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "Autovalores y autovectores (Álgebra lineal computacional): Encuentran direcciones que una transformación solo escala y revelan modos dominantes.",
+    "topic": "Álgebra lineal computacional",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "mathematics-q-33",
+    "collectionId": "mathematics",
+    "question": "Al trabajar con Matemáticas para programación, ¿qué responsabilidad define a «Descomposición en valores singulares»?",
+    "options": [
+      "Factoriza cualquier matriz para analizar rango, aproximación y condicionamiento en ejecución.",
+      "Define longitud, ángulo y similitud respetando las propiedades del espacio vectorial.",
+      "Encuentran direcciones que una transformación solo escala y revelan modos dominantes.",
+      "Representa restricciones simultáneas y distingue solución única, múltiple o inconsistente."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Descomposición en valores singulares (Álgebra lineal computacional): Factoriza cualquier matriz para analizar rango, aproximación y condicionamiento.",
+    "topic": "Álgebra lineal computacional",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "mathematics-q-34",
+    "collectionId": "mathematics",
+    "question": "En la arquitectura de Matemáticas para programación, ¿qué caracteriza técnicamente a «Coordenadas cartesianas y polares»?",
+    "options": [
+      "Combina traslación, escala, rotación y cizalla mediante matrices homogéneas componibles.",
+      "Cambia entre componentes rectangulares y magnitud-ángulo cuidando cuadrantes y origen.",
+      "Factoriza cualquier matriz para analizar rango, aproximación y condicionamiento al operar.",
+      "Codifica secuencias como coeficientes de series para operar y resolver conteos al operar."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Coordenadas cartesianas y polares (Geometría y transformaciones): Cambia entre componentes rectangulares y magnitud-ángulo cuidando cuadrantes y origen.",
+    "topic": "Geometría y transformaciones",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "mathematics-q-35",
+    "collectionId": "mathematics",
+    "question": "Respecto a geometría y transformaciones en Matemáticas para programación, ¿cuál es el propósito de «Trigonometría computacional»?",
+    "options": [
+      "Cambia entre componentes rectangulares y magnitud-ángulo cuidando cuadrantes y origen al operar.",
+      "Combina traslación, escala, rotación y cizalla mediante matrices homogéneas componibles.",
+      "Relaciona ángulos y razones mientras controla unidades, dominios y errores de aproximación.",
+      "Representa orientación tridimensional evitando singularidades y permite interpolación suave."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Trigonometría computacional (Geometría y transformaciones): Relaciona ángulos y razones mientras controla unidades, dominios y errores de aproximación.",
+    "topic": "Geometría y transformaciones",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "mathematics-q-36",
+    "collectionId": "mathematics",
+    "question": "En Matemáticas para programación (Geometría y transformaciones), ¿qué función técnica cumple «Transformaciones afines»?",
+    "options": [
+      "Cambia entre componentes rectangulares y magnitud-ángulo cuidando cuadrantes y origen al operar.",
+      "Relaciona incidencias y recorridos para determinar qué vértices pueden alcanzarse al operar.",
+      "Mide la probabilidad de detectar un efecto real bajo tamaño, ruido y umbral dados al operar.",
+      "Combina traslación, escala, rotación y cizalla mediante matrices homogéneas componibles."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "Transformaciones afines (Geometría y transformaciones): Combina traslación, escala, rotación y cizalla mediante matrices homogéneas componibles.",
+    "topic": "Geometría y transformaciones",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "mathematics-q-37",
+    "collectionId": "mathematics",
+    "question": "Dentro de Matemáticas para programación, ¿cómo opera el mecanismo de «Cuaterniones y rotaciones» en geometría y transformaciones?",
+    "options": [
+      "Representa orientación tridimensional evitando singularidades y permite interpolación suave.",
+      "Cambia entre componentes rectangulares y magnitud-ángulo cuidando cuadrantes y origen.",
+      "Combina traslación, escala, rotación y cizalla mediante matrices homogéneas componibles.",
+      "Relaciona ángulos y razones mientras controla unidades, dominios y errores de aproximación."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Cuaterniones y rotaciones (Geometría y transformaciones): Representa orientación tridimensional evitando singularidades y permite interpolación suave.",
+    "topic": "Geometría y transformaciones",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "mathematics-q-38",
+    "collectionId": "mathematics",
+    "question": "Al trabajar con Matemáticas para programación, ¿qué responsabilidad define a «Intersecciones geométricas»?",
+    "options": [
+      "Combina traslación, escala, rotación y cizalla mediante matrices homogéneas componibles al operar.",
+      "Resuelve contactos con ecuaciones paramétricas y tolerancias coherentes para casos degenerados.",
+      "Relaciona ángulos y razones mientras controla unidades, dominios y errores de aproximación.",
+      "Cambia entre componentes rectangulares y magnitud-ángulo cuidando cuadrantes y origen al operar."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Intersecciones geométricas (Geometría y transformaciones): Resuelve contactos con ecuaciones paramétricas y tolerancias coherentes para casos degenerados.",
+    "topic": "Geometría y transformaciones",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "mathematics-q-39",
+    "collectionId": "mathematics",
+    "question": "En la arquitectura de Matemáticas para programación, ¿qué caracteriza técnicamente a «Límites y continuidad»?",
+    "options": [
+      "Aproxima áreas mediante muestras y controla el error con particiones o reglas adaptativas al operar.",
+      "Propaga derivadas exactas de operaciones elementales sin el error de diferencias finitas al operar.",
+      "Describe el comportamiento cercano a un punto y justifican aproximaciones sin saltos inesperados.",
+      "Iteran sobre una función hasta localizar un cero con condiciones y convergencia verificables."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Límites y continuidad (Cálculo numérico): Describen el comportamiento cercano a un punto y justifican aproximaciones sin saltos inesperados.",
+    "topic": "Cálculo numérico",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "mathematics-q-40",
+    "collectionId": "mathematics",
+    "question": "Respecto a cálculo numérico en Matemáticas para programación, ¿cuál es el propósito de «Integración numérica»?",
+    "options": [
+      "Sustituye evolución continua por pasos cuya estabilidad depende del método y tamaño al operar.",
+      "Propaga derivadas exactas de operaciones elementales sin el error de diferencias finitas.",
+      "Distribuye negaciones sobre conjunciones y disyunciones sin alterar el valor lógico al operar.",
+      "Aproxima áreas mediante muestras y controla el error con particiones o reglas adaptativas."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "Integración numérica (Cálculo numérico): Aproxima áreas mediante muestras y controla el error con particiones o reglas adaptativas.",
+    "topic": "Cálculo numérico",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "mathematics-q-41",
+    "collectionId": "mathematics",
+    "question": "En Matemáticas para programación (Cálculo numérico), ¿qué función técnica cumple «Diferenciación automática»?",
+    "options": [
+      "Propaga derivadas exactas de operaciones elementales sin el error de diferencias finitas.",
+      "Sustituye evolución continua por pasos cuya estabilidad depende del método y tamaño.",
+      "Aproxima áreas mediante muestras y controla el error con particiones o reglas adaptativas.",
+      "Componen funciones booleanas cuya salida depende únicamente de la entrada presente."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Diferenciación automática (Cálculo numérico): Propaga derivadas exactas de operaciones elementales sin el error de diferencias finitas.",
+    "topic": "Cálculo numérico",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "mathematics-q-42",
+    "collectionId": "mathematics",
+    "question": "Dentro de Matemáticas para programación, ¿cómo opera el mecanismo de «Métodos de búsqueda de raíces» en cálculo numérico?",
+    "options": [
+      "Propaga derivadas exactas de operaciones elementales sin el error de diferencias finitas al operar.",
+      "Iteran sobre una función hasta localizar un cero con condiciones y convergencia verificables.",
+      "Aproxima áreas mediante muestras y controla el error con particiones o reglas adaptativas.",
+      "Sustituye evolución continua por pasos cuya estabilidad depende del método y tamaño al operar."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Métodos de búsqueda de raíces (Cálculo numérico): Iteran sobre una función hasta localizar un cero con condiciones y convergencia verificables.",
+    "topic": "Cálculo numérico",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "mathematics-q-43",
+    "collectionId": "mathematics",
+    "question": "Al trabajar con Matemáticas para programación, ¿qué responsabilidad define a «Ecuaciones diferenciales discretizadas»?",
+    "options": [
+      "Codifica secuencias como coeficientes de series para operar y resolver conteos al operar.",
+      "Factoriza cualquier matriz para analizar rango, aproximación y condicionamiento.",
+      "Sustituye evolución continua por pasos cuya estabilidad depende del método y tamaño.",
+      "Determina si un grafo puede dibujarse sin cruces y restringe su densidad posible."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Ecuaciones diferenciales discretizadas (Cálculo numérico): Sustituyen evolución continua por pasos cuya estabilidad depende del método y tamaño.",
+    "topic": "Cálculo numérico",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "mathematics-q-44",
+    "collectionId": "mathematics",
+    "question": "En la arquitectura de Matemáticas para programación, ¿qué caracteriza técnicamente a «Convexidad»?",
+    "options": [
+      "Usa curvatura local para acelerar convergencia, pero requieren derivadas y un inicio razonable al operar.",
+      "Incorporan restricciones de igualdad mediante variables duales y condiciones de estacionariedad.",
+      "Representa restricciones simultáneas y distingue solución única, múltiple o inconsistente al operar.",
+      "Garantiza que un mínimo local sea global cuando objetivo y región factible cumplen la propiedad."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "Convexidad (Optimización avanzada): Garantiza que un mínimo local sea global cuando objetivo y región factible cumplen la propiedad.",
+    "topic": "Optimización avanzada",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "mathematics-q-45",
+    "collectionId": "mathematics",
+    "question": "Respecto a optimización avanzada en Matemáticas para programación, ¿cuál es el propósito de «Multiplicadores de Lagrange»?",
+    "options": [
+      "Incorporan restricciones de igualdad mediante variables duales y condiciones de estacionariedad.",
+      "Usa curvatura local para acelerar convergencia, pero requieren derivadas y un inicio razonable.",
+      "Garantiza que un mínimo local sea global cuando objetivo y región factible cumplen la propiedad.",
+      "Representa restricciones simultáneas y distingue solución única, múltiple o inconsistente."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Multiplicadores de Lagrange (Optimización avanzada): Incorporan restricciones de igualdad mediante variables duales y condiciones de estacionariedad.",
+    "topic": "Optimización avanzada",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "mathematics-q-46",
+    "collectionId": "mathematics",
+    "question": "En Matemáticas para programación (Optimización avanzada), ¿qué función técnica cumple «Métodos de Newton»?",
+    "options": [
+      "Garantiza que un mínimo local sea global cuando objetivo y región factible cumplen la propiedad.",
+      "Usa curvatura local para acelerar convergencia, pero requieren derivadas y un inicio razonable.",
+      "Incorporan restricciones de igualdad mediante variables duales y condiciones de estacionariedad.",
+      "Define resultados posibles y eventos medibles antes de asignar probabilidades coherentes al operar."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Métodos de Newton (Optimización avanzada): Usan curvatura local para acelerar convergencia, pero requieren derivadas y un inicio razonable.",
+    "topic": "Optimización avanzada",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "mathematics-q-47",
+    "collectionId": "mathematics",
+    "question": "Dentro de Matemáticas para programación, ¿cómo opera el mecanismo de «Criterios de parada» en optimización avanzada?",
+    "options": [
+      "Garantiza que un mínimo local sea global cuando objetivo y región factible cumplen la propiedad al operar.",
+      "Incorporan restricciones de igualdad mediante variables duales y condiciones de estacionariedad al operar.",
+      "Combina mejora, gradiente, factibilidad y presupuesto para no confundir estancamiento con convergencia.",
+      "Usa curvatura local para acelerar convergencia, pero requieren derivadas y un inicio razonable al operar."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Criterios de parada (Optimización avanzada): Combinan mejora, gradiente, factibilidad y presupuesto para no confundir estancamiento con convergencia.",
+    "topic": "Optimización avanzada",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "mathematics-q-48",
+    "collectionId": "mathematics",
+    "question": "Al trabajar con Matemáticas para programación, ¿qué responsabilidad define a «Entropía»?",
+    "options": [
+      "Mide cuánto reduce una variable la incertidumbre de otra sin implicar causalidad al operar.",
+      "Codifica secuencias como coeficientes de series para operar y resolver conteos al operar.",
+      "Factoriza cualquier matriz para analizar rango, aproximación y condicionamiento al operar.",
+      "Cuantifica incertidumbre promedio de una fuente y fija un límite de compresión ideal."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "Entropía (Teoría de la información): Cuantifica incertidumbre promedio de una fuente y fija un límite de compresión ideal.",
+    "topic": "Teoría de la información",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "mathematics-q-49",
+    "collectionId": "mathematics",
+    "question": "En la arquitectura de Matemáticas para programación, ¿qué caracteriza técnicamente a «Información mutua»?",
+    "options": [
+      "Mide cuánto reduce una variable la incertidumbre de otra sin implicar causalidad al operar.",
+      "Cuantifica incertidumbre promedio de una fuente y fija un límite de compresión ideal.",
+      "Define longitud, ángulo y similitud respetando las propiedades del espacio vectorial.",
+      "Encuentran direcciones que una transformación solo escala y revelan modos dominantes."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Información mutua (Teoría de la información): Mide cuánto reduce una variable la incertidumbre de otra sin implicar causalidad.",
+    "topic": "Teoría de la información",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "mathematics-q-50",
+    "collectionId": "mathematics",
+    "question": "Respecto a teoría de la información en Matemáticas para programación, ¿cuál es el propósito de «Codificación sin pérdida»?",
+    "options": [
+      "Cuantifica incertidumbre promedio de una fuente y fija un límite de compresión ideal con precisión.",
+      "Asigna representaciones recuperables aprovechando frecuencias sin eliminar información original.",
+      "Mide cuánto reduce una variable la incertidumbre de otra sin implicar causalidad de forma clara.",
+      "Representa restricciones simultáneas y distingue solución única, múltiple o inconsistente al operar."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Codificación sin pérdida (Teoría de la información): Asigna representaciones recuperables aprovechando frecuencias sin eliminar información original.",
+    "topic": "Teoría de la información",
+    "difficulty": "avanzado"
   }
 ];

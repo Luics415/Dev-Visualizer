@@ -52,7 +52,6 @@ export function generateStaticParams() {
     }
   };
 
-  // Genera estáticamente las rutas de quiz para las 73 colecciones canónicas y sus secciones En Acción
   for (const entry of collectionManifest) {
     addSlug(entry.actionHref);
 
@@ -83,8 +82,8 @@ export async function generateMetadata({ params }: QuizPageProps): Promise<Metad
     ? `Quiz Técnico En Acción · ${manifest.label}`
     : `Quiz Técnico · ${manifest.label}`;
   const description = isActionQuiz
-    ? `Pon a prueba tus conocimientos sobre el caso práctico y la arquitectura en acción de ${manifest.label} con 15 preguntas didácticas aleatorias de opción múltiple.`
-    : `Pon a prueba tus conocimientos en ${manifest.label} con 15 preguntas didácticas aleatorias de opción múltiple.`;
+    ? `Pon a prueba tus conocimientos sobre el caso práctico y la arquitectura en acción de ${manifest.label} con 15 preguntas aleatorias de un banco de 50 reactivos.`
+    : `Pon a prueba tus conocimientos en ${manifest.label} con 15 preguntas aleatorias de un banco de 50 reactivos.`;
 
   return { title: pageTitle, description };
 }
@@ -108,18 +107,19 @@ export default async function QuizPage({ params }: QuizPageProps) {
           <h1>Quiz Didáctico: {title}</h1>
           <p>
             {isActionQuiz
-              ? "15 preguntas técnicas seleccionadas aleatoriamente para evaluar tu comprensión del caso práctico, flujos de ejecución y mecanismos en acción. Inicia sesión con Google al comenzar para guardar tus logros entre dispositivos."
-              : "15 preguntas técnicas seleccionadas aleatoriamente de nuestro banco para evaluar tu comprensión de fundamentos y arquitectura. Inicia sesión con Google al comenzar para guardar tus logros entre dispositivos."}
+              ? "15 preguntas técnicas seleccionadas aleatoriamente de un banco de 50 reactivos para evaluar tu comprensión del caso práctico, flujos de ejecución y mecanismos en acción. Inicia sesión con Google al comenzar para guardar tus logros entre dispositivos."
+              : "15 preguntas técnicas seleccionadas aleatoriamente de un banco de 50 reactivos para evaluar tu comprensión de fundamentos y arquitectura. Inicia sesión con Google al comenzar para guardar tus logros entre dispositivos."}
           </p>
         </div>
         <div className="hero__counter">
           <strong>15</strong>
-          <span>preguntas por intento</span>
+          <span>de 50 preguntas aleatorias</span>
         </div>
       </header>
 
       <section className="quiz-section-wrapper" aria-label={`Quiz técnico de ${title}`}>
         <QuizRunner
+          key={manifest.id}
           collectionId={manifest.id}
           collectionTitle={title}
           collectionHref={returnHref}

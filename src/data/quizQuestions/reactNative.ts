@@ -2,453 +2,753 @@ import type { QuizQuestion } from "@/data/quizTypes";
 
 export const reactNativeQuestions: QuizQuestion[] = [
   {
-    id: "rn-01",
-    collectionId: "react-native",
-    question: "¿En qué consiste la 'JavaScript Interface' (JSI) dentro de la Nueva Arquitectura de React Native frente al puente (Bridge) tradicional?",
-    options: [
-      "JSI permite que el motor de JavaScript mantenga referencias directas en memoria a objetos C++ del host y los invoque de forma síncrona sin necesidad de serializar y deserializar mensajes en cadenas JSON a través de un canal asíncrono.",
-      "JSI reemplaza la máquina virtual de JavaScript por un emulador completo del kernel de Linux dentro de la app móvil.",
-      "JSI compila la interfaz de usuario en archivos binarios SVG estáticos antes de enviarlos a la tienda de aplicaciones.",
-      "JSI es un protocolo de red TCP que sincroniza el estado de la aplicación con un servidor central de Meta en tiempo real."
+    "id": "react-native-q-01",
+    "collectionId": "react-native",
+    "question": "En React Native (Arquitectura y runtime), ¿qué función técnica cumple «Renderizado nativo»?",
+    "options": [
+      "Convierte elementos de React en vistas reales de iOS y Android, no en nodos del DOM.",
+      "Carga módulos nativos de forma perezosa y con interfaces tipadas generadas al operar.",
+      "Genera interfaces nativas desde especificaciones tipadas para módulos y componentes.",
+      "Resuelve módulos, transforma código y construye bundles para desarrollo y producción."
     ],
-    correctAnswerIndex: 0,
-    explanation: "El Bridge heredado introducía latencia y serialización JSON asíncrona entre hilos. JSI expone objetos C++ nativos directamente al entorno JavaScript como funciones y objetos de primer orden invocables sin sobrecarga de serialización.",
-    topic: "Nueva Arquitectura y JSI",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 0,
+    "explanation": "Renderizado nativo (Arquitectura y runtime): Convierte elementos de React en vistas reales de iOS y Android, no en nodos del DOM.",
+    "topic": "Arquitectura y runtime",
+    "difficulty": "básico"
   },
   {
-    id: "rn-02",
-    collectionId: "react-native",
-    question: "En la Nueva Arquitectura de React Native, ¿qué función desempeña el nuevo motor de renderizado denominado 'Fabric'?",
-    options: [
-      "Es un renderer concurrente implementado en C++ que unifica la creación de árboles de componentes nativos en iOS y Android, permitiendo renderizado síncrono para eventos prioritarios y soporte pleno de React 18 Concurrent Features.",
-      "Un transpilador que convierte código JSX en plantillas de Android XML y guiones de Objective-C.",
-      "Una base de datos SQLite integrada optimizada para almacenar tokens JWT de sesión.",
-      "Un módulo que gestiona los pagos dentro de la aplicación con Apple Pay y Google Wallet."
+    "id": "react-native-q-02",
+    "collectionId": "react-native",
+    "question": "Dentro de React Native, ¿cómo opera el mecanismo de «Componentes base» en arquitectura y runtime?",
+    "options": [
+      "Distingue JavaScript, UI, render y trabajo nativo para evitar bloquear gestos o frames al operar.",
+      "View, Text, Image, ScrollView y otras primitivas se enlazan con controles de cada plataforma.",
+      "Resuelve módulos, transforma código y construye bundles para desarrollo y producción al operar.",
+      "Convierte elementos de React en vistas reales de iOS y Android, no en nodos del DOM al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Fabric unifica la lógica de renderizado en C++, posibilitando operaciones síncronas requeridas para responder a gestos táctiles inmediatos, integración con React Suspense y concurrencia directa compartida entre plataformas.",
-    topic: "Fabric Renderer",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 1,
+    "explanation": "Componentes base (Arquitectura y runtime): View, Text, Image, ScrollView y otras primitivas se enlazan con controles de cada plataforma.",
+    "topic": "Arquitectura y runtime",
+    "difficulty": "básico"
   },
   {
-    id: "rn-03",
-    collectionId: "react-native",
-    question: "¿Cuál es el beneficio de los 'TurboModules' frente a los módulos nativos heredados de React Native?",
-    options: [
-      "Se cargan de forma perezosa (lazy-loading) bajo demanda mediante JSI únicamente cuando el código JavaScript los invoca por primera vez, reduciendo drásticamente el tiempo de arranque de la aplicación (TTI).",
-      "Permiten ejecutar código Swift sin necesidad de compilar en Xcode.",
-      "Convierten todas las peticiones Bluetooth en llamadas de microservicios gRPC.",
-      "Eliminan la necesidad de configurar permisos en `AndroidManifest.xml` e `Info.plist`."
+    "id": "react-native-q-03",
+    "collectionId": "react-native",
+    "question": "Al trabajar con React Native, ¿qué responsabilidad define a «Nueva Arquitectura»?",
+    "options": [
+      "Resuelve módulos, transforma código y construye bundles para desarrollo y producción al operar.",
+      "Convierte elementos de React en vistas reales de iOS y Android, no en nodos del DOM al operar.",
+      "Coordina Fabric, TurboModules, JSI y Codegen como base moderna del runtime de React Native.",
+      "Genera interfaces nativas desde especificaciones tipadas para módulos y componentes al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "En la arquitectura previa, todos los módulos nativos se instanciaban y configuraban de golpe al arrancar la app. TurboModules aprovecha JSI para instanciar bajo demanda solo los módulos que realmente se utilizan.",
-    topic: "TurboModules",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 2,
+    "explanation": "Nueva Arquitectura (Arquitectura y runtime): Coordina Fabric, TurboModules, JSI y Codegen como base moderna del runtime de React Native.",
+    "topic": "Arquitectura y runtime",
+    "difficulty": "básico"
   },
   {
-    id: "rn-04",
-    collectionId: "react-native",
-    question: "¿Qué optimizaciones clave aporta el motor de JavaScript 'Hermes' en React Native para aplicaciones móviles?",
-    options: [
-      "Precompilación del código JS a bytecode binario optimizado en tiempo de compilación (AOT), arranque casi instantáneo, bajo consumo de memoria y un recolector de basura generacional (Hades).",
-      "Soporte nativo para ejecutar scripts de Python y Ruby dentro del hilo de interfaz gráfica.",
-      "Compilación de código fuente directamente a ensamblador ARM64 en el servidor web.",
-      "Desactivación permanente de las promesas y del event loop para evitar fugas de memoria."
+    "id": "react-native-q-04",
+    "collectionId": "react-native",
+    "question": "En la arquitectura de React Native, ¿qué caracteriza técnicamente a «Fabric»?",
+    "options": [
+      "Optimiza componentes y Hooks en build mediante memoización automática también en React Native en ejecución.",
+      "View, Text, Image, ScrollView y otras primitivas se enlazan con controles de cada plataforma al evaluar.",
+      "Coordina Fabric, TurboModules, JSI y Codegen como base moderna del runtime de React Native en ejecución.",
+      "Implementa el renderer nativo moderno, calcula árboles y commits y coordina montaje con las plataformas."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Hermes fue diseñado específicamente por Meta para optimizar React Native: el móvil no pierde tiempo parseando código fuente JavaScript al iniciar, sino que carga directamente bytecode binario empaquetado (Hermes Bytecode).",
-    topic: "Hermes Engine",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 3,
+    "explanation": "Fabric (Arquitectura y runtime): Implementa el renderer nativo moderno, calcula árboles y commits y coordina montaje con las plataformas.",
+    "topic": "Arquitectura y runtime",
+    "difficulty": "básico"
   },
   {
-    id: "rn-05",
-    collectionId: "react-native",
-    question: "¿Qué motor de cálculo de diseño (Layout Engine) utiliza React Native para traducir propiedades Flexbox a coordenadas de pantalla absolutas en iOS y Android?",
-    options: [
-      "Yoga, un motor de layout Flexbox de código abierto escrito en C++ altamente optimizado.",
-      "WebKit LayoutEngine extraído de Safari.",
-      "Blink RenderCore utilizado en Chromium.",
-      "Android ConstraintLayout Engine."
+    "id": "react-native-q-05",
+    "collectionId": "react-native",
+    "question": "Respecto a arquitectura y runtime en React Native, ¿cuál es el propósito de «TurboModules»?",
+    "options": [
+      "Carga módulos nativos de forma perezosa y con interfaces tipadas generadas en ejecución.",
+      "Convierte elementos de React en vistas reales de iOS y Android, no en nodos del DOM.",
+      "Genera interfaces nativas desde especificaciones tipadas para módulos y componentes.",
+      "Resuelve módulos, transforma código y construye bundles para desarrollo y producción."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Yoga es el motor en C++ que interpreta las reglas de Flexbox en React Native y calcula las dimensiones y posiciones exactas de cada elemento para transferirlas a las vistas nativas correspondientes.",
-    topic: "Yoga Layout Engine",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 0,
+    "explanation": "TurboModules (Arquitectura y runtime): Carga módulos nativos de forma perezosa y con interfaces tipadas generadas.",
+    "topic": "Arquitectura y runtime",
+    "difficulty": "básico"
   },
   {
-    id: "rn-06",
-    collectionId: "react-native",
-    question: "En el componente `<FlatList>`, ¿qué propiedad crítica permite optimizar el scroll de elementos de tamaño constante omitiendo la medición dinámica asíncrona de cada elemento?",
-    options: [
-      "`getItemLayout`",
-      "`removeClippedSubviews`",
-      "`initialNumToRender`",
-      "`windowSize`"
+    "id": "react-native-q-06",
+    "collectionId": "react-native",
+    "question": "En React Native (Arquitectura y runtime), ¿qué función técnica cumple «JSI»?",
+    "options": [
+      "Ejecuta JavaScript con un motor optimizado para aplicaciones React Native y herramientas de depuración integradas al operar.",
+      "Permite que JavaScript se comunique con objetos C++ y capacidades nativas sin serializar cada mensaje por un puente JSON.",
+      "Implementa el renderer nativo moderno, calcula árboles y commits y coordina montaje con las plataformas dentro del flujo.",
+      "Mantiene gestos y transformaciones fluidos mediante worklets o soluciones que evitan round trips por JavaScript al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Si los elementos tienen altura fija (o predecible), proveer `getItemLayout={(data, index) => ({ length: ITEM_HEIGHT, offset: ITEM_HEIGHT * index, index })}` permite a FlatList saltar cálculos de layout en el hilo principal y hacer scroll instantáneo a índices lejanos.",
-    topic: "Rendimiento en Listas (FlatList)",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 1,
+    "explanation": "JSI (Arquitectura y runtime): Permite que JavaScript se comunique con objetos C++ y capacidades nativas sin serializar cada mensaje por un puente JSON.",
+    "topic": "Arquitectura y runtime",
+    "difficulty": "básico"
   },
   {
-    id: "rn-07",
-    collectionId: "react-native",
-    question: "¿Qué limitación arquitectónica fundamental resuelve la librería 'React Native Reanimated' (v2/v3) respecto a la Animated API tradicional con `useNativeDriver: true`?",
-    options: [
-      "Permite ejecutar código JavaScript interactivo (animaciones y gestos) directamente en el hilo de UI (UI thread) mediante 'Worklets' a 60/120 FPS sin depender de la latencia ni bloqueos del hilo principal de JS.",
-      "Permite renderizar vistas 3D nativas con sombras dinámicas en monitores CRT antiguos.",
-      "Permite utilizar la sintaxis de animaciones CSS `@keyframes` dentro del archivo `Podfile`.",
-      "Evita que el sistema operativo suspenda la app al entrar en segundo plano."
+    "id": "react-native-q-07",
+    "collectionId": "react-native",
+    "question": "Dentro de React Native, ¿cómo opera el mecanismo de «Codegen» en arquitectura y runtime?",
+    "options": [
+      "Carga módulos nativos de forma perezosa y con interfaces tipadas generadas en el flujo.",
+      "Convierte elementos de React en vistas reales de iOS y Android, no en nodos del DOM.",
+      "Genera interfaces nativas desde especificaciones tipadas para módulos y componentes.",
+      "Resuelve módulos, transforma código y construye bundles para desarrollo y producción."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Mientras `useNativeDriver: true` solo anima propiedades básicas predefinidas (transform y opacity), Reanimated compila funciones JS ('worklets') que corren en un contexto secundario en el UI thread, calculando físicas de resortes y gestos fluidos incluso si el hilo de JS está saturado.",
-    topic: "Animaciones y Reanimated",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 2,
+    "explanation": "Codegen (Arquitectura y runtime): Genera interfaces nativas desde especificaciones tipadas para módulos y componentes.",
+    "topic": "Arquitectura y runtime",
+    "difficulty": "básico"
   },
   {
-    id: "rn-08",
-    collectionId: "react-native",
-    question: "¿Cuál es la diferencia entre el navegador de pila estándar `@react-navigation/stack` y `@react-navigation/native-stack`?",
-    options: [
-      "`native-stack` utiliza los componentes nativos reales de cada plataforma (`UINavigationController` en iOS y `Fragment` / `CoordinatorLayout` en Android), ofreciendo mejor rendimiento y transiciones nativas auténticas con menor consumo de memoria.",
-      "`native-stack` solo se puede usar en proyectos desarrollados exclusivamente con Objective-C.",
-      "`stack` no permite pasar parámetros entre pantallas, mientras que `native-stack` serializa los parámetros en la nube.",
-      "`native-stack` requiere una suscripción de pago a Meta Enterprise."
+    "id": "react-native-q-08",
+    "collectionId": "react-native",
+    "question": "Al trabajar con React Native, ¿qué responsabilidad define a «Hermes»?",
+    "options": [
+      "Implementa el renderer nativo moderno, calcula árboles y commits y coordina montaje con las plataformas en ejecución.",
+      "Optimiza componentes y Hooks en build mediante memoización automática también en React Native de modo predecible.",
+      "View, Text, Image, ScrollView y otras primitivas se enlazan con controles de cada plataforma durante la ejecución.",
+      "Ejecuta JavaScript con un motor optimizado para aplicaciones React Native y herramientas de depuración integradas."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Mientras que JS Stack recrea animaciones y cabeceras en JavaScript/React, Native Stack (basado en `react-native-screens`) delega la gestión de pantallas a las vistas primitivas del SO, respetando gestos de deslizamiento nativos y optimizando memoria.",
-    topic: "Navegación Móvil",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 3,
+    "explanation": "Hermes (Arquitectura y runtime): Ejecuta JavaScript con un motor optimizado para aplicaciones React Native y herramientas de depuración integradas.",
+    "topic": "Arquitectura y runtime",
+    "difficulty": "básico"
   },
   {
-    id: "rn-09",
-    collectionId: "react-native",
-    question: "En la biblioteca 'React Native MMKV', ¿por qué su rendimiento supera a `AsyncStorage` por más de 30x en operaciones de lectura y escritura?",
-    options: [
-      "MMKV utiliza C++ mapeado directamente en memoria (`mmap`) con JSI, permitiendo lecturas y escrituras síncronas instantáneas sin overhead de serialización ni llamadas asíncronas a SQLite.",
-      "MMKV comprime todos los datos con el algoritmo ZIP antes de transmitirlos por Bluetooth.",
-      "MMKV solo almacena números enteros de 8 bits en la memoria de la tarjeta SIM.",
-      "MMKV sustituye el sistema de archivos del móvil por una partición en la nube de AWS."
+    "id": "react-native-q-09",
+    "collectionId": "react-native",
+    "question": "En la arquitectura de React Native, ¿qué caracteriza técnicamente a «Metro»?",
+    "options": [
+      "Resuelve módulos, transforma código y construye bundles para desarrollo y producción.",
+      "Carga módulos nativos de forma perezosa y con interfaces tipadas generadas al operar.",
+      "Convierte elementos de React en vistas reales de iOS y Android, no en nodos del DOM.",
+      "Genera interfaces nativas desde especificaciones tipadas para módulos y componentes."
     ],
-    correctAnswerIndex: 0,
-    explanation: "AsyncStorage guarda datos en SQLite o archivos planos a través de llamadas asíncronas del Bridge. MMKV (desarrollado por WeChat) usa memoria virtual mapeada (`mmap`) con llamadas C++ síncronas vía JSI, haciendo la persistencia prácticamente instantánea.",
-    topic: "Persistencia y Rendimiento",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 0,
+    "explanation": "Metro (Arquitectura y runtime): Resuelve módulos, transforma código y construye bundles para desarrollo y producción.",
+    "topic": "Arquitectura y runtime",
+    "difficulty": "básico"
   },
   {
-    id: "rn-10",
-    collectionId: "react-native",
-    question: "¿Cuál es la regla fundamental de herencia de estilos de texto en React Native en comparación con el navegador web?",
-    options: [
-      "Los estilos de texto (e.g. `color`, `fontSize`) no se heredan automáticamente desde un contenedor `<View>` a sus componentes `<Text>` hijos; solo se heredan entre componentes `<Text>` anidados dentro de otro `<Text>`.",
-      "Todos los estilos de texto son globales y se configuran en el archivo `package.json`.",
-      "Los estilos de texto solo se aplican si se utiliza TailwindCSS en lugar de `StyleSheet.create`.",
-      "Un componente `<Text>` hereda siempre las propiedades de margen y borde del `<View>` más cercano."
+    "id": "react-native-q-10",
+    "collectionId": "react-native",
+    "question": "Respecto a arquitectura y runtime en React Native, ¿cuál es el propósito de «Hilos»?",
+    "options": [
+      "Convierte elementos de React en vistas reales de iOS y Android, no en nodos del DOM al operar.",
+      "Distingue JavaScript, UI, render y trabajo nativo para evitar bloquear gestos o frames.",
+      "Genera interfaces nativas desde especificaciones tipadas para módulos y componentes.",
+      "Resuelve módulos, transforma código y construye bundles para desarrollo y producción."
     ],
-    correctAnswerIndex: 0,
-    explanation: "En React Native no existe la cascada de estilos web. Un `<View style={{ color: 'red' }}><Text>Hola</Text></View>` ignorará el color. Solo `<Text style={{ color: 'red' }}><Text>Hola</Text></Text>` propagará el estilo al texto anidado.",
-    topic: "Estilos y Componentes Primitivos",
-    difficulty: "básico"
+    "correctAnswerIndex": 1,
+    "explanation": "Hilos y colas de trabajo (Arquitectura y runtime): Distingue JavaScript, UI, render y trabajo nativo para evitar bloquear gestos o frames.",
+    "topic": "Arquitectura y runtime",
+    "difficulty": "básico"
   },
   {
-    id: "rn-11",
-    collectionId: "react-native",
-    question: "¿Cómo monitorea una aplicación React Native los cambios de visibilidad o suspensión del sistema operativo (primer plano / segundo plano)?",
-    options: [
-      "A través de la API `AppState` escuchando eventos como `'change'` con estados `'active'`, `'background'` o `'inactive'`. ",
-      "Mediante un temporizador `setInterval` que comprueba periódicamente el nivel de batería.",
-      "Leyendo directamente el registro `/proc/cpuinfo` mediante una directiva de preprocesador.",
-      "Solicitando al usuario que presione un botón de confirmación antes de bloquear el terminal."
+    "id": "react-native-q-11",
+    "collectionId": "react-native",
+    "question": "En React Native (Arquitectura y runtime), ¿qué función técnica cumple «React Compiler en móvil»?",
+    "options": [
+      "Distingue JavaScript, UI, render y trabajo nativo para evitar bloquear gestos o frames al operar.",
+      "Coordina Fabric, TurboModules, JSI y Codegen como base moderna del runtime de React Native.",
+      "Optimiza componentes y Hooks en build mediante memoización automática también en React Native.",
+      "Resuelve módulos, transforma código y construye bundles para desarrollo y producción al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "La API `AppState` proporciona el estado actual y permite suscribirse con `AppState.addEventListener('change', nextState => ...)` para pausar peticiones de red o cancelar temporizadores cuando la app pasa a segundo plano.",
-    topic: "Ciclo de Vida de la Aplicación",
-    difficulty: "básico"
+    "correctAnswerIndex": 2,
+    "explanation": "React Compiler en móvil (Arquitectura y runtime): Optimiza componentes y Hooks en build mediante memoización automática también en React Native.",
+    "topic": "Arquitectura y runtime",
+    "difficulty": "básico"
   },
   {
-    id: "rn-12",
-    collectionId: "react-native",
-    question: "¿Para qué sirve el sistema 'Codegen' en la Nueva Arquitectura de React Native?",
-    options: [
-      "Lee las especificaciones de TypeScript o Flow para generar automáticamente código C++ con interfaces seguras (type-safe) y código base de bindings para Android (Java/Kotlin) e iOS (Obj-C++/Swift).",
-      "Genera iconos de aplicación en 15 resoluciones diferentes mediante inteligencia artificial generativa.",
-      "Traduce el código fuente a binarios de Apple Watch automáticamente.",
-      "Crea cuentas de desarrollador en Google Play Console de forma automatizada."
+    "id": "react-native-q-12",
+    "collectionId": "react-native",
+    "question": "Dentro de React Native, ¿cómo opera el mecanismo de «StyleSheet» en layout y presentación?",
+    "options": [
+      "Distingue modelos de sombra y cómo overflow, borderRadius y elevación interactúan al operar.",
+      "Desplaza contenido y coordina scroll para que el campo activo permanezca visible al operar.",
+      "Distribuye componentes en filas o columnas y adapta el diseño al espacio disponible.",
+      "Organiza estilos con objetos de JavaScript y referencias reutilizables dentro del flujo."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Codegen elimina los errores de desajuste de tipos en tiempo de ejecución entre JavaScript y el código nativo: a partir de contratos estáticos estrictos genera la infraestructura C++ que conecta ambos mundos.",
-    topic: "Codegen y Herramientas",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 3,
+    "explanation": "StyleSheet (Layout y presentación): Organiza estilos con objetos de JavaScript y referencias reutilizables.",
+    "topic": "Layout y presentación",
+    "difficulty": "básico"
   },
   {
-    id: "rn-13",
-    collectionId: "react-native",
-    question: "¿Cuál es la diferencia primordial entre el flujo gestionado de Expo (Managed Workflow) y el flujo tradicional (Bare Workflow / Prebuild)?",
-    options: [
-      "En Managed Workflow, el desarrollador no manipula carpetas nativas `android/` e `ios/` directamente, generándose de forma determinista mediante configuración y plugins (`npx expo prebuild`); en Bare Workflow se gestionan los proyectos nativos en Xcode y Android Studio de forma manual.",
-      "Managed Workflow no permite escribir código JavaScript, limitando el desarrollo a bloques gráficos.",
-      "Bare Workflow prohíbe el uso de librerías de terceros publicadas en npm.",
-      "Managed Workflow solo es compatible con dispositivos Android con versión inferior a 8.0."
+    "id": "react-native-q-13",
+    "collectionId": "react-native",
+    "question": "Al trabajar con React Native, ¿qué responsabilidad define a «Flexbox»?",
+    "options": [
+      "Distribuye componentes en filas o columnas y adapta el diseño al espacio disponible al operar.",
+      "Ajusta contenido alrededor de sensores, barras del sistema y teclado virtual al operar.",
+      "Desplaza contenido y coordina scroll para que el campo activo permanezca visible.",
+      "Distingue modelos de sombra y cómo overflow, borderRadius y elevación interactúan."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Con el enfoque moderno de Continuous Native Generation (CNG) y Prebuild de Expo, los proyectos se configuran mediante `app.json` y Config Plugins, manteniendo el código nativo como un artefacto generado que se puede regenerar limpiamente.",
-    topic: "Ecosistema Expo",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 0,
+    "explanation": "Flexbox (Layout y presentación): Distribuye componentes en filas o columnas y adapta el diseño al espacio disponible.",
+    "topic": "Layout y presentación",
+    "difficulty": "básico"
   },
   {
-    id: "rn-14",
-    collectionId: "react-native",
-    question: "En React Native, ¿qué problema de seguridad presenta almacenar tokens JWT sensibles o credenciales bancarias en `AsyncStorage`?",
-    options: [
-      "`AsyncStorage` almacena los datos en texto plano no cifrado en el sistema de archivos del dispositivo, haciéndolos vulnerables a extracción en dispositivos rooteados/jailbroken o mediante copias de seguridad de la app.",
-      "`AsyncStorage` transmite todos los valores guardados a los servidores públicos de Facebook por defecto.",
-      "`AsyncStorage` borra los datos cada vez que la batería del teléfono desciende del 20%.",
-      "`AsyncStorage` solo permite almacenar cadenas alfanuméricas de hasta 16 caracteres."
+    "id": "react-native-q-14",
+    "collectionId": "react-native",
+    "question": "En la arquitectura de React Native, ¿qué caracteriza técnicamente a «Yoga y cálculo de layout»?",
+    "options": [
+      "Desplaza contenido y coordina scroll para que el campo activo permanezca visible al operar.",
+      "Resuelve tamaños y posiciones desde reglas Flexbox antes de montar la geometría nativa.",
+      "Distingue modelos de sombra y cómo overflow, borderRadius y elevación interactúan al operar.",
+      "Distribuye componentes en filas o columnas y adapta el diseño al espacio disponible."
     ],
-    correctAnswerIndex: 0,
-    explanation: "`AsyncStorage` no está cifrado. Para tokens de sesión o secretos críticos, se debe recurrir a almacenamiento respaldado por hardware seguro como iOS Keychain o Android Keystore (e.g. vía `expo-secure-store` o `react-native-keychain`).",
-    topic: "Seguridad Móvil",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 1,
+    "explanation": "Yoga y cálculo de layout (Layout y presentación): Resuelve tamaños y posiciones desde reglas Flexbox antes de montar la geometría nativa.",
+    "topic": "Layout y presentación",
+    "difficulty": "básico"
   },
   {
-    id: "rn-15",
-    collectionId: "react-native",
-    question: "¿Cuál es la función del empaquetador 'Metro' (Metro Bundler) en el flujo de desarrollo de React Native?",
-    options: [
-      "Es el bundler de JavaScript especializado de React Native que compila código JS/TS, resuelve assets y sirve el bundle en tiempo real con soporte de Fast Refresh mediante WebSockets.",
-      "Un simulador de hardware que emula pantallas táctiles en terminales de texto plano.",
-      "Un compilador de kernels de Android que genera imágenes OTA de firmware.",
-      "Una herramienta de base de datos para sincronizar esquemas relacionales."
+    "id": "react-native-q-15",
+    "collectionId": "react-native",
+    "question": "Respecto a layout y presentación en React Native, ¿cuál es el propósito de «Unidades»?",
+    "options": [
+      "Resuelve tamaños y posiciones desde reglas Flexbox antes de montar la geometría nativa al operar.",
+      "Distribuye componentes en filas o columnas y adapta el diseño al espacio disponible al operar.",
+      "Interpreta números como píxeles lógicos independientes de densidad y adapta recursos físicos.",
+      "Selecciona archivos, valores o implementaciones específicos cuando iOS y Android difieren."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Metro es el servidor de desarrollo y empaquetador ultrarrápido creado por Meta para manejar miles de módulos con tiempos de recarga sub-segundo (Fast Refresh) y generación de bundles para release.",
-    topic: "Metro Bundler",
-    difficulty: "básico"
+    "correctAnswerIndex": 2,
+    "explanation": "Unidades y densidad (Layout y presentación): Interpreta números como píxeles lógicos independientes de densidad y adapta recursos físicos.",
+    "topic": "Layout y presentación",
+    "difficulty": "básico"
   },
   {
-    id: "rn-16",
-    collectionId: "react-native",
-    question: "¿Qué optimización realiza la propiedad `removeClippedSubviews={true}` en listas `<FlatList>` de Android?",
-    options: [
-      "Separa físicamente de la jerarquía de vistas nativas aquellas celdas que han salido fuera del área visible de la pantalla para reducir el consumo de memoria de la GPU y agilizar el scroll.",
-      "Elimina permanentemente los elementos del array de datos para liberar espacio en disco.",
-      "Convierte las fuentes de texto en trazados vectoriales estáticos.",
-      "Recorta las esquinas de los elementos para simular un borde circular de 50%."
+    "id": "react-native-q-16",
+    "collectionId": "react-native",
+    "question": "En React Native (Layout y presentación), ¿qué función técnica cumple «useWindowDimensions y orientación»?",
+    "options": [
+      "Distingue modelos de sombra y cómo overflow, borderRadius y elevación interactúan al operar.",
+      "Desplaza contenido y coordina scroll para que el campo activo permanezca visible al operar.",
+      "Distribuye componentes en filas o columnas y adapta el diseño al espacio disponible.",
+      "Recalcula ancho, alto y escala cuando cambia el espacio disponible durante la ejecución."
     ],
-    correctAnswerIndex: 0,
-    explanation: "`removeClippedSubviews` desmonta las subvistas nativas que caen fuera de los límites de la ventana visible en listas muy densas, reduciendo significativamente la memoria de dibujo en dispositivos Android con recursos limitados.",
-    topic: "Rendimiento en Listas",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 3,
+    "explanation": "useWindowDimensions y orientación (Layout y presentación): Recalcula ancho, alto y escala cuando cambia el espacio disponible.",
+    "topic": "Layout y presentación",
+    "difficulty": "básico"
   },
   {
-    id: "rn-17",
-    collectionId: "react-native",
-    question: "En React Native Gesture Handler, ¿por qué es preferible usar sus componentes de interacción (como `GestureDetector` con `Gesture.Pan()`) en lugar del sistema tradicional `PanResponder` de React Native?",
-    options: [
-      "Porque Gesture Handler procesa el reconocimiento y seguimiento del gesto directamente en el hilo nativo del sistema operativo en lugar de enviar cada evento táctil al hilo de JavaScript a través del puente.",
-      "Porque Gesture Handler no requiere que el dispositivo disponga de acelerómetro ni giroscopio.",
-      "Porque `PanResponder` solo funciona si el usuario utiliza un lápiz óptico Stylus.",
-      "Porque Gesture Handler bloquea las capturas de pantalla de la aplicación."
+    "id": "react-native-q-17",
+    "collectionId": "react-native",
+    "question": "Dentro de React Native, ¿cómo opera el mecanismo de «Diseño responsivo» en layout y presentación?",
+    "options": [
+      "Combina flex, límites, breakpoints propios y composición para teléfonos, tablets y ventanas redimensionables.",
+      "Controla jerarquía, escalado de fuente, truncado, selección y herencia dentro de componentes Text al operar.",
+      "Empaqueta y carga familias tipográficas respetando nombres y configuración de cada plataforma en ejecución.",
+      "Interpreta números como píxeles lógicos independientes de densidad y adapta recursos físicos con precisión."
     ],
-    correctAnswerIndex: 0,
-    explanation: "El sistema tradicional `PanResponder` satura el hilo de JS enviando decenas de eventos táctiles por segundo (`touchMove`), produciendo retrasos si el hilo de JS está ocupado. Gesture Handler evalúa estados de gestos en el UI thread enlazándose con Reanimated.",
-    topic: "Gestos y Tacto",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 0,
+    "explanation": "Diseño responsivo (Layout y presentación): Combina flex, límites, breakpoints propios y composición para teléfonos, tablets y ventanas redimensionables.",
+    "topic": "Layout y presentación",
+    "difficulty": "intermedio"
   },
   {
-    id: "rn-18",
-    collectionId: "react-native",
-    question: "¿Cómo se maneja el área segura de la pantalla (Safe Area) para evitar que la interfaz quede tapada por el 'Notch', la 'Dynamic Island' o la barra inferior de gestos en iOS y Android?",
-    options: [
-      "Utilizando la biblioteca `react-native-safe-area-context` mediante el hook `useSafeAreaInsets()` o el componente `<SafeAreaView>` para aplicar paddings dinámicos según los insets de hardware reales.",
-      "Fijando un margen superior estático de exactamente 44 píxeles en todas las pantallas de la app.",
-      "Desactivando el hardware de la cámara frontal mediante permisos en el manifiesto.",
-      "Obligando al usuario a rotar el teléfono a posición horizontal para ver la pantalla completa."
+    "id": "react-native-q-18",
+    "collectionId": "react-native",
+    "question": "Al trabajar con React Native, ¿qué responsabilidad define a «Safe Area»?",
+    "options": [
+      "Distingue modelos de sombra y cómo overflow, borderRadius y elevación interactúan al operar.",
+      "Ajusta contenido alrededor de sensores, barras del sistema y teclado virtual al evaluar.",
+      "Desplaza contenido y coordina scroll para que el campo activo permanezca visible al operar.",
+      "Distribuye componentes en filas o columnas y adapta el diseño al espacio disponible."
     ],
-    correctAnswerIndex: 0,
-    explanation: "`react-native-safe-area-context` es el estándar de la industria, ya que lee dinámicamente los insets del sistema operativo nativo (top, bottom, left, right) adaptándose a cualquier forma de pantalla, orientación y tamaño de barra de navegación.",
-    topic: "Diseño y Safe Area",
-    difficulty: "básico"
+    "correctAnswerIndex": 1,
+    "explanation": "Safe Area y teclado (Layout y presentación): Ajusta contenido alrededor de sensores, barras del sistema y teclado virtual.",
+    "topic": "Layout y presentación",
+    "difficulty": "intermedio"
   },
   {
-    id: "rn-19",
-    collectionId: "react-native",
-    question: "¿Qué papel cumple el archivo `Podfile` en el entorno de desarrollo de iOS para React Native?",
-    options: [
-      "Define y gestiona las dependencias nativas en Objective-C, Swift y C++ del proyecto iOS a través del gestor de paquetes CocoaPods.",
-      "Configura los estilos CSS globales que se importan en el navegador Safari.",
-      "Almacena las claves secretas de la API de producción de Stripe.",
-      "Contiene la lista de usuarios administradores de la organización de GitHub."
+    "id": "react-native-q-19",
+    "collectionId": "react-native",
+    "question": "En la arquitectura de React Native, ¿qué caracteriza técnicamente a «KeyboardAvoidingView y gestión de foco»?",
+    "options": [
+      "Distribuye componentes en filas o columnas y adapta el diseño al espacio disponible al operar.",
+      "Resuelve tamaños y posiciones desde reglas Flexbox antes de montar la geometría nativa.",
+      "Desplaza contenido y coordina scroll para que el campo activo permanezca visible al operar.",
+      "Distingue modelos de sombra y cómo overflow, borderRadius y elevación interactúan al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "En los proyectos React Native con soporte iOS, CocoaPods utiliza el `Podfile` para vincular automáticamente librerías nativas con el workspace de Xcode (`.xcworkspace`), configurando parámetros como soporte de Hermes y Fabric.",
-    topic: "Tooling Nativo y iOS",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 2,
+    "explanation": "KeyboardAvoidingView y gestión de foco (Layout y presentación): Desplaza contenido y coordina scroll para que el campo activo permanezca visible.",
+    "topic": "Layout y presentación",
+    "difficulty": "intermedio"
   },
   {
-    id: "rn-20",
-    collectionId: "react-native",
-    question: "En Android, ¿qué archivo de configuración define los permisos de hardware solicitados (cámara, ubicación, almacenamiento) por la aplicación?",
-    options: [
-      "`android/app/src/main/AndroidManifest.xml`",
-      "`android/build.gradle`",
-      "`android/gradle.properties`",
-      "`android/app/proguard-rules.pro`"
+    "id": "react-native-q-20",
+    "collectionId": "react-native",
+    "question": "Respecto a layout y presentación en React Native, ¿cuál es el propósito de «Appearance y color scheme»?",
+    "options": [
+      "Desplaza contenido y coordina scroll para que el campo activo permanezca visible al operar.",
+      "Distingue modelos de sombra y cómo overflow, borderRadius y elevación interactúan al operar.",
+      "Distribuye componentes en filas o columnas y adapta el diseño al espacio disponible.",
+      "Reacciona al tema claro, oscuro o configuración del sistema respetando las invariantes."
     ],
-    correctAnswerIndex: 0,
-    explanation: "El `AndroidManifest.xml` describe la estructura esencial de la aplicación Android al sistema operativo, incluyendo permisos (`<uses-permission android:name=\"...\" />`), actividades, servicios y esquemas de deep linking.",
-    topic: "Tooling Nativo y Android",
-    difficulty: "básico"
+    "correctAnswerIndex": 3,
+    "explanation": "Appearance y color scheme (Layout y presentación): Reacciona al tema claro, oscuro o configuración del sistema.",
+    "topic": "Layout y presentación",
+    "difficulty": "intermedio"
   },
   {
-    id: "rn-21",
-    collectionId: "react-native",
-    question: "¿Cuál es la función de `ProGuard` / `R8` al generar un release APK o Android App Bundle (AAB) en React Native?",
-    options: [
-      "Optimizar el tamaño del binario eliminando código muerto de librerías Java/Kotlin (tree shaking) y ofuscar los nombres de clases y métodos nativos para dificultar la ingeniería inversa.",
-      "Cifrar el código fuente JavaScript con un algoritmo cuántico de 512 bits.",
-      "Generar certificados SSL autofirmados para comunicaciones locales.",
-      "Duplicar la memoria RAM asignada al proceso de la máquina virtual Dalvik/ART."
+    "id": "react-native-q-21",
+    "collectionId": "react-native",
+    "question": "En React Native (Layout y presentación), ¿qué función técnica cumple «Código por plataforma»?",
+    "options": [
+      "Selecciona archivos, valores o implementaciones específicos cuando iOS y Android difieren al operar.",
+      "Distribuye componentes en filas o columnas y adapta el diseño al espacio disponible.",
+      "Distingue modelos de sombra y cómo overflow, borderRadius y elevación interactúan al operar.",
+      "Resuelve tamaños y posiciones desde reglas Flexbox antes de montar la geometría nativa."
     ],
-    correctAnswerIndex: 0,
-    explanation: "R8/ProGuard es la herramienta oficial de Android que reduce sustancialmente el tamaño del APK y dificulta el desensamblado del bytecode Java/Kotlin eliminando clases y métodos no utilizados de los módulos nativos.",
-    topic: "Compilación de Releases",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 0,
+    "explanation": "Código por plataforma (Layout y presentación): Selecciona archivos, valores o implementaciones específicos cuando iOS y Android difieren.",
+    "topic": "Layout y presentación",
+    "difficulty": "intermedio"
   },
   {
-    id: "rn-22",
-    collectionId: "react-native",
-    question: "¿Cómo se implementa 'Deep Linking' en React Native para abrir una pantalla específica desde una URL externa o notificación push?",
-    options: [
-      "Configurando un esquema personalizado (e.g. `myapp://`) o enlaces universales (iOS Universal Links / Android App Links) vinculados a la configuración de rutas de React Navigation (`linking` config).",
-      "Insertando un iframe oculto en el archivo `index.js` que escucha cambios en el DNS del teléfono.",
-      "Creando un servidor web HTTP dentro del teléfono que atiende en el puerto 8080.",
-      "Invocando la función `window.location.reload()` cuando llega una notificación."
+    "id": "react-native-q-22",
+    "collectionId": "react-native",
+    "question": "Dentro de React Native, ¿cómo opera el mecanismo de «Text y tipografía» en layout y presentación?",
+    "options": [
+      "Interpreta números como píxeles lógicos independientes de densidad y adapta recursos físicos al operar.",
+      "Controla jerarquía, escalado de fuente, truncado, selección y herencia dentro de componentes Text.",
+      "Selecciona archivos, valores o implementaciones específicos cuando iOS y Android difieren al operar.",
+      "Empaqueta y carga familias tipográficas respetando nombres y configuración de cada plataforma."
     ],
-    correctAnswerIndex: 0,
-    explanation: "React Navigation provee el objeto `linking` (con `prefixes` y mapeo de rutas) que intercepta URLs nativas y navega automáticamente al stack o pantalla correspondiente con los parámetros de consulta mapeados.",
-    topic: "Deep Linking y Navegación",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 1,
+    "explanation": "Text y tipografía (Layout y presentación): Controla jerarquía, escalado de fuente, truncado, selección y herencia dentro de componentes Text.",
+    "topic": "Layout y presentación",
+    "difficulty": "intermedio"
   },
   {
-    id: "rn-23",
-    collectionId: "react-native",
-    question: "¿Qué ventaja ofrece utilizar la librería `expo-image` o `react-native-fast-image` frente al componente nativo básico `<Image>` de React Native?",
-    options: [
-      "Soporte avanzado de caché agresiva en disco/memoria, precarga de imágenes prioritarias (prefetching), renderizado de formatos modernos (AVIF, WebP) y prevención de parpadeos (flicker) al actualizar la fuente de la imagen.",
-      "Generación automática de fotos con modelos de inteligencia artificial en local.",
-      "Compresión de fotos con pérdida irreversible para reducir el costo de suscripción a iCloud.",
-      "Capacidad de mostrar imágenes sin tener una pantalla física conectada al dispositivo."
+    "id": "react-native-q-23",
+    "collectionId": "react-native",
+    "question": "Al trabajar con React Native, ¿qué responsabilidad define a «Fuentes personalizadas»?",
+    "options": [
+      "Resuelve tamaños y posiciones desde reglas Flexbox antes de montar la geometría nativa al operar.",
+      "Selecciona archivos, valores o implementaciones específicos cuando iOS y Android difieren.",
+      "Empaqueta y carga familias tipográficas respetando nombres y configuración de cada plataforma.",
+      "Distribuye componentes en filas o columnas y adapta el diseño al espacio disponible al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "El componente estándar `<Image>` de React Native tiene deficiencias de caching y parpadeo al remontar. Las alternativas como `expo-image` (basada en Glide en Android y SDWebImage en iOS) gestionan cachés multinivel y transiciones suaves.",
-    topic: "Optimización Multimedia",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 2,
+    "explanation": "Fuentes personalizadas (Layout y presentación): Empaqueta y carga familias tipográficas respetando nombres y configuración de cada plataforma.",
+    "topic": "Layout y presentación",
+    "difficulty": "intermedio"
   },
   {
-    id: "rn-24",
-    collectionId: "react-native",
-    question: "¿Cuál es la causa habitual de los llamados 'Micro-janks' (tirones de interfaz) durante las animaciones en React Native si no se utiliza el hilo de UI?",
-    options: [
-      "El hilo único de JavaScript (JS Thread) se satura procesando renders de React, parsing de JSON o lógica de negocio pesada, impidiendo despachar los fotogramas de la animación a 60 FPS a tiempo para el pulso de V-Sync.",
-      "El procesador del dispositivo móvil entra en modo de hibernación automática.",
-      "La tarjeta de red inalámbrica Wi-Fi interrumpe el bus de memoria del procesador gráfico.",
-      "El motor Hermes detecta variables tipadas como `any` y detiene la ejecución durante 1 segundo."
+    "id": "react-native-q-24",
+    "collectionId": "react-native",
+    "question": "En la arquitectura de React Native, ¿qué caracteriza técnicamente a «Sombras, elevación y clipping»?",
+    "options": [
+      "Ajusta contenido alrededor de sensores, barras del sistema y teclado virtual al operar.",
+      "Organiza estilos con objetos de JavaScript y referencias reutilizables al evaluar.",
+      "Desplaza contenido y coordina scroll para que el campo activo permanezca visible.",
+      "Distingue modelos de sombra y cómo overflow, borderRadius y elevación interactúan."
     ],
-    correctAnswerIndex: 0,
-    explanation: "El hilo de JS es single-threaded. Si se produce un render pesado mientras ocurre una animación conducida por JS, el hilo se bloquea temporalmente perdiendo frames (frame drops), lo que provoca el clásico tartamudeo o jank.",
-    topic: "Rendimiento y Profiling",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 3,
+    "explanation": "Sombras, elevación y clipping (Layout y presentación): Distingue modelos de sombra y cómo overflow, borderRadius y elevación interactúan.",
+    "topic": "Layout y presentación",
+    "difficulty": "intermedio"
   },
   {
-    id: "rn-25",
-    collectionId: "react-native",
-    question: "En el ecosistema React Native, ¿qué significa una actualización 'Over-The-Air' (OTA) mediante herramientas como EAS Update o CodePush?",
-    options: [
-      "Desplegar correcciones de código JavaScript y assets directamente a los dispositivos de los usuarios sin necesidad de pasar por el proceso de revisión y publicación de una nueva versión binaria en Apple App Store o Google Play Store.",
-      "Actualizar el firmware de radio y Bluetooth del módem del dispositivo móvil por satélite.",
-      "Reemplazar el procesador físico del dispositivo enviando impulsos electromagnéticos.",
-      "Actualizar las librerías nativas escritas en Swift y Kotlin sin recompilar el proyecto en Xcode."
+    "id": "react-native-q-25",
+    "collectionId": "react-native",
+    "question": "Respecto a interacción, gestos y medios en React Native, ¿cuál es el propósito de «TextInput»?",
+    "options": [
+      "Conecta teclado nativo, eventos y estado para campos controlados sin degradar el flujo.",
+      "Integra capacidades multimedia mediante módulos del ecosistema y permisos nativos.",
+      "Expone estados de pulsación y eventos onPressIn, onPressOut, onLongPress y onPress.",
+      "Resuelve recursos locales o remotos, dimensiones, caché y decodificación en el flujo."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Las actualizaciones OTA aprovechan que el bundle de JavaScript y los assets son interpretados en tiempo de ejecución. Siempre que no se modifique código nativo (Java/Kotlin/Swift), el bundle se puede actualizar de inmediato vía CDN.",
-    topic: "Distribución y Actualizaciones OTA",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 0,
+    "explanation": "TextInput (Interacción, gestos y medios): Conecta teclado nativo, eventos y estado para campos controlados.",
+    "topic": "Interacción, gestos y medios",
+    "difficulty": "intermedio"
   },
   {
-    id: "rn-26",
-    collectionId: "react-native",
-    question: "En React Native, ¿qué utilidad tiene el hook `useWindowDimensions` frente a la API estática `Dimensions.get('window')`?",
-    options: [
-      "`useWindowDimensions` se suscribe automáticamente a cambios en las dimensiones de la pantalla (rotación entre vertical y horizontal, modo multitarea o ventana dividida en tablets) y provoca un re-render con los nuevos valores.",
-      "`useWindowDimensions` calcula las dimensiones físicas del monitor del desarrollador en lugar del teléfono.",
-      "`Dimensions.get('window')` solo funciona en sistemas operativos de 32 bits.",
-      "`useWindowDimensions` convierte las dimensiones a pulgadas en lugar de puntos lógicos."
+    "id": "react-native-q-26",
+    "collectionId": "react-native",
+    "question": "En React Native (Interacción, gestos y medios), ¿qué función técnica cumple «Pressable»?",
+    "options": [
+      "Resuelve recursos locales o remotos, dimensiones, caché y decodificación en ejecución.",
+      "Expone estados de pulsación y eventos onPressIn, onPressOut, onLongPress y onPress.",
+      "Negocia qué vista recibe un gesto cuando varias capas quieren responder al evaluar.",
+      "Integra capacidades multimedia mediante módulos del ecosistema y permisos nativos."
     ],
-    correctAnswerIndex: 0,
-    explanation: "`Dimensions.get('window')` toma una instantánea estática al momento de su ejecución y no avisa si la orientación cambia. `useWindowDimensions` es reactivo y actualiza el componente dinámicamente ante cualquier cambio de pantalla.",
-    topic: "Diseño Responsivo",
-    difficulty: "básico"
+    "correctAnswerIndex": 1,
+    "explanation": "Pressable (Interacción, gestos y medios): Expone estados de pulsación y eventos onPressIn, onPressOut, onLongPress y onPress.",
+    "topic": "Interacción, gestos y medios",
+    "difficulty": "intermedio"
   },
   {
-    id: "rn-27",
-    collectionId: "react-native",
-    question: "¿Qué es un 'Config Plugin' en el flujo prebuild de Expo?",
-    options: [
-      "Un script de Node.js que personaliza programáticamente los proyectos nativos de Android e iOS (modificando `AndroidManifest.xml`, `Info.plist`, `build.gradle` o `Podfile`) durante la ejecución de `npx expo prebuild`.",
-      "Un archivo binario que acelera la velocidad de descarga de dependencias en npm.",
-      "Un módulo que traduce las cadenas de texto de la aplicación a 40 idiomas diferentes.",
-      "Un plugin de WordPress que sincroniza artículos con una base de datos Firebase."
+    "id": "react-native-q-27",
+    "collectionId": "react-native",
+    "question": "Dentro de React Native, ¿cómo opera el mecanismo de «Responder System» en interacción, gestos y medios?",
+    "options": [
+      "Integra capacidades multimedia mediante módulos del ecosistema y permisos nativos al operar.",
+      "Expone estados de pulsación y eventos onPressIn, onPressOut, onLongPress y onPress al operar.",
+      "Negocia qué vista recibe un gesto cuando varias capas quieren responder de forma segura.",
+      "Combina pan, pinch, swipe y simultaneidad mediante librerías integradas con el hilo de UI."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Los Config Plugins permiten integrar cualquier SDK nativo en proyectos Expo manteniendo el código nativo generado de forma efímera, automatizando las modificaciones manuales que tradicionalmente se hacían en Xcode o Android Studio.",
-    topic: "Expo Config Plugins",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 2,
+    "explanation": "Responder System (Interacción, gestos y medios): Negocia qué vista recibe un gesto cuando varias capas quieren responder.",
+    "topic": "Interacción, gestos y medios",
+    "difficulty": "intermedio"
   },
   {
-    id: "rn-28",
-    collectionId: "react-native",
-    question: "¿Por qué en React Native se desaconseja utilizar animaciones basadas en cambiar propiedades de diseño como `width`, `height`, `margin` o `top`?",
-    options: [
-      "Porque cambiar esas propiedades obliga al motor Yoga a recalcular el árbol de layout completo en cada fotograma y transferir nuevas coordenadas a las vistas nativas, provocando caídas severas de FPS.",
-      "Porque los dispositivos Android no reconocen cambios de margen en números impares.",
-      "Porque el consorcio React prohíbe el uso de dimensiones fijas en dispositivos móviles.",
-      "Porque las propiedades geométricas no pueden recibir valores en píxeles."
+    "id": "react-native-q-28",
+    "collectionId": "react-native",
+    "question": "Al trabajar con React Native, ¿qué responsabilidad define a «Gestos complejos»?",
+    "options": [
+      "Expone estados de pulsación y eventos onPressIn, onPressOut, onLongPress y onPress al operar.",
+      "Integra capacidades multimedia mediante módulos del ecosistema y permisos nativos al operar.",
+      "Anima cambios globales de layout en el siguiente commit con una configuración declarativa.",
+      "Combina pan, pinch, swipe y simultaneidad mediante librerías integradas con el hilo de UI."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Recalcular el layout de Yoga en cada frame consume muchísimos ciclos de CPU. En su lugar se debe animar `transform: [{ scaleX: ... }, { translateY: ... }]`, lo cual se calcula puramente en GPU sin afectar el layout de los elementos hermanos.",
-    topic: "Rendimiento y Animaciones",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 3,
+    "explanation": "Gestos complejos (Interacción, gestos y medios): Combina pan, pinch, swipe y simultaneidad mediante librerías integradas con el hilo de UI.",
+    "topic": "Interacción, gestos y medios",
+    "difficulty": "intermedio"
   },
   {
-    id: "rn-29",
-    collectionId: "react-native",
-    question: "En React Native, ¿qué función cumple el componente `<KeyboardAvoidingView>`?",
-    options: [
-      "Ajusta automáticamente la posición, altura o padding de la pantalla cuando el teclado virtual del dispositivo móvil aparece, impidiendo que los campos de entrada de texto (`<TextInput>`) queden ocultos detrás del teclado.",
-      "Bloquea el teclado para impedir que el usuario ingrese caracteres especiales o emojis.",
-      "Convierte el teclado en un mando de videojuegos táctil con controles direccionales.",
-      "Desactiva las sugerencias de autocorrección ortográfica del sistema operativo."
+    "id": "react-native-q-29",
+    "collectionId": "react-native",
+    "question": "En la arquitectura de React Native, ¿qué caracteriza técnicamente a «Animated»?",
+    "options": [
+      "Modela valores animados y los conecta con propiedades compatibles para interpolar en el tiempo.",
+      "Combina pan, pinch, swipe y simultaneidad mediante librerías integradas con el hilo de UI.",
+      "Anima cambios globales de layout en el siguiente commit con una configuración declarativa.",
+      "Expone estados de pulsación y eventos onPressIn, onPressOut, onLongPress y onPress al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "En móviles el teclado ocupa casi la mitad de la pantalla. `<KeyboardAvoidingView behavior=\"padding\" | \"height\" | \"position\">` reacciona a la aparición del teclado reposicionando los controles para que permanezcan visibles.",
-    topic: "UX Móvil y Formularios",
-    difficulty: "básico"
+    "correctAnswerIndex": 0,
+    "explanation": "Animated (Interacción, gestos y medios): Modela valores animados y los conecta con propiedades compatibles para interpolar en el tiempo.",
+    "topic": "Interacción, gestos y medios",
+    "difficulty": "intermedio"
   },
   {
-    id: "rn-30",
-    collectionId: "react-native",
-    question: "¿Cómo se gestionan las fuentes tipográficas personalizadas (custom fonts) en React Native de forma multiplataforma?",
-    options: [
-      "Asegurando que el nombre de la familia (`fontFamily`) en el archivo de estilos coincida exactamente con el nombre de PostScript de la fuente en iOS y con el nombre del archivo de la fuente (sin extensión) en Android.",
-      "Incrustando las fuentes en archivos CSS globales importados con `<link rel=\"stylesheet\">`.",
-      "Descargando las fuentes dinámicamente desde Google Fonts en cada apertura de la app.",
-      "Convirtiendo las tipografías a formato de imagen PNG antes de compilar el proyecto."
+    "id": "react-native-q-30",
+    "collectionId": "react-native",
+    "question": "Respecto a interacción, gestos y medios en React Native, ¿cuál es el propósito de «LayoutAnimation»?",
+    "options": [
+      "Expone estados de pulsación y eventos onPressIn, onPressOut, onLongPress y onPress al operar.",
+      "Anima cambios globales de layout en el siguiente commit con una configuración declarativa.",
+      "Integra capacidades multimedia mediante módulos del ecosistema y permisos nativos al operar.",
+      "Combina pan, pinch, swipe y simultaneidad mediante librerías integradas con el hilo de UI."
     ],
-    correctAnswerIndex: 0,
-    explanation: "iOS identifica las fuentes instaladas mediante su 'PostScript name' embebido en los metadatos de la fuente, mientras que Android las busca por el nombre físico del archivo colocado en `android/app/src/main/assets/fonts/`. Expo Font abstrae esta discrepancia mediante hooks unificados.",
-    topic: "Tipografías y Assets",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 1,
+    "explanation": "LayoutAnimation (Interacción, gestos y medios): Anima cambios globales de layout en el siguiente commit con una configuración declarativa.",
+    "topic": "Interacción, gestos y medios",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "react-native-q-31",
+    "collectionId": "react-native",
+    "question": "En React Native (Interacción, gestos y medios), ¿qué función técnica cumple «Animaciones en el hilo de UI»?",
+    "options": [
+      "Modela valores animados y los conecta con propiedades compatibles para interpolar en el tiempo de modo predecible.",
+      "Implementa el renderer nativo moderno, calcula árboles y commits y coordina montaje con las plataformas al operar.",
+      "Mantiene gestos y transformaciones fluidos mediante worklets o soluciones que evitan round trips por JavaScript.",
+      "Combina pan, pinch, swipe y simultaneidad mediante librerías integradas con el hilo de UI sin degradar el flujo."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Animaciones en el hilo de UI (Interacción, gestos y medios): Mantienen gestos y transformaciones fluidos mediante worklets o soluciones que evitan round trips por JavaScript.",
+    "topic": "Interacción, gestos y medios",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "react-native-q-32",
+    "collectionId": "react-native",
+    "question": "Dentro de React Native, ¿cómo opera el mecanismo de «Imágenes» en interacción, gestos y medios?",
+    "options": [
+      "Integra capacidades multimedia mediante módulos del ecosistema y permisos nativos al operar.",
+      "Expone estados de pulsación y eventos onPressIn, onPressOut, onLongPress y onPress al operar.",
+      "Combina pan, pinch, swipe y simultaneidad mediante librerías integradas con el hilo de UI.",
+      "Resuelve recursos locales o remotos, dimensiones, caché y decodificación de forma clara."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "Imágenes (Interacción, gestos y medios): Resuelve recursos locales o remotos, dimensiones, caché y decodificación.",
+    "topic": "Interacción, gestos y medios",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "react-native-q-33",
+    "collectionId": "react-native",
+    "question": "Al trabajar con React Native, ¿qué responsabilidad define a «ImageBackground, resizeMode y aspectRatio»?",
+    "options": [
+      "Controla cómo una imagen llena su caja sin deformar el diseño manteniendo consistencia.",
+      "Integra capacidades multimedia mediante módulos del ecosistema y permisos nativos.",
+      "Expone estados de pulsación y eventos onPressIn, onPressOut, onLongPress y onPress.",
+      "Resuelve recursos locales o remotos, dimensiones, caché y decodificación en el flujo."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "ImageBackground, resizeMode y aspectRatio (Interacción, gestos y medios): Controla cómo una imagen llena su caja sin deformar el diseño.",
+    "topic": "Interacción, gestos y medios",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "react-native-q-34",
+    "collectionId": "react-native",
+    "question": "En la arquitectura de React Native, ¿qué caracteriza técnicamente a «Audio, video y cámara»?",
+    "options": [
+      "Resuelve recursos locales o remotos, dimensiones, caché y decodificación en el flujo.",
+      "Integra capacidades multimedia mediante módulos del ecosistema y permisos nativos.",
+      "Negocia qué vista recibe un gesto cuando varias capas quieren responder al operar.",
+      "Añade vibración o respuesta táctil alineada con acciones significativas al operar."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Audio, video y cámara (Interacción, gestos y medios): Integra capacidades multimedia mediante módulos del ecosistema y permisos nativos.",
+    "topic": "Interacción, gestos y medios",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "react-native-q-35",
+    "collectionId": "react-native",
+    "question": "Respecto a interacción, gestos y medios en React Native, ¿cuál es el propósito de «Haptics y feedback nativo»?",
+    "options": [
+      "Integra capacidades multimedia mediante módulos del ecosistema y permisos nativos al operar.",
+      "Expone estados de pulsación y eventos onPressIn, onPressOut, onLongPress y onPress al operar.",
+      "Añade vibración o respuesta táctil alineada con acciones significativas de forma segura.",
+      "Combina pan, pinch, swipe y simultaneidad mediante librerías integradas con el hilo de UI."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Haptics y feedback nativo (Interacción, gestos y medios): Añade vibración o respuesta táctil alineada con acciones significativas.",
+    "topic": "Interacción, gestos y medios",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "react-native-q-36",
+    "collectionId": "react-native",
+    "question": "En React Native (Listas y navegación), ¿qué función técnica cumple «ScrollView y FlatList»?",
+    "options": [
+      "Combina pull-to-refresh, estados de carga y onEndReached sin duplicar solicitudes al operar.",
+      "Monta una ventana alrededor del viewport y recicla trabajo conforme se desplaza al operar.",
+      "Persiste la ruta actual cuando aporta valor y evita restaurar flujos inválidos al operar.",
+      "Distingue render completo de una ventana virtual para colecciones grandes con precisión."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "ScrollView y FlatList (Listas y navegación): Distingue render completo de una ventana virtual para colecciones grandes.",
+    "topic": "Listas y navegación",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "react-native-q-37",
+    "collectionId": "react-native",
+    "question": "Dentro de React Native, ¿cómo opera el mecanismo de «SectionList» en listas y navegación?",
+    "options": [
+      "Virtualiza datos agrupados y conserva encabezados de sección durante la ejecución del módulo.",
+      "Combina pull-to-refresh, estados de carga y onEndReached sin duplicar solicitudes.",
+      "Monta una ventana alrededor del viewport y recicla trabajo conforme se desplaza al operar.",
+      "Persiste la ruta actual cuando aporta valor y evita restaurar flujos inválidos al operar."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "SectionList (Listas y navegación): Virtualiza datos agrupados y conserva encabezados de sección.",
+    "topic": "Listas y navegación",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "react-native-q-38",
+    "collectionId": "react-native",
+    "question": "Al trabajar con React Native, ¿qué responsabilidad define a «Virtualización y windowing»?",
+    "options": [
+      "Combina pull-to-refresh, estados de carga y onEndReached sin duplicar solicitudes al evaluar.",
+      "Monta una ventana alrededor del viewport y recicla trabajo conforme se desplaza al operar.",
+      "Persiste la ruta actual cuando aporta valor y evita restaurar flujos inválidos al evaluar.",
+      "Transportan identificadores serializables y pueden comprobarse con TypeScript en el flujo."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Virtualización y windowing (Listas y navegación): Monta una ventana alrededor del viewport y recicla trabajo conforme se desplaza.",
+    "topic": "Listas y navegación",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "react-native-q-39",
+    "collectionId": "react-native",
+    "question": "En la arquitectura de React Native, ¿qué caracteriza técnicamente a «Keys, getItemLayout y renderItem»?",
+    "options": [
+      "Combina pull-to-refresh, estados de carga y onEndReached sin duplicar solicitudes al operar.",
+      "Monta una ventana alrededor del viewport y recicla trabajo conforme se desplaza al operar.",
+      "Estabiliza identidad, evita mediciones repetidas y reduce trabajo por fila en ejecución.",
+      "Persiste la ruta actual cuando aporta valor y evita restaurar flujos inválidos al operar."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Keys, getItemLayout y renderItem (Listas y navegación): Estabiliza identidad, evita mediciones repetidas y reduce trabajo por fila.",
+    "topic": "Listas y navegación",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "react-native-q-40",
+    "collectionId": "react-native",
+    "question": "Respecto a listas y navegación en React Native, ¿cuál es el propósito de «Refresh»?",
+    "options": [
+      "Estabiliza identidad, evita mediciones repetidas y reduce trabajo por fila al operar.",
+      "Distingue render completo de una ventana virtual para colecciones grandes al operar.",
+      "Transportan identificadores serializables y pueden comprobarse con TypeScript.",
+      "Combina pull-to-refresh, estados de carga y onEndReached sin duplicar solicitudes."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "Refresh y carga incremental (Listas y navegación): Combina pull-to-refresh, estados de carga y onEndReached sin duplicar solicitudes.",
+    "topic": "Listas y navegación",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "react-native-q-41",
+    "collectionId": "react-native",
+    "question": "En React Native (Listas y navegación), ¿qué función técnica cumple «Navegación»?",
+    "options": [
+      "Mantiene historial de pantallas y transiciones entre rutas dentro de la arquitectura activa.",
+      "Combina pull-to-refresh, estados de carga y onEndReached sin duplicar solicitudes.",
+      "Monta una ventana alrededor del viewport y recicla trabajo conforme se desplaza al operar.",
+      "Persiste la ruta actual cuando aporta valor y evita restaurar flujos inválidos al operar."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Navegación (Listas y navegación): Mantiene historial de pantallas y transiciones entre rutas.",
+    "topic": "Listas y navegación",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "react-native-q-42",
+    "collectionId": "react-native",
+    "question": "Dentro de React Native, ¿cómo opera el mecanismo de «Stacks, tabs y drawers» en listas y navegación?",
+    "options": [
+      "Combina pull-to-refresh, estados de carga y onEndReached sin duplicar solicitudes al operar.",
+      "Componen patrones de navegación con estados y ciclos de vida distintos dentro del flujo.",
+      "Monta una ventana alrededor del viewport y recicla trabajo conforme se desplaza al operar.",
+      "Persiste la ruta actual cuando aporta valor y evita restaurar flujos inválidos al operar."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Stacks, tabs y drawers (Listas y navegación): Componen patrones de navegación con estados y ciclos de vida distintos.",
+    "topic": "Listas y navegación",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "react-native-q-43",
+    "collectionId": "react-native",
+    "question": "Al trabajar con React Native, ¿qué responsabilidad define a «Parámetros y tipos de rutas»?",
+    "options": [
+      "Combina pull-to-refresh, estados de carga y onEndReached sin duplicar solicitudes al operar.",
+      "Monta una ventana alrededor del viewport y recicla trabajo conforme se desplaza al operar.",
+      "Transportan identificadores serializables y pueden comprobarse con TypeScript al operar.",
+      "Persiste la ruta actual cuando aporta valor y evita restaurar flujos inválidos al operar."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Parámetros y tipos de rutas (Listas y navegación): Transportan identificadores serializables y pueden comprobarse con TypeScript.",
+    "topic": "Listas y navegación",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "react-native-q-44",
+    "collectionId": "react-native",
+    "question": "En la arquitectura de React Native, ¿qué caracteriza técnicamente a «Deep links y universal links»?",
+    "options": [
+      "Combina pull-to-refresh, estados de carga y onEndReached sin duplicar solicitudes al operar.",
+      "Monta una ventana alrededor del viewport y recicla trabajo conforme se desplaza al operar.",
+      "Persiste la ruta actual cuando aporta valor y evita restaurar flujos inválidos al operar.",
+      "Transforma URLs externas en rutas internas y verifican dominios asociados con precisión."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "Deep links y universal links (Listas y navegación): Transforman URLs externas en rutas internas y verifican dominios asociados.",
+    "topic": "Listas y navegación",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "react-native-q-45",
+    "collectionId": "react-native",
+    "question": "Respecto a listas y navegación en React Native, ¿cuál es el propósito de «Estado de navegación y restauración»?",
+    "options": [
+      "Persiste la ruta actual cuando aporta valor y evita restaurar flujos inválidos de forma segura.",
+      "Combina pull-to-refresh, estados de carga y onEndReached sin duplicar solicitudes al operar.",
+      "Monta una ventana alrededor del viewport y recicla trabajo conforme se desplaza al operar.",
+      "Transportan identificadores serializables y pueden comprobarse con TypeScript al operar."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Estado de navegación y restauración (Listas y navegación): Persiste la ruta actual cuando aporta valor y evita restaurar flujos inválidos.",
+    "topic": "Listas y navegación",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "react-native-q-46",
+    "collectionId": "react-native",
+    "question": "En React Native (Sistema operativo y dispositivo), ¿qué función técnica cumple «Permisos»?",
+    "options": [
+      "Abre URLs, teléfono, correo, ajustes u otras apps mediante esquemas soportados con precisión.",
+      "Solicita capacidades protegidas y adapta la experiencia a concedido, denegado o bloqueado.",
+      "Ejecuta trabajo limitado bajo políticas del sistema, no como procesos permanentes libres.",
+      "Conecta token del dispositivo, proveedor remoto, payload del sistema y navegación al abrir."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Permisos (Sistema operativo y dispositivo): Solicita capacidades protegidas y adapta la experiencia a concedido, denegado o bloqueado.",
+    "topic": "Sistema operativo y dispositivo",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "react-native-q-47",
+    "collectionId": "react-native",
+    "question": "Dentro de React Native, ¿cómo opera el mecanismo de «Linking y apertura de aplicaciones» en sistema operativo y dispositivo?",
+    "options": [
+      "Ejecuta trabajo limitado bajo políticas del sistema, no como procesos permanentes libres.",
+      "Solicita capacidades protegidas y adapta la experiencia a concedido, denegado o bloqueado.",
+      "Abre URLs, teléfono, correo, ajustes u otras apps mediante esquemas soportados al operar.",
+      "Conecta token del dispositivo, proveedor remoto, payload del sistema y navegación al abrir."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Linking y apertura de aplicaciones (Sistema operativo y dispositivo): Abre URLs, teléfono, correo, ajustes u otras apps mediante esquemas soportados.",
+    "topic": "Sistema operativo y dispositivo",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "react-native-q-48",
+    "collectionId": "react-native",
+    "question": "Al trabajar con React Native, ¿qué responsabilidad define a «AppState»?",
+    "options": [
+      "Ejecuta trabajo limitado bajo políticas del sistema, no como procesos permanentes libres al operar.",
+      "Solicita capacidades protegidas y adapta la experiencia a concedido, denegado o bloqueado.",
+      "Conecta token del dispositivo, proveedor remoto, payload del sistema y navegación al abrir.",
+      "Observa si la app está activa, en background o transicionando para pausar y reanudar trabajo."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "AppState (Sistema operativo y dispositivo): Observa si la app está activa, en background o transicionando para pausar y reanudar trabajo.",
+    "topic": "Sistema operativo y dispositivo",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "react-native-q-49",
+    "collectionId": "react-native",
+    "question": "En la arquitectura de React Native, ¿qué caracteriza técnicamente a «Notificaciones push»?",
+    "options": [
+      "Conecta token del dispositivo, proveedor remoto, payload del sistema y navegación al abrir.",
+      "Ejecuta trabajo limitado bajo políticas del sistema, no como procesos permanentes libres.",
+      "Solicita capacidades protegidas y adapta la experiencia a concedido, denegado o bloqueado.",
+      "Abre URLs, teléfono, correo, ajustes u otras apps mediante esquemas soportados al operar."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Notificaciones push (Sistema operativo y dispositivo): Conecta token del dispositivo, proveedor remoto, payload del sistema y navegación al abrir.",
+    "topic": "Sistema operativo y dispositivo",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "react-native-q-50",
+    "collectionId": "react-native",
+    "question": "Respecto a sistema operativo y dispositivo en React Native, ¿cuál es el propósito de «Tareas en background»?",
+    "options": [
+      "Abre URLs, teléfono, correo, ajustes u otras apps mediante esquemas soportados en ejecución.",
+      "Ejecuta trabajo limitado bajo políticas del sistema, no como procesos permanentes libres.",
+      "Solicita capacidades protegidas y adapta la experiencia a concedido, denegado o bloqueado.",
+      "Conecta token del dispositivo, proveedor remoto, payload del sistema y navegación al abrir."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Tareas en background (Sistema operativo y dispositivo): Ejecutan trabajo limitado bajo políticas del sistema, no como procesos permanentes libres.",
+    "topic": "Sistema operativo y dispositivo",
+    "difficulty": "avanzado"
   }
 ];

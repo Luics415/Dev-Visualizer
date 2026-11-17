@@ -33,7 +33,6 @@ export function QuizRunner({
 }: QuizRunnerProps) {
   const { isAuthenticated, user } = useAuth();
 
-  // Muestrear 15 preguntas aleatorias con opciones barajadas por intento
   const [questions, setQuestions] = useState<QuizQuestion[]>(() =>
     sampleRandomQuizQuestions(allQuestions, QUIZ_SAMPLE_SIZE)
   );
@@ -76,7 +75,6 @@ export function QuizRunner({
       setCurrentIndex(nextIndex);
       setSelectedOption(answers[nextIndex] ?? null);
     } else {
-      // Finalizar quiz y evaluar
       const evaluated = evaluateQuiz(questions, answers);
       setResult(evaluated);
       setIsCompleted(true);
@@ -109,7 +107,6 @@ export function QuizRunner({
     setResult(null);
   };
 
-  // Atajos de teclado para responder cómodamente
   useEffect(() => {
     const handleKeyDown = (e: KeyboardEvent) => {
       if (!isAuthenticated || isCompleted || !currentQuestion) return;
@@ -158,7 +155,7 @@ export function QuizRunner({
       <div className="quiz-card quiz-card--finished" role="region" aria-label="Resultados del quiz">
         <header className="quiz-finished__header">
           <span className="quiz-finished__badge-flag">
-            {result.passed ? "🏆 Reto Superado" : "📚 Práctica Completada"}
+            {result.passed ? "Reto Superado" : "Práctica Completada"}
           </span>
           <h2>{result.passed ? "¡Excelente dominio técnico!" : "Continúa practicando"}</h2>
           <p>
@@ -227,7 +224,7 @@ export function QuizRunner({
           </span>
           {hasBadge ? (
             <span className="quiz-header__unlocked-badge" title="Insignia ya desbloqueada en este navegador">
-              🎖️ Insignia conseguida
+              Insignia conseguida
             </span>
           ) : null}
         </div>

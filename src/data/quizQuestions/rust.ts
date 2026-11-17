@@ -2,453 +2,753 @@ import type { QuizQuestion } from "@/data/quizTypes";
 
 export const rustQuestions: QuizQuestion[] = [
   {
-    id: "rust-q-01",
-    collectionId: "rust",
-    question: "¿Cuál es la regla fundamental de aliasing y mutabilidad que impone el Borrow Checker en Rust?",
-    options: [
-      "Se pueden tener tantas referencias mutables (&mut T) simultáneas como núcleos tenga la CPU.",
-      "Para cualquier recurso en un instante dado, se pueden tener o bien cualquier número de referencias inmutables (&T), o bien exactamente una única referencia mutable (&mut T), pero nunca ambas simultáneamente.",
-      "Las referencias solo son válidas si el tipo implementa el trait Copy.",
-      "Toda referencia debe liberarse explícitamente mediante una llamada a free() antes de salir de ámbito."
+    "id": "rust-q-01",
+    "collectionId": "rust",
+    "question": "En Rust (Sistema de tipos expresivo), ¿qué función técnica cumple «Newtype pattern»?",
+    "options": [
+      "Envuelve una representación existente para obtener identidad de tipo y aplicar invariantes sin costo adicional.",
+      "Deduce tipos locales y aplica conversiones limitadas sin ocultar transformaciones potencialmente costosas.",
+      "Modela alternativas cerradas donde cada variante transporta exactamente la información que necesita al operar.",
+      "Comunica al compilador ownership, varianza o lifetime que no aparecen como campos almacenados de forma clara."
     ],
-    correctAnswerIndex: 1,
-    explanation: "El invariante central de Rust es 'Aliasing XOR Mutability'. Garantizar en tiempo de compilación que una referencia mutable sea exclusiva previene por completo las carreras de datos (data races) e invalidaciones de punteros en memoria.",
-    topic: "Borrow Checker y Ownership",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 0,
+    "explanation": "Newtype pattern (Sistema de tipos expresivo): Envuelve una representación existente para obtener identidad de tipo y aplicar invariantes sin costo adicional.",
+    "topic": "Sistema de tipos expresivo",
+    "difficulty": "básico"
   },
   {
-    id: "rust-q-02",
-    collectionId: "rust",
-    question: "¿Qué diferencia existe entre los traits 'Copy' y 'Clone' en el sistema de tipos de Rust?",
-    options: [
-      "Copy solo funciona en heap y Clone solo en stack.",
-      "Copy realiza una duplicación bit a bit implícita en la pila (memcpy trivial) sin costo en tiempo de ejecución, mientras que Clone requiere una invocación explícita (x.clone()) que puede ejecutar asignaciones costosas en el heap.",
-      "Clone solo está disponible para tipos primitivos enteros.",
-      "Copy destruye la variable original para transferir la propiedad al clon."
+    "id": "rust-q-02",
+    "collectionId": "rust",
+    "question": "Dentro de Rust, ¿cómo opera el mecanismo de «Enums con datos» en sistema de tipos expresivo?",
+    "options": [
+      "Comunica al compilador ownership, varianza o lifetime que no aparecen como campos almacenados al operar.",
+      "Modela alternativas cerradas donde cada variante transporta exactamente la información que necesita.",
+      "Representa cálculos que no regresan o estados imposibles y mejoran el análisis exhaustivo al operar.",
+      "Distingue duplicación implícita bit a bit de una clonación potencialmente costosa y explícita al operar."
     ],
-    correctAnswerIndex: 1,
-    explanation: "Copy es un marker trait para tipos cuyo duplicado es un simple copiado de bits (como i32 o tuplas de tipos Copy) sin alterar recursos externos. Clone es una duplicación explícita que puede involucrar reservas dinámicas de memoria (como String o Vec).",
-    topic: "Sistema de Tipos",
-    difficulty: "básico"
+    "correctAnswerIndex": 1,
+    "explanation": "Enums con datos (Sistema de tipos expresivo): Modelan alternativas cerradas donde cada variante transporta exactamente la información que necesita.",
+    "topic": "Sistema de tipos expresivo",
+    "difficulty": "básico"
   },
   {
-    id: "rust-q-03",
-    collectionId: "rust",
-    question: "¿Qué es un 'fat pointer' (puntero gordo) en el contexto de 'dyn Trait' (trait objects)?",
-    options: [
-      "Un puntero que ocupa 64 bytes para almacenar datos criptográficos.",
-      "Una estructura de dos palabras máquina: un puntero a los datos concretos de la instancia en memoria y un puntero a la 'vtable' que contiene las funciones del trait para despacho dinámico.",
-      "Un puntero que se niega a ser liberado por el destructor Drop.",
-      "Un puntero administrado por el Garbage Collector en runtime."
+    "id": "rust-q-03",
+    "collectionId": "rust",
+    "question": "Al trabajar con Rust, ¿qué responsabilidad define a «Tipos never e inhabitados»?",
+    "options": [
+      "Evita capturas accidentales de nombres entre la macro y el contexto donde se invoca al operar.",
+      "Divide iteradores en tareas y usa work stealing sin cambiar su resultado secuencial al operar.",
+      "Representa cálculos que no regresan o estados imposibles y mejoran el análisis exhaustivo.",
+      "Compara monomorfización optimizable con selección en ejecución y tamaño de binario al operar."
     ],
-    correctAnswerIndex: 1,
-    explanation: "A diferencia de un puntero simple a tipo concreto (1 palabra: 8 bytes en 64-bit), los trait objects 'dyn Trait' usan fat pointers de 2 palabras (16 bytes): la dirección del objeto concreto y la dirección de su tabla virtual (vtable).",
-    topic: "Polimorfismo Dinámico",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 2,
+    "explanation": "Tipos never e inhabitados (Sistema de tipos expresivo): Representan cálculos que no regresan o estados imposibles y mejoran el análisis exhaustivo.",
+    "topic": "Sistema de tipos expresivo",
+    "difficulty": "básico"
   },
   {
-    id: "rust-q-04",
-    collectionId: "rust",
-    question: "¿Cuál es la diferencia de concurrencia y seguridad entre 'Rc<T>' y 'Arc<T>'?",
-    options: [
-      "Rc comprime los datos con gzip y Arc con lz4.",
-      "Rc<T> utiliza un contador de referencias no atómico y no implementa Send/Sync (restringido a un solo hilo); Arc<T> utiliza operaciones atómicas en hardware para el contador, permitiendo compartir propiedad de forma segura entre múltiples hilos.",
-      "Arc solo puede almacenar tipos primitivos enteros y flotantes.",
-      "Rc se libera automáticamente al 50% de memoria del sistema."
+    "id": "rust-q-04",
+    "collectionId": "rust",
+    "question": "En la arquitectura de Rust, ¿qué caracteriza técnicamente a «Inferencia y coerciones»?",
+    "options": [
+      "Modela alternativas cerradas donde cada variante transporta exactamente la información que necesita al operar.",
+      "Comunica al compilador ownership, varianza o lifetime que no aparecen como campos almacenados en el flujo.",
+      "Representa cálculos que no regresan o estados imposibles y mejoran el análisis exhaustivo de forma segura.",
+      "Deduce tipos locales y aplica conversiones limitadas sin ocultar transformaciones potencialmente costosas."
     ],
-    correctAnswerIndex: 1,
-    explanation: "Rc (Reference Counted) incurre en menor sobrecosto pero no es thread-safe. Arc (Atomic Reference Counted) usa instrucciones atómicas para incrementar/decrementar la cuenta de referencias de forma concurrente sin condiciones de carrera.",
-    topic: "Smart Pointers y Concurrencia",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 3,
+    "explanation": "Inferencia y coerciones (Sistema de tipos expresivo): Deduce tipos locales y aplica conversiones limitadas sin ocultar transformaciones potencialmente costosas.",
+    "topic": "Sistema de tipos expresivo",
+    "difficulty": "básico"
   },
   {
-    id: "rust-q-05",
-    collectionId: "rust",
-    question: "¿Qué problema resuelve 'RefCell<T>' mediante el patrón de 'Interior Mutability'?",
-    options: [
-      "Permite ejecutar código sin compilarlo previamente a código binario.",
-      "Permite mutar datos incluso cuando solo se dispone de una referencia inmutable (&T), desplazando las comprobaciones del Borrow Checker de tiempo de compilación a tiempo de ejecución (haciendo panic si se violan las reglas).",
-      "Permite que dos hilos escriban en la misma posición de memoria sin locks.",
-      "Convierte punteros nulos en valores por defecto de tipo Option::None."
+    "id": "rust-q-05",
+    "collectionId": "rust",
+    "question": "Respecto a sistema de tipos expresivo en Rust, ¿cuál es el propósito de «PhantomData»?",
+    "options": [
+      "Comunica al compilador ownership, varianza o lifetime que no aparecen como campos almacenados.",
+      "Representa cálculos que no regresan o estados imposibles y mejoran el análisis exhaustivo.",
+      "Protege datos con guards RAII y hacen visible la política de lectura frente a escritura.",
+      "Notifican al executor que un future antes pendiente puede progresar sin sondeo continuo."
     ],
-    correctAnswerIndex: 1,
-    explanation: "RefCell<T> aplica el patrón de mutabilidad interior en un solo hilo: ofrece 'borrow()' y 'borrow_mut()'. Si se intenta solicitar un préstamo mutable mientras existe otro préstamo activo, RefCell produce un panic en tiempo de ejecución.",
-    topic: "Interior Mutability",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 0,
+    "explanation": "PhantomData (Sistema de tipos expresivo): Comunica al compilador ownership, varianza o lifetime que no aparecen como campos almacenados.",
+    "topic": "Sistema de tipos expresivo",
+    "difficulty": "básico"
   },
   {
-    id: "rust-q-06",
-    collectionId: "rust",
-    question: "¿Qué significan los marker traits 'Send' y 'Sync' en el modelo de concurrencia de Rust?",
-    options: [
-      "Send indica que el tipo puede enviarse por la red y Sync que puede sincronizarse con una base de datos.",
-      "Send indica que la propiedad del tipo puede transferirse de forma segura entre hilos; Sync indica que es seguro compartir referencias inmutables (&T) al tipo entre múltiples hilos concurrentes (T es Sync si y solo si &T es Send).",
-      "Send fuerza la serialización a formato JSON y Sync a protocolo Protobuf.",
-      "Indican que el tipo no puede ser clonado bajo ninguna circunstancia."
+    "id": "rust-q-06",
+    "collectionId": "rust",
+    "question": "En Rust (Ownership avanzado), ¿qué función técnica cumple «Movimientos parciales»?",
+    "options": [
+      "Mantiene valores vivos por conteo local o atómico, pero no resuelve ciclos automáticamente al operar.",
+      "Transfieren algunos campos y dejan el valor padre utilizable solo donde su estado sigue completo.",
+      "Distingue duplicación implícita bit a bit de una clonación potencialmente costosa y explícita.",
+      "Observan una asignación sin prolongar su vida y permite romper ciclos de ownership compartido."
     ],
-    correctAnswerIndex: 1,
-    explanation: "Send y Sync son la base de la 'concurrencia sin temor' en Rust. El compilador los implementa automáticamente: casi todos los tipos puros son Send/Sync a menos que contengan punteros crudos, Rc o RefCell.",
-    topic: "Concurrencia",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 1,
+    "explanation": "Movimientos parciales (Ownership avanzado): Transfieren algunos campos y dejan el valor padre utilizable solo donde su estado sigue completo.",
+    "topic": "Ownership avanzado",
+    "difficulty": "básico"
   },
   {
-    id: "rust-q-07",
-    collectionId: "rust",
-    question: "¿En qué orden se invocan los destructores 'Drop' de los campos dentro de un 'struct' de Rust?",
-    options: [
-      "En orden alfabético según el nombre de los campos.",
-      "En el orden exacto en el que fueron declarados en el struct (de arriba hacia abajo).",
-      "En orden inverso al de su declaración en el struct.",
-      "De forma aleatoria dependiendo de la fragmentación del heap."
+    "id": "rust-q-07",
+    "collectionId": "rust",
+    "question": "Dentro de Rust, ¿cómo opera el mecanismo de «Copy frente a Clone» en ownership avanzado?",
+    "options": [
+      "Mantiene valores vivos por conteo local o atómico, pero no resuelve ciclos automáticamente al operar.",
+      "Observan una asignación sin prolongar su vida y permite romper ciclos de ownership compartido.",
+      "Distingue duplicación implícita bit a bit de una clonación potencialmente costosa y explícita.",
+      "Protege datos con guards RAII y hacen visible la política de lectura frente a escritura al operar."
     ],
-    correctAnswerIndex: 1,
-    explanation: "En Rust, los campos de un struct se destruyen en el orden en que fueron declarados en la definición del tipo. Sin embargo, las variables locales en un bloque de función se destruyen en orden inverso al de su declaración (LIFO).",
-    topic: "Ciclo de Vida y Drop",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 2,
+    "explanation": "Copy frente a Clone (Ownership avanzado): Distingue duplicación implícita bit a bit de una clonación potencialmente costosa y explícita.",
+    "topic": "Ownership avanzado",
+    "difficulty": "básico"
   },
   {
-    id: "rust-q-08",
-    collectionId: "rust",
-    question: "¿Qué superpoderes otorga un bloque 'unsafe' en Rust y qué cosas NO desactiva?",
-    options: [
-      "Desactiva el Borrow Checker y el tipado estático por completo.",
-      "Permite desreferenciar punteros crudos, llamar funciones unsafe/FFI, implementar traits unsafe y mutar estáticos mutables; NO desactiva el Borrow Checker para referencias regulares ni las reglas de tipos del compilador.",
-      "Permite ejecutar código sin que el procesador verifique límites de privilegios en el kernel.",
-      "Evita que se produzcan excepciones de desbordamiento de enteros."
+    "id": "rust-q-08",
+    "collectionId": "rust",
+    "question": "Al trabajar con Rust, ¿qué responsabilidad define a «Interior mutability»?",
+    "options": [
+      "Distingue duplicación implícita bit a bit de una clonación potencialmente costosa y explícita al operar.",
+      "Observan una asignación sin prolongar su vida y permite romper ciclos de ownership compartido al operar.",
+      "Transfieren algunos campos y dejan el valor padre utilizable solo donde su estado sigue completo.",
+      "Traslada reglas de mutación a ejecución mediante Cell o RefCell conservando una interfaz compartida."
     ],
-    correctAnswerIndex: 1,
-    explanation: "Un bloque 'unsafe' solo desbloquea 5 operaciones específicas de bajo nivel (como desreferenciar punteros crudos o FFI). El Borrow Checker y todas las reglas de tipos normales de Rust continúan funcionando con rigor dentro del bloque unsafe.",
-    topic: "Unsafe Rust",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 3,
+    "explanation": "Interior mutability (Ownership avanzado): Traslada reglas de mutación a ejecución mediante Cell o RefCell conservando una interfaz compartida.",
+    "topic": "Ownership avanzado",
+    "difficulty": "básico"
   },
   {
-    id: "rust-q-09",
-    collectionId: "rust",
-    question: "¿Cuál es el propósito de 'Pin<P>' y el marker trait 'Unpin' en Rust asíncrono?",
-    options: [
-      "Fijar el proceso en un núcleo de CPU dedicado para evitar cambios de contexto.",
-      "Garantizar que el objeto en memoria al que apunta el puntero P no será movido de su dirección de memoria física, requisito indispensable para structs auto-referenciales generados por generadores async/await.",
-      "Deshabilitar las optimizaciones del compilador en funciones criptográficas.",
-      "Impedir que un hilo sea interrumpido por señales del sistema operativo."
+    "id": "rust-q-09",
+    "collectionId": "rust",
+    "question": "En la arquitectura de Rust, ¿qué caracteriza técnicamente a «Reference counting Rc y Arc»?",
+    "options": [
+      "Mantiene valores vivos por conteo local o atómico, pero no resuelve ciclos automáticamente al operar.",
+      "Evita capturas accidentales de nombres entre la macro y el contexto donde se invoca al operar.",
+      "Divide iteradores en tareas y usa work stealing sin cambiar su resultado secuencial al operar.",
+      "Compara monomorfización optimizable con selección en ejecución y tamaño de binario al operar."
     ],
-    correctAnswerIndex: 1,
-    explanation: "Las máquinas de estado async generan tipos auto-referenciales (punteros internos a sus propios campos). Si la estructura se moviera en memoria, esos punteros internos quedarían colgando. Pin garantiza que el objeto no se moverá a menos que implemente Unpin.",
-    topic: "Async y Pinning",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 0,
+    "explanation": "Reference counting Rc y Arc (Ownership avanzado): Mantiene valores vivos por conteo local o atómico, pero no resuelve ciclos automáticamente.",
+    "topic": "Ownership avanzado",
+    "difficulty": "básico"
   },
   {
-    id: "rust-q-10",
-    collectionId: "rust",
-    question: "¿Qué diferencia existe entre los traits de closures 'Fn', 'FnMut' y 'FnOnce'?",
-    options: [
-      "Fn solo funciona con enteros, FnMut con floats y FnOnce con strings.",
-      "FnOnce consume el closure capturando por valor (solo puede invocarse una vez); FnMut toma prestado el entorno mutablemente (puede invocarse múltiples veces y modificar estado capturado); Fn toma prestado el entorno inmutablemente.",
-      "FnOnce se ejecuta en paralelo, FnMut en serie y Fn en tiempo de compilación.",
-      "No existe diferencia; son sinónimos por razones históricas."
+    "id": "rust-q-10",
+    "collectionId": "rust",
+    "question": "Respecto a ownership avanzado en Rust, ¿cuál es el propósito de «Weak references»?",
+    "options": [
+      "Mantiene valores vivos por conteo local o atómico, pero no resuelve ciclos automáticamente al operar.",
+      "Observan una asignación sin prolongar su vida y permite romper ciclos de ownership compartido.",
+      "Distingue duplicación implícita bit a bit de una clonación potencialmente costosa y explícita.",
+      "Protege datos con guards RAII y hacen visible la política de lectura frente a escritura al operar."
     ],
-    correctAnswerIndex: 1,
-    explanation: "La jerarquía es: Fn hereda de FnMut, que a su vez hereda de FnOnce. FnOnce puede tomar propiedad del entorno, FnMut puede mutarlo sin consumirlo, y Fn solo requiere acceso de lectura inmutable, permitiendo invocaciones concurrentes.",
-    topic: "Closures y Funciones",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 1,
+    "explanation": "Weak references (Ownership avanzado): Observan una asignación sin prolongar su vida y permiten romper ciclos de ownership compartido.",
+    "topic": "Ownership avanzado",
+    "difficulty": "básico"
   },
   {
-    id: "rust-q-11",
-    collectionId: "rust",
-    question: "¿Qué garantiza el modificador 'repr(C)' sobre un struct en Rust?",
-    options: [
-      "Que el struct se compilará con GCC en lugar de LLVM.",
-      "Que el compilador organizará los campos en memoria siguiendo estrictamente las reglas de layout y alineación de la ABI estándar de C para interoperabilidad predecible vía FFI.",
-      "Que los campos del struct no pueden contener más de 256 bytes.",
-      "Que todos los campos se inicializarán automáticamente en NULL."
+    "id": "rust-q-11",
+    "collectionId": "rust",
+    "question": "En Rust (Préstamos en diseños reales), ¿qué función técnica cumple «Reborrowing»?",
+    "options": [
+      "Termina préstamos en su último uso real y permite patrones seguros antes rechazados por alcance textual al operar.",
+      "Aplica reglas deterministas para omitir anotaciones comunes sin inferir contratos ambiguos de forma clara.",
+      "Crea un préstamo temporal más corto desde otro para reutilizarlo después sin transferirlo definitivamente.",
+      "Modela alternativas cerradas donde cada variante transporta exactamente la información que necesita al operar."
     ],
-    correctAnswerIndex: 1,
-    explanation: "Por defecto, Rust tiene 'repr(Rust)', donde el compilador puede reordenar campos libremente para optimizar espacio y padding. 'repr(C)' obliga al compilador a respetar el orden y alineación exactos de la convención de C.",
-    topic: "FFI y Layout de Memoria",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 2,
+    "explanation": "Reborrowing (Préstamos en diseños reales): Crea un préstamo temporal más corto desde otro para reutilizarlo después sin transferirlo definitivamente.",
+    "topic": "Préstamos en diseños reales",
+    "difficulty": "básico"
   },
   {
-    id: "rust-q-12",
-    collectionId: "rust",
-    question: "¿Qué es la 'Regla del Huérfano' (Orphan Rule) en la implementación de traits en Rust?",
-    options: [
-      "Un struct no puede heredar de más de dos traits si no tiene constructor.",
-      "Para implementar un trait T para un tipo X, al menos uno de los dos (el trait T o el tipo X) debe haber sido definido en el crate local actual, impidiendo colisiones entre crates externos.",
-      "Los módulos secundarios no pueden acceder a funciones del módulo raíz sin permiso del administrador.",
-      "Los tipos sin destructor Drop son eliminados por el recolector de basura."
+    "id": "rust-q-12",
+    "collectionId": "rust",
+    "question": "Dentro de Rust, ¿cómo opera el mecanismo de «Non-lexical lifetimes» en préstamos en diseños reales?",
+    "options": [
+      "Aplica reglas deterministas para omitir anotaciones comunes sin inferir contratos ambiguos de forma segura.",
+      "Crea un préstamo temporal más corto desde otro para reutilizarlo después sin transferirlo definitivamente.",
+      "Permite préstamos desde el stack y garantizan que los threads terminen antes de salir del alcance al operar.",
+      "Termina préstamos en su último uso real y permite patrones seguros antes rechazados por alcance textual."
     ],
-    correctAnswerIndex: 1,
-    explanation: "La regla de coherencia u orphan rule garantiza que nunca existan dos implementaciones distintas del mismo trait para el mismo tipo en todo el grafo de dependencias de un programa (evitando ambigüedad en la resolución de métodos).",
-    topic: "Traits y Coherencia",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 3,
+    "explanation": "Non-lexical lifetimes (Préstamos en diseños reales): Termina préstamos en su último uso real y permite patrones seguros antes rechazados por alcance textual.",
+    "topic": "Préstamos en diseños reales",
+    "difficulty": "básico"
   },
   {
-    id: "rust-q-13",
-    collectionId: "rust",
-    question: "¿Qué es 'PhantomData<T>' en la biblioteca estándar de Rust?",
-    options: [
-      "Un puntero fantasma que accede a memoria virtual fuera del espacio del proceso.",
-      "Un tipo de tamaño cero (ZST) que le comunica al compilador que un struct actúa lógicamente como si poseyera o referenciara un tipo T con un lifetime específico, aunque físicamente no almacene ningún campo de ese tipo.",
-      "Un módulo para escribir pruebas unitarias con mocks automáticos.",
-      "Una estructura para serializar datos invisibles al usuario final."
+    "id": "rust-q-13",
+    "collectionId": "rust",
+    "question": "Al trabajar con Rust, ¿qué responsabilidad define a «Lifetime elision»?",
+    "options": [
+      "Aplica reglas deterministas para omitir anotaciones comunes sin inferir contratos ambiguos al operar.",
+      "Evita capturas accidentales de nombres entre la macro y el contexto donde se invoca al operar.",
+      "Divide iteradores en tareas y usa work stealing sin cambiar su resultado secuencial al operar.",
+      "Compara monomorfización optimizable con selección en ejecución y tamaño de binario al operar."
     ],
-    correctAnswerIndex: 1,
-    explanation: "PhantomData<T> consume 0 bytes en tiempo de ejecución pero informa al sistema de tipos y al análisis de lifetimes y varianzas sobre la relación semántica con T (ej. en punteros crudos o colecciones personalizadas de bajo nivel).",
-    topic: "Zero-Sized Types y Avanzado",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 0,
+    "explanation": "Lifetime elision (Préstamos en diseños reales): Aplica reglas deterministas para omitir anotaciones comunes sin inferir contratos ambiguos.",
+    "topic": "Préstamos en diseños reales",
+    "difficulty": "básico"
   },
   {
-    id: "rust-q-14",
-    collectionId: "rust",
-    question: "¿Qué ocurre internamente cuando un programa en Rust entra en 'panic!' con la estrategia por defecto 'unwind'?",
-    options: [
-      "El sistema operativo apaga la máquina inmediatamente.",
-      "El runtime desenrolla la pila (stack unwinding), ejecutando los destructores Drop de todas las variables locales en cada frame de la llamada hasta ser atrapado por catch_unwind o finalizar el hilo.",
-      "Envía un volcado de memoria a los servidores de la Fundación Rust.",
-      "Transforma el error en un valor Result::Ok con campos vacíos."
+    "id": "rust-q-14",
+    "collectionId": "rust",
+    "question": "En la arquitectura de Rust, ¿qué caracteriza técnicamente a «Self-referential structures»?",
+    "options": [
+      "Impide mover valores que dependen de una ubicación estable mientras permite movilidad a tipos que la toleran al evaluar.",
+      "Requieren direcciones estables y construcción controlada porque mover el contenedor invalidaría referencias internas.",
+      "Crea un préstamo temporal más corto desde otro para reutilizarlo después sin transferirlo definitivamente al evaluar.",
+      "Termina préstamos en su último uso real y permite patrones seguros antes rechazados por alcance textual en ejecución."
     ],
-    correctAnswerIndex: 1,
-    explanation: "Con 'panic = unwind', Rust recorre la pila hacia atrás invocando el trait Drop de cada objeto para liberar recursos de forma limpia. Si se compila con 'panic = abort', el proceso termina inmediatamente con código de error sin desenrollar.",
-    topic: "Manejo de Errores y Pánico",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 1,
+    "explanation": "Self-referential structures (Préstamos en diseños reales): Requieren direcciones estables y construcción controlada porque mover el contenedor invalidaría referencias internas.",
+    "topic": "Préstamos en diseños reales",
+    "difficulty": "básico"
   },
   {
-    id: "rust-q-15",
-    collectionId: "rust",
-    question: "¿Cuál es la función del operador '?' en expresiones que retornan 'Result' u 'Option'?",
-    options: [
-      "Realiza una búsqueda difusa en la base de datos de errores.",
-      "Si el valor es Ok/Some desempaqueta el valor interno; si es Err/None retorna inmediatamente de la función actual propagando el error (convirtiéndolo vía trait From si es necesario).",
-      "Indica que el resultado es opcional y puede ser ignorado por el compilador.",
-      "Evalúa la expresión en un hilo en segundo plano con baja prioridad."
+    "id": "rust-q-15",
+    "collectionId": "rust",
+    "question": "Respecto a préstamos en diseños reales en Rust, ¿cuál es el propósito de «Pin y Unpin»?",
+    "options": [
+      "Termina préstamos en su último uso real y permite patrones seguros antes rechazados por alcance textual al operar.",
+      "Crea un préstamo temporal más corto desde otro para reutilizarlo después sin transferirlo definitivamente.",
+      "Impide mover valores que dependen de una ubicación estable mientras permite movilidad a tipos que la toleran.",
+      "Aplica reglas deterministas para omitir anotaciones comunes sin inferir contratos ambiguos sin perder estado."
     ],
-    correctAnswerIndex: 1,
-    explanation: "El operador '?' es azúcar sintáctico de alto rendimiento para propagación temprana de errores: desenvuelve el valor exitoso o ejecuta un 'return Err(From::from(e))' automático hacia el llamador.",
-    topic: "Manejo de Errores",
-    difficulty: "básico"
+    "correctAnswerIndex": 2,
+    "explanation": "Pin y Unpin (Préstamos en diseños reales): Impide mover valores que dependen de una ubicación estable mientras permite movilidad a tipos que la toleran.",
+    "topic": "Préstamos en diseños reales",
+    "difficulty": "básico"
   },
   {
-    id: "rust-q-16",
-    collectionId: "rust",
-    question: "¿Qué es la 'monomorfización' (monomorphization) al compilar código genérico en Rust?",
-    options: [
-      "La conversión de múltiples hilos en un único hilo secuencial.",
-      "El proceso en el que el compilador genera una copia especializada de la función o struct genérico para cada tipo concreto con el que se instancie, logrando despacho estático y cero sobrecoste de abstracción a expensas de mayor tamaño del binario.",
-      "La traducción de código Rust a instrucciones WebAssembly exclusivamente.",
-      "La fusión de varios archivos fuente en una sola unidad de compilación."
+    "id": "rust-q-16",
+    "collectionId": "rust",
+    "question": "En Rust (Traits y coherencia), ¿qué función técnica cumple «Associated types»?",
+    "options": [
+      "Implementan un trait para toda familia que cumpla bounds y pueden afectar coherencia futura de forma segura.",
+      "Aplica type erasure mediante puntero y vtable para almacenar implementaciones heterogéneas con precisión.",
+      "Exige que trait o tipo sea local para impedir implementaciones incompatibles entre crates de forma clara.",
+      "Fija tipos relacionados por implementación y evita parámetros genéricos ambiguos para quien usa el trait."
     ],
-    correctAnswerIndex: 1,
-    explanation: "Al usar genéricos estáticos (fn foo<T: Trait>(x: T)), el compilador crea versiones especializadas en código máquina para cada T (ej. una para i32 y otra para String), permitiendo optimizaciones agressivas como inlining sin costo de vtable.",
-    topic: "Compilación y Rendimiento",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 3,
+    "explanation": "Associated types (Traits y coherencia): Fijan tipos relacionados por implementación y evitan parámetros genéricos ambiguos para quien usa el trait.",
+    "topic": "Traits y coherencia",
+    "difficulty": "básico"
   },
   {
-    id: "rust-q-17",
-    collectionId: "rust",
-    question: "¿Cuál es la diferencia entre '&str' y 'String' en Rust?",
-    options: [
-      "String solo contiene caracteres ASCII y &str contiene caracteres UTF-16.",
-      "String es un búfer mutable y redimensionable con propiedad de memoria en el heap (puntero, len, cap); &str es una vista no propietaria de longitud fija (fat pointer: puntero + longitud) a una secuencia válida de bytes UTF-8 en cualquier lugar de memoria.",
-      "&str se almacena siempre en la memoria de la tarjeta de video.",
-      "No hay diferencia; String es simplemente un alias de tipo para &str."
+    "id": "rust-q-17",
+    "collectionId": "rust",
+    "question": "Dentro de Rust, ¿cómo opera el mecanismo de «Trait objects» en traits y coherencia?",
+    "options": [
+      "Aplica type erasure mediante puntero y vtable para almacenar implementaciones heterogéneas al operar.",
+      "Compara monomorfización optimizable con selección en ejecución y tamaño de binario al operar.",
+      "Exige que trait o tipo sea local para impedir implementaciones incompatibles entre crates.",
+      "Implementan un trait para toda familia que cumpla bounds y pueden afectar coherencia futura."
     ],
-    correctAnswerIndex: 1,
-    explanation: "String es dueño de la memoria que aloja en el heap y es dinámicamente extensible. &str (string slice) es solo una referencia prestada (un puntero y una longitud) que puede apuntar a un literal estático, una porción de String o la pila.",
-    topic: "Cadenas y Tipos",
-    difficulty: "básico"
+    "correctAnswerIndex": 0,
+    "explanation": "Trait objects (Traits y coherencia): Aplican type erasure mediante puntero y vtable para almacenar implementaciones heterogéneas.",
+    "topic": "Traits y coherencia",
+    "difficulty": "intermedio"
   },
   {
-    id: "rust-q-18",
-    collectionId: "rust",
-    question: "¿Por qué Rust utiliza por defecto el algoritmo SipHash 1-3 en 'std::collections::HashMap'?",
-    options: [
-      "Porque es el algoritmo de hash más rápido jamás inventado en la literatura académica.",
-      "Para proporcionar protección criptográfica nativa contra ataques de denegación de servicio por colisiones de hash (HashDoS), priorizando seguridad de red sobre velocidad pura.",
-      "Porque SipHash comprime las cadenas a la mitad de su tamaño antes de indexar.",
-      "Porque es el único algoritmo compatible con la arquitectura x86."
+    "id": "rust-q-18",
+    "collectionId": "rust",
+    "question": "Al trabajar con Rust, ¿qué responsabilidad define a «Static frente a dynamic dispatch»?",
+    "options": [
+      "Compila puntos await en estados que conservan solo variables vivas entre polls al operar.",
+      "Compara monomorfización optimizable con selección en ejecución y tamaño de binario.",
+      "Codifica fases válidas como tipos para que operaciones fuera de orden no compilen.",
+      "Evita capturas accidentales de nombres entre la macro y el contexto donde se invoca."
     ],
-    correctAnswerIndex: 1,
-    explanation: "Para prevenir ataques HashDoS donde un atacante envía claves artesanales que colisionan forzando el HashMap a degradarse a complejidad O(N), Rust incluye SipHash por defecto con claves aleatorias por instancia, permitiendo sustituirlo con Hasher más rápidos si se requiere.",
-    topic: "Estructuras de Datos y Seguridad",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 1,
+    "explanation": "Static frente a dynamic dispatch (Traits y coherencia): Compara monomorfización optimizable con selección en ejecución y tamaño de binario.",
+    "topic": "Traits y coherencia",
+    "difficulty": "intermedio"
   },
   {
-    id: "rust-q-19",
-    collectionId: "rust",
-    question: "¿Qué es el 'Typestate Pattern' y cómo se implementa idiomáticamente en Rust?",
-    options: [
-      "Un patrón para definir estilos visuales en frameworks de interfaz gráfica.",
-      "Un patrón de diseño donde los estados de una máquina de estados se codifican como tipos distintos en tiempo de compilación mediante genéricos y ZSTs, haciendo que transiciones inválidas no compilen.",
-      "Un analizador sintáctico para interpretar expresiones regulares en runtime.",
-      "Un formateador de código fuente integrado en cargo."
+    "id": "rust-q-19",
+    "collectionId": "rust",
+    "question": "En la arquitectura de Rust, ¿qué caracteriza técnicamente a «Orphan rule»?",
+    "options": [
+      "Compara monomorfización optimizable con selección en ejecución y tamaño de binario al operar.",
+      "Aplica type erasure mediante puntero y vtable para almacenar implementaciones heterogéneas.",
+      "Exige que trait o tipo sea local para impedir implementaciones incompatibles entre crates.",
+      "Implementan un trait para toda familia que cumpla bounds y pueden afectar coherencia futura."
     ],
-    correctAnswerIndex: 1,
-    explanation: "El typestate pattern utiliza el sistema de tipos de Rust para garantizar correctitud de protocolos: métodos válidos solo existen en tipos que representan el estado actual (ej. Connection<Connected> vs Connection<Disconnected>), eliminando comprobaciones runtime.",
-    topic: "Patrones Idiomáticos",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 2,
+    "explanation": "Orphan rule (Traits y coherencia): Exige que trait o tipo sea local para impedir implementaciones incompatibles entre crates.",
+    "topic": "Traits y coherencia",
+    "difficulty": "intermedio"
   },
   {
-    id: "rust-q-20",
-    collectionId: "rust",
-    question: "¿Qué hace la herramienta 'Miri' en el ecosistema de desarrollo de Rust?",
-    options: [
-      "Es un framework para desarrollar microservicios web concurrentes.",
-      "Es un intérprete de MIR (Mid-level Intermediate Representation) que ejecuta código Rust para detectar comportamiento indefinido (Undefined Behavior), violaciones del modelo de punteros Stacked Borrows/Tree Borrows y fugas de memoria.",
-      "Es un generador de documentación API en formato HTML y PDF.",
-      "Es un gestor de versiones del compilador alternativo a rustup."
+    "id": "rust-q-20",
+    "collectionId": "rust",
+    "question": "Respecto a traits y coherencia en Rust, ¿cuál es el propósito de «Blanket implementations»?",
+    "options": [
+      "Compara monomorfización optimizable con selección en ejecución y tamaño de binario en el flujo.",
+      "Exige que trait o tipo sea local para impedir implementaciones incompatibles entre crates.",
+      "Aplica type erasure mediante puntero y vtable para almacenar implementaciones heterogéneas.",
+      "Implementan un trait para toda familia que cumpla bounds y pueden afectar coherencia futura."
     ],
-    correctAnswerIndex: 1,
-    explanation: "Miri ejecuta programas Rust a nivel de su representación intermedia MIR. Rastrea la procedencia de cada byte y puntero para detectar UB sutil en código unsafe: desalineación, accesos fuera de rango y violaciones del modelo de alias.",
-    topic: "Tooling y Verificación",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 3,
+    "explanation": "Blanket implementations (Traits y coherencia): Implementan un trait para toda familia que cumpla bounds y pueden afectar coherencia futura.",
+    "topic": "Traits y coherencia",
+    "difficulty": "intermedio"
   },
   {
-    id: "rust-q-21",
-    collectionId: "rust",
-    question: "¿Cuál es la semántica del lifetime estático ''static' cuando se aplica a una referencia (&'static T) versus un límite de tipo (T: 'static)?",
-    options: [
-      "Son estrictamente idénticos y denotan que la variable reside en la memoria flash de la CPU.",
-      "&'static T significa que el dato referenciado vive durante toda la ejecución del programa; T: 'static significa que el tipo T es capaz de vivir tanto como se desee (no contiene referencias con lifetimes no estáticos prestadas de un scope efímero).",
-      "T: 'static indica que el tipo no puede tener métodos destructores Drop.",
-      "&'static T obliga a que el valor sea una constante inmutable evaluada en tiempo de compilación."
+    "id": "rust-q-21",
+    "collectionId": "rust",
+    "question": "En Rust (Abstracciones de costo cero), ¿qué función técnica cumple «Monomorphization»?",
+    "options": [
+      "Genera código especializado por combinación de tipos eliminando despacho a cambio de tamaño de artefacto.",
+      "Incluye valores constantes en el tipo para expresar longitudes y capacidades verificables al compilar.",
+      "Permite que un tipo asociado varíe con lifetimes o parámetros manteniendo relación con su implementador.",
+      "Exigen que una función sea válida para cualquier lifetime y no solo uno elegido externamente al operar."
     ],
-    correctAnswerIndex: 1,
-    explanation: "La distinción es vital: &'static str vive permanentemente en memoria de solo lectura. Sin embargo, un 'String' creado en el heap satisface el trait bound 'T: 'static' porque no contiene ninguna referencia prestada de corta vida, permitiendo moverlo a otros hilos.",
-    topic: "Lifetimes y Bounds",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 0,
+    "explanation": "Monomorphization (Abstracciones de costo cero): Genera código especializado por combinación de tipos eliminando despacho a cambio de tamaño de artefacto.",
+    "topic": "Abstracciones de costo cero",
+    "difficulty": "intermedio"
   },
   {
-    id: "rust-q-22",
-    collectionId: "rust",
-    question: "¿Qué diferencia existe entre un 'macro_rules!' declarativo y un 'Procedural Macro' en Rust?",
-    options: [
-      "macro_rules! solo opera en archivos de prueba y las macros procedurales en código de producción.",
-      "macro_rules! opera por coincidencia de patrones sintácticos con reglas de sustitución (declarativo); las macros procedurales son funciones de Rust que reciben un TokenStream de código fuente y retornan un nuevo TokenStream transformado programáticamente.",
-      "Las macros procedurales se ejecutan en el navegador mediante WebAssembly.",
-      "macro_rules! es interpretado en tiempo de ejecución mientras que las procedurales son estáticas."
+    "id": "rust-q-22",
+    "collectionId": "rust",
+    "question": "Dentro de Rust, ¿cómo opera el mecanismo de «Const generics» en abstracciones de costo cero?",
+    "options": [
+      "Exigen que una función sea válida para cualquier lifetime y no solo uno elegido externamente en el flujo.",
+      "Incluye valores constantes en el tipo para expresar longitudes y capacidades verificables al compilar.",
+      "Permite que un tipo asociado varíe con lifetimes o parámetros manteniendo relación con su implementador.",
+      "Codifica fases válidas como tipos para que operaciones fuera de orden no compilen de modo predecible."
     ],
-    correctAnswerIndex: 1,
-    explanation: "Las macros declarativas (macro_rules!) usan pattern-matching sobre tokens de sintaxis. Las macros procedurales (derive, attribute, function-like) son compiladores en miniatura escritos en Rust que manipulan el AST usando librerías como syn y quote.",
-    topic: "Metaprogramación y Macros",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 1,
+    "explanation": "Const generics (Abstracciones de costo cero): Incluyen valores constantes en el tipo para expresar longitudes y capacidades verificables al compilar.",
+    "topic": "Abstracciones de costo cero",
+    "difficulty": "intermedio"
   },
   {
-    id: "rust-q-23",
-    collectionId: "rust",
-    question: "¿Por qué no se debe implementar 'Deref' o 'DerefMut' para simular herencia orientada a objetos en Rust?",
-    options: [
-      "Porque el compilador prohíbe explícitamente definir más de un struct por módulo.",
-      "Porque Deref está diseñado exclusivamente para punteros inteligentes (como Box, Rc, Arc); abusar de él confunde la resolución de métodos y oculta conversiones implícitas que violan la claridad del modelo de ownership.",
-      "Porque Deref duplica el tamaño de los structs en memoria.",
-      "Porque la implementación de Deref deshabilita las advertencias del linter clippy."
+    "id": "rust-q-23",
+    "collectionId": "rust",
+    "question": "Al trabajar con Rust, ¿qué responsabilidad define a «Higher-ranked trait bounds»?",
+    "options": [
+      "Codifica fases válidas como tipos para que operaciones fuera de orden no compilen con precisión.",
+      "Protege datos con guards RAII y hacen visible la política de lectura frente a escritura al operar.",
+      "Exigen que una función sea válida para cualquier lifetime y no solo uno elegido externamente.",
+      "Notifican al executor que un future antes pendiente puede progresar sin sondeo continuo al operar."
     ],
-    correctAnswerIndex: 1,
-    explanation: "El antipatrón 'Deref polymorphism' oculta qué tipos poseen realmente los métodos llamados y dificulta el razonamiento sobre mutabilidad y lifetimes. En Rust se debe preferir composición explícita o implementación de traits compartidos.",
-    topic: "Diseño Idiomático",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 2,
+    "explanation": "Higher-ranked trait bounds (Abstracciones de costo cero): Exigen que una función sea válida para cualquier lifetime y no solo uno elegido externamente.",
+    "topic": "Abstracciones de costo cero",
+    "difficulty": "intermedio"
   },
   {
-    id: "rust-q-24",
-    collectionId: "rust",
-    question: "¿Cómo funciona el modelo de evaluación de iteradores en Rust ('lazy evaluation')?",
-    options: [
-      "Cada llamada a .map() genera inmediatamente un nuevo vector clonado en el heap.",
-      "Los adaptadores de iteradores (como map, filter, take) no ejecutan ninguna computación al invocarse; la computación solo ocurre cuando un método consumidor (como collect, sum, for_each) exige avanzar el iterador mediante .next().",
-      "Los iteradores se ejecutan de forma asíncrona en un hilo del sistema operativo.",
-      "La iteración se posterga hasta que el programa realiza una llamada al sistema de I/O."
+    "id": "rust-q-24",
+    "collectionId": "rust",
+    "question": "En la arquitectura de Rust, ¿qué caracteriza técnicamente a «Generic associated types»?",
+    "options": [
+      "Incluye valores constantes en el tipo para expresar longitudes y capacidades verificables al compilar al operar.",
+      "Exigen que una función sea válida para cualquier lifetime y no solo uno elegido externamente al evaluar.",
+      "Genera código especializado por combinación de tipos eliminando despacho a cambio de tamaño de artefacto.",
+      "Permite que un tipo asociado varíe con lifetimes o parámetros manteniendo relación con su implementador."
     ],
-    correctAnswerIndex: 1,
-    explanation: "Los iteradores en Rust son 'zero-cost abstractions' perezosas. Los adaptadores simplemente componen structs anidados; el bucle solo avanza cuando un consumidor llama a .next(), permitiendo al compilador fusionar bucles e inlinear el código.",
-    topic: "Iteradores y Rendimiento",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 3,
+    "explanation": "Generic associated types (Abstracciones de costo cero): Permiten que un tipo asociado varíe con lifetimes o parámetros manteniendo relación con su implementador.",
+    "topic": "Abstracciones de costo cero",
+    "difficulty": "intermedio"
   },
   {
-    id: "rust-q-25",
-    collectionId: "rust",
-    question: "¿Qué efecto tiene la función 'std::mem::forget' sobre una variable en Rust?",
-    options: [
-      "Borra de forma segura los datos de la memoria RAM sobrescribiéndolos con ceros criptográficos.",
-      "Toma posesión del objeto pero omite intencionalmente la ejecución de su destructor 'Drop', dejando sus recursos (memoria, descriptores) asignados sin liberar.",
-      "Reinicia la variable a su valor predeterminado Default::default().",
-      "Fuerza a que la variable sea recogida por el recolector de basura del sistema operativo."
+    "id": "rust-q-25",
+    "collectionId": "rust",
+    "question": "Respecto a abstracciones de costo cero en Rust, ¿cuál es el propósito de «Type-state pattern»?",
+    "options": [
+      "Codifica fases válidas como tipos para que operaciones fuera de orden no compilen al operar.",
+      "Compila puntos await en estados que conservan solo variables vivas entre polls.",
+      "Compara monomorfización optimizable con selección en ejecución y tamaño de binario.",
+      "Evita capturas accidentales de nombres entre la macro y el contexto donde se invoca."
     ],
-    correctAnswerIndex: 1,
-    explanation: "std::mem::forget desactiva la invocación del destructor Drop. Es seguro en el sentido de que no produce comportamiento indefinido inmediato (las fugas de memoria no son consideradas UB en Rust), y se utiliza en construcciones de bajo nivel como ManuallyDrop.",
-    topic: "Gestión de Memoria de Bajo Nivel",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 0,
+    "explanation": "Type-state pattern (Abstracciones de costo cero): Codifica fases válidas como tipos para que operaciones fuera de orden no compilen.",
+    "topic": "Abstracciones de costo cero",
+    "difficulty": "intermedio"
   },
   {
-    id: "rust-q-26",
-    collectionId: "rust",
-    question: "¿Qué diferencia existe entre 'const fn' y una función ordinaria en Rust?",
-    options: [
-      "const fn solo puede invocarse desde hilos secundarios del procesador.",
-      "const fn puede ser evaluada tanto en tiempo de compilación (si se invoca en contextos constantes como inicializadores de arrays o constantes estáticas) como en tiempo de ejecución ordinario.",
-      "const fn no puede tener parámetros de entrada.",
-      "const fn obliga a que el valor de retorno sea de tipo booleano."
+    "id": "rust-q-26",
+    "collectionId": "rust",
+    "question": "En Rust (Macros y generación), ¿qué función técnica cumple «macro_rules»?",
+    "options": [
+      "Evita capturas accidentales de nombres entre la macro y el contexto donde se invoca al operar.",
+      "Expande patrones sintácticos declarativos durante compilación sin evaluar texto arbitrario.",
+      "Restringe metavariables a expresiones, tipos o elementos y preservan estructura del parser.",
+      "Divide iteradores en tareas y usa work stealing sin cambiar su resultado secuencial al operar."
     ],
-    correctAnswerIndex: 1,
-    explanation: "Una función marcada con 'const fn' impone un subconjunto restringido y determinista del lenguaje que permite al compilador ejecutarla en compilación para calcular valores de constantes estáticas, inicializar tipos o calcular tablas matemáticas fijas.",
-    topic: "Compile-Time Rust",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 1,
+    "explanation": "macro_rules (Macros y generación): Expande patrones sintácticos declarativos durante compilación sin evaluar texto arbitrario.",
+    "topic": "Macros y generación",
+    "difficulty": "intermedio"
   },
   {
-    id: "rust-q-27",
-    collectionId: "rust",
-    question: "¿Qué ventaja ofrece el 'Newtype Pattern' (struct Wrapper(UnderlyingType)) en Rust?",
-    options: [
-      "Reduce el tiempo de descarga de dependencias en crates.io.",
-      "Otorga seguridad de tipos en tiempo de compilación distinguiendo valores semánticamente dispares (ej. Kilómetros vs Millas) y permite esquivar la Regla del Huérfano para implementar traits externos sobre tipos externos con cero sobrecosto en runtime.",
-      "Permite herencia múltiple de campos entre estructuras de datos.",
-      "Transforma automáticamente funciones bloqueantes en asíncronas."
+    "id": "rust-q-27",
+    "collectionId": "rust",
+    "question": "Dentro de Rust, ¿cómo opera el mecanismo de «Fragment specifiers» en macros y generación?",
+    "options": [
+      "Evita capturas accidentales de nombres entre la macro y el contexto donde se invoca al operar.",
+      "Expande patrones sintácticos declarativos durante compilación sin evaluar texto arbitrario.",
+      "Restringe metavariables a expresiones, tipos o elementos y preservan estructura del parser.",
+      "Divide iteradores en tareas y usa work stealing sin cambiar su resultado secuencial al operar."
     ],
-    correctAnswerIndex: 1,
-    explanation: "El patrón newtype es una envoltura de tipo cero-coste: en tiempo de compilación es un tipo nominal completamente nuevo (impidiendo sumar accidentally Millas con Kilómetros), y al ser un tipo local permite implementar traits de terceros.",
-    topic: "Patrones Idiomáticos",
-    difficulty: "básico"
+    "correctAnswerIndex": 2,
+    "explanation": "Fragment specifiers (Macros y generación): Restringen metavariables a expresiones, tipos o elementos y preservan estructura del parser.",
+    "topic": "Macros y generación",
+    "difficulty": "intermedio"
   },
   {
-    id: "rust-q-28",
-    collectionId: "rust",
-    question: "¿Cuál es el propósito del trait 'AsRef<T>' frente a 'Borrow<T>' en la biblioteca estándar?",
-    options: [
-      "AsRef solo funciona con arrays numéricos y Borrow con cadenas de texto.",
-      "AsRef<T> es para conversiones baratas y generalizadas a referencias de tipo T; Borrow<T> añade la estricta garantía semántica de que Hash, Eq y Ord del tipo prestado deben comportarse de forma idéntica al original (crucial para búsquedas en HashMaps).",
-      "Borrow destruye la variable original tras la conversión.",
-      "AsRef se ejecuta en tiempo de ejecución y Borrow en tiempo de compilación."
+    "id": "rust-q-28",
+    "collectionId": "rust",
+    "question": "Al trabajar con Rust, ¿qué responsabilidad define a «Hygiene»?",
+    "options": [
+      "Compila puntos await en estados que conservan solo variables vivas entre polls al operar.",
+      "Codifica fases válidas como tipos para que operaciones fuera de orden no compilen.",
+      "Compara monomorfización optimizable con selección en ejecución y tamaño de binario.",
+      "Evita capturas accidentales de nombres entre la macro y el contexto donde se invoca."
     ],
-    correctAnswerIndex: 1,
-    explanation: "Borrow impone una equivalencia de comportamiento para hashing y ordenamiento (vital para que HashMap pueda buscar una clave String usando &str sin asignar memoria). AsRef es simplemente una conversión idiomática genérica a referencia.",
-    topic: "Traits de Conversión",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 3,
+    "explanation": "Hygiene (Macros y generación): Evita capturas accidentales de nombres entre la macro y el contexto donde se invoca.",
+    "topic": "Macros y generación",
+    "difficulty": "intermedio"
   },
   {
-    id: "rust-q-29",
-    collectionId: "rust",
-    question: "¿Por qué el uso de 'std::sync::Mutex' en Rust previene naturalmente condiciones de carrera en el acceso a datos compartidos?",
-    options: [
-      "Porque bloquea el reloj del procesador hasta que el hilo termina su función.",
-      "Porque el Mutex es el dueño del dato protegido (Mutex<T>), obligando al hilo a adquirir un lock con '.lock()' que retorna un 'MutexGuard<T>', el cual implementa Deref para acceder al dato y libera automáticamente el lock cuando el guard sale de ámbito (RAII).",
-      "Porque convierte todos los datos en variables inmutables de solo lectura.",
-      "Porque delega la sincronización al servidor web en segundo plano."
+    "id": "rust-q-29",
+    "collectionId": "rust",
+    "question": "En la arquitectura de Rust, ¿qué caracteriza técnicamente a «Procedural macros»?",
+    "options": [
+      "Transforma token streams para derives, atributos o sintaxis function-like con diagnósticos propios al operar.",
+      "Expande patrones sintácticos declarativos durante compilación sin evaluar texto arbitrario al operar.",
+      "Restringe metavariables a expresiones, tipos o elementos y preservan estructura del parser al operar.",
+      "Evita capturas accidentales de nombres entre la macro y el contexto donde se invoca en ejecución."
     ],
-    correctAnswerIndex: 1,
-    explanation: "En otros lenguajes, un mutex es una entidad separada del dato que protege, permitiendo olvidar bloquearlo. En Rust, es imposible acceder al valor T sin llamar a lock() y obtener el MutexGuard, haciendo físicamente imposible leer o mutar T sin exclusión mutua.",
-    topic: "Concurrencia Segura",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 0,
+    "explanation": "Procedural macros (Macros y generación): Transforman token streams para derives, atributos o sintaxis function-like con diagnósticos propios.",
+    "topic": "Macros y generación",
+    "difficulty": "intermedio"
   },
   {
-    id: "rust-q-30",
-    collectionId: "rust",
-    question: "¿Cómo garantizan los tipos algebraicos (Enums) y el operador 'match' la ausencia de estados no controlados?",
-    options: [
-      "Rellenando automáticamente con valores nulos los casos no contemplados.",
-      "Exigiendo verificación exhaustiva en tiempo de compilación: el compilador rechaza el programa si existe al menos una variante del enum no manejada explícitamente en el patrón match.",
-      "Lanzando una advertencia opcional en el navegador web.",
-      "Delegando la resolución de casos desconocidos al operador de bases de datos."
+    "id": "rust-q-30",
+    "collectionId": "rust",
+    "question": "Respecto a macros y generación en Rust, ¿cuál es el propósito de «Build scripts»?",
+    "options": [
+      "Transforma token streams para derives, atributos o sintaxis function-like con diagnósticos propios al operar.",
+      "Genera artefactos o detectan bibliotecas antes de compilar y deben declarar exactamente cuándo repetirse.",
+      "Expande patrones sintácticos declarativos durante compilación sin evaluar texto arbitrario con precisión.",
+      "Restringe metavariables a expresiones, tipos o elementos y preservan estructura del parser con precisión."
     ],
-    correctAnswerIndex: 1,
-    explanation: "El compilador de Rust exige exhaustividad: cada variante posible de un enum debe tener una rama correspondiente en la expresión match (o un comodín '_' consciente), garantizando matemáticamente que ningún caso quede sin manejar.",
-    topic: "Pattern Matching y Enums",
-    difficulty: "básico"
+    "correctAnswerIndex": 1,
+    "explanation": "Build scripts (Macros y generación): Generan artefactos o detectan bibliotecas antes de compilar y deben declarar exactamente cuándo repetirse.",
+    "topic": "Macros y generación",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "rust-q-31",
+    "collectionId": "rust",
+    "question": "En Rust (Colecciones e iteración), ¿qué función técnica cumple «Vec»?",
+    "options": [
+      "Define iteración por valor, referencia o referencia mutable y determina qué puede usarse después con precisión.",
+      "Realiza búsqueda e inserción condicional en una sola operación evitando consultas duplicadas de forma clara.",
+      "Separa elementos inicializados de almacenamiento reservado y realoca cuando el crecimiento supera capacidad.",
+      "Mantiene claves ordenadas en nodos cache-friendly y permite recorridos eficientes por rango de forma segura."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Vec y capacidad (Colecciones e iteración): Separa elementos inicializados de almacenamiento reservado y realoca cuando el crecimiento supera capacidad.",
+    "topic": "Colecciones e iteración",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "rust-q-32",
+    "collectionId": "rust",
+    "question": "Dentro de Rust, ¿cómo opera el mecanismo de «HashMap y entry API» en colecciones e iteración?",
+    "options": [
+      "Componen transformaciones perezosas que el consumidor final fusiona en un único recorrido al operar.",
+      "Mantiene claves ordenadas en nodos cache-friendly y permite recorridos eficientes por rango.",
+      "Protege datos con guards RAII y hacen visible la política de lectura frente a escritura al operar.",
+      "Realiza búsqueda e inserción condicional en una sola operación evitando consultas duplicadas."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "HashMap y entry API (Colecciones e iteración): Realiza búsqueda e inserción condicional en una sola operación evitando consultas duplicadas.",
+    "topic": "Colecciones e iteración",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "rust-q-33",
+    "collectionId": "rust",
+    "question": "Al trabajar con Rust, ¿qué responsabilidad define a «BTreeMap»?",
+    "options": [
+      "Mantiene claves ordenadas en nodos cache-friendly y permite recorridos eficientes por rango al operar.",
+      "Componen transformaciones perezosas que el consumidor final fusiona en un único recorrido.",
+      "Realiza búsqueda e inserción condicional en una sola operación evitando consultas duplicadas.",
+      "Evita capturas accidentales de nombres entre la macro y el contexto donde se invoca al operar."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "BTreeMap (Colecciones e iteración): Mantiene claves ordenadas en nodos cache-friendly y permite recorridos eficientes por rango.",
+    "topic": "Colecciones e iteración",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "rust-q-34",
+    "collectionId": "rust",
+    "question": "En la arquitectura de Rust, ¿qué caracteriza técnicamente a «Iterator adapters»?",
+    "options": [
+      "Mantiene claves ordenadas en nodos cache-friendly y permite recorridos eficientes por rango.",
+      "Componen transformaciones perezosas que el consumidor final fusiona en un único recorrido.",
+      "Evita capturas accidentales de nombres entre la macro y el contexto donde se invoca al operar.",
+      "Divide iteradores en tareas y usa work stealing sin cambiar su resultado secuencial al operar."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Iterator adapters (Colecciones e iteración): Componen transformaciones perezosas que el consumidor final fusiona en un único recorrido.",
+    "topic": "Colecciones e iteración",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "rust-q-35",
+    "collectionId": "rust",
+    "question": "Respecto a colecciones e iteración en Rust, ¿cuál es el propósito de «IntoIterator y ownership»?",
+    "options": [
+      "Mantiene claves ordenadas en nodos cache-friendly y permite recorridos eficientes por rango al operar.",
+      "Componen transformaciones perezosas que el consumidor final fusiona en un único recorrido al operar.",
+      "Define iteración por valor, referencia o referencia mutable y determina qué puede usarse después.",
+      "Realiza búsqueda e inserción condicional en una sola operación evitando consultas duplicadas."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "IntoIterator y ownership (Colecciones e iteración): Define iteración por valor, referencia o referencia mutable y determina qué puede usarse después.",
+    "topic": "Colecciones e iteración",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "rust-q-36",
+    "collectionId": "rust",
+    "question": "En Rust (Concurrencia sin carreras), ¿qué función técnica cumple «Mutex y RwLock»?",
+    "options": [
+      "Divide iteradores en tareas y usa work stealing sin cambiar su resultado secuencial al operar.",
+      "Codifica fases válidas como tipos para que operaciones fuera de orden no compilen al operar.",
+      "Compara monomorfización optimizable con selección en ejecución y tamaño de binario al operar.",
+      "Protege datos con guards RAII y hacen visible la política de lectura frente a escritura."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "Mutex y RwLock (Concurrencia sin carreras): Protegen datos con guards RAII y hacen visible la política de lectura frente a escritura.",
+    "topic": "Concurrencia sin carreras",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "rust-q-37",
+    "collectionId": "rust",
+    "question": "Dentro de Rust, ¿cómo opera el mecanismo de «Atomics y ordering» en concurrencia sin carreras?",
+    "options": [
+      "Coordina memoria sin locks mediante garantías de orden que deben corresponder al invariante al operar.",
+      "Protege datos con guards RAII y hacen visible la política de lectura frente a escritura.",
+      "Divide iteradores en tareas y usa work stealing sin cambiar su resultado secuencial al operar.",
+      "Evita capturas accidentales de nombres entre la macro y el contexto donde se invoca al operar."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Atomics y ordering (Concurrencia sin carreras): Coordinan memoria sin locks mediante garantías de orden que deben corresponder al invariante.",
+    "topic": "Concurrencia sin carreras",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "rust-q-38",
+    "collectionId": "rust",
+    "question": "Al trabajar con Rust, ¿qué responsabilidad define a «Scoped threads»?",
+    "options": [
+      "Coordina memoria sin locks mediante garantías de orden que deben corresponder al invariante al operar.",
+      "Permite préstamos desde el stack y garantizan que los threads terminen antes de salir del alcance.",
+      "Transfieren mensajes entre productores y consumidores definiendo capacidad, cierre y ownership.",
+      "Protege datos con guards RAII y hacen visible la política de lectura frente a escritura al operar."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Scoped threads (Concurrencia sin carreras): Permiten préstamos desde el stack y garantizan que los threads terminen antes de salir del alcance.",
+    "topic": "Concurrencia sin carreras",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "rust-q-39",
+    "collectionId": "rust",
+    "question": "En la arquitectura de Rust, ¿qué caracteriza técnicamente a «Channel patterns»?",
+    "options": [
+      "Protege datos con guards RAII y hacen visible la política de lectura frente a escritura al operar.",
+      "Coordina memoria sin locks mediante garantías de orden que deben corresponder al invariante.",
+      "Transfieren mensajes entre productores y consumidores definiendo capacidad, cierre y ownership.",
+      "Divide iteradores en tareas y usa work stealing sin cambiar su resultado secuencial al evaluar."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Channel patterns (Concurrencia sin carreras): Transfieren mensajes entre productores y consumidores definiendo capacidad, cierre y ownership.",
+    "topic": "Concurrencia sin carreras",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "rust-q-40",
+    "collectionId": "rust",
+    "question": "Respecto a concurrencia sin carreras en Rust, ¿cuál es el propósito de «Rayon y paralelismo de datos»?",
+    "options": [
+      "Compila puntos await en estados que conservan solo variables vivas entre polls al operar.",
+      "Codifica fases válidas como tipos para que operaciones fuera de orden no compilen.",
+      "Compara monomorfización optimizable con selección en ejecución y tamaño de binario.",
+      "Divide iteradores en tareas y usa work stealing sin cambiar su resultado secuencial."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "Rayon y paralelismo de datos (Concurrencia sin carreras): Divide iteradores en tareas y usa work stealing sin cambiar su resultado secuencial.",
+    "topic": "Concurrencia sin carreras",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "rust-q-41",
+    "collectionId": "rust",
+    "question": "En Rust (Asincronía en profundidad), ¿qué función técnica cumple «State machines de Future»?",
+    "options": [
+      "Compila puntos await en estados que conservan solo variables vivas entre polls de forma segura.",
+      "Notifican al executor que un future antes pendiente puede progresar sin sondeo continuo.",
+      "Compara monomorfización optimizable con selección en ejecución y tamaño de binario.",
+      "Codifica fases válidas como tipos para que operaciones fuera de orden no compilen al operar."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "State machines de Future (Asincronía en profundidad): Compilan puntos await en estados que conservan solo variables vivas entre polls.",
+    "topic": "Asincronía en profundidad",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "rust-q-42",
+    "collectionId": "rust",
+    "question": "Dentro de Rust, ¿cómo opera el mecanismo de «Wakers» en asincronía en profundidad?",
+    "options": [
+      "Compila puntos await en estados que conservan solo variables vivas entre polls en el flujo.",
+      "Notifican al executor que un future antes pendiente puede progresar sin sondeo continuo.",
+      "Codifica fases válidas como tipos para que operaciones fuera de orden no compilen al operar.",
+      "Compara monomorfización optimizable con selección en ejecución y tamaño de binario al operar."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Wakers (Asincronía en profundidad): Notifican al executor que un future antes pendiente puede progresar sin sondeo continuo.",
+    "topic": "Asincronía en profundidad",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "rust-q-43",
+    "collectionId": "rust",
+    "question": "Al trabajar con Rust, ¿qué responsabilidad define a «Streams asíncronos»?",
+    "options": [
+      "Notifican al executor que un future antes pendiente puede progresar sin sondeo continuo al operar.",
+      "Compila puntos await en estados que conservan solo variables vivas entre polls en ejecución.",
+      "Producen una secuencia de elementos pendientes y propagan finalización o error gradualmente.",
+      "Garantiza que descartar un future en un await no pierda datos ni rompa una operación parcial."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Streams asíncronos (Asincronía en profundidad): Producen una secuencia de elementos pendientes y propagan finalización o error gradualmente.",
+    "topic": "Asincronía en profundidad",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "rust-q-44",
+    "collectionId": "rust",
+    "question": "En la arquitectura de Rust, ¿qué caracteriza técnicamente a «Cancel safety»?",
+    "options": [
+      "Notifican al executor que un future antes pendiente puede progresar sin sondeo continuo al operar.",
+      "Producen una secuencia de elementos pendientes y propagan finalización o error gradualmente.",
+      "Compila puntos await en estados que conservan solo variables vivas entre polls con precisión.",
+      "Garantiza que descartar un future en un await no pierda datos ni rompa una operación parcial."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "Cancel safety (Asincronía en profundidad): Garantiza que descartar un future en un await no pierda datos ni rompa una operación parcial.",
+    "topic": "Asincronía en profundidad",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "rust-q-45",
+    "collectionId": "rust",
+    "question": "Respecto a unsafe con invariantes en Rust, ¿cuál es el propósito de «Raw pointers»?",
+    "options": [
+      "Permite direcciones sin préstamos comprobados y obligan a demostrar validez antes de desreferenciar.",
+      "Encierran una región unsafe pequeña y exponen una API cuyas precondiciones se verifican externamente.",
+      "Comunica al compilador ownership, varianza o lifetime que no aparecen como campos almacenados.",
+      "Distingue duplicación implícita bit a bit de una clonación potencialmente costosa y explícita."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Raw pointers (Unsafe con invariantes): Permiten direcciones sin préstamos comprobados y obligan a demostrar validez antes de desreferenciar.",
+    "topic": "Unsafe con invariantes",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "rust-q-46",
+    "collectionId": "rust",
+    "question": "En Rust (Unsafe con invariantes), ¿qué función técnica cumple «Alias rules»?",
+    "options": [
+      "Permite direcciones sin préstamos comprobados y obligan a demostrar validez antes de desreferenciar al operar.",
+      "Restringe referencias mutables y compartidas para que optimizaciones no observen escrituras inesperadas.",
+      "Encierran una región unsafe pequeña y exponen una API cuyas precondiciones se verifican externamente.",
+      "Permite préstamos desde el stack y garantizan que los threads terminen antes de salir del alcance al operar."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Alias rules (Unsafe con invariantes): Restringen referencias mutables y compartidas para que optimizaciones no observen escrituras inesperadas.",
+    "topic": "Unsafe con invariantes",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "rust-q-47",
+    "collectionId": "rust",
+    "question": "Dentro de Rust, ¿cómo opera el mecanismo de «MaybeUninit» en unsafe con invariantes?",
+    "options": [
+      "Restringe referencias mutables y compartidas para que optimizaciones no observen escrituras inesperadas al operar.",
+      "Encierran una región unsafe pequeña y exponen una API cuyas precondiciones se verifican externamente al operar.",
+      "Representa almacenamiento aún no inicializado sin crear un valor inválido que cause comportamiento indefinido.",
+      "Permite direcciones sin préstamos comprobados y obligan a demostrar validez antes de desreferenciar al operar."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "MaybeUninit (Unsafe con invariantes): Representa almacenamiento aún no inicializado sin crear un valor inválido que cause comportamiento indefinido.",
+    "topic": "Unsafe con invariantes",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "rust-q-48",
+    "collectionId": "rust",
+    "question": "Al trabajar con Rust, ¿qué responsabilidad define a «Safe wrappers»?",
+    "options": [
+      "Permite direcciones sin préstamos comprobados y obligan a demostrar validez antes de desreferenciar al operar.",
+      "Transfieren mensajes entre productores y consumidores definiendo capacidad, cierre y ownership al operar.",
+      "Fija convención de llamada y tipos compatibles para cruzar la frontera con bibliotecas nativas al operar.",
+      "Encierran una región unsafe pequeña y exponen una API cuyas precondiciones se verifican externamente."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "Safe wrappers (Unsafe con invariantes): Encierran una región unsafe pequeña y exponen una API cuyas precondiciones se verifican externamente.",
+    "topic": "Unsafe con invariantes",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "rust-q-49",
+    "collectionId": "rust",
+    "question": "En la arquitectura de Rust, ¿qué caracteriza técnicamente a «ABI C»?",
+    "options": [
+      "Fija convención de llamada y tipos compatibles para cruzar la frontera con bibliotecas nativas.",
+      "Genera declaraciones desde headers o APIs Rust y requieren revisar ownership y plataforma.",
+      "Representa cálculos que no regresan o estados imposibles y mejoran el análisis exhaustivo.",
+      "Exige que trait o tipo sea local para impedir implementaciones incompatibles entre crates."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "ABI C (Interoperabilidad): Fija convención de llamada y tipos compatibles para cruzar la frontera con bibliotecas nativas.",
+    "topic": "Interoperabilidad",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "rust-q-50",
+    "collectionId": "rust",
+    "question": "Respecto a interoperabilidad en Rust, ¿cuál es el propósito de «Bindgen y cbindgen»?",
+    "options": [
+      "Evita capturas accidentales de nombres entre la macro y el contexto donde se invoca al operar.",
+      "Genera declaraciones desde headers o APIs Rust y requieren revisar ownership y plataforma.",
+      "Divide iteradores en tareas y usa work stealing sin cambiar su resultado secuencial al operar.",
+      "Compara monomorfización optimizable con selección en ejecución y tamaño de binario al operar."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Bindgen y cbindgen (Interoperabilidad): Generan declaraciones desde headers o APIs Rust y requieren revisar ownership y plataforma.",
+    "topic": "Interoperabilidad",
+    "difficulty": "avanzado"
   }
 ];

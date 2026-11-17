@@ -2,453 +2,753 @@ import type { QuizQuestion } from "@/data/quizTypes";
 
 export const dockerQuestions: QuizQuestion[] = [
   {
-    id: "dkr-q-01",
-    collectionId: "docker",
-    question: "¿Qué dos primitivas fundamentales del kernel de Linux hacen posible el aislamiento y la limitación de recursos en contenedores Docker?",
-    options: [
-      "Namespaces (aislamiento de visibilidad) y Control Groups / cgroups (limitación de CPU, memoria y E/S).",
-      "KVM (Kernel-based Virtual Machine) y QEMU para emulación completa de hardware.",
-      "Hyper-V y WSL2 exclusivamente en arquitecturas x86_64.",
-      "SELinux y AppArmor para particionado físico de núcleos de procesador."
+    "id": "docker-q-01",
+    "collectionId": "docker",
+    "question": "En Docker (Fundamentos de contenedores), ¿qué función técnica cumple «Qué problema resuelve Docker»?",
+    "options": [
+      "Empaqueta aplicación, dependencias y configuración de runtime para reducir diferencias entre desarrollo, CI y producción.",
+      "Una imagen conserva userspace y dependencias, pero todavía depende de arquitectura, kernel y capacidades disponibles.",
+      "Favorece responsabilidades claras, señales correctas y escalado independiente, aunque no es una regla física absoluta.",
+      "La imagen es una plantilla inmutable; el contenedor es una instancia ejecutable con estado efímero adicional al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Los contenedores no son máquinas virtuales completas: comparten el kernel del host. Los namespaces aíslan lo que un proceso puede ver (PID, red, montajes, usuarios) y los cgroups limitan cuánto puede consumir (RAM, CPU, I/O).",
-    topic: "Fundamentos del Kernel & Aislamiento",
-    difficulty: "básico"
+    "correctAnswerIndex": 0,
+    "explanation": "Qué problema resuelve Docker (Fundamentos de contenedores): Empaqueta aplicación, dependencias y configuración de runtime para reducir diferencias entre desarrollo, CI y producción.",
+    "topic": "Fundamentos de contenedores",
+    "difficulty": "básico"
   },
   {
-    id: "dkr-q-02",
-    collectionId: "docker",
-    question: "¿Cómo funciona el almacenamiento Copy-on-Write (CoW) en el driver de almacenamiento 'overlay2' de Docker?",
-    options: [
-      "Combina capas base de solo lectura (lowerdir) con una capa superior escribible (upperdir) en una vista unificada (merged).",
-      "Duplica físicamente el sistema de archivos completo en el disco cada vez que se crea un nuevo contenedor.",
-      "Almacena todos los archivos del contenedor en una base de datos SQLite indexada en memoria.",
-      "Comprime los archivos modificados en un archivo tar.gz antes de escribirlos en el disco duro."
+    "id": "docker-q-02",
+    "collectionId": "docker",
+    "question": "Dentro de Docker, ¿cómo opera el mecanismo de «Contenedor frente a máquina virtual» en fundamentos de contenedores?",
+    "options": [
+      "Una imagen conserva userspace y dependencias, pero todavía depende de arquitectura, kernel y capacidades disponibles al operar.",
+      "Compara aislamiento por procesos y kernel compartido con virtualización completa de hardware y sistema operativo invitado.",
+      "Favorece responsabilidades claras, señales correctas y escalado independiente, aunque no es una regla física absoluta.",
+      "Empaqueta aplicación, dependencias y configuración de runtime para reducir diferencias entre desarrollo, CI y producción."
     ],
-    correctAnswerIndex: 0,
-    explanation: "OverlayFS utiliza capas inferiores de solo lectura ('lowerdir') compartidas por múltiples contenedores. Cuando un contenedor modifica un archivo, este se copia a la capa superior escribible ('upperdir'), presentándose al proceso en la carpeta 'merged'.",
-    topic: "Storage Drivers & Capas",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 1,
+    "explanation": "Contenedor frente a máquina virtual (Fundamentos de contenedores): Compara aislamiento por procesos y kernel compartido con virtualización completa de hardware y sistema operativo invitado.",
+    "topic": "Fundamentos de contenedores",
+    "difficulty": "básico"
   },
   {
-    id: "dkr-q-03",
-    collectionId: "docker",
-    question: "¿Cuál es la principal ventaja de utilizar 'Multi-Stage Builds' en un Dockerfile de producción?",
-    options: [
-      "Permite usar compiladores y dependencias pesadas en etapas tempranas y copiar solo el artefacto final a una imagen base mínima y ligera.",
-      "Permite ejecutar múltiples contenedores en paralelo dentro del mismo espacio de red sin Docker Compose.",
-      "Habilita el soporte para desplegar el contenedor directamente en clústeres de Kubernetes sin manifiestos YAML.",
-      "Aumenta la memoria RAM asignada al proceso de compilación duplicando el límite de cgroups."
+    "id": "docker-q-03",
+    "collectionId": "docker",
+    "question": "Al trabajar con Docker, ¿qué responsabilidad define a «Imagen frente a contenedor»?",
+    "options": [
+      "Proceso de larga duración que coordina objetos Docker y delega la ejecución de contenedores al runtime al operar.",
+      "Conjunto formado por daemon, API y CLI que construye imágenes y administra contenedores, redes y volúmenes.",
+      "La imagen es una plantilla inmutable; el contenedor es una instancia ejecutable con estado efímero adicional.",
+      "La CLI puede administrar un daemon distinto mediante contexts, SSH o endpoints protegidos por TLS al evaluar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Las compilaciones multi-etapa permiten compilar código en una etapa grande (con SDKs, compiladores y linters) y copiar únicamente el binario resultante a una imagen de producción limpia (como Alpine o Distroless), reduciendo tamaño y superficie de ataque.",
-    topic: "Dockerfile & Optimización",
-    difficulty: "básico"
+    "correctAnswerIndex": 2,
+    "explanation": "Imagen frente a contenedor (Fundamentos de contenedores): La imagen es una plantilla inmutable; el contenedor es una instancia ejecutable con estado efímero adicional.",
+    "topic": "Fundamentos de contenedores",
+    "difficulty": "básico"
   },
   {
-    id: "dkr-q-04",
-    collectionId: "docker",
-    question: "¿Por qué se desaconseja ejecutar un proceso principal de contenedor como 'PID 1' sin un gestor de inicialización (init)?",
-    options: [
-      "PID 1 no adopta por defecto procesos huérfanos ni procesa señales POSIX como SIGTERM correctamente, generando procesos zombis.",
-      "El kernel de Linux prohíbe que procesos con PID 1 puedan abrir puertos de red TCP por debajo del 1024.",
-      "El sistema de archivos del contenedor se desmonta automáticamente si un proceso con PID 1 escribe en stderr.",
-      "Impide que el recolector de basura de Docker elimine la imagen una vez finalizado el contenedor."
+    "id": "docker-q-04",
+    "collectionId": "docker",
+    "question": "En la arquitectura de Docker, ¿qué caracteriza técnicamente a «Docker Engine»?",
+    "options": [
+      "Proceso de larga duración que coordina objetos Docker y delega la ejecución de contenedores al runtime al operar.",
+      "La CLI puede administrar un daemon distinto mediante contexts, SSH o endpoints protegidos por TLS al operar.",
+      "Namespaces separan vistas de PID, red, mounts, usuarios y otros recursos sin crear otro kernel en el flujo.",
+      "Conjunto formado por daemon, API y CLI que construye imágenes y administra contenedores, redes y volúmenes."
     ],
-    correctAnswerIndex: 0,
-    explanation: "En Linux, PID 1 tiene la responsabilidad especial de cosechar procesos zombis ('reaping') y reenviar señales. Aplicaciones como Node.js o Python no gestionan esto por defecto, por lo que herramientas como tini o la bandera '--init' evitan fugas de procesos.",
-    topic: "Procesos & Señales POSIX",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 3,
+    "explanation": "Docker Engine (Fundamentos de contenedores): Conjunto formado por daemon, API y CLI que construye imágenes y administra contenedores, redes y volúmenes.",
+    "topic": "Fundamentos de contenedores",
+    "difficulty": "básico"
   },
   {
-    id: "dkr-q-05",
-    collectionId: "docker",
-    question: "¿Cuál es la diferencia sintáctica y funcional entre la forma 'exec' y la forma 'shell' en directivas ENTRYPOINT o CMD?",
-    options: [
-      "La forma exec (['bin', 'arg']) ejecuta el binario directamente como PID 1; la forma shell ('bin arg') lo envuelve en '/bin/sh -c', interceptando señales.",
-      "La forma exec requiere que el archivo sea un script en bash con permisos 777; la forma shell admite archivos binarios ELF.",
-      "La forma shell permite usar variables de entorno sin interpolación previa; la forma exec desactiva la red del contenedor.",
-      "No existe diferencia; Docker normaliza ambas sintaxis al mismo árbol de llamadas en tiempo de ejecución."
+    "id": "docker-q-05",
+    "collectionId": "docker",
+    "question": "Respecto a fundamentos de contenedores en Docker, ¿cuál es el propósito de «Docker CLI»?",
+    "options": [
+      "Cliente que traduce comandos como run, build o inspect en solicitudes a la API del daemon.",
+      "Cgroups contabilizan y restringen CPU, memoria, PIDs e I/O consumidos por cada contenedor.",
+      "Mantiene la relación entre containerd y el proceso incluso si el daemon se reinicia.",
+      "Lee stdout y stderr capturados por el logging driver configurado para el contenedor."
     ],
-    correctAnswerIndex: 0,
-    explanation: "La sintaxis JSON de lista (exec form: ENTRYPOINT ['node', 'app.js']) invoca el proceso directamente como PID 1, permitiendo recibir señales de apagado limpio (SIGTERM). La shell form ejecuta '/bin/sh -c', dejando la shell como PID 1 y bloqueando señales al proceso hijo.",
-    topic: "Dockerfile & Señales",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 0,
+    "explanation": "Docker CLI (Fundamentos de contenedores): Cliente que traduce comandos como run, build o inspect en solicitudes a la API del daemon.",
+    "topic": "Fundamentos de contenedores",
+    "difficulty": "básico"
   },
   {
-    id: "dkr-q-06",
-    collectionId: "docker",
-    question: "¿Qué tipo de red en Docker asigna una dirección MAC e IP directamente en la red física del host?",
-    options: [
-      "macvlan",
-      "bridge",
-      "host",
-      "overlay"
+    "id": "docker-q-06",
+    "collectionId": "docker",
+    "question": "En Docker (Fundamentos de contenedores), ¿qué función técnica cumple «Docker daemon»?",
+    "options": [
+      "La CLI puede administrar un daemon distinto mediante contexts, SSH o endpoints protegidos por TLS al operar.",
+      "Proceso de larga duración que coordina objetos Docker y delega la ejecución de contenedores al runtime.",
+      "Namespaces separan vistas de PID, red, mounts, usuarios y otros recursos sin crear otro kernel al operar.",
+      "Cliente que traduce comandos como run, build o inspect en solicitudes a la API del daemon en ejecución."
     ],
-    correctAnswerIndex: 0,
-    explanation: "El driver 'macvlan' asigna una dirección MAC física a cada contenedor, haciendo que aparezcan como dispositivos independientes conectados directamente a la red física local, ideal para aplicaciones heredadas.",
-    topic: "Networking en Docker",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 1,
+    "explanation": "Docker daemon (Fundamentos de contenedores): Proceso de larga duración que coordina objetos Docker y delega la ejecución de contenedores al runtime.",
+    "topic": "Fundamentos de contenedores",
+    "difficulty": "básico"
   },
   {
-    id: "dkr-q-07",
-    collectionId: "docker",
-    question: "¿Cuál es la diferencia entre un 'Volume' administrado de Docker y un 'Bind Mount'?",
-    options: [
-      "Los volúmenes son gestionados por Docker en /var/lib/docker/volumes/ con aislamiento y drivers; los bind mounts mapean rutas absolutas arbitrarias del host.",
-      "Los volúmenes se eliminan automáticamente cuando el contenedor se detiene; los bind mounts persisten siempre.",
-      "Los bind mounts ofrecen mayor rendimiento porque residen exclusivamente en la memoria RAM del sistema.",
-      "Los volúmenes solo admiten almacenamiento de solo lectura (ro) sin permisos de escritura."
+    "id": "docker-q-07",
+    "collectionId": "docker",
+    "question": "Dentro de Docker, ¿cómo opera el mecanismo de «Cliente remoto» en fundamentos de contenedores?",
+    "options": [
+      "Cliente que traduce comandos como run, build o inspect en solicitudes a la API del daemon al evaluar.",
+      "Cgroups contabilizan y restringen CPU, memoria, PIDs e I/O consumidos por cada contenedor al operar.",
+      "La CLI puede administrar un daemon distinto mediante contexts, SSH o endpoints protegidos por TLS.",
+      "Namespaces separan vistas de PID, red, mounts, usuarios y otros recursos sin crear otro kernel."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Los volúmenes son el mecanismo nativo preferido: están aislados del sistema de archivos del host, se respaldan fácilmente y funcionan con drivers en la nube. Los bind mounts dependen de la estructura de carpetas local del host.",
-    topic: "Persistencia & Volúmenes",
-    difficulty: "básico"
+    "correctAnswerIndex": 2,
+    "explanation": "Cliente remoto (Fundamentos de contenedores): La CLI puede administrar un daemon distinto mediante contexts, SSH o endpoints protegidos por TLS.",
+    "topic": "Fundamentos de contenedores",
+    "difficulty": "básico"
   },
   {
-    id: "dkr-q-08",
-    collectionId: "docker",
-    question: "¿Qué papel desempeñan 'containerd' y 'runc' dentro de la arquitectura modular de Docker?",
-    options: [
-      "'containerd' es el gestor del ciclo de vida de contenedores e imágenes; 'runc' es el ejecutor de bajo nivel conforme a la especificación OCI.",
-      "'runc' gestiona la interfaz gráfica y 'containerd' administra los túneles de red VPN.",
-      "'containerd' compila imágenes de Docker en binarios de Rust y 'runc' los ejecuta en WebAssembly.",
-      "Ambos son emuladores de microkernel para ejecutar contenedores de Windows en Linux."
+    "id": "docker-q-08",
+    "collectionId": "docker",
+    "question": "Al trabajar con Docker, ¿qué responsabilidad define a «Aislamiento de procesos»?",
+    "options": [
+      "Cliente que traduce comandos como run, build o inspect en solicitudes a la API del daemon al operar.",
+      "Cgroups contabilizan y restringen CPU, memoria, PIDs e I/O consumidos por cada contenedor al operar.",
+      "Proporciona vistas aisladas de procesos, red, mounts, hostname, IPC, cgroups y usuarios al operar.",
+      "Namespaces separan vistas de PID, red, mounts, usuarios y otros recursos sin crear otro kernel."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Docker Daemon delega en containerd la gestión de imágenes, redes y almacenamiento. A su vez, containerd invoca a runc (la implementación de referencia OCI) para crear los namespaces y cgroups y arrancar el contenedor.",
-    topic: "Arquitectura & OCI Runtime",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 3,
+    "explanation": "Aislamiento de procesos (Fundamentos de contenedores): Namespaces separan vistas de PID, red, mounts, usuarios y otros recursos sin crear otro kernel.",
+    "topic": "Fundamentos de contenedores",
+    "difficulty": "básico"
   },
   {
-    id: "dkr-q-09",
-    collectionId: "docker",
-    question: "¿Cómo optimiza el motor 'BuildKit' el orden de construcción de capas en un Dockerfile?",
-    options: [
-      "Genera un grafo de dependencias acíclico (DAG) ejecutando etapas y capas independientes en paralelo y omitiendo pasos no utilizados.",
-      "Compila todas las capas en un único archivo binario monolítico antes de evaluar el Dockerfile.",
-      "Descarga las dependencias de npm y pip directamente en el kernel sin pasar por el contenedor.",
-      "Desactiva la comprobación de sumas hash SHA-256 para acelerar la escritura en disco."
+    "id": "docker-q-09",
+    "collectionId": "docker",
+    "question": "En la arquitectura de Docker, ¿qué caracteriza técnicamente a «Límites de recursos»?",
+    "options": [
+      "Cgroups contabilizan y restringen CPU, memoria, PIDs e I/O consumidos por cada contenedor.",
+      "Cliente que traduce comandos como run, build o inspect en solicitudes a la API del daemon.",
+      "Mantiene la relación entre containerd y el proceso incluso si el daemon se reinicia.",
+      "Lee stdout y stderr capturados por el logging driver configurado para el contenedor."
     ],
-    correctAnswerIndex: 0,
-    explanation: "BuildKit procesa el Dockerfile como un grafo de operaciones (LLB - Low-Level Builder). Identifica ramas y multi-stages concurrentes, ejecutándolas en paralelo y podando automáticamente etapas no referenciadas.",
-    topic: "BuildKit & Rendimiento",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 0,
+    "explanation": "Límites de recursos (Fundamentos de contenedores): cgroups contabilizan y restringen CPU, memoria, PIDs e I/O consumidos por cada contenedor.",
+    "topic": "Fundamentos de contenedores",
+    "difficulty": "básico"
   },
   {
-    id: "dkr-q-10",
-    collectionId: "docker",
-    question: "¿Qué riesgo de seguridad crítico implica montar el socket de Docker (/var/run/docker.sock) dentro de un contenedor?",
-    options: [
-      "Permite al contenedor comunicarse con el daemon de Docker y obtener privilegios equivalentes a root completo en el host.",
-      "Inhabilita el cifrado TLS en todas las peticiones HTTPS que salgan del contenedor.",
-      "Borra automáticamente todas las imágenes del registro de Docker Hub cada 24 horas.",
-      "Fuerza un reinicio en frío del sistema operativo del servidor host si el contenedor se cuelga."
+    "id": "docker-q-10",
+    "collectionId": "docker",
+    "question": "Respecto a fundamentos de contenedores en Docker, ¿cuál es el propósito de «Portabilidad y límites»?",
+    "options": [
+      "La imagen es una plantilla inmutable; el contenedor es una instancia ejecutable con estado efímero adicional al evaluar.",
+      "Una imagen conserva userspace y dependencias, pero todavía depende de arquitectura, kernel y capacidades disponibles.",
+      "Conecta código fuente, imagen versionada, registry y ejecución de la misma referencia en distintos entornos al operar.",
+      "Conjunto formado por daemon, API y CLI que construye imágenes y administra contenedores, redes y volúmenes al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "El socket de Docker otorga control absoluto sobre el Docker daemon. Un atacante en un contenedor con acceso al socket puede lanzar un nuevo contenedor privilegiado montando la raíz del host (/) y tomar el control total de la máquina.",
-    topic: "Seguridad & Hardening",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 1,
+    "explanation": "Portabilidad y límites (Fundamentos de contenedores): Una imagen conserva userspace y dependencias, pero todavía depende de arquitectura, kernel y capacidades disponibles.",
+    "topic": "Fundamentos de contenedores",
+    "difficulty": "básico"
   },
   {
-    id: "dkr-q-11",
-    collectionId: "docker",
-    question: "¿Cómo garantiza Docker la resolución de nombres DNS entre contenedores conectados a una red 'bridge' personalizada?",
-    options: [
-      "Docker ejecuta un servidor DNS embebido en 127.0.0.11 que resuelve automáticamente los nombres de contenedor o alias de red.",
-      "Edita el archivo /etc/hosts físico del sistema operativo cada vez que un contenedor arranca.",
-      "Envía peticiones de difusión NetBIOS por el puerto UDP 137 en la subred local.",
-      "Delega todas las resoluciones a los servidores DNS públicos de Google (8.8.8.8) directamente."
+    "id": "docker-q-11",
+    "collectionId": "docker",
+    "question": "En Docker (Fundamentos de contenedores), ¿qué función técnica cumple «Contenedores efímeros»?",
+    "options": [
+      "Cliente que traduce comandos como run, build o inspect en solicitudes a la API del daemon.",
+      "Cgroups contabilizan y restringen CPU, memoria, PIDs e I/O consumidos por cada contenedor.",
+      "El filesystem writable del contenedor puede descartarse durante la ejecución del módulo.",
+      "Combina creación, configuración y arranque de un contenedor a partir de una imagen al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "En redes creadas por el usuario ('docker network create'), el daemon de Docker activa un resolver DNS interno en la IP 127.0.0.11, permitiendo comunicación por nombre de contenedor (service discovery básico).",
-    topic: "Networking & DNS",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 2,
+    "explanation": "Contenedores efímeros (Fundamentos de contenedores): El filesystem writable del contenedor puede descartarse; los datos importantes deben vivir en volúmenes o servicios externos.",
+    "topic": "Fundamentos de contenedores",
+    "difficulty": "básico"
   },
   {
-    id: "dkr-q-12",
-    collectionId: "docker",
-    question: "¿Qué directiva de seguridad en el Dockerfile garantiza que la aplicación no se ejecute con privilegios de superusuario?",
-    options: [
-      "USER <nombre_o_uid_no_root>",
-      "RUN chmod 400 /app",
-      "EXPOSE --unprivileged 8080",
-      "SECURITY drop-privileges"
+    "id": "docker-q-12",
+    "collectionId": "docker",
+    "question": "Dentro de Docker, ¿cómo opera el mecanismo de «Aplicación de un solo proceso» en fundamentos de contenedores?",
+    "options": [
+      "La imagen es una plantilla inmutable; el contenedor es una instancia ejecutable con estado efímero adicional en el flujo.",
+      "Conecta código fuente, imagen versionada, registry y ejecución de la misma referencia en distintos entornos al operar.",
+      "Conjunto formado por daemon, API y CLI que construye imágenes y administra contenedores, redes y volúmenes al evaluar.",
+      "Favorece responsabilidades claras, señales correctas y escalado independiente, aunque no es una regla física absoluta."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Por defecto, los contenedores arrancan como root (UID 0). Usar la directiva 'USER node' o 'USER 10001' tras instalar dependencias asegura el principio de menor privilegio, mitigando escapes de contenedor.",
-    topic: "Seguridad en Dockerfile",
-    difficulty: "básico"
+    "correctAnswerIndex": 3,
+    "explanation": "Aplicación de un solo proceso (Fundamentos de contenedores): Favorece responsabilidades claras, señales correctas y escalado independiente, aunque no es una regla física absoluta.",
+    "topic": "Fundamentos de contenedores",
+    "difficulty": "básico"
   },
   {
-    id: "dkr-q-13",
-    collectionId: "docker",
-    question: "¿Qué efecto tiene la opción '--cap-drop=ALL' combinada con '--cap-add' al arrancar un contenedor?",
-    options: [
-      "Elimina todas las capacidades POSIX del kernel de Linux y otorga exclusivamente las estrictamente requeridas por el proceso.",
-      "Desconecta el contenedor de todas las interfaces de red inalámbricas del servidor.",
-      "Limita el tamaño máximo de los archivos que el contenedor puede descargar de Internet.",
-      "Borra la memoria caché del procesador antes de despachar cada hilo de ejecución."
+    "id": "docker-q-13",
+    "collectionId": "docker",
+    "question": "Al trabajar con Docker, ¿qué responsabilidad define a «Declarativo frente a imperativo»?",
+    "options": [
+      "Dockerfiles y Compose describen estados reproducibles respetando las restricciones de tipo.",
+      "Conecta la terminal a los streams del proceso principal y no crea un shell nuevo.",
+      "-i mantiene el flujo de entrada disponible incluso cuando no se asigna una TTY al operar.",
+      "Combina creación, configuración y arranque de un contenedor a partir de una imagen."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Las Linux Capabilities dividen los privilegios de root en unidades discretas. Descartar todas con '--cap-drop=ALL' y añadir selectivamente solo lo necesario (ej. '--cap-add=NET_BIND_SERVICE') es una buena práctica de hardening.",
-    topic: "Seguridad & Linux Capabilities",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 0,
+    "explanation": "Declarativo frente a imperativo (Fundamentos de contenedores): Dockerfiles y Compose describen estados reproducibles; comandos manuales aislados son más difíciles de auditar.",
+    "topic": "Fundamentos de contenedores",
+    "difficulty": "básico"
   },
   {
-    id: "dkr-q-14",
-    collectionId: "docker",
-    question: "¿Qué diferencia existe entre el tipo de red 'host' y el tipo 'none' en Docker?",
-    options: [
-      "'host' comparte la pila de red completa del host sin aislamiento; 'none' aísla al contenedor desconectándolo de toda red externa.",
-      "'host' permite conexiones solo por cable; 'none' admite conexiones inalámbricas.",
-      "'none' ejecuta el contenedor en modo sleep; 'host' lo ejecuta con prioridad de CPU en tiempo real.",
-      "Son sinónimos que se diferencian únicamente en la configuración de la pasarela por defecto."
+    "id": "docker-q-14",
+    "collectionId": "docker",
+    "question": "En la arquitectura de Docker, ¿qué caracteriza técnicamente a «Flujo build, ship y run»?",
+    "options": [
+      "Proceso de larga duración que coordina objetos Docker y delega la ejecución de contenedores al runtime al operar.",
+      "Conecta código fuente, imagen versionada, registry y ejecución de la misma referencia en distintos entornos.",
+      "La CLI puede administrar un daemon distinto mediante contexts, SSH o endpoints protegidos por TLS al operar.",
+      "Conjunto formado por daemon, API y CLI que construye imágenes y administra contenedores, redes y volúmenes."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Con '--network host', el contenedor elude el namespace de red y usa directamente las interfaces y puertos del host (máximo rendimiento, menor aislamiento). Con '--network none', el contenedor solo tiene la interfaz loopback (127.0.0.1).",
-    topic: "Networking en Docker",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 1,
+    "explanation": "Flujo build, ship y run (Fundamentos de contenedores): Conecta código fuente, imagen versionada, registry y ejecución de la misma referencia en distintos entornos.",
+    "topic": "Fundamentos de contenedores",
+    "difficulty": "básico"
   },
   {
-    id: "dkr-q-15",
-    collectionId: "docker",
-    question: "¿Para qué sirve la instrucción 'HEALTHCHECK' en un Dockerfile?",
-    options: [
-      "Indica a Docker cómo comprobar periódicamente si el proceso dentro del contenedor sigue funcionando correctamente.",
-      "Envía telemetría de uso de memoria al panel de control de Docker Hub cada cinco minutos.",
-      "Realiza un análisis estático de vulnerabilidades en las librerías del sistema operativo base.",
-      "Verifica que el servidor host tenga suficiente espacio libre en disco antes de compilar."
+    "id": "docker-q-15",
+    "collectionId": "docker",
+    "question": "Respecto a arquitectura del runtime en Docker, ¿cuál es el propósito de «API de Docker Engine»?",
+    "options": [
+      "Define si el daemon vuelve a iniciar un contenedor después de fallo, reinicio o salida manual al operar.",
+      "Implementan la preparación y montaje de snapshots de imagen mediante overlayfs u otros backends.",
+      "Interfaz HTTP versionada mediante la cual clientes crean, consultan y eliminan recursos del daemon.",
+      "-t asigna una terminal y cambia buffering, formato de salida y comportamiento interactivo al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "HEALTHCHECK define un comando (ej. 'curl -f http://localhost:8080/health || exit 1') que Docker ejecuta a intervalos. El contenedor reporta estados 'healthy', 'unhealthy' o 'starting', permitiendo a orquestadores reiniciar instancias caídas.",
-    topic: "Resiliencia & Healthchecks",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 2,
+    "explanation": "API de Docker Engine (Arquitectura del runtime): Interfaz HTTP versionada mediante la cual clientes crean, consultan y eliminan recursos del daemon.",
+    "topic": "Arquitectura del runtime",
+    "difficulty": "básico"
   },
   {
-    id: "dkr-q-16",
-    collectionId: "docker",
-    question: "¿Qué mecanismo de cgroups v2 previene que un contenedor con una fuga de memoria cuelgue el servidor host?",
-    options: [
-      "OOM Killer (Out Of Memory Killer) del cgroup, que termina el proceso del contenedor al alcanzar el límite 'memory.max'.",
-      "Swap dinámico infinito que escribe los excesos de memoria en particiones remotas de red.",
-      "Suspensión automática de la máquina virtual host hasta que un operador libere memoria.",
-      "Reducción automática de la frecuencia de reloj del procesador (thermal throttling)."
+    "id": "docker-q-16",
+    "collectionId": "docker",
+    "question": "En Docker (Arquitectura del runtime), ¿qué función técnica cumple «containerd»?",
+    "options": [
+      "-t asigna una terminal y cambia buffering, formato de salida y comportamiento interactivo al evaluar.",
+      "Define si el daemon vuelve a iniciar un contenedor después de fallo, reinicio o salida manual.",
+      "Proporciona vistas aisladas de procesos, red, mounts, hostname, IPC, cgroups y usuarios al operar.",
+      "Runtime de alto nivel que gestiona el ciclo de vida, imágenes, snapshots y tareas de contenedores."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Al definir límites como '--memory=512m', los cgroups rastrean el consumo. Si el contenedor excede el límite y no puede liberar páginas de memoria, el OOM killer del kernel termina el proceso con código de salida 137 (SIGKILL).",
-    topic: "Gestión de Recursos & Cgroups",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 3,
+    "explanation": "containerd (Arquitectura del runtime): Runtime de alto nivel que gestiona el ciclo de vida, imágenes, snapshots y tareas de contenedores.",
+    "topic": "Arquitectura del runtime",
+    "difficulty": "básico"
   },
   {
-    id: "dkr-q-17",
-    collectionId: "docker",
-    question: "¿Cómo optimiza el montaje de caché '--mount=type=cache' de BuildKit la instalación de paquetes (npm, apt, pip)?",
-    options: [
-      "Persiste el directorio de descargas de paquetes entre compilaciones sucesivas sin incluirlo en las capas finales de la imagen.",
-      "Copia los archivos descargados a un servidor proxy corporativo local en la red LAN.",
-      "Comprime los paquetes instalados en un archivo zip accesible solo por el usuario root.",
-      "Convierte las dependencias en submódulos de Git versionados en el repositorio."
+    "id": "docker-q-17",
+    "collectionId": "docker",
+    "question": "Dentro de Docker, ¿cómo opera el mecanismo de «runc» en arquitectura del runtime?",
+    "options": [
+      "Runtime OCI de bajo nivel que crea el proceso aislado a partir de un bundle y una especificación al operar.",
+      "-t asigna una terminal y cambia buffering, formato de salida y comportamiento interactivo al operar.",
+      "Proporciona vistas aisladas de procesos, red, mounts, hostname, IPC, cgroups y usuarios al operar.",
+      "Organiza procesos jerárquicamente y aplican límites, prioridades y métricas de recursos al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Con 'RUN --mount=type=cache,target=/root/.cache/pip pip install -r requirements.txt', BuildKit reutiliza el caché de descargas entre builds sin inflar el tamaño de la capa resultante con archivos temporales.",
-    topic: "BuildKit & Caché",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 0,
+    "explanation": "runc (Arquitectura del runtime): Runtime OCI de bajo nivel que crea el proceso aislado a partir de un bundle y una especificación.",
+    "topic": "Arquitectura del runtime",
+    "difficulty": "intermedio"
   },
   {
-    id: "dkr-q-18",
-    collectionId: "docker",
-    question: "¿Qué es un 'OCI Manifest List' (o multi-arch image) en el ecosistema de contenedores?",
-    options: [
-      "Un manifiesto que apunta a múltiples imágenes construidas para diferentes arquitecturas (ej: linux/amd64 y linux/arm64) bajo una misma etiqueta.",
-      "Una lista de contraseñas de acceso para registros privados de Docker.",
-      "Un archivo de configuración que declara las variables de entorno comunes a un clúster de Compose.",
-      "Un documento XML que lista las librerías de software libre utilizadas en la aplicación."
+    "id": "docker-q-18",
+    "collectionId": "docker",
+    "question": "Al trabajar con Docker, ¿qué responsabilidad define a «Especificaciones OCI»?",
+    "options": [
+      "Recibe señales y debe recolectar procesos hijos; una aplicación que ignora estas tareas puede cerrar mal al evaluar.",
+      "Estandarizan el formato de imágenes, distribución y configuración de runtime para interoperar entre herramientas.",
+      "Interfaz HTTP versionada mediante la cual clientes crean, consultan y eliminan recursos del daemon con precisión.",
+      "Combina capas de solo lectura y una capa writable para presentar un filesystem único al contenedor con precisión."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Un Manifest List (o OCI Image Index) asocia una única etiqueta (como 'node:20-alpine') a imágenes compiladas para amd64, arm64, etc. El cliente Docker descarga automáticamente la imagen compatible con la CPU del host.",
-    topic: "Imágenes & Especificación OCI",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 1,
+    "explanation": "Especificaciones OCI (Arquitectura del runtime): Estandarizan el formato de imágenes, distribución y configuración de runtime para interoperar entre herramientas.",
+    "topic": "Arquitectura del runtime",
+    "difficulty": "intermedio"
   },
   {
-    id: "dkr-q-19",
-    collectionId: "docker",
-    question: "¿Cuál es la función del comando 'docker system prune -a'?",
-    options: [
-      "Elimina todos los contenedores detenidos, redes no utilizadas, volúmenes anónimos e imágenes que no estén asociadas a contenedores activos.",
-      "Restaura la configuración de fábrica de Docker reinstalando el daemon dockerd.",
-      "Desfragmenta los sistemas de archivos de todos los contenedores en ejecución.",
-      "Envía un informe de diagnóstico a los servidores de soporte técnico de Docker Inc."
+    "id": "docker-q-19",
+    "collectionId": "docker",
+    "question": "En la arquitectura de Docker, ¿qué caracteriza técnicamente a «Namespaces de Linux»?",
+    "options": [
+      "Mantiene la relación entre containerd y el proceso incluso si el daemon se reinicia al operar.",
+      "-i mantiene el flujo de entrada disponible incluso cuando no se asigna una TTY al operar.",
+      "Proporciona vistas aisladas de procesos, red, mounts, hostname, IPC, cgroups y usuarios.",
+      "-d separa el cliente del proceso principal, mientras logs e inspect siguen disponibles."
     ],
-    correctAnswerIndex: 0,
-    explanation: "'docker system prune -a' limpia profundamente el disco eliminando contenedores parados, redes huérfanas, caché de build y todas las imágenes no utilizadas por contenedores activos, liberando espacio masivamente.",
-    topic: "Mantenimiento & Limpieza",
-    difficulty: "básico"
+    "correctAnswerIndex": 2,
+    "explanation": "Namespaces de Linux (Arquitectura del runtime): Proporcionan vistas aisladas de procesos, red, mounts, hostname, IPC, cgroups y usuarios.",
+    "topic": "Arquitectura del runtime",
+    "difficulty": "intermedio"
   },
   {
-    id: "dkr-q-20",
-    collectionId: "docker",
-    question: "¿Qué archivo define qué archivos y carpetas del contexto de compilación local deben excluirse de ser enviados al daemon de Docker?",
-    options: [
-      ".dockerignore",
-      "Dockerfile.ignore",
-      ".gitignore",
-      "docker-compose.override.yml"
+    "id": "docker-q-20",
+    "collectionId": "docker",
+    "question": "Respecto a arquitectura del runtime en Docker, ¿cuál es el propósito de «cgroups v2»?",
+    "options": [
+      "Mantiene la relación entre containerd y el proceso incluso si el daemon se reinicia al operar.",
+      "-i mantiene el flujo de entrada disponible incluso cuando no se asigna una TTY al operar.",
+      "-d separa el cliente del proceso principal, mientras logs e inspect siguen disponibles.",
+      "Organiza procesos jerárquicamente y aplican límites, prioridades y métricas de recursos."
     ],
-    correctAnswerIndex: 0,
-    explanation: "'.dockerignore' evita enviar archivos innecesarios (como node_modules locales, carpetas .git, logs o archivos temporales) al contexto de compilación del daemon, acelerando drásticamente el inicio del build y mejorando la seguridad.",
-    topic: "Contexto de Compilación",
-    difficulty: "básico"
+    "correctAnswerIndex": 3,
+    "explanation": "cgroups v2 (Arquitectura del runtime): Organizan procesos jerárquicamente y aplican límites, prioridades y métricas de recursos.",
+    "topic": "Arquitectura del runtime",
+    "difficulty": "intermedio"
   },
   {
-    id: "dkr-q-21",
-    collectionId: "docker",
-    question: "¿Cómo pasa BuildKit secretos de compilación (como tokens de API privados) de forma segura sin dejarlos grabados en el historial de capas?",
-    options: [
-      "Mediante la opción 'RUN --mount=type=secret,id=mysecret', montando el secreto temporalmente en memoria volátil solo durante ese comando.",
-      "Inyectando el token como una variable de entorno en la instrucción 'ENV'.",
-      "Pasando el token con la bandera '--build-arg' directamente en la llamada de compilación.",
-      "Guardando el secreto en un archivo de texto en la raíz del repositorio de GitHub."
+    "id": "docker-q-21",
+    "collectionId": "docker",
+    "question": "En Docker (Arquitectura del runtime), ¿qué función técnica cumple «Union filesystems»?",
+    "options": [
+      "Combina capas de solo lectura y una capa writable para presentar un filesystem único al contenedor.",
+      "Define si el daemon vuelve a iniciar un contenedor después de fallo, reinicio o salida manual.",
+      "Implementan la preparación y montaje de snapshots de imagen mediante overlayfs u otros backends.",
+      "-t asigna una terminal y cambia buffering, formato de salida y comportamiento interactivo al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Tanto ENV como ARG persisten en los metadatos o capas intermedias de la imagen. La opción '--mount=type=secret' monta el secreto como un archivo en memoria únicamente durante la ejecución de ese comando, sin filtrarlo a la imagen final.",
-    topic: "Seguridad & Secretos en BuildKit",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 0,
+    "explanation": "Union filesystems (Arquitectura del runtime): Combinan capas de solo lectura y una capa writable para presentar un filesystem único al contenedor.",
+    "topic": "Arquitectura del runtime",
+    "difficulty": "intermedio"
   },
   {
-    id: "dkr-q-22",
-    collectionId: "docker",
-    question: "¿Qué señal envía 'docker stop' inicialmente a un contenedor antes de forzar su detención con SIGKILL?",
-    options: [
-      "SIGTERM, concediendo un periodo de gracia (por defecto 10 segundos) para que la aplicación cierre conexiones y limpie recursos.",
-      "SIGINT, equivalente a presionar Ctrl+C en una terminal interactiva.",
-      "SIGHUP, ordenando al proceso que recargue su archivo de configuración.",
-      "SIGQUIT, generando un volcado de memoria (core dump) de la aplicación."
+    "id": "docker-q-22",
+    "collectionId": "docker",
+    "question": "Dentro de Docker, ¿cómo opera el mecanismo de «Snapshotters» en arquitectura del runtime?",
+    "options": [
+      "-t asigna una terminal y cambia buffering, formato de salida y comportamiento interactivo al operar.",
+      "Implementan la preparación y montaje de snapshots de imagen mediante overlayfs u otros backends.",
+      "Proporciona vistas aisladas de procesos, red, mounts, hostname, IPC, cgroups y usuarios al operar.",
+      "Organiza procesos jerárquicamente y aplican límites, prioridades y métricas de recursos al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "'docker stop' envía SIGTERM para permitir una parada limpia (graceful shutdown). Si el contenedor no finaliza tras el tiempo de gracia (10 segundos por defecto), Docker envía SIGKILL para forzar la terminación inmediata.",
-    topic: "Ciclo de Vida & Señales",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 1,
+    "explanation": "Snapshotters (Arquitectura del runtime): Implementan la preparación y montaje de snapshots de imagen mediante overlayfs u otros backends.",
+    "topic": "Arquitectura del runtime",
+    "difficulty": "intermedio"
   },
   {
-    id: "dkr-q-23",
-    collectionId: "docker",
-    question: "¿Qué ventaja ofrece una imagen 'Distroless' frente a una imagen basada en Ubuntu o Alpine?",
-    options: [
-      "Contiene exclusivamente la aplicación y sus dependencias de runtime, eliminando gestores de paquetes, shells (sh/bash) y utilidades innecesarias.",
-      "Permite ejecutar aplicaciones de Windows nativas en servidores con Linux sin Wine.",
-      "Aumenta la tasa de transferencia de datos en sockets de red en un 50%.",
-      "Genera certificados SSL automáticamente sin intervención de Let's Encrypt."
+    "id": "docker-q-23",
+    "collectionId": "docker",
+    "question": "Al trabajar con Docker, ¿qué responsabilidad define a «Shim del contenedor»?",
+    "options": [
+      "-i mantiene el flujo de entrada disponible incluso cuando no se asigna una TTY al operar.",
+      "Docker stop envía una señal de terminación y espera antes de forzar SIGKILL al operar.",
+      "Mantiene la relación entre containerd y el proceso incluso si el daemon se reinicia.",
+      "Conecta la terminal a los streams del proceso principal y no crea un shell nuevo."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Las imágenes Distroless (popularizadas por Google) carecen de shell, gestores de paquetes (apt, apk) y binarios del sistema operativo. Esto reduce drásticamente las vulnerabilidades CVE y dificulta que un atacante ejecute comandos tras una intrusión.",
-    topic: "Seguridad & Imágenes Mínimas",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 2,
+    "explanation": "Shim del contenedor (Arquitectura del runtime): Mantiene la relación entre containerd y el proceso incluso si el daemon se reinicia.",
+    "topic": "Arquitectura del runtime",
+    "difficulty": "intermedio"
   },
   {
-    id: "dkr-q-24",
-    collectionId: "docker",
-    question: "¿Cuál es el propósito de la opción 'read_only: true' en la configuración de un servicio en Docker Compose?",
-    options: [
-      "Monta el sistema de archivos raíz del contenedor como de solo lectura, impidiendo que el software o atacantes alteren binarios del sistema.",
-      "Impide que el contenedor realice consultas SELECT a bases de datos relacionales.",
-      "Convierte la imagen en un archivo comprimido que no puede ser eliminado del registro.",
-      "Desactiva los logs del contenedor para ahorrar espacio en disco."
+    "id": "docker-q-24",
+    "collectionId": "docker",
+    "question": "En la arquitectura de Docker, ¿qué caracteriza técnicamente a «PID 1 dentro del contenedor»?",
+    "options": [
+      "Interfaz HTTP versionada mediante la cual clientes crean, consultan y eliminan recursos del daemon al operar.",
+      "Combina capas de solo lectura y una capa writable para presentar un filesystem único al contenedor al operar.",
+      "Runtime de alto nivel que gestiona el ciclo de vida, imágenes, snapshots y tareas de contenedores al operar.",
+      "Recibe señales y debe recolectar procesos hijos; una aplicación que ignora estas tareas puede cerrar mal."
     ],
-    correctAnswerIndex: 0,
-    explanation: "'read_only: true' (o '--read-only') bloquea cualquier escritura en el sistema de archivos del contenedor. Si la aplicación necesita escribir en carpetas temporales (como /tmp), se combinan montajes explícitos de tipo tmpfs.",
-    topic: "Hardening & Inmutabilidad",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 3,
+    "explanation": "PID 1 dentro del contenedor (Arquitectura del runtime): Recibe señales y debe recolectar procesos hijos; una aplicación que ignora estas tareas puede cerrar mal.",
+    "topic": "Arquitectura del runtime",
+    "difficulty": "intermedio"
   },
   {
-    id: "dkr-q-25",
-    collectionId: "docker",
-    question: "¿Qué directiva de Docker Compose permite condicionar el arranque de un servicio al éxito de la verificación de salud de otro servicio?",
-    options: [
-      "depends_on con 'condition: service_healthy'",
-      "wait_for con 'target: database:ready'",
-      "links con 'check: ping'",
-      "require_service con 'status: running'"
+    "id": "docker-q-25",
+    "collectionId": "docker",
+    "question": "Respecto a arquitectura del runtime en Docker, ¿cuál es el propósito de «Señales»?",
+    "options": [
+      "Docker stop envía una señal de terminación y espera antes de forzar SIGKILL de forma segura.",
+      "Mantiene la relación entre containerd y el proceso incluso si el daemon se reinicia.",
+      "-i mantiene el flujo de entrada disponible incluso cuando no se asigna una TTY al operar.",
+      "-d separa el cliente del proceso principal, mientras logs e inspect siguen disponibles."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Por defecto, 'depends_on' solo espera a que el contenedor dependiente arranque (service_started), lo cual falla si la base de datos tarda en inicializarse. Con 'condition: service_healthy', espera a que el HEALTHCHECK reporte éxito.",
-    topic: "Docker Compose & Orquestación",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 0,
+    "explanation": "Señales y stop timeout (Arquitectura del runtime): docker stop envía una señal de terminación y espera antes de forzar SIGKILL.",
+    "topic": "Arquitectura del runtime",
+    "difficulty": "intermedio"
   },
   {
-    id: "dkr-q-26",
-    collectionId: "docker",
-    question: "¿Cómo optimiza la regla de 'orden de capas' la velocidad de compilación en Dockerfiles?",
-    options: [
-      "Colocar los pasos que cambian raramente (como instalación de dependencias de sistema y bibliotecas) antes de copiar el código fuente que muta con frecuencia.",
-      "Escribir todas las instrucciones en una única línea separada por operadores punto y coma.",
-      "Copiar todo el código fuente del proyecto en la primera línea del Dockerfile.",
-      "Eliminar la instrucción FROM y compilar las imágenes directamente desde el kernel del host."
+    "id": "docker-q-26",
+    "collectionId": "docker",
+    "question": "En Docker (Arquitectura del runtime), ¿qué función técnica cumple «TTY»?",
+    "options": [
+      "Mantiene la relación entre containerd y el proceso incluso si el daemon se reinicia al operar.",
+      "-t asigna una terminal y cambia buffering, formato de salida y comportamiento interactivo.",
+      "-d separa el cliente del proceso principal, mientras logs e inspect siguen disponibles.",
+      "Proporciona vistas aisladas de procesos, red, mounts, hostname, IPC, cgroups y usuarios."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Si una capa cambia, todas las capas subsiguientes invalidan su caché. Por ello, se copia primero package.json y se ejecuta npm install; solo después se copia el resto del código fuente (COPY . .), maximizando el reuso de caché.",
-    topic: "Optimización de Caché",
-    difficulty: "básico"
+    "correctAnswerIndex": 1,
+    "explanation": "TTY y pseudo-terminal (Arquitectura del runtime): -t asigna una terminal y cambia buffering, formato de salida y comportamiento interactivo.",
+    "topic": "Arquitectura del runtime",
+    "difficulty": "intermedio"
   },
   {
-    id: "dkr-q-27",
-    collectionId: "docker",
-    question: "¿Qué efecto tiene un montaje de tipo 'tmpfs' en un contenedor Docker?",
-    options: [
-      "Crea un montaje de almacenamiento volátil respaldado exclusivamente en la memoria RAM del host, sin persistir en el disco físico.",
-      "Sincroniza los archivos temporales con un bucket de Amazon S3 en segundo plano.",
-      "Guarda los archivos en una partición swap cifrada con claves asimétricas.",
-      "Limita el tiempo de vida del contenedor a un máximo de diez minutos."
+    "id": "docker-q-27",
+    "collectionId": "docker",
+    "question": "Dentro de Docker, ¿cómo opera el mecanismo de «stdin abierto» en arquitectura del runtime?",
+    "options": [
+      "Mantiene la relación entre containerd y el proceso incluso si el daemon se reinicia al operar.",
+      "-d separa el cliente del proceso principal, mientras logs e inspect siguen disponibles.",
+      "-i mantiene el flujo de entrada disponible incluso cuando no se asigna una TTY al operar.",
+      "Proporciona vistas aisladas de procesos, red, mounts, hostname, IPC, cgroups y usuarios."
     ],
-    correctAnswerIndex: 0,
-    explanation: "'tmpfs' monta un directorio en la memoria volátil del host. Es ideal para datos transitorios de alto rendimiento o datos sensibles (como claves en memoria) que nunca deben ser escritos en el almacenamiento no volátil.",
-    topic: "Almacenamiento & Memoria",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 2,
+    "explanation": "stdin abierto (Arquitectura del runtime): -i mantiene el flujo de entrada disponible incluso cuando no se asigna una TTY.",
+    "topic": "Arquitectura del runtime",
+    "difficulty": "intermedio"
   },
   {
-    id: "dkr-q-28",
-    collectionId: "docker",
-    question: "¿Qué herramienta oficial permite escanear vulnerabilidades conocidas (CVEs) directamente sobre imágenes de Docker?",
-    options: [
-      "docker scout (o docker scan mediante integración con Trivy/Snyk)",
-      "docker audit --cve-check",
-      "docker test --security",
-      "docker verify-image --full"
+    "id": "docker-q-28",
+    "collectionId": "docker",
+    "question": "Al trabajar con Docker, ¿qué responsabilidad define a «Modo detached»?",
+    "options": [
+      "-i mantiene el flujo de entrada disponible incluso cuando no se asigna una TTY al evaluar.",
+      "Mantiene la relación entre containerd y el proceso incluso si el daemon se reinicia.",
+      "Docker stop envía una señal de terminación y espera antes de forzar SIGKILL al evaluar.",
+      "-d separa el cliente del proceso principal, mientras logs e inspect siguen disponibles."
     ],
-    correctAnswerIndex: 0,
-    explanation: "'docker scout' es la herramienta integrada en el CLI de Docker para análisis de composición de software (SCA), que compara el inventario de paquetes de la imagen contra bases de datos de vulnerabilidades conocidas y sugiere imágenes base actualizadas.",
-    topic: "Seguridad & Vulnerabilidades",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 3,
+    "explanation": "Modo detached (Arquitectura del runtime): -d separa el cliente del proceso principal, mientras logs e inspect siguen disponibles.",
+    "topic": "Arquitectura del runtime",
+    "difficulty": "intermedio"
   },
   {
-    id: "dkr-q-29",
-    collectionId: "docker",
-    question: "¿Qué tipo de red en Docker se utiliza para comunicar contenedores distribuidos en múltiples servidores hosts de un clúster Docker Swarm?",
-    options: [
-      "overlay network con túneles VXLAN",
-      "bridge network con enrutamiento NAT local",
-      "loopback network con sockets Unix",
-      "peer-to-peer network mediante WebRTC"
+    "id": "docker-q-29",
+    "collectionId": "docker",
+    "question": "En la arquitectura de Docker, ¿qué caracteriza técnicamente a «Restart policies»?",
+    "options": [
+      "Define si el daemon vuelve a iniciar un contenedor después de fallo, reinicio o salida manual al operar.",
+      "Proporciona vistas aisladas de procesos, red, mounts, hostname, IPC, cgroups y usuarios.",
+      "Organiza procesos jerárquicamente y aplican límites, prioridades y métricas de recursos.",
+      "-d separa el cliente del proceso principal, mientras logs e inspect siguen disponibles al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Las redes 'overlay' encapsulan paquetes Ethernet dentro de túneles UDP VXLAN (puerto 4789), permitiendo que contenedores en hosts físicos diferentes se comuniquen de forma transparente y segura en la misma subred virtual.",
-    topic: "Redes Distribuidas & Swarm",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 0,
+    "explanation": "Restart policies (Arquitectura del runtime): Definen si el daemon vuelve a iniciar un contenedor después de fallo, reinicio o salida manual.",
+    "topic": "Arquitectura del runtime",
+    "difficulty": "intermedio"
   },
   {
-    id: "dkr-q-30",
-    collectionId: "docker",
-    question: "¿Qué garantiza el uso de digests criptográficos (ej: 'python@sha256:...') en lugar de etiquetas mutables (tags como ':latest')?",
-    options: [
-      "Inmutabilidad determinista: garantiza que el contenedor siempre ejecute exactamente la misma imagen verificada, inmune a sobreescrituras en el registro.",
-      "Aumenta la velocidad de descarga en un 80% mediante compresión por bloques SHA.",
-      "Permite ejecutar la imagen en servidores sin conexión a Internet sin necesidad de pre-descargarla.",
-      "Desactiva las comprobaciones de firma de código en repositorios corporativos."
+    "id": "docker-q-30",
+    "collectionId": "docker",
+    "question": "Respecto a arquitectura del runtime en Docker, ¿cuál es el propósito de «Live restore»?",
+    "options": [
+      "-t asigna una terminal y cambia buffering, formato de salida y comportamiento interactivo al evaluar.",
+      "Permite mantener contenedores ejecutándose durante ciertas actualizaciones o reinicios del daemon.",
+      "Define si el daemon vuelve a iniciar un contenedor después de fallo, reinicio o salida manual.",
+      "Proporciona vistas aisladas de procesos, red, mounts, hostname, IPC, cgroups y usuarios al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Las etiquetas (tags) son punteros mutables: 'python:3.11' puede cambiar mañana si se publica un parche. Apuntar al digest inmutable '@sha256:...' garantiza reproducibilidad estricta, trazabilidad y cumplimiento en auditorías de supply chain.",
-    topic: "Seguridad & Inmutabilidad de Imágenes",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 1,
+    "explanation": "Live restore (Arquitectura del runtime): Permite mantener contenedores ejecutándose durante ciertas actualizaciones o reinicios del daemon.",
+    "topic": "Arquitectura del runtime",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "docker-q-31",
+    "collectionId": "docker",
+    "question": "En Docker (CLI y ciclo de vida), ¿qué función técnica cumple «docker run»?",
+    "options": [
+      "Conecta la terminal a los streams del proceso principal y no crea un shell nuevo al operar.",
+      "Consulta los procesos visibles dentro de un contenedor usando información del host.",
+      "Combina creación, configuración y arranque de un contenedor a partir de una imagen.",
+      "Lee stdout y stderr capturados por el logging driver configurado para el contenedor."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "docker run (CLI y ciclo de vida): Combina creación, configuración y arranque de un contenedor a partir de una imagen.",
+    "topic": "CLI y ciclo de vida",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "docker-q-32",
+    "collectionId": "docker",
+    "question": "Dentro de Docker, ¿cómo opera el mecanismo de «docker create y docker start» en cli y ciclo de vida?",
+    "options": [
+      "Inicia un proceso adicional dentro de un contenedor ya ejecutándose sin alterar su comando principal al operar.",
+      "Los nombres facilitan operación humana; IDs completos o cortos identifican objetos de manera única al operar.",
+      "Emite un stream de acciones del daemon para observar create, start, die, pull, network y otros eventos.",
+      "Separa la preparación del contenedor de su ejecución para inspeccionar o modificar el ciclo con precisión."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "docker create y docker start (CLI y ciclo de vida): Separa la preparación del contenedor de su ejecución para inspeccionar o modificar el ciclo con precisión.",
+    "topic": "CLI y ciclo de vida",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "docker-q-33",
+    "collectionId": "docker",
+    "question": "Al trabajar con Docker, ¿qué responsabilidad define a «docker ps»?",
+    "options": [
+      "Lista contenedores activos y, con opciones, también detenidos, IDs, puertos, nombres y estado.",
+      "Lee stdout y stderr capturados por el logging driver configurado para el contenedor al operar.",
+      "Combina creación, configuración y arranque de un contenedor a partir de una imagen al operar.",
+      "Expone configuración y estado detallados en JSON, incluidos mounts, red, health y argumentos."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "docker ps (CLI y ciclo de vida): Lista contenedores activos y, con opciones, también detenidos, IDs, puertos, nombres y estado.",
+    "topic": "CLI y ciclo de vida",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "docker-q-34",
+    "collectionId": "docker",
+    "question": "En la arquitectura de Docker, ¿qué caracteriza técnicamente a «docker inspect»?",
+    "options": [
+      "Lee stdout y stderr capturados por el logging driver configurado para el contenedor en el flujo.",
+      "Expone configuración y estado detallados en JSON, incluidos mounts, red, health y argumentos.",
+      "Combina creación, configuración y arranque de un contenedor a partir de una imagen al operar.",
+      "Consulta los procesos visibles dentro de un contenedor usando información del host al operar."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "docker inspect (CLI y ciclo de vida): Expone configuración y estado detallados en JSON, incluidos mounts, red, health y argumentos.",
+    "topic": "CLI y ciclo de vida",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "docker-q-35",
+    "collectionId": "docker",
+    "question": "Respecto a cli y ciclo de vida en Docker, ¿cuál es el propósito de «docker logs»?",
+    "options": [
+      "Conecta la terminal a los streams del proceso principal y no crea un shell nuevo al operar.",
+      "Combina creación, configuración y arranque de un contenedor a partir de una imagen.",
+      "Lee stdout y stderr capturados por el logging driver configurado para el contenedor.",
+      "Consulta los procesos visibles dentro de un contenedor usando información del host."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "docker logs (CLI y ciclo de vida): Lee stdout y stderr capturados por el logging driver configurado para el contenedor.",
+    "topic": "CLI y ciclo de vida",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "docker-q-36",
+    "collectionId": "docker",
+    "question": "En Docker (CLI y ciclo de vida), ¿qué función técnica cumple «docker exec»?",
+    "options": [
+      "Lista contenedores activos y, con opciones, también detenidos, IDs, puertos, nombres y estado al operar.",
+      "Comandos prune eliminan objetos no usados y requieren comprender qué datos o cachés se perderán al operar.",
+      "Expone configuración y estado detallados en JSON, incluidos mounts, red, health y argumentos al operar.",
+      "Inicia un proceso adicional dentro de un contenedor ya ejecutándose sin alterar su comando principal."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "docker exec (CLI y ciclo de vida): Inicia un proceso adicional dentro de un contenedor ya ejecutándose sin alterar su comando principal.",
+    "topic": "CLI y ciclo de vida",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "docker-q-37",
+    "collectionId": "docker",
+    "question": "Dentro de Docker, ¿cómo opera el mecanismo de «docker attach» en cli y ciclo de vida?",
+    "options": [
+      "Conecta la terminal a los streams del proceso principal y no crea un shell nuevo de forma segura.",
+      "Lee stdout y stderr capturados por el logging driver configurado para el contenedor al operar.",
+      "Combina creación, configuración y arranque de un contenedor a partir de una imagen al operar.",
+      "Consulta los procesos visibles dentro de un contenedor usando información del host al operar."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "docker attach (CLI y ciclo de vida): Conecta la terminal a los streams del proceso principal y no crea un shell nuevo.",
+    "topic": "CLI y ciclo de vida",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "docker-q-38",
+    "collectionId": "docker",
+    "question": "Al trabajar con Docker, ¿qué responsabilidad define a «docker stop, kill y restart»?",
+    "options": [
+      "Combina creación, configuración y arranque de un contenedor a partir de una imagen al operar.",
+      "Distingue cierre graceful, señal inmediata y reinicio administrado durante la ejecución.",
+      "Conecta la terminal a los streams del proceso principal y no crea un shell nuevo al operar.",
+      "Consulta los procesos visibles dentro de un contenedor usando información del host al operar."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "docker stop, kill y restart (CLI y ciclo de vida): Distingue cierre graceful, señal inmediata y reinicio administrado.",
+    "topic": "CLI y ciclo de vida",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "docker-q-39",
+    "collectionId": "docker",
+    "question": "En la arquitectura de Docker, ¿qué caracteriza técnicamente a «docker rm»?",
+    "options": [
+      "Combina creación, configuración y arranque de un contenedor a partir de una imagen al operar.",
+      "Conecta la terminal a los streams del proceso principal y no crea un shell nuevo al operar.",
+      "Elimina metadata y capa writable de un contenedor detenido bajo condiciones productivas.",
+      "Consulta los procesos visibles dentro de un contenedor usando información del host al operar."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "docker rm (CLI y ciclo de vida): Elimina metadata y capa writable de un contenedor detenido; no borra volúmenes nombrados por defecto.",
+    "topic": "CLI y ciclo de vida",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "docker-q-40",
+    "collectionId": "docker",
+    "question": "Respecto a cli y ciclo de vida en Docker, ¿cuál es el propósito de «docker cp»?",
+    "options": [
+      "Emite un stream de acciones del daemon para observar create, start, die, pull, network y otros eventos al operar.",
+      "Inicia un proceso adicional dentro de un contenedor ya ejecutándose sin alterar su comando principal al operar.",
+      "Separa la preparación del contenedor de su ejecución para inspeccionar o modificar el ciclo con precisión.",
+      "Copia archivos entre host y contenedor, útil para inspección puntual pero no como estrategia de persistencia."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "docker cp (CLI y ciclo de vida): Copia archivos entre host y contenedor, útil para inspección puntual pero no como estrategia de persistencia.",
+    "topic": "CLI y ciclo de vida",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "docker-q-41",
+    "collectionId": "docker",
+    "question": "En Docker (CLI y ciclo de vida), ¿qué función técnica cumple «docker stats»?",
+    "options": [
+      "Muestra consumo en vivo de CPU, memoria, red, block I/O y procesos respetando las invariantes.",
+      "Combina creación, configuración y arranque de un contenedor a partir de una imagen.",
+      "Conecta la terminal a los streams del proceso principal y no crea un shell nuevo al operar.",
+      "Consulta los procesos visibles dentro de un contenedor usando información del host."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "docker stats (CLI y ciclo de vida): Muestra consumo en vivo de CPU, memoria, red, block I/O y procesos.",
+    "topic": "CLI y ciclo de vida",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "docker-q-42",
+    "collectionId": "docker",
+    "question": "Dentro de Docker, ¿cómo opera el mecanismo de «docker top» en cli y ciclo de vida?",
+    "options": [
+      "Conecta la terminal a los streams del proceso principal y no crea un shell nuevo al operar.",
+      "Consulta los procesos visibles dentro de un contenedor usando información del host.",
+      "Combina creación, configuración y arranque de un contenedor a partir de una imagen.",
+      "Lee stdout y stderr capturados por el logging driver configurado para el contenedor."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "docker top (CLI y ciclo de vida): Consulta los procesos visibles dentro de un contenedor usando información del host.",
+    "topic": "CLI y ciclo de vida",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "docker-q-43",
+    "collectionId": "docker",
+    "question": "Al trabajar con Docker, ¿qué responsabilidad define a «docker events»?",
+    "options": [
+      "Comandos prune eliminan objetos no usados y requieren comprender qué datos o cachés se perderán al operar.",
+      "Los nombres facilitan operación humana; IDs completos o cortos identifican objetos de manera única.",
+      "Emite un stream de acciones del daemon para observar create, start, die, pull, network y otros eventos.",
+      "Lista contenedores activos y, con opciones, también detenidos, IDs, puertos, nombres y estado al operar."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "docker events (CLI y ciclo de vida): Emite un stream de acciones del daemon para observar create, start, die, pull, network y otros eventos.",
+    "topic": "CLI y ciclo de vida",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "docker-q-44",
+    "collectionId": "docker",
+    "question": "En la arquitectura de Docker, ¿qué caracteriza técnicamente a «Filtros»?",
+    "options": [
+      "Lee stdout y stderr capturados por el logging driver configurado para el contenedor en el flujo.",
+      "Combina creación, configuración y arranque de un contenedor a partir de una imagen al operar.",
+      "Consulta los procesos visibles dentro de un contenedor usando información del host al operar.",
+      "--filter y --format convierten la CLI en una interfaz más precisa para scripts y diagnóstico."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "Filtros y formato (CLI y ciclo de vida): --filter y --format convierten la CLI en una interfaz más precisa para scripts y diagnóstico.",
+    "topic": "CLI y ciclo de vida",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "docker-q-45",
+    "collectionId": "docker",
+    "question": "Respecto a cli y ciclo de vida en Docker, ¿cuál es el propósito de «Nombres y IDs»?",
+    "options": [
+      "Los nombres facilitan operación humana; IDs completos o cortos identifican objetos de manera única.",
+      "Expone configuración y estado detallados en JSON, incluidos mounts, red, health y argumentos.",
+      "--filter y --format convierten la CLI en una interfaz más precisa para scripts y diagnóstico.",
+      "Lista contenedores activos y, con opciones, también detenidos, IDs, puertos, nombres y estado."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Nombres y IDs (CLI y ciclo de vida): Los nombres facilitan operación humana; IDs completos o cortos identifican objetos de manera única.",
+    "topic": "CLI y ciclo de vida",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "docker-q-46",
+    "collectionId": "docker",
+    "question": "En Docker (CLI y ciclo de vida), ¿qué función técnica cumple «Prune y limpieza»?",
+    "options": [
+      "Expone configuración y estado detallados en JSON, incluidos mounts, red, health y argumentos al operar.",
+      "Comandos prune eliminan objetos no usados y requieren comprender qué datos o cachés se perderán.",
+      "--filter y --format convierten la CLI en una interfaz más precisa para scripts y diagnóstico.",
+      "Lista contenedores activos y, con opciones, también detenidos, IDs, puertos, nombres y estado."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Prune y limpieza (CLI y ciclo de vida): Comandos prune eliminan objetos no usados y requieren comprender qué datos o cachés se perderán.",
+    "topic": "CLI y ciclo de vida",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "docker-q-47",
+    "collectionId": "docker",
+    "question": "Dentro de Docker, ¿cómo opera el mecanismo de «Anatomía de una imagen» en imágenes, capas y distribución?",
+    "options": [
+      "Los cambios del contenedor se escriben sobre las capas de imagen mediante copy-on-write al operar.",
+      "Cada instrucción de build puede producir una capa reutilizable identificada por su contenido.",
+      "Manifest, configuración y capas de contenido describen qué ejecutar y qué filesystem montar.",
+      "Digests calculados desde contenido permiten verificar integridad y reutilizar blobs idénticos."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Anatomía de una imagen (Imágenes, capas y distribución): Manifest, configuración y capas de contenido describen qué ejecutar y qué filesystem montar.",
+    "topic": "Imágenes, capas y distribución",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "docker-q-48",
+    "collectionId": "docker",
+    "question": "Al trabajar con Docker, ¿qué responsabilidad define a «Capas inmutables»?",
+    "options": [
+      "Los cambios del contenedor se escriben sobre las capas de imagen mediante copy-on-write al operar.",
+      "Manifest, configuración y capas de contenido describen qué ejecutar y qué filesystem montar.",
+      "Digests calculados desde contenido permiten verificar integridad y reutilizar blobs idénticos.",
+      "Cada instrucción de build puede producir una capa reutilizable identificada por su contenido."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "Capas inmutables (Imágenes, capas y distribución): Cada instrucción de build puede producir una capa reutilizable identificada por su contenido.",
+    "topic": "Imágenes, capas y distribución",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "docker-q-49",
+    "collectionId": "docker",
+    "question": "En la arquitectura de Docker, ¿qué caracteriza técnicamente a «Capa writable»?",
+    "options": [
+      "Los cambios del contenedor se escriben sobre las capas de imagen mediante copy-on-write al operar.",
+      "Combina creación, configuración y arranque de un contenedor a partir de una imagen.",
+      "Conecta la terminal a los streams del proceso principal y no crea un shell nuevo al operar.",
+      "Consulta los procesos visibles dentro de un contenedor usando información del host."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Capa writable (Imágenes, capas y distribución): Los cambios del contenedor se escriben sobre las capas de imagen mediante copy-on-write.",
+    "topic": "Imágenes, capas y distribución",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "docker-q-50",
+    "collectionId": "docker",
+    "question": "Respecto a imágenes, capas y distribución en Docker, ¿cuál es el propósito de «Content-addressable storage»?",
+    "options": [
+      "Los cambios del contenedor se escriben sobre las capas de imagen mediante copy-on-write al operar.",
+      "Digests calculados desde contenido permiten verificar integridad y reutilizar blobs idénticos.",
+      "Manifest, configuración y capas de contenido describen qué ejecutar y qué filesystem montar.",
+      "Cada instrucción de build puede producir una capa reutilizable identificada por su contenido."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Content-addressable storage (Imágenes, capas y distribución): Digests calculados desde contenido permiten verificar integridad y reutilizar blobs idénticos.",
+    "topic": "Imágenes, capas y distribución",
+    "difficulty": "avanzado"
   }
 ];

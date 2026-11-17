@@ -1,15 +1,11 @@
 import type { QuizQuestion, QuizBadge, QuizResult } from "@/data/quizTypes";
 
+export const QUIZ_POOL_SIZE = 50;
 export const QUIZ_SAMPLE_SIZE = 15;
 export const QUIZ_PASS_PERCENTAGE = 70;
 export const QUIZ_STORAGE_KEY = "dev-visualizer-quiz-badges";
 export const BADGES_CHANGE_EVENT = "dev_visualizer_badges_change";
 
-/**
- * Baraja aleatoriamente las 4 opciones de una pregunta utilizando Fisher-Yates
- * y reasigna `correctAnswerIndex` de manera estricta y matemáticamente uniforme,
- * eliminando cualquier sesgo hacia una posición fija (como la segunda opción).
- */
 export function shuffleQuestionOptions(question: QuizQuestion): QuizQuestion {
   const items = question.options.map((text, idx) => ({
     text,
@@ -34,30 +30,34 @@ export function shuffleQuestionOptions(question: QuizQuestion): QuizQuestion {
   };
 }
 
-/**
- * Selecciona aleatoriamente N preguntas del banco general usando el algoritmo Fisher-Yates
- * y baraja independientemente las 4 opciones de cada una para que cada intento ofrezca
- * una combinación fresca y una distribución equilibrada de respuestas (A, B, C, D).
- */
 export function sampleRandomQuizQuestions(
   pool: readonly QuizQuestion[],
   count: number = QUIZ_SAMPLE_SIZE
 ): QuizQuestion[] {
   if (!pool || pool.length === 0) return [];
-  const copy = [...pool];
-  for (let i = copy.length - 1; i > 0; i--) {
-    const j = Math.floor(Math.random() * (i + 1));
-    const temp = copy[i]!;
-    copy[i] = copy[j]!;
-    copy[j] = temp;
+  const seenIds = new Set<string>();
+  const seenQuestions = new Set<string>();
+  const uniquePool: QuizQuestion[] = [];
+
+  for (const item of pool) {
+    if (!seenIds.has(item.id) && !seenQuestions.has(item.question)) {
+      seenIds.add(item.id);
+      seenQuestions.add(item.question);
+      uniquePool.push(item);
+    }
   }
-  const selected = copy.slice(0, Math.min(count, copy.length));
+
+  for (let i = uniquePool.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const temp = uniquePool[i]!;
+    uniquePool[i] = uniquePool[j]!;
+    uniquePool[j] = temp;
+  }
+
+  const selected = uniquePool.slice(0, Math.min(count, uniquePool.length));
   return selected.map(shuffleQuestionOptions);
 }
 
-/**
- * Evalúa las respuestas del usuario contra las preguntas del cuestionario.
- */
 export function evaluateQuiz(
   questions: readonly QuizQuestion[],
   answers: Record<number, number>
@@ -86,9 +86,6 @@ export function evaluateQuiz(
   };
 }
 
-/**
- * Obtiene todas las insignias desbloqueadas guardadas en el almacenamiento local del cliente.
- */
 export function getUnlockedBadges(): Record<string, QuizBadge> {
   if (typeof window === "undefined") return {};
   try {
@@ -100,17 +97,11 @@ export function getUnlockedBadges(): Record<string, QuizBadge> {
   }
 }
 
-/**
- * Verifica si una colección en particular ya tiene insignia desbloqueada.
- */
 export function isBadgeUnlocked(collectionId: string): boolean {
   const badges = getUnlockedBadges();
   return Boolean(badges[collectionId]);
 }
 
-/**
- * Guarda una nueva insignia desbloqueada en localStorage sin requerir inicio de sesión ni base de datos externa.
- */
 export function saveQuizBadge(badge: QuizBadge): void {
   if (typeof window === "undefined") return;
   try {

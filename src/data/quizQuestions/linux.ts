@@ -2,453 +2,753 @@ import type { QuizQuestion } from "@/data/quizTypes";
 
 export const linuxQuestions: QuizQuestion[] = [
   {
-    id: "linux-q-01",
-    collectionId: "linux",
-    question: "¿Qué representa la métrica de 'Load Average' (a 1, 5 y 15 minutos) devuelta por herramientas como 'uptime' o 'top' en Linux?",
-    options: [
-      "El porcentaje exacto de uso de memoria RAM consumido por procesos de usuario.",
-      "El número promedio de procesos concurrentes en estado R (Running/Runnable compitiendo por CPU) MÁS los procesos en estado D (Uninterruptible Sleep, esperando típicamente por I/O de disco).",
-      "La temperatura media de los núcleos de procesamiento en grados Celsius.",
-      "La cantidad de paquetes TCP transmitidos por segundo en la interfaz de red."
+    "id": "linux-q-01",
+    "collectionId": "linux",
+    "question": "En Linux (Fundamentos del sistema), ¿qué función técnica cumple «Linux: kernel»?",
+    "options": [
+      "Distingue el kernel que administra recursos de la distribución que integra herramientas, paquetes, defaults y soporte.",
+      "Muestra cómo un proceso solicita al kernel operaciones como abrir archivos, crear procesos o usar la red al evaluar.",
+      "Sigue firmware, bootloader, kernel, initramfs, montaje raíz y PID 1 hasta alcanzar un sistema operativo en el flujo.",
+      "Separa código privilegiado del kernel de los procesos de usuario y explica la frontera de protección de forma clara."
     ],
-    correctAnswerIndex: 1,
-    explanation: "A diferencia de Unix clásico que solo contaba procesos en CPU, Linux suma procesos en ejecución activa (R) y procesos bloqueados en suspensión no interrumpible (D, como esperando lecturas a discos lentos o NFS). Por eso un load alto no siempre significa saturación de CPU, sino posible cuello de botella en I/O.",
-    topic: "Monitoreo y Diagnóstico",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 0,
+    "explanation": "Linux: kernel y distribución (Fundamentos del sistema): Distingue el kernel que administra recursos de la distribución que integra herramientas, paquetes, defaults y soporte.",
+    "topic": "Fundamentos del sistema",
+    "difficulty": "básico"
   },
   {
-    id: "linux-q-02",
-    collectionId: "linux",
-    question: "¿Cuál es la diferencia crítica entre la señal 'SIGKILL' (9) y 'SIGTERM' (15)?",
-    options: [
-      "SIGKILL reinicia el equipo y SIGTERM solo apaga la pantalla.",
-      "SIGTERM es una solicitud de terminación ordenada que el proceso puede interceptar, manejar o ignorar para guardar estado; SIGKILL es procesada directamente por el Kernel y no puede ser capturada, bloqueada ni ignorada por ningún proceso.",
-      "SIGKILL solo puede ser enviada por el usuario 'nobody'.",
-      "SIGTERM aborta el proceso de inmediato sin liberar memoria."
+    "id": "linux-q-02",
+    "collectionId": "linux",
+    "question": "Dentro de Linux, ¿cómo opera el mecanismo de «Kernel space y user space» en fundamentos del sistema?",
+    "options": [
+      "Relaciona las llamadas del programa con libc, la ABI del sistema y las herramientas de usuario al operar.",
+      "Separa código privilegiado del kernel de los procesos de usuario y explica la frontera de protección.",
+      "Agrupa estados operativos como multi-user, graphical, rescue y emergency mediante dependencias al operar.",
+      "Expone procesos y parámetros del kernel mediante archivos virtuales generados en tiempo real al operar."
     ],
-    correctAnswerIndex: 1,
-    explanation: "SIGTERM (15) es la señal por defecto para apagado graceful: da oportunidad al proceso de cerrar conexiones, flush de archivos y liberar recursos. SIGKILL (9) y SIGSTOP (19) son manejadas estrictamente por el kernel; el proceso destinatario nunca las recibe y es eliminado de inmediato.",
-    topic: "Señales y Procesos",
-    difficulty: "básico"
+    "correctAnswerIndex": 1,
+    "explanation": "Kernel space y user space (Fundamentos del sistema): Separa código privilegiado del kernel de los procesos de usuario y explica la frontera de protección.",
+    "topic": "Fundamentos del sistema",
+    "difficulty": "básico"
   },
   {
-    id: "linux-q-03",
-    collectionId: "linux",
-    question: "¿Qué es un 'Zombie Process' (proceso zombi, estado Z) y cómo se elimina del sistema?",
-    options: [
-      "Un proceso malicioso que se propaga por la red local infectando otros nodos.",
-      "Un proceso que ya completó su ejecución y liberó su memoria, pero retiene su entrada en la tabla de procesos (PID) esperando que su proceso padre invoque 'wait()' o 'waitpid()' para leer su código de salida.",
-      "Un hilo que consume el 100% de CPU indefinidamente.",
-      "Un archivo temporal que no puede borrarse con rm -f."
+    "id": "linux-q-03",
+    "collectionId": "linux",
+    "question": "Al trabajar con Linux, ¿qué responsabilidad define a «System calls»?",
+    "options": [
+      "Compara familias Debian, Red Hat, Arch y otras por ciclo de vida, paquetes y decisiones operativas al operar.",
+      "Explica la interfaz uniforme aplicada a archivos, dispositivos, pipes, sockets y pseudo-filesystems al operar.",
+      "Muestra cómo un proceso solicita al kernel operaciones como abrir archivos, crear procesos o usar la red.",
+      "Separa código privilegiado del kernel de los procesos de usuario y explica la frontera de protección."
     ],
-    correctAnswerIndex: 1,
-    explanation: "Un zombie no consume CPU ni memoria, solo una entrada en la Process Table. Se elimina cuando el padre llama a wait() para cosechar su estado. Si el padre muere o ignora al hijo, el proceso init (PID 1 / systemd) adopta al zombi (reparenting) y hace wait() automáticamente.",
-    topic: "Ciclo de Vida de Procesos",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 2,
+    "explanation": "System calls (Fundamentos del sistema): Muestra cómo un proceso solicita al kernel operaciones como abrir archivos, crear procesos o usar la red.",
+    "topic": "Fundamentos del sistema",
+    "difficulty": "básico"
   },
   {
-    id: "linux-q-04",
-    collectionId: "linux",
-    question: "¿Qué primitivas del Kernel de Linux constituyen la base tecnológica fundamental de los contenedores Docker y OCI?",
-    options: [
-      "Emulación de BIOS y drivers virtuales de tarjeta gráfica en QEMU.",
-      "Linux Namespaces (aislamiento de recursos: mount, pid, net, ipc, uts, user) y Cgroups (Control Groups para restricción y contabilidad de recursos: CPU, memoria, I/O).",
-      "Sistemas de archivos FAT32 con permisos NTFS.",
-      "Máquinas virtuales KVM con kernels invitados completos."
+    "id": "linux-q-04",
+    "collectionId": "linux",
+    "question": "En la arquitectura de Linux, ¿qué caracteriza técnicamente a «ABI, libc y utilidades»?",
+    "options": [
+      "Representa nodos de dispositivo de bloque y carácter que conectan user space con drivers al operar.",
+      "Publica objetos, dispositivos, drivers y atributos del kernel como una jerarquía navegable.",
+      "Expone procesos y parámetros del kernel mediante archivos virtuales generados en tiempo real.",
+      "Relaciona las llamadas del programa con libc, la ABI del sistema y las herramientas de usuario."
     ],
-    correctAnswerIndex: 1,
-    explanation: "Un contenedor no es una máquina virtual: es un proceso estándar de Linux. Los Namespaces crean la ilusión de aislamiento (lo que el proceso puede VER: su propio árbol de PIDs, interfaces de red, puntos de montaje), y los Cgroups dictan lo que puede USAR (límites de RAM, CPU, I/O).",
-    topic: "Contenedores y Kernel",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 3,
+    "explanation": "ABI, libc y utilidades (Fundamentos del sistema): Relaciona las llamadas del programa con libc, la ABI del sistema y las herramientas de usuario.",
+    "topic": "Fundamentos del sistema",
+    "difficulty": "básico"
   },
   {
-    id: "linux-q-05",
-    collectionId: "linux",
-    question: "¿Por qué el mecanismo de notificación de eventos 'epoll' escala órdenes de magnitud mejor que 'select' o 'poll' en servidores de alta concurrencia (como Nginx o Node.js)?",
-    options: [
-      "Porque epoll comprime los paquetes IP utilizando compresión gzip.",
-      "Porque select y poll requieren pasar un array completo de descriptores de archivo al kernel y escanearlos linealmente O(N) en cada llamada; epoll registra los FDs en un árbol Rojo-Negro en el kernel y devuelve solo los descriptores listos en una lista enlazada O(1).",
-      "Porque epoll ejecuta el código directamente en la tarjeta de red sin pasar por la CPU.",
-      "Porque epoll solo admite sockets UDP y select solo sockets TCP."
+    "id": "linux-q-05",
+    "collectionId": "linux",
+    "question": "Respecto a fundamentos del sistema en Linux, ¿cuál es el propósito de «Distribuciones Linux»?",
+    "options": [
+      "Compara familias Debian, Red Hat, Arch y otras por ciclo de vida, paquetes y decisiones operativas al operar.",
+      "Expone procesos y parámetros del kernel mediante archivos virtuales generados en tiempo real.",
+      "Relaciona las llamadas del programa con libc, la ABI del sistema y las herramientas de usuario.",
+      "Publica objetos, dispositivos, drivers y atributos del kernel como una jerarquía navegable al operar."
     ],
-    correctAnswerIndex: 1,
-    explanation: "epoll (event poll) resuelve el problema C10K: se registran los file descriptors una sola vez en el kernel (epoll_ctl); cuando ocurre un evento de I/O, el kernel lo agrega a una cola de listos (ready list) y epoll_wait() retorna únicamente los FDs activos en tiempo constante O(eventos activos).",
-    topic: "I/O Multiplexing y Redes",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 0,
+    "explanation": "Distribuciones Linux (Fundamentos del sistema): Compara familias Debian, Red Hat, Arch y otras por ciclo de vida, paquetes y decisiones operativas.",
+    "topic": "Fundamentos del sistema",
+    "difficulty": "básico"
   },
   {
-    id: "linux-q-06",
-    collectionId: "linux",
-    question: "¿Qué es un 'Inode' (nodo índice) en los sistemas de archivos de Linux (como ext4 o XFS)?",
-    options: [
-      "El nombre legible del archivo tal como aparece en el explorador gráfico.",
-      "Una estructura de datos que almacena todos los metadatos del archivo (permisos, propietario, tamaño, timestamps, punteros a bloques de datos en disco), excepto el nombre del archivo y el contenido de los datos.",
-      "Un sector defectuoso del disco duro marcado por el controlador SATA.",
-      "Una clave criptográfica para descifrar particiones LUKS."
+    "id": "linux-q-06",
+    "collectionId": "linux",
+    "question": "En Linux (Fundamentos del sistema), ¿qué función técnica cumple «Filesystem Hierarchy Standard»?",
+    "options": [
+      "Amplía permisos compartidos sin duplicar cuentas ni conceder acceso global al operar.",
+      "Organiza rutas como /etc, /var, /usr, /home, /run y /tmp según su responsabilidad.",
+      "Envía entrada, salida y errores a archivos, dispositivos u otros descriptores.",
+      "Inserta la salida de un comando dentro de otro después de ejecutar un subshell."
     ],
-    correctAnswerIndex: 1,
-    explanation: "El inodo contiene los metadatos y ubicaciones físicas de los bloques de datos. El nombre del archivo se almacena en las entradas de directorio (dentries), que asocian un nombre con un número de inodo. Por esto, múltiples enlaces duros (hard links) pueden apuntar al mismo inodo con distintos nombres.",
-    topic: "Sistemas de Archivos",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 1,
+    "explanation": "Filesystem Hierarchy Standard (Fundamentos del sistema): Organiza rutas como /etc, /var, /usr, /home, /run y /tmp según su responsabilidad.",
+    "topic": "Fundamentos del sistema",
+    "difficulty": "básico"
   },
   {
-    id: "linux-q-07",
-    collectionId: "linux",
-    question: "¿Cuál es la diferencia funcional entre un enlace duro (Hard Link) y un enlace simbólico (Soft/Symbolic Link)?",
-    options: [
-      "Un hard link se guarda en la memoria RAM y un soft link en el disco duro.",
-      "Un hard link es una referencia directa al mismo número de inodo en el mismo sistema de archivos (comparten datos y metadatos; si se borra el original los datos siguen accesibles); un soft link es un archivo independiente cuyo contenido es la ruta textual hacia otro archivo.",
-      "Un soft link no puede apuntar a directorios.",
-      "Los hard links expiran automáticamente después de 30 días."
+    "id": "linux-q-07",
+    "collectionId": "linux",
+    "question": "Dentro de Linux, ¿cómo opera el mecanismo de «Todo es un archivo» en fundamentos del sistema?",
+    "options": [
+      "Relaciona las llamadas del programa con libc, la ABI del sistema y las herramientas de usuario al operar.",
+      "Expone procesos y parámetros del kernel mediante archivos virtuales generados en tiempo real al operar.",
+      "Explica la interfaz uniforme aplicada a archivos, dispositivos, pipes, sockets y pseudo-filesystems.",
+      "Agrupa estados operativos como multi-user, graphical, rescue y emergency mediante dependencias al operar."
     ],
-    correctAnswerIndex: 1,
-    explanation: "Un hard link incrementa el contador de enlaces del inodo existente (no puede cruzar distintos filesystems ni apuntar a directorios para evitar ciclos). Un symlink es un archivo nuevo con su propio inodo que contiene un puntero a una ruta, pudiendo cruzar particiones o quedar roto si el destino se borra.",
-    topic: "Sistemas de Archivos",
-    difficulty: "básico"
+    "correctAnswerIndex": 2,
+    "explanation": "Todo es un archivo (Fundamentos del sistema): Explica la interfaz uniforme aplicada a archivos, dispositivos, pipes, sockets y pseudo-filesystems.",
+    "topic": "Fundamentos del sistema",
+    "difficulty": "básico"
   },
   {
-    id: "linux-q-08",
-    collectionId: "linux",
-    question: "¿Qué ocurre durante una llamada al sistema 'fork()' gracias a la técnica Copy-On-Write (COW)?",
-    options: [
-      "Se copia físicamente toda la memoria RAM del proceso padre en un nuevo espacio contiguo.",
-      "El kernel crea el proceso hijo compartiendo las mismas páginas de memoria virtual del padre marcadas como de solo lectura; las páginas físicas solo se duplican cuando el padre o el hijo intentan escribir en ellas.",
-      "El proceso padre se bloquea hasta que el hijo termina su ciclo de vida.",
-      "Se suspende el scheduler para asignar un nuevo PID."
+    "id": "linux-q-08",
+    "collectionId": "linux",
+    "question": "Al trabajar con Linux, ¿qué responsabilidad define a «Dispositivos en /dev»?",
+    "options": [
+      "Organiza rutas como /etc, /var, /usr, /home, /run y /tmp según su responsabilidad al operar.",
+      "Publica objetos, dispositivos, drivers y atributos del kernel como una jerarquía navegable.",
+      "Usa $0, $1, $@, $#, shift y valores por defecto para diseñar scripts reutilizables al operar.",
+      "Representa nodos de dispositivo de bloque y carácter que conectan user space con drivers."
     ],
-    correctAnswerIndex: 1,
-    explanation: "Copiar megabytes o gigabytes de RAM en cada fork sería ineficiente. Con COW, el kernel solo copia las tablas de páginas y marca las entradas como read-only; si alguno de los dos procesos escribe en una página, la MMU dispara un page fault y el kernel copia esa página individual en ese instante.",
-    topic: "Memoria Virtual y Procesos",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 3,
+    "explanation": "Dispositivos en /dev (Fundamentos del sistema): Representa nodos de dispositivo de bloque y carácter que conectan user space con drivers.",
+    "topic": "Fundamentos del sistema",
+    "difficulty": "básico"
   },
   {
-    id: "linux-q-09",
-    collectionId: "linux",
-    question: "¿Cómo decide el 'OOM Killer' (Out-Of-Memory Killer) del Kernel de Linux qué proceso terminar cuando se agota la memoria del sistema?",
-    options: [
-      "Mata siempre al proceso con el PID más bajo.",
-      "Calcula una puntuación ('oom_score') basada en el porcentaje de memoria RAM consumida y ponderada por la variable de ajuste '/proc/[pid]/oom_score_adj', seleccionando el proceso con mayor puntaje que cause menor daño al sistema.",
-      "Termina aleatoriamente cualquier proceso de usuario cada 10 segundos.",
-      "Detiene el kernel y muestra una pantalla azul con código de pánico."
+    "id": "linux-q-09",
+    "collectionId": "linux",
+    "question": "En la arquitectura de Linux, ¿qué caracteriza técnicamente a «procfs: /proc»?",
+    "options": [
+      "Expone procesos y parámetros del kernel mediante archivos virtuales generados en tiempo real.",
+      "Representa nodos de dispositivo de bloque y carácter que conectan user space con drivers.",
+      "Publica objetos, dispositivos, drivers y atributos del kernel como una jerarquía navegable.",
+      "Organiza rutas como /etc, /var, /usr, /home, /run y /tmp según su responsabilidad al operar."
     ],
-    correctAnswerIndex: 1,
-    explanation: "El kernel calcula 'badness': favorece matar procesos que consumen mucha memoria y tienen poco tiempo de vida, protegiendo procesos críticos del sistema. El administrador puede proteger procesos sensibles (como sshd o bases de datos) asignando un valor negativo en oom_score_adj.",
-    topic: "Kernel y Gestión de Memoria",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 0,
+    "explanation": "procfs: /proc (Fundamentos del sistema): Expone procesos y parámetros del kernel mediante archivos virtuales generados en tiempo real.",
+    "topic": "Fundamentos del sistema",
+    "difficulty": "básico"
   },
   {
-    id: "linux-q-10",
-    collectionId: "linux",
-    question: "¿Qué función tiene el permiso especial 'Sticky Bit' cuando se aplica sobre un directorio (ej. '/tmp', permisos 1777)?",
-    options: [
-      "Impide que los archivos del directorio sean leídos por usuarios no autenticados.",
-      "Permite a cualquier usuario crear y escribir archivos en el directorio, pero prohíbe que un usuario elimine o renombre archivos que pertenezcan a otros usuarios (solo el dueño del archivo, el dueño del directorio o root pueden borrarlos).",
-      "Fuerza a que todos los archivos hereden el grupo del directorio padre.",
-      "Mantiene el directorio cargado de forma permanente en la memoria swap."
+    "id": "linux-q-10",
+    "collectionId": "linux",
+    "question": "Respecto a fundamentos del sistema en Linux, ¿cuál es el propósito de «sysfs: /sys»?",
+    "options": [
+      "Organiza rutas como /etc, /var, /usr, /home, /run y /tmp según su responsabilidad en el flujo.",
+      "Publica objetos, dispositivos, drivers y atributos del kernel como una jerarquía navegable.",
+      "Representa nodos de dispositivo de bloque y carácter que conectan user space con drivers.",
+      "Expone procesos y parámetros del kernel mediante archivos virtuales generados en tiempo real."
     ],
-    correctAnswerIndex: 1,
-    explanation: "En un directorio compartido como /tmp donde todos tienen permisos de escritura (chmod 777), cualquier usuario podría borrar los archivos de otros. El sticky bit (t en 'drwxrwxrwt') restringe la eliminación únicamente al propietario del archivo o al superusuario.",
-    topic: "Permisos y Seguridad",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 1,
+    "explanation": "sysfs: /sys (Fundamentos del sistema): Publica objetos, dispositivos, drivers y atributos del kernel como una jerarquía navegable.",
+    "topic": "Fundamentos del sistema",
+    "difficulty": "básico"
   },
   {
-    id: "linux-q-11",
-    collectionId: "linux",
-    question: "¿Qué efecto tiene el bit 'SetUID' (SUID, chmod u+s) configurado en un archivo ejecutable (como '/usr/bin/passwd')?",
-    options: [
-      "Permite que el archivo se ejecute sin consumir memoria de swap.",
-      "Hace que el proceso se ejecute con los privilegios del propietario del archivo ejecutable (frecuentemente root) en lugar de los privilegios del usuario que lo invoca.",
-      "Impide que el archivo sea modificado incluso por el usuario root.",
-      "Oculta el código fuente del programa para evitar ingeniería inversa."
+    "id": "linux-q-11",
+    "collectionId": "linux",
+    "question": "En Linux (Fundamentos del sistema), ¿qué función técnica cumple «Secuencia de arranque»?",
+    "options": [
+      "Compara familias Debian, Red Hat, Arch y otras por ciclo de vida, paquetes y decisiones operativas al operar.",
+      "Explica la interfaz uniforme aplicada a archivos, dispositivos, pipes, sockets y pseudo-filesystems.",
+      "Sigue firmware, bootloader, kernel, initramfs, montaje raíz y PID 1 hasta alcanzar un sistema operativo.",
+      "Separa código privilegiado del kernel de los procesos de usuario y explica la frontera de protección."
     ],
-    correctAnswerIndex: 1,
-    explanation: "SUID permite a usuarios ordinarios ejecutar programas que requieren temporalmente privilegios elevados (por ejemplo, 'passwd' necesita escribir en '/etc/shadow', pero solo debe permitir cambiar la propia contraseña bajo reglas estrictas).",
-    topic: "Permisos y Seguridad",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 2,
+    "explanation": "Secuencia de arranque (Fundamentos del sistema): Sigue firmware, bootloader, kernel, initramfs, montaje raíz y PID 1 hasta alcanzar un sistema operativo.",
+    "topic": "Fundamentos del sistema",
+    "difficulty": "básico"
   },
   {
-    id: "linux-q-12",
-    collectionId: "linux",
-    question: "¿Cuál es el rol de los sistemas de archivos pseudo-virtuales '/proc' y '/sys' en Linux?",
-    options: [
-      "Almacenan archivos de configuración estáticos creados durante la instalación de la distribución.",
-      "Son interfaces del kernel en memoria (no residen en disco): '/proc' expone el estado y metadatos de procesos en ejecución y variables del kernel; '/sys' expone el modelo unificado de dispositivos de hardware, controladores y subsistemas del kernel.",
-      "Son particiones cifradas para copias de seguridad automáticas del sistema.",
-      "Contienen los binarios del compilador GCC y las bibliotecas compartidas glibc."
+    "id": "linux-q-12",
+    "collectionId": "linux",
+    "question": "Dentro de Linux, ¿cómo opera el mecanismo de «Targets y modos de arranque» en fundamentos del sistema?",
+    "options": [
+      "Representa nodos de dispositivo de bloque y carácter que conectan user space con drivers al operar.",
+      "Publica objetos, dispositivos, drivers y atributos del kernel como una jerarquía navegable.",
+      "Expone procesos y parámetros del kernel mediante archivos virtuales generados en tiempo real.",
+      "Agrupa estados operativos como multi-user, graphical, rescue y emergency mediante dependencias."
     ],
-    correctAnswerIndex: 1,
-    explanation: "/proc (procfs) y /sys (sysfs) son generados dinámicamente por el kernel. Leer '/proc/meminfo' o escribir en '/proc/sys/vm/drop_caches' interactúa directamente con estructuras de datos vivas del kernel sin acceso físico al almacenamiento.",
-    topic: "Virtual Filesystems e Interfaces",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 3,
+    "explanation": "Targets y modos de arranque (Fundamentos del sistema): Agrupa estados operativos como multi-user, graphical, rescue y emergency mediante dependencias.",
+    "topic": "Fundamentos del sistema",
+    "difficulty": "básico"
   },
   {
-    id: "linux-q-13",
-    collectionId: "linux",
-    question: "¿Qué ventaja revolucionaria ofrece la tecnología eBPF (Extended Berkeley Packet Filter) en el Kernel de Linux moderno?",
-    options: [
-      "Permite formatear discos duros sin necesidad de reiniciar la computadora.",
-      "Permite ejecutar programas seguros y verificados por el kernel en respuesta a eventos del sistema (syscalls, puntos de traza, paquetes de red XDP) con rendimiento nativo de máquina sin necesidad de modificar el código del kernel ni cargar módulos de kernel inestables.",
-      "Reemplaza el gestor de paquetes apt por un sistema basado en torrents.",
-      "Emula juegos de Windows directamente en el framebuffer de Linux."
+    "id": "linux-q-13",
+    "collectionId": "linux",
+    "question": "Al trabajar con Linux, ¿qué responsabilidad define a «Terminal, TTY y PTY»?",
+    "options": [
+      "Diferencia el emulador visible, el canal pseudo-terminal y el proceso shell que interpreta comandos.",
+      "Interpreta 0 como éxito y valores no cero como información de fallo para encadenar decisiones.",
+      "Modela stdin, stdout, stderr y descriptores adicionales como referencias abiertas por proceso.",
+      "Cubre brace, tilde, parámetros, comandos, aritmética, word splitting, globbing y quote removal."
     ],
-    correctAnswerIndex: 1,
-    explanation: "eBPF convierte el kernel en un sistema programable dinámicamente. Un verificador estático en el kernel comprueba que el programa no pueda causar un panic o bucles infinitos, permitiendo observabilidad de alto rendimiento (BCC/bpftrace), redes avanzadas (Cilium) y seguridad en tiempo real.",
-    topic: "Kernel y eBPF",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 0,
+    "explanation": "Terminal, TTY y PTY (Shell, terminal y composición de comandos): Diferencia el emulador visible, el canal pseudo-terminal y el proceso shell que interpreta comandos.",
+    "topic": "Shell, terminal y composición de comandos",
+    "difficulty": "básico"
   },
   {
-    id: "linux-q-14",
-    collectionId: "linux",
-    question: "¿Por qué el estado 'TIME_WAIT' es un comportamiento normal y necesario en una conexión TCP cerrada por el cliente?",
-    options: [
-      "Para esperar a que el usuario presione una tecla en la terminal.",
-      "Para asegurar que el último ACK enviado llegó al extremo remoto (retransmitiendo si es necesario) y permitir que paquetes rezagados o duplicados en la red expiren sin corromper una nueva conexión abierta en la misma tupla de IP y puerto.",
-      "Para que el sistema operativo sincronice la hora con servidores NTP.",
-      "Porque el socket está esperando que el Garbage Collector libere el buffer."
+    "id": "linux-q-14",
+    "collectionId": "linux",
+    "question": "En la arquitectura de Linux, ¿qué caracteriza técnicamente a «Shell»?",
+    "options": [
+      "Expande patrones de nombres de archivo sin confundirlos con expresiones regulares al operar.",
+      "Describe al shell como lenguaje, intérprete y entorno de ejecución durante la ejecución.",
+      "Usa $0, $1, $@, $#, shift y valores por defecto para diseñar scripts reutilizables al operar.",
+      "Conecta stdout de un proceso con stdin del siguiente mediante un buffer del kernel al operar."
     ],
-    correctAnswerIndex: 1,
-    explanation: "TIME_WAIT dura 2 * MSL (Maximum Segment Lifetime, ~60 segundos). Previene que paquetes extraviados de una conexión cerrada interfieran con una nueva conexión encarnada con el mismo puerto e IP local/remota, y garantiza que el cierre bidireccional finalice correctamente.",
-    topic: "Redes y Sockets TCP",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 1,
+    "explanation": "Shell y Bash (Shell, terminal y composición de comandos): Describe al shell como lenguaje, intérprete y entorno de ejecución; Bash es una implementación concreta.",
+    "topic": "Shell, terminal y composición de comandos",
+    "difficulty": "básico"
   },
   {
-    id: "linux-q-15",
-    collectionId: "linux",
-    question: "¿Qué optimización realiza la llamada al sistema 'sendfile()' en operaciones de transferencia de archivos por red (Zero-Copy)?",
-    options: [
-      "Comprime los datos en formato tar.gz antes de transmitirlos.",
-      "Transfiere datos directamente desde el Page Cache del kernel al socket de red en espacio de kernel, eliminando dos transferencias de memoria redundantes entre el espacio de kernel y los búferes de usuario.",
-      "Envía los datos utilizando ondas de radio Wi-Fi directas.",
-      "Transmite los datos sin verificar sumas de comprobación TCP."
+    "id": "linux-q-15",
+    "collectionId": "linux",
+    "question": "Respecto a shell, terminal y composición de comandos en Linux, ¿cuál es el propósito de «Cómo Bash ejecuta un comando»?",
+    "options": [
+      "Expande patrones de nombres de archivo sin confundirlos con expresiones regulares al operar.",
+      "Usa $0, $1, $@, $#, shift y valores por defecto para diseñar scripts reutilizables.",
+      "Sigue lectura, tokenización, parsing, expansiones, redirecciones, búsqueda y ejecución.",
+      "Conecta stdout de un proceso con stdin del siguiente mediante un buffer del kernel."
     ],
-    correctAnswerIndex: 1,
-    explanation: "En la transferencia tradicional (read + write), los datos viajan: Disco -> Kernel Page Cache -> Búfer de Usuario -> Kernel Socket Buffer -> Tarjeta de Red (4 copias y 4 cambios de contexto). Con sendfile, los datos viajan del Page Cache directo al descriptor de red sin cruzar al espacio de usuario.",
-    topic: "Zero-Copy e I/O",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 2,
+    "explanation": "Cómo Bash ejecuta un comando (Shell, terminal y composición de comandos): Sigue lectura, tokenización, parsing, expansiones, redirecciones, búsqueda y ejecución.",
+    "topic": "Shell, terminal y composición de comandos",
+    "difficulty": "básico"
   },
   {
-    id: "linux-q-16",
-    collectionId: "linux",
-    question: "¿Qué es 'io_uring' introducido en Linux 5.1 y cómo supera las limitaciones de las interfaces de I/O asíncrono tradicionales (AIO)?",
-    options: [
-      "Un protocolo de sonido para reproducir audio en streaming en alta definición.",
-      "Una interfaz de I/O asíncrona basada en dos búferes circulares compartidos en memoria (Submission Queue y Completion Queue), que permite enviar lotes de operaciones y recibir resultados con cero llamadas al sistema (syscalls) mediante modos de sondeo del kernel.",
-      "Un comando para formatear particiones con formato ext2.",
-      "Un servidor DNS en memoria integrado en systemd."
+    "id": "linux-q-16",
+    "collectionId": "linux",
+    "question": "En Linux (Shell, terminal y composición de comandos), ¿qué función técnica cumple «Comando, opciones y argumentos»?",
+    "options": [
+      "Sigue lectura, tokenización, parsing, expansiones, redirecciones, búsqueda y ejecución al operar.",
+      "Controla secuencia, background y ejecución condicional basada en el código de salida al operar.",
+      "Compone operaciones pequeñas para ordenar, deduplicar, cortar, traducir y contar datos al operar.",
+      "Separa el ejecutable de sus flags y operandos para leer correctamente una línea de comandos."
     ],
-    correctAnswerIndex: 1,
-    explanation: "io_uring es la interfaz de I/O más rápida de Linux. Al compartir dos ring-buffers entre espacio de usuario y kernel, una aplicación puede encolar cientos de operaciones de lectura/escritura y completarlas sin la penalización de context switch por llamada al sistema.",
-    topic: "I/O Avanzado y Rendimiento",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 3,
+    "explanation": "Comando, opciones y argumentos (Shell, terminal y composición de comandos): Separa el ejecutable de sus flags y operandos para leer correctamente una línea de comandos.",
+    "topic": "Shell, terminal y composición de comandos",
+    "difficulty": "básico"
   },
   {
-    id: "linux-q-17",
-    collectionId: "linux",
-    question: "¿Cuál es la diferencia entre un 'Page Fault menor' (Minor Page Fault) y un 'Page Fault mayor' (Major Page Fault)?",
-    options: [
-      "El menor ocurre en sistemas de 32 bits y el mayor en 64 bits.",
-      "Un Minor Page Fault ocurre cuando la página referenciada ya reside en la memoria física (ej. en el Page Cache o compartida por COW) y solo requiere actualizar las tablas de páginas; un Major Page Fault exige leer los datos directamente desde el almacenamiento secundario (disco/swap), bloqueando el proceso.",
-      "El menor es un aviso informativo y el mayor es un fallo irrecuperable con kernel panic.",
-      "Un Major Page Fault solo ocurre si la tarjeta gráfica pierde conexión con el bus PCIe."
+    "id": "linux-q-17",
+    "collectionId": "linux",
+    "question": "Dentro de Linux, ¿cómo opera el mecanismo de «PATH y búsqueda de comandos» en shell, terminal y composición de comandos?",
+    "options": [
+      "Recorre directorios de PATH y distingue builtins, funciones, aliases y binarios externos al operar.",
+      "Usa $0, $1, $@, $#, shift y valores por defecto para diseñar scripts reutilizables.",
+      "Conecta stdout de un proceso con stdin del siguiente mediante un buffer del kernel.",
+      "Expande patrones de nombres de archivo sin confundirlos con expresiones regulares al operar."
     ],
-    correctAnswerIndex: 1,
-    explanation: "Los fallos de página menores son muy rápidos porque no implican I/O físico (la página ya está en RAM por otra razón). Los fallos de página mayores introducen latencias enormes (milisegundos) porque el CPU debe esperar a que el controlador de disco transfiera los bloques a la memoria física.",
-    topic: "Memoria Virtual y Paginación",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 0,
+    "explanation": "PATH y búsqueda de comandos (Shell, terminal y composición de comandos): Recorre directorios de PATH y distingue builtins, funciones, aliases y binarios externos.",
+    "topic": "Shell, terminal y composición de comandos",
+    "difficulty": "intermedio"
   },
   {
-    id: "linux-q-18",
-    collectionId: "linux",
-    question: "¿Qué información y funcionalidad expone el comando 'strace' durante la depuración de aplicaciones?",
-    options: [
-      "Muestra el código fuente original escrito por los desarrolladores.",
-      "Intercepta y registra en tiempo real todas las llamadas al sistema (system calls) que realiza un proceso, junto con sus argumentos, valores de retorno y señales recibidas.",
-      "Mide la temperatura del disco duro mediante sensores SMART.",
-      "Verifica la validez de los certificados SSL instalados en el sistema."
+    "id": "linux-q-18",
+    "collectionId": "linux",
+    "question": "Al trabajar con Linux, ¿qué responsabilidad define a «Quoting y escaping»?",
+    "options": [
+      "Diferencia el emulador visible, el canal pseudo-terminal y el proceso shell que interpreta comandos al operar.",
+      "Preserva caracteres literales y controla qué expansiones ocurren con comillas simples, dobles y backslash.",
+      "Encapsula comandos frecuentes y lógica reutilizable entendiendo sus límites de expansión y alcance al operar.",
+      "Filtra líneas por patrones básicos o extendidos y controla contexto, recursión y códigos de salida al operar."
     ],
-    correctAnswerIndex: 1,
-    explanation: "strace se apoya en la llamada al sistema 'ptrace'. Es la herramienta de diagnóstico más poderosa para resolver problemas del tipo 'no such file or directory', 'permission denied' o bloqueos inesperados, mostrando cada interacción del proceso con el kernel de Linux.",
-    topic: "Herramientas de Diagnóstico",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 1,
+    "explanation": "Quoting y escaping (Shell, terminal y composición de comandos): Preserva caracteres literales y controla qué expansiones ocurren con comillas simples, dobles y backslash.",
+    "topic": "Shell, terminal y composición de comandos",
+    "difficulty": "intermedio"
   },
   {
-    id: "linux-q-19",
-    collectionId: "linux",
-    question: "¿Cómo utiliza el Kernel de Linux la memoria RAM no utilizada por las aplicaciones mediante el 'Page Cache'?",
-    options: [
-      "La apaga electrónicamente para ahorrar energía eléctrica.",
-      "Utiliza toda la memoria libre para almacenar en caché bloques de archivos de disco leídos y escritos recientemente; si una aplicación solicita más memoria, el kernel descarta inmediatamente páginas limpias del caché sin degradar al usuario.",
-      "Asigna la memoria libre a la minería de criptomonedas del sistema operativo.",
-      "Rellena la memoria con ceros para acelerar reinicios futuros."
+    "id": "linux-q-19",
+    "collectionId": "linux",
+    "question": "En la arquitectura de Linux, ¿qué caracteriza técnicamente a «Expansiones de Bash»?",
+    "options": [
+      "Recorre directorios de PATH y distingue builtins, funciones, aliases y binarios externos al operar.",
+      "Evita que un fallo temprano quede oculto por el éxito del último comando de una tubería al operar.",
+      "Cubre brace, tilde, parámetros, comandos, aritmética, word splitting, globbing y quote removal.",
+      "Presenta la salida o entrada de un proceso como una ruta temporal parecida a un archivo al operar."
     ],
-    correctAnswerIndex: 1,
-    explanation: "En Linux, 'la memoria RAM libre es memoria desperdiciada'. El Page Cache mantiene copias de archivos leídos y búferes de escritura en RAM. Si las aplicaciones demandan memoria, el kernel reclama estas páginas al instante.",
-    topic: "Kernel y Gestión de Memoria",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 2,
+    "explanation": "Expansiones de Bash (Shell, terminal y composición de comandos): Cubre brace, tilde, parámetros, comandos, aritmética, word splitting, globbing y quote removal.",
+    "topic": "Shell, terminal y composición de comandos",
+    "difficulty": "intermedio"
   },
   {
-    id: "linux-q-10",
-    collectionId: "linux",
-    question: "¿Qué diferencia existe entre un socket de dominio UNIX (UNIX domain socket) y un socket TCP local (127.0.0.1)?",
-    options: [
-      "Los sockets de dominio UNIX se transmiten por fibra óptica y los TCP por cable de cobre.",
-      "Los sockets de dominio UNIX operan íntegramente dentro de la memoria del kernel mediante buffers sin la sobrecarga de la pila de red TCP/IP (sin checksums, sin empaquetamiento ni handshake), ofreciendo hasta el doble de throughput y control de acceso vía permisos de archivo POSIX.",
-      "Los sockets TCP solo pueden enviar caracteres alfanuméricos.",
-      "No existe diferencia; son sinónimos absolutos en Linux."
+    "id": "linux-q-20",
+    "collectionId": "linux",
+    "question": "Respecto a shell, terminal y composición de comandos en Linux, ¿cuál es el propósito de «Globbing»?",
+    "options": [
+      "Envía entrada, salida y errores a archivos, dispositivos u otros descriptores al operar.",
+      "Inserta la salida de un comando dentro de otro después de ejecutar un subshell.",
+      "Usa $0, $1, $@, $#, shift y valores por defecto para diseñar scripts reutilizables.",
+      "Expande patrones de nombres de archivo sin confundirlos con expresiones regulares."
     ],
-    correctAnswerIndex: 1,
-    explanation: "Para comunicación inter-proceso (IPC) en la misma máquina física (ej. Nginx hacia Gunicorn o PHP-FPM), los Unix Domain Sockets son significativamente más rápidos que TCP loopback porque evitan el procesamiento de cabeceras de red, confirmaciones ACK y cálculo de sumas de verificación.",
-    topic: "Inter-Process Communication (IPC)",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 3,
+    "explanation": "Globbing y patrones (Shell, terminal y composición de comandos): Expande patrones de nombres de archivo sin confundirlos con expresiones regulares.",
+    "topic": "Shell, terminal y composición de comandos",
+    "difficulty": "intermedio"
   },
   {
-    id: "linux-q-21",
-    collectionId: "linux",
-    question: "¿Qué hace la llamada al sistema 'mmap()' con el flag 'MAP_ANONYMOUS'?",
-    options: [
-      "Borra el historial de comandos del usuario en la sesión de bash.",
-      "Asigna un bloque de memoria virtual directamente desde el kernel sin respaldo de ningún archivo en disco (usado por asignadores de memoria como malloc para solicitudes de memoria grandes).",
-      "Oculta la dirección IP de la máquina detrás de un proxy Tor.",
-      "Asigna permisos de lectura a usuarios no registrados en /etc/passwd."
+    "id": "linux-q-21",
+    "collectionId": "linux",
+    "question": "En Linux (Shell, terminal y composición de comandos), ¿qué función técnica cumple «Variables de shell y de entorno»?",
+    "options": [
+      "Distingue identificadores locales del shell de valores exportados que heredan los procesos hijos al operar.",
+      "Separa el ejecutable de sus flags y operandos para leer correctamente una línea de comandos.",
+      "Recorre directorios de PATH y distingue builtins, funciones, aliases y binarios externos al operar.",
+      "Interpreta 0 como éxito y valores no cero como información de fallo para encadenar decisiones."
     ],
-    correctAnswerIndex: 1,
-    explanation: "Mientras que un mmap regular mapea un archivo en memoria, un mapeo anónimo (MAP_ANONYMOUS) reserva memoria virtual inicializada en ceros sin vincularla a un file descriptor, técnica estándar usada por glibc para reservas que superan el umbral de brk/sbrk.",
-    topic: "Llamadas al Sistema y Memoria",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 0,
+    "explanation": "Variables de shell y de entorno (Shell, terminal y composición de comandos): Distingue variables locales del shell de valores exportados que heredan los procesos hijos.",
+    "topic": "Shell, terminal y composición de comandos",
+    "difficulty": "intermedio"
   },
   {
-    id: "linux-q-22",
-    collectionId: "linux",
-    question: "¿Qué función cumple el espacio de nombres 'PID Namespace' en Linux?",
-    options: [
-      "Asigna un número de serie único al procesador físico del servidor.",
-      "Aísla el árbol de identificadores de procesos: un proceso puede ser el PID 1 dentro de su propio namespace de contenedor mientras tiene un PID ordinario (ej. 45892) en el namespace global del host.",
-      "Elimina todos los hilos huérfanos cada 60 segundos.",
-      "Restringe la ejecución de scripts en lenguaje Python."
+    "id": "linux-q-22",
+    "collectionId": "linux",
+    "question": "Dentro de Linux, ¿cómo opera el mecanismo de «Parámetros posicionales» en shell, terminal y composición de comandos?",
+    "options": [
+      "Envía entrada, salida y errores a archivos, dispositivos u otros descriptores al operar.",
+      "Usa $0, $1, $@, $#, shift y valores por defecto para diseñar scripts reutilizables.",
+      "Inserta la salida de un comando dentro de otro después de ejecutar un subshell.",
+      "Expande patrones de nombres de archivo sin confundirlos con expresiones regulares."
     ],
-    correctAnswerIndex: 1,
-    explanation: "Los namespaces de PID son anidados y jerárquicos. El primer proceso creado en un nuevo PID namespace se convierte en el PID 1 local del contenedor (actuando como init y adoptando huérfanos locales), invisible a otros contenedores y aislado del host.",
-    topic: "Namespaces y Contenedores",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 1,
+    "explanation": "Parámetros posicionales (Shell, terminal y composición de comandos): Usa $0, $1, $@, $#, shift y valores por defecto para diseñar scripts reutilizables.",
+    "topic": "Shell, terminal y composición de comandos",
+    "difficulty": "intermedio"
   },
   {
-    id: "linux-q-23",
-    collectionId: "linux",
-    question: "¿Qué garantiza el uso de la llamada 'fsync(fd)' tras realizar operaciones de escritura con 'write()'?",
-    options: [
-      "Comprueba la ortografía del texto escrito en el archivo.",
-      "Fuerza a que todos los datos y metadatos modificados retenidos en el Page Cache del kernel se escriban físicamente en el medio de almacenamiento no volátil (disco duro o SSD) antes de retornar.",
-      "Cierra el descriptor de archivo de forma inmediata.",
-      "Crea una copia de seguridad en un archivo .bak automático."
+    "id": "linux-q-23",
+    "collectionId": "linux",
+    "question": "Al trabajar con Linux, ¿qué responsabilidad define a «Exit status»?",
+    "options": [
+      "Evita que un fallo temprano quede oculto por el éxito del último comando de una tubería al operar.",
+      "Presenta la salida o entrada de un proceso como una ruta temporal parecida a un archivo al operar.",
+      "Interpreta 0 como éxito y valores no cero como información de fallo para encadenar decisiones.",
+      "Sigue lectura, tokenización, parsing, expansiones, redirecciones, búsqueda y ejecución al operar."
     ],
-    correctAnswerIndex: 1,
-    explanation: "'write()' solo transfiere datos al Page Cache de la memoria RAM del kernel. Si la máquina pierde energía en ese instante, los datos se pierden. 'fsync()' bloquea el hilo hasta que el controlador del disco confirme que los datos se almacenaron en almacenamiento físico persistente.",
-    topic: "Almacenamiento y Confiabilidad",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 2,
+    "explanation": "Exit status (Shell, terminal y composición de comandos): Interpreta 0 como éxito y valores no cero como información de fallo para encadenar decisiones.",
+    "topic": "Shell, terminal y composición de comandos",
+    "difficulty": "intermedio"
   },
   {
-    id: "linux-q-24",
-    collectionId: "linux",
-    question: "¿Qué es 'systemd' y qué componentes reemplazó frente a los sistemas de inicialización tradicionales 'SysVinit'?",
-    options: [
-      "Un compilador de código abierto para aplicaciones gráficas de escritorio.",
-      "Un sistema de inicio y administrador de servicios moderno que paraleliza el arranque, utiliza sockets y D-Bus para activación bajo demanda, gestiona cgroups y reemplaza scripts /etc/init.d con archivos declarativos de unidades (.service).",
-      "Una extensión de software para conectar periféricos USB en caliente.",
-      "Un gestor de bases de datos relacionales basado en SQLite."
+    "id": "linux-q-24",
+    "collectionId": "linux",
+    "question": "En la arquitectura de Linux, ¿qué caracteriza técnicamente a «Operadores ;, &, && y ||»?",
+    "options": [
+      "Inserta la salida de un comando dentro de otro después de ejecutar un subshell al operar.",
+      "Envía entrada, salida y errores a archivos, dispositivos u otros descriptores al operar.",
+      "Expande patrones de nombres de archivo sin confundirlos con expresiones regulares.",
+      "Controla secuencia, background y ejecución condicional basada en el código de salida."
     ],
-    correctAnswerIndex: 1,
-    explanation: "SysVinit era lento y secuencial, basado en frágiles scripts de shell. Systemd introdujo arranque paralelo masivo activando servicios cuando su socket recibe la primera conexión, supervisión robusta por cgroups y configuración declarativa unificada.",
-    topic: "Init Systems y Systemd",
-    difficulty: "básico"
+    "correctAnswerIndex": 3,
+    "explanation": "Operadores ;, &, && y || (Shell, terminal y composición de comandos): Controla secuencia, background y ejecución condicional basada en el código de salida.",
+    "topic": "Shell, terminal y composición de comandos",
+    "difficulty": "intermedio"
   },
   {
-    id: "linux-q-25",
-    collectionId: "linux",
-    question: "¿Qué diferencia existe entre un descriptor de archivo duplicado con 'dup2(oldfd, newfd)' y abrir el mismo archivo dos veces con 'open()'?",
-    options: [
-      "dup2 borra el archivo anterior antes de crear la copia.",
-      "'dup2' hace que ambos descriptores de archivo apunten a la misma entrada de archivo abierto en la tabla del kernel, compartiendo el mismo puntero de posición (file offset) y flags de estado; dos llamadas a 'open()' crean dos entradas independientes en el kernel con offsets separados.",
-      "open() solo funciona con archivos de texto y dup2 con archivos binarios.",
-      "No existe ninguna diferencia en el comportamiento del kernel."
+    "id": "linux-q-25",
+    "collectionId": "linux",
+    "question": "Respecto a shell, terminal y composición de comandos en Linux, ¿cuál es el propósito de «Pipelines»?",
+    "options": [
+      "Conecta stdout de un proceso con stdin del siguiente mediante un buffer del kernel.",
+      "Envía entrada, salida y errores a archivos, dispositivos u otros descriptores.",
+      "Inserta la salida de un comando dentro de otro después de ejecutar un subshell.",
+      "Expande patrones de nombres de archivo sin confundirlos con expresiones regulares."
     ],
-    correctAnswerIndex: 1,
-    explanation: "Con dup2 (utilizado comúnmente para redirigir stdout/stderr en shells), ambos descriptores comparten la misma estructura 'struct file' subyacente en el kernel: si uno avanza el puntero de lectura/escritura con lseek, el otro observa la misma posición.",
-    topic: "Descriptores y VFS",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 0,
+    "explanation": "Pipelines (Shell, terminal y composición de comandos): Conecta stdout de un proceso con stdin del siguiente mediante un buffer del kernel.",
+    "topic": "Shell, terminal y composición de comandos",
+    "difficulty": "intermedio"
   },
   {
-    id: "linux-q-26",
-    collectionId: "linux",
-    question: "¿Qué es 'Seccomp' (Secure Computing Mode) y cómo refuerza la seguridad en entornos como Docker o navegadores web?",
-    options: [
-      "Un antivirus que escanea la memoria RAM en busca de firmas de malware.",
-      "Un mecanismo del kernel que restringe qué llamadas al sistema (syscalls) tiene permitido invocar un proceso, interceptando o abortando inmediatamente el proceso si intenta invocar una syscall no autorizada (vía filtros BPF).",
-      "Un protocolo de cifrado para contraseñas almacenadas en /etc/shadow.",
-      "Un módulo que deshabilita la conexión Wi-Fi en redes públicas."
+    "id": "linux-q-26",
+    "collectionId": "linux",
+    "question": "En Linux (Shell, terminal y composición de comandos), ¿qué función técnica cumple «pipefail»?",
+    "options": [
+      "Expande patrones de nombres de archivo sin confundirlos con expresiones regulares al operar.",
+      "Evita que un fallo temprano quede oculto por el éxito del último comando de una tubería.",
+      "Usa $0, $1, $@, $#, shift y valores por defecto para diseñar scripts reutilizables al operar.",
+      "Conecta stdout de un proceso con stdin del siguiente mediante un buffer del kernel al operar."
     ],
-    correctAnswerIndex: 1,
-    explanation: "De las más de 400 syscalls de Linux, la mayoría de los programas solo necesitan un subconjunto seguro. Los perfiles Seccomp-BPF bloquean llamadas peligrosas (como reboot o ptrace), reduciendo drásticamente la superficie de ataque en caso de vulnerabilidades.",
-    topic: "Seguridad y Hardening",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 1,
+    "explanation": "pipefail (Shell, terminal y composición de comandos): Evita que un fallo temprano quede oculto por el éxito del último comando de una tubería.",
+    "topic": "Shell, terminal y composición de comandos",
+    "difficulty": "intermedio"
   },
   {
-    id: "linux-q-27",
-    collectionId: "linux",
-    question: "¿Qué es el 'Translation Lookaside Buffer' (TLB) y por qué su vaciado (TLB flush) penaliza el rendimiento durante un cambio de contexto (context switch)?",
-    options: [
-      "Un registro que almacena las teclas presionadas en el teclado.",
-      "Una caché de hardware que recuerda las traducciones recientes de direcciones virtuales a físicas; cambiar a un proceso con un espacio de direcciones diferente invalida las entradas, forzando a la CPU a recorrer las lentas tablas de páginas en memoria (page walk).",
-      "Una cola de mensajes entre procesos de usuario y el servidor X11.",
-      "Un búfer de red para almacenar fragmentos de paquetes UDP."
+    "id": "linux-q-27",
+    "collectionId": "linux",
+    "question": "Dentro de Linux, ¿cómo opera el mecanismo de «Redirecciones» en shell, terminal y composición de comandos?",
+    "options": [
+      "Expande patrones de nombres de archivo sin confundirlos con expresiones regulares al operar.",
+      "Usa $0, $1, $@, $#, shift y valores por defecto para diseñar scripts reutilizables al operar.",
+      "Envía entrada, salida y errores a archivos, dispositivos u otros descriptores al operar.",
+      "Conecta stdout de un proceso con stdin del siguiente mediante un buffer del kernel al operar."
     ],
-    correctAnswerIndex: 1,
-    explanation: "El TLB es una memoria ultrarrápida en la CPU. Al conmutar entre hilos del mismo proceso se comparte el espacio de memoria y se preserva el TLB; al conmutar entre procesos distintos (cambiando CR3 en x86), el TLB debe invalidarse, encareciendo los accesos a memoria posteriores.",
-    topic: "Arquitectura de CPU y Memoria",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 2,
+    "explanation": "Redirecciones (Shell, terminal y composición de comandos): Envía entrada, salida y errores a archivos, dispositivos u otros descriptores.",
+    "topic": "Shell, terminal y composición de comandos",
+    "difficulty": "intermedio"
   },
   {
-    id: "linux-q-28",
-    collectionId: "linux",
-    question: "¿Cuál es el propósito del archivo 'initramfs' (Initial RAM File System) durante el proceso de arranque de Linux?",
-    options: [
-      "Guardar las contraseñas de los usuarios de forma permanente en la BIOS.",
-      "Proporcionar un sistema de archivos temporal y mínimo en memoria RAM con los módulos y utilidades esenciales (como drivers de controladores de almacenamiento o descifrado de discos LUKS) necesarios para montar el sistema de archivos raíz ('/') real.",
-      "Instalar actualizaciones automáticas de seguridad antes de cargar el escritorio.",
-      "Comprobar que la placa madre tenga suficiente pasta térmica."
+    "id": "linux-q-28",
+    "collectionId": "linux",
+    "question": "Al trabajar con Linux, ¿qué responsabilidad define a «File descriptors»?",
+    "options": [
+      "Evita que un fallo temprano quede oculto por el éxito del último comando de una tubería al operar.",
+      "Presenta la salida o entrada de un proceso como una ruta temporal parecida a un archivo al operar.",
+      "Sigue lectura, tokenización, parsing, expansiones, redirecciones, búsqueda y ejecución al operar.",
+      "Modela stdin, stdout, stderr y descriptores adicionales como referencias abiertas por proceso."
     ],
-    correctAnswerIndex: 1,
-    explanation: "El kernel no puede compilar todos los drivers imaginables de forma estática. El bootloader carga el kernel y el initramfs en RAM; el initramfs ejecuta scripts para cargar módulos específicos del hardware, descifrar volúmenes y montar el '/' definitivo antes de ejecutar /sbin/init.",
-    topic: "Proceso de Arranque (Boot)",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 3,
+    "explanation": "File descriptors (Shell, terminal y composición de comandos): Modela stdin, stdout, stderr y descriptores adicionales como referencias abiertas por proceso.",
+    "topic": "Shell, terminal y composición de comandos",
+    "difficulty": "intermedio"
   },
   {
-    id: "linux-q-29",
-    collectionId: "linux",
-    question: "¿Qué comando y opción permite inspeccionar las bibliotecas compartidas (.so) de las que depende un binario dinámico ELF?",
-    options: [
-      "cat /etc/hosts",
-      "ldd /ruta/al/binario",
-      "chmod +x /ruta/al/binario",
-      "ping localhost"
+    "id": "linux-q-29",
+    "collectionId": "linux",
+    "question": "En la arquitectura de Linux, ¿qué caracteriza técnicamente a «Command substitution»?",
+    "options": [
+      "Inserta la salida de un comando dentro de otro después de ejecutar un subshell de forma segura.",
+      "Usa $0, $1, $@, $#, shift y valores por defecto para diseñar scripts reutilizables.",
+      "Conecta stdout de un proceso con stdin del siguiente mediante un buffer del kernel.",
+      "Expande patrones de nombres de archivo sin confundirlos con expresiones regulares al operar."
     ],
-    correctAnswerIndex: 1,
-    explanation: "'ldd' (List Dynamic Dependencies) invoca el enlazador dinámico de Linux (ld-linux.so) para simular la resolución de bibliotecas compartidas de un ejecutable ELF, mostrando la ruta de cada biblioteca .so resuelta o marcándola como 'not found' si falta.",
-    topic: "Binarios ELF y Bibliotecas",
-    difficulty: "básico"
+    "correctAnswerIndex": 0,
+    "explanation": "Command substitution (Shell, terminal y composición de comandos): Inserta la salida de un comando dentro de otro después de ejecutar un subshell.",
+    "topic": "Shell, terminal y composición de comandos",
+    "difficulty": "intermedio"
   },
   {
-    id: "linux-q-30",
-    collectionId: "linux",
-    question: "¿Cómo funciona la variable de entorno 'LD_PRELOAD' en el enlazador dinámico de Linux?",
-    options: [
-      "Determina la velocidad de descarga de paquetes desde repositorios oficiales.",
-      "Le indica al cargador dinámico (ld.so) que cargue una biblioteca compartida especificada antes que cualquier otra biblioteca, permitiendo interceptar y sobreescribir funciones estándar de C (como malloc u open) sin recompilar el binario.",
-      "Fuerza a que todos los programas se ejecuten en modo seguro sin gráficos.",
-      "Establece el tamaño del archivo de paginación swap en el arranque."
+    "id": "linux-q-30",
+    "collectionId": "linux",
+    "question": "Respecto a shell, terminal y composición de comandos en Linux, ¿cuál es el propósito de «Process substitution»?",
+    "options": [
+      "Expande patrones de nombres de archivo sin confundirlos con expresiones regulares al operar.",
+      "Presenta la salida o entrada de un proceso como una ruta temporal parecida a un archivo.",
+      "Usa $0, $1, $@, $#, shift y valores por defecto para diseñar scripts reutilizables al operar.",
+      "Conecta stdout de un proceso con stdin del siguiente mediante un buffer del kernel al operar."
     ],
-    correctAnswerIndex: 1,
-    explanation: "LD_PRELOAD es una potente técnica de hooking e instrumentación en Linux: cualquier símbolo implementado en la biblioteca precargada prevalecerá sobre las bibliotecas del sistema, ampliamente utilizado en profiling, mockeo, depuración y también en malware de usuario.",
-    topic: "Binarios ELF y Enlace Dinámico",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 1,
+    "explanation": "Process substitution (Shell, terminal y composición de comandos): Presenta la salida o entrada de un proceso como una ruta temporal parecida a un archivo.",
+    "topic": "Shell, terminal y composición de comandos",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "linux-q-31",
+    "collectionId": "linux",
+    "question": "En Linux (Shell, terminal y composición de comandos), ¿qué función técnica cumple «Aliases y funciones de shell»?",
+    "options": [
+      "Separa el ejecutable de sus flags y operandos para leer correctamente una línea de comandos al operar.",
+      "Interpreta 0 como éxito y valores no cero como información de fallo para encadenar decisiones al operar.",
+      "Encapsula comandos frecuentes y lógica reutilizable entendiendo sus límites de expansión y alcance.",
+      "Modela stdin, stdout, stderr y descriptores adicionales como referencias abiertas por proceso al operar."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Aliases y funciones de shell (Shell, terminal y composición de comandos): Encapsula comandos frecuentes y lógica reutilizable entendiendo sus límites de expansión y alcance.",
+    "topic": "Shell, terminal y composición de comandos",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "linux-q-32",
+    "collectionId": "linux",
+    "question": "Dentro de Linux, ¿cómo opera el mecanismo de «find y xargs» en shell, terminal y composición de comandos?",
+    "options": [
+      "Preserva caracteres literales y controla qué expansiones ocurren con comillas simples, dobles y backslash al operar.",
+      "Transforma streams de texto con sustituciones, selección de campos y pequeños programas orientados a registros.",
+      "Consulta y transforma JSON desde la terminal manteniendo tipos y estructuras en lugar de cortar texto a ciegas.",
+      "Descubre archivos por propiedades y convierte resultados en argumentos de otros procesos con delimitación segura."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "find y xargs (Shell, terminal y composición de comandos): Descubre archivos por propiedades y convierte resultados en argumentos de otros procesos con delimitación segura.",
+    "topic": "Shell, terminal y composición de comandos",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "linux-q-33",
+    "collectionId": "linux",
+    "question": "Al trabajar con Linux, ¿qué responsabilidad define a «grep y expresiones regulares»?",
+    "options": [
+      "Filtra líneas por patrones básicos o extendidos y controla contexto, recursión y códigos de salida al operar.",
+      "Separa el ejecutable de sus flags y operandos para leer correctamente una línea de comandos al operar.",
+      "Interpreta 0 como éxito y valores no cero como información de fallo para encadenar decisiones.",
+      "Modela stdin, stdout, stderr y descriptores adicionales como referencias abiertas por proceso."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "grep y expresiones regulares (Shell, terminal y composición de comandos): Filtra líneas por patrones básicos o extendidos y controla contexto, recursión y códigos de salida.",
+    "topic": "Shell, terminal y composición de comandos",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "linux-q-34",
+    "collectionId": "linux",
+    "question": "En la arquitectura de Linux, ¿qué caracteriza técnicamente a «sed y awk»?",
+    "options": [
+      "Preserva caracteres literales y controla qué expansiones ocurren con comillas simples, dobles y backslash al operar.",
+      "Transforma streams de texto con sustituciones, selección de campos y pequeños programas orientados a registros.",
+      "Diferencia el emulador visible, el canal pseudo-terminal y el proceso shell que interpreta comandos al evaluar.",
+      "Encapsula comandos frecuentes y lógica reutilizable entendiendo sus límites de expansión y alcance en el flujo."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "sed y awk (Shell, terminal y composición de comandos): Transforma streams de texto con sustituciones, selección de campos y pequeños programas orientados a registros.",
+    "topic": "Shell, terminal y composición de comandos",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "linux-q-35",
+    "collectionId": "linux",
+    "question": "Respecto a shell, terminal y composición de comandos en Linux, ¿cuál es el propósito de «sort, uniq, cut, tr y wc»?",
+    "options": [
+      "Expande patrones de nombres de archivo sin confundirlos con expresiones regulares al operar.",
+      "Usa $0, $1, $@, $#, shift y valores por defecto para diseñar scripts reutilizables.",
+      "Compone operaciones pequeñas para ordenar, deduplicar, cortar, traducir y contar datos.",
+      "Conecta stdout de un proceso con stdin del siguiente mediante un buffer del kernel."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "sort, uniq, cut, tr y wc (Shell, terminal y composición de comandos): Compone operaciones pequeñas para ordenar, deduplicar, cortar, traducir y contar datos.",
+    "topic": "Shell, terminal y composición de comandos",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "linux-q-36",
+    "collectionId": "linux",
+    "question": "En Linux (Shell, terminal y composición de comandos), ¿qué función técnica cumple «jq»?",
+    "options": [
+      "Preserva caracteres literales y controla qué expansiones ocurren con comillas simples, dobles y backslash al operar.",
+      "Diferencia el emulador visible, el canal pseudo-terminal y el proceso shell que interpreta comandos al evaluar.",
+      "Encapsula comandos frecuentes y lógica reutilizable entendiendo sus límites de expansión y alcance en el flujo.",
+      "Consulta y transforma JSON desde la terminal manteniendo tipos y estructuras en lugar de cortar texto a ciegas."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "jq (Shell, terminal y composición de comandos): Consulta y transforma JSON desde la terminal manteniendo tipos y estructuras en lugar de cortar texto a ciegas.",
+    "topic": "Shell, terminal y composición de comandos",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "linux-q-37",
+    "collectionId": "linux",
+    "question": "Dentro de Linux, ¿cómo opera el mecanismo de «Usuarios, UID y GID» en archivos, permisos e identidad?",
+    "options": [
+      "Relaciona nombres legibles con identificadores numéricos que usa el kernel para decidir propiedad y acceso al operar.",
+      "Ejecuta un binario con el effective UID de su propietario y exige una revisión de seguridad cuidadosa.",
+      "Restringe borrado o renombrado dentro de directorios compartidos como /tmp al propietario adecuado al operar.",
+      "Evalúa lectura, escritura y ejecución para owner, group y others, con semántica distinta en directorios."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Usuarios, UID y GID (Archivos, permisos e identidad): Relaciona nombres legibles con identificadores numéricos que usa el kernel para decidir propiedad y acceso.",
+    "topic": "Archivos, permisos e identidad",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "linux-q-38",
+    "collectionId": "linux",
+    "question": "Al trabajar con Linux, ¿qué responsabilidad define a «Grupos primarios y suplementarios»?",
+    "options": [
+      "Cambia el effective GID de un ejecutable o hereda grupo en directorios colaborativos al operar.",
+      "Amplía permisos compartidos sin duplicar cuentas ni conceder acceso global en ejecución.",
+      "Añade permisos por usuarios y grupos nombrados, sujetos a una máscara efectiva al operar.",
+      "Organiza rutas como /etc, /var, /usr, /home, /run y /tmp según su responsabilidad al operar."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Grupos primarios y suplementarios (Archivos, permisos e identidad): Amplía permisos compartidos sin duplicar cuentas ni conceder acceso global.",
+    "topic": "Archivos, permisos e identidad",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "linux-q-39",
+    "collectionId": "linux",
+    "question": "En la arquitectura de Linux, ¿qué caracteriza técnicamente a «/etc/passwd, shadow y group»?",
+    "options": [
+      "Cambia el effective GID de un ejecutable o hereda grupo en directorios colaborativos al operar.",
+      "Añade permisos por usuarios y grupos nombrados, sujetos a una máscara efectiva al operar.",
+      "Separa metadatos públicos, hashes protegidos y membresías de grupo durante la ejecución.",
+      "Amplía permisos compartidos sin duplicar cuentas ni conceder acceso global en ejecución."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "/etc/passwd, shadow y group (Archivos, permisos e identidad): Separa metadatos públicos, hashes protegidos y membresías de grupo.",
+    "topic": "Archivos, permisos e identidad",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "linux-q-40",
+    "collectionId": "linux",
+    "question": "Respecto a archivos, permisos e identidad en Linux, ¿cuál es el propósito de «Permisos rwx»?",
+    "options": [
+      "Restringe borrado o renombrado dentro de directorios compartidos como /tmp al propietario adecuado al operar.",
+      "Calcula permisos iniciales quitando bits de un modo solicitado al crear archivos o directorios al operar.",
+      "Ejecuta un binario con el effective UID de su propietario y exige una revisión de seguridad cuidadosa.",
+      "Evalúa lectura, escritura y ejecución para owner, group y others, con semántica distinta en directorios."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "Permisos rwx (Archivos, permisos e identidad): Evalúa lectura, escritura y ejecución para owner, group y others, con semántica distinta en directorios.",
+    "topic": "Archivos, permisos e identidad",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "linux-q-41",
+    "collectionId": "linux",
+    "question": "En Linux (Archivos, permisos e identidad), ¿qué función técnica cumple «chmod simbólico y octal»?",
+    "options": [
+      "Convierte reglas como u+x y modos como 0750 en bits de permisos respetando las invariantes.",
+      "Cambia el effective GID de un ejecutable o hereda grupo en directorios colaborativos.",
+      "Añade permisos por usuarios y grupos nombrados, sujetos a una máscara efectiva al operar.",
+      "Amplía permisos compartidos sin duplicar cuentas ni conceder acceso global al evaluar."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "chmod simbólico y octal (Archivos, permisos e identidad): Convierte reglas como u+x y modos como 0750 en bits de permisos.",
+    "topic": "Archivos, permisos e identidad",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "linux-q-42",
+    "collectionId": "linux",
+    "question": "Dentro de Linux, ¿cómo opera el mecanismo de «Propiedad con chown y chgrp» en archivos, permisos e identidad?",
+    "options": [
+      "Cambia el effective GID de un ejecutable o hereda grupo en directorios colaborativos al evaluar.",
+      "Cambia usuario y grupo propietarios considerando privilegios y efectos sobre bits especiales.",
+      "Compone autenticación, cuenta, contraseña y sesión mediante módulos y políticas por servicio.",
+      "Divide poderes tradicionales de root en capacidades pequeñas asignables a procesos o archivos."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Propiedad con chown y chgrp (Archivos, permisos e identidad): Cambia usuario y grupo propietarios considerando privilegios y efectos sobre bits especiales.",
+    "topic": "Archivos, permisos e identidad",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "linux-q-43",
+    "collectionId": "linux",
+    "question": "Al trabajar con Linux, ¿qué responsabilidad define a «umask»?",
+    "options": [
+      "Cambia usuario y grupo propietarios considerando privilegios y efectos sobre bits especiales al operar.",
+      "Cambia el effective GID de un ejecutable o hereda grupo en directorios colaborativos al operar.",
+      "Calcula permisos iniciales quitando bits de un modo solicitado al crear archivos o directorios.",
+      "Compone autenticación, cuenta, contraseña y sesión mediante módulos y políticas por servicio."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "umask (Archivos, permisos e identidad): Calcula permisos iniciales quitando bits de un modo solicitado al crear archivos o directorios.",
+    "topic": "Archivos, permisos e identidad",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "linux-q-44",
+    "collectionId": "linux",
+    "question": "En la arquitectura de Linux, ¿qué caracteriza técnicamente a «setuid»?",
+    "options": [
+      "Calcula permisos iniciales quitando bits de un modo solicitado al crear archivos o directorios al operar.",
+      "Divide poderes tradicionales de root en capacidades pequeñas asignables a procesos o archivos al operar.",
+      "Cambia usuario y grupo propietarios considerando privilegios y efectos sobre bits especiales al operar.",
+      "Ejecuta un binario con el effective UID de su propietario y exige una revisión de seguridad cuidadosa."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "setuid (Archivos, permisos e identidad): Ejecuta un binario con el effective UID de su propietario y exige una revisión de seguridad cuidadosa.",
+    "topic": "Archivos, permisos e identidad",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "linux-q-45",
+    "collectionId": "linux",
+    "question": "Respecto a archivos, permisos e identidad en Linux, ¿cuál es el propósito de «setgid»?",
+    "options": [
+      "Cambia el effective GID de un ejecutable o hereda grupo en directorios colaborativos.",
+      "Añade permisos por usuarios y grupos nombrados, sujetos a una máscara efectiva.",
+      "Amplía permisos compartidos sin duplicar cuentas ni conceder acceso global al operar.",
+      "Separa metadatos públicos, hashes protegidos y membresías de grupo de forma segura."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "setgid (Archivos, permisos e identidad): Cambia el effective GID de un ejecutable o hereda grupo en directorios colaborativos.",
+    "topic": "Archivos, permisos e identidad",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "linux-q-46",
+    "collectionId": "linux",
+    "question": "En Linux (Archivos, permisos e identidad), ¿qué función técnica cumple «Sticky bit»?",
+    "options": [
+      "Cambia usuario y grupo propietarios considerando privilegios y efectos sobre bits especiales al operar.",
+      "Restringe borrado o renombrado dentro de directorios compartidos como /tmp al propietario adecuado.",
+      "Compone autenticación, cuenta, contraseña y sesión mediante módulos y políticas por servicio al operar.",
+      "Divide poderes tradicionales de root en capacidades pequeñas asignables a procesos o archivos al operar."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Sticky bit (Archivos, permisos e identidad): Restringe borrado o renombrado dentro de directorios compartidos como /tmp al propietario adecuado.",
+    "topic": "Archivos, permisos e identidad",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "linux-q-47",
+    "collectionId": "linux",
+    "question": "Dentro de Linux, ¿cómo opera el mecanismo de «ACLs» en archivos, permisos e identidad?",
+    "options": [
+      "Cambia el effective GID de un ejecutable o hereda grupo en directorios colaborativos al operar.",
+      "Amplía permisos compartidos sin duplicar cuentas ni conceder acceso global con precisión.",
+      "Añade permisos por usuarios y grupos nombrados, sujetos a una máscara efectiva al operar.",
+      "Usa $0, $1, $@, $#, shift y valores por defecto para diseñar scripts reutilizables al operar."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "ACLs (Archivos, permisos e identidad): Añade permisos por usuarios y grupos nombrados, sujetos a una máscara efectiva.",
+    "topic": "Archivos, permisos e identidad",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "linux-q-48",
+    "collectionId": "linux",
+    "question": "Al trabajar con Linux, ¿qué responsabilidad define a «sudo y sudoers»?",
+    "options": [
+      "Ejecuta un binario con el effective UID de su propietario y exige una revisión de seguridad cuidadosa al operar.",
+      "Restringe borrado o renombrado dentro de directorios compartidos como /tmp al propietario adecuado al operar.",
+      "Evalúa lectura, escritura y ejecución para owner, group y others, con semántica distinta en directorios.",
+      "Delega comandos específicos con otra identidad, registra la acción y evita compartir la contraseña de root."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "sudo y sudoers (Archivos, permisos e identidad): Delega comandos específicos con otra identidad, registra la acción y evita compartir la contraseña de root.",
+    "topic": "Archivos, permisos e identidad",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "linux-q-49",
+    "collectionId": "linux",
+    "question": "En la arquitectura de Linux, ¿qué caracteriza técnicamente a «Linux capabilities»?",
+    "options": [
+      "Divide poderes tradicionales de root en capacidades pequeñas asignables a procesos o archivos.",
+      "Cambia el effective GID de un ejecutable o hereda grupo en directorios colaborativos al operar.",
+      "Cambia usuario y grupo propietarios considerando privilegios y efectos sobre bits especiales.",
+      "Compone autenticación, cuenta, contraseña y sesión mediante módulos y políticas por servicio."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Linux capabilities (Archivos, permisos e identidad): Divide poderes tradicionales de root en capacidades pequeñas asignables a procesos o archivos.",
+    "topic": "Archivos, permisos e identidad",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "linux-q-50",
+    "collectionId": "linux",
+    "question": "Respecto a archivos, permisos e identidad en Linux, ¿cuál es el propósito de «PAM»?",
+    "options": [
+      "Cambia el effective GID de un ejecutable o hereda grupo en directorios colaborativos al evaluar.",
+      "Compone autenticación, cuenta, contraseña y sesión mediante módulos y políticas por servicio.",
+      "Cambia usuario y grupo propietarios considerando privilegios y efectos sobre bits especiales.",
+      "Divide poderes tradicionales de root en capacidades pequeñas asignables a procesos o archivos."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "PAM (Archivos, permisos e identidad): Compone autenticación, cuenta, contraseña y sesión mediante módulos y políticas por servicio.",
+    "topic": "Archivos, permisos e identidad",
+    "difficulty": "avanzado"
   }
 ];

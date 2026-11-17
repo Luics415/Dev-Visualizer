@@ -2,453 +2,753 @@ import type { QuizQuestion } from "@/data/quizTypes";
 
 export const gitQuestions: QuizQuestion[] = [
   {
-    id: "git-q-01",
-    collectionId: "git",
-    question: "¿Cuáles son los cuatro tipos fundamentales de objetos en el almacenamiento interno (.git/objects) de Git?",
-    options: [
-      "blob (contenido de archivo), tree (directorio), commit (metadatos e instantánea) y tag anotado.",
-      "file, folder, branch y remote.",
-      "delta, packfile, index y reference.",
-      "head, staging, working-tree y stash."
+    "id": "git-q-01",
+    "collectionId": "git",
+    "question": "En Git (Modelo de objetos), ¿qué función técnica cumple «Repositorio y directorio .git»?",
+    "options": [
+      "Separa los archivos visibles de la base interna que conserva objetos, referencias, configuración y reflogs.",
+      "Identifica objetos por su contenido y detecta cuándo dos referencias señalan exactamente el mismo estado.",
+      "Modela contenido, estructura y snapshots sin confundir un commit con un archivo de diferencias al operar.",
+      "Explica desde qué referencia se lee el snapshot y cuál avanzará con el siguiente commit dentro del flujo."
     ],
-    correctAnswerIndex: 0,
-    explanation: "El modelo de objetos de Git es un almacén de contenido direccionable compuesto por cuatro tipos inmutables: blobs (contenido puro), trees (directorios que apuntan a blobs u otros trees), commits (autor, mensaje y puntero al tree raíz) y tags anotados.",
-    topic: "Modelo de Objetos Interno",
-    difficulty: "básico"
+    "correctAnswerIndex": 0,
+    "explanation": "Repositorio y directorio .git (Modelo de objetos): Separa los archivos visibles de la base interna que conserva objetos, referencias, configuración y reflogs.",
+    "topic": "Modelo de objetos",
+    "difficulty": "básico"
   },
   {
-    id: "git-q-02",
-    collectionId: "git",
-    question: "¿Qué comando de fontanería (plumbing) calcula el hash SHA de un archivo y opcionalmente lo guarda como blob en el repositorio?",
-    options: [
-      "git hash-object -w <archivo>",
-      "git write-tree <archivo>",
-      "git cat-file -p <archivo>",
-      "git update-index --add <archivo>"
+    "id": "git-q-02",
+    "collectionId": "git",
+    "question": "Dentro de Git, ¿cómo opera el mecanismo de «Blobs, trees» en modelo de objetos?",
+    "options": [
+      "Explica desde qué referencia se lee el snapshot y cuál avanzará con el siguiente commit al operar.",
+      "Modela contenido, estructura y snapshots sin confundir un commit con un archivo de diferencias.",
+      "Representa la propuesta exacta del próximo snapshot entre el working tree y HEAD con precisión.",
+      "Detiene la integración cuando Git no puede decidir una resolución correcta en una región al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "'git hash-object' calcula el hash SHA-1 o SHA-256 del contenido más la cabecera 'blob <size>\\0'. La bandera '-w' (write) persiste físicamente el objeto comprimido con zlib dentro de .git/objects.",
-    topic: "Comandos Plumbing",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 1,
+    "explanation": "Blobs, trees y commits (Modelo de objetos): Modela contenido, estructura y snapshots sin confundir un commit con un archivo de diferencias.",
+    "topic": "Modelo de objetos",
+    "difficulty": "básico"
   },
   {
-    id: "git-q-03",
-    collectionId: "git",
-    question: "¿Cuál es la diferencia entre un 'git merge' fast-forward y un merge 'no-ff' (--no-ff)?",
-    options: [
-      "Fast-forward solo mueve el puntero de la rama hacia adelante sin crear commit; '--no-ff' fuerza siempre la creación de un commit de fusión con dos padres.",
-      "Fast-forward comprime todos los commits en uno solo; '--no-ff' duplica los commits en ambas ramas.",
-      "Fast-forward reescribe el historial mediante rebase; '--no-ff' aborta si existen conflictos de fusión.",
-      "No existe diferencia funcional salvo en la velocidad de transferencia hacia el servidor remoto."
+    "id": "git-q-03",
+    "collectionId": "git",
+    "question": "Al trabajar con Git, ¿qué responsabilidad define a «Hashes»?",
+    "options": [
+      "Modela contenido, estructura y snapshots sin confundir un commit con un archivo de diferencias en ejecución.",
+      "Separa los archivos visibles de la base interna que conserva objetos, referencias, configuración y reflogs.",
+      "Identifica objetos por su contenido y detecta cuándo dos referencias señalan exactamente el mismo estado.",
+      "Explica desde qué referencia se lee el snapshot y cuál avanzará con el siguiente commit dentro del flujo."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Un fast-forward ocurre cuando la rama actual es ancestro directo de la rama entrante: Git solo avanza el puntero HEAD. Con '--no-ff', Git preserva explícitamente la topología de la rama en el grafo DAG creando un merge commit.",
-    topic: "Estrategias de Merge & DAG",
-    difficulty: "básico"
+    "correctAnswerIndex": 2,
+    "explanation": "Hashes y direccionamiento por contenido (Modelo de objetos): Identifica objetos por su contenido y detecta cuándo dos referencias señalan exactamente el mismo estado.",
+    "topic": "Modelo de objetos",
+    "difficulty": "básico"
   },
   {
-    id: "git-q-04",
-    collectionId: "git",
-    question: "¿Cómo permite 'git reflog' recuperar commits huérfanos que parecen haberse perdido tras un 'git reset --hard'?",
-    options: [
-      "Mantiene un registro cronológico local de cada actualización de HEAD, permitiendo restaurar punteros antes de que el recolector 'git gc' los elimine.",
-      "Descarga una copia de seguridad automática desde el servidor remoto origin.",
-      "Rastrea las copias de seguridad temporales almacenadas en la papelera del sistema operativo.",
-      "Desencripta los logs del servidor SSH donde reside el repositorio central."
+    "id": "git-q-04",
+    "collectionId": "git",
+    "question": "En la arquitectura de Git, ¿qué caracteriza técnicamente a «HEAD»?",
+    "options": [
+      "Representa la propuesta exacta del próximo snapshot entre el working tree y HEAD al operar.",
+      "Crea una copia local con objetos, referencias remotas y configuración de conexión al operar.",
+      "Integra código de repositorios externos en ramas propias simplificando el clonado al operar.",
+      "Explica desde qué referencia se lee el snapshot y cuál avanzará con el siguiente commit."
     ],
-    correctAnswerIndex: 0,
-    explanation: "El reflog (.git/logs/HEAD) registra cada cambio de puntero local. Aunque un commit quede inalcanzable (dangling) tras un reset o rebase fallido, su hash permanece en el reflog hasta que expire el periodo de gracia (por defecto 30-90 días).",
-    topic: "Historia & Rescate",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 3,
+    "explanation": "HEAD y referencias simbólicas (Modelo de objetos): Explica desde qué referencia se lee el snapshot y cuál avanzará con el siguiente commit.",
+    "topic": "Modelo de objetos",
+    "difficulty": "básico"
   },
   {
-    id: "git-q-05",
-    collectionId: "git",
-    question: "¿Cuál es la diferencia de comportamiento entre 'git reset --soft', '--mixed' y '--hard'?",
-    options: [
-      "--soft solo mueve HEAD (mantiene staging y working tree); --mixed mueve HEAD y actualiza staging; --hard resetea HEAD, staging y working tree.",
-      "--soft borra el working tree; --mixed preserva solo los archivos ignorados; --hard elimina el repositorio remoto.",
-      "--soft crea un commit de reversión; --mixed abre el editor interactivo; --hard aplica un rebase silencioso.",
-      "Los tres comandos son idénticos y solo varían por los mensajes de confirmación que emiten en consola."
+    "id": "git-q-05",
+    "collectionId": "git",
+    "question": "Respecto a modelo de objetos en Git, ¿cuál es el propósito de «Índice o staging area»?",
+    "options": [
+      "Representa la propuesta exacta del próximo snapshot entre el working tree y HEAD de forma segura.",
+      "Explica desde qué referencia se lee el snapshot y cuál avanzará con el siguiente commit.",
+      "Empaqueta objetos y limpia estados inalcanzables respetando ventanas de recuperación.",
+      "Resume archivos tracked, untracked, staged y modificados sin alterar el repositorio al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "'--soft' solo altera el puntero de la rama activa; '--mixed' (el modo por defecto) mueve HEAD y sincroniza el Index (staging); '--hard' sobreescribe destructivamente tanto el Index como los archivos del directorio de trabajo.",
-    topic: "Ámbitos: HEAD, Index & Worktree",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 0,
+    "explanation": "Índice o staging area (Modelo de objetos): Representa la propuesta exacta del próximo snapshot entre el working tree y HEAD.",
+    "topic": "Modelo de objetos",
+    "difficulty": "básico"
   },
   {
-    id: "git-q-06",
-    collectionId: "git",
-    question: "¿Qué herramienta integrada de Git utiliza búsqueda binaria para aislar el commit exacto que introdujo una regresión o bug?",
-    options: [
-      "git bisect (con 'git bisect start', 'git bisect bad' y 'git bisect good')",
-      "git blame (con 'git blame -L 1,50')",
-      "git fsck (con 'git fsck --lost-found')",
-      "git log (con 'git log -S \"error\"')"
+    "id": "git-q-06",
+    "collectionId": "git",
+    "question": "En Git (Modelo de objetos), ¿qué función técnica cumple «Configuración y alcance»?",
+    "options": [
+      "Separa los archivos visibles de la base interna que conserva objetos, referencias, configuración y reflogs al operar.",
+      "Distingue valores de sistema, usuario, repositorio y worktree antes de diagnosticar un comportamiento inesperado.",
+      "Identifica objetos por su contenido y detecta cuándo dos referencias señalan exactamente el mismo estado al operar.",
+      "Modela contenido, estructura y snapshots sin confundir un commit con un archivo de diferencias sin perder estado."
     ],
-    correctAnswerIndex: 0,
-    explanation: "'git bisect' realiza una búsqueda binaria eficiente en el historial (O(log n)). Al marcar un commit erróneo ('bad') y uno sano ('good'), Git sitúa el HEAD en el punto medio sucesivamente hasta identificar el commit causante.",
-    topic: "Diagnóstico & Depuración",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 1,
+    "explanation": "Configuración y alcance (Modelo de objetos): Distingue valores de sistema, usuario, repositorio y worktree antes de diagnosticar un comportamiento inesperado.",
+    "topic": "Modelo de objetos",
+    "difficulty": "básico"
   },
   {
-    id: "git-q-07",
-    collectionId: "git",
-    question: "¿Qué significa el estado 'Detached HEAD' (HEAD desacoplado) en Git?",
-    options: [
-      "HEAD apunta directamente al hash SHA de un commit específico en lugar de apuntar a una referencia de rama local.",
-      "El repositorio local ha perdido la conexión de red con el origen remoto.",
-      "El archivo de índice .git/index se ha corrompido y no puede registrar nuevos cambios.",
-      "El último commit realizado fue rechazado por un hook del servidor."
+    "id": "git-q-07",
+    "collectionId": "git",
+    "question": "Dentro de Git, ¿cómo opera el mecanismo de «git status» en trabajo cotidiano?",
+    "options": [
+      "Construye commits enfocados seleccionando partes coherentes de un mismo archivo al operar.",
+      "Compara working tree, índice, commits o ramas eligiendo correctamente los extremos.",
+      "Resume archivos tracked, untracked, staged y modificados sin alterar el repositorio.",
+      "Guarda un snapshot con autor, fecha, mensaje y uno o más padres de modo predecible."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Normalmente HEAD es una referencia simbólica que apunta a una rama (ref: refs/heads/main). En estado detached HEAD, apunta directamente a un commit (ej. git checkout <hash>), por lo que nuevos commits no pertenecerán a ninguna rama.",
-    topic: "Referencias & HEAD",
-    difficulty: "básico"
+    "correctAnswerIndex": 2,
+    "explanation": "git status (Trabajo cotidiano): Resume archivos tracked, untracked, staged y modificados sin alterar el repositorio.",
+    "topic": "Trabajo cotidiano",
+    "difficulty": "básico"
   },
   {
-    id: "git-q-08",
-    collectionId: "git",
-    question: "¿Cuál es la función del motor 'git rerere' (Reuse Recorded Resolution)?",
-    options: [
-      "Registra cómo se resolvieron conflictos en merges anteriores y reaplica automáticamente la misma resolución si el conflicto vuelve a surgir.",
-      "Reintenta de forma automática el envío de commits ('push') ante caídas temporales de red.",
-      "Optimiza los índices de búsqueda de texto completo en mensajes de commit.",
-      "Genera reportes de cobertura de código al finalizar cada fusión de ramas."
+    "id": "git-q-08",
+    "collectionId": "git",
+    "question": "Al trabajar con Git, ¿qué responsabilidad define a «git add»?",
+    "options": [
+      "Resume archivos tracked, untracked, staged y modificados sin alterar el repositorio al operar.",
+      "Compara working tree, índice, commits o ramas eligiendo correctamente los extremos al operar.",
+      "Separa la intención de restaurar contenido de la intención de cambiar la referencia activa.",
+      "Construye commits enfocados seleccionando partes coherentes de un mismo archivo al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "'rerere' (Reuse Recorded Resolution) guarda una instantánea del conflicto de 3 vías y de la resolución aplicada. En rebases largos o merges repetidos entre ramas vivas, detecta el mismo patrón y aplica la resolución automáticamente.",
-    topic: "Resolución de Conflictos",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 3,
+    "explanation": "git add y selección por hunks (Trabajo cotidiano): Construye commits enfocados seleccionando partes coherentes de un mismo archivo.",
+    "topic": "Trabajo cotidiano",
+    "difficulty": "básico"
   },
   {
-    id: "git-q-09",
-    collectionId: "git",
-    question: "¿Por qué en Git moderno se prefieren los comandos 'git switch' y 'git restore' frente al sobrecargado 'git checkout'?",
-    options: [
-      "Separan responsabilidades: 'git switch' se dedica exclusivamente a ramas; 'git restore' a descartar o restaurar archivos en worktree/staging.",
-      "'git checkout' fue eliminado de Git y arroja un error de comando no reconocido.",
-      "'git switch' utiliza compresión multihilo para clonar ramas en memoria RAM.",
-      "'git restore' requiere confirmación criptográfica GPG obligatoria en cada ejecución."
+    "id": "git-q-09",
+    "collectionId": "git",
+    "question": "En la arquitectura de Git, ¿qué caracteriza técnicamente a «git diff y rangos»?",
+    "options": [
+      "Compara working tree, índice, commits o ramas eligiendo correctamente los extremos.",
+      "Construye commits enfocados seleccionando partes coherentes de un mismo archivo.",
+      "Resume archivos tracked, untracked, staged y modificados sin alterar el repositorio.",
+      "Guarda un snapshot con autor, fecha, mensaje y uno o más padres dentro del flujo."
     ],
-    correctAnswerIndex: 0,
-    explanation: "'git checkout' cumplía dos tareas totalmente dispares: cambiar de rama y sobreescribir archivos en el directorio de trabajo. Git 2.23+ introdujo 'git switch' (navegación de ramas) y 'git restore' (reversión de archivos) para evitar errores accidentales.",
-    topic: "Comandos Porcelain Modernos",
-    difficulty: "básico"
+    "correctAnswerIndex": 0,
+    "explanation": "git diff y rangos (Trabajo cotidiano): Compara working tree, índice, commits o ramas eligiendo correctamente los extremos.",
+    "topic": "Trabajo cotidiano",
+    "difficulty": "básico"
   },
   {
-    id: "git-q-10",
-    collectionId: "git",
-    question: "¿Cómo empaqueta Git objetos individuales (loose objects) en 'Packfiles' durante 'git gc'?",
-    options: [
-      "Combina múltiples objetos comprimidos en un archivo .pack y calcula compresión delta entre versiones sucesivas de archivos similares.",
-      "Comprime los archivos en un único archivo zip con contraseña cifrado con AES-256.",
-      "Convierte todos los commits en imágenes ISO de solo lectura montadas en el kernel.",
-      "Envía los objetos a un servidor de almacenamiento temporal en la nube de Git."
+    "id": "git-q-10",
+    "collectionId": "git",
+    "question": "Respecto a trabajo cotidiano en Git, ¿cuál es el propósito de «git commit y metadatos»?",
+    "options": [
+      "Compara working tree, índice, commits o ramas eligiendo correctamente los extremos al operar.",
+      "Guarda un snapshot con autor, fecha, mensaje y uno o más padres dentro de la aplicación.",
+      "Resume archivos tracked, untracked, staged y modificados sin alterar el repositorio.",
+      "Construye commits enfocados seleccionando partes coherentes de un mismo archivo al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Para ahorrar espacio y acelerar la red, 'git gc' o 'git pack-objects' reúne miles de loose objects en archivos .pack acompañados de un índice .idx, empleando compresión delta donde solo se almacenan diferencias entre versiones cercanas.",
-    topic: "Optimización & Garbage Collection",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 1,
+    "explanation": "git commit y metadatos (Trabajo cotidiano): Guarda un snapshot con autor, fecha, mensaje y uno o más padres.",
+    "topic": "Trabajo cotidiano",
+    "difficulty": "básico"
   },
   {
-    id: "git-q-11",
-    collectionId: "git",
-    question: "¿Cuál es la diferencia entre un 'Annotated Tag' (etiqueta anotada) y un 'Lightweight Tag' (etiqueta ligera)?",
-    options: [
-      "El tag anotado es un objeto completo con autor, fecha, mensaje y firma GPG opcional; el ligero es solo un puntero directo al commit.",
-      "El tag ligero solo puede crearse en servidores remotos; el anotado es exclusivo del repositorio local.",
-      "El tag anotado se borra automáticamente al fusionar la rama; el ligero es permanente.",
-      "El tag ligero requiere que el repositorio esté configurado con el protocolo SSH."
+    "id": "git-q-11",
+    "collectionId": "git",
+    "question": "En Git (Trabajo cotidiano), ¿qué función técnica cumple «git restore y git switch»?",
+    "options": [
+      "Resume archivos tracked, untracked, staged y modificados sin alterar el repositorio al operar.",
+      "Compara working tree, índice, commits o ramas eligiendo correctamente los extremos al operar.",
+      "Separa la intención de restaurar contenido de la intención de cambiar la referencia activa.",
+      "Construye commits enfocados seleccionando partes coherentes de un mismo archivo al evaluar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Un lightweight tag es simplemente un archivo plano con un hash de commit en .git/refs/tags/. Un annotated tag ('git tag -a') crea un objeto tag en la base de datos con su propio SHA, mensaje, autoría y soporte para firmas criptográficas.",
-    topic: "Etiquetas & Versionado",
-    difficulty: "básico"
+    "correctAnswerIndex": 2,
+    "explanation": "git restore y git switch (Trabajo cotidiano): Separa la intención de restaurar contenido de la intención de cambiar la referencia activa.",
+    "topic": "Trabajo cotidiano",
+    "difficulty": "básico"
   },
   {
-    id: "git-q-12",
-    collectionId: "git",
-    question: "¿Qué ocurre durante un 'git rebase' a nivel del grafo de commits (DAG)?",
-    options: [
-      "Reproduce secuencialmente los commits de la rama actual sobre el commit base destino, generando nuevos hashes SHA para cada uno.",
-      "Fusiona todos los archivos en un único commit sin alterar los identificadores SHA originales.",
-      "Intercambia los nombres de ambas ramas manteniendo inmutables los punteros de los ancestros.",
-      "Borra permanentemente la rama base del repositorio remoto origin."
+    "id": "git-q-12",
+    "collectionId": "git",
+    "question": "Dentro de Git, ¿cómo opera el mecanismo de «.gitignore» en trabajo cotidiano?",
+    "options": [
+      "Resume archivos tracked, untracked, staged y modificados sin alterar el repositorio en el flujo.",
+      "Compara working tree, índice, commits o ramas eligiendo correctamente los extremos al operar.",
+      "Separa la intención de restaurar contenido de la intención de cambiar la referencia activa.",
+      "Evita añadir residuos nuevos sin asumir que una regla deja de seguir archivos ya registrados."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Rebase extrae el parche de cada commit único de la rama actual y los aplica uno a uno sobre la punta de la rama destino. Dado que el commit padre cambia, cada commit recibe un nuevo SHA, reescribiendo la historia linealmente.",
-    topic: "Historia & Rebase",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 3,
+    "explanation": ".gitignore y archivos tracked (Trabajo cotidiano): Evita añadir residuos nuevos sin asumir que una regla deja de seguir archivos ya registrados.",
+    "topic": "Trabajo cotidiano",
+    "difficulty": "básico"
   },
   {
-    id: "git-q-13",
-    collectionId: "git",
-    question: "¿Qué hook de Git del lado del cliente puede impedir que se cree un commit si los tests o el linter fallan?",
-    options: [
-      "pre-commit (ubicado en .git/hooks/pre-commit)",
-      "post-commit (ubicado en .git/hooks/post-commit)",
-      "pre-push (ubicado en .git/hooks/pre-push)",
-      "post-receive (ubicado en el servidor remoto)"
+    "id": "git-q-13",
+    "collectionId": "git",
+    "question": "Al trabajar con Git, ¿qué responsabilidad define a «Ramas como punteros móviles»?",
+    "options": [
+      "Crea líneas de trabajo baratas que avanzan al producir commits respetando las invariantes.",
+      "Adelanta una referencia cuando no existe divergencia y no requiere un nodo de merge.",
+      "Une historias divergentes preservando dos padres y el contexto de integración al operar.",
+      "Reproduce cambios sobre una base nueva y genera commits con identificadores diferentes."
     ],
-    correctAnswerIndex: 0,
-    explanation: "El script 'pre-commit' se ejecuta al invocar 'git commit' antes de solicitar el mensaje de commit. Si el script finaliza con un código de salida distinto de cero, Git aborta la operación de confirmación de inmediato.",
-    topic: "Hooks & Automatización",
-    difficulty: "básico"
+    "correctAnswerIndex": 0,
+    "explanation": "Ramas como punteros móviles (Ramas e integración): Crea líneas de trabajo baratas que avanzan al producir commits.",
+    "topic": "Ramas e integración",
+    "difficulty": "básico"
   },
   {
-    id: "git-q-14",
-    collectionId: "git",
-    question: "¿Cuál es la función del comando 'git cherry-pick <hash>'?",
-    options: [
-      "Aplica los cambios introducidos por un commit específico en la rama de trabajo actual como un nuevo commit.",
-      "Elimina selectivamente un archivo del historial completo del repositorio.",
-      "Descarga únicamente un directorio específico de un repositorio remoto sin clonar el resto.",
-      "Compara dos ramas y muestra solo los archivos que contienen modificaciones en líneas impares."
+    "id": "git-q-14",
+    "collectionId": "git",
+    "question": "En la arquitectura de Git, ¿qué caracteriza técnicamente a «Fast-forward»?",
+    "options": [
+      "Une historias divergentes preservando dos padres y el contexto de integración al operar.",
+      "Adelanta una referencia cuando no existe divergencia y no requiere un nodo de merge.",
+      "Reordena, combina, edita o descarta commits locales antes de compartirlos al operar.",
+      "Publica referencias solo cuando la política remota acepta el avance propuesto al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "'git cherry-pick' toma el diff exacto introducido por un commit arbitrario y lo aplica como un nuevo commit sobre la rama activa actual, conservando el mensaje pero generando un nuevo hash e historial de padres.",
-    topic: "Operaciones de Historial",
-    difficulty: "básico"
+    "correctAnswerIndex": 1,
+    "explanation": "Fast-forward (Ramas e integración): Adelanta una referencia cuando no existe divergencia y no requiere un nodo de merge.",
+    "topic": "Ramas e integración",
+    "difficulty": "básico"
   },
   {
-    id: "git-q-15",
-    collectionId: "git",
-    question: "¿Qué estrategia de fusión utiliza Git por defecto desde la versión 2.34 en sustitución de 'recursive'?",
-    options: [
-      "ort (Ostensibly Recursive's Twin), un motor más rápido y preciso para renombramientos y detección de conflictos.",
-      "octopus, diseñada para fusionar más de dos ramas simultáneamente.",
-      "resolve, un algoritmo de dos vías basado en marcas de tiempo de modificación.",
-      "ours, que descarta silenciosamente los cambios entrantes de la rama fusionada."
+    "id": "git-q-15",
+    "collectionId": "git",
+    "question": "Respecto a ramas e integración en Git, ¿cuál es el propósito de «Merge commits»?",
+    "options": [
+      "Adelanta una referencia cuando no existe divergencia y no requiere un nodo de merge al operar.",
+      "Reproduce cambios sobre una base nueva y genera commits con identificadores diferentes.",
+      "Une historias divergentes preservando dos padres y el contexto de integración al operar.",
+      "Detiene la integración cuando Git no puede decidir una resolución correcta en una región."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Git 2.34 adoptó 'ort' como la estrategia de merge por defecto. Reescribe el algoritmo recursivo con mejor manejo de renombramientos complejos y un rendimiento significativamente superior en repositorios masivos.",
-    topic: "Estrategias de Merge",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 2,
+    "explanation": "Merge commits (Ramas e integración): Une historias divergentes preservando dos padres y el contexto de integración.",
+    "topic": "Ramas e integración",
+    "difficulty": "básico"
   },
   {
-    id: "git-q-16",
-    collectionId: "git",
-    question: "¿Cómo repara 'git commit --amend' el último commit sin crear uno nuevo adicional en el historial?",
-    options: [
-      "Crea un nuevo commit que reemplaza al commit actual de HEAD apuntando al mismo commit padre, actualizando el árbol y mensaje.",
-      "Modifica en caliente los bytes del commit anterior en el disco sin cambiar su hash SHA.",
-      "Elimina el commit anterior de la base de datos de objetos y restaura el árbol de trabajo.",
-      "Envía una señal al servidor remoto para revocar el último commit publicado."
+    "id": "git-q-16",
+    "collectionId": "git",
+    "question": "En Git (Ramas e integración), ¿qué función técnica cumple «Conflictos de contenido»?",
+    "options": [
+      "Adelanta una referencia cuando no existe divergencia y no requiere un nodo de merge al operar.",
+      "Reproduce cambios sobre una base nueva y genera commits con identificadores diferentes.",
+      "Une historias divergentes preservando dos padres y el contexto de integración al evaluar.",
+      "Detiene la integración cuando Git no puede decidir una resolución correcta en una región."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Dado que los objetos en Git son inmutables, '--amend' no muta el commit viejo: crea un nuevo objeto commit con los contenidos del staging actual y el mismo padre del commit anterior, moviendo el puntero de la rama al nuevo SHA.",
-    topic: "Historia & Modificación",
-    difficulty: "básico"
+    "correctAnswerIndex": 3,
+    "explanation": "Conflictos de contenido (Ramas e integración): Detiene la integración cuando Git no puede decidir una resolución correcta en una región.",
+    "topic": "Ramas e integración",
+    "difficulty": "básico"
   },
   {
-    id: "git-q-17",
-    collectionId: "git",
-    question: "¿Para qué sirve el archivo '.gitattributes' en un repositorio de Git?",
-    options: [
-      "Definir el manejo de finales de línea (CRLF/LF), filtros de diff personalizados, atributos binarios y exportación de archivos (export-ignore).",
-      "Listar las contraseñas y claves SSH autorizadas para sincronizar con el origen remoto.",
-      "Configurar los permisos de administración y roles de usuario dentro de la organización.",
-      "Establecer la versión mínima del motor de Node.js requerida para compilar el proyecto."
+    "id": "git-q-17",
+    "collectionId": "git",
+    "question": "Dentro de Git, ¿cómo opera el mecanismo de «Rebase» en ramas e integración?",
+    "options": [
+      "Reproduce cambios sobre una base nueva y genera commits con identificadores diferentes.",
+      "Adelanta una referencia cuando no existe divergencia y no requiere un nodo de merge.",
+      "Une historias divergentes preservando dos padres y el contexto de integración al operar.",
+      "Reordena, combina, edita o descarta commits locales antes de compartirlos al evaluar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "'.gitattributes' asigna directivas por patrón de archivo: normalización de saltos de línea (text, eol=lf), tratamientos como binario para evitar corrupciones en diffs, o directivas como 'export-ignore' para 'git archive'.",
-    topic: "Configuración & Atributos",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 0,
+    "explanation": "Rebase (Ramas e integración): Reproduce cambios sobre una base nueva y genera commits con identificadores diferentes.",
+    "topic": "Ramas e integración",
+    "difficulty": "intermedio"
   },
   {
-    id: "git-q-18",
-    collectionId: "git",
-    question: "¿Qué diferencia existe entre 'git fetch' y 'git pull'?",
-    options: [
-      "'git fetch' descarga los objetos y referencias remotas sin alterar el árbol de trabajo; 'git pull' ejecuta 'fetch' y seguidamente fusiona ('merge' o 'rebase').",
-      "'git fetch' sube cambios locales al servidor; 'git pull' los descarga en staging.",
-      "'git pull' solo funciona con el protocolo HTTPS; 'git fetch' requiere obligatoriamente SSH.",
-      "Ambos comandos son sinónimos absolutos sin ninguna diferencia técnica."
+    "id": "git-q-18",
+    "collectionId": "git",
+    "question": "Al trabajar con Git, ¿qué responsabilidad define a «Rebase interactivo»?",
+    "options": [
+      "Adelanta una referencia cuando no existe divergencia y no requiere un nodo de merge al operar.",
+      "Reordena, combina, edita o descarta commits locales antes de compartirlos con precisión.",
+      "Une historias divergentes preservando dos padres y el contexto de integración al operar.",
+      "Reproduce cambios sobre una base nueva y genera commits con identificadores diferentes."
     ],
-    correctAnswerIndex: 0,
-    explanation: "'git fetch' sincroniza el almacén de objetos y actualiza las ramas de seguimiento remoto (como origin/main). 'git pull' es un comando compuesto que ejecuta 'git fetch' y luego fusiona (o hace rebase si está configurado) en la rama local activa.",
-    topic: "Sincronización & Remotos",
-    difficulty: "básico"
+    "correctAnswerIndex": 1,
+    "explanation": "Rebase interactivo (Ramas e integración): Reordena, combina, edita o descarta commits locales antes de compartirlos.",
+    "topic": "Ramas e integración",
+    "difficulty": "intermedio"
   },
   {
-    id: "git-q-19",
-    collectionId: "git",
-    question: "¿Cuál es la utilidad del comando 'git stash branch <nombre-rama>'?",
-    options: [
-      "Crea y conmuta a una nueva rama a partir del commit donde se creó el stash y aplica el estado guardado, resolviendo posibles conflictos.",
-      "Envía el contenido del stash directamente al repositorio remoto como una rama protegida.",
-      "Convierte el stash en un archivo comprimido .tar.gz para compartir por correo electrónico.",
-      "Borra permanentemente todas las entradas del stash que tengan más de siete días de antigüedad."
+    "id": "git-q-19",
+    "collectionId": "git",
+    "question": "En la arquitectura de Git, ¿qué caracteriza técnicamente a «Clone y repositorios completos»?",
+    "options": [
+      "Combina fetch con una estrategia explícita de merge, rebase o fast-forward al operar.",
+      "Relaciona una rama local con una referencia remota para medir ahead y behind al operar.",
+      "Crea una copia local con objetos, referencias remotas y configuración de conexión.",
+      "Publica referencias solo cuando la política remota acepta el avance propuesto."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Si el código en el stash entra en conflicto con los cambios actuales de la rama de trabajo, 'git stash branch' crea una nueva rama partiendo exactamente del commit en el que se originó el stash y aplica los cambios limpiamente.",
-    topic: "Stashing & Estados Temporales",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 2,
+    "explanation": "Clone y repositorios completos (Repositorios distribuidos): Crea una copia local con objetos, referencias remotas y configuración de conexión.",
+    "topic": "Repositorios distribuidos",
+    "difficulty": "intermedio"
   },
   {
-    id: "git-q-20",
-    collectionId: "git",
-    question: "¿Qué indica la presencia de marcadores de conflicto '||||||| base' en una resolución de merge?",
-    options: [
-      "Que Git está configurado con 'merge.conflictStyle = diff3' o 'zdiff3', mostrando el ancestro común original además de 'ours' y 'theirs'.",
-      "Que el conflicto involucra más de tres ramas simultáneas en una estrategia octopus.",
-      "Que el archivo en conflicto supera el límite de tamaño máximo para procesamiento automático.",
-      "Que el commit fue generado por un script de integración continua automatizado."
+    "id": "git-q-20",
+    "collectionId": "git",
+    "question": "Respecto a repositorios distribuidos en Git, ¿cuál es el propósito de «Remotos origin y upstream»?",
+    "options": [
+      "Descarga objetos y actualiza referencias remotas de seguimiento sin integrar el working tree al operar.",
+      "Crea una copia local con objetos, referencias remotas y configuración de conexión en el flujo.",
+      "Publica referencias solo cuando la política remota acepta el avance propuesto de forma segura.",
+      "Asigna nombres locales a otros repositorios sin convertirlos en autoridades especiales de Git."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Por defecto, Git solo muestra dos bloques (nuestro HEAD y el entrante). Con 'conflictStyle = diff3' o 'zdiff3', Git incluye la sección intermedia con el estado en el ancestro base común, facilitando deducir qué cambió cada parte.",
-    topic: "Resolución de Conflictos",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 3,
+    "explanation": "Remotos origin y upstream (Repositorios distribuidos): Asigna nombres locales a otros repositorios sin convertirlos en autoridades especiales de Git.",
+    "topic": "Repositorios distribuidos",
+    "difficulty": "intermedio"
   },
   {
-    id: "git-q-21",
-    collectionId: "git",
-    question: "¿Qué es un 'Sparse Checkout' (clonación dispersa) en Git y para qué se emplea?",
-    options: [
-      "Permite poblar el directorio de trabajo solo con un subconjunto específico de carpetas o archivos de un monorepo masivo.",
-      "Comprime los archivos del repositorio para descargarlos en redes de baja latencia.",
-      "Verifica la integridad criptográfica de los commits ignorando los archivos binarios.",
-      "Descarga solo los últimos diez commits del historial ignorando ramas secundarias."
+    "id": "git-q-21",
+    "collectionId": "git",
+    "question": "En Git (Repositorios distribuidos), ¿qué función técnica cumple «Fetch»?",
+    "options": [
+      "Descarga objetos y actualiza referencias remotas de seguimiento sin integrar el working tree.",
+      "Crea una copia local con objetos, referencias remotas y configuración de conexión al operar.",
+      "Asigna nombres locales a otros repositorios sin convertirlos en autoridades especiales de Git.",
+      "Publica referencias solo cuando la política remota acepta el avance propuesto en ejecución."
     ],
-    correctAnswerIndex: 0,
-    explanation: "'sparse-checkout' permite a desarrolladores en monorepos gigantescos trabajar solo con las carpetas de su servicio o módulo, manteniendo el resto del árbol de trabajo virtualizado o ausente en el disco local.",
-    topic: "Monorepos & Rendimiento",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 0,
+    "explanation": "Fetch (Repositorios distribuidos): Descarga objetos y actualiza referencias remotas de seguimiento sin integrar el working tree.",
+    "topic": "Repositorios distribuidos",
+    "difficulty": "intermedio"
   },
   {
-    id: "git-q-22",
-    collectionId: "git",
-    question: "¿Qué comando verifica la conectividad e integridad de la base de datos de objetos interna de Git?",
-    options: [
-      "git fsck (--full)",
-      "git clean -fdx",
-      "git check-ref-format",
-      "git status --check"
+    "id": "git-q-22",
+    "collectionId": "git",
+    "question": "Dentro de Git, ¿cómo opera el mecanismo de «Pull» en repositorios distribuidos?",
+    "options": [
+      "Crea una copia local con objetos, referencias remotas y configuración de conexión al operar.",
+      "Combina fetch con una estrategia explícita de merge, rebase o fast-forward en ejecución.",
+      "Publica referencias solo cuando la política remota acepta el avance propuesto al operar.",
+      "Relaciona una rama local con una referencia remota para medir ahead y behind al evaluar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "'git fsck' (File System Check) verifica la integridad del almacén de objetos de Git, validando sumas hash SHA, detectando objetos corruptos o dangling (huérfanos) y garantizando la coherencia del grafo DAG.",
-    topic: "Mantenimiento & Integridad",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 1,
+    "explanation": "Pull (Repositorios distribuidos): Combina fetch con una estrategia explícita de merge, rebase o fast-forward.",
+    "topic": "Repositorios distribuidos",
+    "difficulty": "intermedio"
   },
   {
-    id: "git-q-23",
-    collectionId: "git",
-    question: "¿Cuál es la función del comando 'git rev-parse' en scripts de automatización?",
-    options: [
-      "Resolver parámetros y referencias arbitrarias (como HEAD, ramas o etiquetas) a sus hashes SHA canónicos de 40 caracteres.",
-      "Generar números de versión semántica a partir de los mensajes de confirmación.",
-      "Traducir los comentarios del código a diferentes idiomas mediante modelos LLM.",
-      "Validar que el formato de una pull request cumpla con las políticas de contribución."
+    "id": "git-q-23",
+    "collectionId": "git",
+    "question": "Al trabajar con Git, ¿qué responsabilidad define a «Push y non-fast-forward»?",
+    "options": [
+      "Crea una copia local con objetos, referencias remotas y configuración de conexión al operar.",
+      "Relaciona una rama local con una referencia remota para medir ahead y behind al evaluar.",
+      "Publica referencias solo cuando la política remota acepta el avance propuesto al operar.",
+      "Combina fetch con una estrategia explícita de merge, rebase o fast-forward en ejecución."
     ],
-    correctAnswerIndex: 0,
-    explanation: "'git rev-parse' es una herramienta clave de fontanería. Traduce nombres humanos (como 'HEAD', 'main~2', '@{u}') en hashes SHA exactos y determina metadatos como la raíz del repositorio (--show-toplevel).",
-    topic: "Comandos Plumbing & Scripting",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 2,
+    "explanation": "Push y non-fast-forward (Repositorios distribuidos): Publica referencias solo cuando la política remota acepta el avance propuesto.",
+    "topic": "Repositorios distribuidos",
+    "difficulty": "intermedio"
   },
   {
-    id: "git-q-24",
-    collectionId: "git",
-    question: "¿Cómo diferencia Git una modificación de permisos de archivo ejecutable (+x) en sistemas Unix?",
-    options: [
-      "Registra los modos de archivo POSIX 100644 (archivo estándar) o 100755 (ejecutable) directamente en el objeto 'tree'.",
-      "Guarda un archivo oculto .permissions en cada carpeta del proyecto.",
-      "Utiliza atributos extendidos del sistema de archivos ext4 o APFS.",
-      "Git no almacena permisos de archivo bajo ninguna circunstancia por motivos de portabilidad."
+    "id": "git-q-24",
+    "collectionId": "git",
+    "question": "En la arquitectura de Git, ¿qué caracteriza técnicamente a «Tracking branches»?",
+    "options": [
+      "Crea una copia local con objetos, referencias remotas y configuración de conexión al operar.",
+      "Publica referencias solo cuando la política remota acepta el avance propuesto al operar.",
+      "Combina fetch con una estrategia explícita de merge, rebase o fast-forward en ejecución.",
+      "Relaciona una rama local con una referencia remota para medir ahead y behind al evaluar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Git no guarda usuarios ni permisos POSIX complejos, pero sí preserva el bit de ejecución mediante dos modos en las entradas del objeto 'tree': 100644 (no ejecutable) y 100755 (ejecutable), además de 120000 para enlaces simbólicos.",
-    topic: "Modelo de Objetos & Sistema de Archivos",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 3,
+    "explanation": "Tracking branches (Repositorios distribuidos): Relaciona una rama local con una referencia remota para medir ahead y behind.",
+    "topic": "Repositorios distribuidos",
+    "difficulty": "intermedio"
   },
   {
-    id: "git-q-25",
-    collectionId: "git",
-    question: "¿Qué efecto tiene ejecutar 'git clean -f -d'?",
-    options: [
-      "Elimina de forma irreversible todos los archivos y directorios no rastreados (untracked) del directorio de trabajo.",
-      "Borra todas las ramas locales que ya fueron fusionadas en la rama main.",
-      "Reorganiza y defragmenta la base de datos de objetos en segundo plano.",
-      "Descarta los cambios preparados en el área de staging devolviéndolos al worktree."
+    "id": "git-q-25",
+    "collectionId": "git",
+    "question": "Respecto a historia y diagnóstico en Git, ¿cuál es el propósito de «log, show y graph»?",
+    "options": [
+      "Recorre padres, inspecciona snapshots y revela la forma real de la historia en el flujo.",
+      "Localiza el primer commit defectuoso mediante búsqueda binaria y una prueba repetible.",
+      "Crea una copia local con objetos, referencias remotas y configuración de conexión.",
+      "Integra código de repositorios externos en ramas propias simplificando el clonado."
     ],
-    correctAnswerIndex: 0,
-    explanation: "'git clean' limpia el directorio de trabajo eliminando archivos que no están bajo control de versiones ni en .gitignore. Con '-f' (force) y '-d' (directories), elimina recursivamente tanto archivos como carpetas untracked.",
-    topic: "Directorio de Trabajo & Limpieza",
-    difficulty: "básico"
+    "correctAnswerIndex": 0,
+    "explanation": "log, show y graph (Historia y diagnóstico): Recorre padres, inspecciona snapshots y revela la forma real de la historia.",
+    "topic": "Historia y diagnóstico",
+    "difficulty": "intermedio"
   },
   {
-    id: "git-q-26",
-    collectionId: "git",
-    question: "¿Qué mecanismo utiliza 'git revert <hash>' para deshacer cambios sin reescribir el historial?",
-    options: [
-      "Crea un nuevo commit que aplica exactamente las modificaciones inversas al commit señalado, preservando la cronología previa.",
-      "Elimina el commit señalado del grafo DAG uniendo el padre con el hijo directo.",
-      "Restaura el repositorio al estado de la etiqueta más cercana en el tiempo.",
-      "Oculta el commit mediante una directiva de exclusion en el archivo .git/config."
+    "id": "git-q-26",
+    "collectionId": "git",
+    "question": "En Git (Historia y diagnóstico), ¿qué función técnica cumple «blame como contexto»?",
+    "options": [
+      "Localiza el primer commit defectuoso mediante búsqueda binaria y una prueba repetible en el flujo.",
+      "Relaciona líneas con commits para investigar decisiones sin reducir el análisis a culpabilidad.",
+      "Comprueba conectividad e integridad antes de que la recolección elimine objetos recuperables.",
+      "Recorre padres, inspecciona snapshots y revela la forma real de la historia de modo predecible."
     ],
-    correctAnswerIndex: 0,
-    explanation: "A diferencia de 'reset' (que altera el pasado), 'revert' es una operación hacia adelante: computa el inverso de los cambios del commit indicado y crea un nuevo commit de compensación, seguro para ramas compartidas.",
-    topic: "Historia & Reversión Segura",
-    difficulty: "básico"
+    "correctAnswerIndex": 1,
+    "explanation": "blame como contexto (Historia y diagnóstico): Relaciona líneas con commits para investigar decisiones sin reducir el análisis a culpabilidad.",
+    "topic": "Historia y diagnóstico",
+    "difficulty": "intermedio"
   },
   {
-    id: "git-q-27",
-    collectionId: "git",
-    question: "¿Qué representa la referencia 'ORIG_HEAD' creada tras ciertas operaciones en Git?",
-    options: [
-      "El valor previo que tenía HEAD antes de operaciones drásticas como rebase, merge o reset, facilitando su deshacer.",
-      "El hash del commit raíz inicial con el que se inauguró el repositorio.",
-      "El último commit que fue firmado criptográficamente con una clave GPG válida.",
-      "La dirección IP del servidor donde se alojó el repositorio por primera vez."
+    "id": "git-q-27",
+    "collectionId": "git",
+    "question": "Dentro de Git, ¿cómo opera el mecanismo de «bisect» en historia y diagnóstico?",
+    "options": [
+      "Recorre padres, inspecciona snapshots y revela la forma real de la historia en ejecución.",
+      "Construye commits enfocados seleccionando partes coherentes de un mismo archivo al operar.",
+      "Localiza el primer commit defectuoso mediante búsqueda binaria y una prueba repetible.",
+      "Representa la propuesta exacta del próximo snapshot entre el working tree y HEAD al operar."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Comandos como 'git merge', 'git rebase' o 'git reset' guardan la posición anterior de HEAD en la referencia '.git/ORIG_HEAD'. Esto permite deshacer un merge erróneo con 'git reset --hard ORIG_HEAD'.",
-    topic: "Referencias & Seguridad",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 2,
+    "explanation": "bisect (Historia y diagnóstico): Localiza el primer commit defectuoso mediante búsqueda binaria y una prueba repetible.",
+    "topic": "Historia y diagnóstico",
+    "difficulty": "intermedio"
   },
   {
-    id: "git-q-28",
-    collectionId: "git",
-    question: "¿Cuál es la función del comando 'git write-tree' en el flujo de fontanería?",
-    options: [
-      "Crea un objeto 'tree' a partir del contenido actual del Index (staging area) y devuelve su identificador SHA.",
-      "Escribe un árbol de directorios vacío en el sistema de archivos local.",
-      "Imprime una visualización gráfica en ASCII de las ramas y etiquetas activas.",
-      "Exporta el repositorio a un archivo de esquema XML para auditorías de cumplimiento."
+    "id": "git-q-28",
+    "collectionId": "git",
+    "question": "Al trabajar con Git, ¿qué responsabilidad define a «Reflog»?",
+    "options": [
+      "Relaciona líneas con commits para investigar decisiones sin reducir el análisis a culpabilidad al operar.",
+      "Comprueba conectividad e integridad antes de que la recolección elimine objetos recuperables al operar.",
+      "Ejecuta verificaciones alrededor de eventos sabiendo que no se distribuyen automáticamente con el clon.",
+      "Registra movimientos locales de referencias y permite reencontrar commits que dejaron de ser visibles."
     ],
-    correctAnswerIndex: 0,
-    explanation: "'git write-tree' serializa el estado del staging area (.git/index) en uno o más objetos 'tree' en .git/objects y devuelve el hash SHA del tree raíz, paso previo a crear un commit con 'git commit-tree'.",
-    topic: "Comandos Plumbing",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 3,
+    "explanation": "Reflog (Historia y diagnóstico): Registra movimientos locales de referencias y permite reencontrar commits que dejaron de ser visibles.",
+    "topic": "Historia y diagnóstico",
+    "difficulty": "intermedio"
   },
   {
-    id: "git-q-29",
-    collectionId: "git",
-    question: "¿Qué ventaja ofrece 'git worktree add' frente a clonar múltiples copias del mismo repositorio?",
-    options: [
-      "Permite tener múltiples ramas revisadas simultáneamente en diferentes carpetas del disco compartiendo la misma base de objetos (.git).",
-      "Descarga únicamente los commits de los últimos treinta días ahorrando ancho de banda.",
-      "Ejecuta pruebas unitarias en paralelo dentro de contenedores efímeros aislados.",
-      "Permite editar archivos bloqueando el acceso a otros desarrolladores en la red."
+    "id": "git-q-29",
+    "collectionId": "git",
+    "question": "En la arquitectura de Git, ¿qué caracteriza técnicamente a «fsck»?",
+    "options": [
+      "Comprueba conectividad e integridad antes de que la recolección elimine objetos recuperables al operar.",
+      "Localiza el primer commit defectuoso mediante búsqueda binaria y una prueba repetible al operar.",
+      "Relaciona líneas con commits para investigar decisiones sin reducir el análisis a culpabilidad.",
+      "Recorre padres, inspecciona snapshots y revela la forma real de la historia de forma clara."
     ],
-    correctAnswerIndex: 0,
-    explanation: "'git worktree' habilita múltiples directorios de trabajo conectados al mismo almacén .git. Puedes compilar una rama en un directorio mientras revisas un PR o desarrollas una hotfix en otro, sin duplicar almacenamiento ni re-clonar.",
-    topic: "Worktrees Múltiples",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 0,
+    "explanation": "fsck y objetos inalcanzables (Historia y diagnóstico): Comprueba conectividad e integridad antes de que la recolección elimine objetos recuperables.",
+    "topic": "Historia y diagnóstico",
+    "difficulty": "intermedio"
   },
   {
-    id: "git-q-30",
-    collectionId: "git",
-    question: "¿Qué algoritmo criptográfico está adoptando Git para mitigar colisiones hash en sustitución gradual de SHA-1?",
-    options: [
-      "SHA-256 (Object Format Transition / SHA-256 repositories)",
-      "MD5 con claves de sal dinámicas",
-      "Blowfish de 512 bits con entropía cuántica",
-      "RSA con certificados X.509 integrados en cada blob"
+    "id": "git-q-30",
+    "collectionId": "git",
+    "question": "Respecto a historia y diagnóstico en Git, ¿cuál es el propósito de «Hooks locales»?",
+    "options": [
+      "Relaciona líneas con commits para investigar decisiones sin reducir el análisis a culpabilidad al evaluar.",
+      "Ejecuta verificaciones alrededor de eventos sabiendo que no se distribuyen automáticamente con el clon.",
+      "Comprueba conectividad e integridad antes de que la recolección elimine objetos recuperables al operar.",
+      "Registra movimientos locales de referencias y permite reencontrar commits que dejaron de ser visibles."
     ],
-    correctAnswerIndex: 0,
-    explanation: "Tras la demostración práctica de ataques de colisión contra SHA-1 (SHAttered), el proyecto Git diseñó e implementó la transición hacia SHA-256, soportando repositorios inicializados con 'git init --object-format=sha256'.",
-    topic: "Criptografía & Evolución de Git",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 1,
+    "explanation": "Hooks locales (Historia y diagnóstico): Ejecuta verificaciones alrededor de eventos sabiendo que no se distribuyen automáticamente con el clon.",
+    "topic": "Historia y diagnóstico",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "git-q-31",
+    "collectionId": "git",
+    "question": "En Git (Corrección y producción), ¿qué función técnica cumple «Reset, restore y revert»?",
+    "options": [
+      "Marca versiones con identidad, mensaje y verificación criptográfica cuando el flujo lo exige dentro del flujo.",
+      "Versiona punteros mientras almacena binarios grandes fuera del almacén ordinario de objetos de forma clara.",
+      "Elige entre mover referencias, restaurar archivos o publicar un commit inverso según el alcance compartido.",
+      "Guarda trabajo breve fuera del índice sin tratarlo como sustituto permanente de commits de modo predecible."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Reset, restore y revert (Corrección y producción): Elige entre mover referencias, restaurar archivos o publicar un commit inverso según el alcance compartido.",
+    "topic": "Corrección y producción",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "git-q-32",
+    "collectionId": "git",
+    "question": "Dentro de Git, ¿cómo opera el mecanismo de «Cherry-pick» en corrección y producción?",
+    "options": [
+      "Empaqueta objetos y limpia estados inalcanzables respetando ventanas de recuperación al operar.",
+      "Guarda trabajo breve fuera del índice sin tratarlo como sustituto permanente de commits.",
+      "Crea una copia local con objetos, referencias remotas y configuración de conexión al operar.",
+      "Reaplica el cambio de un commit puntual sin fusionar toda su rama de origen en el flujo."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "Cherry-pick (Corrección y producción): Reaplica el cambio de un commit puntual sin fusionar toda su rama de origen.",
+    "topic": "Corrección y producción",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "git-q-33",
+    "collectionId": "git",
+    "question": "Al trabajar con Git, ¿qué responsabilidad define a «Stash»?",
+    "options": [
+      "Guarda trabajo breve fuera del índice sin tratarlo como sustituto permanente de commits.",
+      "Empaqueta objetos y limpia estados inalcanzables respetando ventanas de recuperación.",
+      "Reaplica el cambio de un commit puntual sin fusionar toda su rama de origen al operar.",
+      "Crea una copia local con objetos, referencias remotas y configuración de conexión."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Stash (Corrección y producción): Guarda trabajo breve fuera del índice sin tratarlo como sustituto permanente de commits.",
+    "topic": "Corrección y producción",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "git-q-34",
+    "collectionId": "git",
+    "question": "En la arquitectura de Git, ¿qué caracteriza técnicamente a «Tags anotados y firmas»?",
+    "options": [
+      "Guarda trabajo breve fuera del índice sin tratarlo como sustituto permanente de commits al operar.",
+      "Marca versiones con identidad, mensaje y verificación criptográfica cuando el flujo lo exige.",
+      "Empaqueta objetos y limpia estados inalcanzables respetando ventanas de recuperación al operar.",
+      "Versiona punteros mientras almacena binarios grandes fuera del almacén ordinario de objetos."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Tags anotados y firmas (Corrección y producción): Marca versiones con identidad, mensaje y verificación criptográfica cuando el flujo lo exige.",
+    "topic": "Corrección y producción",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "git-q-35",
+    "collectionId": "git",
+    "question": "Respecto a corrección y producción en Git, ¿cuál es el propósito de «Git LFS»?",
+    "options": [
+      "Empaqueta objetos y limpia estados inalcanzables respetando ventanas de recuperación al operar.",
+      "Guarda trabajo breve fuera del índice sin tratarlo como sustituto permanente de commits.",
+      "Versiona punteros mientras almacena binarios grandes fuera del almacén ordinario de objetos.",
+      "Marca versiones con identidad, mensaje y verificación criptográfica cuando el flujo lo exige."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Git LFS (Corrección y producción): Versiona punteros mientras almacena binarios grandes fuera del almacén ordinario de objetos.",
+    "topic": "Corrección y producción",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "git-q-36",
+    "collectionId": "git",
+    "question": "En Git (Corrección y producción), ¿qué función técnica cumple «Mantenimiento y garbage collection»?",
+    "options": [
+      "Reaplica el cambio de un commit puntual sin fusionar toda su rama de origen en el flujo.",
+      "Construye commits enfocados seleccionando partes coherentes de un mismo archivo al operar.",
+      "Une historias divergentes preservando dos padres y el contexto de integración al operar.",
+      "Empaqueta objetos y limpia estados inalcanzables respetando ventanas de recuperación."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "Mantenimiento y garbage collection (Corrección y producción): Empaqueta objetos y limpia estados inalcanzables respetando ventanas de recuperación.",
+    "topic": "Corrección y producción",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "git-q-37",
+    "collectionId": "git",
+    "question": "Dentro de Git, ¿cómo opera el mecanismo de «Comandos de plomería vs porcelana» en estructuras internas y plomería de git?",
+    "options": [
+      "Distingue utilidades de bajo nivel de la interfaz de usuario respetando las invariantes.",
+      "Comprime millones de objetos delta en archivos compactos indexados para lectura veloz.",
+      "Acelera recorridos de historia con tablas de búsqueda precalculadas en disco al operar.",
+      "Examina campos de timestamps, tamaño, SHA-1 y rutas ordenadas en el staging al operar."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Comandos de plomería vs porcelana (Estructuras internas y plomería de Git): Distingue utilidades de bajo nivel (hash-object, cat-file, mktree) de la interfaz de usuario.",
+    "topic": "Estructuras internas y plomería de Git",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "git-q-38",
+    "collectionId": "git",
+    "question": "Al trabajar con Git, ¿qué responsabilidad define a «Objetos empaquetados»?",
+    "options": [
+      "Acelera recorridos de historia con tablas de búsqueda precalculadas en disco en el flujo.",
+      "Comprime millones de objetos delta en archivos compactos indexados para lectura veloz.",
+      "Examina campos de timestamps, tamaño, SHA-1 y rutas ordenadas en el staging al operar.",
+      "Agrupa punteros de ramas y tags en un solo archivo para acelerar búsquedas al evaluar."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Objetos empaquetados y archivos .pack/.idx (Estructuras internas y plomería de Git): Comprime millones de objetos delta en archivos compactos indexados para lectura veloz.",
+    "topic": "Estructuras internas y plomería de Git",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "git-q-39",
+    "collectionId": "git",
+    "question": "En la arquitectura de Git, ¿qué caracteriza técnicamente a «Packed-refs y desfragmentación de referencias»?",
+    "options": [
+      "Comprime millones de objetos delta en archivos compactos indexados para lectura veloz al operar.",
+      "Acelera recorridos de historia con tablas de búsqueda precalculadas en disco al evaluar.",
+      "Agrupa punteros de ramas y tags en un solo archivo para acelerar búsquedas en ejecución.",
+      "Examina campos de timestamps, tamaño, SHA-1 y rutas ordenadas en el staging en el flujo."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Packed-refs y desfragmentación de referencias (Estructuras internas y plomería de Git): Agrupa punteros de ramas y tags en un solo archivo para acelerar búsquedas.",
+    "topic": "Estructuras internas y plomería de Git",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "git-q-40",
+    "collectionId": "git",
+    "question": "Respecto a estructuras internas y plomería de git en Git, ¿cuál es el propósito de «El índice binario (.git/index) al microscopio»?",
+    "options": [
+      "Comprime millones de objetos delta en archivos compactos indexados para lectura veloz al operar.",
+      "Acelera recorridos de historia con tablas de búsqueda precalculadas en disco al evaluar.",
+      "Agrupa punteros de ramas y tags en un solo archivo para acelerar búsquedas en ejecución.",
+      "Examina campos de timestamps, tamaño, SHA-1 y rutas ordenadas en el staging en el flujo."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "El índice binario (.git/index) al microscopio (Estructuras internas y plomería de Git): Examina campos de timestamps, tamaño, SHA-1 y rutas ordenadas en el staging.",
+    "topic": "Estructuras internas y plomería de Git",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "git-q-41",
+    "collectionId": "git",
+    "question": "En Git (Estructuras internas y plomería de Git), ¿qué función técnica cumple «Commit-graph e indexación de ancestros»?",
+    "options": [
+      "Acelera recorridos de historia con tablas de búsqueda precalculadas en disco al evaluar.",
+      "Comprime millones de objetos delta en archivos compactos indexados para lectura veloz.",
+      "Examina campos de timestamps, tamaño, SHA-1 y rutas ordenadas en el staging al operar.",
+      "Agrupa punteros de ramas y tags en un solo archivo para acelerar búsquedas al evaluar."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Commit-graph e indexación de ancestros (Estructuras internas y plomería de Git): Acelera recorridos de historia con tablas de búsqueda precalculadas en disco.",
+    "topic": "Estructuras internas y plomería de Git",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "git-q-42",
+    "collectionId": "git",
+    "question": "Dentro de Git, ¿cómo opera el mecanismo de «Multi-pack index (MIDX)» en estructuras internas y plomería de git?",
+    "options": [
+      "Comprime millones de objetos delta en archivos compactos indexados para lectura veloz de forma segura.",
+      "Unifica índices de múltiples packfiles para optimizar operaciones de lectura sin reempaquetar todo.",
+      "Evita añadir residuos nuevos sin asumir que una regla deja de seguir archivos ya registrados al operar.",
+      "Descarga objetos y actualiza referencias remotas de seguimiento sin integrar el working tree al operar."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Multi-pack index (MIDX) (Estructuras internas y plomería de Git): Unifica índices de múltiples packfiles para optimizar operaciones de lectura sin reempaquetar todo.",
+    "topic": "Estructuras internas y plomería de Git",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "git-q-43",
+    "collectionId": "git",
+    "question": "Al trabajar con Git, ¿qué responsabilidad define a «git worktree y desarrollo en paralelo»?",
+    "options": [
+      "Elige entre integración continua en ramas cortas o ciclos de releases estructurados al operar.",
+      "Enlaza commits exactos de otros proyectos manteniendo árboles de trabajo independientes.",
+      "Trabaja en múltiples ramas simultáneamente sin necesidad de clonar de nuevo el repositorio.",
+      "Integra código de repositorios externos en ramas propias simplificando el clonado al operar."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "git worktree y desarrollo en paralelo (Flujos de trabajo avanzados y múltiples árboles de trabajo): Trabaja en múltiples ramas simultáneamente sin necesidad de clonar de nuevo el repositorio.",
+    "topic": "Flujos de trabajo avanzados y múltiples árboles de trabajo",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "git-q-44",
+    "collectionId": "git",
+    "question": "En la arquitectura de Git, ¿qué caracteriza técnicamente a «git sparse-checkout y repositorios gigantes»?",
+    "options": [
+      "Integra código de repositorios externos en ramas propias simplificando el clonado al operar.",
+      "Elige entre integración continua en ramas cortas o ciclos de releases estructurados.",
+      "Enlaza commits exactos de otros proyectos manteniendo árboles de trabajo independientes.",
+      "Descarga y muestra únicamente las carpetas del proyecto en las que trabajas en el flujo."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "git sparse-checkout y repositorios gigantes (Flujos de trabajo avanzados y múltiples árboles de trabajo): Descarga y muestra únicamente las carpetas del proyecto en las que trabajas.",
+    "topic": "Flujos de trabajo avanzados y múltiples árboles de trabajo",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "git-q-45",
+    "collectionId": "git",
+    "question": "Respecto a flujos de trabajo avanzados y múltiples árboles de trabajo en Git, ¿cuál es el propósito de «git submodules y repositorios anidados»?",
+    "options": [
+      "Enlaza commits exactos de otros proyectos manteniendo árboles de trabajo independientes.",
+      "Integra código de repositorios externos en ramas propias simplificando el clonado.",
+      "Elige entre integración continua en ramas cortas o ciclos de releases estructurados.",
+      "Descarga y muestra únicamente las carpetas del proyecto en las que trabajas al operar."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "git submodules y repositorios anidados (Flujos de trabajo avanzados y múltiples árboles de trabajo): Enlaza commits exactos de otros proyectos manteniendo árboles de trabajo independientes.",
+    "topic": "Flujos de trabajo avanzados y múltiples árboles de trabajo",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "git-q-46",
+    "collectionId": "git",
+    "question": "En Git (Flujos de trabajo avanzados y múltiples árboles de trabajo), ¿qué función técnica cumple «git subtrees y fusión sin submódulos»?",
+    "options": [
+      "Descarga y muestra únicamente las carpetas del proyecto en las que trabajas al operar.",
+      "Integra código de repositorios externos en ramas propias simplificando el clonado.",
+      "Elige entre integración continua en ramas cortas o ciclos de releases estructurados.",
+      "Recorre padres, inspecciona snapshots y revela la forma real de la historia al operar."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "git subtrees y fusión sin submódulos (Flujos de trabajo avanzados y múltiples árboles de trabajo): Integra código de repositorios externos en ramas propias simplificando el clonado.",
+    "topic": "Flujos de trabajo avanzados y múltiples árboles de trabajo",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "git-q-47",
+    "collectionId": "git",
+    "question": "Dentro de Git, ¿cómo opera el mecanismo de «Estrategias de ramificación (Trunk-based vs Gitflow)» en flujos de trabajo avanzados y múltiples árboles de trabajo?",
+    "options": [
+      "Descarga y muestra únicamente las carpetas del proyecto en las que trabajas al evaluar.",
+      "Integra código de repositorios externos en ramas propias simplificando el clonado.",
+      "Elige entre integración continua en ramas cortas o ciclos de releases estructurados.",
+      "Une historias divergentes preservando dos padres y el contexto de integración al operar."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Estrategias de ramificación (Trunk-based vs Gitflow) (Flujos de trabajo avanzados y múltiples árboles de trabajo): Elige entre integración continua en ramas cortas o ciclos de releases estructurados.",
+    "topic": "Flujos de trabajo avanzados y múltiples árboles de trabajo",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "git-q-48",
+    "collectionId": "git",
+    "question": "Al trabajar con Git, ¿qué responsabilidad define a «Monorepos y escalado de Git»?",
+    "options": [
+      "Enlaza commits exactos de otros proyectos manteniendo árboles de trabajo independientes al operar.",
+      "Elige entre integración continua en ramas cortas o ciclos de releases estructurados al operar.",
+      "Trabaja en múltiples ramas simultáneamente sin necesidad de clonar de nuevo el repositorio.",
+      "Configura índices virtuales, fsmonitor y prefetching para proyectos con millones de archivos."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "Monorepos y escalado de Git (Flujos de trabajo avanzados y múltiples árboles de trabajo): Configura índices virtuales, fsmonitor y prefetching para proyectos con millones de archivos.",
+    "topic": "Flujos de trabajo avanzados y múltiples árboles de trabajo",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "git-q-49",
+    "collectionId": "git",
+    "question": "En la arquitectura de Git, ¿qué caracteriza técnicamente a «git filter-repo vs filter-branch»?",
+    "options": [
+      "Reescribe árboles enteros para purgar secretos o binarios pesados de forma rápida y segura al operar.",
+      "Cose ramas o acorta historias profundas creando referencias de sustitución transparentes.",
+      "Empaqueta objetos y limpia estados inalcanzables respetando ventanas de recuperación.",
+      "Resume archivos tracked, untracked, staged y modificados sin alterar el repositorio al operar."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "git filter-repo vs filter-branch (Reescritura de historia y saneamiento forense): Reescribe árboles enteros para purgar secretos o binarios pesados de forma rápida y segura.",
+    "topic": "Reescritura de historia y saneamiento forense",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "git-q-50",
+    "collectionId": "git",
+    "question": "Respecto a reescritura de historia y saneamiento forense en Git, ¿cuál es el propósito de «git replace»?",
+    "options": [
+      "Reescribe árboles enteros para purgar secretos o binarios pesados de forma rápida y segura.",
+      "Cose ramas o acorta historias profundas creando referencias de sustitución transparentes.",
+      "Compara working tree, índice, commits o ramas eligiendo correctamente los extremos al operar.",
+      "Resume archivos tracked, untracked, staged y modificados sin alterar el repositorio al operar."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "git replace y costuras de historia (Reescritura de historia y saneamiento forense): Cose ramas o acorta historias profundas creando referencias de sustitución transparentes.",
+    "topic": "Reescritura de historia y saneamiento forense",
+    "difficulty": "avanzado"
   }
 ];

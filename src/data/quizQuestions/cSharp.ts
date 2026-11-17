@@ -2,453 +2,753 @@ import type { QuizQuestion } from "@/data/quizTypes";
 
 export const cSharpQuestions: QuizQuestion[] = [
   {
-    id: "csharp-q-01",
-    collectionId: "c-sharp",
-    question: "¿Cómo clasifica el Garbage Collector (GC) de .NET la memoria administrada y cuál es el rol de cada generación?",
-    options: [
-      "Divide la memoria en 10 niveles concéntricos donde cada nivel corresponde a un namespace diferente.",
-      "Utiliza 3 generaciones para objetos efímeros y de larga vida (Gen 0 para objetos nuevos, Gen 1 como búfer intermedio, Gen 2 para larga vida), más LOH (Large Object Heap) y POH (Pinned Object Heap).",
-      "Asigna memoria linealmente sin generaciones, liberando bloques secuenciales al terminar cada hilo de ejecución.",
-      "Delega toda la administración al kernel de Windows mediante llamadas directas a GlobalAlloc."
+    "id": "c-sharp-q-01",
+    "collectionId": "c-sharp",
+    "question": "En C# (Tipos y expresiones), ¿qué función técnica cumple «Value y reference types»?",
+    "options": [
+      "Distingue representación y copia sin reducirlos siempre a stack y heap sin degradar el flujo.",
+      "Establece cuándo un valor cambia de representación o revela un tipo más específico.",
+      "Hace visible dónde una referencia puede faltar y guía el análisis de flujo estático.",
+      "Agrupa resultados breves con nombres sin reemplazar modelos de dominio durables al operar."
     ],
-    correctAnswerIndex: 1,
-    explanation: "El GC de .NET es generacional: Gen 0 almacena objetos recién creados de corta vida; los que sobreviven promocionan a Gen 1 y luego a Gen 2. Objetos >= 85,000 bytes van al LOH para evitar costosas compactaciones, y objetos anclados van al POH.",
-    topic: "CLR y Garbage Collection",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 0,
+    "explanation": "Value y reference types (Tipos y expresiones): Distingue representación y copia sin reducirlos siempre a stack y heap.",
+    "topic": "Tipos y expresiones",
+    "difficulty": "básico"
   },
   {
-    id: "csharp-q-02",
-    collectionId: "c-sharp",
-    question: "¿Cuál es la diferencia de asignación y semántica entre un 'struct' (value type) y una 'class' (reference type) en C#?",
-    options: [
-      "Las clases siempre se asignan en la pila y los structs siempre en el disco duro.",
-      "Un struct reside directamente donde se declara (comúnmente la pila o dentro de otro objeto) y se pasa por copia de valor, mientras que una class se asigna en el heap administrado y se pasa por referencia a un puntero.",
-      "Un struct no admite métodos ni constructores parametrizados.",
-      "Las clases no pueden heredar de interfaces en C# moderno."
+    "id": "c-sharp-q-02",
+    "collectionId": "c-sharp",
+    "question": "Dentro de C#, ¿cómo opera el mecanismo de «Variables nullable» en tipos y expresiones?",
+    "options": [
+      "Agrupa resultados breves con nombres sin reemplazar modelos de dominio durables al operar.",
+      "Hace visible dónde una referencia puede faltar y guía el análisis de flujo estático.",
+      "Infiere el constructor invocado a partir del tipo declarado a la izquierda al operar.",
+      "Representa opciones cerradas o conjuntos de bits con validación explícita al operar."
     ],
-    correctAnswerIndex: 1,
-    explanation: "Los 'value types' (structs, enums) almacenan su valor directamente en el contexto donde se declaran (generalmente la pila de llamadas) y sus asignaciones crean copias completas. Los 'reference types' (class, record class, string) residen en el heap y se manipulan mediante referencias.",
-    topic: "Sistema de Tipos",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 1,
+    "explanation": "Variables nullable y análisis de flujo (Tipos y expresiones): Hace visible dónde una referencia puede faltar y guía el análisis de flujo estático.",
+    "topic": "Tipos y expresiones",
+    "difficulty": "básico"
   },
   {
-    id: "csharp-q-03",
-    collectionId: "c-sharp",
-    question: "¿Qué ventaja ofrece 'ValueTask<T>' frente a 'Task<T>' en métodos asíncronos de alto rendimiento?",
-    options: [
-      "Permite ejecutar código en la GPU sin requerir librerías externas.",
-      "Es un struct que evita la asignación de memoria en el heap cuando la operación asíncrona se completa de forma sincrónica (por ejemplo, desde un caché en memoria).",
-      "Permite esperar tareas en paralelo sin necesidad de 'Task.WhenAll'.",
-      "Fuerza a que el método se ejecute en el hilo principal de la interfaz gráfica."
+    "id": "c-sharp-q-03",
+    "collectionId": "c-sharp",
+    "question": "Al trabajar con C#, ¿qué responsabilidad define a «Conversiones y pattern variables»?",
+    "options": [
+      "Infiere el constructor invocado a partir del tipo declarado a la izquierda al evaluar.",
+      "Agrupa resultados breves con nombres sin reemplazar modelos de dominio durables.",
+      "Establece cuándo un valor cambia de representación o revela un tipo más específico.",
+      "Representa opciones cerradas o conjuntos de bits con validación explícita al operar."
     ],
-    correctAnswerIndex: 1,
-    explanation: "Task<T> es una clase y siempre asigna un objeto en el heap administrado. ValueTask<T> es un struct (value type); si el resultado ya está disponible sincrónicamente, no incurre en ninguna asignación de memoria, aliviando la presión sobre el Garbage Collector.",
-    topic: "Asincronía y Tareas",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 2,
+    "explanation": "Conversiones y pattern variables (Tipos y expresiones): Establece cuándo un valor cambia de representación o revela un tipo más específico.",
+    "topic": "Tipos y expresiones",
+    "difficulty": "básico"
   },
   {
-    id: "csharp-q-04",
-    collectionId: "c-sharp",
-    question: "¿Por qué se recomienda invocar '.ConfigureAwait(false)' en código de bibliotecas y capas de infraestructura?",
-    options: [
-      "Porque cancela la ejecución si la operación demora más de 10 milisegundos.",
-      "Para evitar reanudar la ejecución en el 'SynchronizationContext' original, previniendo posibles deadlocks y eliminando sobrecostos innecesarios de cambio de contexto.",
-      "Para forzar que el GC recolecte la tarea antes de retornar el resultado.",
-      "Porque convierte la llamada en una invocación sincrónica bloqueante."
+    "id": "c-sharp-q-04",
+    "collectionId": "c-sharp",
+    "question": "En la arquitectura de C#, ¿qué caracteriza técnicamente a «Tuples y deconstruction»?",
+    "options": [
+      "Hace visible dónde una referencia puede faltar y guía el análisis de flujo estático al operar.",
+      "Establece cuándo un valor cambia de representación o revela un tipo más específico al operar.",
+      "Infiere el constructor invocado a partir del tipo declarado a la izquierda de forma clara.",
+      "Agrupa resultados breves con nombres sin reemplazar modelos de dominio durables al operar."
     ],
-    correctAnswerIndex: 1,
-    explanation: "En entornos con SynchronizationContext (WPF, WinForms, ASP.NET clásico), esperar sincrónicamente sin ConfigureAwait(false) puede provocar deadlocks. En bibliotecas, ConfigureAwait(false) desvincula la continuación del contexto de origen, mejorando rendimiento.",
-    topic: "Asincronía y Tareas",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 3,
+    "explanation": "Tuples y deconstruction (Tipos y expresiones): Agrupa resultados breves con nombres sin reemplazar modelos de dominio durables.",
+    "topic": "Tipos y expresiones",
+    "difficulty": "básico"
   },
   {
-    id: "csharp-q-05",
-    collectionId: "c-sharp",
-    question: "¿Qué representa 'Span<T>' y por qué es una revolución en la gestión de memoria en C# moderno?",
-    options: [
-      "Una lista enlazada distribuida que serializa objetos a formato JSON automáticamente.",
-      "Un ref struct que proporciona una vista contigua y tipada de memoria arbitraria (stack, heap administrado o memoria nativa) con seguridad de tipos y cero asignaciones intermedias.",
-      "Un contenedor que almacena cadenas cifradas con curvas elípticas en el sistema operativo.",
-      "Una extensión de Entity Framework para consultar tablas particionadas en bases de datos relacionales."
+    "id": "c-sharp-q-05",
+    "collectionId": "c-sharp",
+    "question": "Respecto a tipos y expresiones en C#, ¿cuál es el propósito de «Enums»?",
+    "options": [
+      "Representa opciones cerradas o conjuntos de bits con validación explícita de modo predecible.",
+      "Establece cuándo un valor cambia de representación o revela un tipo más específico.",
+      "Hace visible dónde una referencia puede faltar y guía el análisis de flujo estático.",
+      "Agrupa resultados breves con nombres sin reemplazar modelos de dominio durables al operar."
     ],
-    correctAnswerIndex: 1,
-    explanation: "Span<T> es un 'ref struct' que puede apuntar a cualquier bloque contiguo de memoria (arrays administrados, punteros nativos o memoria en la pila con stackalloc) garantizando bounds-checking sin asignaciones heap (zero-allocation slicing).",
-    topic: "Rendimiento y Memoria",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 0,
+    "explanation": "Enums y flags con operaciones de bits (Tipos y expresiones): Representa opciones cerradas o conjuntos de bits con validación explícita.",
+    "topic": "Tipos y expresiones",
+    "difficulty": "básico"
   },
   {
-    id: "csharp-q-06",
-    collectionId: "c-sharp",
-    question: "¿Qué ocurre internamente durante el proceso de 'Boxing' y 'Unboxing' en C#?",
-    options: [
-      "Se comprime un archivo ejecutable mediante compresión zip al compilar.",
-      "Boxing envuelve un value type dentro de un objeto en el heap administrado; Unboxing extrae explícitamente el valor tipado desde la instancia del heap de vuelta a la pila.",
-      "Se ejecuta una conversión de código C# a binario nativo mediante RyuJIT.",
-      "Se asigna un hilo exclusivo del ThreadPool para atender solicitudes HTTP."
+    "id": "c-sharp-q-06",
+    "collectionId": "c-sharp",
+    "question": "En C# (Tipos y expresiones), ¿qué función técnica cumple «Sintaxis Target-typed new»?",
+    "options": [
+      "Establece cuándo un valor cambia de representación o revela un tipo más específico al operar.",
+      "Infiere el constructor invocado a partir del tipo declarado a la izquierda en ejecución.",
+      "Hace visible dónde una referencia puede faltar y guía el análisis de flujo estático.",
+      "Agrupa resultados breves con nombres sin reemplazar modelos de dominio durables al operar."
     ],
-    correctAnswerIndex: 1,
-    explanation: "El Boxing asigna una nueva caja en el heap administrado y copia el contenido del tipo por valor dentro de ella, generando presión en el Garbage Collector. El Unboxing verifica el tipo de la caja y copia el valor a una variable de tipo por valor en la pila.",
-    topic: "Sistema de Tipos",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 1,
+    "explanation": "Sintaxis Target-typed new (Tipos y expresiones): Infiere el constructor invocado a partir del tipo declarado a la izquierda.",
+    "topic": "Tipos y expresiones",
+    "difficulty": "básico"
   },
   {
-    id: "csharp-q-07",
-    collectionId: "c-sharp",
-    question: "¿Cuál es el propósito del patrón 'IDisposable' y de la llamada 'GC.SuppressFinalize(this)'?",
-    options: [
-      "Reiniciar el servidor web cuando la memoria del proceso excede el 90%.",
-      "Liberar determinísticamente recursos no administrados (handles de SO, sockets, archivos) y ordenar al Garbage Collector que omita la ejecución de la cola de finalización para ese objeto.",
-      "Impedir que otras clases hereden de la clase actual mediante herencia sellada.",
-      "Eliminar los datos del usuario en la base de datos tras cerrar sesión."
+    "id": "c-sharp-q-07",
+    "collectionId": "c-sharp",
+    "question": "Dentro de C#, ¿cómo opera el mecanismo de «Raw string literals e interpolación avanzada» en tipos y expresiones?",
+    "options": [
+      "Establece cuándo un valor cambia de representación o revela un tipo más específico al operar.",
+      "Hace visible dónde una referencia puede faltar y guía el análisis de flujo estático.",
+      "Maneja cadenas multilínea y caracteres de escape sin secuencias frágiles de forma clara.",
+      "Agrupa resultados breves con nombres sin reemplazar modelos de dominio durables al operar."
     ],
-    correctAnswerIndex: 1,
-    explanation: "IDisposable permite liberar recursos no administrados de forma inmediata mediante Dispose(). Invocar GC.SuppressFinalize(this) le dice al CLR que el recurso ya fue limpiado manualmente, evitando el sobrecosto de enviar el objeto a la cola de finalización de Gen 2.",
-    topic: "Ciclo de Vida y Limpieza",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 2,
+    "explanation": "Raw string literals e interpolación avanzada (Tipos y expresiones): Maneja cadenas multilínea y caracteres de escape sin secuencias frágiles.",
+    "topic": "Tipos y expresiones",
+    "difficulty": "básico"
   },
   {
-    id: "csharp-q-08",
-    collectionId: "c-sharp",
-    question: "¿Cómo se manifiesta la ejecución diferida (deferred execution) en consultas LINQ con 'IEnumerable<T>'?",
-    options: [
-      "La consulta se ejecuta en segundo plano tan pronto como se escribe la línea de código.",
-      "La consulta no procesa los datos al definirse, sino únicamente cuando se itera sobre ella (ej. con foreach, ToList() o Count()), evaluando cada elemento bajo demanda mediante yield return.",
-      "Los datos se almacenan temporalmente en el registro de Windows hasta que se invoca SaveChanges().",
-      "El compilador transforma la consulta en un procedimiento almacenado de SQL antes de ejecutar el binario."
+    "id": "c-sharp-q-08",
+    "collectionId": "c-sharp",
+    "question": "Al trabajar con C#, ¿qué responsabilidad define a «Classes y encapsulación»?",
+    "options": [
+      "Modela datos inmutables con igualdad por valor, sintaxis with y desconstructores al operar.",
+      "Construye objetos completos exigiendo propiedades obligatorias en inicialización al operar.",
+      "Declara capacidades compartidas preservando compatibilidad binaria evolutiva al evaluar.",
+      "Protege invariantes mediante miembros y constructores con alcance preciso con precisión."
     ],
-    correctAnswerIndex: 1,
-    explanation: "Las operaciones de LINQ sobre IEnumerable<T> (como Where o Select) son perezosas: la máquina de estados iteradora solo evalúa los elementos a medida que el consumidor los solicita, ahorrando cómputo si la iteración se detiene anticipadamente.",
-    topic: "LINQ y Colecciones",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 3,
+    "explanation": "Classes y encapsulación (Objetos, records y modelos inmutables): Protege invariantes mediante miembros y constructores con alcance preciso.",
+    "topic": "Objetos, records y modelos inmutables",
+    "difficulty": "básico"
   },
   {
-    id: "csharp-q-09",
-    collectionId: "c-sharp",
-    question: "¿Qué diferencia semántica introduce un 'record' (o 'record class') frente a una 'class' convencional en C#?",
-    options: [
-      "Los records no pueden tener métodos ni propiedades públicas.",
-      "Los records implementan por defecto igualdad basada en valores (value-based equality), inmutabilidad idiomática (init-only properties), soporte para expresión 'with' y desestructuración automática.",
-      "Los records solo pueden compilarse en plataformas de 32 bits.",
-      "Los records residen estrictamente en la memoria RAM compartida de hardware."
+    "id": "c-sharp-q-09",
+    "collectionId": "c-sharp",
+    "question": "En la arquitectura de C#, ¿qué caracteriza técnicamente a «Structs readonly y ref structs»?",
+    "options": [
+      "Optimiza valores pequeños o lifetimes restringidos sin copias ocultas dentro de la aplicación.",
+      "Modela datos inmutables con igualdad por valor, sintaxis with y desconstructores al operar.",
+      "Construye objetos completos exigiendo propiedades obligatorias en inicialización al operar.",
+      "Declara capacidades compartidas preservando compatibilidad binaria evolutiva al operar."
     ],
-    correctAnswerIndex: 1,
-    explanation: "Un record genera automáticamente igualdad por valor (dos instancias con datos idénticos son iguales con Equals y ==), ToString formateado, métodos GetHashCode deterministas y permite clonado no destructivo mediante 'objeto with { Prop = nuevoValor }'.",
-    topic: "Diseño de Clases y Records",
-    difficulty: "básico"
+    "correctAnswerIndex": 0,
+    "explanation": "Structs readonly y ref structs (Objetos, records y modelos inmutables): Optimiza valores pequeños o lifetimes restringidos sin copias ocultas.",
+    "topic": "Objetos, records y modelos inmutables",
+    "difficulty": "básico"
   },
   {
-    id: "csharp-q-10",
-    collectionId: "c-sharp",
-    question: "¿En qué consiste el 'Captive Dependency Problem' al registrar servicios en el contenedor de Inyección de Dependencias de .NET?",
-    options: [
-      "Cuando dos servicios se llaman mutuamente provocando un desbordamiento de pila en el constructor.",
-      "Cuando un servicio con ciclo de vida largo (ej. Singleton) retiene como dependencia a un servicio con ciclo de vida más corto (ej. Scoped), manteniendo viva la instancia Scoped de forma indebida.",
-      "Cuando una base de datos bloquea las conexiones entrantes debido a un pool agotado.",
-      "Cuando un servicio no puede deserializar paquetes JSON con campos requeridos."
+    "id": "c-sharp-q-10",
+    "collectionId": "c-sharp",
+    "question": "Respecto a objetos, records y modelos inmutables en C#, ¿cuál es el propósito de «Records»?",
+    "options": [
+      "Construye objetos completos exigiendo propiedades obligatorias en inicialización en ejecución.",
+      "Modela datos inmutables con igualdad por valor, sintaxis with y desconstructores al operar.",
+      "Declara capacidades compartidas preservando compatibilidad binaria evolutiva con precisión.",
+      "Protege invariantes mediante miembros y constructores con alcance preciso dentro del flujo."
     ],
-    correctAnswerIndex: 1,
-    explanation: "Una dependencia cautiva ocurre cuando un Singleton consume un servicio Scoped o Transient. Al permanecer vivo el Singleton durante toda la vida de la app, el servicio Scoped jamás se destruye, provocando fugas de memoria o problemas de concurrencia en contextos como DbContext.",
-    topic: "Inyección de Dependencias",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 1,
+    "explanation": "Records y records struct (Objetos, records y modelos inmutables): Modela datos inmutables con igualdad por valor, sintaxis with y desconstructores.",
+    "topic": "Objetos, records y modelos inmutables",
+    "difficulty": "básico"
   },
   {
-    id: "csharp-q-11",
-    collectionId: "c-sharp",
-    question: "¿Qué son los 'Source Generators' de Roslyn introducidos en .NET 5/6?",
-    options: [
-      "Generadores de energía para servidores en centros de datos con certificación ecológica.",
-      "Componentes de compilación que inspeccionan el código del usuario durante la fase de análisis y emiten nuevo código fuente C# directamente al árbol de compilación, eliminando la necesidad de reflexión lenta en runtime.",
-      "Scripts de PowerShell que descargan paquetes NuGet obsoletos.",
-      "Herramientas de migración automática de código C++ a C#."
+    "id": "c-sharp-q-11",
+    "collectionId": "c-sharp",
+    "question": "En C# (Objetos, records y modelos inmutables), ¿qué función técnica cumple «Interfaces y default interface methods»?",
+    "options": [
+      "Modela datos inmutables con igualdad por valor, sintaxis with y desconstructores al operar.",
+      "Construye objetos completos exigiendo propiedades obligatorias en inicialización al operar.",
+      "Declara capacidades compartidas preservando compatibilidad binaria evolutiva al evaluar.",
+      "Protege invariantes mediante miembros y constructores con alcance preciso con precisión."
     ],
-    correctAnswerIndex: 1,
-    explanation: "Los Source Generators inspeccionan la sintaxis y semántica del proyecto durante la compilación y sintetizan código C# adicional en tiempo de compilación. Esto reemplaza la reflexión dinámica pesada (System.Reflection) con código tipado de máxima velocidad (ej. serializadores JSON y regex compiladas).",
-    topic: "Compilación y Roslyn",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 2,
+    "explanation": "Interfaces y default interface methods (Objetos, records y modelos inmutables): Declara capacidades compartidas preservando compatibilidad binaria evolutiva.",
+    "topic": "Objetos, records y modelos inmutables",
+    "difficulty": "básico"
   },
   {
-    id: "csharp-q-12",
-    collectionId: "c-sharp",
-    question: "¿Qué diferencia a 'IAsyncEnumerable<T>' de 'Task<IEnumerable<T>>'?",
-    options: [
-      "IAsyncEnumerable solo funciona en arquitecturas ARM64.",
-      "IAsyncEnumerable permite transmitir y consumir elementos uno a uno de forma asíncrona a medida que están disponibles (streaming perezoso), mientras que Task<IEnumerable<T>> debe esperar a que toda la colección se complete antes de entregar el primer elemento.",
-      "Task<IEnumerable<T>> no admite operaciones LINQ.",
-      "IAsyncEnumerable requiere que todos los elementos se serialicen en disco antes de leerlos."
+    "id": "c-sharp-q-12",
+    "collectionId": "c-sharp",
+    "question": "Dentro de C#, ¿cómo opera el mecanismo de «Required members y modificador init» en objetos, records y modelos inmutables?",
+    "options": [
+      "Modela datos inmutables con igualdad por valor, sintaxis with y desconstructores en ejecución.",
+      "Declara capacidades compartidas preservando compatibilidad binaria evolutiva con precisión.",
+      "Protege invariantes mediante miembros y constructores con alcance preciso dentro del flujo.",
+      "Construye objetos completos exigiendo propiedades obligatorias en inicialización al operar."
     ],
-    correctAnswerIndex: 1,
-    explanation: "Con IAsyncEnumerable<T> y 'await foreach', el cliente procesa cada ítem individualmente en cuanto se produce, ideal para pipelines de streaming, lecturas de bases de datos por lotes y respuestas de telemetría sin acaparar memoria en búferes completos.",
-    topic: "Asincronía y Streaming",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 3,
+    "explanation": "Required members y modificador init (Objetos, records y modelos inmutables): Construye objetos completos exigiendo propiedades obligatorias en inicialización.",
+    "topic": "Objetos, records y modelos inmutables",
+    "difficulty": "básico"
   },
   {
-    id: "csharp-q-13",
-    collectionId: "c-sharp",
-    question: "¿Qué garantía ofrece la palabra clave 'lock' en C# y qué ocurre bajo el capó?",
-    options: [
-      "Bloquea la escritura en disco duro para evitar errores de IO concurrentes.",
-      "Adquiere una exclusión mutua sobre un objeto de sincronización utilizando 'Monitor.Enter' y garantiza su liberación en un bloque finally con 'Monitor.Exit'.",
-      "Pone en pausa todos los procesos del sistema operativo mientras se ejecuta el bloque.",
-      "Convierte la variable compartida en un valor volátil inmutable."
+    "id": "c-sharp-q-13",
+    "collectionId": "c-sharp",
+    "question": "Al trabajar con C#, ¿qué responsabilidad define a «Primary constructors en clases y structs»?",
+    "options": [
+      "Declara parámetros de construcción directamente en la firma de la clase sin degradar el flujo.",
+      "Modela datos inmutables con igualdad por valor, sintaxis with y desconstructores al operar.",
+      "Construye objetos completos exigiendo propiedades obligatorias en inicialización al operar.",
+      "Declara capacidades compartidas preservando compatibilidad binaria evolutiva al operar."
     ],
-    correctAnswerIndex: 1,
-    explanation: "La sentencia 'lock(syncObj)' es una abreviatura sintáctica de un bloque try/finally que llama a Monitor.Enter(syncObj, ref lockTaken) y Monitor.Exit(syncObj), impidiendo que múltiples hilos ejecuten la sección crítica simultáneamente.",
-    topic: "Concurrencia y Sincronización",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 0,
+    "explanation": "Primary constructors en clases y structs (Objetos, records y modelos inmutables): Declara parámetros de construcción directamente en la firma de la clase.",
+    "topic": "Objetos, records y modelos inmutables",
+    "difficulty": "básico"
   },
   {
-    id: "csharp-q-14",
-    collectionId: "c-sharp",
-    question: "¿Por qué no se debe usar 'lock(this)' o 'lock(typeof(MyClass))' como objeto de sincronización?",
-    options: [
-      "Porque el compilador genera un error de sintaxis CS0103 inmediatamente.",
-      "Porque tanto la instancia actual como el objeto Type son accesibles públicamente desde el exterior, permitiendo que código externo bloquee sobre el mismo objeto y provoque deadlocks incontrolables.",
-      "Porque los tipos Type se recolectan automáticamente por el GC en la generación 0.",
-      "Porque reduce la velocidad del procesador al desactivar la instrucción hyper-threading."
+    "id": "c-sharp-q-14",
+    "collectionId": "c-sharp",
+    "question": "En la arquitectura de C#, ¿qué caracteriza técnicamente a «Jerarquías selladas (sealed)»?",
+    "options": [
+      "Modela datos inmutables con igualdad por valor, sintaxis with y desconstructores al operar.",
+      "Restringe la herencia para habilitar optimizaciones de desvirtualización de forma clara.",
+      "Construye objetos completos exigiendo propiedades obligatorias en inicialización al operar.",
+      "Declara capacidades compartidas preservando compatibilidad binaria evolutiva al evaluar."
     ],
-    correctAnswerIndex: 1,
-    explanation: "Bloquear sobre instancias públicas o sobre el objeto Type expone el mecanismo de sincronización a código externo. La mejor práctica es utilizar un objeto privado dedicado: 'private readonly object _lock = new();' o 'Lock' en C# 13.",
-    topic: "Concurrencia y Sincronización",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 1,
+    "explanation": "Jerarquías selladas (sealed) (Objetos, records y modelos inmutables): Restringe la herencia para habilitar optimizaciones de desvirtualización.",
+    "topic": "Objetos, records y modelos inmutables",
+    "difficulty": "básico"
   },
   {
-    id: "csharp-q-15",
-    collectionId: "c-sharp",
-    question: "¿Qué es el 'ThreadPool' de .NET y cómo gestiona la carga de trabajo?",
-    options: [
-      "Una lista de servidores en la nube que balancean tráfico DNS.",
-      "Un pool de hilos administrado que utiliza colas de trabajo globales y locales con un algoritmo de 'work-stealing' e inyección adaptativa de hilos por 'hill-climbing' según el rendimiento.",
-      "Un contenedor Docker que ejecuta microservicios en clústeres de Kubernetes.",
-      "Una base de datos en memoria para almacenar sesiones de usuarios activos."
+    "id": "c-sharp-q-15",
+    "collectionId": "c-sharp",
+    "question": "Respecto a pattern matching y control de flujo en C#, ¿cuál es el propósito de «Switch expressions exhaustivas»?",
+    "options": [
+      "Reconoce la estructura y longitud de secuencias mediante patrones de coincidencia al operar.",
+      "Captura fallos solo si se cumple una condición sin desenrollar el stack innecesariamente.",
+      "Mapea entradas a resultados con una expresión funcional limpia y validada con precisión.",
+      "Comprueba propiedades anidadas y rangos numéricos sin cascadas de if/else con precisión."
     ],
-    correctAnswerIndex: 1,
-    explanation: "El ThreadPool de .NET mantiene una reserva de hilos reutilizables para evitar el alto costo de crear y destruir hilos del SO. Cada hilo del pool tiene su cola de trabajo local y puede 'robar' tareas de otras colas (work-stealing), ajustando dinámicamente el total de hilos con hill-climbing.",
-    topic: "CLR y Multithreading",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 2,
+    "explanation": "Switch expressions exhaustivas (Pattern Matching y control de flujo): Mapea entradas a resultados con una expresión funcional limpia y validada.",
+    "topic": "Pattern Matching y control de flujo",
+    "difficulty": "básico"
   },
   {
-    id: "csharp-q-16",
-    collectionId: "c-sharp",
-    question: "¿Qué son los 'Nullable Reference Types' (NRT) habilitados con '<Nullable>enable</Nullable>' en C#?",
-    options: [
-      "Un cambio en el runtime que transforma todos los punteros nulos en ceros binarios.",
-      "Una característica del compilador en tiempo de compilación que emite advertencias estáticas sobre posibles desreferencias de valores nulos sin alterar el comportamiento binario del runtime.",
-      "Un paquete NuGet externo que sustituye los strings por tipos Option de F#.",
-      "Un sistema de formateo de excepciones para depurar fallos en Visual Studio."
+    "id": "c-sharp-q-16",
+    "collectionId": "c-sharp",
+    "question": "En C# (Pattern Matching y control de flujo), ¿qué función técnica cumple «Property y relational patterns»?",
+    "options": [
+      "Reconoce la estructura y longitud de secuencias mediante patrones de coincidencia al operar.",
+      "Captura fallos solo si se cumple una condición sin desenrollar el stack innecesariamente.",
+      "Mapea entradas a resultados con una expresión funcional limpia y validada con precisión.",
+      "Comprueba propiedades anidadas y rangos numéricos sin cascadas de if/else con precisión."
     ],
-    correctAnswerIndex: 1,
-    explanation: "Los tipos de referencia anulables son una verificación estática del compilador. Si un string puede ser null, debe declararse 'string?'; si se declara 'string', el compilador advierte de posibles violaciones de no-nulidad sin alterar el CLR subyacente.",
-    topic: "Sistema de Tipos y Nulabilidad",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 3,
+    "explanation": "Property y relational patterns (Pattern Matching y control de flujo): Comprueba propiedades anidadas y rangos numéricos sin cascadas de if/else.",
+    "topic": "Pattern Matching y control de flujo",
+    "difficulty": "básico"
   },
   {
-    id: "csharp-q-17",
-    collectionId: "c-sharp",
-    question: "¿Cuál es la diferencia entre 'System.Threading.Channels' y una colección 'BlockingCollection<T>'?",
-    options: [
-      "BlockingCollection utiliza WebSockets mientras que Channels utiliza named pipes.",
-      "Channels está completamente diseñado para flujos asíncronos de alto rendimiento y cero asignaciones (async/await nativo sin bloqueo de hilos), mientras que BlockingCollection utiliza primitivas de sincronización bloqueantes de hilos.",
-      "BlockingCollection solo admite tipos primitivos enteros.",
-      "Channels solo puede utilizarse en aplicaciones de consola."
+    "id": "c-sharp-q-17",
+    "collectionId": "c-sharp",
+    "question": "Dentro de C#, ¿cómo opera el mecanismo de «List patterns y slices» en pattern matching y control de flujo?",
+    "options": [
+      "Reconoce la estructura y longitud de secuencias mediante patrones de coincidencia al operar.",
+      "Mapea entradas a resultados con una expresión funcional limpia y validada al operar.",
+      "Comprueba propiedades anidadas y rangos numéricos sin cascadas de if/else al operar.",
+      "Evalúa combinaciones multidimensionales mediante tuplas estructuradas al operar."
     ],
-    correctAnswerIndex: 1,
-    explanation: "System.Threading.Channels proporciona colas concurrentes no bloqueantes (asíncronas) ideales para patrones productor-consumidor en arquitecturas asíncronas modernas, superando ampliamente a las estructuras bloqueantes clásicas de hilos.",
-    topic: "Concurrencia y Streaming",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 0,
+    "explanation": "List patterns y slices (Pattern Matching y control de flujo): Reconoce la estructura y longitud de secuencias mediante patrones de coincidencia.",
+    "topic": "Pattern Matching y control de flujo",
+    "difficulty": "intermedio"
   },
   {
-    id: "csharp-q-18",
-    collectionId: "c-sharp",
-    question: "¿Qué ventaja tiene usar 'ArrayPool<T>.Shared' en operaciones de procesamiento de datos por lotes?",
-    options: [
-      "Duplica el tamaño del disco duro mediante desduplicación de sectores.",
-      "Alquila arreglos reutilizables del pool en lugar de asignar y desechar buffers continuos en el heap, reduciendo drásticamente las pausas del Garbage Collector.",
-      "Permite enviar arrays por Bluetooth a otros dispositivos de la red.",
-      "Convierte arrays en matrices tridimensionales sin necesidad de bucles anidados."
+    "id": "c-sharp-q-18",
+    "collectionId": "c-sharp",
+    "question": "Al trabajar con C#, ¿qué responsabilidad define a «Type testing y cast seguro (is/as)»?",
+    "options": [
+      "Reconoce la estructura y longitud de secuencias mediante patrones de coincidencia al operar.",
+      "Verifica el tipo y asigna variables tipadas en una única expresión durante la ejecución.",
+      "Captura fallos solo si se cumple una condición sin desenrollar el stack innecesariamente.",
+      "Mapea entradas a resultados con una expresión funcional limpia y validada con precisión."
     ],
-    correctAnswerIndex: 1,
-    explanation: "ArrayPool<T>.Shared permite alquilar (Rent) y devolver (Return) arrays preasignados. Al reutilizar buffers temporales para tareas como parsing o serialización, se evita asignar memoria en el heap y se previene la fragmentación del LOH.",
-    topic: "Rendimiento y Memoria",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 1,
+    "explanation": "Type testing y cast seguro (is/as) (Pattern Matching y control de flujo): Verifica el tipo y asigna variables tipadas en una única expresión.",
+    "topic": "Pattern Matching y control de flujo",
+    "difficulty": "intermedio"
   },
   {
-    id: "csharp-q-19",
-    collectionId: "c-sharp",
-    question: "¿Cómo optimiza Entity Framework Core una consulta cuando se agrega '.AsNoTracking()'?",
-    options: [
-      "Guarda los resultados en un archivo de texto plano en el directorio temporal.",
-      "Le indica al ChangeTracker que no registre las entidades devueltas en su memoria de seguimiento, ahorrando memoria y acelerando significativamente las consultas de solo lectura.",
-      "Deshabilita los índices primarios de la base de datos durante la consulta.",
-      "Convierte la consulta SQL en un procedimiento en lenguaje C nativo."
+    "id": "c-sharp-q-19",
+    "collectionId": "c-sharp",
+    "question": "En la arquitectura de C#, ¿qué caracteriza técnicamente a «Patrones posicionales»?",
+    "options": [
+      "Reconoce la estructura y longitud de secuencias mediante patrones de coincidencia al operar.",
+      "Captura fallos solo si se cumple una condición sin desenrollar el stack innecesariamente.",
+      "Evalúa combinaciones multidimensionales mediante tuplas estructuradas sin perder estado.",
+      "Mapea entradas a resultados con una expresión funcional limpia y validada con precisión."
     ],
-    correctAnswerIndex: 1,
-    explanation: "Por defecto, EF Core rastrea las entidades cargadas para detectar mutaciones y enviar SaveChanges. En lecturas donde no se van a modificar los datos, .AsNoTracking() evita crear las instantáneas del ChangeTracker, reduciendo memoria y CPU.",
-    topic: "Acceso a Datos y EF Core",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 2,
+    "explanation": "Patrones posicionales y Tuple patterns (Pattern Matching y control de flujo): Evalúa combinaciones multidimensionales mediante tuplas estructuradas.",
+    "topic": "Pattern Matching y control de flujo",
+    "difficulty": "intermedio"
   },
   {
-    id: "csharp-q-20",
-    collectionId: "c-sharp",
-    question: "¿Qué problema resuelve la división de consultas ('AsSplitQuery') en Entity Framework Core?",
-    options: [
-      "Evita que la base de datos se apague durante cortes de energía.",
-      "Mitiga la explosión cartesiana (cartesian explosion) provocada por múltiples JOINs en una sola consulta SQL grande, ejecutando consultas SQL separadas por cada relación incluida.",
-      "Permite partir la base de datos físicamente en múltiples discos SSD.",
-      "Divide un archivo PDF en páginas individuales antes de almacenarlo en la base de datos."
+    "id": "c-sharp-q-20",
+    "collectionId": "c-sharp",
+    "question": "Respecto a pattern matching y control de flujo en C#, ¿cuál es el propósito de «Exceptions y exception filters (when)»?",
+    "options": [
+      "Reconoce la estructura y longitud de secuencias mediante patrones de coincidencia al operar.",
+      "Mapea entradas a resultados con una expresión funcional limpia y validada de forma clara.",
+      "Comprueba propiedades anidadas y rangos numéricos sin cascadas de if/else de forma clara.",
+      "Captura fallos solo si se cumple una condición sin desenrollar el stack innecesariamente."
     ],
-    correctAnswerIndex: 1,
-    explanation: "Cargar múltiples colecciones hijas con .Include() en una sola consulta produce un producto cartesiano con filas duplicadas masivas. AsSplitQuery genera varias consultas independientes optimizadas, transportando drásticamente menos bytes por la red.",
-    topic: "Acceso a Datos y EF Core",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 3,
+    "explanation": "Exceptions y exception filters (when) (Pattern Matching y control de flujo): Captura fallos solo si se cumple una condición sin desenrollar el stack innecesariamente.",
+    "topic": "Pattern Matching y control de flujo",
+    "difficulty": "intermedio"
   },
   {
-    id: "csharp-q-21",
-    collectionId: "c-sharp",
-    question: "¿Qué introduce la característica de miembros abstractos estáticos en interfaces ('static abstract') en C# 11?",
-    options: [
-      "Permite crear constructores privados para clases anónimas.",
-      "Habilita el diseño de APIs genéricas que pueden invocar operadores matemáticos (+, -, *, /) y factorías estáticas directamente sobre parámetros de tipo genérico (Generic Math).",
-      "Elimina la necesidad de utilizar interfaces en aplicaciones web.",
-      "Fuerza a que todos los métodos de una clase sean estáticos por defecto."
+    "id": "c-sharp-q-21",
+    "collectionId": "c-sharp",
+    "question": "En C# (Pattern Matching y control de flujo), ¿qué función técnica cumple «Using declarations y await using»?",
+    "options": [
+      "Garantiza Dispose o DisposeAsync determinista al abandonar el scope de modo predecible.",
+      "Reconoce la estructura y longitud de secuencias mediante patrones de coincidencia.",
+      "Mapea entradas a resultados con una expresión funcional limpia y validada al evaluar.",
+      "Comprueba propiedades anidadas y rangos numéricos sin cascadas de if/else al evaluar."
     ],
-    correctAnswerIndex: 1,
-    explanation: "Con 'static abstract' en interfaces, C# 11 introdujo 'Generic Math': interfaces como INumber<T> definen operadores estáticos obligatorios, permitiendo escribir algoritmos matemáticos universales que operan sobre int, double, float o tipos numéricos propios.",
-    topic: "Genéricos y Matemáticas",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 0,
+    "explanation": "Using declarations y await using (Pattern Matching y control de flujo): Garantiza Dispose o DisposeAsync determinista al abandonar el scope.",
+    "topic": "Pattern Matching y control de flujo",
+    "difficulty": "intermedio"
   },
   {
-    id: "csharp-q-22",
-    collectionId: "c-sharp",
-    question: "¿Cómo funciona el pipeline de Middleware en ASP.NET Core?",
-    options: [
-      "Ejecuta todas las solicitudes HTTP como subprocesos independientes del shell de Linux.",
-      "Encadena delegados (RequestDelegate) en una secuencia bidireccional donde cada middleware procesa la petición entrante, invoca al siguiente con 'next()' y procesa la respuesta saliente.",
-      "Envía cada petición directamente al navegador sin pasar por el servidor web Kestrel.",
-      "Convierte todas las llamadas REST en eventos de Apache Kafka antes de responder."
+    "id": "c-sharp-q-22",
+    "collectionId": "c-sharp",
+    "question": "Dentro de C#, ¿cómo opera el mecanismo de «Generic constraints (where)» en genéricos y linq avanzado?",
+    "options": [
+      "Separa transformaciones en memoria de árboles de expresiones ejecutados en bases de datos.",
+      "Restringe tipos genéricos por clase, interfaz, new, notnull o unmanaged de forma segura.",
+      "Permite sustituir colecciones según la dirección segura del polimorfismo de forma clara.",
+      "Inicializa arrays, listas y spans con sintaxis unificada entre corchetes de forma clara."
     ],
-    correctAnswerIndex: 1,
-    explanation: "El pipeline de ASP.NET Core es una cadena de componentes de middleware. Cada componente recibe el HttpContext, puede ejecutar lógica antes de invocar a next(), delegar el control al siguiente middleware en la cadena, y reanudar la ejecución cuando la respuesta regresa.",
-    topic: "ASP.NET Core Architecture",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 1,
+    "explanation": "Generic constraints (where) (Genéricos y LINQ avanzado): Restringe tipos genéricos por clase, interfaz, new(), notnull o unmanaged.",
+    "topic": "Genéricos y LINQ avanzado",
+    "difficulty": "intermedio"
   },
   {
-    id: "csharp-q-23",
-    collectionId: "c-sharp",
-    question: "¿Qué son los 'Pattern Matching List Patterns' introducidos en C# 11?",
-    options: [
-      "Reglas CSS para ordenar elementos en listas no numeradas.",
-      "Patrones que permiten verificar la longitud y la posición de elementos específicos dentro de arrays y listas mediante sintaxis como '[var primero, .., 10]'.",
-      "Algoritmos de ordenamiento rápido para bases de datos relacionales.",
-      "Un compilador alternativo para transformar listas en tuplas estáticas."
+    "id": "c-sharp-q-23",
+    "collectionId": "c-sharp",
+    "question": "Al trabajar con C#, ¿qué responsabilidad define a «Varianza en interfaces (in/out)»?",
+    "options": [
+      "Separa transformaciones en memoria de árboles de expresiones ejecutados en bases de datos.",
+      "Inicializa arrays, listas y spans con sintaxis unificada entre corchetes de forma clara.",
+      "Permite sustituir colecciones según la dirección segura del polimorfismo de forma clara.",
+      "Agrega operaciones a tipos cerrados respetando visibilidad de namespaces de forma clara."
     ],
-    correctAnswerIndex: 1,
-    explanation: "Los 'list patterns' permiten realizar coincidencias de patrones directamente sobre secuencias: comprobar el primer elemento, usar '..' (slice pattern) para descartar o capturar un rango intermedio y verificar el elemento final de manera concisa y expresiva.",
-    topic: "Pattern Matching",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 2,
+    "explanation": "Varianza en interfaces (in/out) (Genéricos y LINQ avanzado): Permite sustituir colecciones según la dirección segura del polimorfismo.",
+    "topic": "Genéricos y LINQ avanzado",
+    "difficulty": "intermedio"
   },
   {
-    id: "csharp-q-24",
-    collectionId: "c-sharp",
-    question: "¿Cuál es la ventaja de 'Native AOT' (Ahead-Of-Time compilation) disponible a partir de .NET 7/8?",
-    options: [
-      "Permite ejecutar código sin procesador físico en la nube.",
-      "Compila la aplicación directamente a código máquina nativo y una biblioteca de soporte mínima, eliminando el compilador JIT y produciendo tiempos de arranque instantáneos y mínimo consumo de memoria.",
-      "Aumenta el tamaño del ejecutable en un 500% para incorporar todas las versiones del CLR.",
-      "Deshabilita la recolección de basura para convertir C# en C puro."
+    "id": "c-sharp-q-24",
+    "collectionId": "c-sharp",
+    "question": "En la arquitectura de C#, ¿qué caracteriza técnicamente a «Delegates, acciones, funciones y lambdas»?",
+    "options": [
+      "Separa transformaciones en memoria de árboles de expresiones ejecutados en bases de datos.",
+      "Permite sustituir colecciones según la dirección segura del polimorfismo de forma clara.",
+      "Inicializa arrays, listas y spans con sintaxis unificada entre corchetes de forma clara.",
+      "Modela comportamiento invocable capturando variables locales respetando las invariantes."
     ],
-    correctAnswerIndex: 1,
-    explanation: "Native AOT precompila el código C# a binario de máquina específico para el sistema operativo destino. No requiere un JIT en tiempo de ejecución, lo que ofrece arranque en milisegundos, menor huella de memoria RAM y contenedores ultra ligeros.",
-    topic: "Compilación y Runtime",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 3,
+    "explanation": "Delegates, acciones, funciones y lambdas (Genéricos y LINQ avanzado): Modela comportamiento invocable capturando variables locales.",
+    "topic": "Genéricos y LINQ avanzado",
+    "difficulty": "intermedio"
   },
   {
-    id: "csharp-q-25",
-    collectionId: "c-sharp",
-    question: "¿Qué diferencia existe entre covarianza ('out') y contravarianza ('in') en genéricos de C#?",
-    options: [
-      "Covarianza se utiliza para tipos por valor y contravarianza para tipos por referencia exclusivamente.",
-      "La covarianza ('out T') permite utilizar un tipo más derivado que el especificado originalmente (solo lectura/salida); la contravarianza ('in T') permite utilizar un tipo menos derivado (solo escritura/entrada).",
-      "La covarianza solo se aplica en constructores y la contravarianza en destructores.",
-      "No existe ninguna diferencia práctica en el compilador de C#."
+    "id": "c-sharp-q-25",
+    "collectionId": "c-sharp",
+    "question": "Respecto a genéricos y linq avanzado en C#, ¿cuál es el propósito de «LINQ deferred execution»?",
+    "options": [
+      "Distingue la definición de una consulta de su materialización al iterar durante la ejecución.",
+      "Separa transformaciones en memoria de árboles de expresiones ejecutados en bases de datos.",
+      "Permite sustituir colecciones según la dirección segura del polimorfismo en ejecución.",
+      "Inicializa arrays, listas y spans con sintaxis unificada entre corchetes en ejecución."
     ],
-    correctAnswerIndex: 1,
-    explanation: "En interfaces y delegados genéricos: 'out T' (covarianza) permite asignar IEnumerable<Derived> a IEnumerable<Base> porque T solo sale de la interfaz. 'in T' (contravarianza) permite asignar IComparer<Base> a IComparer<Derived> porque T solo entra.",
-    topic: "Genéricos Avanzados",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 0,
+    "explanation": "LINQ deferred execution (Genéricos y LINQ avanzado): Distingue la definición de una consulta de su materialización al iterar.",
+    "topic": "Genéricos y LINQ avanzado",
+    "difficulty": "intermedio"
   },
   {
-    id: "csharp-q-26",
-    collectionId: "c-sharp",
-    question: "¿Por qué suscribirse a un 'event' de C# sin desuscribirse puede provocar fugas de memoria (memory leaks)?",
-    options: [
-      "Porque el evento destruye la tabla de descriptores de archivos del proceso.",
-      "Porque el objeto emisor mantiene una referencia fuerte en su lista interna de invocación al delegado del suscriptor, impidiendo que el Garbage Collector recolecte al suscriptor mientras el emisor siga vivo.",
-      "Porque los eventos siempre se instancian en la memoria no administrada de la tarjeta gráfica.",
-      "Porque cada invocación del evento duplica la memoria del proceso indefinidamente."
+    "id": "c-sharp-q-26",
+    "collectionId": "c-sharp",
+    "question": "En C# (Genéricos y LINQ avanzado), ¿qué función técnica cumple «IEnumerable e IQueryable»?",
+    "options": [
+      "Permite sustituir colecciones según la dirección segura del polimorfismo de modo predecible.",
+      "Separa transformaciones en memoria de árboles de expresiones ejecutados en bases de datos.",
+      "Inicializa arrays, listas y spans con sintaxis unificada entre corchetes dentro del flujo.",
+      "Agrega operaciones a tipos cerrados respetando visibilidad de namespaces dentro del flujo."
     ],
-    correctAnswerIndex: 1,
-    explanation: "Un evento en C# mantiene un MulticastDelegate que referencia fuertemente la instancia del método suscriptor. Si el suscriptor tiene menor ciclo de vida que el emisor y no se desuscribe (-=), el emisor mantendrá vivo al suscriptor indefinidamente.",
-    topic: "Eventos y Memoria",
-    difficulty: "intermedio"
+    "correctAnswerIndex": 1,
+    "explanation": "IEnumerable e IQueryable (Genéricos y LINQ avanzado): Separa transformaciones en memoria de árboles de expresiones ejecutados en bases de datos.",
+    "topic": "Genéricos y LINQ avanzado",
+    "difficulty": "intermedio"
   },
   {
-    id: "csharp-q-27",
-    collectionId: "c-sharp",
-    question: "¿Qué permite la directiva 'file class' introducida en C# 11?",
-    options: [
-      "Obliga a que la clase se guarde en formato binario cifrado en el disco duro.",
-      "Restringe la visibilidad de un tipo únicamente al archivo de código fuente en el que está declarado, ideal para evitar colisiones en código generado por Source Generators.",
-      "Convierte la clase en un archivo ejecutable independiente .exe.",
-      "Habilita el acceso directo a puertos de red sin usar sockets."
+    "id": "c-sharp-q-27",
+    "collectionId": "c-sharp",
+    "question": "Dentro de C#, ¿cómo opera el mecanismo de «Expresiones de colección y spread operator» en genéricos y linq avanzado?",
+    "options": [
+      "Separa transformaciones en memoria de árboles de expresiones ejecutados en bases de datos.",
+      "Permite sustituir colecciones según la dirección segura del polimorfismo de forma clara.",
+      "Inicializa arrays, listas y spans con sintaxis unificada entre corchetes de forma clara.",
+      "Agrega operaciones a tipos cerrados respetando visibilidad de namespaces de forma clara."
     ],
-    correctAnswerIndex: 1,
-    explanation: "El modificador de acceso 'file' limita el alcance del tipo al archivo actual. Esto es esencial para generadores de código fuente que necesitan crear clases auxiliares sin riesgo de colisión de nombres con otros archivos del mismo proyecto o namespace.",
-    topic: "Sintaxis Moderna",
-    difficulty: "básico"
+    "correctAnswerIndex": 2,
+    "explanation": "Expresiones de colección y spread operator (Genéricos y LINQ avanzado): Inicializa arrays, listas y spans con sintaxis unificada entre corchetes.",
+    "topic": "Genéricos y LINQ avanzado",
+    "difficulty": "intermedio"
   },
   {
-    id: "csharp-q-28",
-    collectionId: "c-sharp",
-    question: "¿Cuál es la ventaja de 'String.Create' combinado con 'Span<char>' frente a la concatenación tradicional?",
-    options: [
-      "Permite traducir cadenas a múltiples idiomas mediante inteligencia artificial automática.",
-      "Permite inicializar y rellenar directamente el búfer interno del string de destino sin crear objetos 'string' temporales intermedios ni utilizar 'StringBuilder'.",
-      "Convierte automáticamente todos los caracteres a formato ASCII de 7 bits.",
-      "Almacena las cadenas en un registro estático global fuera del proceso."
+    "id": "c-sharp-q-28",
+    "collectionId": "c-sharp",
+    "question": "Al trabajar con C#, ¿qué responsabilidad define a «Métodos de extensión y composición funcional»?",
+    "options": [
+      "Separa transformaciones en memoria de árboles de expresiones ejecutados en bases de datos.",
+      "Permite sustituir colecciones según la dirección segura del polimorfismo de forma clara.",
+      "Inicializa arrays, listas y spans con sintaxis unificada entre corchetes de forma clara.",
+      "Agrega operaciones a tipos cerrados respetando visibilidad de namespaces de forma clara."
     ],
-    correctAnswerIndex: 1,
-    explanation: "String.Create(length, state, action) reserva la memoria exacta de la cadena final y expone un Span<char> mutable para que el delegado rellene sus caracteres directamente, logrando concatenaciones y formateos complejos con cero asignaciones intermedias.",
-    topic: "Rendimiento y Memoria",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 3,
+    "explanation": "Métodos de extensión y composición funcional (Genéricos y LINQ avanzado): Agrega operaciones a tipos cerrados respetando visibilidad de namespaces.",
+    "topic": "Genéricos y LINQ avanzado",
+    "difficulty": "intermedio"
   },
   {
-    id: "csharp-q-29",
-    collectionId: "c-sharp",
-    question: "¿Qué efecto tiene el atributo '[Flags]' aplicado sobre un 'enum' en C#?",
-    options: [
-      "Impide que el enum se pueda usar en sentencias switch.",
-      "Indica que el enum puede tratarse como un campo de bits (máscara binaria), permitiendo combinar múltiples valores mediante operadores a nivel de bits (| y &) y formateando ToString como una lista delimitada por comas.",
-      "Convierte todos los valores del enum en números negativos de 64 bits.",
-      "Fuerza a que el enum se serialice obligatoriamente como un booleano."
+    "id": "c-sharp-q-29",
+    "collectionId": "c-sharp",
+    "question": "En la arquitectura de C#, ¿qué caracteriza técnicamente a «Task y async/await»?",
+    "options": [
+      "Representa operaciones de I/O futuras liberando hilos del ThreadPool de modo predecible.",
+      "Captura todas las errores capturables agregadas producidas en operaciones paralelas.",
+      "Produce y consume flujos de datos bajo demanda con soporte de await foreach al operar.",
+      "Optimiza rutas asíncronas de alto rendimiento que completan síncronamente en el flujo."
     ],
-    correctAnswerIndex: 1,
-    explanation: "El atributo [Flags] señala que la enumeración representa banderas de bits combinables con OR (|) y AND (&). Afecta a métodos como ToString() y HasFlag(), mostrando la combinación legible de valores (ej. 'Read, Write') en lugar de un número entero opaco.",
-    topic: "Sistema de Tipos",
-    difficulty: "básico"
+    "correctAnswerIndex": 0,
+    "explanation": "Task y async/await (Asincronía y concurrencia): Representa operaciones de I/O futuras liberando hilos del ThreadPool.",
+    "topic": "Asincronía y concurrencia",
+    "difficulty": "intermedio"
   },
   {
-    id: "csharp-q-30",
-    collectionId: "c-sharp",
-    question: "¿Qué optimización introduce 'System.Text.Json' con Source Generation frente a serializadores basados en reflexión como Newtonsoft.Json?",
-    options: [
-      "Comprime los datos en formato .zip antes de transmitirlos por HTTP.",
-      "Precalcula metadatos y código de serialización/deserialización en tiempo de compilación, eliminando llamadas lentas a Reflection, reduciendo drásticamente las asignaciones de memoria y habilitando compatibilidad con Native AOT.",
-      "Convierte JSON en XML para compatibilidad con sistemas legados.",
-      "Bloquea la conexión si el payload contiene caracteres no alfanuméricos."
+    "id": "c-sharp-q-30",
+    "collectionId": "c-sharp",
+    "question": "Respecto a asincronía y concurrencia en C#, ¿cuál es el propósito de «CancellationToken y cancelación cooperativa»?",
+    "options": [
+      "Captura todas las errores capturables agregadas producidas en operaciones paralelas al operar.",
+      "Propaga la solicitud de aborto a lo largo de toda la cadena de llamadas de forma segura.",
+      "Produce y consume flujos de datos bajo demanda con soporte de await foreach en el flujo.",
+      "Optimiza rutas asíncronas de alto rendimiento que completan síncronamente con precisión."
     ],
-    correctAnswerIndex: 1,
-    explanation: "La generación de código en tiempo de compilación con JsonSerializerContext produce serializadores y deserializadores fuertemente tipados sin recurrir a System.Reflection. Esto acelera el throughput, minimiza el consumo de RAM y es 100% compatible con Native AOT (sin generación dinámica de IL).",
-    topic: "Serialización y Rendimiento",
-    difficulty: "avanzado"
+    "correctAnswerIndex": 1,
+    "explanation": "CancellationToken y cancelación cooperativa (Asincronía y concurrencia): Propaga la solicitud de aborto a lo largo de toda la cadena de llamadas.",
+    "topic": "Asincronía y concurrencia",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "c-sharp-q-31",
+    "collectionId": "c-sharp",
+    "question": "En C# (Asincronía y concurrencia), ¿qué función técnica cumple «ConfigureAwait y sincronización de contexto»?",
+    "options": [
+      "Captura todas las errores capturables agregadas producidas en operaciones paralelas al operar.",
+      "Produce y consume flujos de datos bajo demanda con soporte de await foreach en el flujo.",
+      "Controla el regreso al hilo de UI o la continuación en hilos de fondo sin perder estado.",
+      "Optimiza rutas asíncronas de alto rendimiento que completan síncronamente con precisión."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "ConfigureAwait y sincronización de contexto (Asincronía y concurrencia): Controla el regreso al hilo de UI o la continuación en hilos de fondo.",
+    "topic": "Asincronía y concurrencia",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "c-sharp-q-32",
+    "collectionId": "c-sharp",
+    "question": "Dentro de C#, ¿cómo opera el mecanismo de «IAsyncEnumerable y streams asíncronos» en asincronía y concurrencia?",
+    "options": [
+      "Captura todas las errores capturables agregadas producidas en operaciones paralelas al operar.",
+      "Optimiza rutas asíncronas de alto rendimiento que completan síncronamente con precisión.",
+      "Propaga la solicitud de aborto a lo largo de toda la cadena de llamadas de forma segura.",
+      "Produce y consume flujos de datos bajo demanda con soporte de await foreach en el flujo."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "IAsyncEnumerable y streams asíncronos (Asincronía y concurrencia): Produce y consume flujos de datos bajo demanda con soporte de await foreach.",
+    "topic": "Asincronía y concurrencia",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "c-sharp-q-33",
+    "collectionId": "c-sharp",
+    "question": "Al trabajar con C#, ¿qué responsabilidad define a «ValueTask e IValueTaskSource»?",
+    "options": [
+      "Optimiza rutas asíncronas de alto rendimiento que completan síncronamente con precisión.",
+      "Captura todas las errores capturables agregadas producidas en operaciones paralelas.",
+      "Produce y consume flujos de datos bajo demanda con soporte de await foreach al operar.",
+      "Propaga la solicitud de aborto a lo largo de toda la cadena de llamadas con precisión."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "ValueTask e IValueTaskSource (Asincronía y concurrencia): Optimiza rutas asíncronas de alto rendimiento que completan síncronamente.",
+    "topic": "Asincronía y concurrencia",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "c-sharp-q-34",
+    "collectionId": "c-sharp",
+    "question": "En la arquitectura de C#, ¿qué caracteriza técnicamente a «Manejo de excepciones en Task.WhenAll»?",
+    "options": [
+      "Produce y consume flujos de datos bajo demanda con soporte de await foreach al evaluar.",
+      "Captura todas las errores capturables agregadas producidas en operaciones paralelas.",
+      "Optimiza rutas asíncronas de alto rendimiento que completan síncronamente al operar.",
+      "Propaga la solicitud de aborto a lo largo de toda la cadena de llamadas en el flujo."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Manejo de excepciones en Task.WhenAll (Asincronía y concurrencia): Captura todas las excepciones agregadas producidas en operaciones paralelas.",
+    "topic": "Asincronía y concurrencia",
+    "difficulty": "intermedio"
+  },
+  {
+    "id": "c-sharp-q-35",
+    "collectionId": "c-sharp",
+    "question": "Respecto a asincronía y concurrencia en C#, ¿cuál es el propósito de «Channels para productor-consumidor»?",
+    "options": [
+      "Captura todas las errores capturables agregadas producidas en operaciones paralelas al operar.",
+      "Produce y consume flujos de datos bajo demanda con soporte de await foreach en el flujo.",
+      "Comunica procesos asíncronos con backpressure y capacidad delimitada de modo predecible.",
+      "Optimiza rutas asíncronas de alto rendimiento que completan síncronamente con precisión."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Channels para productor-consumidor (Asincronía y concurrencia): Comunica procesos asíncronos con backpressure y capacidad delimitada.",
+    "topic": "Asincronía y concurrencia",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "c-sharp-q-36",
+    "collectionId": "c-sharp",
+    "question": "En C# (Memoria, punteros y alto rendimiento), ¿qué función técnica cumple «Span<T>, ReadOnlySpan<T>»?",
+    "options": [
+      "Genera código C# automático durante el build eliminando el uso de reflexión lenta al operar.",
+      "Detecta y previene conversiones costosas de tipos de valor hacia object o interfaces.",
+      "Reutiliza memoria de arreglos contiguos grandes en tareas repetitivas de red y parsing.",
+      "Procesa segmentos de memoria con límites de seguridad y sin asignaciones de forma clara."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "Span<T>, ReadOnlySpan<T> y memoria contigua (Memoria, punteros y alto rendimiento): Procesa segmentos de memoria con límites de seguridad y sin asignaciones.",
+    "topic": "Memoria, punteros y alto rendimiento",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "c-sharp-q-37",
+    "collectionId": "c-sharp",
+    "question": "Dentro de C#, ¿cómo opera el mecanismo de «Memory<T> e IMemoryOwner<T>» en memoria, punteros y alto rendimiento?",
+    "options": [
+      "Administra buffers asíncronos que cruzan fronteras de métodos sin fugas de forma segura.",
+      "Genera código C# automático durante el build eliminando el uso de reflexión lenta.",
+      "Detecta y previene conversiones costosas de tipos de valor hacia object o interfaces.",
+      "Reutiliza memoria de arreglos contiguos grandes en tareas repetitivas de red y parsing."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Memory<T> e IMemoryOwner<T> (Memoria, punteros y alto rendimiento): Administra buffers asíncronos que cruzan fronteras de métodos sin fugas.",
+    "topic": "Memoria, punteros y alto rendimiento",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "c-sharp-q-38",
+    "collectionId": "c-sharp",
+    "question": "Al trabajar con C#, ¿qué responsabilidad define a «ArrayPool<T> y alquiler de buffers»?",
+    "options": [
+      "Genera código C# automático durante el build eliminando el uso de reflexión lenta al operar.",
+      "Reutiliza memoria de arreglos contiguos grandes en tareas repetitivas de red y parsing.",
+      "Detecta y previene conversiones costosas de tipos de valor hacia object o interfaces.",
+      "Realiza operaciones de incremento y swap atómicos en variables compartidas en el flujo."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "ArrayPool<T> y alquiler de buffers (Memoria, punteros y alto rendimiento): Reutiliza memoria de arrays grandes en tareas repetitivas de red y parsing.",
+    "topic": "Memoria, punteros y alto rendimiento",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "c-sharp-q-39",
+    "collectionId": "c-sharp",
+    "question": "En la arquitectura de C#, ¿qué caracteriza técnicamente a «Boxing y unboxing de Value Types»?",
+    "options": [
+      "Genera código C# automático durante el build eliminando el uso de reflexión lenta al operar.",
+      "Realiza operaciones de incremento y swap atómicos en variables compartidas al operar.",
+      "Detecta y previene conversiones costosas de tipos de valor hacia object o interfaces.",
+      "Procesa segmentos de memoria con límites de seguridad y sin asignaciones en el flujo."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Boxing y unboxing de Value Types (Memoria, punteros y alto rendimiento): Detecta y previene conversiones costosas de tipos de valor hacia object o interfaces.",
+    "topic": "Memoria, punteros y alto rendimiento",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "c-sharp-q-40",
+    "collectionId": "c-sharp",
+    "question": "Respecto a memoria, punteros y alto rendimiento en C#, ¿cuál es el propósito de «Source Generators en compilación»?",
+    "options": [
+      "Realiza operaciones de incremento y swap atómicos en variables compartidas al operar.",
+      "Procesa segmentos de memoria con límites de seguridad y sin asignaciones al operar.",
+      "Administra buffers asíncronos que cruzan fronteras de métodos sin fugas al operar.",
+      "Genera código C# automático durante el build eliminando el uso de reflexión lenta."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "Source Generators en compilación (Memoria, punteros y alto rendimiento): Genera código C# automático durante el build eliminando el uso de reflexión lenta.",
+    "topic": "Memoria, punteros y alto rendimiento",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "c-sharp-q-41",
+    "collectionId": "c-sharp",
+    "question": "En C# (Memoria, punteros y alto rendimiento), ¿qué función técnica cumple «Modificador unsafe»?",
+    "options": [
+      "Manipula memoria mediante aritmética de punteros en zonas críticas durante la ejecución.",
+      "Genera código C# automático durante el build eliminando el uso de reflexión lenta.",
+      "Detecta y previene conversiones costosas de tipos de valor hacia object o interfaces.",
+      "Reutiliza memoria de arreglos contiguos grandes en tareas repetitivas de red y parsing."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Modificador unsafe y punteros nativos (Memoria, punteros y alto rendimiento): Manipula memoria mediante aritmética de punteros en zonas críticas.",
+    "topic": "Memoria, punteros y alto rendimiento",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "c-sharp-q-42",
+    "collectionId": "c-sharp",
+    "question": "Dentro de C#, ¿cómo opera el mecanismo de «Interlocked y primitivas de bajo nivel» en memoria, punteros y alto rendimiento?",
+    "options": [
+      "Genera código C# automático durante el build eliminando el uso de reflexión lenta al operar.",
+      "Realiza operaciones de incremento y swap atómicos en variables compartidas en ejecución.",
+      "Detecta y previene conversiones costosas de tipos de valor hacia object o interfaces.",
+      "Reutiliza memoria de arreglos contiguos grandes en tareas repetitivas de red y parsing."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Interlocked y primitivas de bajo nivel (Memoria, punteros y alto rendimiento): Realiza operaciones de incremento y swap atómicos en variables compartidas.",
+    "topic": "Memoria, punteros y alto rendimiento",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "c-sharp-q-43",
+    "collectionId": "c-sharp",
+    "question": "Al trabajar con C#, ¿qué responsabilidad define a «Analizadores Roslyn y reglas de estilo»?",
+    "options": [
+      "Modela entidades, value objects y agregados con inmutabilidad y tipado fuerte de forma segura.",
+      "Garantiza que dependencias entre capas respeten las reglas del proyecto de modo predecible.",
+      "Convierte mejores prácticas y errores potenciales en advertencias de compilación al operar.",
+      "Detecta y previene conversiones costosas de tipos de valor hacia object o interfaces al operar."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Analizadores Roslyn y reglas de estilo (Calidad, arquitectura y pruebas): Convierte mejores prácticas y errores potenciales en advertencias de compilación.",
+    "topic": "Calidad, arquitectura y pruebas",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "c-sharp-q-44",
+    "collectionId": "c-sharp",
+    "question": "En la arquitectura de C#, ¿qué caracteriza técnicamente a «Pruebas unitarias con xUnit y FluentAssertions»?",
+    "options": [
+      "Convierte mejores prácticas y errores potenciales en advertencias de compilación al operar.",
+      "Modela entidades, value objects y agregados con inmutabilidad y tipado fuerte al operar.",
+      "Garantiza que dependencias entre capas respeten las reglas del proyecto de forma segura.",
+      "Verifica contratos e invariantes con aserciones declarativas respetando las invariantes."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "Pruebas unitarias con xUnit y FluentAssertions (Calidad, arquitectura y pruebas): Verifica contratos e invariantes con aserciones declarativas.",
+    "topic": "Calidad, arquitectura y pruebas",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "c-sharp-q-45",
+    "collectionId": "c-sharp",
+    "question": "Respecto a calidad, arquitectura y pruebas en C#, ¿cuál es el propósito de «Falsos y mocks con interfaces pequeñas»?",
+    "options": [
+      "Aísla dependencias externas para pruebas deterministas y rápidas manteniendo consistencia.",
+      "Convierte mejores prácticas y errores potenciales en advertencias de compilación.",
+      "Modela entidades, value objects y agregados con inmutabilidad y tipado fuerte al operar.",
+      "Garantiza que dependencias entre capas respeten las reglas del proyecto en ejecución."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Falsos y mocks con interfaces pequeñas (Calidad, arquitectura y pruebas): Aísla dependencias externas para pruebas deterministas y rápidas.",
+    "topic": "Calidad, arquitectura y pruebas",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "c-sharp-q-46",
+    "collectionId": "c-sharp",
+    "question": "En C# (Calidad, arquitectura y pruebas), ¿qué función técnica cumple «Diseño guiado por el dominio (DDD) en C#»?",
+    "options": [
+      "Convierte mejores prácticas y errores potenciales en advertencias de compilación al operar.",
+      "Modela entidades, value objects y agregados con inmutabilidad y tipado fuerte al operar.",
+      "Garantiza que dependencias entre capas respeten las reglas del proyecto de forma segura.",
+      "Reconoce la estructura y longitud de secuencias mediante patrones de coincidencia al operar."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Diseño guiado por el dominio (DDD) en C# (Calidad, arquitectura y pruebas): Modela entidades, value objects y agregados con inmutabilidad y tipado fuerte.",
+    "topic": "Calidad, arquitectura y pruebas",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "c-sharp-q-47",
+    "collectionId": "c-sharp",
+    "question": "Dentro de C#, ¿cómo opera el mecanismo de «Arquitectura limpia y puertos/adaptadores» en calidad, arquitectura y pruebas?",
+    "options": [
+      "Convierte mejores prácticas y errores potenciales en advertencias de compilación al operar.",
+      "Modela entidades, value objects y agregados con inmutabilidad y tipado fuerte al operar.",
+      "Separa el dominio de la infraestructura y frameworks de interfaz sin degradar el flujo.",
+      "Garantiza que dependencias entre capas respeten las reglas del proyecto de forma clara."
+    ],
+    "correctAnswerIndex": 2,
+    "explanation": "Arquitectura limpia y puertos/adaptadores (Calidad, arquitectura y pruebas): Separa el dominio de la infraestructura y frameworks de interfaz.",
+    "topic": "Calidad, arquitectura y pruebas",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "c-sharp-q-48",
+    "collectionId": "c-sharp",
+    "question": "Al trabajar con C#, ¿qué responsabilidad define a «Pruebas de arquitectura con NetArchTest»?",
+    "options": [
+      "Convierte mejores prácticas y errores potenciales en advertencias de compilación al operar.",
+      "Modela entidades, value objects y agregados con inmutabilidad y tipado fuerte al operar.",
+      "Reconoce la estructura y longitud de secuencias mediante patrones de coincidencia al operar.",
+      "Garantiza que dependencias entre capas respeten las reglas del proyecto de forma segura."
+    ],
+    "correctAnswerIndex": 3,
+    "explanation": "Pruebas de arquitectura con NetArchTest (Calidad, arquitectura y pruebas): Garantiza que dependencias entre capas respeten las reglas del proyecto.",
+    "topic": "Calidad, arquitectura y pruebas",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "c-sharp-q-49",
+    "collectionId": "c-sharp",
+    "question": "En la arquitectura de C#, ¿qué caracteriza técnicamente a «Benchmarking con BenchmarkDotNet»?",
+    "options": [
+      "Mide nanosegundos y allocations de memoria de algoritmos críticos respetando las invariantes.",
+      "Convierte mejores prácticas y errores potenciales en advertencias de compilación al operar.",
+      "Modela entidades, value objects y agregados con inmutabilidad y tipado fuerte al operar.",
+      "Garantiza que dependencias entre capas respeten las reglas del proyecto con precisión."
+    ],
+    "correctAnswerIndex": 0,
+    "explanation": "Benchmarking con BenchmarkDotNet (Calidad, arquitectura y pruebas): Mide nanosegundos y allocations de memoria de algoritmos críticos.",
+    "topic": "Calidad, arquitectura y pruebas",
+    "difficulty": "avanzado"
+  },
+  {
+    "id": "c-sharp-q-50",
+    "collectionId": "c-sharp",
+    "question": "Respecto a caso en acción en C#, ¿cuál es el propósito de «Modelar la lectura»?",
+    "options": [
+      "Reconoce la estructura y longitud de secuencias mediante patrones de coincidencia al operar.",
+      "El modelo impide que un número sin unidad llegue al pipeline respetando las invariantes.",
+      "Genera código C# automático durante el build eliminando el uso de reflexión lenta al operar.",
+      "Establece cuándo un valor cambia de representación o revela un tipo más específico al operar."
+    ],
+    "correctAnswerIndex": 1,
+    "explanation": "Modelar la lectura (Caso en acción): El modelo impide que un número sin unidad llegue al pipeline.",
+    "topic": "Caso en acción",
+    "difficulty": "avanzado"
   }
 ];
